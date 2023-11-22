@@ -1,0 +1,131 @@
+@media only screen and (max-width: 768px) {
+    .mobileHeader {
+        padding: 16px;
+    }
+
+    .mobileHeaderCenter {
+        padding: 16px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .mobileFooterNav ul.navlinks {
+        background: transparent;
+        border: 0;
+        padding: 0;
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    .mobileFooterNav ul.navlinks>li {
+        flex: 1;
+        flex-shrink: 0;
+    }
+
+    .mobileFooterNav ul.navlinks>li .navLink {
+        border-radius: 8px;
+        outline: 1px solid #3C3F43;
+    }
+
+    .mobileFooterNav ul.navlinks>li a.navLink.active {
+        outline: none;
+    }
+
+    .mobileArea .swapContainerBox .connectBtn {
+        display: none;
+    }
+
+    .mobileArea .sidebarSliderArea {
+        padding: 16px;
+        max-width: 480px;
+        margin: 0 auto;
+    }
+
+    .footerRow {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px 32px 30px 32px;
+        gap: 10px;
+    }
+
+    .footerRow>div {
+        width: 100%;
+        padding: 0;
+        text-align: left;
+    }
+
+    .footerNav a,
+    .footerNav {
+        justify-content: flex-start;
+    }
+
+    .powerBy {
+        text-align: left;
+    }
+
+    .connectBtn {
+        padding: 16px 16px 30px 16px;
+        background: #191B1E;
+    }
+
+    .mobileNavContainer {
+        position: fixed;
+        z-index: 111;
+        background: #191B1E;
+        left: 0;
+        right: 0;
+        height: calc(100vh - 110px);
+        bottom: 0;
+        max-height: calc(100vh - 110px);
+        overflow: auto;
+        opacity: 0;
+        visibility: hidden;
+        transition: .3s ease all;
+        border-top: 1px solid rgba(97, 100, 107, 0.10);
+    }
+
+    body.activeMobileMenu {
+        overflow: hidden;
+    }
+
+    .closeNav {
+        display: none;
+    }
+
+    body.activeMobileMenu img.openNav {
+        display: none;
+    }
+
+    body.activeMobileMenu img.closeNav {
+        display: block;
+    }
+
+    .navlinks {
+        border: 0;
+        padding: 16px 10px;
+    }
+
+    .SidebarBottomNav.sidebarNav {
+        border-top: 1px solid rgba(97, 100, 107, 0.10);
+        border-bottom: 1px solid rgba(97, 100, 107, 0.10);
+    }
+
+    ul.socialList {
+        display: flex;
+        align-items: center;
+        padding: 16px;
+        gap: 24px;
+    }
+
+    body.activeMobileMenu .mobileNavContainer {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    footer#footerArea .container, .connectBtn {
+        max-width: 480px;
+        margin: 0 auto;
+    }
+
+}

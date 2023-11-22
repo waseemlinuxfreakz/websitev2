@@ -11,7 +11,7 @@ function Header() {
                     <h1 className="siteTitle">Swap</h1>
                     <div className="headerRightSide">
                         <div className="EthereumTop">
-                        <img src={EthereumTop} alt="" />
+                            <a href="#"><img src={EthereumTop} alt="" /></a>
                         </div>
                         <div className="connectWallet">
                             <a href="#"><img src={Wallet} alt="Wallet" /> Connect</a>

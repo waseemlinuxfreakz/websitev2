@@ -34,24 +34,28 @@ function SidebarNav() {
                     <a href="#" className='navLink'>
                         <img src={NavIcon4} alt="NavIcon" />
                         <span>Farm</span>
+                        <span className="soon">Soon</span>
                     </a>
                 </li>
                 <li>
                     <a href="#" className='navLink'>
                         <img src={NavIcon5} alt="NavIcon" />
-                        <span>Lend / Borrow</span>
+                        <span>Loans</span>
+                        <span className="soon">Soon</span>
                     </a>
                 </li>
                 <li>
                     <a href="#" className='navLink'>
                         <img src={NavIcon6} alt="NavIcon" />
                         <span>Stake</span>
+                        <span className="soon">Soon</span>
                     </a>
                 </li>
                 <li>
                     <a href="#" className='navLink'>
                         <img src={NavIcon7} alt="NavIcon" />
                         <span>Governance</span>
+                        <span className="soon">Soon</span>
                     </a>
                 </li>
             </ul>

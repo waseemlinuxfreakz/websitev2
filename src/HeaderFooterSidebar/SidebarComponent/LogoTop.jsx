@@ -5,7 +5,7 @@ import Logo from '../../assets/img/Emmet-logo.svg';
 function LogoTop() {
     return ( 
         <div className="sidebarTopLogo">
-            <img src={Logo} alt="Logo" className='deskTopLogo' />
+            <a href="/" className='NavBrand'><img src={Logo} alt="Logo" className='' /></a>
             <div className="toggleLink">
                 <a href="#" className='testnet active'>Testnet</a>
                 <a href="#" className='mainnet'>Mainnet</a>

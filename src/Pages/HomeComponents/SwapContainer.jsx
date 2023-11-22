@@ -5,7 +5,7 @@ import RefreshExchange from './RefreshExchange';
 import GassFee from './GassFee';
 import Slippage from './Slippage';
 import ConnectToWallet from './ConnectToWallet';
-import EnterAmountBtn from './EnterAmountBtn';
+// import EnterAmountBtn from './EnterAmountBtn';
 
 
 function SwapContainer() {

@@ -23,7 +23,7 @@ function SwapPay() {
                 <div className="selectCoin">
                     <div className="selectedCoin">
                         <img src={Ethereum} alt="Ethereum" />
-                        <span>Ethereum</span>
+                        <span>ETH</span>
                         <img src={DownArrow} alt="Ethereum" />
                     </div>
                     <ul className="selectCoinList">
