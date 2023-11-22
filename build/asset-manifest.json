@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/new-ui/static/css/main.d034a5e6.css",
+    "main.js": "/new-ui/static/js/main.221fc44c.js",
+    "static/js/787.46a48440.chunk.js": "/new-ui/static/js/787.46a48440.chunk.js",
+    "static/media/Banner-placeholder.png": "/new-ui/static/media/Banner-placeholder.efd6d697cdd62e99c049.png",
+    "static/media/Emmet-logo.svg": "/new-ui/static/media/Emmet-logo.948d4c07d084ccf6663edd15a5d47cb1.svg",
+    "static/media/second-nav-Icons-1.svg": "/new-ui/static/media/second-nav-Icons-1.258a49cd150cdad68ed0f7b59a05b199.svg",
+    "static/media/nav-Icons-6.svg": "/new-ui/static/media/nav-Icons-6.faa335abe19d6d2b51b134a658a96b44.svg",
+    "static/media/nav-Icons-1.svg": "/new-ui/static/media/nav-Icons-1.498f16444e6d239a560d98a3ed475e2d.svg",
+    "static/media/nav-Icons-5.svg": "/new-ui/static/media/nav-Icons-5.4293b0103cdc03df29ab45c063133f69.svg",
+    "static/media/nav-Icons-3.svg": "/new-ui/static/media/nav-Icons-3.0df0825a9674239c7e3ec378532a583c.svg",
+    "static/media/nav-Icons-2.svg": "/new-ui/static/media/nav-Icons-2.e39b173c98280aa7594d30c7b6c114a5.svg",
+    "static/media/Wallet.svg": "/new-ui/static/media/Wallet.dbd782c608b5bc2f0169c8d32979a897.svg",
+    "static/media/second-nav-Icons-3.svg": "/new-ui/static/media/second-nav-Icons-3.074ea2f56305d6e4ea9f252b2fe84ca5.svg",
+    "static/media/second-nav-Icons-2.svg": "/new-ui/static/media/second-nav-Icons-2.5bf75490513cbdda7e231f3492860e10.svg",
+    "static/media/second-nav-Icons-4.svg": "/new-ui/static/media/second-nav-Icons-4.44541362db0ef42c693012d9a9813a49.svg",
+    "static/media/Ethereum-top.svg": "/new-ui/static/media/Ethereum-top.e0041fe5c1e79b31dfd2ff30484b28d7.svg",
+    "static/media/nav-Icons-4.svg": "/new-ui/static/media/nav-Icons-4.04be120467878ee53edff80eac5a7d19.svg",
+    "static/media/nav-Icons-7.svg": "/new-ui/static/media/nav-Icons-7.a458c0d7495b9a500cb83d4ad6014234.svg",
+    "index.html": "/new-ui/index.html",
+    "main.d034a5e6.css.map": "/new-ui/static/css/main.d034a5e6.css.map",
+    "main.221fc44c.js.map": "/new-ui/static/js/main.221fc44c.js.map",
+    "787.46a48440.chunk.js.map": "/new-ui/static/js/787.46a48440.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d034a5e6.css",
+    "static/js/main.221fc44c.js"
+  ]
+}
