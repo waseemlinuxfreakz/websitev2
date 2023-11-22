@@ -10,7 +10,7 @@ body {
     font-size: 16px;
     font-weight: 400;
     line-height: 1.5;
-    color: #fff;
+    color: #E0E3E6;
     background-image: linear-gradient(137deg, #191B1E, #1E2228);
     background-color: #191B1E;
 }
@@ -51,6 +51,10 @@ dl {
     margin: 0;
     padding: 0;
     list-style: none;
+}
+
+.fw6 {
+    font-weight: 600;
 }
 
 /* width */
@@ -284,4 +288,278 @@ img.deskTopLogo {
 
 .navLink.active img {
     filter: unset;
+}
+
+.swapContainerBox {
+    border-radius: 16px;
+    border: 1px solid rgba(97, 100, 107, 0.10);
+    background: #1B1D20;
+    box-shadow: 0px 9px 15px 7px rgba(0, 0, 0, 0.10);
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 24px 24px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.swap_top_menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 26px;
+}
+
+.selectCoinLeft {
+    position: relative;
+    z-index: 1;
+}
+
+.selectedCoin {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px;
+}
+
+.coinItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.selectCoinList {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    padding: 10px;
+    position: absolute;
+    z-index: 11;
+    left: 0;
+    width: auto;
+    background: #202226;
+    border-radius: 8px;
+    border: 1px solid rgba(97, 100, 107, 0.10);
+    min-width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s ease all;
+}
+
+.swapMenuBtn {
+    background: transparent;
+    padding: 0;
+    border: 0;
+    outline: none;
+    box-shadow: none;
+    flex-shrink: 0;
+}
+
+.swapPayReceive {
+    border-radius: 8px;
+    border: 1px solid rgba(97, 100, 107, 0.10);
+    background: #202226;
+    display: flex;
+    padding: 16px;
+}
+
+.swapPayReceive> div {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.payReRight {
+    text-align: right;
+    align-items: flex-end;
+}
+
+.switchBtn {
+    display: block;
+    margin: -14px auto;
+    background: transparent;
+    border: 0;
+    outline: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+.payReLeft p {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    margin: 0;
+}
+
+.selectCoin {
+    position: relative;
+    z-index: 1;
+    border-radius: 8px;
+    border: 1px solid rgba(97, 100, 107, 0.10);
+    background: #1B1D20;
+    padding: 12px 8px;
+}
+
+.walletAddress {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.amount input {
+    background: transparent;
+    border: 0;
+    outline: none;
+    box-shadow: none;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 38px;
+    color: #888B92;
+    max-width: 100%;
+}
+
+.amount input::-webkit-outer-spin-button,
+.amount input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.amount input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.amount input::placeholder {
+    color: #888B92;
+}
+
+.amount {
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 38px;
+    color: #888B92;
+}
+
+.refreshWallet {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 8px;
+    border: 1px solid #rgba(97, 100, 107, 0.10);
+    padding: 12px 16px;
+}
+
+.refReshBtn {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    outline: none;
+    box-shadow: none;
+}
+
+.gassFeeContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 16px 8px 16px;
+    border-bottom: 1px solid rgba(97, 100, 107, 0.10);
+}
+
+.slipageTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 16px 16px 16px;
+}
+
+.slippageLeft, .gassFeeLeft {
+    color: #B3B7BF;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: -0.3px;
+}
+
+.slipageSelect select {
+    background: transparent;
+    border: 0;
+    outline: none;
+    box-shadow: none;
+    appearance: none;
+    color: #E0E3E6;
+}
+
+.slipageSelect select option {
+    background: #1B1D20;
+}
+
+.slipageToggle {
+    padding: 8px 16px 16px 16px;
+}
+
+.slipageList {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0px;
+    border-bottom: 1px solid rgba(97, 100, 107, 0.10);
+}
+
+.slipageList:last-child {
+    border: 0;
+}
+
+.slipageListLeft {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px; /* 150% */
+    letter-spacing: -0.3px;
+    color: #B3B7BF;
+}
+
+.slipageListRight .fw6 {
+    color: #B3B7BF;
+}
+
+.enterAmount {
+    border-radius: 8px;
+    border: 1.5px solid rgba(97, 100, 107, 0.30);
+    background: rgba(148, 151, 158, 0.16);
+    font-weight: 600;
+    line-height: 24px; /* 150% */
+    letter-spacing: -0.3px;
+    color: #B3B7BF;
+    padding: 12px;
+    outline: none;
+    box-shadow: none;
+}
+
+.swapContainerArea {
+    padding: 34px 0;
+    max-height: calc(100vh - 160px);
+    overflow: auto;
+}
+
+button.ConnectToWallet {
+    display: block;
+    width: 100%;
+    font-weight: 600;
+    line-height: 24px; /* 150% */
+    letter-spacing: -0.3px;
+    color: #191B1E;
+    border-radius: 8px;
+    background:#EFEB00;
+    padding: 12px;
+    outline: none;
+    box-shadow: none;
 }
