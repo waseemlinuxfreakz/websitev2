@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
+
 *,
 *::before,
 *::after {
@@ -6,7 +8,7 @@
 
 body {
     margin: 0;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 1.5;
@@ -328,24 +330,42 @@ footer#footerArea {
     align-items: center;
     gap: 8px;
     cursor: pointer;
+    padding: 8px;
 }
 
 .selectCoinList {
     display: flex;
     flex-direction: column;
-    gap: 11px;
     padding: 10px;
     position: absolute;
     z-index: 11;
-    left: 0;
-    width: auto;
+    right: 10px;
+    top: 100%;
     background: #202226;
     border-radius: 8px;
     border: 1px solid rgba(97, 100, 107, 0.10);
     min-width: 100%;
-    opacity: 0;
-    visibility: hidden;
     transition: .3s ease all;
+    width: 240px;
+    z-index: 99;
+}
+
+.selectCoinLeft ul.selectCoinList {
+    width: 150px;
+}
+
+.coinItemRight {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.coinNameIcon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
 }
 
 .swapMenuBtn {
@@ -396,7 +416,6 @@ footer#footerArea {
 
 .selectCoin {
     position: relative;
-    z-index: 1;
     border-radius: 8px;
     border: 1px solid rgba(97, 100, 107, 0.10);
     background: #1B1D20;
@@ -473,6 +492,7 @@ footer#footerArea {
     align-items: center;
     justify-content: space-between;
     padding: 8px 16px 16px 16px;
+    position: relative;
 }
 
 .slippageLeft,
@@ -493,6 +513,9 @@ footer#footerArea {
     box-shadow: none;
     appearance: none;
     color: #E0E3E6;
+}
+.slipageSelect {
+    cursor: pointer;
 }
 
 .slipageSelect select option {
@@ -557,7 +580,6 @@ button.ConnectToWallet {
     width: 100%;
     font-weight: 600;
     line-height: 24px;
-    /* 150% */
     letter-spacing: -0.3px;
     color: #191B1E;
     border-radius: 8px;
@@ -595,10 +617,129 @@ button.ConnectToWallet {
     font-weight: 500;
     line-height: 20px;
     border-radius: 6px;
-    background: var(--button-button-ghost, rgba(148, 151, 158, 0.16));
+    background: rgba(148, 151, 158, 0.16);
     padding: 2px 10px;
 }
 
 .sidebarSliderArea img {
     width: 100%;
+}
+
+.copyAddress {
+    background: transparent;
+    border: 0;
+    outline: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+.Copyalert {
+    position: fixed;
+    z-index: 1111;
+    left: 0;
+    top: auto;
+    bottom: 70px;
+    width: 100vw !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    max-width: unset;
+    padding-left: 280px;
+}
+
+.Copyalert img {
+    background-color: #111112;
+    border-radius: 8px;
+}
+
+
+.slipageModal {
+    position: absolute;
+    z-index: 1;
+    right: 30px;
+    top: 70%;
+    left: 30px;
+    border-radius: 8px;
+    border: 1px solid #3C3F43;
+    background: #1B1D20;
+    box-shadow: 0px 2px 12px 6px rgba(0, 0, 0, 0.20);
+    padding: 16px;
+}
+
+.slipageModalTitle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    line-height: 24px; /* 150% */
+    letter-spacing: -0.3px;
+    color: #B3B7BF;
+    margin-bottom: 8px;
+}
+
+.slipageValue {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.valueItem {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    color: #B3B7BF;
+    width: 60px;
+    flex-shrink: 0;
+    text-align: center;
+    padding: 6px 14px;
+    white-space: nowrap;
+    border-radius: 6px;
+    background: rgba(148, 151, 158, 0.16);
+    cursor: pointer;
+}
+
+.slipageValueBox {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.customeValue {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 8px;
+    border: 1px solid rgba(97, 100, 107, 0.30);
+    background:#1B1D20;
+    padding: 7px 12px;
+    height: 32px;
+    max-width: 135px;
+}
+
+.customeValue input {
+    background: transparent;
+    outline: none;
+    box-shadow: none;
+    border: 0;
+    max-width: calc(100% - 20px);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    color: #fff;
+}
+
+.customeValue input::placeholder {
+    color:#888B92;
+}
+
+.customeValue input::-webkit-outer-spin-button,
+.customeValue input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.customeValue input[type=number] {
+  -moz-appearance: textfield;
 }
