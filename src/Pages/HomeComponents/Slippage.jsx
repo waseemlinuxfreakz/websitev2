@@ -11,9 +11,18 @@ const Slippage = () => {
         setModalVisible(!isModalVisible);
     };
     
+    const [isToggleVisible, setToggleVisible] = useState(false);
+
+  // Handler function for the .slipageTitle click event
+  const handleTitleClick = () => {
+    // Always set isToggleVisible to true when the title is clicked
+    setToggleVisible(true);
+  };
+
+
     return ( 
         <div className="slippageContainer">
-            <div className="slipageTitle">
+            <div className="slipageTitle" onClick={handleTitleClick}>
                 <div className="slippageLeft">
                     Slippage
                 </div>
@@ -32,7 +41,7 @@ const Slippage = () => {
                             <div className="slipageValueBox">
                                 <div className="slipageValue">
                                     <span className='valueItem' id='value1' onClick={toggleModal}>0.1 %</span>
-                                    <span className='valueItem' id='value2' onClick={toggleModal}>0.5 %</span>
+                                    <span className='valueItem active' id='value2' onClick={toggleModal}>0.5 %</span>
                                     <span className='valueItem' id='value3' onClick={toggleModal}>1.0 %</span>
                                 </div>
                                 <div className="customeValue">
@@ -44,6 +53,8 @@ const Slippage = () => {
                     )}
                 </div>
             </div>
+
+            {isToggleVisible &&
             <div className="slipageToggle">
                 <div className="slipageList">
                     <div className="slipageListLeft">
@@ -82,6 +93,7 @@ const Slippage = () => {
                     </div>
                 </div>
             </div>
+            }
         </div>
      );
 }

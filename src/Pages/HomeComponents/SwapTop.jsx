@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import Ethereum from '../../assets/img/Ethereum.svg';
 import USDT from '../../assets/img/USDT.svg';
-import SwapMenuBtn from '../../assets/img/Icon-button.svg';
 import DownArrow from '../../assets/img/down-white.svg';
 
 import ETH from '../../assets/img/coin/eth.svg';
@@ -11,6 +10,8 @@ import Scroll from '../../assets/img/coin/scoll.svg';
 import Op from '../../assets/img/coin/op.svg';
 import USDC from '../../assets/img/coin/usdc.svg';
 import DIA from '../../assets/img/coin/dai.svg';
+
+import SwapContainerMenu from './SwapContainerMenu';
 
 const SwapTop = () => {
     const [showSelectCoinList, setShowSelectCoinList] = useState(false);
@@ -110,9 +111,7 @@ const SwapTop = () => {
                 )}
             </div>
             <div className="swap_top_menu_right">
-                <button className="swapMenuBtn">
-                    <img src={SwapMenuBtn} alt="SwapMenuBtn" />
-                </button>
+                <SwapContainerMenu/>
             </div>
         </div>
     );

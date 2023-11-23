@@ -375,6 +375,7 @@ footer#footerArea {
     outline: none;
     box-shadow: none;
     flex-shrink: 0;
+    display: flex;
 }
 
 .swapPayReceive {
@@ -681,6 +682,7 @@ button.ConnectToWallet {
     display: flex;
     align-items: center;
     gap: 6px;
+    flex-grow: 1;
 }
 
 .valueItem {
@@ -697,6 +699,7 @@ button.ConnectToWallet {
     border-radius: 6px;
     background: rgba(148, 151, 158, 0.16);
     cursor: pointer;
+    flex-grow: 1;
 }
 
 .slipageValueBox {
@@ -715,6 +718,9 @@ button.ConnectToWallet {
     padding: 7px 12px;
     height: 32px;
     max-width: 135px;
+    color: #B3B7BF;
+    text-align: right;
+    justify-content: space-between;
 }
 
 .customeValue input {
@@ -722,12 +728,13 @@ button.ConnectToWallet {
     outline: none;
     box-shadow: none;
     border: 0;
-    max-width: calc(100% - 20px);
+    max-width: calc(100% - 30px);
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
     line-height: 20px;
     color: #fff;
+    text-align: left;
 }
 
 .customeValue input::placeholder {
@@ -742,4 +749,29 @@ button.ConnectToWallet {
 
 .customeValue input[type=number] {
   -moz-appearance: textfield;
+}
+
+.valueItem.active {
+    background: #FFF;
+    color: #191B1E;
+}
+
+.swapMenuBtn.active .closeMenu{
+    display: block;
+}   
+
+.swapMenuBtn.active .openMenu,
+.closeMenu {
+    display: none;
+}
+
+.swapMenuContainer {
+    position: relative;
+    z-index: 1;
+}
+
+.swapMenuContainer .slipageModal {
+    right: 0;
+    left: auto;
+    top: 100%;
 }
