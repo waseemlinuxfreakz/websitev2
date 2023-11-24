@@ -5,7 +5,7 @@ import RightGreen from '../../assets/img/right-green.svg';
 import Square from '../../assets/img/square-icon.svg';
 
 
-function SwapSuccess.jsx() {
+function SwapSuccess () {
     return ( 
         <div className="swapSuccessModal">
             <div className="closeSuccess"><img src={Close} alt="Close" /></div>
@@ -35,11 +35,11 @@ function SwapSuccess.jsx() {
                 </li>
             </ul>
             <div className="successBottomBtns">
-                <a href="#" className='backTo ConnectToWallet'>Back to swap</a>
+                <a href="#" className='backTo MainYellowActionButton'>Back to swap</a>
                 <a href="#" className='viewSwap'>View swap history</a>
             </div>
         </div>
      );
 }
 
-export default SwapSuccess.jsx;
+export default SwapSuccess;

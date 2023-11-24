@@ -4,7 +4,7 @@ import Footer from '../HeaderFooterSidebar/Footer';
 import Sidebar from '../HeaderFooterSidebar/Sidebar';
 import SwapContainer from './HomeComponents/SwapContainer';
 import MobileHeader from '../HeaderFooterSidebar/MobileHeader';
-import ConnectToWallet from './HomeComponents/ConnectToWallet';
+import MainYellowActionButton from './HomeComponents/MainYellowActionButton';
 import SidebarSlider from '../HeaderFooterSidebar/SidebarComponent/SidebarSlider';
 
 
@@ -38,7 +38,7 @@ const HomePage = () => {
                     <SwapContainer/>
                     <SidebarSlider/>
                     <Footer/>
-                    <ConnectToWallet/>
+                    <MainYellowActionButton/>
                 </div>
             </div>
         ) : (

@@ -5,7 +5,7 @@ function RefreshExchange() {
     return ( 
         <div className="refreshWallet">
             <div className="refreshLet">
-                1 ETH = 1964.86 USDT
+                1 ETH = 1964.86
             </div>
             <div className="refreshRight">
                 <button className='refReshBtn'><img src={Refresh} alt="Refresh" /></button>

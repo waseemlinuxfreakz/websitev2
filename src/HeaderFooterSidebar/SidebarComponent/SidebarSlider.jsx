@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React, { useRef, useState } from 'react';
 import Slider1 from '../../assets/img/Banner-placeholder.png';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -10,21 +9,17 @@ import 'swiper/css/pagination';
 
 
 // import required modules
-import { Pagination, Autoplay } from 'swiper/modules';
+import { Pagination } from 'swiper/modules';
 
 function SidebarSlider() {
     return ( 
         <div className="sidebarSliderArea">
             <Swiper
                 spaceBetween={10}
-                autoplay={{
-                  delay: 2500,
-                  disableOnInteraction: false,
-                }}
                 pagination={{
                 clickable: true,
                 }}
-                modules={[Pagination, Autoplay]}
+                modules={[Pagination]}
                 className="swiperAddSlider"
             >
                 <SwiperSlide><img src={Slider1} alt="Slider1" /></SwiperSlide>
