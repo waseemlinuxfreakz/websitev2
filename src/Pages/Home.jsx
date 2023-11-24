@@ -4,9 +4,11 @@ import Footer from '../HeaderFooterSidebar/Footer';
 import Sidebar from '../HeaderFooterSidebar/Sidebar';
 import SwapContainer from './HomeComponents/SwapContainer';
 import MobileHeader from '../HeaderFooterSidebar/MobileHeader';
-import MainYellowActionButton from './HomeComponents/MainYellowActionButton';
+import ConnectToWallet from './HomeComponents/ConnectToWallet';
 import SidebarSlider from '../HeaderFooterSidebar/SidebarComponent/SidebarSlider';
-
+import SwapSuccess from './HomeComponents/SwapSuccess';
+import SwapFailed from './HomeComponents/SwapFailed';
+import SwapConfirm from './HomeComponents/SwapConfirm';
 
 const HomePage = () => {
     const [isMobile, setIsMobile] = useState(false);
@@ -38,7 +40,7 @@ const HomePage = () => {
                     <SwapContainer/>
                     <SidebarSlider/>
                     <Footer/>
-                    <MainYellowActionButton/>
+                    <ConnectToWallet/>
                 </div>
             </div>
         ) : (
@@ -53,6 +55,9 @@ const HomePage = () => {
                             <div className="swapContainerArea">
                                 <SwapContainer/>
                             </div>
+                            {/* <SwapSuccess/> */}
+                            {/* <SwapFailed/> */}
+                            {/* <SwapConfirm/> */}
                         </div>
                         <Footer/>
                     </div>

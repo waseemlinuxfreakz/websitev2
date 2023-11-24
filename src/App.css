@@ -13,7 +13,11 @@ body {
     font-weight: 400;
     line-height: 1.5;
     color: #E0E3E6;
-    background-image: linear-gradient(137deg, #191B1E, #1E2228);
+    /* background-image: linear-gradient(137deg, #191B1E, #1E2228); */
+    background-image: url("assets/img/bg-swap.png");
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
     background-color: #191B1E;
 }
 
@@ -62,6 +66,7 @@ dl {
 /* width */
 ::-webkit-scrollbar {
     width: 7px;
+    height: 7px;
 }
 
 /* Track */
@@ -117,7 +122,7 @@ dl {
     gap: 8px;
 }
 
-.connectWallet>* {
+.connectWallet>a {
     border-radius: 8px;
     border: 1.5px solid rgba(97, 100, 107, 0.30);
     background: rgba(148, 151, 158, 0.16);
@@ -132,7 +137,6 @@ dl {
     /* 150% */
     letter-spacing: -0.3px;
     color: #E0E3E6;
-    cursor: pointer;
 }
 
 .mainWrap>* {
@@ -351,6 +355,10 @@ footer#footerArea {
     z-index: 99;
 }
 
+ul.selectCoinList.hidden {
+    display: none;
+}
+
 .selectCoinLeft ul.selectCoinList {
     width: 150px;
 }
@@ -469,7 +477,7 @@ footer#footerArea {
     align-items: center;
     justify-content: space-between;
     border-radius: 8px;
-    border: 1px solid #rgba(97, 100, 107, 0.10);
+    border: 1px solid rgba(97, 100, 107, 0.10);
     padding: 12px 16px;
 }
 
@@ -516,6 +524,7 @@ footer#footerArea {
     appearance: none;
     color: #E0E3E6;
 }
+
 .slipageSelect {
     cursor: pointer;
 }
@@ -577,7 +586,7 @@ footer#footerArea {
     overflow: auto;
 }
 
-button.MainYellowActionButton {
+button.ConnectToWallet {
     display: block;
     width: 100%;
     font-weight: 600;
@@ -673,7 +682,8 @@ button.MainYellowActionButton {
     align-items: center;
     gap: 6px;
     font-weight: 600;
-    line-height: 24px; /* 150% */
+    line-height: 24px;
+    /* 150% */
     letter-spacing: -0.3px;
     color: #B3B7BF;
     margin-bottom: 8px;
@@ -715,7 +725,7 @@ button.MainYellowActionButton {
     gap: 6px;
     border-radius: 8px;
     border: 1px solid rgba(97, 100, 107, 0.30);
-    background:#1B1D20;
+    background: #1B1D20;
     padding: 7px 12px;
     height: 32px;
     max-width: 135px;
@@ -739,17 +749,17 @@ button.MainYellowActionButton {
 }
 
 .customeValue input::placeholder {
-    color:#888B92;
+    color: #888B92;
 }
 
 .customeValue input::-webkit-outer-spin-button,
 .customeValue input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 .customeValue input[type=number] {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
 }
 
 .valueItem.active {
@@ -757,9 +767,9 @@ button.MainYellowActionButton {
     color: #191B1E;
 }
 
-.swapMenuBtn.active .closeMenu{
+.swapMenuBtn.active .closeMenu {
     display: block;
-}   
+}
 
 .swapMenuBtn.active .openMenu,
 .closeMenu {
@@ -775,4 +785,130 @@ button.MainYellowActionButton {
     right: 0;
     left: auto;
     top: 100%;
+}
+
+.swapSuccessModal {
+    position: fixed;
+    z-index: 1111;
+    display: flex;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    overflow: auto;
+    background: rgb(21 21 22 / 80%);
+    align-items: flex-start;
+    padding-top: 100px;
+}
+
+.swapSuccessModalInner {
+    width: 380px;
+    max-width: calc(100vw - 20px);
+    margin: 0 auto;
+    border-radius: 16px;
+    border: 1px solid #3C3F43;
+    background: #202226;
+    box-shadow: 0px 2px 12px 6px rgba(0, 0, 0, 0.20);
+    padding: 24px 24px 44px 24px;
+}
+
+.closeSuccess {
+    display: table;
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.successIcon {
+    display: block;
+    margin: -14px auto 6px auto;
+}
+
+.swapSuccessModalInner h2 {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 32px;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.successTransfer {
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid #3C3F43;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+}
+
+.successTransfer> div {
+    width: calc(50% - 20px);
+}
+
+.successTransfer> img {
+    display: block;
+    margin: 0 auto;
+}
+
+.tTo {
+    text-align: right;
+}
+
+ul.textBox {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(97, 100, 107, 0.10);
+    background: #202226;
+}
+
+.textLine {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(97, 100, 107, 0.10);
+}
+
+.textLine:last-child {
+    border: 0;
+}
+
+li.textLine> div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.successBottomBtns {
+    margin-top: 24px;
+}
+
+.backTo.ConnectToWallet {}
+
+.yellowBtn {
+    border-radius: 8px;
+    background: var(--button-button-primary, #EFEB00);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    padding: 12px 16px;
+    transition: .3s ease all;
+    font-weight: 600;
+    line-height: 24px; /* 150% */
+    letter-spacing: -0.3px;
+    color: #191B1E;
+}
+
+.viewSwap {
+    text-align: center;
+    display: block;
+    font-weight: 600;
+    line-height: 24px; /* 150% */
+    letter-spacing: -0.3px;
+    color: #3888FF;
+    margin-top: 24px;
 }
