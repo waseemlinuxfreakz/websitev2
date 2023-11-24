@@ -1,25 +1,22 @@
+name: deploy static website to AWS-S3
+
 on:
   push:
-    branches:
-      - main
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Set up AWS CLI
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          node-version: 14
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
 
-      - name: Install dependencies
-        run: yarn install
-
-      - name: Deploy to GitHub Pages
-        run: yarn run deploy
-        env:
-          REACT_APP_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Deploy to AWS S3
+        run: |
+          aws s3 sync ./build/ s3://emmet.ui.new --delete
