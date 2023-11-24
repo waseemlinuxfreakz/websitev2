@@ -16,6 +16,12 @@
         padding: 0;
         flex-direction: row;
         gap: 10px;
+        padding: 5px 5px;
+        overflow: auto;
+    }
+
+    .mobileFooterNav {
+        margin: 0 -5px;
     }
 
     .mobileFooterNav ul.navlinks>li {
