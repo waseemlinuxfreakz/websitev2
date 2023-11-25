@@ -1,14 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.0a9500e2.css",
-    "main.js": "/static/js/main.98b204d0.js",
+    "main.css": "/static/css/main.541f7ec0.css",
+    "main.js": "/static/js/main.18e6c79e.js",
     "static/js/787.04492754.chunk.js": "/static/js/787.04492754.chunk.js",
     "static/media/Banner-placeholder.png": "/static/media/Banner-placeholder.efd6d697cdd62e99c049.png",
     "static/media/copyalert.svg": "/static/media/copyalert.4b983fe38edfd0c186667fd074d46147.svg",
     "static/media/Icon-button.svg": "/static/media/Icon-button.119da5baa2b523f33ffe97efa22666ff.svg",
     "static/media/Icon-button2.svg": "/static/media/Icon-button2.b09b59048fa3c3e4aebe1722bc94ed98.svg",
     "static/media/fox.svg": "/static/media/fox.6e5ee6e892c4d289e4c10d9a8ddb23d9.svg",
+    "static/media/Success.svg": "/static/media/Success.63fc11f0b039a6454f6b416a64b6ec90.svg",
     "static/media/Emmet-logo.svg": "/static/media/Emmet-logo.948d4c07d084ccf6663edd15a5d47cb1.svg",
+    "static/media/failed.svg": "/static/media/failed.6a4f933832a37a10e672beba04c03d5b.svg",
+    "static/media/ConfirmSwap.svg": "/static/media/ConfirmSwap.2fa88aa2ca181ca6b36d7fb855598b30.svg",
     "static/media/dai.svg": "/static/media/dai.c5dc6ced98f3c00b1a2f8fb333780b4e.svg",
     "static/media/second-nav-Icons-1.svg": "/static/media/second-nav-Icons-1.258a49cd150cdad68ed0f7b59a05b199.svg",
     "static/media/scoll.svg": "/static/media/scoll.08c4b3dcae1842f3a6a141519386e506.svg",
@@ -31,11 +34,14 @@
     "static/media/OpenNav.svg": "/static/media/OpenNav.d644e34b39faf1f87c487c6cbf7d8e1f.svg",
     "static/media/emmet.svg": "/static/media/emmet.cef0a7d587e3352effc9f78be2fdaaf1.svg",
     "static/media/Emmet-logo2.svg": "/static/media/Emmet-logo2.8f7466dc4716b9ed91c88ac861029e8f.svg",
+    "static/media/close.svg": "/static/media/close.fa177533255b714c47f6f01dccacc7be.svg",
     "static/media/second-nav-Icons-4.svg": "/static/media/second-nav-Icons-4.44541362db0ef42c693012d9a9813a49.svg",
     "static/media/USDT.svg": "/static/media/USDT.86bab3bef9fb456f7292da0705384cc0.svg",
     "static/media/Ethereum-top.svg": "/static/media/Ethereum-top.e0041fe5c1e79b31dfd2ff30484b28d7.svg",
     "static/media/nav-Icons-4.svg": "/static/media/nav-Icons-4.04be120467878ee53edff80eac5a7d19.svg",
+    "static/media/right-green.svg": "/static/media/right-green.933ddf371d5879f433f9674d3de46291.svg",
     "static/media/github.svg": "/static/media/github.7e968b700ef38fa3e320c1973deb5ec8.svg",
+    "static/media/square-icon.svg": "/static/media/square-icon.4b9ef453239bd4c8756e14e003a14269.svg",
     "static/media/nav-Icons-7.svg": "/static/media/nav-Icons-7.a458c0d7495b9a500cb83d4ad6014234.svg",
     "static/media/dow-Icons-s.svg": "/static/media/dow-Icons-s.64ad16fd6e64df5bbc839e81c1b16222.svg",
     "static/media/down-white.svg": "/static/media/down-white.f891b8cac3fff5a9059e07d7e17255f0.svg",
@@ -44,12 +50,12 @@
     "static/media/eth.svg": "/static/media/eth.710c6f2f9b76361026e8e8f1d6e20f7f.svg",
     "index.html": "/index.html",
     "static/media/x.svg": "/static/media/x.d8c196e81e57c2c5ad0883fa9c5d9314.svg",
-    "main.0a9500e2.css.map": "/static/css/main.0a9500e2.css.map",
-    "main.98b204d0.js.map": "/static/js/main.98b204d0.js.map",
+    "main.541f7ec0.css.map": "/static/css/main.541f7ec0.css.map",
+    "main.18e6c79e.js.map": "/static/js/main.18e6c79e.js.map",
     "787.04492754.chunk.js.map": "/static/js/787.04492754.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0a9500e2.css",
-    "static/js/main.98b204d0.js"
+    "static/css/main.541f7ec0.css",
+    "static/js/main.18e6c79e.js"
   ]
 }
