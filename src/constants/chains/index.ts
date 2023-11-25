@@ -1,3 +1,11 @@
+import arbitrumGoerli from './arbitrumGoerli';
+import avalancheFuji from './avalancheFuji';
+import baseGoerli from './baseGoerli';
+import { EmmetChain } from './chainTypes';
+import goerli from './goerli';
+import optimismGoerli from './optimismGoerli';
+import polygonMumbai from './polygonMumbai';
+
 /**
  * List of all the chains/networks supported
  */
@@ -183,11 +191,11 @@ export const CHAIN_ID_HEXES_TO_PARAMETERS: ChainIdToChainParameters = {
     [SupportedChainIdHex.POL_MUMABI]: POL_MUMABI,
 }
 
-export const CHAIN_ID_DECIMAL_TO_PARAMETERS: {[key: number]: AddEthereumChainParameter} = {
-    [SupportedChainId.ARB_GOERLI]: ARB_GOERLI,
-    [SupportedChainId.AVAX_FUJI]: AVAX_FUJI,
-    [SupportedChainId.BASE_GOERLI]: BASE_GOERLI,
-    [SupportedChainId.ETH_GOERLI]: ETH_GOERLI,
-    [SupportedChainId.OP_GOERLI]: OP_GOERLI,
-    [SupportedChainId.POL_MUMABI]: POL_MUMABI,
+export const CHAIN_ID_DECIMAL_TO_PARAMETERS: { [key: number]: EmmetChain } = {
+    [SupportedChainId.ARB_GOERLI]: arbitrumGoerli,
+    [SupportedChainId.AVAX_FUJI]: avalancheFuji,
+    [SupportedChainId.BASE_GOERLI]: baseGoerli,
+    [SupportedChainId.ETH_GOERLI]: goerli,
+    [SupportedChainId.OP_GOERLI]: optimismGoerli,
+    [SupportedChainId.POL_MUMABI]: polygonMumbai,
 }

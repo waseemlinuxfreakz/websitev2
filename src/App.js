@@ -13,7 +13,7 @@ import {
   baseGoerli,
   goerli,
   polygonMumbai
-} from 'wagmi/chains';
+} from 'viem/chains';
 import { configureChains, createConfig, WagmiConfig } from 'wagmi';
 import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum';
 const supportedChains = [arbitrumGoerli, avalancheFuji, baseGoerli, goerli, polygonMumbai];

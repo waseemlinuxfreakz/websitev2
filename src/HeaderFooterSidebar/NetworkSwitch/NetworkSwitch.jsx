@@ -3,16 +3,14 @@ import './NetworkSwitch.css';
 
 export default function NetworkSwitch() {
 
+    // Global State
+    // TODO:
+
     // Local State
     const [mainnetDisabled, setMainnetDisabled] = useState(true);
     const [testnetDisabled, setTestnetDisabled] = useState(false);
 
-    const onMainnetClickHandler = () => {
-        setMainnetDisabled(!mainnetDisabled);
-        setTestnetDisabled(!testnetDisabled);
-    }
-
-    const onTestnetClickHandler = () => {
+    const onClickHandler = () => {
         setMainnetDisabled(!mainnetDisabled);
         setTestnetDisabled(!testnetDisabled);
     }
@@ -21,13 +19,13 @@ export default function NetworkSwitch() {
         <div className="toggleSwitch">
             <div
                 className={testnetDisabled ? '' : 'active'}
-                onClick={onTestnetClickHandler}
+                onClick={onClickHandler}
             >
                 Testnet
             </div>
             <div
                 className={mainnetDisabled ? '' : 'active'}
-                onClick={onMainnetClickHandler}
+                onClick={onClickHandler}
             >
                 Mainnet
             </div>
