@@ -5,7 +5,7 @@ const workingRPC: string = 'https://rpc.ankr.com/polygon_mumbai';
 
 const polygonMumbai: EmmetChain = {
     // Emmet.Finance fields:
-    // TODO:
+    icon:'img/chain/polygon.svg',
     // Common from viem:
     ...ViemChain,
     // Local variation:

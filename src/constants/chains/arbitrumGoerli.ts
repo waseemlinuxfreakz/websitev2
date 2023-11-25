@@ -5,7 +5,7 @@ const workingRPC: string = 'https://goerli-rollup.arbitrum.io/rpc';
 
 const arbitrumGoerli: EmmetChain = {
     // Emmet.Finance fields:
-    // TODO:
+    icon:'img/chain/arbitrum.svg',
     // Common from viem:
     ...ViemAG,
     // Local variation:

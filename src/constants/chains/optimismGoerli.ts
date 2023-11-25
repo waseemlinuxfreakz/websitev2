@@ -5,7 +5,7 @@ const workingRPC: string = 'https://optimism-goerli.publicnode.com';
 
 const optimismGoerli: EmmetChain = {
     // Emmet.Finance fields:
-    // TODO:
+    icon:'', // TODO: add icon
     // Common from viem:
     ...ViemChain,
     // Local variation:

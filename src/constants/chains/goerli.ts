@@ -5,7 +5,7 @@ const workingRPC: string = 'https://ethereum-goerli.publicnode.com';
 
 const goerli: EmmetChain = {
     // Emmet.Finance fields:
-    // TODO:
+    icon:'img/Ethereum.svg',
     // Common from viem:
     ...ViemChain,
     // Local variation:

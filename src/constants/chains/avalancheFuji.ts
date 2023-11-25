@@ -5,7 +5,7 @@ const workingRPC: string = 'https://api.avax-test.network/ext/bc/C/rpc';
 
 const avalancheFuji: EmmetChain = {
     // Emmet.Finance fields:
-    // TODO:
+    icon:'img/chain/avalanche.svg',
     // Common from viem:
     ...ViemChain,
     // Local variation:

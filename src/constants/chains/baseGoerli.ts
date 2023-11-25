@@ -5,7 +5,7 @@ const workingRPC: string = 'https://goerli.base.org';
 
 const baseGoerli: EmmetChain = {
     // Emmet.Finance fields:
-    // TODO:
+    icon:'img/chain/base.svg',
     // Common from viem:
     ...ViemChain,
     // Local variation:

@@ -460,7 +460,7 @@ ul.selectCoinList.hidden {
     overflow: auto;
 }
 
-button.ConnectToWallet {
+button.MainActionButton {
     display: block;
     width: 100%;
     font-weight: 600;

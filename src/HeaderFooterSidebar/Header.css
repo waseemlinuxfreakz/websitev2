@@ -12,7 +12,7 @@
     gap: 8px;
 }
 
-.connectWallet>a {
+.connectWallet {
     border-radius: 8px;
     border: 1.5px solid rgba(97, 100, 107, 0.30);
     background: rgba(148, 151, 158, 0.16);
@@ -26,4 +26,5 @@
     line-height: 24px;
     letter-spacing: -0.3px;
     color: #E0E3E6;
+    cursor: pointer;
 }

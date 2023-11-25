@@ -1,22 +1,27 @@
 [
-    {
-      "name": "Arbitrum",
-      "icon": "img/chain/arbitrum.svg"
-    },
-    {
-      "name": "Avalanche",
-      "icon": "img/chain/avalanche.svg"
-    },
-    {
-      "name": "BASE",
-      "icon": "img/chain/base.svg"
-    },
-    {
-      "name": "Ethereum",
-      "icon": "img/chain/ethereum.svg"
-    },
-    {
-      "name": "Polygon",
-      "icon": "img/chain/polygon.svg"
-    }
+  {
+    "id": 421613,
+    "name": "Arbitrum",
+    "icon": "img/chain/arbitrum.svg"
+  },
+  {
+    "id": 43113,
+    "name": "Avalanche",
+    "icon": "img/chain/avalanche.svg"
+  },
+  {
+    "id": 84531,
+    "name": "BASE",
+    "icon": "img/chain/base.svg"
+  },
+  {
+    "id": 5,
+    "name": "Ethereum",
+    "icon": "img/Ethereum.svg"
+  },
+  {
+    "id": 8001,
+    "name": "Polygon",
+    "icon": "img/chain/polygon.svg"
+  }
 ]

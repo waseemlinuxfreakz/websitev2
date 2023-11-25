@@ -6,6 +6,7 @@ import OpenNav from '../assets/img/OpenNav.svg';
 import CloseNav from '../assets/img/CloseNav.svg';
 import MobileNav from './MobileNav';
 import MobileFooterNav from './MobileFooterNav';
+import NetworkSwitch from '../HeaderFooterSidebar/NetworkSwitch/NetworkSwitch';
 
 const MobileHeader = () => {
 
@@ -21,10 +22,7 @@ const MobileHeader = () => {
     return ( 
         <header className="mobileHeader">
             <div className="mobileHeaderTop">
-                <div className="toggleLink">
-                    <a href="#" className='testnet active'>Testnet</a>
-                    <a href="#" className='mainnet'>Mainnet</a>
-                </div>
+                <NetworkSwitch/>
             </div>
             <div className="mobileHeaderCenter">
                 <a href="/"><img src={Logo} alt="EmmetFinance" /></a>
