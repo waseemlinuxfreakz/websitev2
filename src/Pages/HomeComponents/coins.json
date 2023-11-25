@@ -1,0 +1,26 @@
+[
+  {
+    "name": "ETH",
+    "icon": "img/coin/eth.svg"
+  },
+  {
+    "name": "EMMET",
+    "icon": "img/coin/emmet.svg"
+  },
+  {
+    "name": "Scroll",
+    "icon": "img/coin/scoll.svg"
+  },
+  {
+    "name": "USDT",
+    "icon": "img/coin/usdt.svg"
+  },
+  {
+    "name": "USDC",
+    "icon": "img/coin/usdc.svg"
+  },
+  {
+    "name": "DAI",
+    "icon": "img/coin/dai.svg"
+  }
+]
