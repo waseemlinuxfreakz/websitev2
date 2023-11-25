@@ -1,0 +1,27 @@
+.toggleSwitch {
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid var(--stroke-stroke-primary, #3C3F43);
+    background: var(--background-background-tertiary, #202226);
+    gap: 4px;
+}
+
+.toggleSwitch>div {
+    flex: 1;
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+    /* 142.857% */
+    letter-spacing: -0.3px;
+    color: #B3B7BF;
+    padding: 4px 15px;
+}
+
+.toggleSwitch>div.active {
+    border-radius: 6px;
+    background: radial-gradient(3754.38% 142.49% at 96.92% 0%, #F5F10E 0%, #48DAB7 100%);
+    color: #191B1E;
+}
