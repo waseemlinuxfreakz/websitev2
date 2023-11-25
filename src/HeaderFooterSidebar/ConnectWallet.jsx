@@ -1,9 +1,11 @@
 import React from "react";
 import Wallet from '../assets/img/Wallet.svg';
+import { useWeb3Modal } from '@web3modal/react'
 
 export default function ConnectWallet() {
+    const { open } = useWeb3Modal();
     const onClickHandler = () => {
-        console.log("ConnectWallet click")
+        open();
     }
     return (
         <div
