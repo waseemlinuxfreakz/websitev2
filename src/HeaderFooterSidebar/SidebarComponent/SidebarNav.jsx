@@ -1,4 +1,5 @@
 import React from 'react';
+import './Sidebar.css';
 import NavIcon1 from '../../assets/img/nav-icon/nav-Icons-1.svg';
 import NavIcon2 from '../../assets/img/nav-icon/nav-Icons-2.svg';
 import NavIcon3 from '../../assets/img/nav-icon/nav-Icons-3.svg';

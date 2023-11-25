@@ -1,0 +1,29 @@
+
+.headerNave {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 0 18px;
+}
+
+.headerRightSide {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.connectWallet>a {
+    border-radius: 8px;
+    border: 1.5px solid rgba(97, 100, 107, 0.30);
+    background: rgba(148, 151, 158, 0.16);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px 8px 8px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: -0.3px;
+    color: #E0E3E6;
+}

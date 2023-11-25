@@ -22,7 +22,7 @@ class CoinLinkAddress extends Component {
         // Hide the popup after 3 seconds
         setTimeout(() => {
           this.setState({ isPopupVisible: false });
-        }, 3000);
+        }, 700);
       })
       .catch((err) => {
         console.error('Error copying link to clipboard: ', err);
@@ -32,9 +32,9 @@ class CoinLinkAddress extends Component {
   render() {
     return (
       <>
-        <button className="copyAddress" onClick={this.copyToClipboard}>
+        <a className="copyAddress" onClick={this.copyToClipboard}>
           <img src={Copy} alt="Copy" />
-        </button>
+        </a>
 
         {this.state.isPopupVisible && (
           <div className="Copyalert">

@@ -1,0 +1,45 @@
+
+footer#footerArea {
+    margin-top: auto;
+}
+
+.footerRow {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+}
+
+.footerRow>div {
+    width: 33.3333%;
+    flex-shrink: 0;
+    padding: 12px 0;
+}
+
+.powerBy {
+    text-align: right;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    color: #B3B7BF;
+}
+
+.leftCol {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    color: #B3B7BF;
+}
+
+.footerNav a,
+.footerNav {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    color: #B3B7BF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}

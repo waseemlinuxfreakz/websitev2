@@ -4,7 +4,7 @@ import Footer from '../HeaderFooterSidebar/Footer';
 import Sidebar from '../HeaderFooterSidebar/Sidebar';
 import SwapContainer from './HomeComponents/SwapContainer';
 import MobileHeader from '../HeaderFooterSidebar/MobileHeader';
-import MainYellowActionButton from './HomeComponents/MainYellowActionButton';
+import ConnectToWallet from './HomeComponents/ConnectToWallet';
 import SidebarSlider from '../HeaderFooterSidebar/SidebarComponent/SidebarSlider';
 import SwapSuccess from './HomeComponents/SwapSuccess';
 import SwapFailed from './HomeComponents/SwapFailed';
@@ -16,7 +16,7 @@ const HomePage = () => {
     useEffect(() => {
       // Check the window width and update state
       const updateWindowDimensions = () => {
-        setIsMobile(window.innerWidth <= 768); // You can adjust the breakpoint as needed
+        setIsMobile(window.innerWidth <= 1025); // You can adjust the breakpoint as needed
       };
   
       // Add event listener for window resize
@@ -40,7 +40,7 @@ const HomePage = () => {
                     <SwapContainer/>
                     <SidebarSlider/>
                     <Footer/>
-                    <MainYellowActionButton/>
+                    <ConnectToWallet/>
                 </div>
             </div>
         ) : (

@@ -1,4 +1,4 @@
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1025px) {
     .mobileHeader {
         padding: 16px;
     }
@@ -16,6 +16,12 @@
         padding: 0;
         flex-direction: row;
         gap: 10px;
+        padding: 5px 5px;
+        overflow: auto;
+    }
+
+    .mobileFooterNav {
+        margin: 0 -5px;
     }
 
     .mobileFooterNav ul.navlinks>li {
@@ -50,9 +56,9 @@
     }
 
     .footerRow>div {
-        width: 100%;
-        padding: 0;
-        text-align: left;
+        width: 100% !important;
+        padding: 0 !important;
+        text-align: center !important;
     }
 
     .footerNav a,
@@ -61,7 +67,7 @@
     }
 
     .powerBy {
-        text-align: left;
+        text-align: center !important;
     }
 
     .connectBtn {
@@ -126,6 +132,86 @@
     footer#footerArea .container, .connectBtn {
         max-width: 480px;
         margin: 0 auto;
+    }
+
+    .selectCoinList {
+        position: fixed;
+        z-index: 111;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: unset;
+        border-radius: 16px 16px 0px 0px;
+        border-top: 1px solid #3C3F43;
+        background: #1B1D20;
+        max-height: 50vh;
+        overflow: auto;
+    }
+
+    .Copyalert {
+        top: 0;
+        left: 0;
+        padding: 0;
+        align-items: flex-start;
+        padding-top: 160px;
+        background: rgb(21 21 22 / 80%);
+        bottom: 0;
+        z-index: -1;
+    }
+
+    .Copyalert img {
+        width: auto;
+        height: 50px;
+        background: #15241A;
+    }
+
+    .swapMenuContainer .slipageModal {
+        position: fixed;
+        z-index: 11;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        top: auto;
+        border: 0;
+        box-shadow: none;
+    }
+    
+    .swapContainerBox {
+        position: relative;
+        z-index: 11;
+    }
+    
+    .swapMenuContainer .slipageModal:after {
+        position: absolute;
+        z-index: -3;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 100vh;
+        content:"";
+        background: #000;
+        opacity: 0.8;
+        background: #151516;
+    }
+    
+    .swapMenuBtn {
+        position: relative;
+        z-index: 99999;
+    }
+    
+    .swapMenuContainer .slipageModal:before {
+        content: "";
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 16px 16px 0px 0px;
+        border-top: 1px solid #3C3F43;
+        background: #1B1D20;
+        box-shadow: 0px 2px 12px 6px rgba(0, 0, 0, 0.20);
+        display: block;
+        position: absolute;
+        z-index: -1;
     }
 
 }

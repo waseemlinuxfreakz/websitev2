@@ -1,0 +1,86 @@
+.sidebarArea {
+    width: 280px;
+    padding: 16px 10px 24px 16px;
+    background-color: #191C1F;
+    overflow: hidden scroll;
+    max-height: 100vh;
+}
+
+.sidebare_navArea {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.sidebarTopLogo {
+    border-radius: 16px;
+    border: 1px solid #3C3F43;
+    padding: 16px;
+}
+
+
+.toggleLink {
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid #3C3F43;
+    background:#202226;
+    gap: 4px;
+}
+
+.toggleLink>a {
+    flex: 1;
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+    /* 142.857% */
+    letter-spacing: -0.3px;
+    color: #B3B7BF;
+    padding: 4px 15px;
+}
+
+.NavBrand {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.deskTopLogo {
+    display: block;
+    margin: 0 auto;
+}
+
+.toggleLink>a.active {
+    border-radius: 6px;
+    background: radial-gradient(3754.38% 142.49% at 96.92% 0%, #F5F10E 0%, #48DAB7 100%);
+    color: #191B1E;
+}
+
+
+.swiperAddSlider .swiper-pagination {
+    position: unset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding-top: 16px;
+    padding-bottom: 8px;
+}
+
+.swiperAddSlider .swiper-pagination span.swiper-pagination-bullet {
+    flex: 1;
+    border-radius: 4px;
+    background: #3C3F43;
+    opacity: 1;
+}
+
+.swiperAddSlider .swiper-pagination span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+    background: #888B92 !important;
+}
+
+
+.sidebarSliderArea img {
+    width: 100%;
+}
+

@@ -4,7 +4,7 @@ import PayReceive from './PayReceive';
 import RefreshExchange from './RefreshExchange';
 import GassFee from './GassFee';
 import Slippage from './Slippage';
-import MainYellowActionButton from './MainYellowActionButton';
+import ConnectToWallet from './ConnectToWallet';
 // import EnterAmountBtn from './EnterAmountBtn';
 
 
@@ -16,7 +16,7 @@ function SwapContainer() {
             <RefreshExchange/>
             <GassFee/>
             <Slippage/>
-            <MainYellowActionButton/>
+            <ConnectToWallet/>
         </div>
      );
 }

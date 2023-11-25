@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Wallet from '../assets/img/Wallet.svg';
 import EthereumTop from '../assets/img/Ethereum-top.svg';
-import ConnectWallet from './ConnectWallet';
+import './Header.css';
 
 function Header() {
     return ( 
@@ -13,7 +13,9 @@ function Header() {
                         <div className="EthereumTop">
                             <a href="#"><img src={EthereumTop} alt="" /></a>
                         </div>
-                        <ConnectWallet/>
+                        <div className="connectWallet">
+                            <a href="#"><img src={Wallet} alt="Wallet" /> Connect</a>
+                        </div>
                     </div>
                 </div>
             </div>

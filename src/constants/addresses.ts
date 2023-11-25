@@ -1,10 +1,6 @@
 import { SupportedChainId } from './chains';
 
 /**
- *    USDC Circle - related contracts
- */
-
-/**
  * Map of supported chains to USDC contract addresses
  */
 export const CHAIN_IDS_TO_USDC_ADDRESSES = {

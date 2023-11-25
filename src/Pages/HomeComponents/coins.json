@@ -12,6 +12,10 @@
     "icon": "img/coin/scoll.svg"
   },
   {
+    "name": "OP",
+    "icon": "img/coin/op.svg"
+  },
+  {
     "name": "USDT",
     "icon": "img/coin/usdt.svg"
   },

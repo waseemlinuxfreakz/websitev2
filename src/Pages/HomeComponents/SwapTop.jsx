@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import coinsData from './coins.json'; 
-import CoinLinkAddress from './CoinLinkAddress';
+import coinsData from './Chain.json'; 
 
 import Ethereum from '../../assets/img/Ethereum.svg';
-import USDT from '../../assets/img/USDT.svg';
 import DownArrow from '../../assets/img/down-white.svg';
 
 import SwapContainerMenu from './SwapContainerMenu';
