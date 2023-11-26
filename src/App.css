@@ -773,6 +773,7 @@ span.SwapPay_box {
 
 button.switchBtn {
     order: 2;
+	position:relative;
 	z-index:99999;
 }
 
