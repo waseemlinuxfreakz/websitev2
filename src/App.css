@@ -758,3 +758,27 @@ li.textLine> div {
     color: #3888FF;
     margin-top: 24px;
 }
+.payReciveContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.payReciveContainer.receiveFirst .SwapReceive_box {
+    order: -1;
+}
+
+span.SwapPay_box {
+    order: 1;
+}
+
+button.switchBtn {
+    order: 2;
+}
+
+span.SwapReceive_box {
+    order: 3;
+}
+
+.payReciveContainer.receiveFirst span.SwapPay_box {
+    order: 3;
+}
