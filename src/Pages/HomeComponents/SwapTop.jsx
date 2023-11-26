@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import coinsData from './Chain.json'; 
+import chainsData from './Chain.json';
+import { useNetwork, useSwitchNetwork } from 'wagmi'
 
 import Ethereum from '../../assets/img/Ethereum.svg';
 import DownArrow from '../../assets/img/down-white.svg';
@@ -8,17 +9,21 @@ import SwapContainerMenu from './SwapContainerMenu';
 
 const SwapTop = () => {
 
+    const { chain } = useNetwork()
+  const { chains, error, isLoading, pendingChainId, switchNetwork } =
+    useSwitchNetwork()
 
-    const [selectedCoin, setSelectedCoin] = useState({
+    const [selectedChain, setSelectedChain] = useState({
         icon: Ethereum,
         name: 'Ethereum',
     });
 
     const [isListVisible, setListVisible] = useState(false);
 
-    const handleCoinClick = (icon, name) => {
-        setSelectedCoin({ icon, name });
+    const handleChainClick = (icon, name, id) => {
+        setSelectedChain({ icon, name });
         toggleVisibility();
+        switchNetwork?.(id);
     };
 
     const toggleVisibility = () => {
@@ -34,20 +39,20 @@ const SwapTop = () => {
                         onClick={toggleVisibility}
                     >
                         <div className="coinNameIcon">
-                            <img src={selectedCoin.icon} alt={selectedCoin.name} />
-                            <span>{selectedCoin.name}</span>
+                            <img src={selectedChain.icon} alt={selectedChain.name}  width="30px"/>
+                            <span>{selectedChain.name}</span>
                         </div>
                         <img src={DownArrow} alt="Down Arrow" />
                     </div>
                     <ul className={`selectCoinList ${isListVisible ? 'visible' : 'hidden'}`}>
-                        {coinsData.map((coin) => (
-                            <li className="coinItem" key={coin.name}>
+                        {chainsData.map((chain) => (
+                            <li className="coinItem" key={chain.id}>
                                 <div
                                     className="coinNameIcon"
-                                    onClick={() => handleCoinClick(coin.icon, coin.name)}
+                                    onClick={() => handleChainClick(chain.icon, chain.name, chain.id)}
                                 >
-                                    <img src={coin.icon} alt={coin.name} />
-                                    <span>{coin.name}</span>
+                                    <img src={chain.icon} alt={chain.name} width="30px"/>
+                                    <span>{chain.name}</span>
                                 </div>
                             </li>
                         ))}

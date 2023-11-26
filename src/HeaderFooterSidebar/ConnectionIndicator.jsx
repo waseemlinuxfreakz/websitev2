@@ -15,7 +15,6 @@ export default function ConnectionIndicator() {
         if (chain) {
             const selChain = chainData.find(c => chain.id === c.id);
             if (selChain) {
-                console.log("chainElt", selChain)
                 setLogo(selChain.icon);
                 setChainName(selChain.name);
             }
