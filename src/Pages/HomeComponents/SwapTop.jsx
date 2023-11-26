@@ -9,13 +9,16 @@ import SwapContainerMenu from './SwapContainerMenu';
 
 const SwapTop = () => {
 
+    const findChain = (chain) => {
+        return chainsData.find(c => chain.id === c.id);
+    }
+
     const { chain } = useNetwork()
-  const { chains, error, isLoading, pendingChainId, switchNetwork } =
-    useSwitchNetwork()
+    const { switchNetwork } = useSwitchNetwork()
 
     const [selectedChain, setSelectedChain] = useState({
-        icon: Ethereum,
-        name: 'Ethereum',
+        icon: chain ? findChain(chain).icon : Ethereum,
+        name: chain ? findChain(chain).name : 'Ethereum',
     });
 
     const [isListVisible, setListVisible] = useState(false);
@@ -34,32 +37,32 @@ const SwapTop = () => {
     return (
         <div className="swap_top_menu">
             <div className="selectCoinLeft">
-                    <div
-                        className="selectedCoin"
-                        onClick={toggleVisibility}
-                    >
-                        <div className="coinNameIcon">
-                            <img src={selectedChain.icon} alt={selectedChain.name}  width="30px"/>
-                            <span>{selectedChain.name}</span>
-                        </div>
-                        <img src={DownArrow} alt="Down Arrow" />
+                <div
+                    className="selectedCoin"
+                    onClick={toggleVisibility}
+                >
+                    <div className="coinNameIcon">
+                        <img src={selectedChain.icon} alt={selectedChain.name} width="30px" />
+                        <span>{selectedChain.name}</span>
                     </div>
-                    <ul className={`selectCoinList ${isListVisible ? 'visible' : 'hidden'}`}>
-                        {chainsData.map((chain) => (
-                            <li className="coinItem" key={chain.id}>
-                                <div
-                                    className="coinNameIcon"
-                                    onClick={() => handleChainClick(chain.icon, chain.name, chain.id)}
-                                >
-                                    <img src={chain.icon} alt={chain.name} width="30px"/>
-                                    <span>{chain.name}</span>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
+                    <img src={DownArrow} alt="Down Arrow" />
+                </div>
+                <ul className={`selectCoinList ${isListVisible ? 'visible' : 'hidden'}`}>
+                    {chainsData.map((chain) => (
+                        <li className="coinItem" key={chain.id}>
+                            <div
+                                className="coinNameIcon"
+                                onClick={() => handleChainClick(chain.icon, chain.name, chain.id)}
+                            >
+                                <img src={chain.icon} alt={chain.name} width="30px" />
+                                <span>{chain.name}</span>
+                            </div>
+                        </li>
+                    ))}
+                </ul>
             </div>
             <div className="swap_top_menu_right">
-                <SwapContainerMenu/>
+                <SwapContainerMenu />
             </div>
         </div>
     );
