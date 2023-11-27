@@ -37,6 +37,10 @@ h1,
     padding: 0;
 }
 
+.siteTitle {
+    font-size: 30px;
+}
+
 p {
     margin-bottom: 15px;
 }
@@ -119,7 +123,7 @@ dl {
 .navLink {
     display: flex;
     align-items: center;
-    padding: 12px 8px;
+    padding: 8px 8px;
     font-size: 16px;
     font-weight: 500;
     line-height: 24px;
@@ -243,6 +247,8 @@ ul.selectCoinList.hidden {
     gap: 10px;
     cursor: pointer;
     margin-right: auto;
+    font-size: 16px;
+    height: 24px;
 }
 
 .coinNameIcon img {
@@ -302,8 +308,8 @@ ul.selectCoinList.hidden {
     border-radius: 8px;
     border: 1px solid rgba(97, 100, 107, 0.10);
     background: #1B1D20;
-    padding: 12px 8px;
-    min-width: 165px;
+    padding: 8px 8px;
+    min-width: 145px;
 }
 
 .amount input {
