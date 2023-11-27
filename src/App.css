@@ -363,7 +363,7 @@ ul.selectCoinList.hidden {
     box-shadow: none;
 }
 
-.gassFeeContainer {
+.gasFeeContainer {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -380,7 +380,7 @@ ul.selectCoinList.hidden {
 }
 
 .slippageLeft,
-.gassFeeLeft {
+.gasFeeLeft {
     color: #B3B7BF;
     font-family: Inter;
     font-size: 16px;

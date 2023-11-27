@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import InfoIcon from '../../assets/img/InfoIcons.svg';
 import ArrowDonw from '../../assets/img/dow-Icons-s.svg';
 
@@ -18,6 +18,23 @@ const Slippage = () => {
     // Always set isToggleVisible to true when the title is clicked
     setToggleVisible(true);
   };
+
+
+  const modalRef = useRef(null);
+
+    const handleClickOutside = (event) => {
+        if (modalRef.current && !modalRef.current.contains(event.target)) {
+            setModalVisible(false);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
 
 
     return ( 
@@ -85,8 +102,8 @@ const Slippage = () => {
                     <div className="slipageListRight">
                         <div className="slipageSelect">
                             <select name="" id="">
-                                <option value="ETH > USDT">ETH > USDT</option>
-                                <option value="USDT > ETH">USDT > ETH</option>
+                                <option value="ETH > USDT">ETH `&gt;` USDT</option>
+                                <option value="USDT > ETH">USDT `&gt;` ETH</option>
                             </select>
                             <img src={ArrowDonw} alt="ArrowDonw" className="selectArrow" />
                         </div>
