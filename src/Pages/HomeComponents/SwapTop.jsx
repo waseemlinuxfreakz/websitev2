@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import chainsData from './Chain.json';
 import { useNetwork, useSwitchNetwork } from 'wagmi'
 
@@ -32,11 +32,27 @@ const SwapTop = () => {
     const toggleVisibility = () => {
         setListVisible(!isListVisible);
     };
+	
+	const selectCoinRef = useRef(null);
+
+    useEffect(() => {
+      const handleClickOutside = (event) => {
+        if (selectCoinRef.current && !selectCoinRef.current.contains(event.target)) {
+          setListVisible(false);
+        }
+      };
+  
+      document.addEventListener('click', handleClickOutside);
+  
+      return () => {
+        document.removeEventListener('click', handleClickOutside);
+      };
+    }, []);
 
 
     return (
         <div className="swap_top_menu">
-            <div className="selectCoinLeft">
+            <div className="selectCoinLeft" ref={selectCoinRef}>
                 <div
                     className="selectedCoin"
                     onClick={toggleVisibility}

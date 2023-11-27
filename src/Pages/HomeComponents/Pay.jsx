@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import coinsData from './coins.json'; 
 
 import Wallet from '../../assets/img/Wallet.svg';
@@ -25,6 +25,22 @@ const SwapPay = () => {
     const toggleVisibility = () => {
         setListVisible(!isListVisible);
     };
+	
+	const selectCoinRef = useRef(null);
+
+    useEffect(() => {
+      const handleClickOutside = (event) => {
+        if (selectCoinRef.current && !selectCoinRef.current.contains(event.target)) {
+          setListVisible(false);
+        }
+      };
+  
+      document.addEventListener('click', handleClickOutside);
+  
+      return () => {
+        document.removeEventListener('click', handleClickOutside);
+      };
+    }, []);
 
     return (
         <div className="SwapPay swapPayReceive">
@@ -38,7 +54,7 @@ const SwapPay = () => {
                 < WalletBalance
                     name={selectedCoin.name}
                 />
-                <div className="selectCoin">
+                <div className="selectCoin" ref={selectCoinRef}>
                     <div
                         className="selectedCoin"
                         onClick={toggleVisibility}
