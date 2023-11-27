@@ -44,10 +44,18 @@ const SwapReceive = () => {
   }, []);
 
     return (
-        <div className="SwapPay swapPayReceive">
-            <div className="payReLeft">
-                <p>Receive</p>
-                <h2 className="amount">0.0</h2>
+        <div className="SwapReceive swapPayReceive">
+            <div className="payReLeftBox">
+                <div className="payReLeft reveiveoption">
+                    <p>Receive</p>
+                    <h2 className="amount">0.0</h2>
+                </div>
+                <div className="payReLeft payOption">
+                    <div className="payInput">
+                        <p>Pay</p>
+                    </div>
+                    <h2 className="amount"><input type="number" placeholder='0.0' /></h2>
+                </div>
             </div>
             <div className="payReRight">
                 <WalletBalance 

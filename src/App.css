@@ -13,12 +13,7 @@ body {
     font-weight: 400;
     line-height: 1.5;
     color: #E0E3E6;
-    /* background-image: linear-gradient(137deg, #191B1E, #1E2228); */
-    background-image: url("assets/img/bg-swap.png");
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-color: #191B1E;
+    background-color: #111112;
 }
 
 h6,
@@ -104,6 +99,12 @@ dl {
     padding: 0px 32px;
     display: flex;
     flex-direction: column;
+    background: #111112;
+    background-image: url("assets/img/bg-swap.png");
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .mainWrap>* {
@@ -307,7 +308,7 @@ ul.selectCoinList.hidden {
     font-size: 16px;
     font-weight: 500;
     line-height: 24px;
-    margin: 0;
+    margin: 0 0 9px 0;
 }
 
 .selectCoin {
@@ -328,8 +329,12 @@ ul.selectCoinList.hidden {
     font-style: normal;
     font-weight: 600;
     line-height: 38px;
-    color: #888B92;
+    color: #fff;
     max-width: 100%;
+}
+
+.amount input::placeholder {
+    color: #888B92;
 }
 
 .amount input::-webkit-outer-spin-button,
@@ -798,4 +803,28 @@ span.SwapReceive_box {
 }
 .w3m-overlay.w3m-active{
 	z-index:9999;
+}
+
+.SwapPay .reveiveoption {
+    display: none;
+}
+
+.SwapReceive .payOption {
+    display: none;
+}
+
+.receiveFirst .SwapReceive .payOption {
+    display: block;
+}
+
+.receiveFirst .SwapReceive .reveiveoption {
+    display: none;
+}
+
+.receiveFirst .SwapPay .reveiveoption {
+    display: block;
+}
+
+.receiveFirst .SwapPay .payOption {
+    display: none;
 }
