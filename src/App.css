@@ -460,7 +460,7 @@ ul.selectCoinList.hidden {
     overflow: auto;
 }
 
-button.MainActionButton {
+.MainActionButton {
     display: block;
     width: 100%;
     font-weight: 600;
@@ -473,6 +473,11 @@ button.MainActionButton {
     outline: none;
     box-shadow: none;
     border: 0;
+}
+
+.MainActionButton:disabled {
+    color:#E0E3E6;
+    background:rgba(148, 151, 158, 0.16);
 }
 
 .soon {
