@@ -8,6 +8,7 @@ import Ethereum from '../../assets/img/Ethereum.svg';
 import USDT from '../../assets/img/USDT.svg';
 
 import CoinLinkAddress from './CoinLinkAddress';
+import WalletBalance from './WalletBalance/WalletBalance';
 
 const SwapReceive = () => {
     const [selectedCoin, setSelectedCoin] = useState({
@@ -33,11 +34,9 @@ const SwapReceive = () => {
                 <h2 className="amount">0.0</h2>
             </div>
             <div className="payReRight">
-                <div className="walletAddress">
-                    <img src={Wallet} alt="Wallet" />
-                    <span>0.005689</span>
-                    <span>{selectedCoin.name}</span>
-                </div>
+                <WalletBalance 
+                    name={selectedCoin.name}
+                />
                 <div className="selectCoin">
                     <div
                         className="selectedCoin"

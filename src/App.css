@@ -306,12 +306,6 @@ ul.selectCoinList.hidden {
     min-width: 165px;
 }
 
-.walletAddress {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-}
-
 .amount input {
     background: transparent;
     border: 0;

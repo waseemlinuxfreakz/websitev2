@@ -45,7 +45,7 @@ const SwapPayNew = () => {
                 <h2 className="amount"><input type="number" placeholder='0.0' /></h2>
             </div>
             <div className="payReRight">
-                <div className="walletAddress">
+                <div className="walletBalance">
                     <img src={Wallet} alt="Wallet" />
                     <span>0.005689</span>
                     <span>ETH</span>

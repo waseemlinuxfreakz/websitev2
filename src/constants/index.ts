@@ -1,6 +1,7 @@
 export * from './addresses';
 export * from './chains';
 export * from './errors';
+export * from './tokens';
 
 export enum IrisApiUrl {
     mainnet = 'https://iris-api.circle.com',

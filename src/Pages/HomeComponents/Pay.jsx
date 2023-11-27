@@ -7,6 +7,7 @@ import Fox from '../../assets/img/fox.svg';
 import Ethereum from '../../assets/img/Ethereum.svg';
 
 import CoinLinkAddress from './CoinLinkAddress';
+import WalletBalance from './WalletBalance/WalletBalance';
 
 const SwapPay = () => {
     const [selectedCoin, setSelectedCoin] = useState({
@@ -34,11 +35,9 @@ const SwapPay = () => {
                 <h2 className="amount"><input type="number" placeholder='0.0' /></h2>
             </div>
             <div className="payReRight">
-                <div className="walletAddress">
-                    <img src={Wallet} alt="Wallet" />
-                    <span>0.005689</span>
-                    <span>{selectedCoin.name}</span>
-                </div>
+                < WalletBalance
+                    name={selectedCoin.name}
+                />
                 <div className="selectCoin">
                     <div
                         className="selectedCoin"
