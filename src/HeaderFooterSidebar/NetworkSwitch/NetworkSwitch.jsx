@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import './NetworkSwitch.css';
 
 export default function NetworkSwitch() {
@@ -16,19 +16,25 @@ export default function NetworkSwitch() {
     }
 
     return (
-        <div className="toggleSwitch">
-            <div
-                className={testnetDisabled ? '' : 'active'}
-                onClick={onClickHandler}
-            >
-                Testnet
-            </div>
-            <div
-                className={mainnetDisabled ? '' : 'active'}
-                onClick={onClickHandler}
-            >
-                Mainnet
-            </div>
-        </div>
+        <>
+            {
+                /* <div className="toggleSwitch">
+                    <div
+                        className={testnetDisabled ? '' : 'active'}
+                        onClick={onClickHandler}
+                    >
+                        Testnet
+                    </div>
+                    <div
+                        className={mainnetDisabled ? '' : 'active'}
+                        onClick={onClickHandler}
+                    >
+                        Mainnet
+                    </div> 
+                </div>
+                */
+            }
+
+        </>
     )
 }

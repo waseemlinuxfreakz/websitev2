@@ -20,6 +20,10 @@
         overflow: auto;
     }
 
+    .mobileFooterNav ul.navlinks::-webkit-scrollbar {
+        display: none;
+    }
+
     .mobileFooterNav {
         margin: 0 -5px;
     }
@@ -73,6 +77,11 @@
     .connectBtn {
         padding: 16px 16px 30px 16px;
         background: #191B1E;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 999;
     }
 
     .mobileNavContainer {
@@ -123,9 +132,13 @@
         visibility: visible;
     }
 
-    footer#footerArea .container, .connectBtn {
+    footer#footerArea .container {
         max-width: 480px;
         margin: 0 auto;
+        /* position: fixed; */
+        left: 0;
+        right: 0;
+        bottom: 0;
     }
 
     .selectCoinList {
@@ -206,6 +219,10 @@
         display: block;
         position: absolute;
         z-index: -1;
+    }
+
+    footer#footerArea {
+        padding-bottom: 100px;
     }
 
 }

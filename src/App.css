@@ -148,9 +148,11 @@ dl {
     bottom: 1px;
     border-radius: 8px;
     display: block;
-    background: #191C1F;
+    background: #111112;
     content: "";
+    opacity: 0;
 }
+
 
 .navLink.active::after,
 .navLink:hover::after {
@@ -158,9 +160,14 @@ dl {
     top: 0;
     right: 0;
     bottom: 0;
-    background: #000;
     z-index: -2;
     background-image: linear-gradient(232deg, #F5F10E, #48DAB7);
+    opacity: 1;
+}
+
+.navLink.active::before,
+.navLink:hover::before {
+    opacity: 1;
 }
 
 .navLink.active img {

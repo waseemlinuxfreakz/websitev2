@@ -5,10 +5,9 @@
 .sidebarArea {
     width: 280px;
     padding: 16px 10px 12px 16px;
-    background-color: #191C1F;
     overflow: hidden scroll;
     max-height: 100vh;
-    background: #1B1D20;
+    background: #111112;
 }
 
 .sidebarArea::-webkit-scrollbar {
@@ -53,7 +52,6 @@
 
 .NavBrand {
     display: block;
-    margin-bottom: 10px;
 }
 
 .deskTopLogo {
