@@ -789,3 +789,6 @@ span.SwapReceive_box {
 .payReciveContainer.receiveFirst span.SwapPay_box {
     order: 3;
 }
+.w3m-overlay.w3m-active{
+	z-index:9999;
+}
