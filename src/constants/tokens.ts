@@ -1,4 +1,4 @@
-import { SupportedChainId } from './chains.ts';
+import { SupportedChainId } from './chains';
 
 export enum SupportedTokenNames {
     DAI = "DAI",
@@ -88,7 +88,7 @@ export const USDT_ADDRESSES = {
 }
 
 
-export const SUPPORTED_TOKENS = {
+export const SUPPORTED_TOKENS: {[key:string]:{[key:number]:string}} = {
     [SupportedTokenNames.DAI]: DAI_ADDRESSES,
     [SupportedTokenNames.EMMET]: EMMET_ADDRESSES,
     [SupportedTokenNames.ETH]: ETH_ADDRESSES,

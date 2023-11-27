@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+      "target": "ES2022",
+      "lib": ["dom", "dom.iterable", "esnext"],
+      "skipLibCheck": true,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "strict": true,
+      "forceConsistentCasingInFileNames": true,
+      "module": "esnext",
+      "moduleResolution": "node",
+      "jsx": "react",
+      "isolatedModules": true,
+      "noEmit": true,
+      "downlevelIteration": true,
+      "resolveJsonModule": true,
+      "baseUrl": "./",
+      "paths": {
+        "*": ["types/*"]
+      }
+    },
+    "include": ["src/**/*.tsx", "src/**/*.ts", "src/**/*.d.ts"],
+    "exclude": ["node_modules"]
+  }
+  

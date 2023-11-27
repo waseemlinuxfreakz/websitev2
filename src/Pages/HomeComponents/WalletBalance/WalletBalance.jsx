@@ -1,41 +1,45 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Wallet from '../../../assets/img/Wallet.svg';
 import './WalletBalance.css';
 import { fetchBalance, getAccount, getNetwork } from '@wagmi/core';
 // @ts-ignore
-import {getTokenAddress} from '../../../constants/tokens.ts';
+import { getTokenAddress } from '../../../constants/tokens.ts';
 
 
-export default function WalletBalance({name}) {
+export default function WalletBalance({ name }) {
 
     const [balance, setBalance] = useState('0');
 
     const account = getAccount();
     const { chain } = getNetwork();
-    const tokenAddress = getTokenAddress(chain.id,name);
+    let tokenAddress;
+    if (chain) {
+        tokenAddress = getTokenAddress(chain.id, name);
+    }
 
-      useEffect(() => {
+
+    useEffect(() => {
 
         async function fetchTokenBalance(address) {
             const bal = await fetchBalance({
                 address,
-                chainId:chain.id,
-                token:tokenAddress
+                chainId: chain.id,
+                token: tokenAddress
             });
             console.log("bal", bal)
-            setBalance(bal.formatted.slice(0,8));
+            setBalance(bal.formatted.slice(0, 8));
         }
 
-        if(account.isConnected && chain && tokenAddress){
+        if (account.isConnected && chain && tokenAddress) {
             console.log("chain", chain, "tokenAddress", tokenAddress)
             fetchTokenBalance(account.address);
         }
 
-        if(!tokenAddress){
+        if (!tokenAddress) {
             setBalance('0.00');
         }
 
-      },[account, chain, tokenAddress]);
+    }, [account, chain, tokenAddress]);
 
 
     return (
