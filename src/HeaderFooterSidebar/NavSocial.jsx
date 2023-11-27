@@ -3,6 +3,7 @@ import Xtwiter from '../assets/img/social/x.svg';
 import Github from '../assets/img/social/github.svg';
 import Discord from '../assets/img/social/Discord.svg';
 import Telegram from '../assets/img/social/Telegram.svg';
+import './NavSocial.css';
 
 
 function NavSocial() {

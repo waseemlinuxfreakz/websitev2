@@ -1,15 +1,25 @@
+.social_box {
+    margin-top: auto;
+}
+
 .sidebarArea {
     width: 280px;
-    padding: 16px 10px 24px 16px;
+    padding: 16px 10px 12px 16px;
     background-color: #191C1F;
     overflow: hidden scroll;
     max-height: 100vh;
+    background: #1B1D20;
+}
+
+.sidebarArea::-webkit-scrollbar {
+    display: none;
 }
 
 .sidebare_navArea {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    min-height: 100%;
 }
 
 .sidebarTopLogo {
@@ -63,7 +73,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 6px;
     padding-top: 16px;
     padding-bottom: 8px;
 }
