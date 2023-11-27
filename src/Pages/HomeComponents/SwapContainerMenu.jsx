@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import SwapMenuBtn from '../../assets/img/Icon-button.svg';
 import SwapMenuBtn2 from '../../assets/img/Icon-button2.svg';
 import InfoIcon from '../../assets/img/InfoIcons.svg';
@@ -14,23 +14,6 @@ const SwapContainerMenu = () => {
         setModalVisible(!isModalVisible);
         setActive(!isActive);
     };
-	
-	const modalRef = useRef(null);
-
-    const handleClickOutside = (event) => {
-        if (modalRef.current && !modalRef.current.contains(event.target)) {
-            setModalVisible(false);
-            setActive(false);
-        }
-    };
-
-    useEffect(() => {
-        document.addEventListener('mousedown', handleClickOutside);
-
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, []);
 
     return (
         <>
@@ -42,7 +25,6 @@ const SwapContainerMenu = () => {
                 </button>
 
                 {isModalVisible &&
-					<div className="slippageModal" ref={modalRef}>
                     <div className="slipageModal">
                         <div className="slipageModalTitle">
                             Max slippage <img src={InfoIcon} title='Info' alt="InfoIcon" />
@@ -75,7 +57,6 @@ const SwapContainerMenu = () => {
                             </div>
                         </div>
                     </div>
-					
                 }
             </div>
         </>
