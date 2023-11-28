@@ -199,6 +199,7 @@
         background: #000;
         opacity: 0.8;
         background: #151516;
+        pointer-events: none;
     }
     
     .swapMenuBtn {

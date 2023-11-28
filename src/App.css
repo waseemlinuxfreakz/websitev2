@@ -104,7 +104,7 @@ dl {
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
 }
 
 .mainWrap>* {
@@ -649,7 +649,7 @@ ul.selectCoinList.hidden {
 .swapMenuContainer .slipageModal {
     right: 0;
     left: auto;
-    top: 100%;
+    top: 120%;
 }
 
 .swapSuccessModal {

@@ -50,7 +50,7 @@ const Slippage = () => {
                         </span>
                         <img src={ArrowDonw} alt="ArrowDonw" className="selectArrow" />
                     </div>
-                    {isModalVisible && (
+                    {/* {isModalVisible && (
                         <div className="slipageModal">
                             <div className="slipageModalTitle">
                                 Max slippage <img src={InfoIcon} title='Info' alt="InfoIcon" />
@@ -67,7 +67,7 @@ const Slippage = () => {
                                 </div>
                             </div>
                         </div>
-                    )}
+                    )} */}
                 </div>
             </div>
 
@@ -76,34 +76,34 @@ const Slippage = () => {
                 <div className="slipageList">
                     <div className="slipageListLeft">
                         <span>Minimum received</span>
-                        <img src={InfoIcon} title='Info' alt="InfoIcon" />
+                        {/* <img src={InfoIcon} title='Info' alt="InfoIcon" /> */}
                     </div>
                     <div className="slipageListRight">0.003 ETH</div>
                 </div>
                 <div className="slipageList">
                     <div className="slipageListLeft">
                         <span>Price impact</span>
-                        <img src={InfoIcon} title='Info' alt="InfoIcon" />
+                        {/* <img src={InfoIcon} title='Info' alt="InfoIcon" /> */}
                     </div>
                     <div className="slipageListRight"> <span className="fw6">0.5%</span></div>
                 </div>
                 <div className="slipageList">
                     <div className="slipageListLeft">
                         <span>Trading fee</span>
-                        <img src={InfoIcon} title='Info' alt="InfoIcon" />
+                        {/* <img src={InfoIcon} title='Info' alt="InfoIcon" /> */}
                     </div>
                     <div className="slipageListRight"><span className="fw6">0.5%</span></div>
                 </div>
                 <div className="slipageList">
                     <div className="slipageListLeft">
                         <span>Route</span>
-                        <img src={InfoIcon} title='Info' alt="InfoIcon" />
+                        {/* <img src={InfoIcon} title='Info' alt="InfoIcon" /> */}
                     </div>
                     <div className="slipageListRight">
                         <div className="slipageSelect">
                             <select name="" id="">
-                                <option value="ETH > USDT">ETH `&gt;` USDT</option>
-                                <option value="USDT > ETH">USDT `&gt;` ETH</option>
+                                <option value="ETH > USDT">ETH {'->'} USDT</option>
+                                <option value="USDT > ETH">USDT {'->'} ETH</option>
                             </select>
                             <img src={ArrowDonw} alt="ArrowDonw" className="selectArrow" />
                         </div>
