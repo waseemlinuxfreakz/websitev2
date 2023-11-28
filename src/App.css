@@ -828,3 +828,7 @@ span.SwapReceive_box {
 .receiveFirst .SwapPay .payOption {
     display: none;
 }
+.openmenu div#mobileContainer .connectBtn {
+    opacity: 0;
+    visibility: hidden;
+}

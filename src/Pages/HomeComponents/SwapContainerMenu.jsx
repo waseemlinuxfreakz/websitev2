@@ -4,24 +4,28 @@ import SwapMenuBtn2 from '../../assets/img/Icon-button2.svg';
 import InfoIcon from '../../assets/img/InfoIcons.svg';
 
 const SwapContainerMenu = () => {
-
-    // State to manage the visibility of the modal
     const [isModalVisible, setModalVisible] = useState(false);
-
     const [isActive, setActive] = useState(false);
 
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
         setActive(!isActive);
+        toggleBodyClass(); // Call the function to toggle body class
     };
-	
-	const modalRef = useRef(null);
+
+    const modalRef = useRef(null);
 
     const handleClickOutside = (event) => {
         if (modalRef.current && !modalRef.current.contains(event.target)) {
             setModalVisible(false);
             setActive(false);
+            toggleBodyClass(); // Call the function to toggle body class
         }
+    };
+
+    const toggleBodyClass = () => {
+        document.body.classList.toggle('openmenu');
+        document.querySelector('.swapMenuContainer').classList.toggle('openmenu');
     };
 
     useEffect(() => {
@@ -34,16 +38,15 @@ const SwapContainerMenu = () => {
 
     return (
         <>
-            <div className="swapMenuContainer">
-
+            <div className="swapMenuContainer" ref={modalRef}>
                 <button className={`swapMenuBtn ${isActive ? 'active' : ''}`} onClick={toggleModal}>
                     <img src={SwapMenuBtn} alt="SwapMenuBtn" className='openMenu' />
                     <img src={SwapMenuBtn2} alt="SwapMenuBtn" className='closeMenu' />
                 </button>
 
                 {isModalVisible &&
-					<div className="slippageModal" ref={modalRef}>
-                    <div className="slipageModal">
+                    <div className="slippageModal">
+                        <div className="slipageModal">
                         <div className="slipageModalTitle">
                             Max slippage <img src={InfoIcon} title='Info' alt="InfoIcon" />
                         </div>
@@ -75,7 +78,7 @@ const SwapContainerMenu = () => {
                             </div>
                         </div>
                     </div>
-					</div>
+                    </div>
                 }
             </div>
         </>
