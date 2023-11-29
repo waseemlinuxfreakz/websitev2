@@ -6,11 +6,12 @@ import Ethereum from '../../assets/img/Ethereum.svg';
 import DownArrow from '../../assets/img/down-white.svg';
 
 import SwapContainerMenu from './SwapContainerMenu';
+import chainData from './Chain.json';
 
 const SwapTop = () => {
 
     const findChain = (chain) => {
-        return chainsData.find(c => chain.id === c.id);
+        return chainsData.find(c => chain && chain.id === c.id);
     }
 
     const { chain } = useNetwork()
@@ -22,6 +23,17 @@ const SwapTop = () => {
     });
 
     const [isListVisible, setListVisible] = useState(false);
+
+    useEffect(() => {
+        if (chain) {
+            const selChain = chainData.find(c => chain.id === c.id);
+            if (selChain) {
+                setSelectedChain({ 
+                    icon:selChain.icon,
+                    name:selChain.name });
+            }
+        }
+    }, [chain]);
 
     const handleChainClick = (icon, name, id) => {
         setSelectedChain({ icon, name });
@@ -63,14 +75,21 @@ const SwapTop = () => {
                     </div>
                     <img src={DownArrow} alt="Down Arrow" />
                 </div>
-                <ul className={`selectCoinList ${isListVisible ? 'visible' : 'hidden'}`}>
-                    {chainsData.map((chain) => (
+                <ul className={`selectCoinList ${isListVisible 
+                    ? 'visible' 
+                    : 'hidden'}`}>
+                    {chain && chainsData.map((chain) => (
                         <li className="coinItem" key={chain.id}>
                             <div
                                 className="coinNameIcon"
-                                onClick={() => handleChainClick(chain.icon, chain.name, chain.id)}
+                                onClick={() => handleChainClick(
+                                    chain.icon, 
+                                    chain.name, 
+                                    chain.id)}
                             >
-                                <img src={chain.icon} alt={chain.name} width="30px" />
+                                <img 
+                                src={chain.icon} 
+                                alt={chain.name} width="30px" />
                                 <span>{chain.name}</span>
                             </div>
                         </li>

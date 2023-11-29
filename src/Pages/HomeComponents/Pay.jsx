@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import coinsData from './coins.json'; 
 
-import Wallet from '../../assets/img/Wallet.svg';
 import DownArrow from '../../assets/img/down-white.svg';
 import Fox from '../../assets/img/fox.svg';
 import Ethereum from '../../assets/img/Ethereum.svg';

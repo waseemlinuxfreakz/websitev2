@@ -1,30 +1,37 @@
 [
   {
     "name": "ETH",
-    "icon": "img/coin/eth.svg"
+    "icon": "img/coin/eth.svg",
+    "price": 2062.25
   },
   {
     "name": "EMMET",
-    "icon": "img/coin/emmet.svg"
+    "icon": "img/coin/emmet.svg",
+    "price": 1
   },
   {
-    "name": "Scroll",
-    "icon": "img/coin/scoll.svg"
+    "name": "SCRL",
+    "icon": "img/coin/scoll.svg",
+    "price": 0.000145
   },
   {
     "name": "OP",
-    "icon": "img/coin/op.svg"
+    "icon": "img/coin/op.svg",
+    "price": 1.73
   },
   {
     "name": "USDT",
-    "icon": "img/coin/usdt.svg"
+    "icon": "img/coin/usdt.svg",
+    "price": 1
   },
   {
     "name": "USDC",
-    "icon": "img/coin/usdc.svg"
+    "icon": "img/coin/usdc.svg",
+    "price": 0.9998
   },
   {
     "name": "DAI",
-    "icon": "img/coin/dai.svg"
+    "icon": "img/coin/dai.svg",
+    "price": 1
   }
 ]

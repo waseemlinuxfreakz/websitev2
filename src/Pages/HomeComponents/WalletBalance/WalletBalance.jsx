@@ -21,13 +21,15 @@ export default function WalletBalance({ name }) {
     useEffect(() => {
 
         async function fetchTokenBalance(address) {
-            const bal = await fetchBalance({
-                address,
-                chainId: chain.id,
-                token: tokenAddress
-            });
-            console.log("bal", bal)
-            setBalance(bal.formatted.slice(0, 8));
+            if(chain){
+                const bal = await fetchBalance({
+                    address,
+                    chainId: chain.id,
+                    token: tokenAddress
+                });
+                console.log("bal", bal)
+                setBalance(bal.formatted.slice(0, 8));
+            }
         }
 
         if (account.isConnected && chain && tokenAddress) {

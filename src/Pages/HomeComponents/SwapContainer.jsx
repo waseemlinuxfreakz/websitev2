@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import SwapTop from './SwapTop';
 import PayReceive from './PayReceive';
 import RefreshExchange from './RefreshExchange';
@@ -9,11 +9,18 @@ import MainActionButton from './MainActionButton';
 
 
 function SwapContainer() {
+
+    const [fromToken, setFromToken] = useState('ETH');
+    const [toToken, setToToken] = useState('USDT');
+
     return ( 
         <div className="swapContainerBox">
             <SwapTop/>
             <PayReceive/>
-            <RefreshExchange/>
+            <RefreshExchange
+                fromToken={fromToken}
+                toToken={toToken}
+            />
             <GassFee/>
             <Slippage/>
             <MainActionButton/>
