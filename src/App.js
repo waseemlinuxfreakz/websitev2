@@ -12,12 +12,20 @@ import {
   avalancheFuji,
   baseGoerli,
   goerli,
+  optimismGoerli,
   polygonMumbai
 } from 'viem/chains';
 import { configureChains, createConfig, WagmiConfig } from 'wagmi';
 import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum';
-const supportedChains = [arbitrumGoerli, avalancheFuji, baseGoerli, goerli, polygonMumbai];
-const projectId = "2bcf20e00bc0f72513e22cd16ce9ae83";
+const supportedChains = [
+  arbitrumGoerli, 
+  avalancheFuji, 
+  baseGoerli, 
+  goerli, 
+  optimismGoerli, 
+  polygonMumbai,
+];
+const projectId = "0792a282f1d5c406794a1cbec7d7f4b4";
 
 const { publicClient } = configureChains(supportedChains, [w3mProvider({ projectId })])
 const wagmiConfig = createConfig({

@@ -17,8 +17,8 @@ const SwapTop = () => {
     const { switchNetwork } = useSwitchNetwork()
 
     const [selectedChain, setSelectedChain] = useState({
-        icon: chain ? findChain(chain).icon : Ethereum,
-        name: chain ? findChain(chain).name : 'Ethereum',
+        icon: chain && findChain(chain) ? findChain(chain).icon : Ethereum,
+        name: chain && findChain(chain) ? findChain(chain).name : 'Ethereum',
     });
 
     const [isListVisible, setListVisible] = useState(false);
