@@ -41,6 +41,9 @@ const HomePage = () => {
                     <SidebarSlider/>
                     <Footer/>
                     <MainActionButton/>
+                    {/* <SwapSuccess/> */}
+                    {/* <SwapFailed/> */}
+                    {/* <SwapConfirm/> */}
                 </div>
             </div>
         ) : (

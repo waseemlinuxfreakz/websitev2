@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Close from '../../assets/img/close.svg';
 import Success from '../../assets/img/Success.svg';
 import RightGreen from '../../assets/img/right-green.svg';
 import Square from '../../assets/img/square-icon.svg';
 
-
 function SwapSuccess() {
-    return ( 
+    const [isModalVisible, setModalVisibility] = useState(true);
+
+    const handleCloseModal = () => {
+        setModalVisibility(false);
+    };
+
+    return isModalVisible ? (
         <div className="swapSuccessModal">
             <div className="swapSuccessModalInner">
-                <div className="closeSuccess"><img src={Close} alt="Close" /></div>
+                <div className="closeSuccess" onClick={handleCloseModal}>
+                    <img src={Close} alt="Close" />
+                </div>
                 <img src={Success} alt="Success" className="successIcon" />
                 <h2>Swap Successful</h2>
                 <div className="successTransfer">
@@ -41,7 +48,7 @@ function SwapSuccess() {
                 </div>
             </div>
         </div>
-     );
+    ) : null;
 }
 
 export default SwapSuccess;
