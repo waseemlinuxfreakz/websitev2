@@ -48,9 +48,9 @@ const Slippage = () => {
                         <span className="slipageSelectValue">
                             0.5%
                         </span>
-                        <img src={ArrowDonw} alt="ArrowDonw" className="selectArrow" />
+                        
                     </div>
-                    {/* {isModalVisible && (
+                    {/* <img src={ArrowDonw} alt="ArrowDonw" className="selectArrow" /> {isModalVisible && (
                         <div className="slipageModal">
                             <div className="slipageModalTitle">
                                 Max slippage <img src={InfoIcon} title='Info' alt="InfoIcon" />
