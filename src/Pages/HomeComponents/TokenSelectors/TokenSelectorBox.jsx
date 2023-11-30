@@ -12,6 +12,10 @@ export default function TokenSelectorBox({ type }) {
     // Global state
     const swap = useAppSelector((state) => state.swap);
 
+    function onInputChange (e) {
+        console.log("onInputChange:", Number(e.target.value))
+    }
+
     function isFromType() {
         return type && type == "from";
     }
@@ -30,6 +34,7 @@ export default function TokenSelectorBox({ type }) {
                         </div>
                         <h2 className="amount">
                             <input
+                            onChange={e => onInputChange(e)}
                                 type="number"
                                 placeholder='0.0'
                                 disabled={type && type === "to"
