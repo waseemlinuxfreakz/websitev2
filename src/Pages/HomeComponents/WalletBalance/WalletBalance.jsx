@@ -27,13 +27,11 @@ export default function WalletBalance({ name }) {
                     chainId: chain.id,
                     token: tokenAddress
                 });
-                console.log("bal", bal)
                 setBalance(bal.formatted.slice(0, 8));
             }
         }
 
         if (account.isConnected && chain && tokenAddress) {
-            console.log("chain", chain, "tokenAddress", tokenAddress)
             fetchTokenBalance(account.address);
         }
 

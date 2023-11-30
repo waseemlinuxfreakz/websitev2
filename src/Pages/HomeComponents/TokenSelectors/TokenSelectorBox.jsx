@@ -4,17 +4,27 @@ import './TokenSelectorBox.css';
 import WalletBalance from '../WalletBalance/WalletBalance';
 import TokenSelectionDropdown from './TokenSelectionDropdown';
 
+import { useAppSelector, useAppDispatch } from '../../../hooks/storage';
+import {setFromToken, setToToken} from '../../../store/swapSlice';
+
 export default function TokenSelectorBox({ type }) {
 
+    // Global state
+    const swap = useAppSelector((state) => state.swap);
+
+    function isFromType() {
+        return type && type == "from";
+    }
+
     return (
-        <span className={type && type == "from"
+        <span className={isFromType()
             ? "order1"
             : "order3"}>
             <div className="SwapPay swapPayReceive">
                 <div className="payReLeftBox">
                     <div className="payReLeft payOption">
                         <div className="payInput">
-                            <p>{type && type === "from"
+                            <p>{isFromType()
                                 ? "Pay"
                                 : "Receive"}</p>
                         </div>
@@ -31,8 +41,7 @@ export default function TokenSelectorBox({ type }) {
                 </div>
                 <div className="payReRight">
                     < WalletBalance
-                    // TODO: make dynamic
-                        name={"ETH"}
+                        name={isFromType() ? swap.fromToken : swap.toToken}
                     />
                     < TokenSelectionDropdown
                         type={type}

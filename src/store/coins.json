@@ -20,11 +20,6 @@
     "price": 1.73
   },
   {
-    "name": "USDT",
-    "icon": "img/coin/usdt.svg",
-    "price": 1
-  },
-  {
     "name": "USDC",
     "icon": "img/coin/usdc.svg",
     "price": 0.9998
@@ -32,6 +27,11 @@
   {
     "name": "DAI",
     "icon": "img/coin/dai.svg",
+    "price": 1
+  },
+  {
+    "name": "USDT",
+    "icon": "img/coin/usdt.svg",
     "price": 1
   }
 ]

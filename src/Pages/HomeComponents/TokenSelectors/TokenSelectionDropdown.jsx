@@ -3,24 +3,42 @@ import './TokenSelectionDropdown.css';
 // Icons
 import DownArrow from '../../../assets/img/down-white.svg';
 import Fox from '../../../assets/img/fox.svg';
-import Ethereum from '../../../assets/img/Ethereum.svg';
-import USDT from '../../../assets/img/USDT.svg';
 // Components
 import CoinLinkAddress from '../CoinLinkAddress';
-// Mock Data
-import coinsData from '../coins.json';
+import { useAppSelector, useAppDispatch } from '../../../hooks/storage';
+import {setFromToken, setToToken} from '../../../store/swapSlice';
 
 export default function TokenSelectionDropdown ({type}) {
 
+    const swap = useAppSelector((state) => state.swap);
+    const dispatch = useAppDispatch();
+
+    function getIcon (tokenName) {
+        const selTkn = swap.tokens.find(t => t.name === tokenName);
+        return selTkn ? selTkn.icon : '';
+    }
+
+    function getIsfrom() {
+        return type && type == "from" ? true : false;
+    }
+
     const [isListVisible, setListVisible] = useState(false);
     const [selectedCoin, setSelectedCoin] = useState({
-        icon: type && type == "from" ? Ethereum : USDT,
-        name: type && type == "from" ? 'ETH' : 'USDT'
+        icon: getIsfrom() ? getIcon(swap.fromToken) : getIcon(swap.toToken),
+        name: getIsfrom() ? swap.fromToken : swap.toToken,
     });
+
+    useEffect(() => {
+        setSelectedCoin({
+            icon: getIsfrom() ? getIcon(swap.fromToken) : getIcon(swap.toToken),
+            name: getIsfrom() ? swap.fromToken : swap.toToken,
+        });
+    }, [swap.fromToken, swap.toToken]);
 
     const handleCoinClick = (icon, name) => {
         setSelectedCoin({ icon, name });
         toggleVisibility();
+        dispatch( getIsfrom() ? setFromToken(name) : setToToken(name));
     };
 
     const toggleVisibility = () => {
@@ -37,7 +55,6 @@ export default function TokenSelectionDropdown ({type}) {
       };
   
       document.addEventListener('click', handleClickOutside);
-  
       return () => {
         document.removeEventListener('click', handleClickOutside);
       };
@@ -55,7 +72,7 @@ export default function TokenSelectionDropdown ({type}) {
         <img src={DownArrow} alt="Down Arrow" />
     </div>
     <ul className={`selectCoinList ${isListVisible ? 'visible' : 'hidden'}`}>
-        {coinsData.map((coin) => (
+        {swap.tokens.map((coin) => (
             <li className="coinItem" key={coin.name}>
                 <div
                     className="coinNameIcon"
