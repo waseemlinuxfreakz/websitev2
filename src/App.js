@@ -3,6 +3,7 @@ import Badge from 'react-bootstrap/Badge';
 import './App.css';
 import './Responsive.css';
 import HomePage from './Pages/Home';
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Web3Modal related
@@ -17,6 +18,7 @@ import {
 } from 'viem/chains';
 import { configureChains, createConfig, WagmiConfig } from 'wagmi';
 import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum';
+
 const supportedChains = [
   arbitrumGoerli, 
   avalancheFuji, 

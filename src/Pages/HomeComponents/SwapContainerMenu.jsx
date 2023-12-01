@@ -25,7 +25,6 @@ const SwapContainerMenu = () => {
 
     const toggleBodyClass = () => {
         document.body.classList.toggle('openmenu');
-        document.querySelector('.swapMenuContainer').classList.toggle('openmenu');
     };
 
     useEffect(() => {

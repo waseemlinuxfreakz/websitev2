@@ -224,7 +224,7 @@ dl {
     position: absolute;
     z-index: 11;
     right: 10px;
-    top: 100%;
+    top: 120%;
     background: #202226;
     border-radius: 8px;
     border: 1px solid rgba(97, 100, 107, 0.10);
@@ -641,6 +641,11 @@ ul.selectCoinList.hidden {
     display: none;
 }
 
+header#header {
+    position: relative;
+    z-index: 3;
+}
+
 .swapMenuContainer {
     position: relative;
     z-index: 2;
@@ -827,8 +832,4 @@ span.SwapReceive_box {
 
 .receiveFirst .SwapPay .payOption {
     display: none;
-}
-.openmenu div#mobileContainer .connectBtn {
-    opacity: 0;
-    visibility: hidden;
 }
