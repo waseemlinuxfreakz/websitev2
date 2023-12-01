@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Refresh from '../../assets/img/Swap-gray.svg';
 import { useAppSelector, useAppDispatch } from '../../hooks/storage'
 
@@ -17,26 +17,31 @@ function RefreshExchange() {
 
     useEffect(() => {
 
-        if(swap.fromToken && swap.toToken){
+        if (swap.fromToken && swap.toToken) {
             setFromToken(swap.fromToken);
             setToToken(swap.toToken);
             setFromPrice(swap.fromPrice);
             setToPrice(swap.toPrice);
-            setPrice(fromPrice / toPrice);
+            setPrice(swap.fromPrice / swap.toPrice);
         }
 
     }, [swap.fromToken, swap.toToken]);
 
-    function formatPrice(value){
+    function formatPrice(value) {
         // Converts the number to a string
         let val = String(value);
-        // Splits the real number
-        let [whole, fraction] = val.split('.')
-        // Returns the number with 6 decimal points after period
-        return `${whole}${fraction ? '.':''}${fraction ? fraction.slice(0,6) :''}`;
+        if (val.includes("e-")) {
+            return value.toFixed(8);
+        } else {
+            // Splits the real number
+            let [whole, fraction] = val.split('.')
+            // Returns the number with 6 decimal points after period
+            return `${whole}${fraction ? '.' : ''}${fraction ? fraction.slice(0, 6) : ''}`;
+        }
+
     }
 
-    function onSwapTokenPriceHandle () {
+    function onSwapTokenPriceHandle() {
         const fromToken_ = fromToken;
         const toToken_ = toToken;
         setFromToken(toToken_);
@@ -46,24 +51,25 @@ function RefreshExchange() {
         const toPrice_ = toPrice;
         setFromPrice(toPrice_);
         setToPrice(fromPrice_);
-        setPrice(toPrice_ / fromPrice_ );
+        setPrice(toPrice_ / fromPrice_);
+
     }
 
-    return ( 
+    return (
         <div className="refreshWallet">
             <div className="refreshLeft">
-                1 {fromToken} = { formatPrice(price) } {toToken }
+                1 {fromToken} = {formatPrice(price)} {toToken}
             </div>
             <div className="refreshRight">
-                <button 
+                <button
                     className='refReshBtn'
                     onClick={onSwapTokenPriceHandle}
                 >
                     <img src={Refresh} alt="Refresh" />
-                    </button>
+                </button>
             </div>
         </div>
-     );
+    );
 }
 
 export default RefreshExchange;
