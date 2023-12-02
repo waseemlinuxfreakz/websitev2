@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useFeeData, useNetwork } from 'wagmi';
 
-function GassFee() {
+function GasFee() {
     const { data, status } = useFeeData();
     const { chain } = useNetwork();
 
@@ -36,4 +36,4 @@ function GassFee() {
      );
 }
 
-export default GassFee;
+export default GasFee;

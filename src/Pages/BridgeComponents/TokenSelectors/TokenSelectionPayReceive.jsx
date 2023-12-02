@@ -8,7 +8,7 @@ import CoinLinkAddress from '../CoinLinkAddress';
 import { useAppSelector, useAppDispatch } from '../../../hooks/storage';
 import {setFromToken, setToToken} from '../../../store/swapSlice';
 
-export default function TokenSelectionPayRece ({type}) {
+export default function TokenSelectionPayReceive ({type}) {
 
     const swap = useAppSelector((state) => state.swap);
     const dispatch = useAppDispatch();

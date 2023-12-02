@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {isMobile} from 'react-device-detect';
 import Header from '../HeaderFooterSidebar/Header';
 import Footer from '../HeaderFooterSidebar/Footer';
 import Sidebar from '../HeaderFooterSidebar/Sidebar';
@@ -11,25 +12,6 @@ import SwapFailed from './HomeComponents/SwapFailed';
 import SwapConfirm from './HomeComponents/SwapConfirm';
 
 const Bridge = () => {
-    const [isMobile, setIsMobile] = useState(false);
-  
-    useEffect(() => {
-      // Check the window width and update state
-      const updateWindowDimensions = () => {
-        setIsMobile(window.innerWidth <= 1025); // You can adjust the breakpoint as needed
-      };
-  
-      // Add event listener for window resize
-      window.addEventListener('resize', updateWindowDimensions);
-  
-      // Initial call to set the initial window width
-      updateWindowDimensions();
-  
-      // Remove event listener on component unmount
-      return () => {
-        window.removeEventListener('resize', updateWindowDimensions);
-      };
-    }, []);
   
     return (
       <>

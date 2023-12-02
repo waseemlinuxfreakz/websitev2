@@ -5,7 +5,7 @@ import WalletBalance from '../../HomeComponents/WalletBalance/WalletBalance';
 import TokenSelectionDropdown from './TokenSelectionDropdown';
 
 import { useAppSelector } from '../../../hooks/storage';
-import TokenSelectionPayRece from './TokenSelectionPayRece';
+import TokenSelectionPayReceive from './TokenSelectionPayReceive';
 
 export default function TokenSelectorBox({ type }) {
 
@@ -31,7 +31,7 @@ export default function TokenSelectorBox({ type }) {
                             <p>{isFromType()
                                 ? "Pay"
                                 : "Receive"}</p>
-                                < TokenSelectionPayRece
+                                < TokenSelectionPayReceive
                                     type={type}
                                 />
                         </div>
