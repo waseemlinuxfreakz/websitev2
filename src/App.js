@@ -3,6 +3,7 @@ import './App.css';
 import './Responsive.css';
 import HomePage from './Pages/Home';
 import Bridge from './Pages/Bridge';
+import {isMobile} from 'react-device-detect';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 

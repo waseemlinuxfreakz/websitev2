@@ -472,6 +472,15 @@ ul.selectCoinList.hidden {
     padding: 34px 0;
     max-height: calc(100vh - 160px);
     overflow: auto;
+    height: 100%;
+}
+
+.swapContainerArea::-webkit-scrollbar {
+    display: none;
+}
+
+.pageContent {
+    flex-grow: 1;
 }
 
 .MainActionButton {
@@ -870,4 +879,9 @@ span.SwapReceive_box {
 
 .payInput .selectCoinList {
     width: 150px !important;
+}
+
+.headerRightSide .connectWallet {
+    padding: 6px 12px 6px 8px;
+    height: 40px;
 }
