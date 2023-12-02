@@ -2,6 +2,7 @@
   "name": "rubi-react-app",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "yarn@4.0.2",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
     "@testing-library/jest-dom": "^5.17.0",

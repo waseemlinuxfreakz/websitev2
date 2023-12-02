@@ -22,10 +22,15 @@ function RefreshExchange() {
             setToToken(swap.toToken);
             setFromPrice(swap.fromPrice);
             setToPrice(swap.toPrice);
-            setPrice(swap.fromPrice / swap.toPrice);
+            if (swap.fromPrice && swap.toPrice) {
+                setPrice(swap.fromPrice / swap.toPrice);
+            } else {
+                setPrice(0);
+            }
+
         }
 
-    }, [swap.fromToken, swap.toToken]);
+    }, [swap.fromPrice, swap.toPrice]);
 
     function formatPrice(value) {
         // Converts the number to a string
@@ -56,19 +61,26 @@ function RefreshExchange() {
     }
 
     return (
-        <div className="refreshWallet">
-            <div className="refreshLeft">
-                1 {fromToken} = {formatPrice(price)} {toToken}
-            </div>
-            <div className="refreshRight">
-                <button
-                    className='refReshBtn'
-                    onClick={onSwapTokenPriceHandle}
-                >
-                    <img src={Refresh} alt="Refresh" />
-                </button>
-            </div>
-        </div>
+        <>
+            {/* {price
+                ? ( */}
+                <div className="refreshWallet">
+                    <div className="refreshLeft">
+                        1 {fromToken} = {formatPrice(price)} {toToken}
+                    </div>
+                    <div className="refreshRight">
+                        <button
+                            className='refReshBtn'
+                            onClick={onSwapTokenPriceHandle}
+                        >
+                            <img src={Refresh} alt="Refresh" />
+                        </button>
+                    </div>
+                </div>
+                {/* )
+                : ''} */}
+        </>
+
     );
 }
 

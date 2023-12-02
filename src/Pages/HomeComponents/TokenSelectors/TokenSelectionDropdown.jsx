@@ -6,7 +6,12 @@ import Fox from '../../../assets/img/fox.svg';
 // Components
 import CoinLinkAddress from '../CoinLinkAddress';
 import { useAppSelector, useAppDispatch } from '../../../hooks/storage';
-import {setFromToken, setToToken} from '../../../store/swapSlice';
+import {
+    setFromToken, 
+    setToToken, 
+    setFromPrice, 
+    setToPrice
+} from '../../../store/swapSlice';
 
 export default function TokenSelectionDropdown ({type}) {
 
@@ -29,16 +34,19 @@ export default function TokenSelectionDropdown ({type}) {
     });
 
     useEffect(() => {
+        const name = getIsfrom() ? swap.fromToken : swap.toToken;
         setSelectedCoin({
             icon: getIsfrom() ? getIcon(swap.fromToken) : getIcon(swap.toToken),
-            name: getIsfrom() ? swap.fromToken : swap.toToken,
+            name
         });
+        dispatch(getIsfrom() ? setFromPrice(name) : setToPrice(name));
     }, [swap.fromToken, swap.toToken]);
 
     const handleCoinClick = (icon, name) => {
         setSelectedCoin({ icon, name });
         toggleVisibility();
         dispatch( getIsfrom() ? setFromToken(name) : setToToken(name));
+        dispatch(getIsfrom() ? setFromPrice(name) : setToPrice(name));
     };
 
     const toggleVisibility = () => {
