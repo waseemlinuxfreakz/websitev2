@@ -24,7 +24,8 @@ const SwapContainerMenu = () => {
     };
 
     const toggleBodyClass = () => {
-        document.body.classList.toggle('openmenu');
+        document.body.classList.remove('openmenu');
+        document.querySelector('.swapMenuContainer').classList.remove('openmenu');
     };
 
     useEffect(() => {

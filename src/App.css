@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
 
+@import './Pages/BridgeComponents/BridgeDetails.css'; 
+
 *,
 *::before,
 *::after {
@@ -832,4 +834,40 @@ span.SwapReceive_box {
 
 .receiveFirst .SwapPay .payOption {
     display: none;
+}
+
+.payInput {
+    display: flex;
+    align-items: center;
+}
+
+.bridgeSwap .payInput p {
+    margin: 0;
+}
+
+.bridgeSwap .payInput {
+    margin-bottom: 10px;
+}
+
+.bridgeSwap .payInput .selectCoin {
+    background: transparent;
+    border: 0;
+    outline: none;
+    box-shadow: none;
+    min-width: unset;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: 0;
+}
+
+.swap_top_menu h2 {
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 32px;
+}
+
+.payInput .selectCoinList {
+    width: 150px !important;
 }

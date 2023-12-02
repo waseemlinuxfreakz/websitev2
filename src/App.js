@@ -1,8 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Badge from 'react-bootstrap/Badge';
 import './App.css';
 import './Responsive.css';
 import HomePage from './Pages/Home';
+import Bridge from './Pages/Bridge';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -45,6 +45,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/bridge" element={<Bridge />} />
           </Routes>
         </Router>
       </WagmiConfig>

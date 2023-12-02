@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import Header from '../HeaderFooterSidebar/Header';
 import Footer from '../HeaderFooterSidebar/Footer';
 import Sidebar from '../HeaderFooterSidebar/Sidebar';
-import SwapContainer from '../BridgeComponents/SwapContainer';
+import SwapContainer from './BridgeComponents/SwapContainer';
 import MobileHeader from '../HeaderFooterSidebar/MobileHeader';
-import MainActionButton from '../BridgeComponents/MainActionButton';
+import MainActionButton from './BridgeComponents/MainActionButton';
 import SidebarSlider from '../HeaderFooterSidebar/SidebarComponent/SidebarSlider';
-// import SwapSuccess from './BridgeComponents/SwapSuccess';
-// import SwapFailed from './BridgeComponents/SwapFailed';
-// import SwapConfirm from './BridgeComponents/SwapConfirm';
+import SwapSuccess from './HomeComponents/SwapSuccess';
+import SwapFailed from './HomeComponents/SwapFailed';
+import SwapConfirm from './HomeComponents/SwapConfirm';
 
 const Bridge = () => {
     const [isMobile, setIsMobile] = useState(false);
