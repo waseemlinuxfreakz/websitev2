@@ -22,6 +22,8 @@ enum CMCSupportedTokenSymbol {
 
 async function extractPrice(name: string): Promise<any> {
 
+    if(name === 'EMMET') return 2;
+
     // const foundItem = coinsData.find(item => item.name === name);
     // return foundItem ? foundItem.price : 0;
     const apiURL = "https://fee-oracle-3efdd870fbf2.herokuapp.com/?name=";
