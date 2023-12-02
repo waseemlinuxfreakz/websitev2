@@ -53,7 +53,9 @@ const Bridge = () => {
                         <Sidebar/>
                     </div>
                     <div className="mainWrap">
-                        <Header/>
+                        <Header
+                          caption="Bridge"
+                        />
                         <div className="pageContent">
                             <div className="swapContainerArea">
                                 <SwapContainer/>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './Sidebar.css';
 import NavIcon1 from '../../assets/img/nav-icon/nav-Icons-1.svg';
 import NavIcon2 from '../../assets/img/nav-icon/nav-Icons-2.svg';
@@ -10,17 +10,38 @@ import NavIcon7 from '../../assets/img/nav-icon/nav-Icons-7.svg';
 
 
 function SidebarNav() {
+
+    const [selButton, setSelButton] = useState('Swap');
+
+    function onButtonClick (choice) {
+        setSelButton(choice);
+    }
+
+    useEffect(() => {
+
+        if(window.location.href.includes('/bridge')){
+            setSelButton("Bridge");
+        } else {
+            setSelButton("Swap");
+        }
+
+    }, [window.location.href]);
+
     return ( 
         <div className="sidebarNav">
             <ul className="navlinks">
-                <li>
-                    <a href="#" className='navLink active'>
+                <li
+                    onClick={() => onButtonClick("Swap")}
+                >
+                    <a href="/" className={`navLink ${selButton === 'Swap' ? 'active' : ''}`}>
                         <img src={NavIcon1} alt="NavIcon" />
                         <span>Swap</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#" className='navLink'>
+                <li
+                    onClick={() => onButtonClick("Bridge")}
+                >
+                    <a href="/bridge" className={`navLink ${selButton === 'Bridge' ? 'active' : ''}`}>
                         <img src={NavIcon2} alt="NavIcon" />
                         <span>Bridge</span>
                     </a>

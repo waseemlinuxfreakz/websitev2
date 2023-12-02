@@ -53,7 +53,9 @@ const HomePage = () => {
                         <Sidebar/>
                     </div>
                     <div className="mainWrap">
-                        <Header/>
+                        <Header
+                          caption="Swap"
+                        />
                         <div className="pageContent">
                             <div className="swapContainerArea">
                                 <SwapContainer/>
