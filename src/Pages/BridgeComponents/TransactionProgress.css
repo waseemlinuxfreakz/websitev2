@@ -1,0 +1,89 @@
+.progressBox {
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid var(--card-card-border, rgba(97, 100, 107, 0.10));
+    background: var(--background-background-tertiary, #202226);
+    padding: 16px 32px;
+}
+
+.progressDetails {
+    flex-grow: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-image: url("../../assets/img/progress-line.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 0 10px;
+}
+
+.fromProgress, .toProgress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid #B3B7BF;
+    border-radius: 50%;
+}
+
+.fromProgress img, .toProgress img {
+    display: block;
+    width: 32px;
+}
+
+.progressTitle {
+    margin: 0;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 26px;
+    color: #B3B7BF;
+}
+
+.progressTitle p {
+    margin: 0;
+}
+
+.successText {
+    display: none;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 26px;
+    color: #40D86E;
+    align-items: center;
+    gap: 7px;
+    justify-content: center;
+}
+
+.progressDetails h5 {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 26px;
+}
+
+.progressSuccess .progressDetails {
+    background-image: url("../../assets/img/green-line.png");
+}
+
+.progressBox.progressSuccess {
+    border: 1px solid var(--card-card-border, rgba(97, 100, 107, 0.10));
+    background: var(--badge-approval, rgba(16, 93, 39, 0.20));
+}
+
+.progressSuccess .fromProgress, .toProgress {
+    border-color: #40D86E;
+}
+
+.progressSuccess .FirstText {
+    display: none;
+}
+
+.progressSuccess .successText {
+    display: flex;
+}

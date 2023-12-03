@@ -6,6 +6,8 @@ import TokenSelectionDropdown from './TokenSelectionDropdown';
 
 import { useAppSelector } from '../../../hooks/storage';
 import TokenSelectionPayReceive from './TokenSelectionPayReceive';
+import ChainSelectorDropdown from '../../HomeComponents/ChainSelectorDropdown/ChainSelectorDropdown';
+
 
 export default function TokenSelectorBox({ type }) {
 
@@ -31,9 +33,7 @@ export default function TokenSelectorBox({ type }) {
                             <p>{isFromType()
                                 ? "Pay"
                                 : "Receive"}</p>
-                                < TokenSelectionPayReceive
-                                    type={type}
-                                />
+                                < ChainSelectorDropdown/>
                         </div>
                         <h2 className="amount">
                             <input

@@ -1,6 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
 
 @import './Pages/BridgeComponents/BridgeDetails.css'; 
+@import './Pages/BridgeComponents/WalletAddress.css'; 
+@import './Pages/BridgeComponents/SwitchOptimism.css'; 
+@import './Pages/BridgeComponents/ProceedWallet.css'; 
+@import './Pages/BridgeComponents/TransactionProgress.css'; 
+@import './Pages/BridgeComponents/TrackExplorer.css'; 
+@import './Pages/BridgeComponents/TransactionInformation.css'; 
+
 
 *,
 *::before,
@@ -856,6 +863,7 @@ span.SwapReceive_box {
 
 .bridgeSwap .payInput {
     margin-bottom: 10px;
+    gap: 10px;
 }
 
 .bridgeSwap .payInput .selectCoin {

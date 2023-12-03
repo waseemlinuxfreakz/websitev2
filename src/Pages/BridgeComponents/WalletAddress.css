@@ -1,0 +1,45 @@
+.wallet_Address {
+    border-radius: 8px;
+    border: 1px solid var(--card-card-border, rgba(97, 100, 107, 0.10));
+    background: var(--background-background-secondary, #1B1D20);
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.inputAddress {
+    flex-grow: 1;
+    padding-right: 15px;
+}
+
+.inputAddress input {
+    display: block;
+    width: 100%;
+}
+
+.inputAddress input {
+    background: transparent;
+    border: 0;
+    outline: none;
+    box-shadow: none;
+    color: #fff;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+}
+
+.changeAddress {
+    outline: none;
+    box-shadow: none;
+    background: transparent;
+    padding: 0;
+    border: 0;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px; /* 142.857% */
+    letter-spacing: -0.3px;
+    color: #53B7FF;
+}

@@ -3,7 +3,7 @@ import {isMobile} from 'react-device-detect';
 import Header from '../HeaderFooterSidebar/Header';
 import Footer from '../HeaderFooterSidebar/Footer';
 import Sidebar from '../HeaderFooterSidebar/Sidebar';
-import SwapContainer from './BridgeComponents/SwapContainer';
+import BridgeSwapContainer from './BridgeComponents/BridgeSwapContainer';
 import MobileHeader from '../HeaderFooterSidebar/MobileHeader';
 import MainActionButton from './BridgeComponents/MainActionButton';
 import SidebarSlider from '../HeaderFooterSidebar/SidebarComponent/SidebarSlider';
@@ -19,7 +19,7 @@ const Bridge = () => {
             <div className="MobilePageContainer">
                 <div className="mobileArea" id='mobileContainer'>
                     <MobileHeader/>
-                    <SwapContainer/>
+                    <BridgeSwapContainer/>
                     <SidebarSlider/>
                     <Footer/>
                     <MainActionButton/>
@@ -40,7 +40,7 @@ const Bridge = () => {
                         />
                         <div className="pageContent">
                             <div className="swapContainerArea">
-                                <SwapContainer/>
+                                <BridgeSwapContainer/>
                             </div>
                             {/* <SwapSuccess/> */}
                             {/* <SwapFailed/> */}

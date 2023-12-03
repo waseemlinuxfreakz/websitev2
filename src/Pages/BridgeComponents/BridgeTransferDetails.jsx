@@ -1,11 +1,16 @@
 import React from 'react';
-import CheckGreen from '../../assets/img/CheckGreen.svg';
-import EstimatedTime from '../../assets/img/Estimatedtime.svg';
 
-
-function BridgeDetails() {
+function BridgeTransferDetails() {
     return ( 
-        <div className="bridgeDetails">
+        <div className="transferDetails bridgeDetails">
+            <div className="detialItem">
+                <div className="detialItemLeft">
+                    You will receive
+                </div>
+                <div className="detialItemRight">
+                    0.003 ETH
+                </div>
+            </div>
             <div className="detialItem">
                 <div className="detialItemLeft">
                     Bridge Fee
@@ -24,24 +29,14 @@ function BridgeDetails() {
             </div>
             <div className="detialItem">
                 <div className="detialItemLeft">
-                    Estimated time
+                    Estimated tnx time
                 </div>
                 <div className="detialItemRight">
-                    <img src={EstimatedTime} alt="EstimatedTime" />
                     20m 10s
-                </div>
-            </div>
-            <div className="detialItem">
-                <div className="detialItemLeft">
-                    Token allowance
-                </div>
-                <div className="detialItemRight">
-                    <img src={CheckGreen} alt="CheckGreen" />
-                    0.5 ETH
                 </div>
             </div>
         </div>
      );
 }
 
-export default BridgeDetails;
+export default BridgeTransferDetails;
