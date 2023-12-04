@@ -1,5 +1,27 @@
 @media only screen and (max-width: 1025px) {
+
+    .progressBox {
+        padding: 16px 16px;
+    }
+    
+    .progressDetails {
+        padding: 0;
+    }
+    
+    .progressTitle p {
+        font-size: 15px;
+    }
+
+    .switchOptimism {
+        margin-left: 0;
+        bottom: 120px;
+        background-color: #111112;
+        border-radius: 5px;
+    }
+
     .mobileHeader {
+        position: relative;
+        z-index: 11111;
         padding: 16px;
     }
 

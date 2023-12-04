@@ -893,3 +893,8 @@ span.SwapReceive_box {
     padding: 6px 12px 6px 8px;
     height: 40px;
 }
+
+.bridgeSwap span.order1 .SwapPay.swapPayReceive {
+    position: relative;
+    z-index: 2;
+}
