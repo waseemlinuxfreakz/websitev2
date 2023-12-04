@@ -7,7 +7,6 @@ import WalletAddress from './WalletAddress';
 import SwitchOptimism from './SwitchOptimism';
 import ProceedWallet from './ProceedWallet';
 import TransactionProgress from './TransactionProgress';
-import BridgeTransferDetails from './BridgeTransferDetails';
 import TrackExplorer from './TrackExplorer';
 import TransactionInformation from './TransactionInformation';
 
@@ -22,7 +21,6 @@ function BridgeSwapContainer() {
             {/* <TransactionProgress/> */}
             <WalletAddress/>
             <BridgeDetails/>
-            {/* <BridgeTransferDetails/> */}
             {/* <TrackExplorer/> */}
             {/* <TransactionInformation/> */}
             <MainActionButton/>

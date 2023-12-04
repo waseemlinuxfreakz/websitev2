@@ -3,23 +3,11 @@ import { RootState } from './store';
 // Mock Data
 import coinsData from './coins.json';
 
-type SupportedToken = {
-    cmc_id: number,
-    name: string,
-    icon: string,
-    price: number
-}
-
-enum CMCSupportedTokenSymbol {
-    DAI = "DAI",
-    // EMMET = "EMMET", // Yet unsupported
-    ETH = "ETH",
-    OP = "OP",
-    SCRL = "SCRL",
-    USDC = "USDC",
-    USDT = "USDT",
-}
-
+/**
+ * Returns the token proce
+ * @param name the name of the token
+ * @returns 0 || token price
+ */
 async function extractPrice(name: string): Promise<any> {
 
     if(name === 'EMMET') return 2;
@@ -64,6 +52,7 @@ interface SwapState {
     fromToken: string,
     toToken: string,
     fromPrice: number,
+    receiver: string,
     toPrice: number,
     tokens: TokenType[]
 }
@@ -72,7 +61,7 @@ let fromPrice = 0;
 let toPrice = 0;
 
 (async () => {
-    // Initiate the first time
+    // Initiate the prices for first time
     fromPrice = await extractPrice(coinsData[0].name);
     toPrice = await extractPrice(coinsData[coinsData.length - 1].name);
 })().catch(e => console.error(e));
@@ -81,6 +70,7 @@ const initialState = {
     fromToken: coinsData[0].name,
     toToken: coinsData[coinsData.length - 1].name,
     fromPrice,
+    receiver: '',
     toPrice,
     tokens: coinsData
 } as SwapState;
@@ -96,6 +86,9 @@ export const swapslice = createSlice({
         setToToken: (state, action: PayloadAction<string>) => {
             state.toToken = action.payload;
         },
+        setReceiver: (state, action: PayloadAction<string>) => {
+            state.receiver = action.payload;
+        },
     },
     extraReducers(builder) {
         builder.addCase(setFromPrice.fulfilled, (state, action) => {
@@ -109,6 +102,7 @@ export const swapslice = createSlice({
 
 export const {
     setFromToken,
+    setReceiver,
     setToToken,
 } = swapslice.actions;
 

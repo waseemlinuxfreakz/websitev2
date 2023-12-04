@@ -1,6 +1,7 @@
 import React from 'react';
 
 export default function BridgeFee() {
+    
     return (<div className="detialItem">
         <div className="detialItemLeft">
             Bridge Fee
