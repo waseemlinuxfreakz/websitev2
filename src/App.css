@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
 
-@import './Pages/BridgeComponents/BridgeDetails.css'; 
+@import './Pages/BridgeComponents/BridgeDetails/BridgeDetails.css'; 
 @import './Pages/BridgeComponents/WalletAddress.css'; 
 @import './Pages/BridgeComponents/SwitchOptimism.css'; 
 @import './Pages/BridgeComponents/ProceedWallet.css'; 

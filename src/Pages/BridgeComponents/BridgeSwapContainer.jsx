@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import SwapTop from './SwapTop';
 import MainActionButton from './MainActionButton';
 import TokenSelectors from './TokenSelectors/TokenSelectors'
-import BridgeDetails from './BridgeDetails';
+import BridgeDetails from './BridgeDetails/BridgeDetails';
 import WalletAddress from './WalletAddress';
 import SwitchOptimism from './SwitchOptimism';
 import ProceedWallet from './ProceedWallet';
@@ -14,8 +14,6 @@ import TransactionInformation from './TransactionInformation';
 
 function BridgeSwapContainer() {
 
-    const [fromToken, setFromToken] = useState('ETH');
-    const [toToken, setToToken] = useState('USDT');
 
     return ( 
         <div className="bridgeSwap swapContainerBox">
