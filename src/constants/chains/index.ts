@@ -199,3 +199,18 @@ export const CHAIN_ID_DECIMAL_TO_PARAMETERS: { [key: number]: EmmetChain } = {
     [SupportedChainId.OP_GOERLI]: optimismGoerli,
     [SupportedChainId.POL_MUMABI]: polygonMumbai,
 }
+
+export const TESTNETS = [
+    arbitrumGoerli,
+    avalancheFuji,
+    baseGoerli,
+    goerli,
+    optimismGoerli,
+    polygonMumbai
+]
+
+export const MAINNETS = [
+    
+]
+
+export const ALL_CHAINS = TESTNETS && MAINNETS;
