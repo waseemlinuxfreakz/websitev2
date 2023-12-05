@@ -79,22 +79,22 @@ export const swapslice = createSlice({
     name: 'swap',
     initialState,
     reducers: {
-        setFromToken: (state, action: PayloadAction<string>) => {
+        setFromToken: (state: SwapState, action: PayloadAction<string>) => {
             state.fromToken = action.payload;
             setFromPrice(action.payload);
         },
-        setToToken: (state, action: PayloadAction<string>) => {
+        setToToken: (state: SwapState, action: PayloadAction<string>) => {
             state.toToken = action.payload;
         },
-        setReceiver: (state, action: PayloadAction<string>) => {
+        setReceiver: (state: SwapState, action: PayloadAction<string>) => {
             state.receiver = action.payload;
         },
     },
-    extraReducers(builder) {
-        builder.addCase(setFromPrice.fulfilled, (state, action) => {
+    extraReducers(builder: any) {
+        builder.addCase(setFromPrice.fulfilled, (state: SwapState, action: PayloadAction<number>) => {
             state.fromPrice = action.payload;
         })
-        builder.addCase(setToPrice.fulfilled, (state, action) => {
+        builder.addCase(setToPrice.fulfilled, (state: SwapState, action: PayloadAction<number>) => {
             state.toPrice = action.payload;
         })
     },

@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setReceiver } from '../../store/swapSlice';
+import { useAccount } from 'wagmi';
 
 function WalletAddress() {
 
     const dispatch = useDispatch();
+    const { address, isConnected } = useAccount();
 
-    const [destAddress, setDestAddress] = useState('');
+    const [destAddress, setDestAddress] = useState(isConnected 
+        ? `${address.slice(0, 15)}...${address.slice(-15,)}`
+        : '');
 
     function isEvmAddress(address) {
         // Regular expression to match the EVM address format
