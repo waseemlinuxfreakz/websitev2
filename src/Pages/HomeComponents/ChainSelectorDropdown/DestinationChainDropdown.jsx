@@ -18,7 +18,14 @@ export default function DestinationChainDropdown () {
     }
 
     const { chain } = useNetwork();
-    let filteredChains = chainData.filter(c => c.id !== chain.id);
+
+    let filteredChains;
+    if(chain){
+        filteredChains = chainData.filter(c => c.id !== chain.id);
+    } else {
+        filteredChains = chainData;
+    }
+    
 
     const [selectedChain, setSelectedChain] = useState({
         icon: chain && findChain(chain) ? findChain(chain).icon : Ethereum,
