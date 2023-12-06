@@ -9,7 +9,9 @@ const SwapTop = () => {
         <div className="swap_top_menu">
             <ChainSelectorDropdown />
             <div className="swap_top_menu_right">
-                <SwapContainerMenu />
+                <SwapContainerMenu 
+                    parent={'swap'}
+                />
             </div>
         </div>
     );

@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from 'react';
-import InfoIcon from '../../assets/img/InfoIcons.svg';
 import ArrowDonw from '../../assets/img/dow-Icons-s.svg';
 
 const Slippage = () => {

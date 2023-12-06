@@ -8,7 +8,9 @@ const SwapTop = () => {
         <div className="swap_top_menu">
             <h2>Transfer</h2>
             <div className="swap_top_menu_right">
-                <SwapContainerMenu />
+                <SwapContainerMenu 
+                    parent={'bridge'}
+                />
             </div>
         </div>
     );
