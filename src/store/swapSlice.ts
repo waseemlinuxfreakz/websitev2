@@ -48,11 +48,13 @@ export type TokenType = {
     price: number,
 }
 
-interface SwapState {
+interface ISwapState {
+    deadline: number,
     fromToken: string,
     toToken: string,
     fromPrice: number,
     receiver: string,
+    slippage: number,
     toPrice: number,
     tokens: TokenType[]
 }
@@ -67,34 +69,43 @@ let toPrice = 0;
 })().catch(e => console.error(e));
 
 const initialState = {
+    deadline: 0,
     fromToken: coinsData[0].name,
     toToken: coinsData[coinsData.length - 1].name,
     fromPrice,
     receiver: '',
+    slippage: 0.5,
     toPrice,
     tokens: coinsData
-} as SwapState;
+} as ISwapState;
 
 export const swapslice = createSlice({
     name: 'swap',
     initialState,
     reducers: {
-        setFromToken: (state: SwapState, action: PayloadAction<string>) => {
+        setFromToken: (state: ISwapState, action: PayloadAction<string>) => {
             state.fromToken = action.payload;
             setFromPrice(action.payload);
         },
-        setToToken: (state: SwapState, action: PayloadAction<string>) => {
-            state.toToken = action.payload;
-        },
-        setReceiver: (state: SwapState, action: PayloadAction<string>) => {
+        setReceiver: (state: ISwapState, action: PayloadAction<string>) => {
             state.receiver = action.payload;
         },
+        setSwapDeadline(state: ISwapState, action: PayloadAction<number>){
+            state.deadline = action.payload;
+        },
+        setSwapSlippage(state: ISwapState, action: PayloadAction<number>){
+            state.slippage = action.payload;
+        },
+        setToToken: (state: ISwapState, action: PayloadAction<string>) => {
+            state.toToken = action.payload;
+        },
+        
     },
     extraReducers(builder: any) {
-        builder.addCase(setFromPrice.fulfilled, (state: SwapState, action: PayloadAction<number>) => {
+        builder.addCase(setFromPrice.fulfilled, (state: ISwapState, action: PayloadAction<number>) => {
             state.fromPrice = action.payload;
         })
-        builder.addCase(setToPrice.fulfilled, (state: SwapState, action: PayloadAction<number>) => {
+        builder.addCase(setToPrice.fulfilled, (state: ISwapState, action: PayloadAction<number>) => {
             state.toPrice = action.payload;
         })
     },
@@ -103,9 +114,9 @@ export const swapslice = createSlice({
 export const {
     setFromToken,
     setReceiver,
+    setSwapDeadline,
+    setSwapSlippage,
     setToToken,
 } = swapslice.actions;
-
-export const selectSwap = (state: RootState) => state.swap;
 
 export default swapslice.reducer;
