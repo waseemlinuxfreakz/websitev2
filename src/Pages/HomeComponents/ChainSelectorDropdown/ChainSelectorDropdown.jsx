@@ -22,7 +22,7 @@ export default function ChainSelectorDropdown () {
 
     useEffect(() => {
         if (chain) {
-            const selChain = chainData.find(c => chain.id === c.id);
+            const selChain = findChain(chain);
             if (selChain) {
                 setSelectedChain({ 
                     icon:selChain.icon,

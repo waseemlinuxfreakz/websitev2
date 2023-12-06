@@ -10,24 +10,28 @@ import polygonMumbai from './polygonMumbai';
  * List of all the chains/networks supported
  */
 export enum Chain {
+    // Testnets
     ARB = 'ARB',
     AVAX = 'AVAX',
     BASE = 'BASE',
     ETH = 'ETH',
     OP = 'OP',
     POL = 'POL',
+    // Mainnets
 }
 
 /**
  * List of all the chain/network IDs supported
  */
 export enum SupportedChainId {
+    // Testnets
     ARB_GOERLI = 421613,
     AVAX_FUJI = 43113,
     BASE_GOERLI = 84531,
     ETH_GOERLI = 5,
     OP_GOERLI = 420,
     POL_MUMABI = 80001,
+    // Mainnets
 }
 
 /**
@@ -35,12 +39,14 @@ export enum SupportedChainId {
  * TODO: Infer from SupportedChainId
  */
 export const SupportedChainIdHex = {
+    // Testnets
     ARB_GOERLI: '0x66eed',
     AVAX_FUJI: '0xa869',
     BASE_GOERLI: '0x14a33',
     ETH_GOERLI: '0x5',
     OP_GOERLI: '0x1a4',
     POL_MUMABI: '0x13881',
+    // Mainnets
 }
 
 interface ChainToChainIdMap {
@@ -200,7 +206,7 @@ export const CHAIN_ID_DECIMAL_TO_PARAMETERS: { [key: number]: EmmetChain } = {
     [SupportedChainId.POL_MUMABI]: polygonMumbai,
 }
 
-export const TESTNETS = [
+export const TESTNETS: EmmetChain[] = [
     arbitrumGoerli,
     avalancheFuji,
     baseGoerli,
@@ -209,8 +215,8 @@ export const TESTNETS = [
     polygonMumbai
 ]
 
-export const MAINNETS = [
+export const MAINNETS: EmmetChain[] = [
     
 ]
 
-export const ALL_CHAINS = TESTNETS && MAINNETS;
+export const ALL_CHAINS: EmmetChain[] = TESTNETS;

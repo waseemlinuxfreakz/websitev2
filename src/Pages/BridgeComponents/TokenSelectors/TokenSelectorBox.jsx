@@ -7,14 +7,14 @@ import TokenSelectionDropdown from './TokenSelectionDropdown';
 import { useAppSelector } from '../../../hooks/storage';
 import TokenSelectionPayReceive from './TokenSelectionPayReceive';
 import ChainSelectorDropdown from '../../HomeComponents/ChainSelectorDropdown/ChainSelectorDropdown';
-
+import DestinationChainDropdown from '../../HomeComponents/ChainSelectorDropdown/DestinationChainDropdown';
 
 export default function TokenSelectorBox({ type }) {
 
     // Global state
     const swap = useAppSelector((state) => state.swap);
 
-    function onInputChange (e) {
+    function onInputChange(e) {
         console.log("onInputChange:", Number(e.target.value))
     }
 
@@ -31,13 +31,15 @@ export default function TokenSelectorBox({ type }) {
                     <div className="payReLeft payOption">
                         <div className="payInput">
                             <p>{isFromType()
-                                ? "Pay"
-                                : "Receive"}</p>
-                                < ChainSelectorDropdown/>
+                                ? "From"
+                                : "To"}</p>
+                            {isFromType()
+                                ? < ChainSelectorDropdown />
+                                : <DestinationChainDropdown />}
                         </div>
                         <h2 className="amount">
                             <input
-                            onChange={e => onInputChange(e)}
+                                onChange={e => onInputChange(e)}
                                 type="number"
                                 placeholder='0.0'
                                 disabled={type && type === "to"
