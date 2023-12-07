@@ -7,6 +7,8 @@
 @import './Pages/BridgeComponents/TransactionProgress.css'; 
 @import './Pages/BridgeComponents/TrackExplorer.css'; 
 @import './Pages/BridgeComponents/TransactionInformation.css'; 
+@import './HeaderFooterSidebar/ExplorerHeaderSearch.css'; 
+@import './Pages/ExplorerComponents/ExplorerTopGrid/ExplorerTopGrid.css'; 
 
 
 *,

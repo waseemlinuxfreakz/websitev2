@@ -3,6 +3,8 @@ import './App.css';
 import './Responsive.css';
 import HomePage from './Pages/Home';
 import Bridge from './Pages/Bridge';
+import ExplorerPage from './Pages/Explorer';
+
 import { ALL_CHAINS } from './constants/chains/index';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -34,6 +36,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/bridge" element={<Bridge />} />
+            <Route path="/explorer" element={<ExplorerPage />} />
           </Routes>
         </Router>
       </WagmiConfig>

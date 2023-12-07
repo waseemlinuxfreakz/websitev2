@@ -5,7 +5,6 @@ import WalletBalance from '../../HomeComponents/WalletBalance/WalletBalance';
 import TokenSelectionDropdown from './TokenSelectionDropdown';
 
 import { useAppSelector } from '../../../hooks/storage';
-import TokenSelectionPayReceive from './TokenSelectionPayReceive';
 import ChainSelectorDropdown from '../../HomeComponents/ChainSelectorDropdown/ChainSelectorDropdown';
 import DestinationChainDropdown from '../../HomeComponents/ChainSelectorDropdown/DestinationChainDropdown';
 

@@ -47,7 +47,7 @@ function SidebarNav() {
                     </a>
                 </li>
                 <li>
-                    <a href="#" className='navLink'>
+                    <a href="/explorer" className='navLink'>
                         <img src={NavIcon3} alt="NavIcon" />
                         <span>Explorer</span>
                     </a>
