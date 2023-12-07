@@ -3,11 +3,11 @@
     .progressBox {
         padding: 16px 16px;
     }
-    
+
     .progressDetails {
         padding: 0;
     }
-    
+
     .progressTitle p {
         font-size: 15px;
     }
@@ -58,6 +58,7 @@
     .mobileFooterNav ul.navlinks>li .navLink {
         border-radius: 8px;
         outline: 1px solid #3C3F43;
+        padding: 8px 16px;
     }
 
     .mobileFooterNav ul.navlinks>li a.navLink.active {
@@ -204,12 +205,12 @@
         border: 0;
         box-shadow: none;
     }
-    
+
     .swapContainerBox {
         position: relative;
         z-index: 11;
     }
-    
+
     .swapMenuContainer .slipageModal:after {
         position: absolute;
         z-index: -3;
@@ -217,18 +218,18 @@
         right: 0;
         bottom: 0;
         height: 100vh;
-        content:"";
+        content: "";
         background: #000;
         opacity: 0.8;
         background: #151516;
         pointer-events: none;
     }
-    
+
     .swapMenuBtn {
         position: relative;
         z-index: 99999;
     }
-    
+
     .swapMenuContainer .slipageModal:before {
         content: "";
         left: 0;
@@ -246,6 +247,31 @@
 
     footer#footerArea {
         padding-bottom: 100px;
+    }
+
+    .headerRightSide .connectWallet div {
+        white-space: nowrap;
+        max-width: 90px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .headerRightSide .coinNameIcon {
+        font-size: 0;
+        gap: 0;
+    }
+
+    .selectCoin {
+        min-width: unset;
+    }
+
+    .w3m-overlay {
+        padding-bottom: 90px !important;
+    }
+
+    .w3m-container {
+        border: 0px;
+        padding-bottom: 90px;
     }
 
 }

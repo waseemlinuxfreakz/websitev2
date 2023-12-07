@@ -38,6 +38,20 @@ export default function DestinationChainDropdown () {
 	
 	const selectCoinRef = useRef(null);
 
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+          if (selectCoinRef.current && !selectCoinRef.current.contains(event.target)) {
+            setListVisible(false);
+          }
+        };
+    
+        document.addEventListener('click', handleClickOutside);
+    
+        return () => {
+          document.removeEventListener('click', handleClickOutside);
+        };
+      }, []);
+      
     return (<div className="selectCoinLeft" ref={selectCoinRef}>
     <div
         className="selectedCoin"
