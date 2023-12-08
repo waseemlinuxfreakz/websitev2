@@ -3,7 +3,7 @@ import React from 'react';
 function ExplorerTransactionsFrom() {
     return ( 
         <div className="ExplorerTransactionsFilter tnxTypeFilter">
-            <div className="filterName">Tnx type</div>
+            <div className="filterName">From</div>
             <div className="filterDropdown">
                 <div className="filterDropName">
                     <div className="filterDropSelect">All types</div>

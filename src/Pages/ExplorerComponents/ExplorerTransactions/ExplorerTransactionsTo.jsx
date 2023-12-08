@@ -4,15 +4,15 @@ import React from 'react';
 function ExplorerTransactionsTo() {
     return ( 
         <div className="ExplorerTransactionsFilter tnxTypeFilter">
-            <div className="filterName">Tnx type</div>
+            <div className="filterName">To</div>
             <div className="filterDropdown">
                 <div className="filterDropName">
-                    <div className="filterDropSelect">All types</div>
+                    <div className="filterDropSelect">All chains</div>
                 </div>
                 <ul className="filterDropList">
                     <li>
                         <div className="filterDropSelect">
-                            All types
+                            All chains
                         </div>
                     </li>
                     <li>

@@ -4,6 +4,7 @@ import ExplorerTopGridRow from './ExplorerTopGridRow';
 import ExplorerTransactions from './ExplorerTransactions';
 import './ExplorerTransactions/ExplorerTransactions.css';
 import './ExplorerTopGrid/ExplorerTopGrid.css';
+import ExplorerTransactionsTable from './ExplorerTransactionsTable/ExplorerTransactionsTable';
 
 
 function ExplorerPageContainer() {
@@ -11,6 +12,7 @@ function ExplorerPageContainer() {
         <div className="">
              <ExplorerTopGridRow/>
              <ExplorerTransactions/>
+             <ExplorerTransactionsTable/>
         </div>
      );
 }
