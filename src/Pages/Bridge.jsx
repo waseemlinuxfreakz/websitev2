@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {isMobile} from 'react-device-detect';
+import { isMobile } from 'react-device-detect';
 import Header from '../HeaderFooterSidebar/Header';
 import Footer from '../HeaderFooterSidebar/Footer';
 import Sidebar from '../HeaderFooterSidebar/Sidebar';
@@ -11,51 +11,53 @@ import SwapSuccess from './HomeComponents/SwapSuccess';
 import SwapFailed from './HomeComponents/SwapFailed';
 import SwapConfirm from './HomeComponents/SwapConfirm';
 import useBridgeSuccess from '../hooks/useBridgeSuccess';
+import useBridgeFailure from '../hooks/useBridgeFailure';
 
 const Bridge = () => {
 
     const isSuccess = useBridgeSuccess();
-  
+    const isFailure = useBridgeFailure();
+
     return (
-      <>
-        {isMobile ? (
-            <div className="MobilePageContainer">
-                <div className="mobileArea" id='mobileContainer'>
-                    <MobileHeader/>
-                    <BridgeSwapContainer/>
-                    <SidebarSlider/>
-                    <Footer/>
-                    <MainActionButton/>
-                    {/* <SwapSuccess/> */}
-                    {/* <SwapFailed/> */}
-                    {/* <SwapConfirm/> */}
-                </div>
-            </div>
-        ) : (
-            <div className="pageContainer">
-                <div className="pageContentRow" id='desktopContainer'>
-                    <div className="sidebarArea">
-                        <Sidebar/>
+        <>
+            {isMobile ? (
+                <div className="MobilePageContainer">
+                    <div className="mobileArea" id='mobileContainer'>
+                        <MobileHeader />
+                        <BridgeSwapContainer />
+                        <SidebarSlider />
+                        <Footer />
+                        <MainActionButton />
+                        {isSuccess ? '' /* <-- Replace '' with success component*/ : ''}
+                        {isFailure ? '' /* <-- Replace '' with failure component*/ : ''}
+                        {/* <SwapConfirm/> */}
                     </div>
-                    <div className="mainWrap">
-                        <Header
-                          caption="Bridge"
-                        />
-                        <div className="pageContent">
-                            <div className="swapContainerArea">
-                                <BridgeSwapContainer/>
-                            </div>
-                            {/* <SwapSuccess/> */}
-                            {/* <SwapFailed/> */}
-                            {/* <SwapConfirm/> */}
+                </div>
+            ) : (
+                <div className="pageContainer">
+                    <div className="pageContentRow" id='desktopContainer'>
+                        <div className="sidebarArea">
+                            <Sidebar />
                         </div>
-                        <Footer/>
+                        <div className="mainWrap">
+                            <Header
+                                caption="Bridge"
+                            />
+                            <div className="pageContent">
+                                <div className="swapContainerArea">
+                                    <BridgeSwapContainer />
+                                </div>
+                                {isSuccess ? '' /* <-- Replace '' with success component*/ : ''}
+                                {isFailure ? '' /* <-- Replace '' with failure component*/ : ''}
+                                {/* <SwapConfirm/> */}
+                            </div>
+                            <Footer />
+                        </div>
                     </div>
                 </div>
-            </div>
-        )}
-      </>
+            )}
+        </>
     );
-  };
-  
-  export default Bridge;
+};
+
+export default Bridge;

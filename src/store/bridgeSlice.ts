@@ -4,6 +4,7 @@ import { RootState } from './store';
 export interface IBridgeState {
     amount: number,
     deadline: number,
+    isFailure: boolean,
     isSuccess:boolean,
     receive:number,
     slippage: number,
@@ -12,6 +13,7 @@ export interface IBridgeState {
 const initialState = {
     amount: 0,
     deadline: 0,
+    isFailure: false,
     isSuccess:false,
     receive: 0,
     slippage: 0.5
@@ -28,6 +30,9 @@ export const bridgeSlice = createSlice({
         },
         setBridgeDeadline(state: IBridgeState, action: PayloadAction<number>){
             state.deadline = action.payload;
+        },
+        setBridgeIsFailure(state:IBridgeState, action: PayloadAction<boolean>){
+            state.isFailure = action.payload;
         },
         setBridgeIsSuccess(state:IBridgeState, action: PayloadAction<boolean>){
             state.isSuccess = action.payload;
@@ -46,6 +51,7 @@ export const bridgeSlice = createSlice({
 export const {
     setBridgeAmount,
     setBridgeDeadline,
+    setBridgeIsFailure,
     setBridgeIsSuccess,
     setBridgeSlippage
 } = bridgeSlice.actions;
