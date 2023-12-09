@@ -12,19 +12,19 @@ function MobileFooterNav() {
         <div className="mobileFooterNav">
             <ul className="navlinks">
                 <li>
-                    <a href="#" className='navLink active'>
+                    <a href="./" className='navLink active'>
                         <img src={NavIcon1} alt="NavIcon" />
                         <span>Swap</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" className='navLink'>
+                    <a href="./bridge" className='navLink'>
                         <img src={NavIcon2} alt="NavIcon" />
                         <span>Bridge</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" className='navLink'>
+                    <a href="./explorer" className='navLink'>
                         <img src={NavIcon3} alt="NavIcon" />
                         <span>Explorer</span>
                     </a>
