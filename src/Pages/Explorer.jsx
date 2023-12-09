@@ -21,7 +21,7 @@ const ExplorerPage = () => {
             <div className="MobilePageContainer">
                 <div className="mobileArea" id='mobileContainer'>
                     <MobileHeader/>
-                    <BridgeSwapContainer/>
+                    <ExplorerPageContainer/>
                     <SidebarSlider/>
                     <Footer/>
                 </div>
