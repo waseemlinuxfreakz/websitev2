@@ -6,9 +6,9 @@ import BridgeDetails from './BridgeDetails/BridgeDetails';
 import WalletAddress from './WalletAddress';
 import SwitchOptimism from './SwitchOptimism';
 import ProceedWallet from './ProceedWallet';
-import TransactionProgress from './TransactionProgress';
 import TrackExplorer from './TrackExplorer';
 import TransactionInformation from './TransactionInformation';
+
 
 
 function BridgeSwapContainer() {
@@ -18,7 +18,6 @@ function BridgeSwapContainer() {
         <div className="bridgeSwap swapContainerBox">
             <SwapTop/>
             <TokenSelectors/>
-            {/* <TransactionProgress/> */}
             <WalletAddress/>
             <BridgeDetails/>
             {/* <TrackExplorer/> */}

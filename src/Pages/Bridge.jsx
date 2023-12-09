@@ -12,6 +12,10 @@ import SwapFailed from './HomeComponents/SwapFailed';
 import SwapConfirm from './HomeComponents/SwapConfirm';
 import useBridgeSuccess from '../hooks/useBridgeSuccess';
 import useBridgeFailure from '../hooks/useBridgeFailure';
+import TransactionProgress from './BridgeComponents/TransactionProgress';
+import TransactionProgressSuccess from './BridgeComponents/TransactionProgressSuccess';
+
+
 
 const Bridge = () => {
 
@@ -28,8 +32,8 @@ const Bridge = () => {
                         <SidebarSlider />
                         <Footer />
                         <MainActionButton />
-                        {isSuccess ? '' /* <-- Replace '' with success component*/ : ''}
-                        {isFailure ? '' /* <-- Replace '' with failure component*/ : ''}
+                        {isSuccess ? <TransactionProgress/> /* <-- Replace '' with success component*/ : ''}
+                        {isFailure ? <TransactionProgressSuccess/> /* <-- Replace '' with failure component*/ : ''}
                         {/* <SwapConfirm/> */}
                     </div>
                 </div>
