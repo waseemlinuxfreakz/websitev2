@@ -10,8 +10,11 @@ import SidebarSlider from '../HeaderFooterSidebar/SidebarComponent/SidebarSlider
 import SwapSuccess from './HomeComponents/SwapSuccess';
 import SwapFailed from './HomeComponents/SwapFailed';
 import SwapConfirm from './HomeComponents/SwapConfirm';
+import useBridgeSuccess from '../hooks/useBridgeSuccess';
 
 const Bridge = () => {
+
+    const isSuccess = useBridgeSuccess();
   
     return (
       <>
