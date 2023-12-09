@@ -1,25 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useAccount } from 'wagmi';
 import { useWeb3Modal } from '@web3modal/react';
+import useActionButtonDiabled from '../../hooks/useActionButtonDisabled';
 
 function MainActionButton() {
 
-    const [disabled, setDisabled] = useState(false);
-
     const { isConnected } = useAccount();
     const { open } = useWeb3Modal();
-
-    useEffect(() => {
-
-        if (isConnected) {
-            setDisabled(true);
-        }
-
-        if(!isConnected){
-            setDisabled(false);
-        }
-
-    }, [isConnected]);
+    const disabled = useActionButtonDiabled('swap');
 
     const onClickSelectAction = () => {
         if(!isConnected){
