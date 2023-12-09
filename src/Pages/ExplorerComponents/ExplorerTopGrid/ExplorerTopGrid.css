@@ -1,0 +1,36 @@
+.explorereTopRow> .row {
+    margin: 0 -8px;
+}
+
+.explorereTopRow> .row> div {
+    padding: 0 8px;
+}
+
+.ExplorerBoxGray {
+    border-radius: 16px;
+    border: 1px solid var(--card-card-border, rgba(97, 100, 107, 0.10));
+    background: var(--background-background-primary, #191B1E);
+    padding: 16px 24px;
+}
+
+.ExplorerBoxGray p {
+    color: #B3B7BF;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px; /* 150% */
+    letter-spacing: -0.3px;
+    margin: 0 0 8px 0;
+}
+
+.ExplorerBoxGray h3 {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 26px;
+    margin: 0;
+}
+
+.explorereTopRow {
+    padding-bottom: 32px;
+}

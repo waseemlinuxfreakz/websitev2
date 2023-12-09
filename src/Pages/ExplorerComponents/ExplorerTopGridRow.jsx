@@ -3,6 +3,7 @@ import ExplorerTopGridAddresses from './ExplorerTopGrid/ExplorerTopGridAddresses
 import ExplorerTopGridFees from './ExplorerTopGrid/ExplorerTopGridFees';
 import ExplorerTopGridTotal from './ExplorerTopGrid/ExplorerTopGridTotal';
 import ExplorerTopGridValue from './ExplorerTopGrid/ExplorerTopGridValue';
+import './ExplorerTopGrid/ExplorerTopGrid.css';
 
 function ExplorerTopGridRow() {
     return ( 

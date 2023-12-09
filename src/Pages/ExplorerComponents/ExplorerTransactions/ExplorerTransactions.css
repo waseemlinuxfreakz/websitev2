@@ -1,0 +1,141 @@
+.explorerTransactionsTitle h2 {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 26px;
+    color: #fff;
+}
+
+.explorerTransactionsTitle p {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    color: #B3B7BF;
+}
+
+.explorerTransactions {
+    padding-bottom: 24px;
+    display: flex;
+    align-items: center;
+    padding-top: 24px;
+}
+
+.ExplorerTransactionsFilter {
+    border-radius: 8px;
+    border: 1px solid var(--stroke-stroke-primary, #3C3F43);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filterName {
+    padding-right: 10px;
+    border-right: 1px solid #3C3F43;
+}
+
+.transactionRight {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.filterDropSelect {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.filterDropSelect span {
+    background: transparent !important;
+    border: 0;
+    outline: none;
+    box-shadow: none;
+    display: block;
+    color: #fff !important;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: capitalize;
+}
+
+
+.filterDropdown {
+    position: relative;
+    z-index: 1;
+}
+
+ul.filterDropList {
+    position: absolute;
+    z-index: 1;
+    top: 47px;
+    right: -10px;
+    border-radius: 8px;
+    border: 1px solid var(--card-card-border, rgba(97, 100, 107, 0.10));
+    background: var(--background-background-primary, #191B1E);
+/* Dropdown shadow */
+    box-shadow: 0px 2px 12px 6px rgba(0, 0, 0, 0.16);
+    padding: 16px;
+    width: 180px;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* gap: 14px; */
+    cursor: pointer;
+}
+
+.allType {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+ul.filterDropList li:not(:first-child) span {
+    display: inline-flex;
+    height: 28px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    border-radius: 6px;
+}
+
+.redeem {
+    background: rgba(23, 85, 89, 0.20);
+    color: #1FD8E4;
+}
+
+span.transfer {
+    background: rgba(30, 86, 152, 0.20);
+    color: #53B7FF;
+}
+
+span.borrow {
+    background: rgba(112, 28, 141, 0.20);
+    color: #D983FD;
+}
+
+span.deposit {
+    color: #40D86E;
+    background: rgba(146, 87, 33, 0.20);
+}
+
+span.approval {
+    color: #40D86E;
+    background: rgba(16, 93, 39, 0.20);
+}
+
+span.swap {
+    color: #EFEB00;
+    background: #2D2D08;
+}
+
+ul.filterDropList li:not(:first-child) {
+    margin-top: 14px;
+}

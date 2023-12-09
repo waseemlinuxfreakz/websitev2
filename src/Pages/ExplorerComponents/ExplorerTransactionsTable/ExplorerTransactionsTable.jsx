@@ -6,7 +6,11 @@ import Scroll from '../../../assets/img/coin/scoll.svg';
 import Pending from '../../../assets/img/explorer/Pending.svg';
 import Success from '../../../assets/img/explorer/Success.svg';
 import Failled from '../../../assets/img/explorer/Failled.svg';
+import Linea from '../../../assets/img/coin/Linea.svg';
+import Base from '../../../assets/img/coin/Base.svg';
+import Zetachain from '../../../assets/img/coin/Zetachain.svg';
 
+import './ExplorerTransactionsTable.css';
 
 function ExplorerTransactionsTable() {
     return ( 
@@ -54,7 +58,47 @@ function ExplorerTransactionsTable() {
                             <td> <span className='textCell'>348 USDT</span></td>
                             <td> <span className='textCell'>347 USDT</span></td>
                             <td> <span className='textCell'>35 secs</span></td>
+                            <td> <span className="success"><img src={Pending} alt="Pending" /> Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td> <span className='borrow'>Borrow</span> </td>
+                            <td> <span className='textOnly'>ce60...d322</span></td>
+                            <td> <div className="chainCell"><img src={Zetachain} alt="Zetachain" /> Zetachain</div></td>
+                            <td> <div className="chainCell"><img src={Zetachain} alt="Zetachain" /> Zetachain</div></td>
+                            <td> <span className='textCell'>348 USDT</span></td>
+                            <td> <span className='textCell'>347 USDT</span></td>
+                            <td> <span className='textCell'>35 secs</span></td>
                             <td> <span className="success"><img src={Success} alt="Success" /> Success</span></td>
+                        </tr>
+                        <tr>
+                            <td> <span className='approval'>Approval</span> </td>
+                            <td> <span className='textOnly'>ce60...d322</span></td>
+                            <td> <div className="chainCell"><img src={Ethereum} alt="Ethereum" /> Ethereum</div></td>
+                            <td> <div className="chainCell"><img src={Zetachain} alt="Zetachain" /> Zetachain</div></td>
+                            <td> <span className='textCell'>$348,583,797.25</span></td>
+                            <td> <span className='textCell'>347 USDT</span></td>
+                            <td> <span className='textCell'>35 secs</span></td>
+                            <td> <span className="success"><img src={Success} alt="Success" /> Success</span></td>
+                        </tr>
+                        <tr>
+                            <td> <span className='swap'>Swap</span> </td>
+                            <td> <span className='textOnly'>ce60...d322</span></td>
+                            <td> <div className="chainCell"><img src={Scroll} alt="Scroll" /> Scroll</div></td>
+                            <td> <div className="chainCell"><img src={Scroll} alt="Scroll" /> Scroll</div></td>
+                            <td> <span className='textCell'>$348,583,797.25</span></td>
+                            <td> <span className='textCell'>347 USDT</span></td>
+                            <td> <span className='textCell'>35 secs</span></td>
+                            <td> <span className="success"><img src={Success} alt="Success" /> Success</span></td>
+                        </tr>
+                        <tr>
+                            <td> <span className='swap'>Swap</span> </td>
+                            <td> <span className='textOnly'>ce60...d322</span></td>
+                            <td> <div className="chainCell"><img src={Scroll} alt="Scroll" /> Scroll</div></td>
+                            <td> <div className="chainCell"><img src={Scroll} alt="Scroll" /> Scroll</div></td>
+                            <td> <span className='textCell'>$348,583,797.25</span></td>
+                            <td> <span className='textCell'>347 USDT</span></td>
+                            <td> <span className='textCell'>35 secs</span></td>
+                            <td> <span className="success"><img src={Failled} alt="Failled" /> Failled</span></td>
                         </tr>
                     </tbody>
                 </table>

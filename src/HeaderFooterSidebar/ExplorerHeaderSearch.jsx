@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Search from '../assets/img/explorer/search.svg';
 
-
 function ExplorerHeaderSearch() {
-    return ( 
-        <div className="explorerSearch">
-            <input type="search" placeholder='Search token / chain / transaction' />
-            <button type='button' className='searchBtn'><img src={Search} alt="Search" /></button>
-        </div>
-     );
+  const [isValid, setIsValid] = useState(false);
+
+  const handleInputChange = (event) => {
+    // Your validation logic here
+    const inputIsValid = event.target.value.trim() !== '';
+    setIsValid(inputIsValid);
+  };
+
+  return ( 
+    <div className={`explorerSearch ${isValid ? 'inputValid' : ''}`}>
+      <input
+        type="search"
+        placeholder='Search token / chain / transaction'
+        onChange={handleInputChange}
+      />
+      <button type='button' className='searchBtn'>
+        <img src={Search} alt="Search" />
+      </button>
+    </div>
+  );
 }
 
 export default ExplorerHeaderSearch;
