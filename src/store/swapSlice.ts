@@ -49,6 +49,7 @@ export type TokenType = {
 }
 
 interface ISwapState {
+    amount: number,
     deadline: number,
     fromToken: string,
     toToken: string,
@@ -69,6 +70,7 @@ let toPrice = 0;
 })().catch(e => console.error(e));
 
 const initialState = {
+    amount: 0,
     deadline: 0,
     fromToken: coinsData[0].name,
     toToken: coinsData[coinsData.length - 1].name,

@@ -1,25 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useAccount } from 'wagmi';
 import { useWeb3Modal } from '@web3modal/react';
+import { useAppSelector, useAppDispatch } from '../../hooks/storage';
+import useActionButtonDiabled from '../../hooks/useActionButtonDisabled';
 
 function MainActionButton() {
 
-    const [disabled, setDisabled] = useState(false);
+    const bridge = useAppSelector((state) => state.bridge);
+    const dispatch = useAppDispatch();
 
     const { isConnected } = useAccount();
     const { open } = useWeb3Modal();
 
-    useEffect(() => {
+    const disabled = useActionButtonDiabled("bridge");
 
-        if (isConnected) {
-            setDisabled(true);
-        }
+    // has enough allowance?
 
-        if(!isConnected){
-            setDisabled(false);
-        }
-
-    }, [isConnected]);
+    // can transfer?
 
     const onClickSelectAction = () => {
         if(!isConnected){
