@@ -17,13 +17,13 @@ function SidebarBottomNav() {
                     </a>
                 </li>
                 <li>
-                    <a href="https://docs.emmet.finance/" className='navLink'>
+                    <a href="https://docs.emmet.finance/" target="_blank" className='navLink'>
                         <img src={NavIcon2} alt="NavIcon" />
                         <span>Docs</span>
                     </a>
                 </li>
                 <li>
-                    <a href="https://www.npmjs.com/package/emmet.sdk" className='navLink'>
+                    <a href="https://www.npmjs.com/package/emmet.sdk" target="_blank" className='navLink'>
                         <img src={NavIcon3} alt="NavIcon" />
                         <span>SDK</span>
                     </a>
