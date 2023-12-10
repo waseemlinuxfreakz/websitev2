@@ -1,0 +1,181 @@
+ul.breadcum {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+ul.breadcum li a {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px; /* 142.857% */
+    letter-spacing: -0.3px;
+    color: #888B92;
+    transition: .2s;
+}
+
+ul.breadcum li a:hover {
+    color: #fff;
+}
+
+ul.breadcum li a:after {
+    content: "/";
+    margin-left: 10px;
+}
+
+ul.breadcum li {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px; /* 142.857% */
+    letter-spacing: -0.3px;
+    color: #fff;
+}
+
+.TransactionDetailsArea {
+    margin-top: 24px;
+}
+
+.transactionHash {
+    border-radius: 16px;
+    border: 1px solid rgba(97, 100, 107, 0.10);
+    background: #1B1D20;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.transactionHashTop {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.transactionHashTop p {
+    margin: 0;
+}
+
+.transactionHashTopRight {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.copyLink {
+    background: transparent;
+    position: relative;
+    z-index: 1;
+    padding: 0;
+    border: 0;
+    outline: none;
+    box-shadow: none;
+}
+
+.copyHover,
+.copiedAlert {
+    position: absolute;
+    z-index: 1;
+    display: block;
+    border-radius: 8px;
+    border: 1px solid #3C3F43;
+    background: #191B1E;
+    box-shadow: 0px 18.533px 37.067px 0px rgba(0, 0, 0, 0.20);
+    color: #E0E3E6;
+    padding: 10px 16px;
+    font-size: 14px;
+    line-height: 1;
+    left: 50%;
+    bottom: 100%;
+    transform: translate(-50%);
+    margin-bottom: 10px;
+    z-index: 4;
+}
+
+.copyHover {
+    width: 155px;
+    height: 40px;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 2;
+}
+
+.transactionHash h3 {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 26px;
+    color: #fff;
+}
+
+
+.copyHover:after,
+.copiedAlert:after {
+    display: block;
+    position: absolute;
+    top: 100%;
+    margin-top: 0px;
+    left: 50%;
+    transform: translate(-50%);
+    content: "";
+    width: 37px;
+    height: 10px;
+    background-image: url("../../../assets/img/Tail.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.transactionDetailsBox {
+    border: 1px solid #3C3F43;
+    background: #191B1E;
+    box-shadow: 0px 18.533px 37.067px 0px rgba(0, 0, 0, 0.20);
+    border-radius: 10px;
+}
+
+li.transactionDetailsListItem {
+    display: flex;
+    align-items: center;
+}
+
+.transactionDetailsListLeft {
+    width: 180px;
+    flex-shrink: 0;
+}
+
+.transactionDetailsListRight {
+    width: calc(100% - 180px);
+}
+
+li.transactionDetailsListItem> div {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    height: 56px;
+}
+
+.transactionDetailsListRight span.transfer {
+    padding: 2px 10px;
+    border-radius: 6px;
+}
+
+.chainAddress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-right: auto;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    width: calc(100% - 40px);
+}
+
+button.copyLink:hover span.copyHover {
+    opacity: 1;
+    visibility: visible;
+}
+
+.bridgeFee span {
+    color: #888B92;
+}

@@ -5,6 +5,7 @@ import HomePage from './Pages/Home';
 import Bridge from './Pages/Bridge';
 import ExplorerPage from './Pages/Explorer';
 
+
 import { ALL_CHAINS } from './constants/chains/index';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
