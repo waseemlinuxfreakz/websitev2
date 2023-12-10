@@ -11,6 +11,7 @@ export default function TokenSelectorBox({ type }) {
 
     // Global state
     const swap = useAppSelector((state) => state.swap);
+    const dispatch = useAppDispatch();
 
     function onInputChange (e) {
         console.log("onInputChange:", Number(e.target.value))

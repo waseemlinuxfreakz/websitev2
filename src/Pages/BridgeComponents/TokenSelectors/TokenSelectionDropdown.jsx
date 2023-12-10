@@ -6,15 +6,15 @@ import Fox from '../../../assets/img/fox.svg';
 // Components
 import CoinLinkAddress from '../CoinLinkAddress';
 import { useAppSelector, useAppDispatch } from '../../../hooks/storage';
-import {setFromToken, setToToken} from '../../../store/swapSlice';
+import {setBridgeFromToken, setBridgeToToken} from '../../../store/bridgeSlice';
 
 export default function TokenSelectionDropdown ({type}) {
 
-    const swap = useAppSelector((state) => state.swap);
+    const bridge = useAppSelector((state) => state.bridge);
     const dispatch = useAppDispatch();
 
     function getIcon (tokenName) {
-        const selTkn = swap.tokens.find(t => t.name === tokenName);
+        const selTkn = bridge.alltokens.find(t => t.name === tokenName);
         return selTkn ? selTkn.icon : '';
     }
 
@@ -24,21 +24,21 @@ export default function TokenSelectionDropdown ({type}) {
 
     const [isListVisible, setListVisible] = useState(false);
     const [selectedCoin, setSelectedCoin] = useState({
-        icon: getIsfrom() ? getIcon(swap.fromToken) : getIcon(swap.toToken),
-        name: getIsfrom() ? swap.fromToken : swap.toToken,
+        icon: getIsfrom() ? getIcon(bridge.fromToken) : getIcon(bridge.toToken),
+        name: getIsfrom() ? bridge.fromToken : bridge.toToken,
     });
 
     useEffect(() => {
         setSelectedCoin({
-            icon: getIsfrom() ? getIcon(swap.fromToken) : getIcon(swap.toToken),
-            name: getIsfrom() ? swap.fromToken : swap.toToken,
+            icon: getIsfrom() ? getIcon(bridge.fromToken) : getIcon(bridge.toToken),
+            name: getIsfrom() ? bridge.fromToken : bridge.toToken,
         });
-    }, [swap.fromToken, swap.toToken]);
+    }, [bridge.fromToken, bridge.toToken]);
 
     const handleCoinClick = (icon, name) => {
         setSelectedCoin({ icon, name });
         toggleVisibility();
-        dispatch( getIsfrom() ? setFromToken(name) : setToToken(name));
+        dispatch( getIsfrom() ? setBridgeFromToken(name) : setBridgeToToken(name));
     };
 
     const toggleVisibility = () => {
@@ -72,7 +72,7 @@ export default function TokenSelectionDropdown ({type}) {
         <img src={DownArrow} alt="Down Arrow" />
     </div>
     <ul className={`selectCoinList ${isListVisible ? 'visible' : 'hidden'}`}>
-        {swap.tokens.map((coin) => (
+        {bridge.fromTokens.map((coin) => (
             <li className="coinItem" key={coin.name}>
                 <div
                     className="coinNameIcon"

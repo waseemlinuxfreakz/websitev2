@@ -16,7 +16,6 @@ import { configureChains, createConfig, WagmiConfig } from 'wagmi';
 import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum';
 
 const supportedChains = ALL_CHAINS;
-console.log("supportedChains:", supportedChains)
 
 const projectId = "0792a282f1d5c406794a1cbec7d7f4b4";
 

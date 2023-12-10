@@ -6,7 +6,10 @@ function ExplorerTransactionsFrom() {
         <div className="ExplorerTransactionsFilter tnxTypeFilter">
             <div className="filterName">From</div>
             <div className="filterDropdown">
-                <ChainSelectorDropdown/>
+                <ChainSelectorDropdown
+                    parent="explorer"
+                    direction="from"
+                />
             </div>
         </div>
      );

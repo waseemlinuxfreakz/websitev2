@@ -4,17 +4,18 @@ import './TokenSelectorBox.css';
 import WalletBalance from '../../HomeComponents/WalletBalance/WalletBalance';
 import TokenSelectionDropdown from './TokenSelectionDropdown';
 
-import { useAppSelector } from '../../../hooks/storage';
+import { useAppSelector, useAppDispatch } from '../../../hooks/storage';
 import ChainSelectorDropdown from '../../HomeComponents/ChainSelectorDropdown/ChainSelectorDropdown';
 import DestinationChainDropdown from '../../HomeComponents/ChainSelectorDropdown/DestinationChainDropdown';
 
 export default function TokenSelectorBox({ type }) {
 
     // Global state
-    const swap = useAppSelector((state) => state.swap);
+    const bridge = useAppSelector((state) => state.bridge);
 
     function onInputChange(e) {
-        console.log("onInputChange:", Number(e.target.value))
+        e.preventDefault();
+
     }
 
     function isFromType() {
@@ -33,7 +34,10 @@ export default function TokenSelectorBox({ type }) {
                                 ? "From"
                                 : "To"}</p>
                             {isFromType()
-                                ? < ChainSelectorDropdown />
+                                ? < ChainSelectorDropdown 
+                                    parent="bridge"
+                                    direction='from'
+                                />
                                 : <DestinationChainDropdown />}
                         </div>
                         <h2 className="amount">
@@ -50,7 +54,7 @@ export default function TokenSelectorBox({ type }) {
                 </div>
                 <div className="payReRight">
                     < WalletBalance
-                        name={isFromType() ? swap.fromToken : swap.toToken}
+                        name={isFromType() ? bridge.fromToken : bridge.toToken}
                     />
                     < TokenSelectionDropdown
                         type={type}

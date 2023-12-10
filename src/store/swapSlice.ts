@@ -1,7 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from './store';
 // Mock Data
+import chainList from './Chain.json';
 import coinsData from './coins.json';
+import { TChainType, TokenType } from './types';
+import {filterTwoChains, filterTwoTokens} from '../utils/filters';
 
 /**
  * Returns the token proce
@@ -42,23 +45,26 @@ export const setToPrice = createAsyncThunk('swap/setToPrice',
         return await extractPrice(name);
     });
 
-export type TokenType = {
-    icon: string,
-    name: string,
-    price: number,
-}
-
 interface ISwapState {
     amount: number,
     deadline: number,
+    fromChain:string,
     fromToken: string,
     toToken: string,
     fromPrice: number,
-    receiver: string,
     slippage: number,
+    toChain: string,
     toPrice: number,
     tokens: TokenType[]
 }
+
+// FROM
+const fromChain = chainList[0].name;
+const fromToken = coinsData[0].name;
+
+// TO
+const toChain = chainList[chainList.length - 1].name;
+const toToken = coinsData[coinsData.length - 1].name;
 
 let fromPrice = 0;
 let toPrice = 0;
@@ -72,11 +78,13 @@ let toPrice = 0;
 const initialState = {
     amount: 0,
     deadline: 0,
-    fromToken: coinsData[0].name,
-    toToken: coinsData[coinsData.length - 1].name,
+    fromChain,
+    fromToken,
+    toToken,
     fromPrice,
     receiver: '',
     slippage: 0.5,
+    toChain,
     toPrice,
     tokens: coinsData
 } as ISwapState;
@@ -85,12 +93,13 @@ export const swapslice = createSlice({
     name: 'swap',
     initialState,
     reducers: {
+        setSwapFromChain(state:ISwapState, action:PayloadAction<string>){
+            state.fromChain = action.payload;
+
+        },
         setFromToken: (state: ISwapState, action: PayloadAction<string>) => {
             state.fromToken = action.payload;
             setFromPrice(action.payload);
-        },
-        setReceiver: (state: ISwapState, action: PayloadAction<string>) => {
-            state.receiver = action.payload;
         },
         setSwapDeadline(state: ISwapState, action: PayloadAction<number>){
             state.deadline = action.payload;
@@ -114,8 +123,8 @@ export const swapslice = createSlice({
 });
 
 export const {
+    setSwapFromChain,
     setFromToken,
-    setReceiver,
     setSwapDeadline,
     setSwapSlippage,
     setToToken,

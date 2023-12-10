@@ -22,7 +22,7 @@ function SidebarNav() {
         <li>
           <Link to="/" className={`navLink ${isActive('/') && 'active'}`}>
             <img src={NavIcon1} alt="NavIcon" />
-            <span>Explorer</span>
+            <span>Swap</span>
           </Link>
         </li>
         <li>

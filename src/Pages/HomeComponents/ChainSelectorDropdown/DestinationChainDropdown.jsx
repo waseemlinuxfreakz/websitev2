@@ -2,35 +2,32 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNetwork } from 'wagmi';
 import Ethereum from '../../../assets/img/Ethereum.svg';
 import DownArrow from '../../../assets/img/down-white.svg';
-import chainData from '../Chain.json'
+import chainData from '../../../store/Chain.json';
+import { useAppSelector, useAppDispatch } from '../../../hooks/storage';
+import { setBridgeToChain } from '../../../store/bridgeSlice';
 
 export default function DestinationChainDropdown () {
 
-    const [isListVisible, setListVisible] = useState(false);
-
-    function findChain (chain) {
+    const findChain = (chain) => {
         return chainData.find(c => chain && chain.id === c.id);
     }
 
-    function handleChainClick (icon, name, id) {
-        setSelectedChain({ icon, name });
-        toggleVisibility();
-    }
+    const bridge = useAppSelector((state) => state.bridge);
+    const dispatch = useAppDispatch();
 
     const { chain } = useNetwork();
 
-    let filteredChains;
-    if(chain){
-        filteredChains = chainData.filter(c => c.id !== chain.id);
-    } else {
-        filteredChains = chainData;
-    }
-    
-
+    const [isListVisible, setListVisible] = useState(false);
     const [selectedChain, setSelectedChain] = useState({
         icon: chain && findChain(chain) ? findChain(chain).icon : Ethereum,
         name: chain && findChain(chain) ? findChain(chain).name : 'Ethereum',
     });
+
+    function handleChainClick (icon, name, id) {
+        setSelectedChain({ icon, name });
+        toggleVisibility();
+        dispatch(setBridgeToChain(name));
+    }
 
     const toggleVisibility = () => {
         setListVisible(!isListVisible);
@@ -66,7 +63,7 @@ export default function DestinationChainDropdown () {
     <ul className={`selectCoinList ${isListVisible 
         ? 'visible' 
         : 'hidden'}`}>
-        {chain && filteredChains.map((chain) => (
+        {bridge.toChains.map((chain) => (
             <li className="coinItem" key={chain.id}>
                 <div
                     className="coinNameIcon"

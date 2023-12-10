@@ -1,26 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { setReceiver } from '../../store/swapSlice';
+import { setReceiver } from '../../store/bridgeSlice';
 import { useAccount } from 'wagmi';
+import { isEvmAddress} from '../../verifiers';
+import { useAppSelector, useAppDispatch } from '../../hooks/storage';
 
 function WalletAddress() {
 
-    const dispatch = useDispatch();
-    const { address, isConnected } = useAccount();
+    const dispatch = useAppDispatch();
+    const bridge = useAppSelector(state => state.bridge);
+    const { address } = useAccount();
 
-    const [destAddress, setDestAddress] = useState(isConnected 
-        ? `${address.slice(0, 15)}...${address.slice(-15,)}`
-        : '');
-
-    function isEvmAddress(address) {
-        // Regular expression to match the EVM address format
-        // Expected length 42 chars including `0x`
-        // Can only contain hex chars 0-9 | a-f | A-F
-        const evmAddressRegex = /^0x[a-fA-F0-9]{40}$/;
-
-        // Test the address against the regex and return the result
-        return evmAddressRegex.test(address);
+    function truncate(address) {
+        return address
+        ? `${address.slice(0, 14)}...${address.slice(-14,)}`
+        : '';
     }
+    const [destAddress, setDestAddress] = useState(truncate(address));
+
+    useEffect(() => {
+
+    },[]);
 
     function onChangeClickHandle(e) {
         e.preventDefault();
@@ -30,11 +29,12 @@ function WalletAddress() {
         if (pattern.test(inputValue)) {
             setDestAddress(inputValue);
             if (isEvmAddress(destAddress)) {
-                console.log("isEVMAddress")
+                setDestAddress(truncate(inputValue));
                 dispatch(setReceiver(destAddress));
             }
         } else {
-            onChangeClick();
+            setDestAddress(destAddress);
+            dispatch(setReceiver(''));
         }
     }
 
@@ -51,6 +51,7 @@ function WalletAddress() {
                     value={destAddress}
                     type="text"
                     placeholder="Destination address"
+                    style={{"textAlign":"center"}}
                 />
             </div>
             <button
