@@ -19,6 +19,22 @@ import TransactionProgressSuccess from './BridgeComponents/TransactionProgressSu
 
 const Bridge = () => {
 
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
+
+    useEffect(() => {
+        const handleResize = () => {
+        setIsMobile(window.innerWidth <= 1024);
+        };
+
+        // Attach the event listener when the component mounts
+        window.addEventListener('resize', handleResize);
+
+        // Clean up the event listener when the component unmounts
+        return () => {
+        window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+    
     const isSuccess = useBridgeSuccess();
     const isFailure = useBridgeFailure();
 
