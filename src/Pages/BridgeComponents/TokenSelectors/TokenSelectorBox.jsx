@@ -1,21 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './TokenSelectorBox.css';
 // Components
 import WalletBalance from '../../HomeComponents/WalletBalance/WalletBalance';
 import TokenSelectionDropdown from './TokenSelectionDropdown';
 
 import { useAppSelector, useAppDispatch } from '../../../hooks/storage';
+import { setBridgeAmount } from '../../../store/bridgeSlice';
 import ChainSelectorDropdown from '../../HomeComponents/ChainSelectorDropdown/ChainSelectorDropdown';
 import DestinationChainDropdown from '../../HomeComponents/ChainSelectorDropdown/DestinationChainDropdown';
 
+import { sanitizeNumber } from '../../../utils/sanitizeNumber';
+
 export default function TokenSelectorBox({ type }) {
+
+    const dispatch = useAppDispatch();
 
     // Global state
     const bridge = useAppSelector((state) => state.bridge);
 
     function onInputChange(e) {
         e.preventDefault();
-
+        const sanitized = sanitizeNumber(e.target.value);
+        dispatch(setBridgeAmount(sanitized));
     }
 
     function isFromType() {
@@ -34,7 +40,7 @@ export default function TokenSelectorBox({ type }) {
                                 ? "From"
                                 : "To"}</p>
                             {isFromType()
-                                ? < ChainSelectorDropdown 
+                                ? < ChainSelectorDropdown
                                     parent="bridge"
                                     direction='from'
                                 />
@@ -48,6 +54,10 @@ export default function TokenSelectorBox({ type }) {
                                 disabled={type && type === "to"
                                     ? true
                                     : false}
+                                value={type && type === "from"
+                                    ? bridge.amount
+                                    : bridge.receive
+                                }
                             />
                         </h2>
                     </div>

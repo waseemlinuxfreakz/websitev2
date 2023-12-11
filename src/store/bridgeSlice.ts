@@ -4,12 +4,12 @@ import { RootState } from './store';
 import chainList from './Chain.json';
 import coinsData from './coins.json';
 import { TChainType, TokenType } from './types';
-import {filterTwoChains, filterTwoTokens} from '../utils/filters';
+import {filterTwoChains, filterOneToken} from '../utils/filters';
 
 export interface IBridgeState {
     allowance: number,
     alltokens:TokenType[],
-    amount: number,
+    amount: number | string,
     bridgeFee: number,
     deadline: number,
     fromChain: string,
@@ -19,7 +19,7 @@ export interface IBridgeState {
     fromTokens: TokenType[],
     isFailure: boolean,
     isSuccess: boolean,
-    receive: number,
+    receive: number | string,
     receiver: string,
     slippage: number,
     toChain: string,
@@ -39,23 +39,23 @@ const toToken = coinsData[coinsData.length - 1].name;
 const initialState = {
     allowance: 0,
     alltokens:coinsData,
-    amount: 0,
+    amount: '',
     bridgeFee: 0,
     deadline: 0,
     fromChain,
     fromChains: filterTwoChains(fromChain, toChain),
     fromContractAddress: '',
     fromToken,
-    fromTokens: filterTwoTokens(fromToken, toToken),
+    fromTokens: filterOneToken(fromToken),
     isFailure: false,
     isSuccess: false,
-    receive: 0,
+    receive: '',
     receiver: "",
     slippage: 0.5,
     toChain,
     toChains: filterTwoChains(fromChain, toChain),
     toToken,
-    toTokens: filterTwoTokens(fromToken, toToken),
+    toTokens: filterOneToken(toToken),
 } as IBridgeState;
 
 export const bridgeSlice = createSlice({
@@ -83,8 +83,8 @@ export const bridgeSlice = createSlice({
         },
         setBridgeFromToken(state: IBridgeState, action:PayloadAction<string>){
             state.fromToken = action.payload;
-            state.fromTokens = filterTwoTokens(state.fromToken, state.toToken);
-            state.toTokens = filterTwoTokens(state.fromToken, state.toToken);
+            state.fromTokens = filterOneToken(state.fromToken);
+            state.toTokens = filterOneToken(state.toToken);
         },
         setBridgeIsFailure(state: IBridgeState, action: PayloadAction<boolean>) {
             state.isFailure = action.payload;
@@ -97,8 +97,8 @@ export const bridgeSlice = createSlice({
         },
         setBridgeSlippage(state: IBridgeState, action: PayloadAction<number>) {
             state.slippage = action.payload;
-            const slippageAmount = state.amount * state.slippage / 100;
-            state.receive = state.amount - slippageAmount;
+            const slippageAmount = Number(state.amount) * state.slippage / 100;
+            state.receive = Number(state.amount) - slippageAmount;
         },
         setBridgeToChain(state: IBridgeState, action: PayloadAction<string>) {
             state.toChain = action.payload;
@@ -107,8 +107,20 @@ export const bridgeSlice = createSlice({
         },
         setBridgeToToken(state: IBridgeState, action:PayloadAction<string>){
             state.toToken = action.payload;
-            state.fromTokens = filterTwoTokens(state.fromToken, state.toToken);
-            state.toTokens = filterTwoTokens(state.fromToken, state.toToken);
+            state.fromTokens = filterOneToken(state.fromToken);
+            state.toTokens = filterOneToken(state.toToken);
+        },
+        swapBridgeChainsAndTokens(state:IBridgeState){
+            const fromChain = state.fromChain;
+            const toChain = state.toChain;
+            const fromToken = state.fromToken;
+            const toToken = state.toToken;
+            state.fromChain = toChain;
+            state.toChain = fromChain;
+            state.fromToken = toToken;
+            state.toToken = fromToken;
+            state.fromChains = filterTwoChains(state.fromChain, state.toChain);
+            state.toChains = filterTwoChains(state.fromChain, state.toChain);
         }
     },
     extraReducers(builder: any) {
@@ -129,6 +141,7 @@ export const {
     setBridgeIsSuccess,
     setBridgeSlippage,
     setBridgeToChain,
+    swapBridgeChainsAndTokens,
 } = bridgeSlice.actions;
 
 export default bridgeSlice.reducer;

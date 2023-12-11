@@ -4,7 +4,7 @@ import { RootState } from './store';
 import chainList from './Chain.json';
 import coinsData from './coins.json';
 import { TChainType, TokenType } from './types';
-import {filterTwoChains, filterTwoTokens} from '../utils/filters';
+import {filterTwoTokens} from '../utils/filters';
 
 /**
  * Returns the token proce
@@ -50,12 +50,14 @@ interface ISwapState {
     deadline: number,
     fromChain:string,
     fromToken: string,
+    fromTokens: TokenType[],
     toToken: string,
     fromPrice: number,
     slippage: number,
     toChain: string,
     toPrice: number,
-    tokens: TokenType[]
+    tokens: TokenType[],
+    toTokens: TokenType[]
 }
 
 // FROM
@@ -80,13 +82,15 @@ const initialState = {
     deadline: 0,
     fromChain,
     fromToken,
+    fromTokens: filterTwoTokens(fromToken, toToken),
     toToken,
     fromPrice,
     receiver: '',
     slippage: 0.5,
     toChain,
     toPrice,
-    tokens: coinsData
+    tokens: coinsData,
+    toTokens: filterTwoTokens(fromToken, toToken)
 } as ISwapState;
 
 export const swapslice = createSlice({
@@ -95,11 +99,12 @@ export const swapslice = createSlice({
     reducers: {
         setSwapFromChain(state:ISwapState, action:PayloadAction<string>){
             state.fromChain = action.payload;
-
         },
         setFromToken: (state: ISwapState, action: PayloadAction<string>) => {
             state.fromToken = action.payload;
             setFromPrice(action.payload);
+            state.fromTokens = filterTwoTokens(state.fromToken, state.toToken);
+            state.tokens = filterTwoTokens(state.fromToken, state.toToken);
         },
         setSwapDeadline(state: ISwapState, action: PayloadAction<number>){
             state.deadline = action.payload;
@@ -109,6 +114,9 @@ export const swapslice = createSlice({
         },
         setToToken: (state: ISwapState, action: PayloadAction<string>) => {
             state.toToken = action.payload;
+            setToPrice(action.payload);
+            state.fromTokens = filterTwoTokens(state.fromToken, state.toToken);
+            state.tokens = filterTwoTokens(state.fromToken, state.toToken);
         },
         
     },

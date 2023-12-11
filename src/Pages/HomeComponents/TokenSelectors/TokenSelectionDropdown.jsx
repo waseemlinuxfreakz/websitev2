@@ -37,7 +37,7 @@ export default function TokenSelectionDropdown ({type}) {
         const name = getIsfrom() ? swap.fromToken : swap.toToken;
         setSelectedCoin({
             icon: getIsfrom() ? getIcon(swap.fromToken) : getIcon(swap.toToken),
-            name
+            name,
         });
         dispatch(getIsfrom() ? setFromPrice(name) : setToPrice(name));
     }, [swap.fromToken, swap.toToken]);

@@ -18,7 +18,7 @@ export default function useActionButtonDiabled(parent:TParentType) {
 
         if (isConnected) {
             // has amount?
-            if (bridge.amount <= 0) {
+            if (Number(bridge.amount) <= 0) {
                 setIsDisabled(true);
             }
 

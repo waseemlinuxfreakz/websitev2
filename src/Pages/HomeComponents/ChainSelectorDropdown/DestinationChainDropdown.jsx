@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNetwork } from 'wagmi';
 import Ethereum from '../../../assets/img/Ethereum.svg';
 import DownArrow from '../../../assets/img/down-white.svg';
 import chainData from '../../../store/Chain.json';
@@ -8,19 +7,17 @@ import { setBridgeToChain } from '../../../store/bridgeSlice';
 
 export default function DestinationChainDropdown () {
 
-    const findChain = (chain) => {
-        return chainData.find(c => chain && chain.id === c.id);
+    const findChain = (chainName) => {
+        return chainData.find(c => c.name === chainName);
     }
 
     const bridge = useAppSelector((state) => state.bridge);
     const dispatch = useAppDispatch();
 
-    const { chain } = useNetwork();
-
     const [isListVisible, setListVisible] = useState(false);
     const [selectedChain, setSelectedChain] = useState({
-        icon: chain && findChain(chain) ? findChain(chain).icon : Ethereum,
-        name: chain && findChain(chain) ? findChain(chain).name : 'Ethereum',
+        icon: findChain(bridge.toChain).icon,
+        name: findChain(bridge.toChain).name,
     });
 
     function handleChainClick (icon, name, id) {
@@ -28,6 +25,17 @@ export default function DestinationChainDropdown () {
         toggleVisibility();
         dispatch(setBridgeToChain(name));
     }
+
+    useEffect(() => {
+
+        if(bridge && bridge.toChain){
+            setSelectedChain({
+                icon:findChain(bridge.toChain).icon, 
+                name:findChain(bridge.toChain).name
+            });
+        }
+
+    }, [bridge.toChain]);
 
     const toggleVisibility = () => {
         setListVisible(!isListVisible);
