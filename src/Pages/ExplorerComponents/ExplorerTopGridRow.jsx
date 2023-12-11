@@ -9,16 +9,16 @@ function ExplorerTopGridRow() {
     return ( 
         <div className="explorereTopRow">
             <div className="row">
-                <div className="col-xl-3 col-lg-12 col-md-12">
+                <div className="col-xl-3">
                     <ExplorerTopGridValue/>
                 </div>
-                <div className="col-xl-3 col-lg-12 col-md-12">
+                <div className="col-xl-3">
                     <ExplorerTopGridFees/>
                 </div>
-                <div className="col-xl-3 col-lg-12 col-md-12">
+                <div className="col-xl-3">
                     <ExplorerTopGridTotal/>
                 </div>
-                <div className="col-xl-3 col-lg-12 col-md-12">
+                <div className="col-xl-3">
                     <ExplorerTopGridAddresses/>
                 </div>
             </div>

@@ -71,3 +71,12 @@ span.textCell {
 .transactionTable tbody tr:hover td {
     background: #202226;
 }
+
+
+.transactionTable {
+    overflow: auto;
+}
+
+.transactionTable table {
+    min-width: 992px;
+}

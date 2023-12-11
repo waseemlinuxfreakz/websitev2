@@ -4,6 +4,8 @@ import './Responsive.css';
 import HomePage from './Pages/Home';
 import Bridge from './Pages/Bridge';
 import ExplorerPage from './Pages/Explorer';
+import TransactionDetailsPage from './Pages/TransactionDetailsPage';
+
 
 
 import { ALL_CHAINS } from './constants/chains/index';
@@ -37,6 +39,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/bridge" element={<Bridge />} />
             <Route path="/explorer" element={<ExplorerPage />} />
+            <Route path="/explorer/transaction-details" element={<TransactionDetailsPage />} />
           </Routes>
         </Router>
       </WagmiConfig>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Down from '../../../assets/img/down-Icons.svg';
+import Down from '../../../assets/img/down-white.svg';
 
 function ExplorerTransactionsTnx() {
   const [isDropdownOpen, setDropdownOpen] = useState(false);

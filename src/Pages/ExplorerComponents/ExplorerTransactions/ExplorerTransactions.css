@@ -1,3 +1,4 @@
+
 .explorerTransactionsTitle h2 {
     font-size: 18px;
     font-style: normal;
@@ -139,3 +140,101 @@ span.swap {
 ul.filterDropList li:not(:first-child) {
     margin-top: 14px;
 }
+
+@media only screen and (max-width: 1025px) {
+
+    .filterDropdownBox {
+        position: relative;
+        z-index: 1;
+    }
+
+    .transactionRight {
+        position: absolute;
+        z-index: 111;
+        right:0;
+        top: 100%;
+        margin-top: 10px;
+        padding: 16px 16px 16px 16px;
+        background: #191B1E;
+        border: 1px solid rgba(97, 100, 107, 0.10);
+        border-radius: 10px 10px 0px 0px;
+        gap: 10px;
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .transactionRight.open {
+        display: flex;
+    }
+    
+    button.filterDropBTN {
+        background: transparent;
+        border: 0;
+        outline: none;
+        box-shadow: none;
+        padding: 0;
+    }
+    
+    button.filterDropBTNClose {
+        outline: none;
+        box-shadow: none;
+        padding: 0;
+        background: #000;
+        border: 1px solid rgba(97, 100, 107, 0.10);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        position: absolute;
+        right: 16px;
+        top: 16px;
+    }
+    
+    button.filterDropBTNClose img {
+        filter: invert(1) brightness(10);
+    }
+    
+    .ExplorerTransactionsFilter {
+        width: 100%;
+    }
+
+    .explorerTransactions {
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 50px;
+    }
+
+    .ExplorerTransactionsFilter.tnxTypeFilter {
+        position: relative;
+        z-index: 3;
+    }
+    
+    .ExplorerTransactionsFilter.fromTypeFilter {
+        position: relative;
+        z-index: 2;
+    }
+    
+    .ExplorerTransactionsFilter.toTypeFilter {
+        position: relative;
+        z-index: 1;
+    }
+
+    .transactionRight .selectCoinList {
+        position: absolute;
+        top: 100%;
+        z-index: 111;
+        right: -30px;
+        bottom: 0;
+        left: auto !important;
+        max-height: unset !important;
+        min-height: 270px;
+        border-radius: 10px !important;
+    }
+
+
+}
+
+

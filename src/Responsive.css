@@ -1,3 +1,29 @@
+
+@media (max-width: 1300px) and (min-width: 1025px) {
+    .explorereTopRow .col-xl-3 {
+        flex: 0 0 auto;
+        width: 25%;
+    }
+
+    .explorerTransactions {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 20px;
+    }
+}
+
+@media (min-width: 1025px) {
+    .filterDropdownBox {
+        display: contents;
+    }
+    
+    .filterDropBTNClose,
+    .filterDropBTN {
+        display: none;
+    }
+}
+
+
 @media only screen and (max-width: 1025px) {
 
     .progressBox {
@@ -274,4 +300,19 @@
         padding-bottom: 90px;
     }
 
+    .explorereTopRow {
+        padding: 0 15px 32px 15px;
+    }
+    
+    .explorereTopRow .row {
+        gap: 8px;
+    }
+
+    .explorerTransactions,
+    .explorerTransactionsTable {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
 }
+

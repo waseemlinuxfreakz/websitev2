@@ -4,7 +4,7 @@ import ChainSelectorDropdown from '../../HomeComponents/ChainSelectorDropdown/Ch
 
 function ExplorerTransactionsTo() {
     return ( 
-        <div className="ExplorerTransactionsFilter tnxTypeFilter">
+        <div className="ExplorerTransactionsFilter toTypeFilter">
             <div className="filterName">To</div>
             <div className="filterDropdown">
                 <ChainSelectorDropdown
