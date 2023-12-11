@@ -97,14 +97,17 @@ export const swapslice = createSlice({
     name: 'swap',
     initialState,
     reducers: {
+        setSwapAmount(state:ISwapState, action: PayloadAction<number>){
+            state.amount = action.payload;
+        },
         setSwapFromChain(state:ISwapState, action:PayloadAction<string>){
             state.fromChain = action.payload;
         },
         setFromToken: (state: ISwapState, action: PayloadAction<string>) => {
             state.fromToken = action.payload;
             setFromPrice(action.payload);
-            state.fromTokens = filterTwoTokens(state.fromToken, state.toToken);
-            state.tokens = filterTwoTokens(state.fromToken, state.toToken);
+            // state.fromTokens = filterTwoTokens(state.fromToken, state.toToken);
+            // state.tokens = filterTwoTokens(state.fromToken, state.toToken);
         },
         setSwapDeadline(state: ISwapState, action: PayloadAction<number>){
             state.deadline = action.payload;
@@ -115,8 +118,8 @@ export const swapslice = createSlice({
         setToToken: (state: ISwapState, action: PayloadAction<string>) => {
             state.toToken = action.payload;
             setToPrice(action.payload);
-            state.fromTokens = filterTwoTokens(state.fromToken, state.toToken);
-            state.tokens = filterTwoTokens(state.fromToken, state.toToken);
+            // state.fromTokens = filterTwoTokens(state.fromToken, state.toToken);
+            // state.tokens = filterTwoTokens(state.fromToken, state.toToken);
         },
         
     },
@@ -131,6 +134,7 @@ export const swapslice = createSlice({
 });
 
 export const {
+    setSwapAmount,
     setSwapFromChain,
     setFromToken,
     setSwapDeadline,

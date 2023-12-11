@@ -19,7 +19,7 @@ export default function TokenSelectionDropdown ({type}) {
     const dispatch = useAppDispatch();
 
     function getIcon (tokenName) {
-        const selTkn = swap.tokens.find(t => t.name === tokenName);
+        const selTkn = swap.tokens.find(t => t.name == tokenName);
         return selTkn ? selTkn.icon : '';
     }
 
