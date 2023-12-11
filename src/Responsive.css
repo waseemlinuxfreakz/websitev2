@@ -277,7 +277,7 @@
 
     .headerRightSide .connectWallet div {
         white-space: nowrap;
-        max-width: 90px;
+        max-width: 130px;
         overflow: hidden;
         text-overflow: ellipsis;
     }

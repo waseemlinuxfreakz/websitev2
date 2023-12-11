@@ -5,6 +5,7 @@ import Copy from '../../../assets/img/copy.svg'
 import Clock from '../../../assets/img/Clock.svg'
 import Eth from '../../../assets/img/coin/eth.svg'
 import Op from '../../../assets/img/coin/op.svg'
+import Target from '../../../assets/img/target.svg';
 
 function TransactionDetailsLeft() {
 
@@ -54,6 +55,9 @@ function TransactionDetailsLeft() {
                             <img src={Eth} alt="Eth" />
                             <div className="chainLink">0x1dcb8998c44968e9f8dbb0626e3f1e03e99b08c9</div>
                         </div>
+                        <a href="#" className="exportLink">
+                            <img src={Target} alt="Target" />
+                        </a>
                         <button className='copyLink' onClick={handleCopyClick}>
                             {isCopied && <span className="copiedAlert">Copied!</span>}
                             <span className="copyHover">Copy to clipboard</span>
@@ -70,6 +74,9 @@ function TransactionDetailsLeft() {
                             <img src={Op} alt="Op" />
                             <div className="chainLink">0x1dcb8998c44968e9f8dbb0626e3f1e03e99b08c9</div>
                         </div>
+                        <a href="#" className="exportLink">
+                            <img src={Target} alt="Target" />
+                        </a>
                         <button className='copyLink' onClick={handleCopyClick2}>
                             {isCopied2 && <span className="copiedAlert">Copied!</span>}
                             <span className="copyHover">Copy to clipboard</span>

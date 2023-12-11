@@ -105,9 +105,9 @@ ul.breadcum li {
     font-style: normal;
     font-weight: 500;
     line-height: 26px;
+    overflow: hidden;
     color: #fff;
 }
-
 
 .copyHover:after,
 .copiedAlert:after {
@@ -165,7 +165,7 @@ li.transactionDetailsListItem> div {
     gap: 10px;
     white-space: nowrap;
     overflow: hidden;
-    margin-right: auto;
+    margin-right: 10px;
     text-overflow: ellipsis;
     -webkit-box-orient: vertical;
     width: calc(100% - 40px);
@@ -178,4 +178,57 @@ button.copyLink:hover span.copyHover {
 
 .bridgeFee span {
     color: #888B92;
+}
+
+
+@media (max-width: 1280px) {
+    .transactionDetailsListLeft {
+        width: 145px;
+    }
+
+    .transactionDetailsListRight {
+        width: calc(100% - 145px);
+    }
+}
+
+@media (max-width: 992px) {
+
+    .transactionDetailsArea> .row {
+        gap: 16px;
+    }
+    
+}
+
+@media (max-width: 1025px) {
+
+    .transactionHash {
+        margin-bottom: 16px;
+    }
+    
+    .transactionDetailsArea {
+        margin-bottom: 20px;
+    }
+
+    .TransactionDetailsArea {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    li.transactionDetailsListItem> div {
+        width: 100%;
+        padding: 8px 16px;
+        height: auto;
+        height: 40px;
+    }
+    
+    li.transactionDetailsListItem {
+        display: block;
+        padding: 8px 0;
+        border-bottom: 1px solid #3C3F43;
+    }
+    
+    li.transactionDetailsListItem:last-child {
+        border: 0;
+    }
+
 }
