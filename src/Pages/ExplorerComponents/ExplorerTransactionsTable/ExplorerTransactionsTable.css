@@ -80,3 +80,17 @@ span.textCell {
 .transactionTable table {
     min-width: 992px;
 }
+
+/* Data Table Css  */
+
+.col-sm-12.col-md-6[data-test="datatable-entries"] {
+    display: none !important;
+}
+
+.col-sm-12.col-md-6[data-test="datatable-search"] {
+    display: none !important;
+}
+
+thead[data-test="table-foot"] {
+    display: none !important;
+}
