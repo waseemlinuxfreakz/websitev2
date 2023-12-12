@@ -351,6 +351,7 @@ ul.selectCoinList.hidden {
     line-height: 38px;
     color: #fff;
     max-width: 100%;
+    padding-left: 0;
 }
 
 .amount input::placeholder {
