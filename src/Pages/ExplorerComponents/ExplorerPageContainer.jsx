@@ -15,9 +15,8 @@ function ExplorerPageContainer() {
              <ExplorerTopGridRow/>
              {/* <ExplorerTransactionsSearch/> */}
              <ExplorerTransactions/>
-             <ExplorerTransactionsTable/>
-             <br />
              <DatatablePage/>
+             {/* <ExplorerTransactionsTable/> */}
         </div>
      );
 }

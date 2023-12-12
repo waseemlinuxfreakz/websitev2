@@ -10,6 +10,8 @@
     /* 142.857% */
     letter-spacing: -0.3px;
     color: #B3B7BF;
+    background-color: transparent;
+    border: 0;
 }
 
 .transactionTable thead tr th, .transactionTable tbody tr td {
@@ -58,6 +60,7 @@ span.textCell {
 .transactionTable tbody tr td {
     background: #191B1E;
     border-bottom: 1px solid #000;
+    color: #fff;
 }
 
 .transactionTable tbody tr td:first-child {
@@ -72,9 +75,8 @@ span.textCell {
     background: #202226;
 }
 
-
 .transactionTable {
-    overflow: auto;
+    /* overflow: auto; */
 }
 
 .transactionTable table {
@@ -93,4 +95,73 @@ span.textCell {
 
 thead[data-test="table-foot"] {
     display: none !important;
+}
+
+span.pending, span.Success, span.Failled {
+    color: #fff;
+}
+
+ul.pagination {
+    justify-content: flex-end;
+    background: transparent;
+    gap: 5px;
+}
+
+ul.pagination a.page-link.page-link {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    color: #B3B7BF;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+ul.pagination li.page-item {
+    flex-shrink: 0;
+}
+
+span.sr-only {
+    display: none !important;
+}
+
+ul.pagination li.active.page-item a.page-link.page-link {
+    color: #fff;
+    background: #202226;
+}
+
+ul.pagination a.page-link.page-link[aria-label="Next"],
+ul.pagination a.page-link.page-link[aria-label="Previous"] {
+    font-size: 0;
+    background-image: url("../../../assets/img/down-Icons.svg");
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: center;
+    transform: rotate(90deg);
+}
+
+ul.pagination a.page-link.page-link[aria-label="Next"] span,
+ul.pagination a.page-link.page-link[aria-label="Previous"] span {
+    display: none;
+}
+
+ul.pagination a.page-link.page-link[aria-label="Next"] {
+    transform: rotate(-90deg);
+}
+
+.dataTables_info {
+    color: #888B92;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
 }
