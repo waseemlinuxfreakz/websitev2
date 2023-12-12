@@ -146,6 +146,11 @@ dl {
     z-index: 1;
 }
 
+.navLink.active {
+    color: #000;
+    color: #EFEB00;
+}
+
 .navLink img {
     filter: grayscale(1);
 }
@@ -907,4 +912,21 @@ span.SwapReceive_box {
 
 div#root {
     overflow: hidden;
+}
+
+.EthereumTop .selectedCoin> img {
+    display: none;
+}
+
+.EthereumTop .selectedCoin .coinNameIcon {
+    font-size: 0;
+    gap: 0;
+    border: 1.5px solid rgba(97, 100, 107, 0.30);
+    background: rgba(148, 151, 158, 0.16);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
 }

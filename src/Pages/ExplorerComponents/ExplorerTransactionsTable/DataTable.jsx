@@ -55,7 +55,7 @@ const DatatablePage = () => {
     ],
     rows: [
       {
-        TxnType: '<p>AAAA<p/>',
+        TxnType: '[<p>AAAA<p/>]',
         TxnHash: 'System Architect',
         Originchain: 'Edinburgh',
         Destination: '61',
