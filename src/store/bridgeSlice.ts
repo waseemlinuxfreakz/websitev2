@@ -83,6 +83,7 @@ export const bridgeSlice = createSlice({
         },
         setBridgeFromToken(state: IBridgeState, action:PayloadAction<string>){
             state.fromToken = action.payload;
+            state.toToken = action.payload;
             state.fromTokens = filterOneToken(state.fromToken);
             state.toTokens = filterOneToken(state.toToken);
         },
@@ -107,6 +108,7 @@ export const bridgeSlice = createSlice({
         },
         setBridgeToToken(state: IBridgeState, action:PayloadAction<string>){
             state.toToken = action.payload;
+            state.fromToken = action.payload;
             state.fromTokens = filterOneToken(state.fromToken);
             state.toTokens = filterOneToken(state.toToken);
         },

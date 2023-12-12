@@ -51,6 +51,14 @@ export default function ChainSelectorDropdown({ parent, direction }) {
     }
 
     useEffect(() => {
+
+        if(parent === "bridge"){
+            setChainArray(bridge.toChains)
+        }
+
+    },[bridge.toChain]);
+
+    useEffect(() => {
         let selChain;
         if (chain) {
             selChain = findChain(chain);
