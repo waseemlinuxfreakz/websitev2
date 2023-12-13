@@ -13,7 +13,7 @@ export function getContract(
     publicClient: PublicClient | undefined
 ) {
     const contract = getViemContract({
-        address: `0x${address.slice(2)}`,
+        address: `0x${address.replace('0x','')}`,
         abi,
         publicClient,
     });
