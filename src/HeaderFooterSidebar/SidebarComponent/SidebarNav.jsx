@@ -16,50 +16,54 @@ function SidebarNav() {
     return location.pathname === pathname;
   };
 
+  const handleLinkClick = () => {
+    document.body.classList.remove('activeMobileMenu');
+  };
+
   return (
     <div className="sidebarNav">
       <ul className="navlinks">
         <li>
-          <Link to="/" className={`navLink ${isActive('/') && 'active'}`}>
+          <Link to="/" className={`navLink ${isActive('/') && 'active'}`} onClick={handleLinkClick}>
             <img src={NavIcon1} alt="NavIcon" />
             <span>Swap</span>
           </Link>
         </li>
         <li>
-          <Link to="/bridge" className={`navLink ${isActive('/bridge') && 'active'}`}>
+          <Link to="/bridge" className={`navLink ${isActive('/bridge') && 'active'}`} onClick={handleLinkClick}>
             <img src={NavIcon2} alt="NavIcon" />
             <span>Bridge</span>
           </Link>
         </li>
         <li>
-          <Link to="/explorer" className={`navLink ${isActive('/explorer') && 'active'}`}>
+          <Link to="/explorer" className={`navLink ${isActive('/explorer') && 'active'}`} onClick={handleLinkClick}>
             <img src={NavIcon3} alt="NavIcon" />
             <span>Explorer</span>
           </Link>
         </li>
         <li>
-          <Link to="/" className={`navLink ${isActive('/') && ''}`}>
+          <Link to="/" className={`navLink ${isActive('/') && ''}`} onClick={handleLinkClick}>
             <img src={NavIcon4} alt="NavIcon" />
             <span>Farm</span>
             <span className="soon">Soon</span>
           </Link>
         </li>
         <li>
-          <Link to="/" className={`navLink ${isActive('/') && ''}`}>
+          <Link to="/" className={`navLink ${isActive('/') && ''}`} onClick={handleLinkClick}>
             <img src={NavIcon5} alt="NavIcon" />
             <span>Loans</span>
             <span className="soon">Soon</span>
           </Link>
         </li>
         <li>
-          <Link to="/" className={`navLink ${isActive('/') && ''}`}>
+          <Link to="/" className={`navLink ${isActive('/') && ''}`} onClick={handleLinkClick}>
             <img src={NavIcon6} alt="NavIcon" />
             <span>Stake</span>
             <span className="soon">Soon</span>
           </Link>
         </li>
         <li>
-          <Link to="/" className={`navLink ${isActive('/') && ''}`}>
+          <Link to="/" className={`navLink ${isActive('/') && ''}`} onClick={handleLinkClick}>
             <img src={NavIcon7} alt="NavIcon" />
             <span>Governance</span>
             <span className="soon">Soon</span>

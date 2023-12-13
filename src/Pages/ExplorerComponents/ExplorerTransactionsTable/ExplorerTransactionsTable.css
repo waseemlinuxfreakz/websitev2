@@ -165,3 +165,20 @@ ul.pagination a.page-link.page-link[aria-label="Next"] {
     font-weight: 500;
     line-height: 20px;
 }
+
+div[data-test="table"] {
+    overflow: auto;
+    margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+    ul.pagination {
+        justify-content: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .dataTables_info {
+        text-align: center;
+    }
+}

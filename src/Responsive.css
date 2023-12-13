@@ -56,6 +56,8 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        position: relative;
+        z-index: 99999;
     }
 
     .mobileFooterNav ul.navlinks {
@@ -135,15 +137,16 @@
     }
 
     .mobileNavContainer {
-        position: fixed;
+        position: absolute;
         z-index: 9999;
         background: #191B1E;
-        left: 0;
-        right: 0;
-        height: calc(100vh - 65px);
-        bottom: 0;
-        max-height: calc(100vh - 65px);
+        left: auto;
+        right: -16px;
+        height: calc(100vh - 70px);
+        max-height: calc(100vh - 70px);
+        width: 100vw;
         overflow: auto;
+        top: 100%;
         opacity: 0;
         visibility: hidden;
         transition: .3s ease all;

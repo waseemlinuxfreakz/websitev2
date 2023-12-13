@@ -141,6 +141,17 @@ ul.filterDropList li:not(:first-child) {
     margin-top: 14px;
 }
 
+.filterDropdown> .selectCoin {
+    background: transparent;
+    padding: 0;
+    min-width: unset;
+    border: 0;
+}
+
+.filterDropdown .selectCoinList {
+    right: -10px;
+}
+
 @media only screen and (max-width: 1025px) {
 
     .filterDropdownBox {
