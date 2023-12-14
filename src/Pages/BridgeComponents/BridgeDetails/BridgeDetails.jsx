@@ -5,7 +5,22 @@ import BridgeFee from './BridgeFee';
 import DestinationGasEstimation from './DestinationGasEstimation';
 import BridgingTimeEstimation from './BridgingTimeEstimation';
 
+import { useAppSelector } from '../../../hooks/storage';
+import { bnWithoutDecimals } from '../../../utils/bnWithoutDecimals';
+
 function BridgeDetails() {
+
+    const bridge = useAppSelector((state) => state.bridge);
+
+    const [tokenName, setTokenName] = React.useState(bridge.fromToken);
+    const [allowance, setAllowance] = React.useState(bridge.allowance);
+
+    React.useEffect(() => {setTokenName(bridge.fromToken);}, [bridge.fromToken]);
+
+    React.useEffect(() => {
+        setAllowance(bnWithoutDecimals(bridge.allowance, bridge.decimals));
+    }, [bridge.allowance])
+
     return ( 
         <div className="bridgeDetails">
             <BridgeFee />
@@ -17,7 +32,7 @@ function BridgeDetails() {
                 </div>
                 <div className="detialItemRight">
                     <img src={CheckGreen} alt="CheckGreen" />
-                    0.5 ETH
+                    {allowance} {tokenName}
                 </div>
             </div>
         </div>

@@ -18,5 +18,5 @@ export default function useBridgeFailure() {
 
     }, [bridge.isFailure]);
 
-    return isFailure;
+    return {isFailure};
 }

@@ -7,7 +7,7 @@ export default function BridgeFee() {
             Bridge Fee
         </div>
         <div className="detialItemRight">
-            0.001 ETH
+            $ 0.5
         </div>
     </div>)
 }

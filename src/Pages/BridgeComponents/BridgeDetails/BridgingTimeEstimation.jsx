@@ -9,7 +9,7 @@ export default function BridgingTimeEstimation() {
         </div>
         <div className="detialItemRight">
             <img src={EstimatedTime} alt="EstimatedTime" />
-            10m 10s
+            3m 10s
         </div>
     </div>)
 }

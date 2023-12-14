@@ -12,6 +12,8 @@ export interface IBridgeState {
     amount: number | string,
     bridgeFee: number,
     deadline: number,
+    decimals: number | bigint,
+    error: string | undefined,
     fromChain: string,
     fromChains: TChainType[],
     fromContractAddress: string,
@@ -42,6 +44,8 @@ const initialState = {
     amount: '',
     bridgeFee: 0,
     deadline: 0,
+    decimals: 18,
+    error: undefined,
     fromChain,
     fromChains: filterTwoChains(fromChain, toChain),
     fromContractAddress: '',
@@ -72,6 +76,13 @@ export const bridgeSlice = createSlice({
         },
         setBridgeDeadline(state: IBridgeState, action: PayloadAction<number>) {
             state.deadline = action.payload;
+        },
+        setBridgeDecimals(state:IBridgeState, action:PayloadAction<number|bigint>){
+            state.decimals = action.payload;
+        },
+        setBridgeError(state: IBridgeState, action: PayloadAction<string | undefined>){
+            state.error = action.payload;
+            state.isFailure = action.payload ? true : false;
         },
         setBridgeFromChain(state: IBridgeState, action: PayloadAction<string>) {
             state.fromChain = action.payload;
@@ -134,6 +145,8 @@ export const {
     setBridgeAllowance,
     setBridgeAmount,
     setBridgeDeadline,
+    setBridgeDecimals,
+    setBridgeError,
     setBridgeFromChain,
     setBridgeFromToken,
     setBridgeToToken,

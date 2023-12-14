@@ -20,8 +20,13 @@ export default function TokenSelectorBox({ type }) {
 
     function onInputChange(e) {
         e.preventDefault();
-        const sanitized = sanitizeNumber(e.target.value);
-        dispatch(setBridgeAmount(sanitized));
+        if(e.target.value){
+            const sanitized = sanitizeNumber(e.target.value);
+            dispatch(setBridgeAmount(sanitized));
+        }else{
+            dispatch(setBridgeAmount(''));
+        }
+        
     }
 
     function isFromType() {
