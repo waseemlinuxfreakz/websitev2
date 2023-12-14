@@ -150,6 +150,7 @@ ul.filterDropList li:not(:first-child) {
 
 .filterDropdown .selectCoinList {
     right: -10px;
+    margin-top: 24px;
 }
 
 @media only screen and (max-width: 1025px) {

@@ -7,10 +7,7 @@ function ExplorerTransactionsTo() {
         <div className="ExplorerTransactionsFilter toTypeFilter">
             <div className="filterName">To</div>
             <div className="filterDropdown">
-                <TokenSelectionDropdown
-                    parent="explorer"
-                    direction="to"
-                />
+                <ChainSelectorDropdown/>
             </div>
         </div>
      );

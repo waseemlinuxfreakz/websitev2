@@ -931,3 +931,7 @@ div#root {
     justify-content: center;
     border-radius: 8px;
 }
+
+.EthereumTop ul.selectCoinList {
+    right: 0;
+}
