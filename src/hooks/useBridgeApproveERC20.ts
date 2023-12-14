@@ -14,16 +14,12 @@ import { useEffect, useState } from 'react';
 
 export default function useBridgeApproveERC20() {
 
-
     const { address } = useAccount();
 
     const dispatch = useAppDispatch();
 
     const bridge = useAppSelector((state) => state.bridge);
 
-
-
-    const [amount, setAmount] = useState<number>(Number(bridge.amount));
 
     const [tokenName, setTokenName] = useState<TTokenName>(bridge.fromToken as TTokenName);
 
@@ -35,38 +31,38 @@ export default function useBridgeApproveERC20() {
 
     const [decimals, setDecimals] = useState<bigint>(bridge.decimals ? BigInt(bridge.decimals) : 18n);
 
-    const [formattedAmount, setFormattedAmount] = useState<bigint>(BigInt(amount * 10 ** Number(decimals.toString())));
+    const [formattedAmount, setFormattedAmount] = useState<bigint>(BigInt(Number(bridge.amount) * 10 ** Number(decimals.toString())));
 
     const [spender, setSpender] = useState<string>(SUPPORTED_CHAINS[chainName].bridge);
 
 
 
-    useEffect(() => { 
-        setAmount(Number(bridge.amount));
-        setFormattedAmount(BigInt(amount * 10 ** Number(decimals.toString())))
+    useEffect(() => {
+        setFormattedAmount(BigInt(Number(bridge.amount) * 10 ** Number(decimals.toString())))
+        console.log(formattedAmount)
     }, [bridge.amount]);
 
-    useEffect(() => { 
-        setTokenName(bridge.fromToken as TTokenName) 
+    useEffect(() => {
+        setTokenName(bridge.fromToken as TTokenName)
     }, [bridge.fromToken]);
 
-    useEffect(() => { 
-        setChainName(ChainNameToTypeChainName[bridge.fromChain]) 
+    useEffect(() => {
+        setChainName(ChainNameToTypeChainName[bridge.fromChain])
     }, [bridge.fromChain]);
 
-    useEffect(() => { 
+    useEffect(() => {
         setChainId(CHAIN_NAME_TO_ID[ChainNameToTypeChainName[chainName]]);
         setSpender(SUPPORTED_CHAINS[chainName].bridge);
         setTokenAddress(addressToAccount(getTokenAddress(chainName, tokenName)))
     }, [chainName]);
 
-    useEffect(() => { 
-        setTokenAddress(addressToAccount(getTokenAddress(chainName, tokenName))) 
+    useEffect(() => {
+        setTokenAddress(addressToAccount(getTokenAddress(chainName, tokenName)))
     }, [tokenName]);
 
-    useEffect(() => { 
-        setDecimals(bridge.decimals ? BigInt(bridge.decimals) : 18n) 
-        setFormattedAmount(BigInt(amount * 10 ** Number(decimals.toString())))
+    useEffect(() => {
+        setDecimals(bridge.decimals ? BigInt(bridge.decimals) : 18n)
+        setFormattedAmount(BigInt(Number(bridge.amount) * 10 ** Number(decimals.toString())))
     }, [bridge.decimals]);
 
 
@@ -83,11 +79,6 @@ export default function useBridgeApproveERC20() {
     });
 
     const { data, isLoading, isSuccess, write } = useContractWrite(config);
-
-    useEffect(() => {
-        dispatch(setBridgeAllowance(amount));
-        console.log(data)
-    }, [isSuccess])
 
     return { approveData: data, isApproveLoading: isLoading, isApproveSuccess: isSuccess, approve: write };
 

@@ -18,12 +18,7 @@ function MainActionButton() {
     const {approve, isApproveSuccess, isApproveLoading} = useBridgeApproveERC20();
 
     // has enough allowance?
-    const { isApprovalRequired } = useBridgeAllowance(
-        'goerli',
-        "USDC",
-        "0x738b2B2153d78Fc8E690b160a6fC919B2C88b6A4",
-        "0x750B52c82596C7b6489C207b87adcf56Fe4a3ABe"
-    );
+    const { isApprovalRequired } = useBridgeAllowance();
 
     function isApproveRequired() {
         return Number(bridge.amount) > (Number(bridge.allowance) / 10 ** Number(bridge.decimals));

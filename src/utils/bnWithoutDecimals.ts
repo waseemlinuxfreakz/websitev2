@@ -1,10 +1,10 @@
 
 export function bnWithoutDecimals(
-    bn: bigint | number | string,
-    decimals: bigint | number | string
+    bn: number | string,
+    decimals: number | string
 ): string {
-    const bn_ = BigInt(bn);
-    const dec_ = BigInt(decimals);
-    const result: bigint = bn_ / 10n ** dec_;
+    const bn_ = Number(bn);
+    const dec_ = Number(decimals);
+    const result: number = bn_ / 10 ** dec_;
     return result.toLocaleString();
 }

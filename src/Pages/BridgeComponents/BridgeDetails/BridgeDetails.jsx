@@ -19,7 +19,7 @@ function BridgeDetails() {
 
     React.useEffect(() => {
         setAllowance(bnWithoutDecimals(bridge.allowance, bridge.decimals));
-    }, [bridge.allowance])
+    }, [bridge.allowance, bridge.amount, bridge.fromChain, bridge.fromToken]);
 
     return ( 
         <div className="bridgeDetails">

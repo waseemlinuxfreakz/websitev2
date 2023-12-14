@@ -1,76 +1,107 @@
 import { useEffect, useState } from 'react';
 import { Hash } from 'viem';
-import { erc20ABI } from 'wagmi';
+import { erc20ABI, useAccount } from 'wagmi';
 import { useAppSelector, useAppDispatch } from './storage';
 import { getProvider, getTokenAddress, addressToAccount } from '../utils';
-import { TChainName, TTokenName } from '../types';
-import {setBridgeAllowance, setBridgeDecimals, setBridgeError} from '../store/bridgeSlice';
+import { ChainNameToTypeChainName, SUPPORTED_CHAINS, TChainName, TTokenName } from '../types';
+import { setBridgeAllowance, setBridgeDecimals, setBridgeError } from '../store/bridgeSlice';
 
-export default function useBridgeAllowance(
-    chainName: TChainName,
-    tokenName: TTokenName,
-    ownerAddress: string,
-    spenderAddress: string,
-) {
+export default function useBridgeAllowance() {
+
+
+    const { address } = useAccount();
 
     const dispatch = useAppDispatch();
-    const bridge = useAppSelector((state) => state.bridge);
-    const provider = getProvider(chainName);
-    const tokenAddress: Hash = addressToAccount(getTokenAddress(chainName, tokenName));
 
-    const [allowance, setAllowance] = useState<string|number|bigint>(0);
-    const [decimals, setDecimals] = useState<number>(18);
-    const [error, setError] = useState<string|undefined>(undefined);
+    const bridge = useAppSelector((state) => state.bridge);
+
+    function isApproveRequired() {
+        return Number(bridge.amount) > (Number(bridge.allowance) / 10 ** Number(bridge.decimals));
+    }
+
+    const [allowance, setAllowance] = useState<string | number | bigint>(BigInt(bridge.allowance));
+
+    const [tokenName, setTokenName] = useState<TTokenName>(bridge.fromToken as TTokenName);
+
+    const [chainName, setChainName] = useState<TChainName>(ChainNameToTypeChainName[bridge.fromChain]);
+
+    const [spender, setSpender] = useState<string>(SUPPORTED_CHAINS[chainName].bridge);
+
+    const [tokenAddress, setTokenAddress] = useState<Hash>(addressToAccount(getTokenAddress(chainName, tokenName)));
+
+    const [decimals, setDecimals] = useState<bigint>(bridge.decimals ? BigInt(bridge.decimals) : 18n);
+
+    const [error, setError] = useState<string | undefined>(undefined);
+
     const [isApprovalRequired, setIsApprovalRequired] = useState<boolean>(false);
+
+    const provider = getProvider(chainName);
+
+
+    useEffect(() => {
+        if (bridge.fromChain) {
+            setChainName(ChainNameToTypeChainName[bridge.fromChain]);
+            setSpender(SUPPORTED_CHAINS[chainName].bridge);
+            if (tokenName) {
+                setTokenAddress(addressToAccount(getTokenAddress(chainName, tokenName)));
+            }
+        }
+    }, [bridge.fromChain]);
+
+    useEffect(() => {
+        if (bridge.fromToken) {
+            setTokenName(bridge.fromToken as TTokenName);
+            if (chainName) {
+                setTokenAddress(addressToAccount(getTokenAddress(chainName, tokenName)));
+            }
+        }
+    }, [bridge.fromToken]);
 
     useEffect(() => {
 
-        if(bridge.amount){
+        (async () => {
 
-            (async () => {
-
-                const decimals = await provider.readContract({
-                    address: tokenAddress,
-                    abi: erc20ABI,
-                    functionName: 'decimals'
-                });
-
-                setDecimals(decimals);
-                dispatch(setBridgeDecimals(decimals));
-
-                const allowance = await provider.readContract({
-                    address: tokenAddress,
-                    abi: erc20ABI,
-                    functionName: 'allowance',
-                    args: [
-                        addressToAccount(ownerAddress),
-                        addressToAccount(spenderAddress)
-                    ]
-                });
-
-                setAllowance(Number(allowance.toString()));
-                dispatch(setBridgeAllowance(Number(allowance.toString())));
-
-                if(BigInt(bridge.amount) > allowance){
-                    setIsApprovalRequired(true);
-                }else{
-                    setIsApprovalRequired(false);
-                }
-
-                if(error) setError(undefined);
-                if(bridge.error){
-                    dispatch(setBridgeError(undefined));
-                }
-
-            })().catch(e => {
-                const formattedError = `useBridgeAllowance Error: ${e}`;
-                setError(formattedError);
-                dispatch(setBridgeError(formattedError));
+            const decimals = await provider.readContract({
+                address: tokenAddress,
+                abi: erc20ABI,
+                functionName: 'decimals'
             });
 
-        }
+            setDecimals(BigInt(decimals));
+            dispatch(setBridgeDecimals(decimals));
 
-    }, [bridge.amount, bridge.fromChain, bridge.fromToken]);
+            const allowance = await provider.readContract({
+                address: tokenAddress,
+                abi: erc20ABI,
+                functionName: 'allowance',
+                args: [
+                    addressToAccount(address!),
+                    addressToAccount(spender)
+                ]
+            });
 
-    return {allowance, decimals, error, isApprovalRequired};
+            setAllowance(Number(allowance.toString()));
+            dispatch(setBridgeAllowance(Number(allowance.toString())));
+
+            if (isApproveRequired()) {
+                setIsApprovalRequired(true);
+            } else {
+                setIsApprovalRequired(false);
+            }
+
+            if (error) setError(undefined);
+            if (bridge.error) {
+                dispatch(setBridgeError(undefined));
+            }
+
+        })().catch(e => {
+            const formattedError = `useBridgeAllowance Error: ${e}`;
+            console.error(formattedError)
+            setError(formattedError);
+            dispatch(setBridgeError(formattedError));
+        });
+
+    }, [address, bridge.amount, bridge.fromChain, bridge.fromToken]);
+
+    return { allowance, decimals, error, isApprovalRequired };
 }
