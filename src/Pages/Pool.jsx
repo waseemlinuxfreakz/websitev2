@@ -3,17 +3,14 @@ import {isMobile} from 'react-device-detect';
 import Header from '../HeaderFooterSidebar/Header';
 import Footer from '../HeaderFooterSidebar/Footer';
 import Sidebar from '../HeaderFooterSidebar/Sidebar';
-import BridgeSwapContainer from './BridgeComponents/BridgeSwapContainer';
 import MobileHeader from '../HeaderFooterSidebar/MobileHeader';
-import MainActionButton from './BridgeComponents/MainActionButton';
 import SidebarSlider from '../HeaderFooterSidebar/SidebarComponent/SidebarSlider';
 
-import ExplorerHeader from '../HeaderFooterSidebar/ExplorerHeader';
-import ExplorerPageContainer from './ExplorerComponents/ExplorerPageContainer';
+import PoolPageContainer from './PoolComponents/PoolPageContainer';
 
 
 
-const ExplorerPage = () => {
+const PoolPage = () => {
   
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
 
@@ -38,7 +35,7 @@ const ExplorerPage = () => {
             <div className="MobilePageContainer">
                 <div className="mobileArea" id='mobileContainer'>
                     <MobileHeader/>
-                    <ExplorerPageContainer/>
+                    <PoolPageContainer/>
                     <SidebarSlider/>
                     <Footer/>
                 </div>
@@ -51,11 +48,11 @@ const ExplorerPage = () => {
                     </div>
                     <div className="mainWrap">
                             <Header
-                                caption="Explorer"
+                                caption="Pool"
                             />
                         <div className="pageContent">
                             <div className="swapContainerArea">
-                                <ExplorerPageContainer/>
+                                <PoolPageContainer/>
                             </div>
                         </div>
                         <Footer/>
@@ -67,4 +64,4 @@ const ExplorerPage = () => {
     );
   };
   
-  export default ExplorerPage;
+  export default PoolPage;

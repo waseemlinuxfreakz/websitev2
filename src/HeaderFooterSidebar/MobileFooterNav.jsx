@@ -7,6 +7,7 @@ import NavIcon4 from '../assets/img/nav-icon/nav-Icons-4.svg';
 import NavIcon5 from '../assets/img/nav-icon/nav-Icons-5.svg';
 import NavIcon6 from '../assets/img/nav-icon/nav-Icons-6.svg';
 import NavIcon7 from '../assets/img/nav-icon/nav-Icons-7.svg';
+import Pool from '../assets/img/nav-icon/Pool.svg';
 
 function MobileFooterNav() {
     const location = useLocation();
@@ -34,6 +35,12 @@ function MobileFooterNav() {
                     <Link to="/explorer" className={`navLink ${isActive('/explorer') && 'active'}`}>
                         <img src={NavIcon3} alt="NavIcon" />
                         <span>Explorer</span>
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/pool" className={`navLink ${isActive('/pool') && 'active'}`}>
+                        <img src={Pool} alt="NavIcon" />
+                        <span>Pool</span>
                     </Link>
                 </li>
                 <li>
