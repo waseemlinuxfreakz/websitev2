@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 
 import Updown from '../../../assets/img/table-updown.svg';
+import Yourliquidity from './Yourliquidity';
 
 
 const PoolTable = () => {
   const [sortBy, setSortBy] = useState(null);
   const [sortOrder, setSortOrder] = useState('asc');
+  const [isYourLiquidityVisible, setYourLiquidityVisible] = useState(false);
 
   const data = [
     {
@@ -55,35 +57,42 @@ const PoolTable = () => {
     }
   });
 
+  const handleAddPollClick = () => {
+    setYourLiquidityVisible(!isYourLiquidityVisible);
+  };
+
   return (
-    <div className="transactionTable poolTable">
-        <table className="table">
-        <thead>
-            
-            <tr>
-            <th onClick={() => handleSort('Token')}>Token <span className='upDown'><img src={Updown} alt="Updown" /></span></th>
-            <th onClick={() => handleSort('Chain')}>Chain <span className='upDown'><img src={Updown} alt="Updown" /></span></th>
-            <th onClick={() => handleSort('APY')}>APY <span className='upDown'><img src={Updown} alt="Updown" /></span></th>
-            <th onClick={() => handleSort('Daily')}>Daily <span className='upDown'><img src={Updown} alt="Updown" /></span></th>
-            <th onClick={() => handleSort('TotalLiquidity')}>Total liquidity <span className='upDown'><img src={Updown} alt="Updown" /></span></th>
-            <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            {sortedData.map((item, index) => (
-            <tr key={index}>
-                <td dangerouslySetInnerHTML={{ __html: item.Token }} />
-                <td dangerouslySetInnerHTML={{ __html: item.Chain }} />
-                <td dangerouslySetInnerHTML={{ __html: item.APY }} />
-                <td dangerouslySetInnerHTML={{ __html: item.Daily }} />
-                <td dangerouslySetInnerHTML={{ __html: item.TotalLiquidity }} />
-                <td><button className='addPoll'><img src="/img/add.svg" alt="Add" /></button></td>
+    <>
+      <div className="transactionTable poolTable">
+          <table className="table">
+            <thead>
                 
-            </tr>
-            ))}
-        </tbody>
-        </table>
-    </div>
+                <tr>
+                <th onClick={() => handleSort('Token')}>Token <span className='upDown'><img src={Updown} alt="Updown" /></span></th>
+                <th onClick={() => handleSort('Chain')}>Chain <span className='upDown'><img src={Updown} alt="Updown" /></span></th>
+                <th onClick={() => handleSort('APY')}>APY <span className='upDown'><img src={Updown} alt="Updown" /></span></th>
+                <th onClick={() => handleSort('Daily')}>Daily <span className='upDown'><img src={Updown} alt="Updown" /></span></th>
+                <th onClick={() => handleSort('TotalLiquidity')}>Total liquidity <span className='upDown'><img src={Updown} alt="Updown" /></span></th>
+                <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {sortedData.map((item, index) => (
+                <tr key={index}>
+                    <td dangerouslySetInnerHTML={{ __html: item.Token }} />
+                    <td dangerouslySetInnerHTML={{ __html: item.Chain }} />
+                    <td dangerouslySetInnerHTML={{ __html: item.APY }} />
+                    <td dangerouslySetInnerHTML={{ __html: item.Daily }} />
+                    <td dangerouslySetInnerHTML={{ __html: item.TotalLiquidity }} />
+                    <td><button className='addPoll' onClick={handleAddPollClick}><img src="/img/add.svg" alt="Add" /></button></td>
+                    
+                </tr>
+                ))}
+            </tbody>
+          </table>
+      </div>
+      {isYourLiquidityVisible && <Yourliquidity />}
+    </>
   );
 };
 

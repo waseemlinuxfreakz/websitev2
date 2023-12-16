@@ -155,3 +155,38 @@ span.poolCoin img {
     width: 24px;
     height: 24px;
 }
+
+@media (max-width: 1366px) {
+    .pollRow.row .col-lg-3 {
+        width: 33.3333% !important;
+    }
+
+    .pollRow.row {
+        row-gap: 16px;
+    }
+}
+
+@media (max-width: 1280px) {
+    .pollRow.row .col-lg-3 {
+        width: 50% !important;
+    }
+
+    .pollRow.row {
+        row-gap: 16px;
+    }
+}
+
+@media only screen and (max-width: 1025px)  {
+    .pollRow.row {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 16px;
+        margin: 0;
+    }
+    
+    .pollRow.row .col-lg-3 {
+        width: 290px !important;
+        flex-shrink: 0;
+        padding: 0;
+    }
+}

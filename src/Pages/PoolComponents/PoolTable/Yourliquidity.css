@@ -1,0 +1,190 @@
+.yourliquidityArea {
+    padding-top: 24px;
+    padding-bottom: 24px;
+    position: fixed;
+    z-index: 999999999;
+    left: 0;
+    height: 100vh;
+    max-height: 100vh;
+    overflow: auto;
+    bottom: 0;
+    right: 0;
+    background: #000000ef;
+    backdrop-filter: blur(5px);
+}
+
+.yourliquidity {
+    max-width: 480px;
+    width: calc(100% - 32px);
+    margin: 0 auto;
+    border-radius: 16px;
+    border: 1px solid var(--Card-Card-border, rgba(97, 100, 107, 0.10));
+    background: var(--Background-Background-secondary, #1B1D20);
+    box-shadow: 0px 9px 15px 7px rgba(0, 0, 0, 0.10);
+    padding: 24px 24px 32px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.YourliquidityTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.closeLiquidity {
+    display: block;
+    cursor: pointer;
+}
+
+.YourliquidityTop h2 {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 32px;
+    color: #fff;
+}
+
+.toggleLiquidity {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    border-radius: 8px;
+    border: 1px solid var(--Stroke-Stroke-primary, #3C3F43);
+    background: var(--Background-Background-primary, #191B1E);
+    padding: 4px;
+}
+
+.depositeToggle, .withdrawToggle {
+    display: block;
+    width: calc(50% - 2px);
+    text-align: center;
+    border-radius: 8px;
+    /* border: 1px solid var(--Stroke-Stroke-primary, #3C3F43); */
+    /* background: var(--Background-Background-primary, #191B1E); */
+    border: 0;
+    outline: none;
+    box-shadow: none;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px; /* 142.857% */
+    letter-spacing: -0.3px;
+    height: 32px;
+    background: transparent;
+    color: #B3B7BF;
+}
+
+.depositeToggle.active, .withdrawToggle.active {
+    background: #fff;
+    color: #191B1E;
+}
+
+.YourliquidityChain {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.YourliquidityChainApy {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.YourliquidityChainApy p {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.YourliquidityChainApy span {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px; /* 150% */
+    letter-spacing: -0.3px;
+}
+
+.yourliquidityInput {
+    margin-bottom: 24px;
+}
+
+.depositeBtn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    border-radius: 8px;
+    background: var(--Button-Button-primary, #EFEB00);
+    padding: 12px 16px 12px 14px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px; /* 150% */
+    letter-spacing: -0.3px;
+    color: #191B1E;
+    border: 0;
+}
+
+.poolMobileData .transactionRight.poolTableRight {
+    position: unset;
+    display: flex;
+    width: 100%;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    flex-direction: row;
+    max-width: 475px;
+    margin-right: auto;
+    margin-left: 0;
+    flex-wrap: wrap;
+}
+
+.poolMobileData .poolTableTop.explorerTransactions {
+    flex-direction: column;
+    gap: 16px !important;
+    padding: 24px 0;
+}
+
+.poolMobileData .transactionRight.poolTableRight .filterName {
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.poolMobileData .coinNameIcon {
+    font-size: 14px;
+}
+
+.poolMobileData .coinNameIcon img {
+    width: 18px;
+}
+
+.poolMobileData .ExplorerTransactionsFilter {
+    max-width: fit-content;
+}
+
+.poolBox.addDepositBox {
+    border: 1px solid #3C3F43;
+    background: #191B1E;
+}
+
+.poolMobileData {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.addDepositBtn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 16px;
+    border-radius: 8px;
+    border: 1.5px solid var(--Stroke-Stroke-primary, #3C3F43);
+    background: var(--Background-Background-tertiary, #202226);
+    color: #fff;
+    padding: 8px;
+}

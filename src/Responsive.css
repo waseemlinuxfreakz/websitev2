@@ -317,5 +317,18 @@
         padding-right: 16px;
     }
 
+    .poolpageContainer {
+        padding: 0 16px;
+    }
+
+    .poolTitlerRight {
+        display: none;
+    }
+
+    .poolTableArea .poolTableTop.explorerTransactions {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
 }
 
