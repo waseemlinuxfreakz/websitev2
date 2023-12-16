@@ -1,10 +1,9 @@
 import React from 'react';
 
 import USDT from '../../../assets/img/coin/usdc.svg';
-import ETH from '../../../assets/img/chain/polygon.svg';
+import Polygon from '../../../assets/img/coin/Polygon-Blue.svg';
 
 import Target from '../../../assets/img/target.svg';
-
 
 
 function PoolBox2() {
@@ -14,10 +13,10 @@ function PoolBox2() {
                 <div className="poolboxTopLeft">
                     <div className="chainToken">
                         <img src={USDT} alt="USDT" className="mainChain" />
-                        <img src={ETH} alt="ETH" className="onChain" />
+                        <img src={Polygon} alt="ETH" className="onChain" />
                     </div>
                     <div className="">
-                        <h2>USDC</h2>
+                        <h2>MATIC</h2>
                         on Ethereum
                     </div>
                 </div>

@@ -5,11 +5,11 @@ import PoolByChain from './PoolByChain';
 
 function PoolTableTop() {
     return ( 
-        <div className="poolTableTop">
+        <div className="poolTableTop explorerTransactions">
             <div className="poolTableLeft">
                 <PoolTableTitle/>
             </div>
-            <div className="poolTableRight">
+            <div className="transactionRight  poolTableRight">
                 <PoolByToken/>
                 <PoolByChain/>
             </div>

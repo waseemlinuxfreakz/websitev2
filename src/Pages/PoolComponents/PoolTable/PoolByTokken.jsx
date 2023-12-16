@@ -1,16 +1,12 @@
 import React from 'react';
+import ChainSelectorDropdown from '../../HomeComponents/ChainSelectorDropdown/ChainSelectorDropdown';
 
 function PoolByToken() {
     return ( 
-        <div className="PoolByToken">
-            <div className="PoolByTokenname">By token</div>
-            <div className="PoolByTokenDrop">
-                <div className="PoolByTokenSelect">Show All</div>
-                <ul className="poolByTokenList">
-                    <li className="poolByTokenItem">
-                        <span>Show All</span>
-                    </li>
-                </ul>
+        <div className="ExplorerTransactionsFilter buyChainFilter">
+            <div className="filterName">By token</div>
+            <div className="filterDropdown">
+                <ChainSelectorDropdown/>
             </div>
         </div>
      );
