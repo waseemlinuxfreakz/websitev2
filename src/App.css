@@ -676,6 +676,11 @@ header#header {
     z-index: 3;
 }
 
+header#header .container {
+    padding-left: 0;
+    padding-right: 0;
+}
+
 .swapMenuContainer {
     position: relative;
     z-index: 2;
