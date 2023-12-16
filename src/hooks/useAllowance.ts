@@ -51,9 +51,7 @@ export default function useBridgeAllowance() {
     useEffect(() => {
         if (bridge.fromToken) {
             setTokenName(bridge.fromToken as TTokenName);
-            if (chainName) {
-                setTokenAddress(addressToAccount(getTokenAddress(chainName, tokenName)));
-            }
+            setTokenAddress(addressToAccount(getTokenAddress(chainName, tokenName)));
         }
     }, [bridge.fromToken]);
 
@@ -61,27 +59,34 @@ export default function useBridgeAllowance() {
 
         (async () => {
 
-            const decimals = await provider.readContract({
-                address: tokenAddress,
-                abi: erc20ABI,
-                functionName: 'decimals'
-            });
+            if(tokenAddress && spender && address){
 
-            setDecimals(BigInt(decimals));
-            dispatch(setBridgeDecimals(decimals));
+                console.log("tokenAddress", tokenAddress)
 
-            const allowance = await provider.readContract({
-                address: tokenAddress,
-                abi: erc20ABI,
-                functionName: 'allowance',
-                args: [
-                    addressToAccount(address!),
-                    addressToAccount(spender)
-                ]
-            });
-
-            setAllowance(Number(allowance.toString()));
-            dispatch(setBridgeAllowance(Number(allowance.toString())));
+                const decimals = await provider.readContract({
+                    address: tokenAddress,
+                    abi: erc20ABI,
+                    functionName: 'decimals'
+                });
+    
+                setDecimals(BigInt(decimals));
+                dispatch(setBridgeDecimals(decimals));
+    
+                console.log("tokenAddress", tokenAddress, "spender", spender)
+    
+                const allowance = await provider.readContract({
+                    address: tokenAddress,
+                    abi: erc20ABI,
+                    functionName: 'allowance',
+                    args: [
+                        addressToAccount(address!),
+                        addressToAccount(spender)
+                    ]
+                });
+    
+                setAllowance(Number(allowance.toString()));
+                dispatch(setBridgeAllowance(Number(allowance.toString())));
+            }
 
             if (isApproveRequired()) {
                 setIsApprovalRequired(true);
@@ -94,11 +99,13 @@ export default function useBridgeAllowance() {
                 dispatch(setBridgeError(undefined));
             }
 
+
         })().catch(e => {
             const formattedError = `useBridgeAllowance Error: ${e}`;
             console.error(formattedError)
             setError(formattedError);
             dispatch(setBridgeError(formattedError));
+            // console.log("tokenAddress", tokenAddress, "spender", spender)
         });
 
     }, [address, bridge.amount, bridge.fromChain, bridge.fromToken]);
