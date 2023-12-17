@@ -1,7 +1,7 @@
 import { Hash } from "viem";
 
 export function addressToAccount(address: string): Hash {
-    if(!address) return '0x';
+    if (!address) return '0x';
     return `0x${address.replace('0x', '')}`;
 }
 
@@ -10,11 +10,11 @@ export function addressToAccount(address: string): Hash {
  * @param address the original 20 byte address
  * @returns a bytes32 zero-padded representaiton of address
  */
-export function addressToBytes32(address: string): string {
+export function addressToBytes32(address: string): Hash {
     // "0x" + 24 zeros + Rest of the address string with leading "0x" trimmed
-    return (
-        address.slice(0, 2) +
+    return (addressToAccount(
         '000000000000000000000000' +
-        address.slice(2, address.length)
+        address.replace('0x', '')
+        )
     )
 }
