@@ -6,6 +6,7 @@ import { useAppSelector, useAppDispatch } from '../../hooks/storage';
 
 function WalletAddress() {
 
+    const pattern = /^[0x]{0,2}[0-9a-fA-F]{0,40}$/;
     const dispatch = useAppDispatch();
     const bridge = useAppSelector(state => state.bridge);
     const { address } = useAccount();
@@ -16,21 +17,28 @@ function WalletAddress() {
         : '';
     }
     const [destAddress, setDestAddress] = useState(truncate(address));
+    const [isChangeVisible, setIsChangeVisivle] = useState(true);
 
     useEffect(() => {
 
-    },[]);
+        if(bridge.receiver && pattern.test(bridge.receiver)){
+            setDestAddress(truncate(bridge.receiver));
+            setIsChangeVisivle(true);
+        }
+
+    },[bridge.receiver]);
 
     function onChangeClickHandle(e) {
         e.preventDefault();
         const inputValue = e.target.value;
-        const pattern = /^[0x]{0,2}[0-9a-fA-F]{0,40}$/;
+        
 
         if (pattern.test(inputValue)) {
             setDestAddress(inputValue);
-            if (isEvmAddress(destAddress)) {
+            if (isEvmAddress(inputValue)) {
                 setDestAddress(truncate(inputValue));
                 dispatch(setReceiver(destAddress));
+                setIsChangeVisivle(true);
             }
         } else {
             setDestAddress(destAddress);
@@ -39,8 +47,10 @@ function WalletAddress() {
     }
 
     function onChangeClick() {
+        console.log("onChangeClick")
         setDestAddress('');
         dispatch(setReceiver(''));
+        setIsChangeVisivle(false);
     }
 
     return (
@@ -50,13 +60,14 @@ function WalletAddress() {
                     onChange={onChangeClickHandle}
                     value={destAddress}
                     type="text"
-                    placeholder="Destination address"
-                    style={{"textAlign":"center"}}
+                    placeholder="Paste the receiver address"
+                    // style={{"textAlign":"center"}}
                 />
             </div>
             <button
                 className="changeAddress"
-                onChange={onChangeClick}
+                onClick={onChangeClick}
+                hidden={!isChangeVisible}
             >
                 Change
             </button>
