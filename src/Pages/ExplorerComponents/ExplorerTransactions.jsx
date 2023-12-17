@@ -36,9 +36,9 @@ function ExplorerTransactions() {
         <div className="explorerTransactions">
             <ExplorerTransactionsTitle/>
             <div ref={filterDropdownBoxRef} className="filterDropdownBox">
-                <button className="filterDropBTN" onClick={toggleTransactionRight}>
+                {/* <button className="filterDropBTN" onClick={toggleTransactionRight}>
                     <img src={Filter} alt="Filter" />
-                </button>
+                </button> */}
                 <div className={`transactionRight ${isTransactionRightOpen ? 'open' : ''}`}>
                     <ExplorerTransactionsTnx/>
                     <ExplorerTransactionsFrom/>

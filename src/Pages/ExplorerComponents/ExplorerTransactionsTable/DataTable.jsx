@@ -454,7 +454,7 @@ const DatatablePage = () => {
             />
           </div>
         </div>
-        <div className="transactionDetailsBottom d-none">
+        <div className="transactionDetailsBottom">
           <TransactionDetails/>
         </div>
       </>

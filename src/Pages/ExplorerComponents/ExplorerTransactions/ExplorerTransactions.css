@@ -161,19 +161,19 @@ ul.filterDropList li:not(:first-child) {
     }
 
     .transactionRight {
-        position: absolute;
-        z-index: 111;
-        right:0;
-        top: 100%;
-        margin-top: 10px;
-        padding: 16px 16px 16px 16px;
-        background: #191B1E;
-        border: 1px solid rgba(97, 100, 107, 0.10);
-        border-radius: 10px 10px 0px 0px;
-        gap: 10px;
-        display: none;
-        flex-direction: column;
-        align-items: flex-start;
+        /* position: absolute; */
+        /* z-index: 111; */
+        /* right:0; */
+        /* top: 100%; */
+        /* margin-top: 10px; */
+        /* padding: 16px 16px 16px 16px; */
+        /* background: #191B1E; */
+        /* border: 1px solid rgba(97, 100, 107, 0.10); */
+        /* border-radius: 10px 10px 0px 0px; */
+        /* gap: 10px; */
+        /* display: none; */
+        /* flex-direction: column; */
+        /* align-items: flex-start; */
     }
 
     .transactionRight.open {
@@ -217,6 +217,8 @@ ul.filterDropList li:not(:first-child) {
         align-items: flex-start;
         justify-content: space-between;
         gap: 50px;
+        flex-direction: column;
+        gap: 16px;
     }
 
     .ExplorerTransactionsFilter.tnxTypeFilter {
@@ -246,6 +248,35 @@ ul.filterDropList li:not(:first-child) {
         border-radius: 10px !important;
     }
 
+    .ExplorerTransactionsFilter ul.filterDropList {
+        right: -10px;
+        top: 33px;
+    }
+    
+    .transactionRight .selectCoinList {
+        margin: 12px 0 0 0;
+        right: -12px;
+    }
+    
+    .transactionRight .filterDropdown {
+        margin-left: auto;
+    }
+
+    .transactionRight {
+        flex-direction: column;
+        max-width: 480px;
+        width: 100%;
+        margin-right: auto;
+        margin-left: 0;
+    }
+    
+    .transactionRight .ExplorerTransactionsFilter {
+        width: 100%;
+    }
+    
+    .filterDropdownBox {
+        width: 100%;
+    }
 
 }
 

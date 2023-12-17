@@ -125,6 +125,7 @@
     font-style: normal;
     font-weight: 500;
     line-height: 26px;
+    color: #fff;
 }
 
 .yourPool {
@@ -219,4 +220,24 @@ span.poolCoin img {
     .transactionRight.poolTableRight .filterName, .transactionRight.poolTableRight .coinNameIcon {
         font-size: 14px;
     }
+
+    .poolBox {
+        border-radius: 16px;
+        border: 1px solid var(--Stroke-Stroke-primary, #3C3F43);
+        background: var(--Background-Background-primary, #191B1E);
+    }
+    
+    .poolboxBottom .col-6:last-child {
+        text-align: right;
+    }
+    
+    .poolboxBottom h4 {
+        font-size: 12px;
+    }
+
+    .transactionRight.poolTableRight .ExplorerTransactionsFilter.buyChainFilter:first-child {
+        position: relative;
+        z-index: 999;
+    }
+    
 }

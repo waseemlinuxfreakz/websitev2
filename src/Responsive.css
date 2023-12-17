@@ -66,7 +66,7 @@
         padding: 0;
         flex-direction: row;
         gap: 10px;
-        padding: 5px 0px;
+        padding: 5px 0px 5px 2px;
         overflow: auto;
     }
 
@@ -87,6 +87,7 @@
         border-radius: 8px;
         outline: 1px solid #3C3F43;
         padding: 8px;
+        gap: 5px;
     }
 
     .mobileFooterNav ul.navlinks>li a.navLink.active {
@@ -153,6 +154,7 @@
         border-top: 1px solid rgba(97, 100, 107, 0.10);
         padding-left: 16px;
         padding-right: 16px;
+        padding-bottom: 30px;
     }
 
     body.activeMobileMenu {
@@ -241,8 +243,15 @@
     .swapContainerBox {
         position: relative;
         z-index: 11;
-        margin-right: 16px;
-        margin-left: 16px;
+        margin-right: 6px;
+        margin-left: 6px;
+        padding-right: 6px;
+        padding-left: 6px;
+    }
+
+    .swapPayReceive {
+        padding-left: 5px;
+        padding-right: 5px;
     }
 
     .swapMenuContainer .slipageModal:after {
@@ -319,6 +328,7 @@
 
     .poolpageContainer {
         padding: 0 16px;
+        padding-bottom: 24px;
     }
 
     .poolTitlerRight {
@@ -328,6 +338,10 @@
     .poolTableArea .poolTableTop.explorerTransactions {
         padding-left: 0;
         padding-right: 0;
+    }
+
+    .poolPageWrap footer#footerArea {
+        padding-bottom: 30px;
     }
 
 }

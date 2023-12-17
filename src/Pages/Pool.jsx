@@ -32,7 +32,7 @@ const PoolPage = () => {
     return (
       <>
         {isMobile ? (
-            <div className="MobilePageContainer">
+            <div className="MobilePageContainer poolPageWrap">
                 <div className="mobileArea" id='mobileContainer'>
                     <MobileHeader/>
                     <PoolPageContainer/>
