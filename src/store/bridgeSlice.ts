@@ -10,6 +10,7 @@ export interface IBridgeState {
     allowance: number,
     alltokens:TokenType[],
     amount: number | string,
+    balance: number,
     bridgeFee: number,
     deadline: number,
     decimals: number | bigint,
@@ -24,6 +25,7 @@ export interface IBridgeState {
     receive: number | string,
     receiver: string,
     slippage: number,
+    toBalance: number,
     toChain: string,
     toChains: TChainType[],
     toToken: string,
@@ -42,6 +44,7 @@ const initialState = {
     allowance: 0,
     alltokens:coinsData,
     amount: '',
+    balance: 0,
     bridgeFee: 0,
     deadline: 0,
     decimals: 18,
@@ -56,6 +59,7 @@ const initialState = {
     receive: '',
     receiver: "",
     slippage: 0.5,
+    toBalance: 0,
     toChain,
     toChains: filterTwoChains(fromChain, toChain),
     toToken,
@@ -73,6 +77,9 @@ export const bridgeSlice = createSlice({
             state.amount = action.payload;
             const slippageAmount = state.amount * state.slippage / 100;
             state.receive = state.amount - slippageAmount;
+        },
+        setBridgeBalance(state: IBridgeState, action: PayloadAction<number>){
+            state.balance = action.payload;
         },
         setBridgeDeadline(state: IBridgeState, action: PayloadAction<number>) {
             state.deadline = action.payload;
@@ -120,6 +127,9 @@ export const bridgeSlice = createSlice({
             state.fromChains = filterTwoChains(state.fromChain, state.toChain);
             state.toChains = filterTwoChains(state.fromChain, state.toChain);
         },
+        setBridgeToBalance(state: IBridgeState, action: PayloadAction<number>){
+            state.toBalance = action.payload;
+        },
         setBridgeToToken(state: IBridgeState, action:PayloadAction<string>){
             state.toToken = action.payload;
             state.fromToken = action.payload;
@@ -147,6 +157,7 @@ export const bridgeSlice = createSlice({
 export const {
     setBridgeAllowance,
     setBridgeAmount,
+    setBridgeBalance,
     setBridgeDeadline,
     setBridgeDecimals,
     setBridgeError,
@@ -160,6 +171,7 @@ export const {
     setBridgeIsSuccess,
     setBridgeSlippage,
     setBridgeToChain,
+    setBridgeToBalance,
     swapBridgeChainsAndTokens,
 } = bridgeSlice.actions;
 

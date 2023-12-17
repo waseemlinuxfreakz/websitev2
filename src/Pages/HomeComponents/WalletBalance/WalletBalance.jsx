@@ -6,9 +6,9 @@ import { fetchBalance, getAccount, getNetwork } from '@wagmi/core';
 import { getTokenAddress } from '../../../constants/tokens.ts';
 
 
-export default function WalletBalance({ name }) {
+export default function WalletBalance({ name, parent, balance }) {
 
-    const [balance, setBalance] = useState('0');
+    const [balanceSwap, setBalance] = useState('0');
 
     const account = getAccount();
     const { chain } = getNetwork();
@@ -45,7 +45,7 @@ export default function WalletBalance({ name }) {
     return (
         <div className="walletBalance">
             <img src={Wallet} alt="Wallet" />
-            <span>{balance}</span>
+            <span>{parent == 'bridge' ? balance :balanceSwap}</span>
             <span>{name}</span>
         </div>
     )

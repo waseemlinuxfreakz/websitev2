@@ -10,6 +10,7 @@ import ChainSelectorDropdown from '../../HomeComponents/ChainSelectorDropdown/Ch
 import DestinationChainDropdown from '../../HomeComponents/ChainSelectorDropdown/DestinationChainDropdown';
 
 import { sanitizeNumber } from '../../../utils/sanitizeNumber';
+import useBalance from '../../../hooks/useBalance';
 
 export default function TokenSelectorBox({ type }) {
 
@@ -17,6 +18,8 @@ export default function TokenSelectorBox({ type }) {
 
     // Global state
     const bridge = useAppSelector((state) => state.bridge);
+
+    const {fromBalance, toBalance} = useBalance();
 
     function onInputChange(e) {
         e.preventDefault();
@@ -69,7 +72,9 @@ export default function TokenSelectorBox({ type }) {
                 </div>
                 <div className="payReRight">
                     < WalletBalance
+                        parent="bridge"
                         name={isFromType() ? bridge.fromToken : bridge.toToken}
+                        balance={isFromType() ? fromBalance : toBalance}
                     />
                     < TokenSelectionDropdown
                         type={type}
