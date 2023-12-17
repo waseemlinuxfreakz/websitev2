@@ -35,7 +35,7 @@ export default function useBridgeAllowance() {
 
     const [isApprovalRequired, setIsApprovalRequired] = useState<boolean>(false);
 
-    const provider = getProvider(chainName);
+    const [provider, setProvider] = useState(getProvider(chainName));
 
 
     useEffect(() => {
@@ -43,8 +43,9 @@ export default function useBridgeAllowance() {
             setChainName(ChainNameToTypeChainName[bridge.fromChain]);
             setSpender(SUPPORTED_CHAINS[chainName].bridge);
             if (tokenName) {
-                setTokenAddress(addressToAccount(getTokenAddress(chainName, tokenName)));
+                setTokenAddress(addressToAccount(getTokenAddress(ChainNameToTypeChainName[bridge.fromChain], tokenName)));
             }
+            setProvider(getProvider(chainName));
         }
     }, [bridge.fromChain]);
 

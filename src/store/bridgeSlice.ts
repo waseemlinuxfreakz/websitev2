@@ -92,6 +92,9 @@ export const bridgeSlice = createSlice({
         setFromContractAddress(state: IBridgeState, action: PayloadAction<string>) {
             state.fromContractAddress = action.payload;
         },
+        setBridgeFee(state:IBridgeState, action:PayloadAction<number>){
+            state.bridgeFee = action.payload;
+        },
         setBridgeFromToken(state: IBridgeState, action:PayloadAction<string>){
             state.fromToken = action.payload;
             state.toToken = action.payload;
@@ -147,6 +150,7 @@ export const {
     setBridgeDeadline,
     setBridgeDecimals,
     setBridgeError,
+    setBridgeFee,
     setBridgeFromChain,
     setBridgeFromToken,
     setBridgeToToken,

@@ -24,7 +24,7 @@
     "react-table": "^7.8.0",
     "swiper": "^11.0.4",
     "viem": "^1.19.11",
-    "wagmi": "^1.4.7",
+    "wagmi": "^1.4.12",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

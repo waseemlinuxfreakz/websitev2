@@ -6,15 +6,18 @@ import {
     useAccount,
 } from 'wagmi';
 import { Hash } from 'viem';
-import { setBridgeError, setBridgeAllowance } from '../store/bridgeSlice';
+import { setBridgeError } from '../store/bridgeSlice';
 import { useAppDispatch, useAppSelector } from './storage';
 import { useEffect, useState } from 'react';
 import { circleBurner } from '../abis/circleBurner';
 import { ChainToDestinationDomain } from '../types';
+import useBridgFee from './useBridgeFee';
 
-export function useBridgeTransfer() {
+export default function useBridgeTransfer() {
 
     const { address } = useAccount();
+
+    const { fee } = useBridgFee();
 
     const dispatch = useAppDispatch();
 
@@ -27,7 +30,7 @@ export function useBridgeTransfer() {
     const [bridgeAddress, setBridgeAddress] = useState<string>(SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]].bridge);
 
 
-    const [tokenName, setTokenName] = useState<TTokenName>(bridge.fromToken as TTokenName);
+    const [tokenName, setTokenName] = useState<string>(bridge.fromToken);
 
 
     const [decimals, setDecimals] = useState<bigint>(bridge.decimals ? BigInt(bridge.decimals) : 18n);
@@ -37,7 +40,7 @@ export function useBridgeTransfer() {
 
     const [destinationDomain, setDestinationDomain] = useState<number>(ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]]);
 
-    const [mintRecpient, setMintRecipient] = useState<Hash>(addressToBytes32(addressToAccount(bridge.receiver)));
+    const [mintRecipient, setMintRecipient] = useState<Hash>(addressToBytes32(addressToAccount(bridge.receiver)));
 
 
 
@@ -64,6 +67,7 @@ export function useBridgeTransfer() {
     }, []);
 
 
+    // @ts-ignore
     const { config } = usePrepareContractWrite({
         address: addressToAccount(bridgeAddress),
         account: address,
@@ -72,12 +76,16 @@ export function useBridgeTransfer() {
         args: [
             formattedAmount,
             destinationDomain,
-            mintRecpient,
+            mintRecipient,
             tokenName
         ],
         chainId,
-        onError(err) {
+        value: BigInt(fee),
+        onError(err: { message: string | undefined; }) {
             dispatch(setBridgeError(err.message));
+        },
+        onSuccess(){
+            dispatch(setBridgeError(""));
         }
     });
 
@@ -89,4 +97,8 @@ export function useBridgeTransfer() {
 
     return { transferData: data, istransferLoading: isLoading, istransferSuccess: isSuccess, transfer: write };
 
+}
+
+function useBidgeFee(): { fee: any; } {
+    throw new Error('Function not implemented.');
 }

@@ -4,6 +4,7 @@ import { useWeb3Modal } from '@web3modal/react';
 import { useAppSelector  } from '../../hooks/storage';
 import useBridgeAllowance from '../../hooks/useAllowance';
 import useBridgeApproveERC20 from '../../hooks/useBridgeApproveERC20';
+import useBridgeTransfer from '../../hooks/useBridgeTransfer';
 
 function MainActionButton() {
 
@@ -16,6 +17,7 @@ function MainActionButton() {
     const [caption, setCaption] = useState('');
 
     const {approve, isApproveSuccess, isApproveLoading} = useBridgeApproveERC20();
+    const {transfer} = useBridgeTransfer();
 
     // has enough allowance?
     const { isApprovalRequired } = useBridgeAllowance();
@@ -57,7 +59,7 @@ function MainActionButton() {
             if(isApproveRequired()){
                 approve();
             }else{
-                // Call transfer here
+                transfer();
             }
         }
         

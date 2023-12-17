@@ -31,13 +31,12 @@ function WalletAddress() {
     function onChangeClickHandle(e) {
         e.preventDefault();
         const inputValue = e.target.value;
-        
 
         if (pattern.test(inputValue)) {
             setDestAddress(inputValue);
             if (isEvmAddress(inputValue)) {
                 setDestAddress(truncate(inputValue));
-                dispatch(setReceiver(destAddress));
+                dispatch(setReceiver(inputValue));
                 setIsChangeVisivle(true);
             }
         } else {
@@ -47,7 +46,6 @@ function WalletAddress() {
     }
 
     function onChangeClick() {
-        console.log("onChangeClick")
         setDestAddress('');
         dispatch(setReceiver(''));
         setIsChangeVisivle(false);

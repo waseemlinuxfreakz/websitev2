@@ -39,7 +39,6 @@ export default function useBridgeApproveERC20() {
 
     useEffect(() => {
         setFormattedAmount(BigInt(Number(bridge.amount) * 10 ** Number(decimals.toString())))
-        console.log(formattedAmount)
     }, [bridge.amount]);
 
     useEffect(() => {
