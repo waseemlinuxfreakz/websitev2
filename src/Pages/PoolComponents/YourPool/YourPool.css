@@ -182,11 +182,41 @@ span.poolCoin img {
         flex-wrap: nowrap;
         gap: 16px;
         margin: 0;
+        overflow: auto;
+    }
+
+    .pollRow.row::-webkit-scrollbar {
+        display: none;
     }
     
     .pollRow.row .col-lg-3 {
         width: 290px !important;
         flex-shrink: 0;
         padding: 0;
+    }
+
+    .transactionRight.poolTableRight {
+        display: block !important;
+        position: unset;
+        margin: 0;
+        width: 100%;
+        padding: 0;
+        background: transparent;
+        display: flex !important;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .poolTableTop.explorerTransactions {
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .transactionRight.poolTableRight> div {
+        max-width: fit-content;
+    }
+    
+    .transactionRight.poolTableRight .filterName, .transactionRight.poolTableRight .coinNameIcon {
+        font-size: 14px;
     }
 }
