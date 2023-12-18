@@ -75,9 +75,13 @@ export default function useBridgeTransfer() {
         setMintRecipient(addressToBytes32(addressToAccount(bridge.receiver)));
     }, [bridge.receiver]);
 
-    if(bridgeAddress){
-        
-    }
+    useEffect(() => {
+
+        if(bridge.amount){
+            setFormattedAmount(BigInt(Number(bridge.amount) * 10 ** Number(decimals.toString())));
+        }
+
+    }, [bridge.amount])
 
     // @ts-ignore
     const { config } = usePrepareContractWrite({
