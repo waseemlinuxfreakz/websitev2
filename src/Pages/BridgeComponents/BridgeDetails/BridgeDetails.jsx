@@ -12,6 +12,7 @@ import useBridgeAllowance from '../../../hooks/useAllowance';
 function BridgeDetails() {
 
     const bridge = useAppSelector((state) => state.bridge);
+    
     const { allowance } = useBridgeAllowance()
 
     const [tokenName, setTokenName] = React.useState(bridge.fromToken);
@@ -29,7 +30,7 @@ function BridgeDetails() {
                 </div>
                 <div className="detialItemRight">
                     <img src={CheckGreen} alt="CheckGreen" />
-                    {bnWithoutDecimals(allowance, 6)} {tokenName}
+                    {bnWithoutDecimals(allowance, bridge.fromToken)} {tokenName}
                 </div>
             </div>
         </div>

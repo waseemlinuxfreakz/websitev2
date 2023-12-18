@@ -75,6 +75,9 @@ export default function useBridgeTransfer() {
         setMintRecipient(addressToBytes32(addressToAccount(bridge.receiver)));
     }, [bridge.receiver]);
 
+    if(bridgeAddress){
+        
+    }
 
     // @ts-ignore
     const { config } = usePrepareContractWrite({
@@ -106,8 +109,4 @@ export default function useBridgeTransfer() {
 
     return { transferData: data, istransferLoading: isLoading, istransferSuccess: isSuccess, transfer: write };
 
-}
-
-function useBidgeFee(): { fee: any; } {
-    throw new Error('Function not implemented.');
 }
