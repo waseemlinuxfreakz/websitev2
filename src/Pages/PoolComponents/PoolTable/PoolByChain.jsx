@@ -5,7 +5,7 @@ import ChainSelectorDropdown from '../../HomeComponents/ChainSelectorDropdown/Ch
 function PoolByChain() {
     return ( 
         <div className="ExplorerTransactionsFilter buyChainFilter">
-            <div className="filterName">By chain</div>
+            <div className="filterName">By network</div>
             <div className="filterDropdown">
                 <ChainSelectorDropdown/>
             </div>
