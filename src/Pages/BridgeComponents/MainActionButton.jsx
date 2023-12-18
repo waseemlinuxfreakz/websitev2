@@ -59,7 +59,10 @@ function MainActionButton() {
             if(isApproveRequired()){
                 approve();
             }else{
-                transfer();
+                if(transfer){
+                    transfer();
+                }
+                
             }
         }
         

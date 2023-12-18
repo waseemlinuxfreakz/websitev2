@@ -211,7 +211,7 @@ export const ChainNameToTypeChainName: {[key:string]:TChainName} = {
     "Optimism":'optimism',
     "Linea":'linea',
     "Ethereum":'goerli',
-    "Base":'base',
+    "BASE":'base',
     "Avalanche":'avalanche',
     "Arbitrum":'arbitrum'
 }
