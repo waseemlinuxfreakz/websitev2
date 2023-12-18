@@ -53,6 +53,48 @@ function Yourliquidity() {
           <div className="yourliquidityInput">
             <TokenSelectorBox type="Inout" />
           </div>
+          <ul className="YourliquidityList">
+            <li>
+              <div className="LiquidityleftText">
+                LPT avilable
+              </div>
+              <div className="LiquidityrightText">
+                0.003
+              </div>
+            </li>
+            <li>
+              <div className="LiquidityleftText">
+                LPT farming
+              </div>
+              <div className="LiquidityrightText">
+                -
+              </div>
+            </li>
+            <li>
+              <div className="LiquidityleftText">
+                Share of Pool
+              </div>
+              <div className="LiquidityrightText">
+                0.00%
+              </div>
+            </li>
+            <li>
+              <div className="LiquidityleftText">
+                Volume (24h)
+              </div>
+              <div className="LiquidityrightText">
+                $2,999,236.93
+              </div>
+            </li>
+            <li>
+              <div className="LiquidityleftText">
+                Liquidity
+              </div>
+              <div className="LiquidityrightText">
+                $23,692,142.50
+              </div>
+            </li>
+          </ul>
           <button type="button" className="depositeBtn">
             Deposit
           </button>

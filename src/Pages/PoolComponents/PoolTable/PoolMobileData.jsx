@@ -131,6 +131,7 @@ function PoolMobileData() {
             </div>
         </div>
         {isYourLiquidityVisible && <Yourliquidity />}
+        <div className="mobileDeposite"><button type="button" className="depositeBtn "> Deposit </button></div>
         </>
      );
 }

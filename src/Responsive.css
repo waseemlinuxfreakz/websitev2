@@ -243,15 +243,15 @@
     .swapContainerBox {
         position: relative;
         z-index: 11;
-        margin-right: 6px;
-        margin-left: 6px;
-        padding-right: 6px;
-        padding-left: 6px;
+        margin-right: auto;
+        margin-left: auto;
+        padding-right: 14px;
+        padding-left: 14px;
     }
 
     .swapPayReceive {
-        padding-left: 5px;
-        padding-right: 5px;
+        padding-left: 14px;
+        padding-right: 14px;
     }
 
     .swapMenuContainer .slipageModal:after {
@@ -341,7 +341,13 @@
     }
 
     .poolPageWrap footer#footerArea {
-        padding-bottom: 30px;
+        /* padding-bottom: 30px; */
+    }
+
+    .payReLeft p,
+    .coinNameIcon,
+    .walletBalance {
+        font-size: 14px;
     }
 
 }

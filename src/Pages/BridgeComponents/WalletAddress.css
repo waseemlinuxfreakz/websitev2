@@ -1,23 +1,3 @@
-.wallet_Address {
-    border-radius: 8px;
-    border: 1px solid var(--card-card-border, rgba(97, 100, 107, 0.10));
-    background: var(--background-background-secondary, #1B1D20);
-    padding: 16px;
-    display: flex;
-    align-items: center;
-    margin-bottom: 8px;
-}
-
-.inputAddress {
-    flex-grow: 1;
-    padding-right: 15px;
-}
-
-.inputAddress input {
-    display: block;
-    width: 100%;
-}
-
 .inputAddress input {
     background: transparent;
     border: 0;
@@ -30,6 +10,23 @@
     line-height: 24px;
 }
 
+.inputAddress input {
+    border-radius: 8px;
+    border: 1px solid rgba(97, 100, 107, 0.10);
+    background: #1B1D20;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    display: block;
+    width: 100%;
+}
+
+.inputAddress input:focus {
+    border-radius: 8px;
+    border: 1px solid #61646B;
+    background: #1B1D20;
+}
+
 .changeAddress {
     outline: none;
     box-shadow: none;
@@ -39,7 +36,20 @@
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
-    line-height: 20px; /* 142.857% */
+    line-height: 20px;
     letter-spacing: -0.3px;
     color: #53B7FF;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.inputAddress {
+    flex-grow: 1;
+}
+
+.wallet_Address {
+    position: relative;
+    z-index: 1;
 }
