@@ -26,7 +26,7 @@ function PoolPageContainer() {
 
     return ( 
         <div className="poolpageContainer">
-            {showHeaderSearch && <ExplorerHeaderSearch />}
+            {/* {showHeaderSearch && <ExplorerHeaderSearch />} */}
             <YourPool/>
             <PoolTableArea/>
         </div>

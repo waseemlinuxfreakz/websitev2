@@ -454,9 +454,9 @@ const DatatablePage = () => {
             />
           </div>
         </div>
-        <div className="transactionDetailsBottom">
+        {/* <div className="transactionDetailsBottom">
           <TransactionDetails/>
-        </div>
+        </div> */}
       </>
   );
 

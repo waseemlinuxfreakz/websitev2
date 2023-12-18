@@ -5,6 +5,7 @@ import HomePage from './Pages/Home';
 import Bridge from './Pages/Bridge';
 import ExplorerPage from './Pages/Explorer';
 import PoolPage from './Pages/Pool';
+import TransactionDetailsPage from './Pages/TransactionDetailsPage';
 
 import { ALL_CHAINS } from './constants/chains/index';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -37,6 +38,8 @@ function App() {
             <Route path="/bridge" element={<Bridge />} />
             <Route path="/explorer" element={<ExplorerPage />} />
             <Route path="/pool" element={<PoolPage />} />
+            <Route path="/transactionDetails" element={<TransactionDetailsPage />} />
+            
           </Routes>
         </Router>
       </WagmiConfig>
