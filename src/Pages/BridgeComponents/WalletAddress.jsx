@@ -22,13 +22,19 @@ function WalletAddress() {
     const [isChangeVisible, setIsChangeVisivle] = useState(true);
 
     useEffect(() => {
-
         if(bridge.receiver && pattern.test(bridge.receiver)){
             setDestAddress(truncate(bridge.receiver));
             setIsChangeVisivle(true);
         }
-
     },[bridge.receiver]);
+
+    useEffect(() => {
+
+        if(address && !bridge.receiver){
+            dispatch(setReceiver(address));
+        }
+
+    }, [address])
 
     function onChangeClickHandle(e) {
         e.preventDefault();
