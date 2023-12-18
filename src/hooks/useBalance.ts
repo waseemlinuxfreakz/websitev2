@@ -1,5 +1,5 @@
 import { getProvider, addressToAccount } from '../utils';
-import { ChainNameToTypeChainName, SUPPORTED_CHAINS, TChainName, TOKEN_CHAIN_CONTRACT, TTokenName } from '../types';
+import { ChainNameToTypeChainName, SUPPORTED_CHAINS, TChainName, TOKEN_CHAIN_CONTRACT, TOKEN_DECIMALS, TTokenName } from '../types';
 import { useAppDispatch, useAppSelector } from './storage';
 import { useState, useEffect } from 'react';
 import { useAccount, erc20ABI } from 'wagmi';
@@ -19,13 +19,13 @@ export default function useBalance() {
     const [balance, setBalance] = useState<number>(bridge.balance);
     const [balanceTo, setBalanceTo] = useState<number>(bridge.balance);
 
-    const [provider, setProvider] = useState(getProvider(ChainNameToTypeChainName[bridge.fromChain]));
-    const [providerTo, setProviderTo] = useState(getProvider(ChainNameToTypeChainName[bridge.toChain]));
-
     async function getCoinBalance(direction: TDirection) {
         try {
 
-            const p = direction == 'from' ? provider : providerTo;
+            const provider = direction == 'from'
+                ? getProvider(ChainNameToTypeChainName[bridge.fromChain])
+                : getProvider(ChainNameToTypeChainName[bridge.toChain]);
+            
             const addr = direction == 'from'
                 ? addressToAccount(address as string)
                 : addressToAccount(bridge.receiver);
@@ -33,6 +33,7 @@ export default function useBalance() {
             const bal = await provider.getBalance({
                 address: addr
             });
+
             if (bal) {
                 return Number(bal.toString());
             }
@@ -47,19 +48,25 @@ export default function useBalance() {
     async function getTokenBalance(direction: TDirection) {
         try {
 
-            const p = direction == 'from' ? provider : providerTo;
+            const provider = direction == 'from'
+                ? getProvider(ChainNameToTypeChainName[bridge.fromChain])
+                : getProvider(ChainNameToTypeChainName[bridge.toChain]);
+
             const addr = direction == 'from'
                 ? addressToAccount(address as string)
                 : addressToAccount(bridge.receiver);
+
             const tokenAddress: string = direction == 'from'
                 ? TOKEN_CHAIN_CONTRACT["USDC"][ChainNameToTypeChainName[bridge.fromChain]]
-                : TOKEN_CHAIN_CONTRACT["USDC"][ChainNameToTypeChainName[bridge.toChain]]
-            const bal = await p.readContract({
+                : TOKEN_CHAIN_CONTRACT["USDC"][ChainNameToTypeChainName[bridge.toChain]];
+
+            const bal = await provider.readContract({
                 abi: erc20ABI,
                 address: addressToAccount(tokenAddress),
                 functionName: 'balanceOf',
                 args: [addr]
             });
+
             if (bal) {
                 return Number(bal.toString());
             }
@@ -77,8 +84,6 @@ export default function useBalance() {
             const chain = SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]];
             const decimals = chain.nativeCurrency.decimals;
 
-            setProvider(getProvider(ChainNameToTypeChainName[bridge.fromChain]));
-
             if (bridge.fromToken === chain.nativeCurrency.symbol) {
                 (async () => {
                     const bal: number = await getCoinBalance('from');
@@ -94,7 +99,7 @@ export default function useBalance() {
             } else {
                 (async () => {
                     const bal: number = await getTokenBalance('from');
-                    const formattedBalance = bal / 10 ** Number(bridge.decimals);
+                    const formattedBalance = bal / 10 ** Number(TOKEN_DECIMALS[bridge.fromToken as TTokenName]);
                     setBalance(formattedBalance);
                     dispatch(setBridgeBalance(formattedBalance));
                     dispatch(setBridgeError(''));
@@ -107,16 +112,14 @@ export default function useBalance() {
 
 
         }
-    }, [bridge.fromChain, bridge.fromToken]);
+    }, [bridge.fromChain, bridge.fromToken, bridge.amount]);
 
     useEffect(() => {
 
-        if(bridge.toChain && bridge.toToken){
+        if (bridge.toChain && bridge.toToken && bridge.receiver) {
 
             const chain = SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.toChain]];
             const decimals = chain.nativeCurrency.decimals;
-
-            setProviderTo(getProvider(ChainNameToTypeChainName[bridge.toChain]));
 
             if (bridge.toToken === chain.nativeCurrency.symbol) {
                 (async () => {
@@ -133,7 +136,7 @@ export default function useBalance() {
             } else {
                 (async () => {
                     const bal: number = await getTokenBalance('to');
-                    const formattedBalance = bal / 10 ** Number(bridge.decimals);
+                    const formattedBalance = bal / 10 ** Number(TOKEN_DECIMALS[bridge.fromToken as TTokenName]);
                     setBalanceTo(formattedBalance);
                     dispatch(setBridgeToBalance(formattedBalance));
                     dispatch(setBridgeError(''));
@@ -146,7 +149,7 @@ export default function useBalance() {
 
         }
 
-    }, [bridge.toChain, bridge.toToken]);
+    }, [bridge.toChain, bridge.toToken, bridge.receiver]);
 
     return { fromBalance: balance, toBalance: balanceTo }
 

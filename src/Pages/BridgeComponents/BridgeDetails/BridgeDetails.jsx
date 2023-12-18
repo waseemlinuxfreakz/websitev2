@@ -7,19 +7,16 @@ import BridgingTimeEstimation from './BridgingTimeEstimation';
 
 import { useAppSelector } from '../../../hooks/storage';
 import { bnWithoutDecimals } from '../../../utils/bnWithoutDecimals';
+import useBridgeAllowance from '../../../hooks/useAllowance';
 
 function BridgeDetails() {
 
     const bridge = useAppSelector((state) => state.bridge);
+    const { allowance } = useBridgeAllowance()
 
     const [tokenName, setTokenName] = React.useState(bridge.fromToken);
-    const [allowance, setAllowance] = React.useState(bridge.allowance);
 
     React.useEffect(() => {setTokenName(bridge.fromToken);}, [bridge.fromToken]);
-
-    React.useEffect(() => {
-        setAllowance(bnWithoutDecimals(bridge.allowance, bridge.decimals));
-    }, [bridge.allowance, bridge.amount, bridge.fromChain, bridge.fromToken]);
 
     return ( 
         <div className="bridgeDetails">
@@ -32,7 +29,7 @@ function BridgeDetails() {
                 </div>
                 <div className="detialItemRight">
                     <img src={CheckGreen} alt="CheckGreen" />
-                    {allowance} {tokenName}
+                    {bnWithoutDecimals(allowance, 6)} {tokenName}
                 </div>
             </div>
         </div>

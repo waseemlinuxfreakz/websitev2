@@ -1,6 +1,7 @@
 import { Hash } from "viem";
 
 export function addressToAccount(address: string): Hash {
+    // console.log("addressToAccount:address", address)
     if (!address) return '0x';
     return `0x${address.replace('0x', '')}`;
 }
@@ -11,6 +12,7 @@ export function addressToAccount(address: string): Hash {
  * @returns a bytes32 zero-padded representaiton of address
  */
 export function addressToBytes32(address: string): Hash {
+    // console.log("addressToBytes32:address", address)
     // "0x" + 24 zeros + Rest of the address string with leading "0x" trimmed
     return (addressToAccount(
         '000000000000000000000000' +

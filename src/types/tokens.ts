@@ -52,3 +52,12 @@ export const SUPPORTED_TOKENS = {
 }
 
 export type TTokenName = keyof typeof SUPPORTED_TOKENS;
+
+export const TOKEN_DECIMALS = {
+    DAI: 18,
+    USDC: 6,
+    ETH: 18,
+    USDT:18,
+    WBTC:18
+
+}

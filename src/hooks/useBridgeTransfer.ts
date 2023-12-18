@@ -45,26 +45,35 @@ export default function useBridgeTransfer() {
 
 
     useEffect(() => {
-        setChainId(CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.fromChain]]);
-        setBridgeAddress(SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]].bridge);
+        if(bridge.fromChain){
+            setChainId(CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.fromChain]]);
+            setBridgeAddress(SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]].bridge);
+        }
     }, [bridge.fromChain]);
 
     useEffect(() => {
-        setTokenName(bridge.fromToken as TTokenName);
+        if(bridge.fromToken){
+            setTokenName(bridge.fromToken as TTokenName);
+        }
     }, [bridge.fromToken]);
 
     useEffect(() => {
-        setDecimals(bridge.decimals ? BigInt(bridge.decimals) : 18n);
-        setFormattedAmount(BigInt(Number(bridge.amount) * 10 ** Number(decimals.toString())));
+        if(bridge.decimals){
+            setDecimals(bridge.decimals ? BigInt(bridge.decimals) : 18n);
+            setFormattedAmount(BigInt(Number(bridge.amount) * 10 ** Number(decimals.toString())));
+        }
     }, [bridge.decimals]);
 
     useEffect(() => {
-        setDestinationDomain(ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]]);
+        if(bridge.toChain){
+            setDestinationDomain(ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]]);
+        }
     }, [bridge.toChain]);
 
     useEffect(() => {
+        if(bridge.receiver)
         setMintRecipient(addressToBytes32(addressToAccount(bridge.receiver)));
-    }, []);
+    }, [bridge.receiver]);
 
 
     // @ts-ignore

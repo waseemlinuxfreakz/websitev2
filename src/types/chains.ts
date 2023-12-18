@@ -26,10 +26,17 @@ export const SUPPORTED_CHAINS = {
         name:"Arbitrum",
         rpcUrls:{
             default: {
-                http:["https://endpoints.omniatech.io/v1/arbitrum/goerli/public"]
+                http:["https://arbitrum-goerli.blockpi.network/v1/rpc/public"]
             },
             public: {
-                http:["https://endpoints.omniatech.io/v1/arbitrum/goerli/public"]
+                http:[
+                    "https://arbitrum-goerli.public.blastapi.io",
+                    "https://arb-goerli.g.alchemy.com/v2/demo",
+                    "https://endpoints.omniatech.io/v1/arbitrum/goerli/public",
+                    "https://arbitrum-goerli.blockpi.network/v1/rpc/public",
+                    "https://rpc.goerli.arbitrum.gateway.fm",
+                    "https://arbitrum-goerli.public.blastapi.io",
+                ]
             }
         }
     },
@@ -40,10 +47,17 @@ export const SUPPORTED_CHAINS = {
         name:"Avalanche",
         rpcUrls:{
             default: {
-                http:["https://rpc.ankr.com/avalanche_fuji"]
+                http:["https://ava-testnet.public.blastapi.io/ext/bc/C/rpc"]
             },
             public: {
-                http:["https://rpc.ankr.com/avalanche_fuji"]
+                http:[
+                    "https://avalanche-fuji-c-chain.publicnode.com",
+                    "https://ava-testnet.public.blastapi.io/ext/bc/C/rpc",
+                    "https://avalanche-fuji.blockpi.network/v1/rpc/public",
+                    "https://rpc.ankr.com/avalanche_fuji",
+                    "https://endpoints.omniatech.io/v1/avax/fuji/public",
+                    "https://api.avax-test.network/ext/bc/C/rpc",
+                ]
             }
         }
     },
@@ -57,7 +71,14 @@ export const SUPPORTED_CHAINS = {
                 http:["https://base-goerli.blockpi.network/v1/rpc/public"]
             },
             public: {
-                http:["https://base-goerli.blockpi.network/v1/rpc/public"]
+                http:[
+                    "https://endpoints.omniatech.io/v1/base/goerli/public",
+                    "https://base-goerli.blockpi.network/v1/rpc/public",
+                    "https://goerli.base.org",
+                    "https://gateway.tenderly.co/public/base-goerli",
+                    "https://base-goerli.publicnode.com",
+                    "https://goerli.base.org",
+                ]
             }
         }
     },
@@ -68,10 +89,19 @@ export const SUPPORTED_CHAINS = {
         name:"Goerli",
         rpcUrls:{
             default: {
-                http:["https://eth-goerli.public.blastapi.io"]
+                http:["https://rpc.goerli.eth.gateway.fm"]
             },
             public: {
-                http:["https://eth-goerli.public.blastapi.io"]
+                http:[
+                    "https://rpc.goerli.eth.gateway.fm",
+                    "https://ethereum-goerli.publicnode.com",
+                    "https://eth-goerli.public.blastapi.io",
+                    "https://rpc.ankr.com/eth_goerli",
+                    "https://goerli.blockpi.network/v1/rpc/public",
+                    "https://endpoints.omniatech.io/v1/eth/goerli/public",
+                    "https://api.zan.top/node/v1/eth/goerli/public",
+                    "https://eth-goerli.api.onfinality.io/public"
+                ]
             }
         }
     },
@@ -85,7 +115,10 @@ export const SUPPORTED_CHAINS = {
                 http:["https://linea-goerli.blockpi.network/v1/rpc/public"]
             },
             public: {
-                http:["https://linea-goerli.blockpi.network/v1/rpc/public"]
+                http:[
+                    "https://linea-goerli.blockpi.network/v1/rpc/public",
+                    "https://rpc.goerli.linea.build",
+                ]
             }
         }
     },
@@ -99,7 +132,14 @@ export const SUPPORTED_CHAINS = {
                 http:["https://optimism-goerli.publicnode.com"]
             },
             public: {
-                http:["https://optimism-goerli.publicnode.com"]
+                http:[
+                    "https://optimism-goerli.public.blastapi.io",
+                    "https://optimism-goerli.publicnode.com",
+                    "https://goerli.optimism.io",
+                    "https://gateway.tenderly.co/public/optimism-goerli",
+                    "https://endpoints.omniatech.io/v1/op/goerli/public",
+                    "https://optimism-goerli.blockpi.network/v1/rpc/public",
+                ]
             }
         }
     },
@@ -110,10 +150,18 @@ export const SUPPORTED_CHAINS = {
         name:"Polygon",
         rpcUrls:{
             default: {
-                http:["https://polygon-mumbai-pokt.nodies.app"]
+                http:["https://polygon-mumbai.blockpi.network/v1/rpc/public"]
             },
             public: {
-                http:["https://polygon-mumbai-pokt.nodies.app"]
+                http:[
+                    "https://polygon-mumbai.blockpi.network/v1/rpc/public",
+                    "https://polygon-mumbai-pokt.nodies.app",
+                    "https://polygon-mumbai.gateway.tenderly.co",
+                    "https://polygon-testnet.public.blastapi.io",
+                    "https://polygon-mumbai-bor.publicnode.com",
+                    "https://endpoints.omniatech.io/v1/matic/mumbai/public",
+                    "https://gateway.tenderly.co/public/polygon-mumbai"
+                ]
             }
         }
     },

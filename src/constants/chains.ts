@@ -119,7 +119,14 @@ const ARB_GOERLI: AddEthereumChainParameter = {
         symbol: 'ETH',
         decimals: 18,
     },
-    rpcUrls: ['https://goerli-rollup.arbitrum.io/rpc'],
+    rpcUrls: [
+        "https://arbitrum-goerli.public.blastapi.io",
+        "https://arb-goerli.g.alchemy.com/v2/demo",
+        "https://endpoints.omniatech.io/v1/arbitrum/goerli/public",
+        "https://arbitrum-goerli.blockpi.network/v1/rpc/public",
+        "https://rpc.goerli.arbitrum.gateway.fm",
+        "https://arbitrum-goerli.public.blastapi.io",
+    ],
 }
 
 const AVAX_FUJI: AddEthereumChainParameter = {
@@ -131,7 +138,14 @@ const AVAX_FUJI: AddEthereumChainParameter = {
         symbol: 'AVAX',
         decimals: 18,
     },
-    rpcUrls: ['https://api.avax-test.network/ext/bc/C/rpc'],
+    rpcUrls: [
+        "https://avalanche-fuji-c-chain.publicnode.com",
+        "https://ava-testnet.public.blastapi.io/ext/bc/C/rpc",
+        "https://avalanche-fuji.blockpi.network/v1/rpc/public",
+        "https://rpc.ankr.com/avalanche_fuji",
+        "https://endpoints.omniatech.io/v1/avax/fuji/public",
+        "https://api.avax-test.network/ext/bc/C/rpc",
+    ],
 }
 
 const BASE_GOERLI: AddEthereumChainParameter = {
@@ -139,7 +153,14 @@ const BASE_GOERLI: AddEthereumChainParameter = {
     blockExplorerUrls: ['https://goerli.basescan.org'],
     chainName: 'Base Goerli',
     nativeCurrency: { name: 'Goerli Ether', symbol: 'ETH', decimals: 18 },
-    rpcUrls: ['https://goerli.base.org']
+    rpcUrls: [
+        "https://endpoints.omniatech.io/v1/base/goerli/public",
+        "https://base-goerli.blockpi.network/v1/rpc/public",
+        "https://goerli.base.org",
+        "https://gateway.tenderly.co/public/base-goerli",
+        "https://base-goerli.publicnode.com",
+        "https://goerli.base.org",
+    ]
 }
 
 const ETH_GOERLI: AddEthereumChainParameter = {
@@ -151,7 +172,16 @@ const ETH_GOERLI: AddEthereumChainParameter = {
         symbol: 'gorETH',
         decimals: 18,
     },
-    rpcUrls: ['https://ethereum-goerli.publicnode.com'],
+    rpcUrls: [
+        "https://rpc.goerli.eth.gateway.fm",
+        "https://ethereum-goerli.publicnode.com",
+        "https://eth-goerli.public.blastapi.io",
+        "https://rpc.ankr.com/eth_goerli",
+        "https://goerli.blockpi.network/v1/rpc/public",
+        "https://endpoints.omniatech.io/v1/eth/goerli/public",
+        "https://api.zan.top/node/v1/eth/goerli/public",
+        "https://eth-goerli.api.onfinality.io/public"
+    ],
 }
 
 const OP_GOERLI: AddEthereumChainParameter = {
@@ -159,7 +189,14 @@ const OP_GOERLI: AddEthereumChainParameter = {
     blockExplorerUrls: ['https://goerli-optimism.etherscan.io'],
     chainName: 'Optimism Goerli',
     nativeCurrency: { name: 'Goerli Ether', symbol: 'ETH', decimals: 18 },
-    rpcUrls: ['https://optimism-goerli.publicnode.com']
+    rpcUrls: [
+        "https://optimism-goerli.public.blastapi.io",
+        "https://optimism-goerli.publicnode.com",
+        "https://goerli.optimism.io",
+        "https://gateway.tenderly.co/public/optimism-goerli",
+        "https://endpoints.omniatech.io/v1/op/goerli/public",
+        "https://optimism-goerli.blockpi.network/v1/rpc/public",
+    ]
 }
 
 const POL_MUMABI: AddEthereumChainParameter = {
@@ -167,7 +204,15 @@ const POL_MUMABI: AddEthereumChainParameter = {
     blockExplorerUrls: ['https://mumbai.polygonscan.com'],
     chainName: 'Polygon Mumbai',
     nativeCurrency: { name: 'MATIC', symbol: 'MATIC', decimals: 18 },
-    rpcUrls: ['https://rpc.ankr.com/polygon_mumbai']
+    rpcUrls: [
+        "https://polygon-mumbai.blockpi.network/v1/rpc/public",
+        "https://polygon-mumbai-pokt.nodies.app",
+        "https://polygon-mumbai.gateway.tenderly.co",
+        "https://polygon-testnet.public.blastapi.io",
+        "https://polygon-mumbai-bor.publicnode.com",
+        "https://endpoints.omniatech.io/v1/matic/mumbai/public",
+        "https://gateway.tenderly.co/public/polygon-mumbai"
+    ]
 }
 
 interface ChainIdToChainParameters {

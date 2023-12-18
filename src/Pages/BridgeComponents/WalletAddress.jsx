@@ -3,9 +3,11 @@ import { setReceiver } from '../../store/bridgeSlice';
 import { useAccount } from 'wagmi';
 import { isEvmAddress} from '../../verifiers';
 import { useAppSelector, useAppDispatch } from '../../hooks/storage';
+import { isMobile } from 'react-device-detect';
 
 function WalletAddress() {
 
+    const showDigits = isMobile ? 10 : 14;
     const pattern = /^[0x]{0,2}[0-9a-fA-F]{0,40}$/;
     const dispatch = useAppDispatch();
     const bridge = useAppSelector(state => state.bridge);
@@ -13,7 +15,7 @@ function WalletAddress() {
 
     function truncate(address) {
         return address
-        ? `${address.slice(0, 14)}...${address.slice(-14,)}`
+        ? `${address.slice(0, showDigits)}...${address.slice(-showDigits,)}`
         : '';
     }
     const [destAddress, setDestAddress] = useState(truncate(address));

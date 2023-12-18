@@ -100,7 +100,7 @@ export default function useBridgeAllowance() {
                 dispatch(setBridgeError(undefined));
             }
 
-
+            
         })().catch(e => {
             const formattedError = `useBridgeAllowance Error: ${e}`;
             console.error(formattedError)
