@@ -73,8 +73,14 @@ export const bridgeSlice = createSlice({
         },
         setBridgeAmount(state: IBridgeState, action: PayloadAction<number>) {
             state.amount = action.payload;
-            const slippageAmount = state.amount * state.slippage / 100;
-            state.receive = state.amount - slippageAmount;
+            // If we're bridging the same token
+            if(state.fromToken == state.toToken){
+                state.receive = state.amount;
+            }else{
+                // If we're swapping while bridging a slippage may occur
+                const slippageAmount = state.amount * state.slippage / 100;
+                state.receive = state.amount - slippageAmount;
+            }
         },
         setBridgeBalance(state: IBridgeState, action: PayloadAction<number>){
             state.balance = action.payload;
@@ -116,9 +122,16 @@ export const bridgeSlice = createSlice({
             state.receiver = action.payload;
         },
         setBridgeSlippage(state: IBridgeState, action: PayloadAction<number>) {
-            state.slippage = action.payload;
-            const slippageAmount = Number(state.amount) * state.slippage / 100;
-            state.receive = Number(state.amount) - slippageAmount;
+            // If we're bridging the same token
+            if(state.fromToken == state.toToken){
+                state.slippage = 0;
+                state.receive = state.amount;
+            }else{
+                // If we're swapping while bridging a slippage may occur
+                state.slippage = action.payload;
+                const slippageAmount = Number(state.amount) * state.slippage / 100;
+                state.receive = Number(state.amount) - slippageAmount;
+            }
         },
         setBridgeToChain(state: IBridgeState, action: PayloadAction<string>) {
             state.toChain = action.payload;

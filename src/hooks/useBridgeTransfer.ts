@@ -35,7 +35,7 @@ export default function useBridgeTransfer() {
 
     const [decimals, setDecimals] = useState<bigint>(bridge.decimals ? BigInt(bridge.decimals) : 18n);
 
-    const [formattedAmount, setFormattedAmount] = useState<bigint>(BigInt(Number(bridge.amount) * 10 ** Number(decimals.toString())));
+    const [formattedAmount, setFormattedAmount] = useState<bigint>(BigInt(Number(bridge.amount) * 10 ** Number(decimals.toString())) || 1n);
 
 
     const [destinationDomain, setDestinationDomain] = useState<number>(ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]]);
@@ -60,7 +60,7 @@ export default function useBridgeTransfer() {
     useEffect(() => {
         if(bridge.decimals){
             setDecimals(bridge.decimals ? BigInt(bridge.decimals) : 18n);
-            setFormattedAmount(BigInt(Number(bridge.amount) * 10 ** Number(decimals.toString())));
+            setFormattedAmount(BigInt(Number(bridge.amount) * 10 ** Number(decimals.toString())) || 1n);
         }
     }, [bridge.decimals]);
 
@@ -78,7 +78,7 @@ export default function useBridgeTransfer() {
     useEffect(() => {
 
         if(bridge.amount){
-            setFormattedAmount(BigInt(Number(bridge.amount) * 10 ** Number(decimals.toString())));
+            setFormattedAmount(BigInt(Number(bridge.amount) * 10 ** Number(decimals.toString())) || 1n);
         }
 
     }, [bridge.amount])

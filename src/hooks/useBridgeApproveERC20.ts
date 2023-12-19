@@ -56,7 +56,6 @@ export default function useBridgeApproveERC20() {
     }, [chainName]);
 
     useEffect(() => {
-        console.log("chainName", chainName, "tokenName", tokenName)
         setTokenAddress(addressToAccount(getTokenAddress(chainName, tokenName)))
     }, [tokenName]);
 
