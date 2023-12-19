@@ -56,7 +56,7 @@ function Yourliquidity() {
           <ul className="YourliquidityList">
             <li>
               <div className="LiquidityleftText">
-                LPT avilable
+                LPT Available
               </div>
               <div className="LiquidityrightText">
                 0.003

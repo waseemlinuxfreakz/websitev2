@@ -278,6 +278,44 @@ ul.filterDropList li:not(:first-child) {
         width: 100%;
     }
 
+    .explTransaTop .transactionRight {
+        flex-direction: row;
+    }
+    
+    .explTransaTop .transactionRight .ExplorerTransactionsFilter {
+        width: calc(33.333% - 5px);
+        display: block;
+    }
+    
+    .explTransaTop .filterName {
+        border: 0;
+        padding: 0;
+        margin-bottom: 5px;
+    }
+    
+    .explTransaTop .ExplorerTransactionsFilter.tnxTypeFilter {
+        order: 3;
+        padding: 11px 10px;
+    }
+    
+    .explTransaTop .coinNameIcon {
+        gap: 5px;
+    }
+    
+    .explTransaTop .selectedCoin {
+        gap: 2px;
+    }
+    
+    .explTransaTop .selectedCoin .coinNameIcon span {
+        word-break: break-all;
+        line-height: 1;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1; /* number of lines to show */
+        line-clamp: 1;
+        -webkit-box-orient: vertical;
+    }
+
 }
 
 

@@ -33,7 +33,7 @@ function ExplorerTransactions() {
     }, []);
 
     return ( 
-        <div className="explorerTransactions">
+        <div className="explorerTransactions explTransaTop">
             <ExplorerTransactionsTitle/>
             <div ref={filterDropdownBoxRef} className="filterDropdownBox">
                 {/* <button className="filterDropBTN" onClick={toggleTransactionRight}>
