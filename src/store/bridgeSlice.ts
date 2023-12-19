@@ -33,12 +33,12 @@ export interface IBridgeState {
 }
 
 // FROM
-const fromChain = chainList[0].name;
-const fromToken = coinsData[0].name;
+const fromChain = 'Ethereum';
+const fromToken = 'USDC';
 
 // TO
-const toChain = chainList[chainList.length - 1].name;
-const toToken = coinsData[coinsData.length - 1].name;
+const toChain = 'Avalanche';
+const toToken = fromToken;
 
 const initialState = {
     allowance: 0,
