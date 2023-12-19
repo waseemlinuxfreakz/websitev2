@@ -3,8 +3,12 @@ import SwapMenuBtn from '../../assets/img/Icon-button.svg';
 import SwapMenuBtn2 from '../../assets/img/Icon-button2.svg';
 
 import SlippagePopUp from '../CommonComponents/Slippage/SlippagePopUp';
+import { useAppSelector, useAppDispatch } from '../../hooks/storage';
 
-const SwapContainerMenu = ({parent}) => {
+const SwapContainerMenu = ({ parent }) => {
+
+    const bridge = useAppSelector(state => state.bridge);
+
     const [isModalVisible, setModalVisible] = useState(false);
     const [isActive, setActive] = useState(false);
 
@@ -13,6 +17,8 @@ const SwapContainerMenu = ({parent}) => {
         setActive(!isActive);
         toggleBodyClass(); // Call the function to toggle body class
     };
+
+    const isSlippageButtonInVisible = parent === 'bridge' && bridge.fromToken === bridge.toToken;
 
     const modalRef = useRef(null);
 
@@ -38,8 +44,8 @@ const SwapContainerMenu = ({parent}) => {
     }, []);
 
     return (
-        <>
-            <div className="swapMenuContainer" ref={modalRef}>
+        <> {!isSlippageButtonInVisible
+            ? (<div className="swapMenuContainer" ref={modalRef}>
                 <button
                     className={`swapMenuBtn ${isActive ? 'active' : ''}`}
                     onClick={toggleModal}>
@@ -47,8 +53,11 @@ const SwapContainerMenu = ({parent}) => {
                     <img src={SwapMenuBtn2} alt="SwapMenuBtn" className='closeMenu' />
                 </button>
 
-                {isModalVisible && <SlippagePopUp parent={parent}/> }
-            </div>
+                {isModalVisible && <SlippagePopUp parent={parent} />}
+            </div>)
+            : ''
+        }
+
         </>
     );
 }

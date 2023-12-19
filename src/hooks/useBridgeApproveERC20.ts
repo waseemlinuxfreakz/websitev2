@@ -25,9 +25,9 @@ export default function useBridgeApproveERC20() {
 
     const [chainName, setChainName] = useState<TChainName>(ChainNameToTypeChainName[bridge.fromChain]);
 
-    const [chainId, setChainId] = useState<number>(CHAIN_NAME_TO_ID[ChainNameToTypeChainName[chainName]]);
+    const [chainId, setChainId] = useState<number>(CHAIN_NAME_TO_ID[ChainNameToTypeChainName[ChainNameToTypeChainName[bridge.fromChain]]]);
 
-    const [tokenAddress, setTokenAddress] = useState<Hash>(addressToAccount(getTokenAddress(chainName, tokenName)));
+    const [tokenAddress, setTokenAddress] = useState<Hash>(addressToAccount(getTokenAddress(ChainNameToTypeChainName[bridge.fromChain], tokenName)));
 
     const [decimals, setDecimals] = useState<bigint>(bridge.decimals ? BigInt(bridge.decimals) : 18n);
 
@@ -56,6 +56,7 @@ export default function useBridgeApproveERC20() {
     }, [chainName]);
 
     useEffect(() => {
+        console.log("chainName", chainName, "tokenName", tokenName)
         setTokenAddress(addressToAccount(getTokenAddress(chainName, tokenName)))
     }, [tokenName]);
 
@@ -65,6 +66,7 @@ export default function useBridgeApproveERC20() {
     }, [bridge.decimals]);
 
 
+    // @ts-ignore
     const { config } = usePrepareContractWrite({
         address: addressToAccount(tokenAddress),
         account: address,
@@ -72,7 +74,7 @@ export default function useBridgeApproveERC20() {
         functionName: 'approve',
         args: [addressToAccount(spender), formattedAmount],
         chainId,
-        onError(err) {
+        onError(err: { message: string | undefined; }) {
             dispatch(setBridgeError(err.message));
         }
     });

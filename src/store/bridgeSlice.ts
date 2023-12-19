@@ -1,8 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from './store';
-// Mock Data
-import chainList from './Chain.json';
-import coinsData from './coins.json';
+import { BridgeTokens } from '../types'
 import { TChainType, TokenType } from './types';
 import {filterTwoChains, filterOneToken} from '../utils/filters';
 
@@ -42,7 +40,7 @@ const toToken = fromToken;
 
 const initialState = {
     allowance: 0,
-    alltokens:coinsData,
+    alltokens:BridgeTokens,
     amount: '',
     balance: 0,
     bridgeFee: 0,
