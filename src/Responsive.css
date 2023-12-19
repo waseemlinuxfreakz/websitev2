@@ -155,6 +155,11 @@
         padding-left: 16px;
         padding-right: 16px;
         padding-bottom: 30px;
+        padding-bottom: 100px;
+    }
+
+    .mobileNavContainer::-webkit-scrollbar {
+        display: none;
     }
 
     body.activeMobileMenu {
@@ -329,10 +334,6 @@
     .poolpageContainer {
         padding: 0 16px;
         padding-bottom: 24px;
-    }
-
-    .poolTitlerRight {
-        display: none;
     }
 
     .poolTableArea .poolTableTop.explorerTransactions {

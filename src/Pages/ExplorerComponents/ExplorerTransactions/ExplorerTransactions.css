@@ -59,7 +59,7 @@
     color: #fff !important;
     font-weight: 600;
     font-size: 14px;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
 }
 
 
@@ -314,6 +314,10 @@ ul.filterDropList li:not(:first-child) {
         -webkit-line-clamp: 1; /* number of lines to show */
         line-clamp: 1;
         -webkit-box-orient: vertical;
+    }
+
+    .explorerTransactions.explTransaTop {
+        padding-top: 0;
     }
 
 }

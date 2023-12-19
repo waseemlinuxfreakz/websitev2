@@ -39,25 +39,25 @@ function ExplorerTransactionsTnx() {
         </div>
         {isDropdownOpen && (
           <ul className="filterDropList">
-            <li onClick={() => handleItemClick('allType')}>
+            <li onClick={() => handleItemClick('All type')}>
               <span className="allType">All types</span>
             </li>
-            <li onClick={() => handleItemClick('redeem')}>
+            <li onClick={() => handleItemClick('Redeem')}>
               <span className="redeem">Redeem</span>
             </li>
-            <li onClick={() => handleItemClick('transfer')}>
+            <li onClick={() => handleItemClick('Transfer')}>
               <span className="transfer">Transfer</span>
             </li>
-            <li onClick={() => handleItemClick('deposit')}>
+            <li onClick={() => handleItemClick('Deposit')}>
               <span className="deposit">Deposit</span>
             </li>
-            <li onClick={() => handleItemClick('borrow')}>
+            <li onClick={() => handleItemClick('Borrow')}>
               <span className="borrow">Borrow</span>
             </li>
-            <li onClick={() => handleItemClick('approval')}>
+            <li onClick={() => handleItemClick('Approval')}>
               <span className="approval">Approval</span>
             </li>
-            <li onClick={() => handleItemClick('swap')}>
+            <li onClick={() => handleItemClick('Swap')}>
               <span className="swap">Swap</span>
             </li>
           </ul>

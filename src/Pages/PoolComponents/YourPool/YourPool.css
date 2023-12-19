@@ -157,6 +157,17 @@ span.poolCoin img {
     height: 24px;
 }
 
+.pollRow.row {
+    row-gap: 24px;
+}
+
+.poolBox:empty {
+    height: 100%;
+    border-radius: 16px;
+    border: 1px solid rgba(60, 63, 67, 0.50);
+    background: #111112;
+}
+
 @media (max-width: 1366px) {
     .pollRow.row .col-lg-3 {
         width: 33.3333% !important;
