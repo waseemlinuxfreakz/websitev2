@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { setReceiver } from '../../store/bridgeSlice';
 import { useAccount } from 'wagmi';
-import { isEvmAddress} from '../../verifiers';
+import { isEvmAddress } from '../../verifiers';
 import { useAppSelector, useAppDispatch } from '../../hooks/storage';
 import { isMobile } from 'react-device-detect';
 
@@ -11,26 +11,26 @@ function WalletAddress() {
     const pattern = /^[0x]{0,2}[0-9a-fA-F]{0,40}$/;
     const dispatch = useAppDispatch();
     const bridge = useAppSelector(state => state.bridge);
-    const { address } = useAccount();
+    const { address, isConnected } = useAccount();
 
     function truncate(address) {
         return address
-        ? `${address.slice(0, showDigits)}...${address.slice(-showDigits,)}`
-        : '';
+            ? `${address.slice(0, showDigits)}...${address.slice(-showDigits,)}`
+            : '';
     }
     const [destAddress, setDestAddress] = useState(truncate(address));
     const [isChangeVisible, setIsChangeVisivle] = useState(true);
 
     useEffect(() => {
-        if(bridge.receiver && pattern.test(bridge.receiver)){
+        if (bridge.receiver && pattern.test(bridge.receiver)) {
             setDestAddress(truncate(bridge.receiver));
             setIsChangeVisivle(true);
         }
-    },[bridge.receiver]);
+    }, [bridge.receiver]);
 
     useEffect(() => {
 
-        if(address && !bridge.receiver){
+        if (address && !bridge.receiver) {
             dispatch(setReceiver(address));
         }
 
@@ -59,15 +59,15 @@ function WalletAddress() {
         setIsChangeVisivle(false);
     }
 
-    return (
-        <div className="wallet_Address">
+    return (<>{isConnected
+        ? (<div className="wallet_Address">
             <div className="inputAddress Disenable">
                 <input
                     onChange={onChangeClickHandle}
                     value={destAddress}
                     type="text"
                     placeholder="Paste the receiver address"
-                    // style={{"textAlign":"center"}}
+                // style={{"textAlign":"center"}}
                 />
             </div>
             <button
@@ -77,7 +77,10 @@ function WalletAddress() {
             >
                 Change
             </button>
-        </div>
+        </div>)
+        : ''}
+    </>
+
     );
 }
 
