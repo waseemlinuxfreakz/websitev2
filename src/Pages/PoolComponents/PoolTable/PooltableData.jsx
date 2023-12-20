@@ -84,14 +84,14 @@ const PoolTable = () => {
                     <td dangerouslySetInnerHTML={{ __html: item.APY }} />
                     <td dangerouslySetInnerHTML={{ __html: item.Daily }} />
                     <td dangerouslySetInnerHTML={{ __html: item.TotalLiquidity }} />
-                    <td><button className='addPoll' onClick={handleAddPollClick}><img src="/img/add.svg" alt="Add" /></button></td>
+                    <td><a href='./pool/your-liquidity' className='addPoll' onClick={handleAddPollClick}><img src="/img/add.svg" alt="Add" /></a></td>
                     
                 </tr>
                 ))}
             </tbody>
           </table>
       </div>
-      {isYourLiquidityVisible && <Yourliquidity />}
+      {/* {isYourLiquidityVisible && <Yourliquidity />} */}
     </>
   );
 };

@@ -15,10 +15,10 @@ function YourPoolTitle() {
                     <p>Total fee earnings: $330,843,482.47</p>
                 </div>
                 <div className="poolTitlerRight">
-                    <button className="addLiquidity"  onClick={handleAddPollClick}>Add liquidity</button>
+                    <a href='./pool/your-liquidity' className="addLiquidity"  onClick={handleAddPollClick}>Add liquidity</a>
                 </div>
             </div>
-            {isYourLiquidityVisible && <Yourliquidity />}
+            {/* {isYourLiquidityVisible && <Yourliquidity />} */}
         </>
     );
 }

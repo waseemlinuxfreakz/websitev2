@@ -3,7 +3,7 @@ import Down from '../../../assets/img/down-white.svg';
 
 function ExplorerTransactionsTnx() {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState('All types');
+  const [selectedItem, setSelectedItem] = useState('All Types');
   const dropdownRef = useRef(null);
 
   const toggleDropdown = () => {
@@ -39,8 +39,8 @@ function ExplorerTransactionsTnx() {
         </div>
         {isDropdownOpen && (
           <ul className="filterDropList">
-            <li onClick={() => handleItemClick('All type')}>
-              <span className="allType">All types</span>
+            <li onClick={() => handleItemClick('All Types')}>
+              <span className="allType">All Types</span>
             </li>
             <li onClick={() => handleItemClick('Redeem')}>
               <span className="redeem">Redeem</span>

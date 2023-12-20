@@ -24,7 +24,7 @@ function Yourliquidity() {
       <div className="yourliquidity">
         <div className="YourliquidityTop">
           <h2>Your liquidity</h2>
-          <img src={Close} alt="Close" className="closeLiquidity" onClick={handleCloseClick} />
+          <img src={Close} alt="Close" className="closeLiquidity"/>
         </div>
         <div className="toggleLiquidity">
           <button

@@ -6,11 +6,11 @@ import Sidebar from '../HeaderFooterSidebar/Sidebar';
 import MobileHeader from '../HeaderFooterSidebar/MobileHeader';
 import SidebarSlider from '../HeaderFooterSidebar/SidebarComponent/SidebarSlider';
 
-import PoolPageContainer from './PoolComponents/PoolPageContainer';
+import Yourliquidity from './PoolComponents/PoolTable/Yourliquidity';
 
 
 
-const PoolPage = () => {
+const YourLiquidityPage = () => {
   
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
 
@@ -35,7 +35,7 @@ const PoolPage = () => {
             <div className="MobilePageContainer poolPageWrap">
                 <div className="mobileArea" id='mobileContainer'>
                     <MobileHeader/>
-                    <PoolPageContainer/>
+                    <Yourliquidity/>
                     <SidebarSlider/>
                     <Footer/>
                 </div>
@@ -48,11 +48,11 @@ const PoolPage = () => {
                     </div>
                     <div className="mainWrap">
                             <Header
-                                caption="Pool"
+                                caption="Liquidity"
                             />
                         <div className="pageContent">
                             <div className="swapContainerArea">
-                                <PoolPageContainer/>
+                                <Yourliquidity/>
                             </div>
                         </div>
                         <Footer/>
@@ -64,4 +64,4 @@ const PoolPage = () => {
     );
   };
   
-  export default PoolPage;
+  export default YourLiquidityPage;

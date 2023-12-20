@@ -28,16 +28,16 @@
     font-weight: 600;
     line-height: 20px; /* 142.857% */
     letter-spacing: -0.3px;
+    color: #191B1E;
 }
 
 .poolBox {
     border-radius: 16px;
-    border-top: 1px solid var(--Text-Text-helper, #B3B7BF);
-    border-right: 1px solid var(--Text-Text-helper, #B3B7BF);
-    border-bottom: 4px solid var(--Text-Text-helper, #B3B7BF);
-    border-left: 1px solid var(--Text-Text-helper, #B3B7BF);
-    background: var(--Background-Background-primary, #191B1E);
+    /* border: 1px solid var(--Text-Text-helper, #B3B7BF); */
+    /* background: var(--Background-Background-primary, #191B1E); */
     padding: 16px;
+    border: 1px solid var(--Stroke-Stroke-primary, #3C3F43);
+    background: var(--Background-Background-primary, #191B1E);
 }
 
 .poolboxTop {

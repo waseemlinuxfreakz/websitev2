@@ -37,7 +37,7 @@ function PoolMobileData() {
                             <h3>0.6%</h3>
                         </div>
                         <div className="addDeposit">
-                            <button className="addDepositBtn" onClick={handleAddPollClick}>+ Add deposit</button>
+                            <a href='./pool/your-liquidity' className="addDepositBtn" onClick={handleAddPollClick}>+ Add deposit</a>
                         </div>
                     </div>
                 </div>
@@ -66,7 +66,7 @@ function PoolMobileData() {
                             <h3>0.6%</h3>
                         </div>
                         <div className="addDeposit">
-                            <button className="addDepositBtn" onClick={handleAddPollClick}>+ Add deposit</button>
+                            <a href='./pool/your-liquidity' className="addDepositBtn" onClick={handleAddPollClick}>+ Add deposit</a>
                         </div>
                     </div>
                 </div>
@@ -95,7 +95,7 @@ function PoolMobileData() {
                             <h3>0.6%</h3>
                         </div>
                         <div className="addDeposit">
-                            <button className="addDepositBtn" onClick={handleAddPollClick}>+ Add deposit</button>
+                            <a href='./pool/your-liquidity' className="addDepositBtn" onClick={handleAddPollClick}>+ Add deposit</a>
                         </div>
                     </div>
                 </div>
@@ -124,13 +124,13 @@ function PoolMobileData() {
                             <h3>0.6%</h3>
                         </div>
                         <div className="addDeposit">
-                            <button className="addDepositBtn" onClick={handleAddPollClick}>+ Add deposit</button>
+                            <a href='./pool/your-liquidity' className="addDepositBtn" onClick={handleAddPollClick}>+ Add deposit</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        {isYourLiquidityVisible && <Yourliquidity />}
+        {/* {isYourLiquidityVisible && <Yourliquidity />} */}
         <div className="mobileDeposite"><button type="button" className="depositeBtn "> Deposit </button></div>
         </>
      );

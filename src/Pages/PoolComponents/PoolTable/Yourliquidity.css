@@ -1,11 +1,12 @@
 .yourliquidityArea {
-    padding-top: 24px;
-    padding-bottom: 24px;
+    padding-top: 12px;
+    padding-bottom: 12px;
     position: fixed;
+    position: relative;
     z-index: 999999999;
     left: 0;
-    height: 100vh;
-    max-height: 100vh;
+    /* height: 100vh; */
+    /* max-height: 100vh; */
     overflow: auto;
     bottom: 0;
     right: 0;

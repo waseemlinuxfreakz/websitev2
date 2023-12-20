@@ -940,3 +940,7 @@ div#root {
 .EthereumTop ul.selectCoinList {
     right: 0;
 }
+
+.deskPoolPageWrap .explorerSearch {
+    display: none;
+}

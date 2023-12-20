@@ -6,6 +6,9 @@ import Bridge from './Pages/Bridge';
 import ExplorerPage from './Pages/Explorer';
 import PoolPage from './Pages/Pool';
 import TransactionDetailsPage from './Pages/TransactionDetailsPage';
+import Yourliquidity from './Pages/PoolComponents/PoolTable/Yourliquidity';
+import YourLiquidityPage from './Pages/YourLiquidityPage';
+
 
 import { ALL_CHAINS } from './constants/chains/index';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -37,8 +40,10 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/bridge" element={<Bridge />} />
             <Route path="/explorer" element={<ExplorerPage />} />
-            <Route path="/pool" element={<PoolPage />} />
             <Route path="/transactionDetails" element={<TransactionDetailsPage />} />
+            <Route path="/pool" element={<PoolPage />} />
+            <Route path="/pool/your-liquidity" element={<YourLiquidityPage />} />
+            
             
           </Routes>
         </Router>
