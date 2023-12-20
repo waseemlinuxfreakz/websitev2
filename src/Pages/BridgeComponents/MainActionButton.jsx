@@ -17,7 +17,7 @@ function MainActionButton() {
     const [caption, setCaption] = useState('');
 
     const {approve, isApproveSuccess, isApproveLoading} = useBridgeApproveERC20();
-    const {transfer} = useBridgeTransfer();
+    const {transfer, istransferLoading, istransferSuccess} = useBridgeTransfer();
 
     // has enough allowance?
     const { isApprovalRequired } = useBridgeAllowance();
@@ -48,7 +48,7 @@ function MainActionButton() {
             setCaption('Conect wallet')
         }
 
-    }, [isConnected, bridge.amount, isApprovalRequired]);
+    }, [isConnected, bridge.amount, bridge.allowance]);
 
 
 
@@ -60,6 +60,7 @@ function MainActionButton() {
                 approve();
             }else{
                 if(transfer){
+                    console.log("onClickSelectAction:tranfer-click")
                     transfer();
                 }
                 

@@ -44,7 +44,7 @@ export const ChainToDestinationDomain = {
 
 export const ChainToBridge = {
     arbitrum: "",
-    avalanche: "",
+    avalanche: "0xbbbC5D74407Eb87D929b1eBA18ACbb95E11B219F",
     base: "",
     goerli: "0x750B52c82596C7b6489C207b87adcf56Fe4a3ABe",
     linea: "",

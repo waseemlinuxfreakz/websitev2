@@ -6,7 +6,7 @@ import {
     useAccount,
 } from 'wagmi';
 import { Hash } from 'viem';
-import { setBridgeError } from '../store/bridgeSlice';
+import { setBridgeError, setBridgeAmount, setBridgeAllowance } from '../store/bridgeSlice';
 import { useAppDispatch, useAppSelector } from './storage';
 import { useEffect, useState } from 'react';
 import { circleBurner } from '../abis/circleBurner';
@@ -107,9 +107,12 @@ export default function useBridgeTransfer() {
 
     const { data, isLoading, isSuccess, write } = useContractWrite(config);
 
-    if (data) {
-        console.log("useBridgeTransfer:data:", data)
-    }
+    useEffect(() => {
+        if (data) {
+            console.log("useBridgeTransfer:data:", data)
+        }
+    }, [data]);
+    
 
     return { transferData: data, istransferLoading: isLoading, istransferSuccess: isSuccess, transfer: write };
 

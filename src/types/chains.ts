@@ -41,7 +41,7 @@ export const SUPPORTED_CHAINS = {
         }
     },
     avalanche: {
-        bridge:"",
+        bridge:"0xbbbC5D74407Eb87D929b1eBA18ACbb95E11B219F",
         icon:"",
         ...avalancheFuji,
         name:"Avalanche",

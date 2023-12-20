@@ -12,7 +12,7 @@ import useBridgeAllowance from '../../../hooks/useAllowance';
 function BridgeDetails() {
 
     const bridge = useAppSelector((state) => state.bridge);
-    
+
     const { allowance } = useBridgeAllowance()
 
     const [tokenName, setTokenName] = React.useState(bridge.fromToken);
