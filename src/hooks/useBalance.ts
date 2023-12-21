@@ -25,7 +25,7 @@ export default function useBalance() {
             const provider = direction == 'from'
                 ? getProvider(ChainNameToTypeChainName[bridge.fromChain])
                 : getProvider(ChainNameToTypeChainName[bridge.toChain]);
-            
+
             const addr = direction == 'from'
                 ? addressToAccount(address as string)
                 : addressToAccount(bridge.receiver);
@@ -73,13 +73,14 @@ export default function useBalance() {
             return 0;
 
         } catch (error) {
+            console.log("useBalance:getTokenBalance", error)
             return 0;
         }
 
     }
 
     useEffect(() => {
-        if (bridge.fromChain && bridge.fromToken) {
+        if (bridge.fromChain && bridge.fromToken && address) {
 
             const chain = SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]];
             const decimals = chain.nativeCurrency.decimals;
@@ -112,7 +113,7 @@ export default function useBalance() {
 
 
         }
-    }, [bridge.fromChain, bridge.fromToken, bridge.amount]);
+    }, [bridge.fromChain, bridge.fromToken, bridge.amount, address]);
 
     useEffect(() => {
 

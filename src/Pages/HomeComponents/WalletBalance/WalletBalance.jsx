@@ -8,7 +8,7 @@ import { getTokenAddress } from '../../../constants/tokens.ts';
 
 export default function WalletBalance({ name, parent, balance }) {
 
-    const [balanceSwap, setBalance] = useState('0');
+    const [balanceSwap, setBalance] = useState('0.00');
 
     const account = getAccount();
     const { chain } = getNetwork();
@@ -40,7 +40,6 @@ export default function WalletBalance({ name, parent, balance }) {
         }
 
     }, [account, chain, tokenAddress]);
-
 
     return (
         <div className="walletBalance">

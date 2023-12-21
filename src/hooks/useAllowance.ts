@@ -32,7 +32,7 @@ export default function useBridgeAllowance() {
 
         (async () => {
 
-            if(isConnected && bridge.amount && bridge.fromChain && bridge.fromToken){
+            if(isConnected && bridge.fromChain && bridge.fromToken){
 
                 const tokenAddress = addressToAccount(getTokenAddress(
                     ChainNameToTypeChainName[bridge.fromChain],
