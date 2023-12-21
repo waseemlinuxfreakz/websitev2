@@ -3,7 +3,6 @@ import TransactionDetailsBreadcrumb from './TransactionDetailsBreadcrumb';
 import TransactionHash from './TransactionHash';
 import TransactionDetailsArea from './TransactionDetailsBox';
 
-import './TransactionDetails.css';
 
 function TransactionDetails() {
     return ( 

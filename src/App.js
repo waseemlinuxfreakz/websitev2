@@ -43,8 +43,6 @@ function App() {
             <Route path="/transactionDetails" element={<TransactionDetailsPage />} />
             <Route path="/pool" element={<PoolPage />} />
             <Route path="/pool/your-liquidity" element={<YourLiquidityPage />} />
-            
-            
           </Routes>
         </Router>
       </WagmiConfig>

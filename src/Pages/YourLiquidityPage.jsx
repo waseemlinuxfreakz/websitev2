@@ -41,17 +41,22 @@ const YourLiquidityPage = () => {
                 </div>
             </div>
         ) : (
-            <div className="pageContainer deskPoolPageWrap">
+            <div className="pageContainer deskPoolPageWrap addLiquidityPage">
+                
                 <div className="pageContentRow" id='desktopContainer'>
                     <div className="sidebarArea">
                         <Sidebar/>
                     </div>
                     <div className="mainWrap">
                             <Header
-                                caption="Liquidity"
+                                caption="Liquidity pool"
                             />
                         <div className="pageContent">
                             <div className="swapContainerArea">
+                                <ul className="breadcum">
+                                    <li><a href="/pool">All pools</a></li>
+                                    <li>Add liquidity</li>
+                                </ul>
                                 <Yourliquidity/>
                             </div>
                         </div>

@@ -223,6 +223,13 @@ ul.YourliquidityList {
     display: none;
 }
 
+.addLiquidityPage .mainWrap {
+    background-image: none;
+}
+
+.addLiquidityPage ul.breadcum {
+    margin-bottom: 4px;
+}
 
 @media only screen and (max-width: 1025px) {
 
