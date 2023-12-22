@@ -1,34 +1,50 @@
-import React from 'react';
-
-import Ethereum from '../../assets/img/Ethereum.svg';
-import ETH from '../../assets/img/coin/eth.svg';
-import Emmet from '../../assets/img/coin/emmet.svg';
-import Scroll from '../../assets/img/coin/scoll.svg';
-import Op from '../../assets/img/coin/op.svg';
-import USDC from '../../assets/img/coin/usdc.svg';
-import DIA from '../../assets/img/coin/dai.svg';
+import React, {useEffect, useState} from 'react';
 import Success from '../../assets/img/Success-Flower.svg';
 
+import { useAppSelector } from '../../hooks/storage';
+import { findChain } from '../../utils';
+import {ChainNameToTypeChainName}   from '../../types';
+import TransactionCountUp from './TransactionCountUp';
+import useBridgeSuccess from '../../hooks/useBridgeSuccess';
 
 function TransactionProgress() {
+
+    const bridge = useAppSelector((state) => state.bridge);
+    const isSuccess = useBridgeSuccess();
+
+    const [fromChain, setFromChain] = useState(findChain(ChainNameToTypeChainName[bridge.fromChain]));
+    const [toChain, setToChain] = useState(findChain(ChainNameToTypeChainName[bridge.toChain]));
+
+    useEffect(() => {
+        if(bridge.fromChain){
+            setFromChain(findChain(ChainNameToTypeChainName[bridge.fromChain]));
+        }
+    },[bridge.fromChain]);
+
+    useEffect(() => {
+        if(bridge.toChain){
+            setToChain(findChain(ChainNameToTypeChainName[bridge.toChain]));
+        }
+    },[bridge.toChain]);
+
     return ( 
-        // Add this class for Success Message ".progressSuccess"
-        <div className="progressBox">
+        
+        <div className={`progressBox ${isSuccess && "progressSuccess"}`}>
             <div className="fromProgress">
-                <img src={Op} alt="Op" />
+                <img src={fromChain.icon} alt={fromChain.name} />
             </div>
                 <div className="progressDetails">
                     <div className='progressTitle'>
                         <p className='FirstText'>Transaction in progress</p>
                         <p className="successText">
-                            <img src={Success} alt="Success" />
-                            Success transaction!
+                            <img src={Success} alt="Success"/>
+                            Successful transaction!
                         </p>
                     </div>
-                    <h5>00h 00m 05s</h5>
+                    <TransactionCountUp />
                 </div>
             <div className="toProgress">
-                <img src={ETH} alt="ETH" />
+                <img src={toChain.icon} alt={toChain.name} />
             </div>
         </div>
      );

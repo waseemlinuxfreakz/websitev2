@@ -20,7 +20,10 @@ export interface IBridgeState {
     fromTokens: TokenType[],
     isFailure: boolean,
     isLoading: boolean,
+    isReset: boolean,
+    isRunning: boolean,
     isSuccess: boolean,
+    isTransferProgressVisible: boolean,
     receive: number | string,
     receiver: string,
     slippage: number,
@@ -55,7 +58,10 @@ const initialState = {
     fromTokens: filterOneToken(fromToken),
     isFailure: false,
     isLoading: false,
+    isReset: false,
+    isRunning: false,
     isSuccess: false,
+    isTransferProgressVisible: true,
     receive: '',
     receiver: "",
     slippage: 0.5,
@@ -127,6 +133,16 @@ export const bridgeSlice = createSlice({
         setBridgeIsLoading(state: IBridgeState, action: PayloadAction<boolean>) {
             state.isLoading = action.payload;
         },
+        setBridgeIsReset(state: IBridgeState, action: PayloadAction<boolean>){
+            // Resets the transaction timer to zero
+            state.isReset = action.payload;
+            if(state.isReset){state.isRunning = false}
+        },
+        setBridgeIsRunning(state: IBridgeState, action: PayloadAction<boolean>){
+            // Stops the transaction timer
+            state.isRunning = action.payload;
+            if(state.isRunning){state.isReset = false}
+        },
         setBridgeIsSuccess(state: IBridgeState, action: PayloadAction<boolean>) {
             state.isSuccess = action.payload;
         },
@@ -170,6 +186,21 @@ export const bridgeSlice = createSlice({
             state.toToken = fromToken;
             state.fromChains = filterTwoChains(state.fromChain, state.toChain);
             state.toChains = filterTwoChains(state.fromChain, state.toChain);
+        },
+        resetBridgeProgress(state:IBridgeState){
+            state.isTransferProgressVisible = false;
+            state.isFailure = false;
+            state.isLoading = false;
+            state.isSuccess = false;
+            state.isRunning = false;
+            state.isReset = true;
+        },
+        showBridgeProgress(state:IBridgeState){
+            state.isTransferProgressVisible = true;
+            state.isReset = false;
+            state.isRunning = true;
+            state.isFailure = false;
+            state.isSuccess = false;
         }
     },
     extraReducers(builder: any) {
@@ -191,12 +222,16 @@ export const {
     setFromContractAddress,
     setBridgeIsFailure,
     setBridgeIsLoading,
+    setBridgeIsReset,
+    setBridgeIsRunning,
     setReceiver,
     setBridgeIsSuccess,
     setBridgeSlippage,
     setBridgeToChain,
     setBridgeToBalance,
     swapBridgeChainsAndTokens,
+    resetBridgeProgress,
+    showBridgeProgress,
 } = bridgeSlice.actions;
 
 export default bridgeSlice.reducer;

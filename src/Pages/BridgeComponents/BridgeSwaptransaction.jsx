@@ -2,20 +2,20 @@ import React, {useEffect, useState} from 'react';
 import TrackExplorer from './TrackExplorer';
 import TransactionInformation from './TransactionInformation';
 import TransactionProgress from './TransactionProgress'
-import TransactionProgressSuccess from './TransactionProgressSuccess'
 import BridgeTransactionDetails from './BridgeTransactionDetails';
 import BridgeTransactionTop from './BridgeTransactionTop';
 
-
+import { useAppSelector } from '../../hooks/storage';
 
 
 function BridgeSwapTransaction() {
 
+    const bridge = useAppSelector((state) => state.bridge);
+
     return ( 
         <div className="bridgeSwap swapContainerBox">
             <BridgeTransactionTop/>
-            {/* <TransactionProgress/> */}
-            <TransactionProgressSuccess/>
+            <TransactionProgress/>
             <BridgeTransactionDetails/>
             <TrackExplorer/>
             <TransactionInformation/>

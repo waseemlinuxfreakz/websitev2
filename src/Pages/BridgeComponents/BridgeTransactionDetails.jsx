@@ -1,7 +1,13 @@
 import React from 'react';
 import './BridgeTransactionDetails.css';
+import useBridgeFee from '../../hooks/useBridgeFee';
+import { useAppSelector } from '../../hooks/storage';
 
 function BridgeTransactionDetails() {
+
+    const { nativeCurrency, formattedFee } = useBridgeFee();
+    const bridge = useAppSelector((state) => state.bridge);
+
     return ( 
         <ul className="bridgeTransactionDetails">
             <li className='bridgeTransactionDetailsList'>
@@ -9,15 +15,15 @@ function BridgeTransactionDetails() {
                     You will receive
                 </div>
                 <div className="bridgeTransDetRight">
-                    0.003 ETH
+                    {bridge.receive} {bridge.toToken}
                 </div>
             </li>
             <li className='bridgeTransactionDetailsList'>
                 <div className="bridgeTransDetLeft">
-                    Bridge Fee
+                    Bridging Fee
                 </div>
                 <div className="bridgeTransDetRight">
-                    0.003 ETH
+                {formattedFee && formattedFee.toFixed(6)} {nativeCurrency}
                 </div>
             </li>
             <li className='bridgeTransactionDetailsList'>
@@ -25,15 +31,15 @@ function BridgeTransactionDetails() {
                     Destinations Gas Fee
                 </div>
                 <div className="bridgeTransDetRight">
-                    0.01 ETH
+                    0.001 {nativeCurrency}
                 </div>
             </li>
             <li className='bridgeTransactionDetailsList'>
                 <div className="bridgeTransDetLeft">
-                    Estimated wait time <img src="./img/InfoIcons.svg" alt="InfoIcons" />
+                    Estimated waiting time <img src="./img/InfoIcons.svg" alt="InfoIcons" />
                 </div>
                 <div className="bridgeTransDetRight">
-                    20 min
+                    3 min 30 sec
                 </div>
             </li>
         </ul>

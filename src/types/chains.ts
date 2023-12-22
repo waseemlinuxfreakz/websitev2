@@ -21,7 +21,7 @@ export const SUPPORTED_CHAINS = {
     // Testnet
     arbitrum: {
         bridge:"",
-        icon:"",
+        icon:"img/chain/arbitrum.svg",
         ...arbitrumGoerli,
         name:"Arbitrum",
         rpcUrls:{
@@ -42,7 +42,7 @@ export const SUPPORTED_CHAINS = {
     },
     avalanche: {
         bridge:"0xbbbC5D74407Eb87D929b1eBA18ACbb95E11B219F",
-        icon:"",
+        icon:"img/chain/avalanche.svg",
         ...avalancheFuji,
         name:"Avalanche",
         rpcUrls:{
@@ -63,7 +63,7 @@ export const SUPPORTED_CHAINS = {
     },
     base: {
         bridge:"",
-        icon:"",
+        icon:"img/chain/base.svg",
         ...baseGoerli,
         name:"Base",
         rpcUrls:{
@@ -84,7 +84,7 @@ export const SUPPORTED_CHAINS = {
     },
     goerli: {
         bridge:"0x750B52c82596C7b6489C207b87adcf56Fe4a3ABe", // Temporary
-        icon:"",
+        icon:"img/Ethereum.svg",
         ...goerli,
         name:"Goerli",
         rpcUrls:{
@@ -107,7 +107,7 @@ export const SUPPORTED_CHAINS = {
     },
     linea: {
         bridge:"",
-        icon:"",
+        icon:"img/chain/Linea.svg",
         ...lineaTestnet,
         name:"Linea",
         rpcUrls:{
@@ -124,7 +124,7 @@ export const SUPPORTED_CHAINS = {
     },
     optimism: {
         bridge:"",
-        icon:"",
+        icon:"img/chain/optimism.svg",
         ...optimismGoerli,
         name:"Optimism",
         rpcUrls:{
@@ -145,7 +145,7 @@ export const SUPPORTED_CHAINS = {
     },
     polygon: {
         bridge:"",
-        icon:"",
+        icon:"img/chain/polygon.svg",
         ...polygonMumbai,
         name:"Polygon",
         rpcUrls:{
@@ -167,7 +167,7 @@ export const SUPPORTED_CHAINS = {
     },
     scroll: {
         bridge:"",
-        icon:"",
+        icon:"img/chain/scroll.svg",
         ...scrollSepolia,
         name:"Scroll",
         rpcUrls:{

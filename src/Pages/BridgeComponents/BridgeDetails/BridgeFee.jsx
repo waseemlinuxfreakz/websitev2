@@ -6,10 +6,10 @@ export default function BridgeFee() {
     return (
         <div className="detialItem">
             <div className="detialItemLeft">
-                Bridge Fee
+                Bridging Fee
             </div>
             <div className="detialItemRight">
-                {formattedFee} {nativeCurrency}
+                {formattedFee && formattedFee.toFixed(6)} {nativeCurrency}
             </div>
         </div>
     )

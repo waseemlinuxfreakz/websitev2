@@ -11,20 +11,20 @@ import SidebarSlider from '../HeaderFooterSidebar/SidebarComponent/SidebarSlider
 import SwapSuccess from './HomeComponents/SwapSuccess';
 import SwapFailed from './HomeComponents/SwapFailed';
 import SwapConfirm from './HomeComponents/SwapConfirm';
-import useBridgeSuccess from '../hooks/useBridgeSuccess';
 import useBridgeFailure from '../hooks/useBridgeFailure';
 import TransactionProgress from './BridgeComponents/TransactionProgress';
-import TransactionProgressSuccess from './BridgeComponents/TransactionProgressSuccess';
-
-
+import { useAppSelector } from '../hooks/storage';
 
 const Bridge = () => {
 
+    const bridge = useAppSelector((state) => state.bridge);
+
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
+    const [showProgress, setShowProgress] = useState(bridge.isTransferProgressVisible);
 
     useEffect(() => {
         const handleResize = () => {
-        setIsMobile(window.innerWidth <= 1024);
+            setIsMobile(window.innerWidth <= 1024);
         };
 
         // Attach the event listener when the component mounts
@@ -32,11 +32,13 @@ const Bridge = () => {
 
         // Clean up the event listener when the component unmounts
         return () => {
-        window.removeEventListener('resize', handleResize);
+            window.removeEventListener('resize', handleResize);
         };
     }, []);
-    
-    const isSuccess = useBridgeSuccess();
+
+    // Show bridge transaction progress
+    useEffect(() => { setShowProgress(bridge.isTransferProgressVisible) }, [bridge.isTransferProgressVisible])
+
     const isFailure = useBridgeFailure();
 
     return (
@@ -45,12 +47,13 @@ const Bridge = () => {
                 <div className="MobilePageContainer">
                     <div className="mobileArea" id='mobileContainer'>
                         <MobileHeader />
-                        <BridgeSwapContainer />
+                        {showProgress
+                            ? < BridgeSwapTransaction />
+                            : <BridgeSwapContainer />
+                        }
                         <SidebarSlider />
                         <Footer />
                         <MainActionButton />
-                        {isSuccess ? <TransactionProgress/> /* <-- Replace '' with success component*/ : ''}
-                        {isFailure ? <TransactionProgressSuccess/> /* <-- Replace '' with failure component*/ : ''}
                         {/* <SwapConfirm/> */}
                     </div>
                 </div>
@@ -66,11 +69,13 @@ const Bridge = () => {
                             />
                             <div className="pageContent">
                                 <div className="swapContainerArea">
-                                    <BridgeSwapContainer />
+                                    {showProgress
+                                        ? < BridgeSwapTransaction />
+                                        : <BridgeSwapContainer />
+                                    }
                                 </div>
-                                {isSuccess ? '' /* <-- Replace '' with success component*/ : ''}
-                                {isFailure ? '' /* <-- Replace '' with failure component*/ : ''}
                                 {/* <SwapConfirm/> */}
+
                             </div>
                             <Footer />
                         </div>

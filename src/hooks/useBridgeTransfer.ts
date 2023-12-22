@@ -6,7 +6,7 @@ import {
     useAccount,
 } from 'wagmi';
 import { Hash } from 'viem';
-import { setBridgeError, setBridgeIsFailure, setBridgeIsSuccess, setBridgeIsLoading } from '../store/bridgeSlice';
+import { setBridgeError, setBridgeIsFailure, setBridgeIsSuccess, setBridgeIsLoading, showBridgeProgress } from '../store/bridgeSlice';
 import { useAppDispatch, useAppSelector } from './storage';
 import { useEffect, useState } from 'react';
 import { circleBurner } from '../abis/circleBurner';
@@ -105,11 +105,13 @@ export default function useBridgeTransfer() {
         }
     });
 
+    // Only relevant to the TX on the departure chain
     const { data, isLoading, isSuccess, write } = useContractWrite(config);
 
     useEffect(() => {
         if (data) {
             console.log("useBridgeTransfer:data:", data);
+            dispatch(showBridgeProgress());
             if(isSuccess){
                 dispatch(setBridgeIsLoading(false));
                 dispatch(setBridgeIsSuccess(true));

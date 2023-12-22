@@ -1,10 +1,14 @@
 import React from 'react';
 import './BridgeTransactionTop.css';
+import { resetBridgeProgress } from '../../store/bridgeSlice';
+import { useAppDispatch } from '../../hooks/storage';
 
 function BridgeTransactionTop() {
 
+    const dispatch = useAppDispatch();
+
     const handleBackButtonClick = () => {
-        window.history.back();
+        dispatch(resetBridgeProgress());
     };
 
     

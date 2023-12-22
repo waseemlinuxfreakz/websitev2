@@ -3,7 +3,7 @@ import SwapMenuBtn from '../../assets/img/Icon-button.svg';
 import SwapMenuBtn2 from '../../assets/img/Icon-button2.svg';
 
 import SlippagePopUp from '../CommonComponents/Slippage/SlippagePopUp';
-import { useAppSelector, useAppDispatch } from '../../hooks/storage';
+import { useAppSelector } from '../../hooks/storage';
 
 const SwapContainerMenu = ({ parent }) => {
 
