@@ -23,7 +23,7 @@ function BridgeSwapContainer() {
             {/* <TrackExplorer/> */}
             {/* <TransactionProgress/>
             <TransactionInformation/>
-            < TransactionProgressSuccess/> */}
+            <TransactionProgressSuccess/> */}
             <MainActionButton/>
             {/* <SwitchOptimism/> */}
             <ProceedWallet/>

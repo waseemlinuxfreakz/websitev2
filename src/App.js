@@ -3,6 +3,7 @@ import './App.css';
 import './Responsive.css';
 import HomePage from './Pages/Home';
 import Bridge from './Pages/Bridge';
+import BridgeSuccess from './Pages/BridgeSuccess';
 import ExplorerPage from './Pages/Explorer';
 import PoolPage from './Pages/Pool';
 import TransactionDetailsPage from './Pages/TransactionDetailsPage';
@@ -39,6 +40,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/bridge" element={<Bridge />} />
+            <Route path="/bridge-transfer" element={<BridgeSuccess />} />
             <Route path="/explorer" element={<ExplorerPage />} />
             <Route path="/transactionDetails" element={<TransactionDetailsPage />} />
             <Route path="/pool" element={<PoolPage />} />

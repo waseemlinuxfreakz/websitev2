@@ -3,22 +3,16 @@ import { isMobile } from 'react-device-detect';
 import Header from '../HeaderFooterSidebar/Header';
 import Footer from '../HeaderFooterSidebar/Footer';
 import Sidebar from '../HeaderFooterSidebar/Sidebar';
-import BridgeSwapContainer from './BridgeComponents/BridgeSwapContainer';
 import BridgeSwapTransaction from './BridgeComponents/BridgeSwaptransaction';
 import MobileHeader from '../HeaderFooterSidebar/MobileHeader';
 import MainActionButton from './BridgeComponents/MainActionButton';
 import SidebarSlider from '../HeaderFooterSidebar/SidebarComponent/SidebarSlider';
-import SwapSuccess from './HomeComponents/SwapSuccess';
-import SwapFailed from './HomeComponents/SwapFailed';
-import SwapConfirm from './HomeComponents/SwapConfirm';
 import useBridgeSuccess from '../hooks/useBridgeSuccess';
 import useBridgeFailure from '../hooks/useBridgeFailure';
-import TransactionProgress from './BridgeComponents/TransactionProgress';
-import TransactionProgressSuccess from './BridgeComponents/TransactionProgressSuccess';
 
 
 
-const Bridge = () => {
+const BridgeSuccess = () => {
 
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
 
@@ -45,13 +39,10 @@ const Bridge = () => {
                 <div className="MobilePageContainer">
                     <div className="mobileArea" id='mobileContainer'>
                         <MobileHeader />
-                        <BridgeSwapContainer />
+                        <BridgeSwapTransaction />
                         <SidebarSlider />
                         <Footer />
                         <MainActionButton />
-                        {isSuccess ? <TransactionProgress/> /* <-- Replace '' with success component*/ : ''}
-                        {isFailure ? <TransactionProgressSuccess/> /* <-- Replace '' with failure component*/ : ''}
-                        {/* <SwapConfirm/> */}
                     </div>
                 </div>
             ) : (
@@ -67,12 +58,7 @@ const Bridge = () => {
                             <div className="pageContent">
                                 <div className="swapContainerArea">
                                     <BridgeSwapTransaction />
-                                    <br />
-                                    <BridgeSwapContainer />
                                 </div>
-                                {isSuccess ? '' /* <-- Replace '' with success component*/ : ''}
-                                {isFailure ? '' /* <-- Replace '' with failure component*/ : ''}
-                                {/* <SwapConfirm/> */}
                             </div>
                             <Footer />
                         </div>
@@ -83,4 +69,4 @@ const Bridge = () => {
     );
 };
 
-export default Bridge;
+export default BridgeSuccess;

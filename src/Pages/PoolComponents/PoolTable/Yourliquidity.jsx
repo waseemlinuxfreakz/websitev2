@@ -19,6 +19,11 @@ function Yourliquidity() {
     setYourLiquidityVisible(false);
   };
 
+  
+  const handleBackButtonClick = () => {
+    window.history.back();
+  };
+
   return isYourLiquidityVisible ? (
     
     <>
@@ -27,7 +32,7 @@ function Yourliquidity() {
         <div className="yourliquidity">
           <div className="YourliquidityTop">
             <h2>Your liquidity</h2>
-            <img src={Close} alt="Close" className="closeLiquidity"/>
+            <img src={Close} alt="Close" className="closeLiquidity" onClick={handleBackButtonClick}/>
           </div>
           <div className="toggleLiquidity">
             <button
