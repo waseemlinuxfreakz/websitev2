@@ -20,11 +20,15 @@ export default function TokenSelectionDropdown ({type}) {
 
     function getIcon (tokenName) {
         const selTkn = swap.tokens.find(t => t.name == tokenName);
-        return selTkn ? selTkn.icon : '';
+        return selTkn ? `${isLP() ? "../" : ""}${selTkn.icon}` : '';
     }
 
     function getIsfrom() {
         return type && type == "from" ? true : false;
+    }
+
+    function isLP () {
+        return type && type == "LP" ? true : false;
     }
 
     const [isListVisible, setListVisible] = useState(false);
@@ -86,7 +90,7 @@ export default function TokenSelectionDropdown ({type}) {
                     className="coinNameIcon"
                     onClick={() => handleCoinClick(coin.icon, coin.name)}
                 >
-                    <img src={coin.icon} alt={coin.name} />
+                    <img src={`${isLP() ? "../" : ""}${coin.icon}`} alt={coin.name} />
                     <span>{coin.name}</span>
                 </div>
                 <div className="coinItemRight">

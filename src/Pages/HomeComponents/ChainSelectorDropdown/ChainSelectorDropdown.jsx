@@ -24,6 +24,10 @@ export default function ChainSelectorDropdown({ parent, direction }) {
     const [ chainArray, setChainArray] = useState(chainData);
     const dispatch = useAppDispatch();
 
+    const isLP = () => {
+        return parent == 'LP';
+    }
+
     // Local State
     const [selectedChain, setSelectedChain] = useState({
         icon: chain && findChain(chain) ? findChain(chain).icon : Ethereum,
@@ -108,7 +112,9 @@ export default function ChainSelectorDropdown({ parent, direction }) {
                 onClick={toggleVisibility}
             >
                 <div className="coinNameIcon">
-                    <img src={selectedChain.icon} alt={selectedChain.name} width="30px" />
+                    <img 
+                    src={isLP() ? '../' + selectedChain.icon : selectedChain.icon} 
+                    alt={selectedChain.name} width="30px" />
                     <span>{selectedChain.name}</span>
                 </div>
                 <img src={DownArrow} alt="Down Arrow" />
@@ -121,12 +127,12 @@ export default function ChainSelectorDropdown({ parent, direction }) {
                         <div
                             className="coinNameIcon"
                             onClick={() => handleChainClick(
-                                chain.icon,
+                                isLP() ? '../' + chain.icon : chain.icon,
                                 chain.name,
                                 chain.id)}
                         >
                             <img
-                                src={chain.icon}
+                                src={isLP() ? '../' + chain.icon : chain.icon}
                                 alt={chain.name} width="30px" />
                             <span>{chain.name}</span>
                         </div>

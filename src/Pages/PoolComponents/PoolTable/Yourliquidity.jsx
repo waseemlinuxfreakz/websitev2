@@ -45,7 +45,9 @@ function Yourliquidity() {
           </div>
           <div className="YourliquidityContainer">
             <div className="YourliquidityChain">
-              <ChainSelectorDropdown />
+              <ChainSelectorDropdown 
+                parent={'LP'}
+              />
               <div className="YourliquidityChainApy">
                 <p>
                   APY <img src={Info} alt="Info" />
@@ -54,7 +56,7 @@ function Yourliquidity() {
               </div>
             </div>
             <div className="yourliquidityInput">
-              <TokenSelectorBox type="Inout" />
+              <TokenSelectorBox type="LP" />
             </div>
             <ul className="YourliquidityList">
               <li>
