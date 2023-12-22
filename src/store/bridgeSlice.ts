@@ -19,6 +19,7 @@ export interface IBridgeState {
     fromToken: string,
     fromTokens: TokenType[],
     isFailure: boolean,
+    isLoading: boolean,
     isSuccess: boolean,
     receive: number | string,
     receiver: string,
@@ -53,6 +54,7 @@ const initialState = {
     fromToken,
     fromTokens: filterOneToken(fromToken),
     isFailure: false,
+    isLoading: false,
     isSuccess: false,
     receive: '',
     receiver: "",
@@ -97,7 +99,7 @@ export const bridgeSlice = createSlice({
         },
         setBridgeFromChain(state: IBridgeState, action: PayloadAction<string>) {
             state.fromChain = action.payload;
-            if(state.fromChain = state.toChain){
+            if(state.fromChain == state.toChain){
                 state.toChains.map(c => {
                     if(c.name != state.fromChain){
                         state.toChain = c.name;
@@ -121,6 +123,9 @@ export const bridgeSlice = createSlice({
         },
         setBridgeIsFailure(state: IBridgeState, action: PayloadAction<boolean>) {
             state.isFailure = action.payload;
+        },
+        setBridgeIsLoading(state: IBridgeState, action: PayloadAction<boolean>) {
+            state.isLoading = action.payload;
         },
         setBridgeIsSuccess(state: IBridgeState, action: PayloadAction<boolean>) {
             state.isSuccess = action.payload;
@@ -185,6 +190,7 @@ export const {
     setBridgeToToken,
     setFromContractAddress,
     setBridgeIsFailure,
+    setBridgeIsLoading,
     setReceiver,
     setBridgeIsSuccess,
     setBridgeSlippage,
