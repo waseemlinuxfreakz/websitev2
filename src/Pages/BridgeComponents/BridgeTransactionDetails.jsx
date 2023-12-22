@@ -30,7 +30,7 @@ function BridgeTransactionDetails() {
             </li>
             <li className='bridgeTransactionDetailsList'>
                 <div className="bridgeTransDetLeft">
-                    Estimated wait time
+                    Estimated wait time <img src="./img/InfoIcons.svg" alt="InfoIcons" />
                 </div>
                 <div className="bridgeTransDetRight">
                     20 min

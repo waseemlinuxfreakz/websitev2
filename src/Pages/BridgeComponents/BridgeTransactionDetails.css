@@ -9,3 +9,9 @@
     padding: 12px 0;
     border-bottom: 1px solid #3C3F43;
 }
+
+.bridgeTransactionDetailsList> div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}

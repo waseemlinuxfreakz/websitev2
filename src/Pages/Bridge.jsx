@@ -66,8 +66,6 @@ const Bridge = () => {
                             />
                             <div className="pageContent">
                                 <div className="swapContainerArea">
-                                    <BridgeSwapTransaction />
-                                    <br />
                                     <BridgeSwapContainer />
                                 </div>
                                 {isSuccess ? '' /* <-- Replace '' with success component*/ : ''}
