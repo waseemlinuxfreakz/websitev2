@@ -24,13 +24,11 @@ export default function ChainSelectorDropdown({ parent, direction }) {
     const [ chainArray, setChainArray] = useState(chainData);
     const dispatch = useAppDispatch();
 
-    const isLP = () => {
-        return parent == 'LP';
-    }
+    const isLayer2View = () => window.location.href.includes("/your-liquidity");
 
     // Local State
     const [selectedChain, setSelectedChain] = useState({
-        icon: chain && findChain(chain) ? findChain(chain).icon : Ethereum,
+        icon: chain && findChain(chain) ? `${isLayer2View() ? "../": ""}${findChain(chain).icon}` : Ethereum,
         name: chain && findChain(chain) ? findChain(chain).name : 'Ethereum',
     });
 
@@ -113,7 +111,7 @@ export default function ChainSelectorDropdown({ parent, direction }) {
             >
                 <div className="coinNameIcon">
                     <img 
-                    src={isLP() ? '../' + selectedChain.icon : selectedChain.icon} 
+                    src={`${isLayer2View() ? '../' : ''}${selectedChain.icon}`} 
                     alt={selectedChain.name} width="30px" />
                     <span>{selectedChain.name}</span>
                 </div>
@@ -127,12 +125,12 @@ export default function ChainSelectorDropdown({ parent, direction }) {
                         <div
                             className="coinNameIcon"
                             onClick={() => handleChainClick(
-                                isLP() ? '../' + chain.icon : chain.icon,
+                                `${isLayer2View() ? '../' : ''}${chain.icon}`,
                                 chain.name,
                                 chain.id)}
                         >
                             <img
-                                src={isLP() ? '../' + chain.icon : chain.icon}
+                                src={`${isLayer2View() ? '../' : ''}${chain.icon}`}
                                 alt={chain.name} width="30px" />
                             <span>{chain.name}</span>
                         </div>
