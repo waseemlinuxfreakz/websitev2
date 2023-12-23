@@ -27,7 +27,6 @@ function Yourliquidity() {
   return isYourLiquidityVisible ? (
     
     <>
-
       <div className="yourliquidityArea">
         <div className="yourliquidity">
           <div className="YourliquidityTop">
@@ -105,9 +104,11 @@ function Yourliquidity() {
                 </div>
               </li>
             </ul>
-            <button type="button" className="depositeBtn">
-              Deposit
-            </button>
+            <div className="connectBtn">
+              <button type="button" className="depositeBtn">
+                Deposit
+              </button>
+            </div>
           </div>
         </div>
       </div>

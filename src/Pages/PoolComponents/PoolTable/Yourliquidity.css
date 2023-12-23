@@ -1,17 +1,6 @@
 .yourliquidityArea {
     padding-top: 12px;
     padding-bottom: 12px;
-    position: fixed;
-    position: relative;
-    z-index: 1;
-    left: 0;
-    /* height: 100vh; */
-    /* max-height: 100vh; */
-    overflow: auto;
-    bottom: 0;
-    right: 0;
-    /*background: #000000ef;*/
-    backdrop-filter: blur(5px);
 }
 
 .yourliquidity {
@@ -233,22 +222,33 @@ ul.YourliquidityList {
 
 @media only screen and (max-width: 1025px) {
 
-    .yourliquidity .depositeBtn {
-        /* display: none; */
+    /* .yourliquidity .depositeBtn {
+        display: none;
+            
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 999;
+    } */
+
+    ul.YourliquidityList {
+        margin-bottom: 0;
+        padding-bottom: 0;
     }
 
     .mobileDeposite,
     .poolTitlerRight {
         display: block;
         position: fixed;
-        z-index: 9999;
+        z-index: 9;
         left: 0;
         top: auto;
         bottom: 0;
         right: 0;
         width: auto;
         background-color: #000;
-        padding: 16px;
+        padding: 16px 16px 19px 16px;
     }
 
     .poolTitlerRight {
@@ -262,11 +262,15 @@ ul.YourliquidityList {
 
     .yourliquidityArea {
         padding-bottom: 24px;
-        padding-top: 16px;
+        padding-top: 0px;
     }
 
     .poolTitlerRight button.addLiquidity {
         display: block;
+        width: 100%;
+    }
+
+    .yourliquidity {
         width: 100%;
     }
 

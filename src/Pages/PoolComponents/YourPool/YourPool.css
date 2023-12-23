@@ -265,4 +265,9 @@ span.poolCoin img {
         border: 0;
         margin-bottom: 10px;
     }
+
+    .poolTableRight.transactionRight .buyChainFilter:first-child .selectCoinList {
+        right: auto;
+        left: -11px !important;
+    }
 }

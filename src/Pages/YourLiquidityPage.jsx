@@ -36,6 +36,7 @@ const YourLiquidityPage = () => {
                 <div className="mobileArea" id='mobileContainer'>
                     <MobileHeader/>
                     <Yourliquidity/>
+                    
                     <SidebarSlider/>
                     <Footer/>
                 </div>
