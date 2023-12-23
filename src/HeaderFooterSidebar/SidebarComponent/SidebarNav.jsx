@@ -15,7 +15,7 @@ function SidebarNav() {
   const location = useLocation();
 
   const isActive = (pathname) => {
-    return location.pathname === pathname;
+    return location.pathname.includes(pathname);
   };
 
   const handleLinkClick = () => {
@@ -26,7 +26,8 @@ function SidebarNav() {
     <div className="sidebarNav">
       <ul className="navlinks">
         <li>
-          <Link to="/" className={`navLink ${isActive('/') && 'active'}`} onClick={handleLinkClick}>
+          {/* TODO: '/' mut be used for the HOME page, fix later */}
+          <Link to="/" className={`navLink ${location.pathname === '/' && 'active'}`} onClick={handleLinkClick}>
             <img src={NavIcon1} alt="NavIcon" />
             <span>Swap</span>
           </Link>
