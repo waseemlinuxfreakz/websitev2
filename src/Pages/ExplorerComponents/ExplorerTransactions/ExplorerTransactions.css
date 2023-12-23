@@ -322,4 +322,9 @@ ul.filterDropList li:not(:first-child) {
 
 }
 
-
+@media only screen and (max-width: 480px) {
+    .transactionRight .ExplorerTransactionsFilter.fromTypeFilter ul.selectCoinList {
+        left: -12px !important;
+        right: auto !important;
+    }
+}

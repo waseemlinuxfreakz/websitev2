@@ -254,15 +254,15 @@ ul.YourliquidityList {
     .poolTitlerRight {
         display: none;
     }
-
+/* 
     .yourliquidity {
         max-height: calc(100vh - 114px);
         overflow: auto;
-    }
+    } */
 
     .yourliquidityArea {
-        padding-bottom: 90px;
-        padding-top: 60px;
+        padding-bottom: 24px;
+        padding-top: 16px;
     }
 
     .poolTitlerRight button.addLiquidity {
