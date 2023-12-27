@@ -19,8 +19,6 @@ export type TxDetails = {
 
 export default function useCircleTxData() {
 
-    console.log("useCircleTxData is triggered")
-
     const bridge = useAppSelector((state) => state.bridge);
     const dispatch = useAppDispatch();
 
@@ -42,41 +40,39 @@ export default function useCircleTxData() {
     const [hash, setHash] = useState(bridge.fromHash);
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
+    let interval: string | number | NodeJS.Timeout | undefined;
+
+    async function fetchData() {
+
+        setIsError(false);
+        setIsLoading(true);
+
+        try {
+            const result:Response = await fetch(`http://localhost:5000/hash/?hash=${hash}`);
+            const CircleTXData: TxDetails = await result.json();
+            console.log("CircleTXData:", CircleTXData)
+            setTxData(CircleTXData);
+
+            if(CircleTXData && CircleTXData.claimHash){
+                dispatch(setBridgeToHash(CircleTXData.claimHash))
+            }
+            
+        } catch (error) {
+            setIsError(true);
+            console.error(error);
+            setIsLoading(false);
+        }
+
+    }
 
     useEffect(() => {
 
-        async function fetchData() {
+        interval = setInterval(() => {
+            fetchData();
+        }, 30000)
 
-            setIsError(false);
-            setIsLoading(true);
+        return () => clearInterval(interval);
 
-            try {
-                console.log("useCircleTxData:fetchingData")
-                const result:Response = await fetch(`http://localhost:5000/hash/?hash=${hash}`);
-                const CircleTXData: TxDetails = await result.json();
-                console.log("CircleTXData:", CircleTXData)
-                setTxData(CircleTXData);
-
-                if(CircleTXData && CircleTXData.claimHash){
-                    dispatch(setBridgeToHash(CircleTXData.claimHash))
-                }
-                
-            } catch (error) {
-                setIsError(true);
-                console.error(error);
-                setIsLoading(false);
-            }
-
-        }
-
-        if(hash){
-
-            if(bridge.fromHash == ''){
-                setTimeout(() => {
-                    fetchData();
-                },30_000)
-            }
-        }
 
     });
 

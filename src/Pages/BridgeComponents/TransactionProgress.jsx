@@ -16,8 +16,6 @@ function TransactionProgress() {
     const dispatch = useAppDispatch();
     const [{ txData, isLoading, isError }, setTxHash] = useCircleTxData();
 
-    console.log("TransactionProgress:txData", txData)
-
     const [fromChain, setFromChain] = useState(findChain(ChainNameToTypeChainName[bridge.fromChain]));
     const [toChain, setToChain] = useState(findChain(ChainNameToTypeChainName[bridge.toChain]));
 
