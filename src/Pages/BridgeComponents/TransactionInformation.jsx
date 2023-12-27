@@ -5,7 +5,7 @@ function TransactionInformation() {
     return ( 
         <div className="TransInfo">
             <img src={EstimatedTime} alt="EstimatedTime" />
-            <p>Bla bla information about transaction or terms</p>
+            <p>Your transaction is being processed</p>
         </div>
      );
 }

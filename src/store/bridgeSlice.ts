@@ -16,6 +16,7 @@ export interface IBridgeState {
     fromChain: string,
     fromChains: TChainType[],
     fromContractAddress: string,
+    fromHash: string,
     fromToken: string,
     fromTokens: TokenType[],
     isFailure: boolean,
@@ -30,6 +31,7 @@ export interface IBridgeState {
     toBalance: number,
     toChain: string,
     toChains: TChainType[],
+    toHash: string,
     toToken: string,
     toTokens: TokenType[],
 }
@@ -54,6 +56,7 @@ const initialState = {
     fromChain,
     fromChains: filterTwoChains(fromChain, toChain),
     fromContractAddress: '',
+    fromHash:'',
     fromToken,
     fromTokens: filterOneToken(fromToken),
     isFailure: false,
@@ -68,6 +71,7 @@ const initialState = {
     toBalance: 0,
     toChain,
     toChains: filterTwoChains(fromChain, toChain),
+    toHash:'',
     toToken,
     toTokens: filterOneToken(toToken),
 } as IBridgeState;
@@ -117,6 +121,9 @@ export const bridgeSlice = createSlice({
         },
         setFromContractAddress(state: IBridgeState, action: PayloadAction<string>) {
             state.fromContractAddress = action.payload;
+        },
+        setBridgeFromHash(state:IBridgeState, action:PayloadAction<string>){
+            state.fromHash = action.payload;
         },
         setBridgeFee(state:IBridgeState, action:PayloadAction<number>){
             state.bridgeFee = action.payload;
@@ -169,6 +176,9 @@ export const bridgeSlice = createSlice({
         setBridgeToBalance(state: IBridgeState, action: PayloadAction<number>){
             state.toBalance = action.payload;
         },
+        setBridgeToHash(state: IBridgeState, action:PayloadAction<string>){
+            state.toHash = action.payload;
+        },
         setBridgeToToken(state: IBridgeState, action:PayloadAction<string>){
             state.toToken = action.payload;
             state.fromToken = action.payload;
@@ -193,6 +203,8 @@ export const bridgeSlice = createSlice({
             state.isLoading = false;
             state.isSuccess = false;
             state.isRunning = false;
+            state.fromHash = '';
+            state.toHash = '';
             state.isReset = true;
         },
         showBridgeProgress(state:IBridgeState){
@@ -201,6 +213,7 @@ export const bridgeSlice = createSlice({
             state.isRunning = true;
             state.isFailure = false;
             state.isSuccess = false;
+            state.toHash = '';
         }
     },
     extraReducers(builder: any) {
@@ -217,6 +230,7 @@ export const {
     setBridgeError,
     setBridgeFee,
     setBridgeFromChain,
+    setBridgeFromHash,
     setBridgeFromToken,
     setBridgeToToken,
     setFromContractAddress,
@@ -229,6 +243,7 @@ export const {
     setBridgeSlippage,
     setBridgeToChain,
     setBridgeToBalance,
+    setBridgeToHash,
     swapBridgeChainsAndTokens,
     resetBridgeProgress,
     showBridgeProgress,

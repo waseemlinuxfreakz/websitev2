@@ -7,17 +7,15 @@ function BridgeTransactionTop() {
 
     const dispatch = useAppDispatch();
 
-    const handleBackButtonClick = () => {
-        dispatch(resetBridgeProgress());
-    };
-
-    
-    return ( 
+    return (
         <div className="bridgeTransactionTop">
             <h2>Transfer</h2>
-            <img src="./img/close-border.svg" alt="" className="backBtn" onClick={handleBackButtonClick}/>
+            <img
+                src="./img/close-border.svg"
+                alt="" className="backBtn"
+                onClick={() => dispatch(resetBridgeProgress())} />
         </div>
-     );
+    );
 }
 
 export default BridgeTransactionTop;

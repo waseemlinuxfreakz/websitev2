@@ -1,12 +1,18 @@
 import { addressToAccount, addressToBytes32 } from '../utils';
-import { TChainName, TTokenName, ChainNameToTypeChainName, CHAIN_NAME_TO_ID, SUPPORTED_CHAINS } from '../types';
+import { TTokenName, ChainNameToTypeChainName, CHAIN_NAME_TO_ID, SUPPORTED_CHAINS } from '../types';
 import {
     useContractWrite,
     usePrepareContractWrite,
     useAccount,
 } from 'wagmi';
 import { Hash } from 'viem';
-import { setBridgeError, setBridgeIsFailure, setBridgeIsSuccess, setBridgeIsLoading, showBridgeProgress } from '../store/bridgeSlice';
+import { setBridgeError, 
+    setBridgeIsFailure, 
+    setBridgeIsSuccess, 
+    setBridgeIsLoading, 
+    showBridgeProgress,
+    setBridgeFromHash,
+} from '../store/bridgeSlice';
 import { useAppDispatch, useAppSelector } from './storage';
 import { useEffect, useState } from 'react';
 import { circleBurner } from '../abis/circleBurner';
@@ -111,6 +117,11 @@ export default function useBridgeTransfer() {
     useEffect(() => {
         if (data) {
             console.log("useBridgeTransfer:data:", data);
+
+            if(data.hash){
+                dispatch(setBridgeFromHash(data.hash));
+            }
+
             dispatch(showBridgeProgress());
             if(isSuccess){
                 dispatch(setBridgeIsLoading(false));
