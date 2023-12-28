@@ -48,7 +48,7 @@ export default function useCircleTxData() {
         setIsLoading(true);
 
         try {
-            const result:Response = await fetch(`http://localhost:5000/hash/?hash=${hash}`);
+            const result:Response = await fetch(`https://db-reader-26da03812cc8.herokuapp.com/hash/?hash=${hash}`);
             const CircleTXData: TxDetails = await result.json();
             console.log("CircleTXData:", CircleTXData)
             setTxData(CircleTXData);
