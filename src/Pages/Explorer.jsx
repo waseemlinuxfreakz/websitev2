@@ -5,9 +5,7 @@ import Footer from '../HeaderFooterSidebar/Footer';
 import Sidebar from '../HeaderFooterSidebar/Sidebar';
 import BridgeSwapContainer from './BridgeComponents/BridgeSwapContainer';
 import MobileHeader from '../HeaderFooterSidebar/MobileHeader';
-import MainActionButton from './BridgeComponents/MainActionButton';
 import SidebarSlider from '../HeaderFooterSidebar/SidebarComponent/SidebarSlider';
-
 import ExplorerHeader from '../HeaderFooterSidebar/ExplorerHeader';
 import ExplorerPageContainer from './ExplorerComponents/ExplorerPageContainer';
 

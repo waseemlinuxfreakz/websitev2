@@ -39,6 +39,7 @@ function TrackExplorer() {
         <div className="destinationHasTitle">
           <h4>Original hash</h4>
           <img
+            className='btn-copy'
             src={Copy}
             alt="Copy"
             onClick={() => navigator.clipboard.writeText(fromHash)}
@@ -53,6 +54,7 @@ function TrackExplorer() {
         <div className="destinationHasTitle">
           <h4>Destination hash</h4>
           <img
+          className='btn-copy'
             src={Copy}
             alt="Copy"
             onClick={() => navigator.clipboard.writeText(toHash)}

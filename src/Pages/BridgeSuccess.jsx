@@ -42,7 +42,7 @@ const BridgeSuccess = () => {
                         <BridgeSwapTransaction />
                         <SidebarSlider />
                         <Footer />
-                        <MainActionButton />
+                        {/* <MainActionButton /> */}
                     </div>
                 </div>
             ) : (

@@ -58,3 +58,18 @@
     overflow: hidden;
     color: #53B7FF;
 }
+
+.btn-copy {
+    cursor: pointer;
+}
+
+.btn-copy:hover {
+    -webkit-animation: none;
+    -webkit-transform: scale(1.5);
+    animation: none;
+    transform: scale(1.5);
+}
+
+.btn-copy:active {
+    transform: translateY(4px);
+  }
