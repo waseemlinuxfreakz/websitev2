@@ -4,7 +4,7 @@ import { useAppSelector, useAppDispatch } from './storage';
 
 export type TxDetails = {
     amount: number, // number of transferred tokens
-    bridgeHash:string,
+    bridgeHash: string,
     burnToken: string, // the address of the transferred token
     mintRecipient: string, // Receiver address
     destinationDomain: number, // Number 0-7, Ethereum == 0, Polygon == 7
@@ -29,7 +29,7 @@ export default function useCircleTxData() {
         mintRecipient: bridge.receiver,
         destinationDomain: -1,
         originalDomain: -1,
-        sender:'',
+        sender: '',
         burnHash: bridge.fromHash,
         start: new Date(),
         claimHash: '',
@@ -48,15 +48,15 @@ export default function useCircleTxData() {
         setIsLoading(true);
 
         try {
-            const result:Response = await fetch(`https://db-reader-26da03812cc8.herokuapp.com/hash/?hash=${hash}`);
+            const result: Response = await fetch(`https://db-reader-26da03812cc8.herokuapp.com/hash/?hash=${hash}`);
             const CircleTXData: TxDetails = await result.json();
             console.log("CircleTXData:", CircleTXData)
             setTxData(CircleTXData);
 
-            if(CircleTXData && CircleTXData.claimHash){
+            if (CircleTXData && CircleTXData.claimHash) {
                 dispatch(setBridgeToHash(CircleTXData.claimHash))
             }
-            
+
         } catch (error) {
             setIsError(true);
             console.error(error);
@@ -67,14 +67,16 @@ export default function useCircleTxData() {
 
     useEffect(() => {
 
+
         interval = setInterval(() => {
             fetchData();
-        }, 30000)
+        }, 30_000)
 
         return () => clearInterval(interval);
 
 
-    });
+
+    }, []);
 
     return [{ txData, isLoading, isError }, setHash];
 

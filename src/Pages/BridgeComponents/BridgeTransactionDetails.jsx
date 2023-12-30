@@ -28,7 +28,7 @@ function BridgeTransactionDetails() {
             </li>
             <li className='bridgeTransactionDetailsList'>
                 <div className="bridgeTransDetLeft">
-                    Destinations Gas Fee
+                    Destination Gas Fee
                 </div>
                 <div className="bridgeTransDetRight">
                     0.001 {nativeCurrency}

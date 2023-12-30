@@ -1,21 +1,25 @@
 
 import React, { useEffect, useState } from 'react';
-import { useAppSelector } from '../../hooks/storage';
+import { useAppSelector, useAppDispatch } from '../../hooks/storage';
+import { setBridgeTimeElapsed } from '../../store/bridgeSlice';
 
 export default function TransactionCountUp() {
 
     const bridge = useAppSelector((state) => state.bridge);
+    const dispatch = useAppDispatch();
 
     const second = 1000;
     const minute = 60 * second;
     let interval;
 
-    const [time, setTime] = useState(0);
+    const [time, setTime] = useState(bridge.timeElapsed);
 
     useEffect(() => {
         if (bridge.isRunning) {
             interval = setInterval(() => {
-                setTime(time + 10)
+                const newTime = time + 10;
+                setTime(newTime);
+                dispatch(setBridgeTimeElapsed(newTime));
             }, 10)
         } else {
             clearInterval(interval);
@@ -29,6 +33,7 @@ export default function TransactionCountUp() {
         if (bridge.isReset) {
             clearInterval(interval);
             setTime(0);
+            dispatch(setBridgeTimeElapsed(0));
         }
 
     }, [bridge.isReset])

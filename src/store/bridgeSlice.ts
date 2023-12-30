@@ -28,6 +28,7 @@ export interface IBridgeState {
     receive: number | string,
     receiver: string,
     slippage: number,
+    timeElapsed: number,
     toBalance: number,
     toChain: string,
     toChains: TChainType[],
@@ -56,7 +57,7 @@ const initialState = {
     fromChain,
     fromChains: filterTwoChains(fromChain, toChain),
     fromContractAddress: '',
-    fromHash:'0x48481351ab3e3da5116a045fd1ef57ea141e710b0291d04183d867b350dc85a1',
+    fromHash:'',
     fromToken,
     fromTokens: filterOneToken(fromToken),
     isFailure: false,
@@ -64,14 +65,15 @@ const initialState = {
     isReset: false,
     isRunning: false,
     isSuccess: false,
-    isTransferProgressVisible: true,
+    isTransferProgressVisible: false,
     receive: '',
     receiver: "",
     slippage: 0.5,
+    timeElapsed: 0,
     toBalance: 0,
     toChain,
     toChains: filterTwoChains(fromChain, toChain),
-    toHash:'0xf8ff7c01157f30e2ca98faa99b8362b5271ad0622ad6931f476c0fa3f1888775',
+    toHash:'',
     toToken,
     toTokens: filterOneToken(toToken),
 } as IBridgeState;
@@ -168,6 +170,9 @@ export const bridgeSlice = createSlice({
                 state.receive = Number(state.amount) - slippageAmount;
             }
         },
+        setBridgeTimeElapsed(state: IBridgeState, action: PayloadAction<number>){
+            state.timeElapsed = action.payload;
+        },
         setBridgeToChain(state: IBridgeState, action: PayloadAction<string>) {
             state.toChain = action.payload;
             state.fromChains = filterTwoChains(state.fromChain, state.toChain);
@@ -205,6 +210,7 @@ export const bridgeSlice = createSlice({
             state.isRunning = false;
             state.fromHash = '';
             state.toHash = '';
+            state.timeElapsed = 0;
             state.isReset = true;
         },
         showBridgeProgress(state:IBridgeState){
@@ -213,6 +219,7 @@ export const bridgeSlice = createSlice({
             state.isRunning = true;
             state.isFailure = false;
             state.isSuccess = false;
+            state.timeElapsed = 0;
             state.toHash = '';
         }
     },
@@ -241,6 +248,7 @@ export const {
     setReceiver,
     setBridgeIsSuccess,
     setBridgeSlippage,
+    setBridgeTimeElapsed,
     setBridgeToChain,
     setBridgeToBalance,
     setBridgeToHash,
