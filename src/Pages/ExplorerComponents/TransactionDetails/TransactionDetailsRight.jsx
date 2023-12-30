@@ -38,7 +38,7 @@ function TransactionDetailsRight() {
                 </li>
                 <li className='transactionDetailsListItem'>
                     <div className="transactionDetailsListLeft">
-                        Destinations Fee
+                        Destination Fee
                     </div>
                     <div className="transactionDetailsListRight">
                         0.05 OPT

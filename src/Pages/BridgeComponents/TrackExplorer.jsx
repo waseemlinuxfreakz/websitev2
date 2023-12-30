@@ -9,8 +9,6 @@ function TrackExplorer() {
   const bridge = useAppSelector((state) => state.bridge);
 
   const [isFlipped, setIsFlipped] = useState(false);
-  const [fromHash, setFromHash] = useState(bridge.fromHash);
-  const [toHash, setToHash] = useState(bridge.toHash);
 
   const showCharacters = isMobile ? 6 : 18;
 
@@ -18,13 +16,12 @@ function TrackExplorer() {
     setIsFlipped(!isFlipped);
   };
 
-  useEffect(() => {
-    setFromHash(bridge.fromHash);
-  }, [bridge.fromHash]);
+  function copyFromText () {
+    console.log("TrackExplorer:copyFromText:from:", bridge.fromHash);
+    navigator.clipboard.writeText(bridge.fromHash);
+  }
 
-  useEffect(() => {
-    setToHash(bridge.toHash);
-  }, [bridge.toHash])
+  
 
   return (
     <div className="trackExplorer">
@@ -35,33 +32,33 @@ function TrackExplorer() {
         </div>
       </a>
 
-      {fromHash && (<div className="destinationHas">
+      {bridge.fromHash && (<div className="destinationHas">
         <div className="destinationHasTitle">
           <h4>Original hash</h4>
           <img
             className='btn-copy'
             src={Copy}
             alt="Copy"
-            onClick={() => navigator.clipboard.writeText(fromHash)}
+            onClick={copyFromText}
           />
         </div>
         <div className="destinationHasLink" style={{ textAlign: "center" }}>
-          {`${fromHash.slice(0, showCharacters)}...${fromHash.slice(-showCharacters)}`}
+          {`${bridge.fromHash.slice(0, showCharacters)}...${bridge.fromHash.slice(-showCharacters)}`}
         </div>
       </div>)}
 
-      {toHash && (<div className="destinationHas">
+      {bridge.toHash && (<div className="destinationHas">
         <div className="destinationHasTitle">
           <h4>Destination hash</h4>
           <img
           className='btn-copy'
             src={Copy}
             alt="Copy"
-            onClick={() => navigator.clipboard.writeText(toHash)}
+            onClick={() => navigator.clipboard.writeText(bridge.toHash)}
           />
         </div>
         <div className="destinationHasLink" style={{ textAlign: "center" }}>
-          {`${toHash.slice(0, showCharacters)}...${toHash.slice(-showCharacters)}`}
+          {`${bridge.toHash.slice(0, showCharacters)}...${bridge.toHash.slice(-showCharacters)}`}
         </div>
       </div>)}
 

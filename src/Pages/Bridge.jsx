@@ -53,7 +53,7 @@ const Bridge = () => {
                         }
                         <SidebarSlider />
                         <Footer />
-                        {/* <MainActionButton /> */}
+                        <MainActionButton />
                         {/* <SwapConfirm/> */}
                     </div>
                 </div>

@@ -2,11 +2,14 @@ import React from 'react';
 import './BridgeTransactionDetails.css';
 import useBridgeFee from '../../hooks/useBridgeFee';
 import { useAppSelector } from '../../hooks/storage';
+import { SUPPORTED_CHAINS, ChainNameToTypeChainName } from '../../types'
 
 function BridgeTransactionDetails() {
 
     const { nativeCurrency, formattedFee } = useBridgeFee();
     const bridge = useAppSelector((state) => state.bridge);
+
+    const destCurrency = SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.toChain]].nativeCurrency.symbol;
 
     return ( 
         <ul className="bridgeTransactionDetails">
@@ -31,7 +34,7 @@ function BridgeTransactionDetails() {
                     Destination Gas Fee
                 </div>
                 <div className="bridgeTransDetRight">
-                    0.001 {nativeCurrency}
+                    0.001 {destCurrency}
                 </div>
             </li>
             <li className='bridgeTransactionDetailsList'>
