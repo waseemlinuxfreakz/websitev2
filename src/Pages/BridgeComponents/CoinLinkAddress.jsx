@@ -32,9 +32,9 @@ class CoinLinkAddress extends Component {
   render() {
     return (
       <>
-        <a className="copyAddress" onClick={this.copyToClipboard}>
+        <span className="copyAddress" onClick={this.copyToClipboard}>
           <img src={Copy} alt="Copy" />
-        </a>
+        </span>
 
         {this.state.isPopupVisible && (
           <div className="Copyalert">
