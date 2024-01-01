@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Refresh from '../../assets/img/Swap-gray.svg';
-import { useAppSelector, useAppDispatch } from '../../hooks/storage'
+import { useAccount } from 'wagmi';
+import { useAppSelector, useAppDispatch } from '../../hooks/storage';
 
 function RefreshExchange() {
 
     // Global state
     const swap = useAppSelector((state) => state.swap);
-    const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch();
+    const { isConnected } = useAccount();
 
     // Local state
     const [fromToken, setFromToken] = useState(swap.fromToken);
@@ -62,23 +64,25 @@ function RefreshExchange() {
 
     return (
         <>
-            {/* {price
-                ? ( */}
-                <div className="refreshWallet">
-                    <div className="refreshLeft">
-                        1 {fromToken} = {formatPrice(price)} {toToken}
-                    </div>
-                    <div className="refreshRight">
-                        <button
-                            className='refReshBtn'
-                            onClick={onSwapTokenPriceHandle}
-                        >
-                            <img src={Refresh} alt="Refresh" />
-                        </button>
-                    </div>
-                </div>
-                {/* )
-                : ''} */}
+            {
+                isConnected
+                    ? (<div className="refreshWallet">
+                        <div className="refreshLeft">
+                            1 {fromToken} = {formatPrice(price)} {toToken}
+                        </div>
+                        <div className="refreshRight">
+                            <button
+                                className='refReshBtn'
+                                onClick={onSwapTokenPriceHandle}
+                            >
+                                <img src={Refresh} alt="Refresh" />
+                            </button>
+                        </div>
+                    </div>)
+                    : ''
+            }
+
+
         </>
 
     );
