@@ -223,9 +223,7 @@ export const bridgeSlice = createSlice({
             state.toHash = '';
         }
     },
-    extraReducers(builder: any) {
-
-    }
+    extraReducers(builder: any) {}
 });
 
 export const {

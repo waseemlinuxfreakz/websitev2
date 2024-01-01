@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { setBridgeToHash } from '../store/bridgeSlice';
 import { useAppSelector, useAppDispatch } from './storage';
+import { txBackend } from '../types'
 
 export type TxDetails = {
     amount: number, // number of transferred tokens
@@ -48,7 +49,7 @@ export default function useCircleTxData() {
         setIsLoading(true);
 
         try {
-            const result: Response = await fetch(`http://16.171.249.173:5000/hash/?hash=${hash}`);
+            const result: Response = await fetch(`${txBackend}/hash/?hash=${hash}`);
             const CircleTXData: TxDetails = await result.json();
             console.log("CircleTXData:", CircleTXData)
             setTxData(CircleTXData);

@@ -68,3 +68,5 @@ export const TOKEN_CHAIN_CONTRACT = {
         scroll: ""
     }
 }
+
+export const txBackend: string = "https://testnet-tx.emmet.finance/";
