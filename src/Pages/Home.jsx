@@ -10,24 +10,11 @@ import SidebarSlider from '../HeaderFooterSidebar/SidebarComponent/SidebarSlider
 import SwapSuccess from './HomeComponents/SwapSuccess';
 import SwapFailed from './HomeComponents/SwapFailed';
 import SwapConfirm from './HomeComponents/SwapConfirm';
+import useMobileDetector from '../hooks/useMobileDetector';
 
 const HomePage = () => {
 
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
-
-    useEffect(() => {
-        const handleResize = () => {
-        setIsMobile(window.innerWidth <= 1024);
-        };
-
-        // Attach the event listener when the component mounts
-        window.addEventListener('resize', handleResize);
-
-        // Clean up the event listener when the component unmounts
-        return () => {
-        window.removeEventListener('resize', handleResize);
-        };
-    }, []);
+    const isMobile = useMobileDetector();
     
     return (
       <>

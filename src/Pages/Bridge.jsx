@@ -14,27 +14,15 @@ import SwapConfirm from './HomeComponents/SwapConfirm';
 import useBridgeFailure from '../hooks/useBridgeFailure';
 import TransactionProgress from './BridgeComponents/TransactionProgress';
 import { useAppSelector } from '../hooks/storage';
+import useMobileDetector from '../hooks/useMobileDetector';
 
 const Bridge = () => {
 
     const bridge = useAppSelector((state) => state.bridge);
 
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
+    const isMobile = useMobileDetector();
+
     const [showProgress, setShowProgress] = useState(bridge.isTransferProgressVisible);
-
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth <= 1024);
-        };
-
-        // Attach the event listener when the component mounts
-        window.addEventListener('resize', handleResize);
-
-        // Clean up the event listener when the component unmounts
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
 
     // Show bridge transaction progress
     useEffect(() => { setShowProgress(bridge.isTransferProgressVisible) }, [bridge.isTransferProgressVisible])

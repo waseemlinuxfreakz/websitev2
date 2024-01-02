@@ -1,33 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import {isMobile} from 'react-device-detect';
+import React from 'react';
 import Header from '../HeaderFooterSidebar/Header';
 import Footer from '../HeaderFooterSidebar/Footer';
 import Sidebar from '../HeaderFooterSidebar/Sidebar';
 import MobileHeader from '../HeaderFooterSidebar/MobileHeader';
 import SidebarSlider from '../HeaderFooterSidebar/SidebarComponent/SidebarSlider';
-
 import PoolPageContainer from './PoolComponents/PoolPageContainer';
-
-
+import useMobileDetector from '../hooks/useMobileDetector';
 
 const PoolPage = () => {
   
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
-
-    useEffect(() => {
-        const handleResize = () => {
-        setIsMobile(window.innerWidth <= 1024);
-        };
-
-        // Attach the event listener when the component mounts
-        window.addEventListener('resize', handleResize);
-
-        // Clean up the event listener when the component unmounts
-        return () => {
-        window.removeEventListener('resize', handleResize);
-        };
-    }, []);
-    
+    const isMobile = useMobileDetector();
     
     return (
       <>

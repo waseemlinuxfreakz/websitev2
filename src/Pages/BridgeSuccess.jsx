@@ -1,37 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { isMobile } from 'react-device-detect';
+import React from 'react';
 import Header from '../HeaderFooterSidebar/Header';
 import Footer from '../HeaderFooterSidebar/Footer';
 import Sidebar from '../HeaderFooterSidebar/Sidebar';
 import BridgeSwapTransaction from './BridgeComponents/BridgeSwaptransaction';
 import MobileHeader from '../HeaderFooterSidebar/MobileHeader';
-import MainActionButton from './BridgeComponents/MainActionButton';
 import SidebarSlider from '../HeaderFooterSidebar/SidebarComponent/SidebarSlider';
-import useBridgeSuccess from '../hooks/useBridgeSuccess';
-import useBridgeFailure from '../hooks/useBridgeFailure';
-
-
+import useMobileDetector from '../hooks/useMobileDetector';
 
 const BridgeSuccess = () => {
 
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
-
-    useEffect(() => {
-        const handleResize = () => {
-        setIsMobile(window.innerWidth <= 1024);
-        };
-
-        // Attach the event listener when the component mounts
-        window.addEventListener('resize', handleResize);
-
-        // Clean up the event listener when the component unmounts
-        return () => {
-        window.removeEventListener('resize', handleResize);
-        };
-    }, []);
-    
-    const isSuccess = useBridgeSuccess();
-    const isFailure = useBridgeFailure();
+    const isMobile = useMobileDetector();
 
     return (
         <>
@@ -42,7 +20,6 @@ const BridgeSuccess = () => {
                         <BridgeSwapTransaction />
                         <SidebarSlider />
                         <Footer />
-                        {/* <MainActionButton /> */}
                     </div>
                 </div>
             ) : (
