@@ -1,7 +1,16 @@
 import { useEffect, useState } from "react";
 import { setBridgeToHash } from '../store/bridgeSlice';
 import { useAppSelector, useAppDispatch } from './storage';
-import { txBackend } from '../types'
+import { txBackend } from '../types';
+import {
+    setExplorerBridgeAge,
+    setExplorerBridgeTxType,
+    setExplorerBridgeHash,
+    setExplorerBridgeDestinationHash,
+    setExplorerBridgeReceived,
+    setExplorerBridgeSent,
+    setExplorerBridgeStatus,
+} from '../store/explorerSlice';
 
 export type TxDetails = {
     amount: number, // number of transferred tokens
@@ -56,6 +65,21 @@ export default function useCircleTxData() {
 
             if (CircleTXData && CircleTXData.claimHash) {
                 dispatch(setBridgeToHash(CircleTXData.claimHash))
+
+                dispatch(setExplorerBridgeAge(CircleTXData.start));
+                dispatch(setExplorerBridgeTxType('Transfer'));
+                dispatch(setExplorerBridgeHash(CircleTXData.bridgeHash));
+                dispatch(setExplorerBridgeDestinationHash(CircleTXData.claimHash));
+                dispatch(setExplorerBridgeReceived(CircleTXData.amount)); // !!! May be different for non USDC
+                dispatch(setExplorerBridgeSent(CircleTXData.amount)); // !!! May be different for non USDC
+
+                if(CircleTXData && CircleTXData.claimHash){
+                    dispatch(setExplorerBridgeStatus("Success"));
+                } else {
+                    dispatch(setExplorerBridgeStatus("Pending"));
+                }
+
+                
             }
 
         } catch (error) {

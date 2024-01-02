@@ -1,10 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Copy from '../../../assets/img/copy.svg';
 
+import { useAppSelector } from '../../../hooks/storage';
+
 function TransactionHash() {
+
+  const explorer = useAppSelector(state => state.explorer);
+
   const [isCopied, setIsCopied] = useState(false);
+  const [hash, setHash] = useState(explorer.bridgeHash);
+
+  useEffect(() => {
+
+    setHash(explorer.bridgeHash);
+
+  }, [explorer.hash])
 
   const handleCopyClick = () => {
+    if (navigator && navigator.clipboard) {
+      try {
+        navigator.clipboard.writeText(explorer.bridgeHash);
+      } catch (error) {
+        console.error(`Error: could not copy to clipboard. Reason:`, error.message);
+      }
+
+    } else {
+      console.error(`Error: could not copy to clipboard`);
+    }
     setIsCopied(true);
     setTimeout(() => {
       setIsCopied(false);
@@ -17,12 +39,12 @@ function TransactionHash() {
         <p>Transaction hash</p>
         <div className="transactionHashTopRight">
           <button className="copyLink" onClick={handleCopyClick}>
-            {isCopied && <span className="copiedAlert">Copied!</span>}
+            {isCopied && <span className="copiedAlert">{`The hash successfully copied!`}</span>}
             <img src={Copy} alt="Copy" />
           </button>
         </div>
       </div>
-      <h3>b4f7460771184d089f34e6aef322a3dc3153432dfb797daf40aa97535a9e2d1f</h3>
+      <h3>{hash}</h3>
     </div>
   );
 }

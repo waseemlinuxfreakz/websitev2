@@ -10,6 +10,7 @@ import DatatablePage from './ExplorerTransactionsTable/DataTable';
 
 function ExplorerPageContainer() {
   const [showHeaderSearch, setShowHeaderSearch] = useState(true);
+  const [showSearchResult, setShowSearchResult] = useState( false);
 
   useEffect(() => {
     const handleResize = () => {

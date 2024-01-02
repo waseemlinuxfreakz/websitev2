@@ -10,7 +10,6 @@ import TransactionDetailsPage from './Pages/TransactionDetailsPage';
 import Yourliquidity from './Pages/PoolComponents/PoolTable/Yourliquidity';
 import YourLiquidityPage from './Pages/YourLiquidityPage';
 
-
 import { ALL_CHAINS } from './constants/chains/index';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
