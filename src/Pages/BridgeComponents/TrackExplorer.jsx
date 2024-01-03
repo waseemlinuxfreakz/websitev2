@@ -25,9 +25,9 @@ function TrackExplorer() {
 
   return (
     <div className="trackExplorer">
-      <a href='/explorer'>
+      <a href='/transactionDetails'>
         <div className="trackExploerTitle" onClick={proceedToTheExplorer}>
-          <h4>Track in explorer</h4>
+          <h4>Transaction details</h4>
           <img src={RightArrow} alt="RightArrow" className={`arrowRight ${isFlipped ? 'flipped' : ''}`} />
         </div>
       </a>

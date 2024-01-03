@@ -29,19 +29,6 @@ export const ChainToTransmitterContract = {
     scroll: ""
 }
 
-
-export const ChainToDestinationDomain = {
-    arbitrum: 3,
-    avalanche: 1,
-    base: 6,
-    goerli: 0,
-    optimism: 2,
-    polygon: 7,
-    // Not supported:
-    linea: -1,
-    scroll: -2
-}
-
 export const ChainToBridge = {
     arbitrum: "",
     avalanche: "0xbbbC5D74407Eb87D929b1eBA18ACbb95E11B219F",

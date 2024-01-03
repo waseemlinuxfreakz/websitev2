@@ -8,18 +8,18 @@ function TransactionHash() {
   const explorer = useAppSelector(state => state.explorer);
 
   const [isCopied, setIsCopied] = useState(false);
-  const [hash, setHash] = useState(explorer.bridgeHash);
+  const [hash, setHash] = useState(explorer.bridgeTransaction.bridgeHash);
 
   useEffect(() => {
 
-    setHash(explorer.bridgeHash);
+    setHash(explorer.bridgeTransaction.bridgeHash);
 
   }, [explorer.hash])
 
   const handleCopyClick = () => {
     if (navigator && navigator.clipboard) {
       try {
-        navigator.clipboard.writeText(explorer.bridgeHash);
+        navigator.clipboard.writeText(explorer.bridgeTransaction.bridgeHash);
       } catch (error) {
         console.error(`Error: could not copy to clipboard. Reason:`, error.message);
       }

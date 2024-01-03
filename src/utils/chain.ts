@@ -1,4 +1,11 @@
-import { SUPPORTED_CHAINS, TChainDataParam, TChainName, TEmmetChain } from "../types";
+import { 
+    SUPPORTED_CHAINS, 
+    TChainDataParam, 
+    TChainName, 
+    TEmmetChain, 
+    DomainToChainName, 
+    SupportedDomains 
+} from "../types";
 
 export function getChainData(chinName: TChainName, param: TChainDataParam):string | number | undefined {
     const chain = findChain(chinName);
@@ -29,4 +36,18 @@ export function isChainSupported(chinName: TChainName): boolean {
     const chainNames = Object.keys(SUPPORTED_CHAINS);
     if (chainNames.includes(chinName)) return true;
     return false;
+}
+
+export function getChainSymbolFromName(chinName: TChainName): string | undefined {
+    if(chinName){
+        return SUPPORTED_CHAINS[chinName].nativeCurrency.symbol;
+    }
+    return undefined;
+}
+
+export function getDomainToChainName(domain: number): TChainName | undefined {
+    if(SupportedDomains.includes(domain)){
+        return DomainToChainName[domain];
+    }
+    return undefined;
 }

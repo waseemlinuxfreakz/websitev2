@@ -1,31 +1,8 @@
 import { useEffect, useState } from "react";
 import { setBridgeToHash } from '../store/bridgeSlice';
 import { useAppSelector, useAppDispatch } from './storage';
-import { txBackend } from '../types';
-import {
-    setExplorerBridgeAge,
-    setExplorerBridgeTxType,
-    setExplorerBridgeHash,
-    setExplorerBridgeDestinationHash,
-    setExplorerBridgeReceived,
-    setExplorerBridgeSent,
-    setExplorerBridgeStatus,
-} from '../store/explorerSlice';
-
-export type TxDetails = {
-    amount: number, // number of transferred tokens
-    bridgeHash: string,
-    burnToken: string, // the address of the transferred token
-    mintRecipient: string, // Receiver address
-    destinationDomain: number, // Number 0-7, Ethereum == 0, Polygon == 7
-    // Additional params
-    originalDomain: number,
-    sender: string,
-    burnHash: string,
-    start: Date,
-    claimHash?: string, // Will arrive when the token is claimed
-    finished?: Date
-}
+import { TTxType, TxDetails, txBackend } from '../types';
+import { setBridgeTransaction } from '../store/explorerSlice';
 
 export default function useCircleTxData() {
 
@@ -37,14 +14,18 @@ export default function useCircleTxData() {
         bridgeHash: "",
         burnToken: '',
         mintRecipient: bridge.receiver,
+        destinationFee: 0,
         destinationDomain: -1,
         originalDomain: -1,
+        originFee: 0,
         sender: '',
         burnHash: bridge.fromHash,
         start: new Date(),
+        symbol: '',
         claimHash: '',
-        finished: new Date()
-    }
+        finished: new Date(),
+        txType: 'Transfer',
+    } as TxDetails;
 
     const [txData, setTxData] = useState<TxDetails>(initData);
     const [hash, setHash] = useState(bridge.fromHash);
@@ -59,27 +40,21 @@ export default function useCircleTxData() {
 
         try {
             const result: Response = await fetch(`${txBackend}/hash/?hash=${hash}`);
-            const CircleTXData: TxDetails = await result.json();
+            let CircleTXData: TxDetails = await result.json();
             console.log("CircleTXData:", CircleTXData)
             setTxData(CircleTXData);
 
             if (CircleTXData && CircleTXData.claimHash) {
-                dispatch(setBridgeToHash(CircleTXData.claimHash))
 
-                dispatch(setExplorerBridgeAge(CircleTXData.start));
-                dispatch(setExplorerBridgeTxType('Transfer'));
-                dispatch(setExplorerBridgeHash(CircleTXData.bridgeHash));
-                dispatch(setExplorerBridgeDestinationHash(CircleTXData.claimHash));
-                dispatch(setExplorerBridgeReceived(CircleTXData.amount)); // !!! May be different for non USDC
-                dispatch(setExplorerBridgeSent(CircleTXData.amount)); // !!! May be different for non USDC
+                CircleTXData.txType = 'Transfer';
 
-                if(CircleTXData && CircleTXData.claimHash){
-                    dispatch(setExplorerBridgeStatus("Success"));
+                if (CircleTXData && CircleTXData.claimHash) {
+                    CircleTXData.status = "Success"
                 } else {
-                    dispatch(setExplorerBridgeStatus("Pending"));
+                    CircleTXData.status = "Pending"
                 }
 
-                
+                dispatch(setBridgeTransaction(CircleTXData));
             }
 
         } catch (error) {

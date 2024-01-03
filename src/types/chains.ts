@@ -215,3 +215,28 @@ export const ChainNameToTypeChainName: {[key:string]:TChainName} = {
     "Avalanche":'avalanche',
     "Arbitrum":'arbitrum'
 }
+
+export const ChainToDestinationDomain = {
+    arbitrum: 3,
+    avalanche: 1,
+    base: 6,
+    goerli: 0,
+    optimism: 2,
+    polygon: 7,
+    // Not supported:
+    linea: -2,
+    scroll: -3
+}
+
+export const DomainToChainName: {[key: number]: TChainName} = {
+    0: 'goerli',
+    1: 'avalanche',
+    2: 'optimism',
+    3: 'arbitrum',
+    6: 'base',
+    7: 'polygon'
+}
+
+export const SupportedDomains = [
+    0, 1, 2, 3, 6, 7
+]
