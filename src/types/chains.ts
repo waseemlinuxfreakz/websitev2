@@ -239,4 +239,13 @@ export const DomainToChainName: {[key: number]: TChainName} = {
 
 export const SupportedDomains = [
     0, 1, 2, 3, 6, 7
-]
+];
+
+export const supportedChainnames = [
+    'goerli',
+    'avalanche',
+    'optimism',
+    'arbitrum',
+    'base',
+    'polygon'
+];
