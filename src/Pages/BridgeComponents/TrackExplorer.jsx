@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 function TrackExplorer() {
 
   const bridge = useAppSelector((state) => state.bridge);
+  const tx = useAppSelector((state) => state.explorer.bridgeTransaction);
 
   const showCharacters = isMobile ? 6 : 18;
 
@@ -18,10 +19,14 @@ function TrackExplorer() {
 
   return (
     <div className="trackExplorer">
-        <div className="trackExploerTitle">
-          <h4><Link to={`/transactionDetails/`}>Transaction details</Link></h4>
-          <img src={RightArrow} alt="RightArrow" className={`arrowRight`} />
-        </div>
+      {tx 
+      && tx.bridgeHash
+      && (<div className="trackExploerTitle">
+      <h4><Link to={`/transactionDetails/${tx.bridgeHash}`}>{`TX ${tx.bridgeHash} details`}</Link></h4>
+      <img src={RightArrow} alt="RightArrow" className={`arrowRight`} />
+    </div>)
+      }
+        
 
       {bridge.fromHash && (<div className="destinationHas">
         <div className="destinationHasTitle">
