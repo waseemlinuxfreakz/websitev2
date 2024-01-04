@@ -10,7 +10,8 @@ const initialState = {
     bridgeTransaction: {
         age: 0,    // time elapsed since TX start
         txType: 'Transfer',
-        bridgeHash: '659158587e0bb50da4538d32',
+        bridgeFee: 0,
+        bridgeHash: '0x659158587e0bb50da4538d32',
         burnHash: '',
         destinationFee: 0,
         destinationDomain: -1,

@@ -1,24 +1,18 @@
 import React from 'react';
 import { useAppSelector } from '../../../hooks/storage';
-import { DomainToChainName } from '../../../types'
-import { getDomainToChainName, getChainSymbolFromName} from '../../../utils';
+import { getDomainToChainName, getChainSymbolFromName } from '../../../utils';
+import useGetTxValue from '../../../hooks/useGetTxValue'
 
 function TransactionDetailsRight() {
 
     const explorer = useAppSelector(store => store.explorer);
 
-    let destChainName;
-    let originChainName;
+    const bridgeFee = useGetTxValue(
+        explorer.bridgeTransaction.bridgeHash,
+        getDomainToChainName(explorer.bridgeTransaction.originalDomain)
+    )
 
-    if(explorer.bridgeTransaction.destinationDomain != -1){
-        destChainName = DomainToChainName[explorer.bridgeTransaction.destinationDomain];
-    }
-
-    if(explorer.bridgeTransaction.originalDomain != -1){
-        originChainName = DomainToChainName[explorer.bridgeTransaction.originalDomain];
-    }
-
-    return ( 
+    return (
         <div className="transactionDetailsBox">
             <ul className="transactionDetailsList">
                 <li className='transactionDetailsListItem'>
@@ -26,7 +20,7 @@ function TransactionDetailsRight() {
                         Sent amount
                     </div>
                     <div className="transactionDetailsListRight">
-                        {explorer.bridgeTransaction.sent} {explorer.bridgeTransaction.symbol}
+                        {explorer.bridgeTransaction.amount / 1e6} {explorer.bridgeTransaction.symbol}
                     </div>
                 </li>
                 <li className='transactionDetailsListItem'>
@@ -34,7 +28,7 @@ function TransactionDetailsRight() {
                         Received amount
                     </div>
                     <div className="transactionDetailsListRight">
-                        {explorer.bridgeTransaction.received} {explorer.bridgeTransaction.symbol}
+                        {explorer.bridgeTransaction.amount / 1e6} {explorer.bridgeTransaction.symbol}
                     </div>
                 </li>
                 <li className='transactionDetailsListItem'>
@@ -42,7 +36,12 @@ function TransactionDetailsRight() {
                         Bridge Fee
                     </div>
                     <div className="transactionDetailsListRight">
-                        <div className="bridgeFee">10 EMMET <span>= $0.5</span></div>
+                        <div className="bridgeFee">
+                            {bridgeFee}{' '}
+                            {getChainSymbolFromName(getDomainToChainName(
+                                explorer.bridgeTransaction.originalDomain
+                            ))}
+                            <span>= $0.5</span></div>
                     </div>
                 </li>
                 <li className='transactionDetailsListItem'>
@@ -72,12 +71,12 @@ function TransactionDetailsRight() {
                         Value
                     </div>
                     <div className="transactionDetailsListRight">
-                        ${explorer.bridgeTransaction.received}
+                        $ {explorer.bridgeTransaction.amount / 1e6}
                     </div>
                 </li>
             </ul>
         </div>
-     );
+    );
 }
 
 export default TransactionDetailsRight;

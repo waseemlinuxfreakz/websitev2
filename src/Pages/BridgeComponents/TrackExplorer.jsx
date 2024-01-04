@@ -3,34 +3,25 @@ import RightArrow from '../../assets/img/right-arrow.svg';
 import Copy from '../../assets/img/copy.svg';
 import { useAppSelector } from '../../hooks/storage';
 import { isMobile } from 'react-device-detect';
+import { Link } from 'react-router-dom';
 
 function TrackExplorer() {
 
   const bridge = useAppSelector((state) => state.bridge);
 
-  const [isFlipped, setIsFlipped] = useState(false);
-
   const showCharacters = isMobile ? 6 : 18;
-
-  const proceedToTheExplorer = () => {
-    setIsFlipped(!isFlipped);
-  };
 
   function copyFromText () {
     console.log("TrackExplorer:copyFromText:from:", bridge.fromHash);
     navigator.clipboard.writeText(bridge.fromHash);
   }
 
-  
-
   return (
     <div className="trackExplorer">
-      <a href='/transactionDetails'>
-        <div className="trackExploerTitle" onClick={proceedToTheExplorer}>
-          <h4>Transaction details</h4>
-          <img src={RightArrow} alt="RightArrow" className={`arrowRight ${isFlipped ? 'flipped' : ''}`} />
+        <div className="trackExploerTitle">
+          <h4><Link to={`/transactionDetails/`}>Transaction details</Link></h4>
+          <img src={RightArrow} alt="RightArrow" className={`arrowRight`} />
         </div>
-      </a>
 
       {bridge.fromHash && (<div className="destinationHas">
         <div className="destinationHasTitle">

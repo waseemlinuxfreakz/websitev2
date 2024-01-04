@@ -32,6 +32,7 @@ export type TTxStatus =
 
 export type TxDetails = {
     amount?: number, // number of transferred tokens
+    bridgeFee: number,
     bridgeHash: string,
     burnToken?: string, // the address of the transferred token
     mintRecipient?: string, // Receiver address
