@@ -41,7 +41,7 @@ function App() {
             <Route path="/bridge" element={<Bridge />} />
             <Route path="/bridge-transfer" element={<BridgeSuccess />} />
             <Route path="/explorer" element={<ExplorerPage />} />
-            <Route path="/transactionDetails" element={<TransactionDetailsPage />} />
+            <Route path="/transactionDetails/:hash" element={<TransactionDetailsPage />} />
             <Route path="/pool" element={<PoolPage />} />
             <Route path="/pool/your-liquidity" element={<YourLiquidityPage />} />
           </Routes>
