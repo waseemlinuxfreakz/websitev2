@@ -4,7 +4,8 @@ import {
     TChainName, 
     TEmmetChain, 
     DomainToChainName, 
-    SupportedDomains 
+    SupportedDomains, 
+    supportedChainnames
 } from "../types";
 
 export function getChainData(chinName: TChainName, param: TChainDataParam):string | number | undefined {
@@ -50,4 +51,18 @@ export function getDomainToChainName(domain: number): TChainName | undefined {
         return DomainToChainName[domain];
     }
     return undefined;
+}
+
+export function getLogoByChainName (chinName: TChainName): string {
+    if(supportedChainnames.includes(chinName)){
+        return SUPPORTED_CHAINS[chinName].icon;
+    }
+    return '';
+}
+
+export function getExplorerByChainName(chinName: TChainName): string {
+    if(supportedChainnames.includes(chinName)){
+        return SUPPORTED_CHAINS[chinName].blockExplorers.default.url;
+    }
+    return '';
 }
