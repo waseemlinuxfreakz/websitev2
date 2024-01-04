@@ -1,31 +1,29 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from './store';
-import { TTxType, TTxStatus, TxDetails } from '../types';
+import { TxDetails } from '../types';
 
 export interface IExplorerState {
     bridgeTransaction: TxDetails
 }
 
-const initialState = {
+const initialState: IExplorerState = {
     bridgeTransaction: {
+        amount: 0,
         age: 0,    // time elapsed since TX start
         txType: 'Transfer',
         bridgeFee: 0,
-        bridgeHash: '0x659158587e0bb50da4538d32',
+        bridgeHash: '',
         burnHash: '',
+        claimHash: '',
         destinationFee: 0,
         destinationDomain: -1,
-        destinationHash: '',
         originalDomain: -1,
-        originHash: '',
         originFee: 0,
-        received: 0,
         sender: '',
-        sent: 0,
         status: 'Pending',
         symbol: 'USDC',
     }
-} as IExplorerState;
+};
 
 export const explorerSlice = createSlice({
     name: 'explorer',
@@ -33,7 +31,10 @@ export const explorerSlice = createSlice({
     reducers: {
         setBridgeTransaction(state: IExplorerState, action: PayloadAction<TxDetails>) {
             state.bridgeTransaction = action.payload
-        }
+        },
+        setBridgeTimeElapsedSinceStart(state: IExplorerState, action: PayloadAction<number>){
+            state.bridgeTransaction.age = action.payload;
+        },
     },
     extraReducers(builder: any) { }
 });
