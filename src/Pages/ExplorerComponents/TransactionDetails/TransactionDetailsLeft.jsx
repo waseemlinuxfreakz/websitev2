@@ -8,10 +8,15 @@ import Op from '../../../assets/img/coin/op.svg'
 import Target from '../../../assets/img/target.svg';
 
 import { useAppSelector } from '../../../hooks/storage';
-import { getDomainToChainName, getChainSymbolFromName, getTimeLength } from '../../../utils';
+import {
+    getDomainToChainName,
+    getTimeLength,
+    getLogoByChainName,
+    getExplorerByChainName
+} from '../../../utils';
 import useElapsedTime from '../../../hooks/useElapsedTime';
 
-function TransactionDetailsLeft() {
+function TransactionDetailsLeft({txStatus}) {
 
     const explorer = useAppSelector(store => store.explorer);
 
@@ -26,17 +31,32 @@ function TransactionDetailsLeft() {
     const [isCopied2, setIsCopied2] = useState(false);
 
     const handleCopyClick = () => {
-        setIsCopied(true);
-        setTimeout(() => {
+        try {
+            navigator.clipboard.writeText(
+                explorer.bridgeTransaction.burnHash
+            )
+            setIsCopied(true);
+            setTimeout(() => {
+                setIsCopied(false);
+            }, 2000);
+        } catch (error) {
             setIsCopied(false);
-        }, 2000);
+        }
     };
 
     const handleCopyClick2 = () => {
-        setIsCopied2(true);
-        setTimeout(() => {
+        try {
+            navigator.clipboard.writeText(
+                explorer.bridgeTransaction.claimHash
+            )
+            setIsCopied2(true);
+            setTimeout(() => {
+                setIsCopied2(false);
+            }, 2000);
+        } catch (error) {
             setIsCopied2(false);
-        }, 2000);
+        }
+
     };
 
     return (
@@ -64,7 +84,7 @@ function TransactionDetailsLeft() {
                                 src={Success}
                                 alt="Success"
                             />
-                            {' '}{explorer.bridgeTransaction.status}
+                            {' '}{txStatus}
                         </span>
                     </div>
                 </li>
@@ -74,17 +94,45 @@ function TransactionDetailsLeft() {
                     </div>
                     <div className="transactionDetailsListRight">
                         <div className="chainAddress">
-                            <img src={Eth} alt="Eth" />
+                            {
+                                explorer.bridgeTransaction.originalDomain != -1
+                                && (<img
+                                    src={`../${getLogoByChainName(
+                                        getDomainToChainName(
+                                            explorer.bridgeTransaction.originalDomain
+                                        ))}`}
+                                    alt="Original Blockchain Logo"
+                                    width="25px"
+                                    height="25px"
+                                />)
+                            }
+
                             <div className="chainLink">
-                                {explorer.bridgeTransaction.burnHash
-                                    ? `${explorer.bridgeTransaction.burnHash.slice(0, 6)}...${explorer.bridgeTransaction.burnHash.slice(-10)}`
-                                    : ''
+                                {explorer.bridgeTransaction.burnHash != -1
+                                    && `${explorer.bridgeTransaction.burnHash &&
+                                    explorer.bridgeTransaction.burnHash.slice(0, 6)}...${explorer.bridgeTransaction.burnHash &&
+                                    explorer.bridgeTransaction.burnHash.slice(-10)}`
                                 }
                             </div>
                         </div>
-                        <a href="#" className="exportLink">
-                            <img src={Target} alt="Target" />
-                        </a>
+                        {
+                            explorer.bridgeTransaction.burnHash
+                            && (<a
+                                href={`${getExplorerByChainName(
+                                    getDomainToChainName(
+                                        explorer.bridgeTransaction.originalDomain
+                                    ))}/tx/${explorer.bridgeTransaction.burnHash}`}
+                                className="exportLink"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <img
+                                    src={Target}
+                                    alt="Open transaction in the original chain explorer"
+                                />
+                            </a>)
+                        }
+
                         <button className='copyLink' onClick={handleCopyClick}>
                             {isCopied && <span className="copiedAlert">Copied!</span>}
                             <span className="copyHover">Copy to clipboard</span>
@@ -98,17 +146,45 @@ function TransactionDetailsLeft() {
                     </div>
                     <div className="transactionDetailsListRight">
                         <div className="chainAddress">
-                            <img src={Op} alt="Op" />
+                            {explorer.bridgeTransaction.destinationDomain
+                                && <img
+                                    src={`../${getLogoByChainName(
+                                        getDomainToChainName(
+                                            explorer.bridgeTransaction.destinationDomain
+                                        ))}`}
+                                    alt="Destination Blockchain Logo"
+                                    width="25px"
+                                    height="25px"
+                                />
+                            }
+
                             <div className="chainLink">
                                 {explorer.bridgeTransaction.claimHash
-                                    ? `${explorer.bridgeTransaction.claimHash.slice(0, 6)}...${explorer.bridgeTransaction.claimHash.slice(-10)}`
-                                    : ''
+                                    && `${explorer.bridgeTransaction.claimHash &&
+                                    explorer.bridgeTransaction.claimHash.slice(0, 6)}...${explorer.bridgeTransaction.claimHash &&
+                                    explorer.bridgeTransaction.claimHash.slice(-10)}`
                                 }
                             </div>
                         </div>
-                        <a href="#" className="exportLink">
-                            <img src={Target} alt="Target" />
-                        </a>
+
+                        {
+                            explorer.bridgeTransaction.claimHash
+                            && (<a
+                                href={`${getExplorerByChainName(
+                                    getDomainToChainName(
+                                        explorer.bridgeTransaction.destinationDomain
+                                    ))}/tx/${explorer.bridgeTransaction.claimHash}`}
+                                className="exportLink"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <img
+                                    src={Target}
+                                    alt="Open transaction in the destination chain explorer"
+                                />
+                            </a>)
+                        }
+
                         <button className='copyLink' onClick={handleCopyClick2}>
                             {isCopied2 && <span className="copiedAlert">Copied!</span>}
                             <span className="copyHover">Copy to clipboard</span>
@@ -125,12 +201,15 @@ function TransactionDetailsLeft() {
                         <span className="time">
                             <img src={Clock} alt="Clock" />
                             {elapsedTime.days ? `${elapsedTime.days} days ` : ''}
-                            {elapsedTime.hours ? `${elapsedTime.hours} hr ` : ''}
+                            {elapsedTime.hours ? `${elapsedTime.hours} hrs ` : ''}
                             {elapsedTime.minutes ? `${elapsedTime.minutes} min ` : ''}
                             {elapsedTime.seconds ? `${elapsedTime.seconds} sec ` : ''}
-                            {elapsedTime.days || elapsedTime.hours || elapsedTime.minutes || elapsedTime.seconds
-                            ? ' ago'
-                            : ''
+                            {
+                                elapsedTime.days
+                                    || elapsedTime.hours
+                                    || elapsedTime.minutes
+                                    || elapsedTime.seconds
+                                    ? ' ago' : ''
                             }
                         </span>
                     </div>
@@ -141,7 +220,7 @@ function TransactionDetailsLeft() {
                     </div>
                     <div className="transactionDetailsListRight">
                         {txLength.days ? `${txLength.days} days ` : ''}
-                        {txLength.hours ? `${txLength.hours} hr ` : ''}
+                        {txLength.hours ? `${txLength.hours} hrs ` : ''}
                         {txLength.minutes ? `${txLength.minutes} min ` : ''}
                         {txLength.seconds ? `${txLength.seconds} sec ` : ''}
                     </div>
