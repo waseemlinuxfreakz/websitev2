@@ -24,7 +24,9 @@ export default function ChainSelectorDropdown({ parent, direction }) {
     const [ chainArray, setChainArray] = useState(chainData);
     const dispatch = useAppDispatch();
 
-    const isLayer2View = () => window.location.href.includes("/your-liquidity");
+    const isLayer2View = () => 
+        window.location.href.includes("/your-liquidity")
+        || window.location.href.includes("/transactionDetails/");
 
     // Local State
     const [selectedChain, setSelectedChain] = useState({
