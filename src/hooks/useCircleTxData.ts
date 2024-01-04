@@ -39,23 +39,28 @@ export default function useCircleTxData() {
         setIsLoading(true);
 
         try {
-            const result: Response = await fetch(`${txBackend}/hash/?hash=${hash}`);
-            let CircleTXData: TxDetails = await result.json();
-            console.log("CircleTXData:", CircleTXData)
-            setTxData(CircleTXData);
+            if (hash) {
 
-            if (CircleTXData && CircleTXData.claimHash) {
-
-                CircleTXData.txType = 'Transfer';
+                const result: Response = await fetch(`${txBackend}/hash/?hash=${hash}`);
+                let CircleTXData: TxDetails = await result.json();
+                console.log("CircleTXData:", CircleTXData)
+                setTxData(CircleTXData);
 
                 if (CircleTXData && CircleTXData.claimHash) {
-                    CircleTXData.status = "Success"
-                } else {
-                    CircleTXData.status = "Pending"
+
+                    CircleTXData.txType = 'Transfer';
+
+                    if (CircleTXData && CircleTXData.claimHash) {
+                        CircleTXData.status = "Success"
+                    } else {
+                        CircleTXData.status = "Pending"
+                    }
+
+                    dispatch(setBridgeTransaction(CircleTXData));
                 }
 
-                dispatch(setBridgeTransaction(CircleTXData));
             }
+
 
         } catch (error) {
             setIsError(true);
