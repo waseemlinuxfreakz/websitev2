@@ -1,31 +1,38 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Copy from '../../../assets/img/copy.svg';
-
-import { useAppSelector } from '../../../hooks/storage';
+import { useAppSelector, useAppDispatch } from '../../../hooks/storage';
+import useBridgeTx from '../../../hooks/useBridgeTx';
+import { setBridgeTransaction } from '../../../store/explorerSlice';
 
 function TransactionHash() {
 
+  const { hash } = useParams();
   const explorer = useAppSelector(state => state.explorer);
-
+  const dispatch = useAppDispatch();
+  const data = useBridgeTx(hash);
+  
   const [isCopied, setIsCopied] = useState(false);
-  const [hash, setHash] = useState(explorer.bridgeTransaction.bridgeHash);
 
+  
   useEffect(() => {
 
-    setHash(explorer.bridgeTransaction.bridgeHash);
+    if(hash && data){
+      dispatch(setBridgeTransaction(data))
+    }
 
-  }, [explorer.hash])
+  }, [data])
 
   const handleCopyClick = () => {
     if (navigator && navigator.clipboard) {
       try {
-        navigator.clipboard.writeText(explorer.bridgeTransaction.bridgeHash);
+        navigator.clipboard.writeText(hash);
       } catch (error) {
-        console.error(`Error: could not copy to clipboard. Reason:`, error.message);
+        console.warn(`Error: could not copy to clipboard. Reason:`, error.message);
       }
 
     } else {
-      console.error(`Error: could not copy to clipboard`);
+      console.warn(`Error: could not copy to clipboard`);
     }
     setIsCopied(true);
     setTimeout(() => {
