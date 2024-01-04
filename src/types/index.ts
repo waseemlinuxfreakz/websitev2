@@ -28,9 +28,11 @@ export type TTxType =
 export type TTxStatus =
     "Failed"
     | "Pending"
+    | "Reverted"
     | "Success";
 
 export type TxDetails = {
+    age?: number,
     amount?: number, // number of transferred tokens
     bridgeFee: number,
     bridgeHash: string,

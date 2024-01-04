@@ -65,7 +65,7 @@ const initialState = {
     isReset: false,
     isRunning: false,
     isSuccess: false,
-    isTransferProgressVisible: true,
+    isTransferProgressVisible: false,
     receive: '',
     receiver: "",
     slippage: 0.5,
