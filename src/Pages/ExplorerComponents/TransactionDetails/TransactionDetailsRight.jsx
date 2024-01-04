@@ -3,12 +3,12 @@ import { useAppSelector } from '../../../hooks/storage';
 import { getDomainToChainName, getChainSymbolFromName } from '../../../utils';
 import useGetTxValue from '../../../hooks/useGetTxValue'
 
-function TransactionDetailsRight() {
+function TransactionDetailsRight({fromFee, toFee}) {
 
     const explorer = useAppSelector(store => store.explorer);
 
     const bridgeFee = useGetTxValue(
-        explorer.bridgeTransaction.bridgeHash,
+        explorer.bridgeTransaction.burnHash,
         getDomainToChainName(explorer.bridgeTransaction.originalDomain)
     )
 
@@ -37,11 +37,11 @@ function TransactionDetailsRight() {
                     </div>
                     <div className="transactionDetailsListRight">
                         <div className="bridgeFee">
-                            {bridgeFee}{' '}
+                            {bridgeFee && `${bridgeFee / 1e18}`.slice(0, 10)}{' '}
                             {getChainSymbolFromName(getDomainToChainName(
                                 explorer.bridgeTransaction.originalDomain
                             ))}
-                            <span>= $0.5</span></div>
+                            <span>{` = $ ${0.5}`}</span></div>
                     </div>
                 </li>
                 <li className='transactionDetailsListItem'>
@@ -49,7 +49,7 @@ function TransactionDetailsRight() {
                         Origin Fee
                     </div>
                     <div className="transactionDetailsListRight">
-                        {explorer.bridgeTransaction.originFee}{' '}
+                        {fromFee && fromFee.toFixed(8)}{' '}
                         {getChainSymbolFromName(getDomainToChainName(
                             explorer.bridgeTransaction.originalDomain
                         ))}
@@ -60,7 +60,7 @@ function TransactionDetailsRight() {
                         Destination Fee
                     </div>
                     <div className="transactionDetailsListRight">
-                        {explorer.bridgeTransaction.destinationFee}{' '}
+                        {toFee && toFee.toFixed(8)}{' '}
                         {getChainSymbolFromName(getDomainToChainName(
                             explorer.bridgeTransaction.destinationDomain
                         ))}
