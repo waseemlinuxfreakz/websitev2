@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './TokenSelectorBox.css';
 // Components
 import WalletBalance from '../../HomeComponents/WalletBalance/WalletBalance';
@@ -8,29 +8,50 @@ import { useAppSelector, useAppDispatch } from '../../../hooks/storage';
 import { setBridgeAmount } from '../../../store/bridgeSlice';
 import ChainSelectorDropdown from '../../HomeComponents/ChainSelectorDropdown/ChainSelectorDropdown';
 import DestinationChainDropdown from '../../HomeComponents/ChainSelectorDropdown/DestinationChainDropdown';
-
-import { sanitizeNumber } from '../../../utils/sanitizeNumber';
 import useBalance from '../../../hooks/useBalance';
 
 export default function TokenSelectorBox({ type }) {
 
     const dispatch = useAppDispatch();
+    const [amount, setAmount] = useState('')
+    const [oldAmount, setOldAmount] = useState('');
 
     // Global state
     const bridge = useAppSelector((state) => state.bridge);
 
-    const {fromBalance, toBalance} = useBalance();
+    const { fromBalance, toBalance } = useBalance();
 
     function onInputChange(e) {
         e.preventDefault();
-        if(e.target.value){
-            const sanitized = sanitizeNumber(e.target.value);
-            dispatch(setBridgeAmount(sanitized));
-        }else{
-            dispatch(setBridgeAmount(''));
+        if (e.target.value) {
+            switch (e.target.value) {
+                case '+':
+                case '-':
+                case 'e':
+                    setAmount('');
+                default:
+                    setAmount(e.target.value);
+            }
+
+        } else {
+            setAmount('');
+            setOldAmount('');
         }
-        
+
     }
+
+    useEffect(() => {
+
+        if (amount) {
+            const sanitized = String(amount).replace(',', '.').replace(/[^0-9.]/g, '');
+            setAmount(sanitized);
+            setOldAmount(sanitized)
+            dispatch(setBridgeAmount(sanitized));
+        } else {
+            dispatch(setBridgeAmount(oldAmount));
+        }
+
+    }, [amount]);
 
     function isFromType() {
         return type && type == "from";
@@ -57,7 +78,6 @@ export default function TokenSelectorBox({ type }) {
                         <h2 className="amount">
                             <input
                                 onChange={e => onInputChange(e)}
-                                type="number"
                                 placeholder='0.0'
                                 disabled={type && type === "to"
                                     ? true

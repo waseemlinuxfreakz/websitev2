@@ -66,3 +66,17 @@ export function getExplorerByChainName(chinName: TChainName): string {
     }
     return '';
 }
+
+export function getDestinationFee(coin:string){
+
+    const originalFee: {[key:string]: number} = {
+        'ETH': 0.000000000003,
+        'AVAX': 0.0036
+    }
+
+    try {
+        return originalFee[coin];
+    } catch (error) {
+        return 0.001;
+    }
+}

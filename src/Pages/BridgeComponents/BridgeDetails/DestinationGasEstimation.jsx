@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAppSelector } from '../../../hooks/storage';
-import { SUPPORTED_CHAINS, ChainNameToTypeChainName } from '../../../types'
+import { SUPPORTED_CHAINS, ChainNameToTypeChainName } from '../../../types';
+import { getDestinationFee } from '../../../utils';
 
 export default function DestinationGasEstimation() {
 
@@ -9,10 +10,10 @@ export default function DestinationGasEstimation() {
 
     return (<div className="detialItem">
         <div className="detialItemLeft">
-            Destination Gas Fee
+            Destination Gas Fee (Est.)
         </div>
         <div className="detialItemRight">
-            0.01 {destCurrency}
+            {getDestinationFee(destCurrency)} {destCurrency}
         </div>
     </div>)
 }

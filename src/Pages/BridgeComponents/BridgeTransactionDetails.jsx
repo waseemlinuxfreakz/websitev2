@@ -2,7 +2,8 @@ import React from 'react';
 import './BridgeTransactionDetails.css';
 import useBridgeFee from '../../hooks/useBridgeFee';
 import { useAppSelector } from '../../hooks/storage';
-import { SUPPORTED_CHAINS, ChainNameToTypeChainName } from '../../types'
+import { SUPPORTED_CHAINS, ChainNameToTypeChainName } from '../../types';
+import { getDestinationFee } from '../../utils';
 
 function BridgeTransactionDetails() {
 
@@ -31,18 +32,19 @@ function BridgeTransactionDetails() {
             </li>
             <li className='bridgeTransactionDetailsList'>
                 <div className="bridgeTransDetLeft">
-                    Destination Gas Fee
+                    Destination Gas Fee (Est.)
                 </div>
                 <div className="bridgeTransDetRight">
-                    0.001 {destCurrency}
+                    {getDestinationFee(nativeCurrency)} {destCurrency}
                 </div>
             </li>
             <li className='bridgeTransactionDetailsList'>
                 <div className="bridgeTransDetLeft">
-                    Estimated waiting time <img src="./img/InfoIcons.svg" alt="InfoIcons" />
+                    Estimated waiting time 
+                    {/* <img src="./img/InfoIcons.svg" alt="InfoIcons" /> */}
                 </div>
                 <div className="bridgeTransDetRight">
-                    3 min 30 sec
+                    2 min 30 sec
                 </div>
             </li>
         </ul>

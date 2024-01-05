@@ -64,7 +64,6 @@ export default function useBridgeApproveERC20() {
         setFormattedAmount(Number(bridge.amount) * 10 ** decimals)
     }, [bridge.decimals]);
 
-    console.log("bridge.amount", bridge.amount, "formattedAmount",formattedAmount )
     // @ts-ignore
     const { config } = usePrepareContractWrite({
         address: addressToAccount(tokenAddress),
