@@ -3,22 +3,44 @@ import { useSwitchNetwork } from 'wagmi'
 import './TokenSwitchButton.css';
 import SwitchBtn from '../../../assets/img/Switch-button.svg';
 import { useAppSelector, useAppDispatch } from '../../../hooks/storage';
-import { swapBridgeChainsAndTokens } from '../../../store/bridgeSlice';
+import { setBridgeError, swapBridgeChainsAndTokens } from '../../../store/bridgeSlice';
 import { getChainidByName } from '../../../utils/filters';
 
 export default function TokenswitchButton() {
 
     // Global state
     const bridge = useAppSelector((state) => state.bridge);
+    const toChain = bridge.fromChain
+    const fromChain = bridge.toChain;
+    const fromToken = bridge.toToken;
+    const toToken = bridge.fromToken;
+
     const dispatch = useAppDispatch();
-    const { switchNetwork } = useSwitchNetwork();
+
+    const onError = (message) => {
+        dispatch(setBridgeError(message));
+    }
+
+    const onSuccess = () => {
+        dispatch(swapBridgeChainsAndTokens({ fromChain, toChain, fromToken, toToken }));
+        dispatch(setBridgeError(''));
+    }
+
+    const { switchNetwork } = useSwitchNetwork({ onError, onSuccess });
 
     const handleSwitchButtonClick = () => {
-        //  Chains
-        const toChain = bridge.toChain;
-        const id = getChainidByName(toChain);
-        dispatch(swapBridgeChainsAndTokens());
-        switchNetwork?.(id);
+
+        try {
+            //  Chains
+            const toChain = bridge.toChain;
+            const id = getChainidByName(toChain);
+
+
+            switchNetwork?.(id);
+
+        } catch (error) {
+            console.log(error.message)
+        }
     };
 
     return (

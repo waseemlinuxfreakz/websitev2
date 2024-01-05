@@ -69,9 +69,9 @@ export function getExplorerByChainName(chinName: TChainName): string {
 
 export function getDestinationFee(coin:string){
 
-    const destFee: {[key:string]: string} = {
-        'ETH': '0.000000000003',
-        'AVAX': '0.0036'
+    const destFee: {[key:string]: number} = {
+        'ETH': 0.000000000003,
+        'AVAX': 0.0036
     }
 
     try {
