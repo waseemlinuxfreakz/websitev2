@@ -24,15 +24,7 @@ export default function TokenSelectorBox({ type }) {
     function onInputChange(e) {
         e.preventDefault();
         if (e.target.value) {
-            switch (e.target.value) {
-                case '+':
-                case '-':
-                case 'e':
-                    setAmount('');
-                default:
-                    setAmount(e.target.value);
-            }
-
+            setAmount(e.target.value);
         } else {
             setAmount('');
             setOldAmount('');
@@ -43,7 +35,10 @@ export default function TokenSelectorBox({ type }) {
     useEffect(() => {
 
         if (amount) {
-            const sanitized = String(amount).replace(',', '.').replace(/[^0-9.]/g, '');
+            const sanitized = String(amount)
+            .replace(',', '.') // commas with a dot
+            .replace(/[^0-9.]/g, '') // any non digits
+            .replace(/^0+(\d+\.\d*|0\.)/, '$1') // multiple zeros before . with one
             setAmount(sanitized);
             setOldAmount(sanitized)
             dispatch(setBridgeAmount(sanitized));
