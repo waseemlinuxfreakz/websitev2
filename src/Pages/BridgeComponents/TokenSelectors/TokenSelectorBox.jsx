@@ -41,7 +41,10 @@ export default function TokenSelectorBox({ type }) {
             .replace(/^0+(\d+\.\d*|0\.)/, '$1') // multiple zeros before . with one
             setAmount(sanitized);
             setOldAmount(sanitized)
-            dispatch(setBridgeAmount(sanitized));
+            if(sanitized != '.'){
+                dispatch(setBridgeAmount(sanitized));
+            }
+            
         } else {
             dispatch(setBridgeAmount(oldAmount));
         }
