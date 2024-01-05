@@ -35,7 +35,7 @@ function BridgeTransactionDetails() {
                     Destination Gas Fee (Est.)
                 </div>
                 <div className="bridgeTransDetRight">
-                    {getDestinationFee(nativeCurrency)} {destCurrency}
+                    {getDestinationFee(destCurrency)} {destCurrency}
                 </div>
             </li>
             <li className='bridgeTransactionDetailsList'>
