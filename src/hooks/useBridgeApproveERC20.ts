@@ -29,16 +29,16 @@ export default function useBridgeApproveERC20() {
 
     const [tokenAddress, setTokenAddress] = useState<Hash>(addressToAccount(getTokenAddress(ChainNameToTypeChainName[bridge.fromChain], tokenName)));
 
-    const [decimals, setDecimals] = useState<bigint>(bridge.decimals ? BigInt(bridge.decimals) : 18n);
+    const [decimals, setDecimals] = useState<number>(bridge.decimals ? Number(bridge.decimals.toString()) : 18);
 
-    const [formattedAmount, setFormattedAmount] = useState<bigint>(BigInt(Number(bridge.amount) * 10 ** Number(decimals.toString())));
+    const [formattedAmount, setFormattedAmount] = useState<number>(Number(bridge.amount) * 10 ** Number(decimals.toString()));
 
     const [spender, setSpender] = useState<string>(SUPPORTED_CHAINS[chainName].bridge);
 
 
 
     useEffect(() => {
-        setFormattedAmount(BigInt(Number(bridge.amount) * 10 ** Number(decimals.toString())))
+        setFormattedAmount(Number(bridge.amount) * 10 ** decimals)
     }, [bridge.amount]);
 
     useEffect(() => {
@@ -60,18 +60,18 @@ export default function useBridgeApproveERC20() {
     }, [tokenName]);
 
     useEffect(() => {
-        setDecimals(bridge.decimals ? BigInt(bridge.decimals) : 18n)
-        setFormattedAmount(BigInt(Number(bridge.amount) * 10 ** Number(decimals.toString())))
+        setDecimals(bridge.decimals ? bridge.decimals : 18)
+        setFormattedAmount(Number(bridge.amount) * 10 ** decimals)
     }, [bridge.decimals]);
 
-
+    console.log("bridge.amount", bridge.amount, "formattedAmount",formattedAmount )
     // @ts-ignore
     const { config } = usePrepareContractWrite({
         address: addressToAccount(tokenAddress),
         account: address,
         abi: erc20ABI,
         functionName: 'approve',
-        args: [addressToAccount(spender), formattedAmount],
+        args: [addressToAccount(spender), BigInt(Math.ceil(formattedAmount))],
         chainId,
         onError(err: { message: string | undefined; }) {
             dispatch(setBridgeError(err.message));
@@ -81,7 +81,7 @@ export default function useBridgeApproveERC20() {
     const { data, isLoading, isSuccess, write } = useContractWrite(config);
 
     if(isSuccess){
-        dispatch(setBridgeAllowance(Number(bridge.amount) * 10 ** Number(decimals.toString())));
+        dispatch(setBridgeAllowance(Number(bridge.amount) * 10 ** decimals));
     }
 
     return { approveData: data, isApproveLoading: isLoading, isApproveSuccess: isSuccess, approve: write };

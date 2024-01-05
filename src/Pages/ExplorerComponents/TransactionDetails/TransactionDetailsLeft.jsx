@@ -64,7 +64,7 @@ function TransactionDetailsLeft({txStatus}) {
             <ul className="transactionDetailsList">
                 <li className='transactionDetailsListItem'>
                     <div className="transactionDetailsListLeft">
-                        Tnx type
+                        Transaction type
                     </div>
                     <div className="transactionDetailsListRight">
                         <span className="transfer">

@@ -39,9 +39,9 @@ export default function useBridgeTransfer() {
     const [tokenName, setTokenName] = useState<string>(bridge.fromToken);
 
 
-    const [decimals, setDecimals] = useState<bigint>(bridge.decimals ? BigInt(bridge.decimals) : 18n);
+    const [decimals, setDecimals] = useState<number>(bridge.decimals ? Number(bridge.decimals) : 18);
 
-    const [formattedAmount, setFormattedAmount] = useState<bigint>(BigInt(Number(bridge.amount) * 10 ** Number(decimals.toString())) || 1n);
+    const [formattedAmount, setFormattedAmount] = useState<number>(Number(bridge.amount) * 10 ** Number(decimals.toString()) || 1);
 
 
     const [destinationDomain, setDestinationDomain] = useState<number>(ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]]);
@@ -65,8 +65,8 @@ export default function useBridgeTransfer() {
 
     useEffect(() => {
         if(bridge.decimals){
-            setDecimals(bridge.decimals ? BigInt(bridge.decimals) : 18n);
-            setFormattedAmount(BigInt(Number(bridge.amount) * 10 ** Number(decimals.toString())) || 1n);
+            setDecimals(bridge.decimals ? Number(bridge.decimals) : 18);
+            setFormattedAmount(Number(bridge.amount) * 10 ** decimals || 1);
         }
     }, [bridge.decimals]);
 
@@ -84,7 +84,7 @@ export default function useBridgeTransfer() {
     useEffect(() => {
 
         if(bridge.amount){
-            setFormattedAmount(BigInt(Number(bridge.amount) * 10 ** Number(decimals.toString())) || 1n);
+            setFormattedAmount(Number(bridge.amount) * 10 ** decimals || 1);
         }
 
     }, [bridge.amount])
@@ -96,7 +96,7 @@ export default function useBridgeTransfer() {
         abi: circleBurner,
         functionName: 'depositForBurn',
         args: [
-            formattedAmount,
+            BigInt(Math.ceil(formattedAmount)),
             destinationDomain,
             mintRecipient,
             tokenName

@@ -11,7 +11,7 @@ export interface IBridgeState {
     balance: number,
     bridgeFee: number,
     deadline: number,
-    decimals: number | bigint,
+    decimals: number,
     error: string | undefined,
     fromChain: string,
     fromChains: TChainType[],
@@ -102,8 +102,13 @@ export const bridgeSlice = createSlice({
         setBridgeDeadline(state: IBridgeState, action: PayloadAction<number>) {
             state.deadline = action.payload;
         },
-        setBridgeDecimals(state:IBridgeState, action:PayloadAction<number|bigint>){
-            state.decimals = action.payload;
+        setBridgeDecimals(state:IBridgeState, action:PayloadAction<number | bigint>){
+            if(typeof action.payload === 'bigint'){
+                state.decimals = parseInt(action.payload.toString());
+            }else{
+                state.decimals = action.payload;
+            }
+            
         },
         setBridgeError(state: IBridgeState, action: PayloadAction<string | undefined>){
             state.error = action.payload;
