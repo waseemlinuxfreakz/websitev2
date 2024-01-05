@@ -4,7 +4,7 @@ import TokenswitchButton from './TokenSwitchButton';
 import TokenSelectorBox from './TokenSelectorBox'
 
 export default function TokenSelectors () {
-    return (<div class="payReciveContainer">
+    return (<div className="payReciveContainer">
         <TokenSelectorBox 
             type="from"
         />
