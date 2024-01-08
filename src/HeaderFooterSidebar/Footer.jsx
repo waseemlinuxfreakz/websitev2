@@ -19,7 +19,7 @@ function Footer() {
                     </div>
                     <div className="rightCol">
                         <p className="powerBy">
-                            © 2023 Powered by Emmet Finance
+                            © 2024 Emmet.Finance, All Rights Reserved.
                         </p>
                     </div>
                 </div>
