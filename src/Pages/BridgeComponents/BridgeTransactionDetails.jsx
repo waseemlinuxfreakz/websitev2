@@ -44,7 +44,7 @@ function BridgeTransactionDetails() {
                     {/* <img src="./img/InfoIcons.svg" alt="InfoIcons" /> */}
                 </div>
                 <div className="bridgeTransDetRight">
-                    2 min 30 sec
+                    1 min 59 sec
                 </div>
             </li>
         </ul>
