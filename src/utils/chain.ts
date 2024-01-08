@@ -71,7 +71,8 @@ export function getDestinationFee(coin:string){
 
     const destFee: {[key:string]: number} = {
         'ETH': 0.000000000003,
-        'AVAX': 0.0036
+        'AVAX': 0.0036,
+        'MATIC': 0.00025,
     }
 
     try {

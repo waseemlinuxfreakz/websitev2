@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { isMobile } from 'react-device-detect';
 import Header from '../HeaderFooterSidebar/Header';
 import Footer from '../HeaderFooterSidebar/Footer';
 import Sidebar from '../HeaderFooterSidebar/Sidebar';
@@ -8,11 +7,6 @@ import BridgeSwapTransaction from './BridgeComponents/BridgeSwaptransaction';
 import MobileHeader from '../HeaderFooterSidebar/MobileHeader';
 import MainActionButton from './BridgeComponents/MainActionButton';
 import SidebarSlider from '../HeaderFooterSidebar/SidebarComponent/SidebarSlider';
-import SwapSuccess from './HomeComponents/SwapSuccess';
-import SwapFailed from './HomeComponents/SwapFailed';
-import SwapConfirm from './HomeComponents/SwapConfirm';
-import useBridgeFailure from '../hooks/useBridgeFailure';
-import TransactionProgress from './BridgeComponents/TransactionProgress';
 import { useAppSelector } from '../hooks/storage';
 import useMobileDetector from '../hooks/useMobileDetector';
 
@@ -26,8 +20,6 @@ const Bridge = () => {
 
     // Show bridge transaction progress
     useEffect(() => { setShowProgress(bridge.isTransferProgressVisible) }, [bridge.isTransferProgressVisible])
-
-    const isFailure = useBridgeFailure();
 
     return (
         <>

@@ -5,14 +5,12 @@ import { useAppSelector, useAppDispatch } from '../../hooks/storage';
 import { findChain } from '../../utils';
 import {ChainNameToTypeChainName}   from '../../types';
 import TransactionCountUp from './TransactionCountUp';
-import useBridgeSuccess from '../../hooks/useBridgeSuccess';
 import useCircleTxData from '../../hooks/useCircleTxData';
 import { setBridgeIsRunning, setBridgeToHash } from '../../store/bridgeSlice';
 
 function TransactionProgress() {
 
     const bridge = useAppSelector((state) => state.bridge);
-    const isSuccess = useBridgeSuccess();
     const dispatch = useAppDispatch();
     const [{ txData, isLoading, isError }, setTxHash] = useCircleTxData();
 

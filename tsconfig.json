@@ -19,7 +19,7 @@
         "*": ["types/*"]
       }
     },
-    "include": ["src/**/*.tsx", "src/**/*.ts", "src/**/*.d.ts"],
+    "include": ["src/**/*.tsx", "src/**/*.ts", "src/**/*.d.ts", "src/Pages/CommonComponents/Slippage/ButtonSpinner.jsx"],
     "exclude": ["node_modules"]
   }
   

@@ -7,8 +7,6 @@ import { setBridgeAllowance, setBridgeDecimals, setBridgeError } from '../store/
 
 export default function useBridgeAllowance() {
 
-
-
     const { address, isConnected } = useAccount();
 
     const dispatch = useAppDispatch();
@@ -19,7 +17,7 @@ export default function useBridgeAllowance() {
         return Number(bridge.amount) > (Number(bridge.allowance) / 10 ** Number(bridge.decimals));
     }
 
-    const [allowance, setAllowance] = useState<string | number | bigint>(BigInt(bridge.allowance));
+    const [allowance, setAllowance] = useState<string | number>(bridge.allowance);
 
     const [decimals, setDecimals] = useState<bigint>(bridge.decimals ? BigInt(bridge.decimals) : 18n);
 
@@ -89,7 +87,7 @@ export default function useBridgeAllowance() {
             // console.log("tokenAddress", tokenAddress, "spender", spender)
         });
 
-    }, [address, bridge.amount, bridge.fromChain, bridge.fromToken]);
+    }, [address, bridge.amount, bridge.fromChain, bridge.fromToken, bridge.isApproving]);
 
     return { allowance, decimals, error, isApprovalRequired };
 }
