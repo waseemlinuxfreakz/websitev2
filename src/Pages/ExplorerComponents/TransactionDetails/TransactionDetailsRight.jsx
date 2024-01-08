@@ -12,6 +12,15 @@ function TransactionDetailsRight({fromFee, toFee}) {
         getDomainToChainName(explorer.bridgeTransaction.originalDomain)
     )
 
+    function decimals () {
+        switch(explorer.bridgeTransaction.symbol){
+            case 'USDC':
+                return 1e6;
+            default:
+                return 1e18;
+        }
+    }
+
     return (
         <div className="transactionDetailsBox">
             <ul className="transactionDetailsList">
@@ -20,7 +29,7 @@ function TransactionDetailsRight({fromFee, toFee}) {
                         Sent amount
                     </div>
                     <div className="transactionDetailsListRight">
-                        {explorer.bridgeTransaction.amount / 1e6} {explorer.bridgeTransaction.symbol}
+                        {explorer.bridgeTransaction.amount / decimals()} {explorer.bridgeTransaction.symbol}
                     </div>
                 </li>
                 <li className='transactionDetailsListItem'>
@@ -28,7 +37,7 @@ function TransactionDetailsRight({fromFee, toFee}) {
                         Received amount
                     </div>
                     <div className="transactionDetailsListRight">
-                        {explorer.bridgeTransaction.amount / 1e6} {explorer.bridgeTransaction.symbol}
+                        {explorer.bridgeTransaction.amount / decimals()} {explorer.bridgeTransaction.symbol}
                     </div>
                 </li>
                 <li className='transactionDetailsListItem'>
@@ -49,7 +58,7 @@ function TransactionDetailsRight({fromFee, toFee}) {
                         Origin Fee
                     </div>
                     <div className="transactionDetailsListRight">
-                        {fromFee && fromFee.toFixed(8)}{' '}
+                        {fromFee && fromFee}{' '}
                         {getChainSymbolFromName(getDomainToChainName(
                             explorer.bridgeTransaction.originalDomain
                         ))}
@@ -60,7 +69,7 @@ function TransactionDetailsRight({fromFee, toFee}) {
                         Destination Fee
                     </div>
                     <div className="transactionDetailsListRight">
-                        {toFee && toFee.toFixed(8)}{' '}
+                        {toFee && toFee}{' '}
                         {getChainSymbolFromName(getDomainToChainName(
                             explorer.bridgeTransaction.destinationDomain
                         ))}
@@ -71,7 +80,7 @@ function TransactionDetailsRight({fromFee, toFee}) {
                         Value
                     </div>
                     <div className="transactionDetailsListRight">
-                        $ {explorer.bridgeTransaction.amount / 1e6}
+                        $ {explorer.bridgeTransaction.amount / decimals()}
                     </div>
                 </li>
             </ul>
