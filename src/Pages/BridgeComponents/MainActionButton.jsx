@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react';
+// Hooks
 import { useAccount } from 'wagmi';
 import { useWeb3Modal } from '@web3modal/react';
-import { useAppSelector  } from '../../hooks/storage';
-import useBridgeAllowance from '../../hooks/useAllowance';
+import { useAppSelector, useAppDispatch } from '../../hooks/storage';
 import useBridgeApproveERC20 from '../../hooks/useBridgeApproveERC20';
-import useBridgeTransfer from '../../hooks/useBridgeTransfer';
+import useBridgeTransferEmmet from '../../hooks/useBridgeTransferEmmet';
+// Components
+import ButtonSpinner from '../CommonComponents/Spinner/ButtonSpinner';
+// Actions
+import { setBridgeIsApproving } from '../../store/bridgeSlice';
 
 function MainActionButton() {
 
+    const dispatch = useAppDispatch();
     const bridge = useAppSelector((state) => state.bridge);
 
     const { isConnected } = useAccount();
@@ -16,14 +21,12 @@ function MainActionButton() {
     const [disabled, setDisabled] = useState(false);
     const [caption, setCaption] = useState('');
 
-    const {approve, isApproveSuccess, isApproveLoading} = useBridgeApproveERC20();
-    const {transfer, istransferLoading, istransferSuccess} = useBridgeTransfer();
-
-    // has enough allowance?
-    const { isApprovalRequired } = useBridgeAllowance();
+    const { approve } = useBridgeApproveERC20();
+    const { isBurnReady, burnUSDC } = useBridgeTransferEmmet();
 
     function isApproveRequired() {
-        return Number(bridge.amount) > (Number(bridge.allowance) / 10 ** Number(bridge.decimals));
+        const needApproval = Number(bridge.amount) > (Number(bridge.allowance) / 10 ** Number(bridge.decimals));
+        return needApproval;
     }
 
     useEffect(() => {
@@ -33,7 +36,7 @@ function MainActionButton() {
             if (isApproveRequired()) {
                 setDisabled(false);
                 setCaption('Approve');
-            }else{
+            } else {
                 setDisabled(false);
                 setCaption('Transfer');
             }
@@ -48,25 +51,33 @@ function MainActionButton() {
             setCaption('Conect wallet')
         }
 
-    }, [isConnected, bridge.amount, bridge.allowance]);
+    }, [isConnected, bridge.amount, bridge.isApproving]);
 
 
 
     const onClickSelectAction = () => {
         if (!isConnected) {
             open();
-        }else{
-            if(isApproveRequired()){
-                approve();
-            }else{
-                if(transfer){
-                    console.log("onClickSelectAction:tranfer-click")
-                    transfer();
+        } else {
+            if (isApproveRequired()) {
+                if (approve) {
+                    try {
+                        approve();
+                        dispatch(setBridgeIsApproving(true));
+                    } catch (error) {
+                        console.warn(error.message)
+                        dispatch(setBridgeIsApproving(false));
+                    }
+
                 }
-                
+            } else {
+                if (isBurnReady) {
+                    burnUSDC();
+                }
+
             }
         }
-        
+
     }
 
     return (
@@ -76,7 +87,13 @@ function MainActionButton() {
                 disabled={disabled}
                 onClick={onClickSelectAction}
             >
-                {caption}
+                {bridge.isApproving
+                    ? (<>
+                        <ButtonSpinner />
+                        <span>Approving...</span>
+                    </>)
+                    : caption
+                }
 
             </button>
         </div>
