@@ -30,6 +30,10 @@ export default function TokenSelectorBox({ type }) {
             // Remove the last period
             newValue = newValue.slice(0, -1);
         }
+        const commaCount = (newValue.match(/\,/g) || []).length;
+        if(commaCount){
+            newValue = newValue.slice(0, -1);
+        }
         if (newValue) {
             setAmount(newValue);
         } else {
@@ -43,7 +47,6 @@ export default function TokenSelectorBox({ type }) {
 
         if (amount) {
             const sanitized = String(amount)
-                .replace(',', '.') // commas with a dot
                 .replace(/[^0-9.]/g, '') // any non digits
                 .replace(/^0+(\d+\.\d*|0\.)/, '$1') // multiple zeros before . with one
             setAmount(sanitized);
