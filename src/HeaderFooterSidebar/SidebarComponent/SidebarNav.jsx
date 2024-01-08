@@ -10,9 +10,14 @@ import NavIcon6 from '../../assets/img/nav-icon/nav-Icons-6.svg';
 import NavIcon7 from '../../assets/img/nav-icon/nav-Icons-7.svg';
 import Pool from '../../assets/img/nav-icon/Pool.svg';
 
+import { useAppDispatch } from '../../hooks/storage';
+import { resetBridgeProgress } from '../../store/bridgeSlice';
+import { resetBridgeTransactionData } from '../../store/explorerSlice';
 
 function SidebarNav() {
+
   const location = useLocation();
+  const dispatch = useAppDispatch();
 
   const isActive = (pathname) => {
     return location.pathname.includes(pathname);
@@ -20,6 +25,11 @@ function SidebarNav() {
 
   const handleLinkClick = () => {
     document.body.classList.remove('activeMobileMenu');
+    // Clear data
+
+    // BridgeTransactiondetails
+    dispatch(resetBridgeProgress());
+    dispatch(resetBridgeTransactionData());
   };
 
   return (

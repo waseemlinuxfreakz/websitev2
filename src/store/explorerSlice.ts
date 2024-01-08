@@ -35,11 +35,15 @@ export const explorerSlice = createSlice({
         setBridgeTimeElapsedSinceStart(state: IExplorerState, action: PayloadAction<number>){
             state.bridgeTransaction.age = action.payload;
         },
+        resetBridgeTransactionData(state: IExplorerState){
+            state.bridgeTransaction = initialState.bridgeTransaction;
+        }
     },
     extraReducers(builder: any) { }
 });
 
 export const {
+    resetBridgeTransactionData,
     setBridgeTransaction
 } = explorerSlice.actions;
 

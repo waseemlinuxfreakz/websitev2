@@ -19,6 +19,7 @@ export interface IBridgeState {
     fromHash: string,
     fromToken: string,
     fromTokens: TokenType[],
+    isApproving: boolean,
     isFailure: boolean,
     isLoading: boolean,
     isReset: boolean,
@@ -60,6 +61,7 @@ const initialState = {
     fromHash: '',
     fromToken,
     fromTokens: filterOneToken(fromToken),
+    isApproving: false,
     isFailure: false,
     isLoading: false,
     isReset: false,
@@ -140,6 +142,9 @@ export const bridgeSlice = createSlice({
             state.toToken = action.payload;
             state.fromTokens = filterOneToken(state.fromToken);
             state.toTokens = filterOneToken(state.toToken);
+        },
+        setBridgeIsApproving(state:IBridgeState, action:PayloadAction<boolean>){
+            state.isApproving = action.payload;
         },
         setBridgeIsFailure(state: IBridgeState, action: PayloadAction<boolean>) {
             state.isFailure = action.payload;
@@ -245,6 +250,7 @@ export const {
     setBridgeFromToken,
     setBridgeToToken,
     setFromContractAddress,
+    setBridgeIsApproving,
     setBridgeIsFailure,
     setBridgeIsLoading,
     setBridgeIsReset,
