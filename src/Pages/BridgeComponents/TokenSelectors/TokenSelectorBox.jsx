@@ -13,18 +13,25 @@ import useBalance from '../../../hooks/useBalance';
 export default function TokenSelectorBox({ type }) {
 
     const dispatch = useAppDispatch();
-    const [amount, setAmount] = useState('')
-    const [oldAmount, setOldAmount] = useState('');
-
     // Global state
     const bridge = useAppSelector((state) => state.bridge);
 
     const { fromBalance, toBalance } = useBalance();
 
+    const [amount, setAmount] = useState('')
+    const [oldAmount, setOldAmount] = useState('');
+
     function onInputChange(e) {
         e.preventDefault();
-        if (e.target.value) {
-            setAmount(e.target.value);
+        let newValue = e.target.value;
+        // Ensure there is at most one period in the input
+        const periodCount = (newValue.match(/\./g) || []).length;
+        if (periodCount > 1) {
+            // Remove the last period
+            newValue = newValue.slice(0, -1);
+        }
+        if (newValue) {
+            setAmount(newValue);
         } else {
             setAmount('');
             setOldAmount('');
@@ -36,15 +43,15 @@ export default function TokenSelectorBox({ type }) {
 
         if (amount) {
             const sanitized = String(amount)
-            .replace(',', '.') // commas with a dot
-            .replace(/[^0-9.]/g, '') // any non digits
-            .replace(/^0+(\d+\.\d*|0\.)/, '$1') // multiple zeros before . with one
+                .replace(',', '.') // commas with a dot
+                .replace(/[^0-9.]/g, '') // any non digits
+                .replace(/^0+(\d+\.\d*|0\.)/, '$1') // multiple zeros before . with one
             setAmount(sanitized);
             setOldAmount(sanitized)
-            if(sanitized != '.'){
+            if (sanitized != '.') {
                 dispatch(setBridgeAmount(sanitized));
             }
-            
+
         } else {
             dispatch(setBridgeAmount(oldAmount));
         }
