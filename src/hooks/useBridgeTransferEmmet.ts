@@ -26,7 +26,7 @@ export default function useBridgeTransferEmmet() {
 
     useEffect(() => {
 
-        if (address && bridge.amount) {
+        if (address && bridge.amount && bridge.allowance && bridge.allowance >= Number(bridge.amount)) {
             (async () => {
                 try {
                     const chainName: TChainName = ChainNameToTypeChainName[bridge.fromChain];

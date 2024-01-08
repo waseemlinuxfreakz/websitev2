@@ -30,7 +30,7 @@ export default function ChainSelectorDropdown({ parent, direction }) {
 
     // Local State
     const [selectedChain, setSelectedChain] = useState({
-        icon: chain && findChain(chain) ? `${isLayer2View() ? "../": ""}${findChain(chain).icon}` : Ethereum,
+        icon: chain && findChain(chain) ? `${isLayer2View() ? "..": ""}${findChain(chain).icon}` : Ethereum,
         name: chain && findChain(chain) ? findChain(chain).name : 'Ethereum',
     });
 
@@ -113,7 +113,7 @@ export default function ChainSelectorDropdown({ parent, direction }) {
             >
                 <div className="coinNameIcon">
                     <img 
-                    src={`${isLayer2View() ? '../' : ''}${selectedChain.icon}`} 
+                    src={`${isLayer2View() ? '..' : ''}${selectedChain.icon}`} 
                     alt={selectedChain.name} width="30px" />
                     <span>{selectedChain.name}</span>
                 </div>

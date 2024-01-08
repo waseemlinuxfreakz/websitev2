@@ -30,6 +30,8 @@ function TransactionDetailsLeft({txStatus}) {
     const [isCopied, setIsCopied] = useState(false);
     const [isCopied2, setIsCopied2] = useState(false);
 
+    
+
     const handleCopyClick = () => {
         try {
             navigator.clipboard.writeText(
@@ -146,7 +148,7 @@ function TransactionDetailsLeft({txStatus}) {
                     </div>
                     <div className="transactionDetailsListRight">
                         <div className="chainAddress">
-                            {explorer.bridgeTransaction.destinationDomain
+                            {explorer.bridgeTransaction.destinationDomain != -1
                                 && <img
                                     src={`../${getLogoByChainName(
                                         getDomainToChainName(
