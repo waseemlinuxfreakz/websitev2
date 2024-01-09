@@ -43,10 +43,10 @@ export default function useCircleTxData() {
 
                 const result: Response = await fetch(`${txBackend}/hash/?hash=${hash}`);
                 let CircleTXData: TxDetails = await result.json();
-                console.log("CircleTXData:", CircleTXData)
-                setTxData(CircleTXData);
 
-                if (CircleTXData && CircleTXData.claimHash) {
+                if (CircleTXData) {
+
+                    setTxData(CircleTXData);
 
                     CircleTXData.txType = 'Transfer';
 

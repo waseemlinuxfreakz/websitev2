@@ -34,7 +34,6 @@ export default function useBridgeTransferEmmet() {
         ) {
             (async () => {
                 try {
-                    console.log("fee:", fee)
                     const chainName: TChainName = ChainNameToTypeChainName[bridge.fromChain];
                     const decimals = bridge.decimals ? bridge.decimals : 18;
                     const formattedAmount = Number(bridge.amount) * 10 ** decimals;
@@ -63,8 +62,6 @@ export default function useBridgeTransferEmmet() {
                         setParams(request);
                     }
 
-                    console.log("request", request);
-
                 } catch (e: any) {
                     setIsReady(false);
                     console.warn(`useBridgeTransferEmmet Error: ${e.message}`);
@@ -89,7 +86,6 @@ export default function useBridgeTransferEmmet() {
                 if (hash) {
                     dispatch(setBridgeFromHash(hash));
                     dispatch(showBridgeProgress());
-                    console.log("useBridgeTransferEmmet hash:", hash);
                 }
 
             } catch (e: any) {
