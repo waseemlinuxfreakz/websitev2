@@ -5,7 +5,7 @@ function ExplorerTopGridTotal() {
     return ( 
         <div className="ExplorerBoxGray Totaltransactions">
             <p>Total transactions</p>
-            <h3>583.797</h3>
+            <h3>152,365</h3>
         </div>
      );
 }

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ExplorerTransactionsTitle from './ExplorerTransactions/ExplorerTransactionsTitle';
-import ExplorerTransactionsTnx from './ExplorerTransactions/ExplorerTransactionsTnx';
-import ExplorerTransactionsTo from './ExplorerTransactions/ExplorerTransactionsTo';
-import ExplorerTransactionsFrom from './ExplorerTransactions/ExplorerTransactionsFrom';
+import ExplorerTransactionSelectDropdown from './ExplorerTransactions/ExplorerTransactionSelectDropdown';
+import ExplorerToChainSelectDropdown from './ExplorerTransactions/ExplorerToChainSelectDropdown';
+import ExplorerFromChainSelectDropdown from './ExplorerTransactions/ExplorerFromChainSelectDropdown';
 
 import Filter from '../../assets/img/Icon-button.svg';
 import Close from '../../assets/img/close.svg';
@@ -40,9 +40,9 @@ function ExplorerTransactions() {
                     <img src={Filter} alt="Filter" />
                 </button> */}
                 <div className={`transactionRight ${isTransactionRightOpen ? 'open' : ''}`}>
-                    <ExplorerTransactionsTnx/>
-                    <ExplorerTransactionsFrom/>
-                    <ExplorerTransactionsTo/>
+                    <ExplorerTransactionSelectDropdown/>
+                    <ExplorerFromChainSelectDropdown/>
+                    <ExplorerToChainSelectDropdown/>
                 </div>
             </div>
         </div>

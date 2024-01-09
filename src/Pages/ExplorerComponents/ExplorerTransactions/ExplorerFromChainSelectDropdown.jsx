@@ -2,7 +2,7 @@ import React from 'react';
 import ChainSelectorDropdown from '../../HomeComponents/ChainSelectorDropdown/ChainSelectorDropdown';
 import TokenSelectionDropdown from '../../HomeComponents/TokenSelectors/TokenSelectionDropdown';
 
-function ExplorerTransactionsFrom() {
+function ExplorerFromChainSelectDropdown() {
     return ( 
         <div className="ExplorerTransactionsFilter fromTypeFilter">
             <div className="filterName">From</div>
@@ -16,4 +16,4 @@ function ExplorerTransactionsFrom() {
      );
 }
 
-export default ExplorerTransactionsFrom ;
+export default ExplorerFromChainSelectDropdown ;

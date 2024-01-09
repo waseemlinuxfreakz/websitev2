@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Down from '../../../assets/img/down-white.svg';
 
-function ExplorerTransactionsTnx() {
+function ExplorerTransactionSelectDropdown() {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState('All Types');
+  
   const dropdownRef = useRef(null);
 
   const toggleDropdown = () => {
@@ -67,4 +68,4 @@ function ExplorerTransactionsTnx() {
   );
 }
 
-export default ExplorerTransactionsTnx;
+export default ExplorerTransactionSelectDropdown;
