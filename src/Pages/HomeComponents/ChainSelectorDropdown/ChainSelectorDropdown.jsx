@@ -41,7 +41,6 @@ export default function ChainSelectorDropdown({ parent, direction }) {
             case 'bridge':
                 dispatch(setBridgeFromChain(name));
                 setChainArray(bridge.fromChains);
-                console.log("chainArray:", chainArray)
                 break;
             case 'swap':
                 dispatch(setSwapFromChain(name));
@@ -113,7 +112,7 @@ export default function ChainSelectorDropdown({ parent, direction }) {
             >
                 <div className="coinNameIcon">
                     <img 
-                    src={`${isLayer2View() ? '..' : ''}${selectedChain.icon}`} 
+                    src={`${isLayer2View() ? '../' : ''}${selectedChain.icon}`} 
                     alt={selectedChain.name} width="30px" />
                     <span>{selectedChain.name}</span>
                 </div>
