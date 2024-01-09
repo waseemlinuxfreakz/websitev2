@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSwitchNetwork } from 'wagmi'
 import './TokenSwitchButton.css';
 import SwitchBtn from '../../../assets/img/Switch-button.svg';
@@ -8,21 +8,23 @@ import { getChainidByName } from '../../../utils/filters';
 
 export default function TokenswitchButton() {
 
-    // Global state
     const bridge = useAppSelector((state) => state.bridge);
-    const toChain = bridge.fromChain
-    const fromChain = bridge.toChain;
-    const fromToken = bridge.toToken;
-    const toToken = bridge.fromToken;
 
     const dispatch = useAppDispatch();
 
-    const onError = (message) => {
-        dispatch(setBridgeError(message));
+    const onError = () => {
+        // If a user rejects or another error occurs
+        dispatch(setBridgeError("UserRejectedRequestError: User rejected the request."));
+        // Revert the swap to its initial state
+        dispatch(swapBridgeChainsAndTokens({
+            fromChain: bridge.toChain,
+            toChain: bridge.fromChain,
+            fromToken: bridge.toToken,
+            toToken: bridge.fromToken
+        }));
     }
 
     const onSuccess = () => {
-        dispatch(swapBridgeChainsAndTokens({ fromChain, toChain, fromToken, toToken }));
         dispatch(setBridgeError(''));
     }
 
@@ -31,21 +33,35 @@ export default function TokenswitchButton() {
     const handleSwitchButtonClick = () => {
 
         try {
-            //  Chains
-            const toChain = bridge.toChain;
-            const id = getChainidByName(toChain);
 
+            // 1. Get the target chain ID
+            const id = getChainidByName(bridge.toChain);
 
+            // 2. Swap the chains & tokens in the UI
+            dispatch(swapBridgeChainsAndTokens({
+                fromChain: bridge.toChain,
+                toChain: bridge.fromChain,
+                fromToken: bridge.toToken,
+                toToken: bridge.fromToken
+            }));
+
+            // 3. Swap the from chain in the wallet
             switchNetwork?.(id);
 
         } catch (error) {
-            console.log(error.message)
+            dispatch(setBridgeError(`TokenswitchButton Error: ${error.message}`));
         }
     };
 
     return (
-        <button className="switchBtn" onClick={handleSwitchButtonClick}>
-            <img src={SwitchBtn} alt="Token Switch Button" />
+        <button
+            className="switchBtn"
+            onClick={handleSwitchButtonClick}
+        >
+            <img
+                src={SwitchBtn}
+                alt="Token Switch Button"
+            />
         </button>
     )
 }

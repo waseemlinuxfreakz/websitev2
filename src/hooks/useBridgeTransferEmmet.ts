@@ -26,11 +26,17 @@ export default function useBridgeTransferEmmet() {
 
     useEffect(() => {
 
-        if (address && bridge.amount && bridge.allowance && bridge.allowance >= Number(bridge.amount)) {
+        if (address
+            && fee
+            && bridge.amount && Number(bridge.amount) > 0
+            && bridge.allowance
+            && bridge.allowance >= Number(bridge.amount)
+        ) {
             (async () => {
                 try {
+                    console.log("fee:", fee)
                     const chainName: TChainName = ChainNameToTypeChainName[bridge.fromChain];
-                    const decimals =  bridge.decimals ? bridge.decimals : 18;
+                    const decimals = bridge.decimals ? bridge.decimals : 18;
                     const formattedAmount = Number(bridge.amount) * 10 ** decimals;
                     const bridgeAddress: string = SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]].bridge;
                     const destinationDomain = ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]];
@@ -86,7 +92,7 @@ export default function useBridgeTransferEmmet() {
                     console.log("useBridgeTransferEmmet hash:", hash);
                 }
 
-            } catch (e:any) {
+            } catch (e: any) {
                 console.warn(`useBridgeTransferEmmet Error: ${e.message}`);
             }
 

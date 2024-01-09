@@ -210,8 +210,8 @@ export const bridgeSlice = createSlice({
             state.toChain = action.payload.toChain;
             state.fromToken = action.payload.fromToken;
             state.toToken = action.payload.toToken;
-            state.fromChains = filterTwoChains(state.fromChain, state.toChain);
-            state.toChains = filterTwoChains(state.fromChain, state.toChain);
+            state.fromChains = filterTwoChains(action.payload.fromChain, action.payload.toChain);
+            state.toChains = filterTwoChains(action.payload.fromChain, action.payload.toChain);
         },
         resetBridgeProgress(state: IBridgeState) {
             state.isTransferProgressVisible = false;
