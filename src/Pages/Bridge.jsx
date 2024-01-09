@@ -33,7 +33,8 @@ const Bridge = () => {
                         }
                         <SidebarSlider />
                         <Footer />
-                        <MainActionButton />
+                        {!bridge.isTransferProgressVisible && <MainActionButton />}
+
                         {/* <SwapConfirm/> */}
                     </div>
                 </div>
