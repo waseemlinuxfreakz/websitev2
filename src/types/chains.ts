@@ -84,7 +84,7 @@ export const SUPPORTED_CHAINS = {
     },
     goerli: {
         bridge:"0x750B52c82596C7b6489C207b87adcf56Fe4a3ABe", // Temporary
-        icon:"/img/Ethereum.svg",
+        icon:"img/Ethereum.svg",
         ...goerli,
         name:"Goerli",
         rpcUrls:{
