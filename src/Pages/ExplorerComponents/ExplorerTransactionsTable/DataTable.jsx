@@ -1,443 +1,85 @@
 import React from 'react';
 import { MDBDataTable } from 'mdbreact';
 import { useNavigate } from 'react-router-dom';
-import TransactionDetails from '../TransactionDetails/TransactionDetails';
+import useExplorerTransactions from '../../../hooks/useExplorerTransactions';
+import { getLogoByChainName, getOfficialChainName, getTimeLength, unpackDateTime } from '../../../utils';
+
 
 
 const DatatablePage = () => {
   
-  
-  const navigate = useNavigate(); // Create a navigate function
+  const navigate = useNavigate();
 
-  const handleRowClick = (rowData) => {
-    // rowData contains the data of the clicked row
-    // You can extract any necessary information from rowData and use it for redirection
-    console.log('Row Clicked:', rowData);
+  const {txs, refresh} = useExplorerTransactions(1);
 
-    // Example: Redirect to a new page using navigate
-    navigate('/your-new-page'); // Replace '/your-new-page' with the desired URL
-  };
+  const rows = txs && txs.map(Tx => {
+    return {
+      clickEvent: () => navigate(`/transactionDetails/${Tx.TxnHash}`),
+      TxnType: `<span class="${Tx.TxnType.toLowerCase()}">${Tx.TxnType}</span>`,
+      TxnHash: `<span class="textOnly">${Tx.TxnHash.slice(0,6)}...${Tx.TxnHash.slice(-4)}</span>`,
+      Originchain: `<div class="chainCell"><img src="${getLogoByChainName(Tx.Originchain)}" alt="From Chain Logo" width="25px"/> ${getOfficialChainName(Tx.Originchain)}</div>`,
+      Destination: `<div class="chainCell"><img src="${getLogoByChainName(Tx.Destination)}" alt="To Chain Logo" width="25px"/> ${getOfficialChainName(Tx.Destination)}</div>`,
+      Sent: `<span class="textCell">${Tx.Sent} ${Tx.SentToken}</span>`,
+      Received: `<span class="textCell">${Tx.Received} ${Tx.SentToken}</span>`,
+      Age: `<span class="textCell">${unpackDateTime(getTimeLength(Tx.Start, new Date()))}</span>`,
+      TxnStatus: `<span class="${Tx.TxnStatus.toLowerCase()}"><img src="img/explorer/${Tx.TxnStatus}.svg" alt="${Tx.TxnStatus}" /> ${Tx.TxnStatus}</span>`,
+    }
+  });
 
-  
-  const data = {
-    columns: [
-      {
-        label: 'Txn Type',
-        field: 'TxnType',
-        sort: 'asc',
-      },
-      {
-        label: 'Txn Hash',
-        field: 'TxnHash',
-        sort: 'asc',
-      },
-      {
-        label: 'Origin chain',
-        field: 'Originchain',
-        sort: 'asc',
-      },
-      {
-        label: 'Destination',
-        field: 'Destination',
-        sort: 'asc',
-      },
-      {
-        label: 'Sent',
-        field: 'Sent',
-        sort: 'asc',
-      },
-      {
-        label: 'Received',
-        field: 'Received',
-        sort: 'asc',
-      },
-      {
-        label: 'Age',
-        field: 'Age',
-        sort: 'asc',
-      },
-      {
-        label: 'Txn Status',
-        field: 'TxnStatus',
-        sort: 'asc',
-      }
-    ],
-    rows: [
-      {
-        TxnType: '<span class="redeem">Redeem</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/op.svg" alt="OP" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="pending"><img src="img/explorer/Pending.svg" alt="Pending" /> Pending</span>',
-      },
-      {
-        TxnType: '<span class="transfer">Transfer</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/op.svg" alt="OP" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="Success"><img src="img/explorer/Success.svg" alt="Success" /> Success</span>',
-      },
-      {
-        TxnType: '<span class="deposit">Deposit</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/scoll.svg" alt="scoll" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="Success"><img src="img/explorer/Success.svg" alt="Success" /> Success</span>',
-      },
-      {
-        TxnType: '<span class="borrow">Borrow</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/Linea.svg" alt="Linea" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="Success"><img src="img/explorer/Success.svg" alt="Success" /> Success</span>',
-      },
-      {
-        TxnType: '<span class="approval">Approval</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/usdc.svg" alt="usdc" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="Failled"><img src="img/explorer/Failled.svg" alt="Failled" /> Failled</span>',
-      },
-      {
-        TxnType: '<span class="swap">Swap</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/op.svg" alt="OP" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="Failled"><img src="img/explorer/Failled.svg" alt="Failled" /> Failled</span>',
-      },
-      {
-        TxnType: '<span class="redeem">Redeem</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/op.svg" alt="OP" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="pending"><img src="img/explorer/Pending.svg" alt="Pending" /> Pending</span>',
-      },
-      {
-        TxnType: '<span class="transfer">Transfer</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/op.svg" alt="OP" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="Success"><img src="img/explorer/Success.svg" alt="Success" /> Success</span>',
-      },
-      {
-        TxnType: '<span class="deposit">Deposit</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/scoll.svg" alt="scoll" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="Success"><img src="img/explorer/Success.svg" alt="Success" /> Success</span>',
-      },
-      {
-        TxnType: '<span class="borrow">Borrow</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/Linea.svg" alt="Linea" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="Success"><img src="img/explorer/Success.svg" alt="Success" /> Success</span>',
-      },
-      {
-        TxnType: '<span class="approval">Approval</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/usdc.svg" alt="usdc" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="Failled"><img src="img/explorer/Failled.svg" alt="Failled" /> Failled</span>',
-      },
-      {
-        TxnType: '<span class="swap">Swap</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/op.svg" alt="OP" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="Failled"><img src="img/explorer/Failled.svg" alt="Failled" /> Failled</span>',
-      },
-      {
-        TxnType: '<span class="redeem">Redeem</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/op.svg" alt="OP" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="pending"><img src="img/explorer/Pending.svg" alt="Pending" /> Pending</span>',
-      },
-      {
-        TxnType: '<span class="transfer">Transfer</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/op.svg" alt="OP" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="Success"><img src="img/explorer/Success.svg" alt="Success" /> Success</span>',
-      },
-      {
-        TxnType: '<span class="deposit">Deposit</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/scoll.svg" alt="scoll" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="Success"><img src="img/explorer/Success.svg" alt="Success" /> Success</span>',
-      },
-      {
-        TxnType: '<span class="borrow">Borrow</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/Linea.svg" alt="Linea" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="Success"><img src="img/explorer/Success.svg" alt="Success" /> Success</span>',
-      },
-      {
-        TxnType: '<span class="approval">Approval</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/usdc.svg" alt="usdc" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="Failled"><img src="img/explorer/Failled.svg" alt="Failled" /> Failled</span>',
-      },
-      {
-        TxnType: '<span class="swap">Swap</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/op.svg" alt="OP" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="Failled"><img src="img/explorer/Failled.svg" alt="Failled" /> Failled</span>',
-      },
-      {
-        TxnType: '<span class="redeem">Redeem</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/op.svg" alt="OP" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="pending"><img src="img/explorer/Pending.svg" alt="Pending" /> Pending</span>',
-      },
-      {
-        TxnType: '<span class="transfer">Transfer</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/op.svg" alt="OP" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="Success"><img src="img/explorer/Success.svg" alt="Success" /> Success</span>',
-      },
-      {
-        TxnType: '<span class="deposit">Deposit</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/scoll.svg" alt="scoll" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="Success"><img src="img/explorer/Success.svg" alt="Success" /> Success</span>',
-      },
-      {
-        TxnType: '<span class="borrow">Borrow</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/Linea.svg" alt="Linea" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="Success"><img src="img/explorer/Success.svg" alt="Success" /> Success</span>',
-      },
-      {
-        TxnType: '<span class="approval">Approval</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/usdc.svg" alt="usdc" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="Failled"><img src="img/explorer/Failled.svg" alt="Failled" /> Failled</span>',
-      },
-      {
-        TxnType: '<span class="swap">Swap</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/op.svg" alt="OP" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="Failled"><img src="img/explorer/Failled.svg" alt="Failled" /> Failled</span>',
-      },
-      {
-        TxnType: '<span class="redeem">Redeem</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/op.svg" alt="OP" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="pending"><img src="img/explorer/Pending.svg" alt="Pending" /> Pending</span>',
-      },
-      {
-        TxnType: '<span class="transfer">Transfer</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/op.svg" alt="OP" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="Success"><img src="img/explorer/Success.svg" alt="Success" /> Success</span>',
-      },
-      {
-        TxnType: '<span class="deposit">Deposit</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/scoll.svg" alt="scoll" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="Success"><img src="img/explorer/Success.svg" alt="Success" /> Success</span>',
-      },
-      {
-        TxnType: '<span class="borrow">Borrow</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/Linea.svg" alt="Linea" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="Success"><img src="img/explorer/Success.svg" alt="Success" /> Success</span>',
-      },
-      {
-        TxnType: '<span class="approval">Approval</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/usdc.svg" alt="usdc" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="Failled"><img src="img/explorer/Failled.svg" alt="Failled" /> Failled</span>',
-      },
-      {
-        TxnType: '<span class="swap">Swap</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/op.svg" alt="OP" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="Failled"><img src="img/explorer/Failled.svg" alt="Failled" /> Failled</span>',
-      },
-      {
-        TxnType: '<span class="redeem">Redeem</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/op.svg" alt="OP" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="pending"><img src="img/explorer/Pending.svg" alt="Pending" /> Pending</span>',
-      },
-      {
-        TxnType: '<span class="transfer">Transfer</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/op.svg" alt="OP" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="Success"><img src="img/explorer/Success.svg" alt="Success" /> Success</span>',
-      },
-      {
-        TxnType: '<span class="deposit">Deposit</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/scoll.svg" alt="scoll" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="Success"><img src="img/explorer/Success.svg" alt="Success" /> Success</span>',
-      },
-      {
-        TxnType: '<span class="borrow">Borrow</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/Linea.svg" alt="Linea" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="Success"><img src="img/explorer/Success.svg" alt="Success" /> Success</span>',
-      },
-      {
-        TxnType: '<span class="approval">Approval</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/usdc.svg" alt="usdc" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="Failled"><img src="img/explorer/Failled.svg" alt="Failled" /> Failled</span>',
-      },
-      {
-        TxnType: '<span class="swap">Swap</span>',
-        TxnHash: '<span class="textOnly">ce60...d322</span>',
-        Originchain: '<div class="chainCell"><img src="img/coin/eth.svg" alt="Ethereum" /> Ethereum</div>',
-        Destination: '<div class="chainCell"><img src="img/coin/op.svg" alt="OP" /> OP</div>',
-        Sent: '<span class="textCell">348 USDT</span>',
-        Received: '<span class="textCell">347 USDT</span>',
-        Age: '<span class="textCell">35 secs</span>',
-        TxnStatus: '<span class="Failled"><img src="img/explorer/Failled.svg" alt="Failled" /> Failled</span>',
-      },
-    ]
-  };
+  const columns = [
+    {
+      label: 'Txn Type',
+      field: 'TxnType',
+      sort: 'asc',
+    },
+    {
+      label: 'Txn Hash',
+      field: 'TxnHash',
+      sort: 'asc',
+    },
+    {
+      label: 'Origin chain',
+      field: 'Originchain',
+      sort: 'asc',
+    },
+    {
+      label: 'Destination',
+      field: 'Destination',
+      sort: 'asc',
+    },
+    {
+      label: 'Sent',
+      field: 'Sent',
+      sort: 'asc',
+    },
+    {
+      label: 'Received',
+      field: 'Received',
+      sort: 'asc',
+    },
+    {
+      label: 'Age',
+      field: 'Age',
+      sort: 'asc',
+    },
+    {
+      label: 'Txn Status',
+      field: 'TxnStatus',
+      sort: 'asc',
+    }
+  ];
 
 
   // Helper function to create a React element from HTML string
   const createMarkup = (htmlString) => ({ __html: htmlString });
 
   return (
-      <>
         <div className="explorerTransactionsTable">
           <div className="transactionTable">
             <MDBDataTable
               data={{
-                ...data,
-                rows: data.rows.map((row) => ({
+                columns: columns,
+                rows: rows.map((row) => ({
                   ...row,
                   TxnType: <div dangerouslySetInnerHTML={createMarkup(row.TxnType)} />,
                   TxnHash: <div dangerouslySetInnerHTML={createMarkup(row.TxnHash)} />,
@@ -450,14 +92,10 @@ const DatatablePage = () => {
                 })),
               }}
               paging
-              entries={20}   // Set the number of rows per page
+              entries={10}   // Number of rows per page
             />
           </div>
         </div>
-        {/* <div className="transactionDetailsBottom">
-          <TransactionDetails/>
-        </div> */}
-      </>
   );
 
 

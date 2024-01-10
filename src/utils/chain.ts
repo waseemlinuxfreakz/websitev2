@@ -85,3 +85,12 @@ export function getDestinationFee(coin:string){
         return 0.001;
     }
 }
+
+export function getOfficialChainName (chinName: TChainName): string {
+    switch (chinName) {
+        case 'goerli':
+            return 'Ethereum';
+        default:
+            return SUPPORTED_CHAINS[chinName].name;
+    }
+}
