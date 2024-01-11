@@ -1,5 +1,16 @@
+/**
+ * 
+ * @param ms number of milliseconds to wait
+ * @returns halts the program execution for the `ms` milliseconds
+ */
 export const sleep = (ms:number) => new Promise(r => setTimeout(r, ms));
 
+/**
+ * Calculates the length of the transaction from `start` to `end`
+ * @param start a date formatted to string, ex.: 2024-01-10T14:51:20.555+00:00
+ * @param end a date formatted to string, ex.: 2024-01-10T14:53:27.742+00:00
+ * @returns a time struct: {days:number, hours: number, minutes: number, seconds: number}
+ */
 export const getTimeLength = (start: string, end: string) => {
     const s: number = new Date(start).getTime();
     const e: number = new Date(end).getTime();
@@ -14,6 +25,11 @@ export const getTimeLength = (start: string, end: string) => {
     return {days, hours, minutes, seconds}
 }
 
+/**
+ * Produces a time elapsed string, ex. 1 day | 3 hours, etc.
+ * @param dt a struct of {days:number, hours: number, minutes: number, seconds: number}
+ * @returns a string with the time elapsed since the start
+ */
 export function unpackDateTime(dt: {days:number, hours: number, minutes: number, seconds: number}): string {
     if(dt.days) return `${dt.days} day${dt.days > 1 ? 's' : ''}`;
     if(dt.hours) return `${dt.hours} hour${dt.hours > 1 ? 's' : ''}`;

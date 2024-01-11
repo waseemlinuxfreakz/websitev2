@@ -66,7 +66,7 @@ function TransactionDetailsLeft({txStatus}) {
             <ul className="transactionDetailsList">
                 <li className='transactionDetailsListItem'>
                     <div className="transactionDetailsListLeft">
-                        Transaction type
+                        Txn type
                     </div>
                     <div className="transactionDetailsListRight">
                         <span className="transfer">

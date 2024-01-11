@@ -32,7 +32,7 @@ function ExplorerTransactionSelectDropdown() {
 
   return (
     <div className="ExplorerTransactionsFilter tnxTypeFilter">
-      <div className="filterName">Transaction type</div>
+      <div className="filterName">Txn type</div>
       <div className="filterDropdown" ref={dropdownRef}>
         <div className="filterDropSelect" onClick={toggleDropdown}>
           <span className={selectedItem}>{selectedItem}</span>
