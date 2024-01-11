@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import TransactionDetailsLeft from './TransactionDetailsLeft';
 import TransactionDetailsRight from './TransactionDetailsRight';
 import { useAppSelector } from '../../../hooks/storage';

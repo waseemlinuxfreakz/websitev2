@@ -3,11 +3,9 @@ import './App.css';
 import './Responsive.css';
 import HomePage from './Pages/Home';
 import Bridge from './Pages/Bridge';
-import BridgeSuccess from './Pages/BridgeSuccess';
 import ExplorerPage from './Pages/Explorer';
 import PoolPage from './Pages/Pool';
 import TransactionDetailsPage from './Pages/TransactionDetailsPage';
-import Yourliquidity from './Pages/PoolComponents/PoolTable/Yourliquidity';
 import YourLiquidityPage from './Pages/YourLiquidityPage';
 
 import { ALL_CHAINS } from './constants/chains/index';
@@ -37,11 +35,13 @@ function App() {
   return (
     <>
       <WagmiConfig config={wagmiConfig}>
-        <Router>
+        <Router
+          // Open all the pages at the top
+          scrollBehavior={() => ({ y: 0 })}
+        >
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/bridge" element={<Bridge />} />
-            <Route path="/bridge-transfer" element={<BridgeSuccess />} />
             <Route path="/explorer" element={<ExplorerPage />} />
             <Route path="/transactionDetails/:hash" element={<TransactionDetailsPage />} />
             <Route path="/pool" element={<PoolPage />} />
