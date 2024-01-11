@@ -16,7 +16,7 @@ import {
 } from '../../../utils';
 import useElapsedTime from '../../../hooks/useElapsedTime';
 
-function TransactionDetailsLeft({txStatus}) {
+function TransactionDetailsLeft({ txStatus }) {
 
     const explorer = useAppSelector(store => store.explorer);
 
@@ -30,7 +30,7 @@ function TransactionDetailsLeft({txStatus}) {
     const [isCopied, setIsCopied] = useState(false);
     const [isCopied2, setIsCopied2] = useState(false);
 
-    
+
 
     const handleCopyClick = () => {
         try {
@@ -136,8 +136,11 @@ function TransactionDetailsLeft({txStatus}) {
                         }
 
                         <button className='copyLink' onClick={handleCopyClick}>
-                            {isCopied && <span className="copiedAlert">Copied!</span>}
-                            <span className="copyHover">Copy to clipboard</span>
+                            {isCopied
+                                ? <span className="copiedAlert">Copied!</span>
+                                : <span className="copyHover">Copy to clipboard</span>
+                            }
+
                             <img src={Copy} alt="Copy" />
                         </button>
                     </div>
@@ -188,8 +191,11 @@ function TransactionDetailsLeft({txStatus}) {
                         }
 
                         <button className='copyLink' onClick={handleCopyClick2}>
-                            {isCopied2 && <span className="copiedAlert">Copied!</span>}
-                            <span className="copyHover">Copy to clipboard</span>
+                            {isCopied2
+                                ? <span className="copiedAlert">Copied!</span>
+                                : <span className="copyHover">Copy to clipboard</span>
+                            }
+
                             <img src={Copy} alt="Copy" />
                         </button>
                     </div>
