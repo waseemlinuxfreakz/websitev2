@@ -25,33 +25,35 @@ import Network13 from '../../../assets/img/web/network/network-13.svg';
 export default function NetworkSlider() {
   return (
     <>
-        <div className="networkSliderWrap">
-            <Swiper
-                slidesPerView={1}
-                spaceBetween={30}
-                loop={true}
-                pagination={{
-                clickable: true,
-                }}
-                navigation={true}
-                modules={[Pagination, Navigation]}
-                className="mySwiper networkSlider"
-            >
-                <SwiperSlide><img src={Network1} alt="Nwtwork" /></SwiperSlide>
-                <SwiperSlide><img src={Network2} alt="Nwtwork" /></SwiperSlide>
-                <SwiperSlide><img src={Network3} alt="Nwtwork" /></SwiperSlide>
-                <SwiperSlide><img src={Network4} alt="Nwtwork" /></SwiperSlide>
-                <SwiperSlide><img src={Network5} alt="Nwtwork" /></SwiperSlide>
-                <SwiperSlide><img src={Network6} alt="Nwtwork" /></SwiperSlide>
-                <SwiperSlide><img src={Network7} alt="Nwtwork" /></SwiperSlide>
-                <SwiperSlide><img src={Network8} alt="Nwtwork" /></SwiperSlide>
-                <SwiperSlide><img src={Network9} alt="Nwtwork" /></SwiperSlide>
-                <SwiperSlide><img src={Network10} alt="Nwtwork" /></SwiperSlide>
-                <SwiperSlide><img src={Network11} alt="Nwtwork" /></SwiperSlide>
-                <SwiperSlide><img src={Network12} alt="Nwtwork" /></SwiperSlide>
-                <SwiperSlide><img src={Network13} alt="Nwtwork" /></SwiperSlide>
-            </Swiper>
+      <div className="networkSliderWrap">
+        <div className="container">
+          <Swiper
+            slidesPerView={1}
+            spaceBetween={30}
+            loop={true}
+            pagination={{
+              clickable: true,
+            }}
+            navigation={true}
+            modules={[Pagination, Navigation]}
+            className="mySwiper networkSlider"
+          >
+            <SwiperSlide><img src={Network1} alt="Nwtwork" /></SwiperSlide>
+            <SwiperSlide><img src={Network2} alt="Nwtwork" /></SwiperSlide>
+            <SwiperSlide><img src={Network3} alt="Nwtwork" /></SwiperSlide>
+            <SwiperSlide><img src={Network4} alt="Nwtwork" /></SwiperSlide>
+            <SwiperSlide><img src={Network5} alt="Nwtwork" /></SwiperSlide>
+            <SwiperSlide><img src={Network6} alt="Nwtwork" /></SwiperSlide>
+            <SwiperSlide><img src={Network7} alt="Nwtwork" /></SwiperSlide>
+            <SwiperSlide><img src={Network8} alt="Nwtwork" /></SwiperSlide>
+            <SwiperSlide><img src={Network9} alt="Nwtwork" /></SwiperSlide>
+            <SwiperSlide><img src={Network10} alt="Nwtwork" /></SwiperSlide>
+            <SwiperSlide><img src={Network11} alt="Nwtwork" /></SwiperSlide>
+            <SwiperSlide><img src={Network12} alt="Nwtwork" /></SwiperSlide>
+            <SwiperSlide><img src={Network13} alt="Nwtwork" /></SwiperSlide>
+          </Swiper>
         </div>
+      </div>
     </>
   );
 }

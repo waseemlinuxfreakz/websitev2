@@ -13,21 +13,22 @@ import Fire from '../../../assets/img/web/fire.svg';
 export default function TopSlider() {
   return (
     <>
-    <div className="topSliderWrap">
-        <Swiper
+      <div className="topSliderWrap">
+        <div className="container">
+          <Swiper
             spaceBetween={30}
             centeredSlides={true}
             autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
+              delay: 2500,
+              disableOnInteraction: false,
             }}
             pagination={{
-            clickable: true,
+              clickable: true,
             }}
             navigation={true}
             modules={[Autoplay, Pagination, Navigation]}
             className="mySwiper"
-        >
+          >
             <SwiperSlide> <p> <img src={Fire} alt="Fire" /> Airdrop <span>EMMET</span> Inscription <img src={Fire} alt="Fire" /></p> </SwiperSlide>
             <SwiperSlide> <p> <img src={Fire} alt="Fire" /> Airdrop <span>EMMET</span> Inscription <img src={Fire} alt="Fire" /></p> </SwiperSlide>
             <SwiperSlide> <p> <img src={Fire} alt="Fire" /> Airdrop <span>EMMET</span> Inscription <img src={Fire} alt="Fire" /></p> </SwiperSlide>
@@ -37,8 +38,9 @@ export default function TopSlider() {
             <SwiperSlide> <p> <img src={Fire} alt="Fire" /> Airdrop <span>EMMET</span> Inscription <img src={Fire} alt="Fire" /></p> </SwiperSlide>
             <SwiperSlide> <p> <img src={Fire} alt="Fire" /> Airdrop <span>EMMET</span> Inscription <img src={Fire} alt="Fire" /></p> </SwiperSlide>
             <SwiperSlide> <p> <img src={Fire} alt="Fire" /> Airdrop <span>EMMET</span> Inscription <img src={Fire} alt="Fire" /></p> </SwiperSlide>
-        </Swiper>
-        <img src={ArtDesk} alt="ArtDesk" className="sliderArtDesk" />
+          </Swiper>
+          <img src={ArtDesk} alt="ArtDesk" className="sliderArtDesk" />
+        </div>
       </div>
     </>
   );
