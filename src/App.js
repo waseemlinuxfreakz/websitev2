@@ -8,6 +8,9 @@ import PoolPage from './Pages/Pool';
 import TransactionDetailsPage from './Pages/TransactionDetailsPage';
 import YourLiquidityPage from './Pages/YourLiquidityPage';
 
+// Web Page
+import WebHome from './Pages/WebPages/WebHome';
+
 import { ALL_CHAINS } from './constants/chains/index';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -15,6 +18,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Web3Modal } from '@web3modal/react';
 import { configureChains, createConfig, WagmiConfig } from 'wagmi';
 import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum';
+
 
 const supportedChains = ALL_CHAINS;
 
@@ -46,6 +50,7 @@ function App() {
             <Route path="/transactionDetails/:hash" element={<TransactionDetailsPage />} />
             <Route path="/pool" element={<PoolPage />} />
             <Route path="/pool/your-liquidity" element={<YourLiquidityPage />} />
+            <Route path="/web" element={<WebHome />} />
           </Routes>
         </Router>
       </WagmiConfig>
