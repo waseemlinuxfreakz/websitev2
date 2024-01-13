@@ -1,5 +1,19 @@
 .SecurityArea {
     padding: 80px 0;
+    position: relative;
+    z-index: 1;
+}
+
+img.securityBg {
+    display: block;
+    position: absolute;
+    z-index: -1;
+    left: 50%;
+    transform: translate(-50%);
+    width: 100vw;
+    height: auto;
+    top: 50%;
+    pointer-events: none;
 }
 
 .SecurityInner h2 {

@@ -8,10 +8,13 @@ import Security3 from '../../../assets/img/web/Security/Security-3.svg';
 import Security4 from '../../../assets/img/web/Security/Security-4.svg';
 import Security5 from '../../../assets/img/web/Security/Security-5.svg';
 import Security6 from '../../../assets/img/web/Security/Security-6.svg';
+import SecurityBg from '../../../assets/img/web/security-bg.png';
+
 
 function Security() {
     return ( 
         <div className="SecurityArea">
+            <img src={SecurityBg} alt="securityBg" className="securityBg" />
             <div className="container">
                 <div className="SecurityInner">
                     <h2>Security above everything</h2>
