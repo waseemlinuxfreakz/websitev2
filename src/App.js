@@ -10,6 +10,8 @@ import YourLiquidityPage from './Pages/YourLiquidityPage';
 
 // Web Page
 import WebHome from './Pages/WebPages/WebHome';
+import PrivacyPolicy from './Pages/WebPages/PrivacyPolicy';
+import TermsService from './Pages/WebPages/TermsService';
 
 import { ALL_CHAINS } from './constants/chains/index';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -45,6 +47,8 @@ function App() {
         >
           <Routes>
             <Route path="/" element={< WebHome/>} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-service" element={<TermsService />} />
             <Route path="/bridge" element={<Bridge />} />
             <Route path="/explorer" element={<ExplorerPage />} />
             <Route path="/swap" element={< HomePage/>} />
