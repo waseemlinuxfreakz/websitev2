@@ -44,13 +44,14 @@ function App() {
           scrollBehavior={() => ({ y: 0 })}
         >
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={< WebHome/>} />
             <Route path="/bridge" element={<Bridge />} />
             <Route path="/explorer" element={<ExplorerPage />} />
-            <Route path="/transactionDetails/:hash" element={<TransactionDetailsPage />} />
+            <Route path="/swap" element={< HomePage/>} />
             <Route path="/pool" element={<PoolPage />} />
             <Route path="/pool/your-liquidity" element={<YourLiquidityPage />} />
-            <Route path="/web" element={<WebHome />} />
+            <Route path="/transactionDetails/:hash" element={<TransactionDetailsPage />} />
+            
           </Routes>
         </Router>
       </WagmiConfig>

@@ -9,9 +9,9 @@ import X from '../../../assets/img/web/social/x.svg';
 function Social() {
     return ( 
         <div className="social">
-            <a href="#"><img src={Discord} alt="Discord" /></a>
-            <a href="#"><img src={Telegram} alt="Telegram" /></a>
-            <a href="#"><img src={X} alt="X" /></a>
+            <a href="https://discord.gg/yuXxDctC4W"><img src={Discord} alt="Discord" /></a>
+            <a href="https://t.me/Emmet_Finance"><img src={Telegram} alt="Telegram" /></a>
+            <a href="https://twitter.com/Emmet_Finance"><img src={X} alt="X" /></a>
         </div>
      );
 }

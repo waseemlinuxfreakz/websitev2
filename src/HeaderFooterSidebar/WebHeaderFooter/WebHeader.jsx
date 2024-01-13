@@ -15,7 +15,7 @@ function WebHeader() {
                             <img src={Logo2} className='logo-2' alt="Logo" />
                         </a>
                     </div>
-                        <a href="#" className='launchApp'>Launch dApp</a>
+                        <a href="/bridge" className='launchApp'>Launch dApp</a>
                 </div>
             </div>
         </header>

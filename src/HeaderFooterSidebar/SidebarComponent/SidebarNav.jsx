@@ -37,7 +37,7 @@ function SidebarNav() {
       <ul className="navlinks">
         <li>
           {/* TODO: '/' mut be used for the HOME page, fix later */}
-          <Link to="/" className={`navLink ${location.pathname === '/' && 'active'}`} onClick={handleLinkClick}>
+          <Link to="/swap" className={`navLink ${location.pathname === '/swap' && 'active'}`} onClick={handleLinkClick}>
             <img src={NavIcon1} alt="NavIcon" />
             <span>Swap</span>
           </Link>
