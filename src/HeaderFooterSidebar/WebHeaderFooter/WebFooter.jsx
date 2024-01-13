@@ -12,7 +12,7 @@ function WebFooter() {
     return ( 
         <footer className="webFooterArea">
             <div className="container">
-                <div className="row footerRow">
+                <div className="row footer_Row">
                     <div className="footerLeft">
                         <Subscrib/>
                         <Social/>

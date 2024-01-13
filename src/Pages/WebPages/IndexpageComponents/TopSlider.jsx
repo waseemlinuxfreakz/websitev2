@@ -14,33 +14,29 @@ export default function TopSlider() {
   return (
     <>
       <div className="topSliderWrap">
-        <div className="container">
+        <div className="topSliderOuter">
           <Swiper
+            slidesPerView={1}
             spaceBetween={30}
             centeredSlides={true}
             autoplay={{
               delay: 2500,
               disableOnInteraction: false,
             }}
+            loop={true}
             pagination={{
               clickable: true,
             }}
-            navigation={true}
+            navigation={false}
             modules={[Autoplay, Pagination, Navigation]}
             className="mySwiper"
           >
             <SwiperSlide> <p> <img src={Fire} alt="Fire" /> Airdrop <span>EMMET</span> Inscription <img src={Fire} alt="Fire" /></p> </SwiperSlide>
             <SwiperSlide> <p> <img src={Fire} alt="Fire" /> Airdrop <span>EMMET</span> Inscription <img src={Fire} alt="Fire" /></p> </SwiperSlide>
             <SwiperSlide> <p> <img src={Fire} alt="Fire" /> Airdrop <span>EMMET</span> Inscription <img src={Fire} alt="Fire" /></p> </SwiperSlide>
-            <SwiperSlide> <p> <img src={Fire} alt="Fire" /> Airdrop <span>EMMET</span> Inscription <img src={Fire} alt="Fire" /></p> </SwiperSlide>
-            <SwiperSlide> <p> <img src={Fire} alt="Fire" /> Airdrop <span>EMMET</span> Inscription <img src={Fire} alt="Fire" /></p> </SwiperSlide>
-            <SwiperSlide> <p> <img src={Fire} alt="Fire" /> Airdrop <span>EMMET</span> Inscription <img src={Fire} alt="Fire" /></p> </SwiperSlide>
-            <SwiperSlide> <p> <img src={Fire} alt="Fire" /> Airdrop <span>EMMET</span> Inscription <img src={Fire} alt="Fire" /></p> </SwiperSlide>
-            <SwiperSlide> <p> <img src={Fire} alt="Fire" /> Airdrop <span>EMMET</span> Inscription <img src={Fire} alt="Fire" /></p> </SwiperSlide>
-            <SwiperSlide> <p> <img src={Fire} alt="Fire" /> Airdrop <span>EMMET</span> Inscription <img src={Fire} alt="Fire" /></p> </SwiperSlide>
           </Swiper>
-          <img src={ArtDesk} alt="ArtDesk" className="sliderArtDesk" />
         </div>
+          <img src={ArtDesk} alt="ArtDesk" className="sliderArtDesk" />
       </div>
     </>
   );

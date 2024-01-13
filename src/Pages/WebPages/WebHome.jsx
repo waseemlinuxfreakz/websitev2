@@ -10,15 +10,23 @@ import AccessDefi from './IndexpageComponents/AccessDefi';
 import Security from './IndexpageComponents/Security';
 
 
+import TopArt1 from '../../assets/img/web/fire-bg.png';
+import TopArt2 from '../../assets/img/web/line-bg.png';
+
+
 function WebHome() {
     return ( 
         <>
             <div className="webWraper">
                 <WebHeader/>
                     <div className="pageWraper">
-                        <TopSlider/>
-                        <IndexHero/>
-                        <NetworkSlider/>
+                        <div className="topArea">
+                            <img src={TopArt1} alt="" className="topArt1" />
+                            <img src={TopArt2} alt="" className="topArt2" />
+                            <TopSlider/>
+                            <IndexHero/>
+                            <NetworkSlider/>
+                        </div>
                         <OneStop/>
                         <AccessDefi/>
                         <Security/>

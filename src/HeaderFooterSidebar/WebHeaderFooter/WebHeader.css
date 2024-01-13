@@ -1,0 +1,25 @@
+.navBrand a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navArea {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.launchApp {
+    color: #1E2124;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    border-radius: 8px;
+    background: var(--Button-Button-primary, #EFEB00);
+    padding: 7px 18px;
+    transition: .3s ease all;
+}

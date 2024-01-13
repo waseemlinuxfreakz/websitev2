@@ -1,0 +1,55 @@
+.heroContainer {
+    text-align: center;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.heroContainer> p {
+    color: var(--Text-Text-helper, #B3B7BF);
+    text-align: center;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 110%; /* 19.8px */
+    letter-spacing: -0.54px;
+    margin: 0 0 36px 0;
+}
+
+.heroContainer> h2 {
+    text-align: center;
+    font-family: Inter;
+    font-size: 91px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 110%; /* 100.1px */
+    letter-spacing: -2.73px;
+    color: #fff;
+}
+
+.counter {
+    display: flex;
+    align-items: center;
+    gap: 108px;
+    max-width: 886px;
+    margin: 98px auto 0 auto;
+}
+
+.counterBox h3 {
+    font-family: Inter;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 38px;
+    margin: 0 0 6px 0;
+}
+
+.counterBox span {
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px; /* 150% */
+    letter-spacing: -0.3px;
+    color: #B3B7BF;
+}

@@ -1,0 +1,50 @@
+.SecurityArea {
+    padding: 80px 0;
+}
+
+.SecurityInner h2 {
+    margin-bottom: 36px;
+    text-align: center;
+    font-family: Inter;
+    font-size: 46px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%; /* 64.4px */
+    letter-spacing: -1.38px;
+    color: #fff;
+}
+
+.securityBox {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+    border-radius: 16px;
+    border: 1px solid #4D4D4D;
+    background: var(--Background-Background-secondary, #1B1D20);
+    padding: 36px;
+    height: 100%;
+}
+
+.SecurityInner .row {
+    row-gap: 24px;
+}
+
+.securityBox h3 {
+    color: var(--Text-Text-primary, #FFF);
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Inter;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 32px;
+}
+
+.securityBox p {
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    color: #B3B7BF;
+}

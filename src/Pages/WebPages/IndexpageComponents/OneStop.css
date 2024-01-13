@@ -1,0 +1,29 @@
+.oneStopContent h2 {
+    padding-top: 80px;
+    text-align: center;
+    font-family: Inter;
+    font-size: 46px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%; /* 64.4px */
+    letter-spacing: -1.38px;
+    padding-bottom: 36px;
+    color: #fff;
+}
+
+.webWraper {
+    color: #fff;
+}
+
+img.OneStopImg {
+    display: block;
+    width: 100%;
+}
+
+.oneStopContent .row {
+    row-gap: 24px;
+}
+
+.oneStopContainer {
+    padding-bottom: 80px;
+}

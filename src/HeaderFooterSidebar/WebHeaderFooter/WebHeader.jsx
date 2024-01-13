@@ -8,12 +8,14 @@ function WebHeader() {
     return (
         <header className='webHeader'>
             <div className="container">
-                <div className="navBrand">
-                    <a href="#">
-                        <img src={Logo1} className='logo-1' alt="Logo" />
-                        <img src={Logo2} className='logo-2' alt="Logo" />
-                    </a>
-                    <a href="#" className='launchApp'>Launch dApp</a>
+                <div className="navArea">
+                    <div className="navBrand">
+                        <a href="#">
+                            <img src={Logo1} className='logo-1' alt="Logo" />
+                            <img src={Logo2} className='logo-2' alt="Logo" />
+                        </a>
+                    </div>
+                        <a href="#" className='launchApp'>Launch dApp</a>
                 </div>
             </div>
         </header>
