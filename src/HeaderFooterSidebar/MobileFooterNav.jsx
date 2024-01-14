@@ -20,7 +20,7 @@ function MobileFooterNav() {
         <div className="mobileFooterNav">
             <ul className="navlinks">
                 <li>
-                    <Link to="/" className={`navLink ${isActive('/') && 'active'}`}>
+                    <Link to="/swap" className={`navLink ${isActive('/swap') && 'active'}`}>
                         <img src={NavIcon1} alt="NavIcon" />
                         <span>Swap</span>
                     </Link>

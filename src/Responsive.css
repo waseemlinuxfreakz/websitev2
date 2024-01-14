@@ -60,6 +60,13 @@
         z-index: 99999;
     }
 
+    .w3m-container {
+        position: absolute;
+        border: 0px;
+        padding-bottom: 90px;
+        z-index: 100000;
+    }
+
     .mobileFooterNav ul.navlinks {
         background: transparent;
         border: 0;
@@ -310,11 +317,6 @@
 
     .w3m-overlay {
         padding-bottom: 90px !important;
-    }
-
-    .w3m-container {
-        border: 0px;
-        padding-bottom: 90px;
     }
 
     .explorereTopRow {
