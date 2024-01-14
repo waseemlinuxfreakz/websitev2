@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import Logo from '../assets/img/Emmet-logo2.svg';
-import Wallet from '../assets/img/Wallet.svg';
-import EthereumTop from '../assets/img/Ethereum-top.svg';
 import OpenNav from '../assets/img/OpenNav.svg';
 import CloseNav from '../assets/img/CloseNav.svg';
 import MobileNav from './MobileNav';

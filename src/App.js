@@ -13,58 +13,88 @@ import WebHome from './Pages/WebPages/WebHome';
 import PrivacyPolicy from './Pages/WebPages/PrivacyPolicy';
 import TermsService from './Pages/WebPages/TermsService';
 
-import { ALL_CHAINS } from './constants/chains/index';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Web3Modal related
 import { Web3Modal } from '@web3modal/react';
-import { configureChains, createConfig, WagmiConfig } from 'wagmi';
-import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum';
-
-
-const supportedChains = ALL_CHAINS;
-
-const projectId = "0792a282f1d5c406794a1cbec7d7f4b4";
-
-const { publicClient } = configureChains(supportedChains, [w3mProvider({ projectId })]);
-
-const wagmiConfig = createConfig({
-  autoConnect: true,
-  isNewChainsStale: false,
-  connectors: w3mConnectors({ projectId, chains: supportedChains }),
-  publicClient
-});
-
-const ethereumClient = new EthereumClient(wagmiConfig, supportedChains);
+import { WagmiConfig } from 'wagmi';
+import { getWalletConnectInstance } from './walletConnectSetup';
 
 function App() {
   return (
     <>
-      <WagmiConfig config={wagmiConfig}>
-        <Router
-          // Open all the pages at the top
-          scrollBehavior={() => ({ y: 0 })}
-        >
-          <Routes>
-            <Route path="/" element={< WebHome/>} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/terms-of-service" element={<TermsService />} />
-            <Route path="/bridge" element={<Bridge />} />
-            <Route path="/explorer" element={<ExplorerPage />} />
-            <Route path="/swap" element={< HomePage/>} />
-            <Route path="/pool" element={<PoolPage />} />
-            <Route path="/pool/your-liquidity" element={<YourLiquidityPage />} />
-            <Route path="/transactionDetails/:hash" element={<TransactionDetailsPage />} />
-            
-          </Routes>
-        </Router>
-      </WagmiConfig>
-      <Web3Modal
-        projectId={projectId}
-        ethereumClient={ethereumClient}
-      />
+      <Router
+        // Open all the pages at the top
+        scrollBehavior={() => ({ y: 0 })}
+      >
+        <Routes>
+          <Route path="/" element={< WebHome />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsService />} />
+          <Route path="/bridge" element={<BridgeWithWalletConnect />} />
+          <Route path="/explorer" element={<ExplorerWithWalletConnect />} />
+          <Route path="/swap" element={< SwapWithWalletConnect />} />
+          <Route path="/pool" element={<PoolWithWalletConnect />} />
+          <Route path="/pool/your-liquidity" element={<YourLiquidityPage />} />
+          <Route path="/transactionDetails/:hash" element={<TransactionDetailsWithWalletConnect />} />
+        </Routes>
+      </Router>
+
     </>
   );
 }
 
 export default App;
+
+
+function WalletConnectWrapper({ children }) {
+
+  const walletConnectInstance = getWalletConnectInstance();
+
+  return (
+    <>
+      <WagmiConfig config={walletConnectInstance.wagmiConfig}>
+        {children}
+      </WagmiConfig>
+      <Web3Modal
+        projectId={walletConnectInstance.projectId}
+        ethereumClient={walletConnectInstance.ethereumClient}
+      />
+    </>)
+
+}
+
+function BridgeWithWalletConnect() {
+
+  return (<WalletConnectWrapper>
+    <Bridge />
+  </WalletConnectWrapper>)
+}
+
+function ExplorerWithWalletConnect() {
+
+  return (<WalletConnectWrapper>
+    <ExplorerPage />
+  </WalletConnectWrapper>)
+}
+
+function PoolWithWalletConnect() {
+
+  return (<WalletConnectWrapper>
+    <PoolPage />
+  </WalletConnectWrapper>)
+}
+
+function SwapWithWalletConnect() {
+
+  return (<WalletConnectWrapper>
+    <HomePage />
+  </WalletConnectWrapper>)
+}
+
+function TransactionDetailsWithWalletConnect() {
+
+  return (<WalletConnectWrapper>
+    <TransactionDetailsPage />
+  </WalletConnectWrapper>)
+}

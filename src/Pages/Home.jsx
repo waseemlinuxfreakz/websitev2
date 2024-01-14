@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import {isMobile} from 'react-device-detect';
+import React from 'react';
 import Header from '../HeaderFooterSidebar/Header';
 import Footer from '../HeaderFooterSidebar/Footer';
 import Sidebar from '../HeaderFooterSidebar/Sidebar';
