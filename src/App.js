@@ -48,7 +48,7 @@ function App() {
           <Routes>
             <Route path="/" element={< WebHome/>} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/terms-service" element={<TermsService />} />
+            <Route path="/terms-of-service" element={<TermsService />} />
             <Route path="/bridge" element={<Bridge />} />
             <Route path="/explorer" element={<ExplorerPage />} />
             <Route path="/swap" element={< HomePage/>} />

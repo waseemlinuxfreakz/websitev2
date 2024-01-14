@@ -37,7 +37,8 @@ function FooterRight() {
                     <div className="footerLinks">
                         <h3>About</h3>
                         <ul className="footerLink">
-                            <li><a href="#">Terms Of Service</a></li>
+                            <li><a href="/terms-of-service">Terms Of Service</a></li>
+                            <li><a href="/privacy-policy">Privacy Policy</a></li>
                             <li><a href="https://docs.emmet.finance/intro/roadmap">Roadmap</a></li>
                             <li><a href="#">News</a></li>
                             <li><a href="https://docs.emmet.finance/ecosystem-and-partnerships/brand-and-logos">Brand Assets</a></li>
