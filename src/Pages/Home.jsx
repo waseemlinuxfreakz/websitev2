@@ -6,7 +6,7 @@ import Sidebar from '../HeaderFooterSidebar/Sidebar';
 import SwapContainer from './HomeComponents/SwapContainer';
 import MobileHeader from '../HeaderFooterSidebar/MobileHeader';
 import MainActionButton from './HomeComponents/MainActionButton';
-import SidebarSlider from '../HeaderFooterSidebar/SidebarComponent/SidebarSlider';
+// import SidebarSlider from '../HeaderFooterSidebar/SidebarComponent/SidebarSlider';
 import SwapSuccess from './HomeComponents/SwapSuccess';
 import SwapFailed from './HomeComponents/SwapFailed';
 import SwapConfirm from './HomeComponents/SwapConfirm';
@@ -23,7 +23,7 @@ const HomePage = () => {
                 <div className="mobileArea" id='mobileContainer'>
                     <MobileHeader/>
                     <SwapContainer/>
-                    <SidebarSlider/>
+                    {/* <SidebarSlider/> */}
                     <Footer/>
                     <MainActionButton/>
                     {/* <SwapSuccess/> */}

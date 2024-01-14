@@ -3,7 +3,7 @@ import Header from '../HeaderFooterSidebar/Header';
 import Footer from '../HeaderFooterSidebar/Footer';
 import Sidebar from '../HeaderFooterSidebar/Sidebar';
 import MobileHeader from '../HeaderFooterSidebar/MobileHeader';
-import SidebarSlider from '../HeaderFooterSidebar/SidebarComponent/SidebarSlider';
+// import SidebarSlider from '../HeaderFooterSidebar/SidebarComponent/SidebarSlider';
 import Yourliquidity from './PoolComponents/PoolTable/Yourliquidity';
 import useMobileDetector from '../hooks/useMobileDetector';
 
@@ -19,7 +19,7 @@ const YourLiquidityPage = () => {
                     <MobileHeader/>
                     <Yourliquidity/>
                     
-                    <SidebarSlider/>
+                    {/* <SidebarSlider/> */}
                     <Footer/>
                 </div>
             </div>

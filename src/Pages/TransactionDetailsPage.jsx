@@ -5,7 +5,7 @@ import Footer from '../HeaderFooterSidebar/Footer';
 import Sidebar from '../HeaderFooterSidebar/Sidebar';
 import BridgeSwapContainer from './BridgeComponents/BridgeSwapContainer';
 import MobileHeader from '../HeaderFooterSidebar/MobileHeader';
-import SidebarSlider from '../HeaderFooterSidebar/SidebarComponent/SidebarSlider';
+// import SidebarSlider from '../HeaderFooterSidebar/SidebarComponent/SidebarSlider';
 
 import ExplorerHeader from '../HeaderFooterSidebar/ExplorerHeader';
 import TransactionDetails from './ExplorerComponents/TransactionDetails/TransactionDetails';
@@ -24,7 +24,7 @@ const TransactionDetailsPage = () => {
                     <div className="mobileArea" id='mobileContainer'>
                         <MobileHeader />
                         <TransactionDetails />
-                        <SidebarSlider />
+                        {/* <SidebarSlider /> */}
                         <Footer />
                     </div>
                 </div>

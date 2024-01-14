@@ -6,7 +6,7 @@ import BridgeSwapContainer from './BridgeComponents/BridgeSwapContainer';
 import BridgeSwapTransaction from './BridgeComponents/BridgeSwaptransaction';
 import MobileHeader from '../HeaderFooterSidebar/MobileHeader';
 import MainActionButton from './BridgeComponents/MainActionButton';
-import SidebarSlider from '../HeaderFooterSidebar/SidebarComponent/SidebarSlider';
+// import SidebarSlider from '../HeaderFooterSidebar/SidebarComponent/SidebarSlider';
 import { useAppSelector } from '../hooks/storage';
 import useMobileDetector from '../hooks/useMobileDetector';
 
@@ -31,7 +31,7 @@ const Bridge = () => {
                             ? < BridgeSwapTransaction />
                             : <BridgeSwapContainer />
                         }
-                        <SidebarSlider />
+                        {/* <SidebarSlider /> */}
                         <Footer />
                         {!bridge.isTransferProgressVisible && <MainActionButton />}
 

@@ -4,7 +4,7 @@ import Footer from '../HeaderFooterSidebar/Footer';
 import Sidebar from '../HeaderFooterSidebar/Sidebar';
 import BridgeSwapTransaction from './BridgeComponents/BridgeSwaptransaction';
 import MobileHeader from '../HeaderFooterSidebar/MobileHeader';
-import SidebarSlider from '../HeaderFooterSidebar/SidebarComponent/SidebarSlider';
+// import SidebarSlider from '../HeaderFooterSidebar/SidebarComponent/SidebarSlider';
 import useMobileDetector from '../hooks/useMobileDetector';
 
 const BridgeSuccess = () => {
@@ -18,7 +18,7 @@ const BridgeSuccess = () => {
                     <div className="mobileArea" id='mobileContainer'>
                         <MobileHeader />
                         <BridgeSwapTransaction />
-                        <SidebarSlider />
+                        {/* <SidebarSlider /> */}
                         <Footer />
                     </div>
                 </div>

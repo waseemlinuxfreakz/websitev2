@@ -3,7 +3,7 @@ import Header from '../HeaderFooterSidebar/Header';
 import Footer from '../HeaderFooterSidebar/Footer';
 import Sidebar from '../HeaderFooterSidebar/Sidebar';
 import MobileHeader from '../HeaderFooterSidebar/MobileHeader';
-import SidebarSlider from '../HeaderFooterSidebar/SidebarComponent/SidebarSlider';
+// import SidebarSlider from '../HeaderFooterSidebar/SidebarComponent/SidebarSlider';
 import PoolPageContainer from './PoolComponents/PoolPageContainer';
 import useMobileDetector from '../hooks/useMobileDetector';
 
@@ -18,7 +18,7 @@ const PoolPage = () => {
                 <div className="mobileArea" id='mobileContainer'>
                     <MobileHeader/>
                     <PoolPageContainer/>
-                    <SidebarSlider/>
+                    {/* <SidebarSlider/> */}
                     <Footer/>
                 </div>
             </div>

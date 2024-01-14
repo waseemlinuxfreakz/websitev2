@@ -8,13 +8,13 @@ function Footer() {
             <div className="container">
                 <div className="footerRow">
                     <div className="leftCol">
-                        <p>SDK v2.1.3-alpha.3</p>
+                        <p></p>
                     </div>
                     <div className="centerCol">
                         <div className="footerNav">
-                            <a href="#">Terms of Service</a>
+                            <a href="/terms-of-service">Terms of Service</a>
                             <span>|</span>
-                            <a href="#">Privacy Policy</a>
+                            <a href="/privacy-policy">Privacy Policy</a>
                         </div>
                     </div>
                     <div className="rightCol">

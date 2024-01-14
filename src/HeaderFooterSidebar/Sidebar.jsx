@@ -1,7 +1,7 @@
 import React from 'react';
 import LogoTop from './SidebarComponent/LogoTop';
 import SidebarNav from './SidebarComponent/SidebarNav';
-import SidebarSlider from './SidebarComponent/SidebarSlider';
+// import SidebarSlider from './SidebarComponent/SidebarSlider';
 import SidebarBottomNav from './SidebarComponent/SidebarBottomNav';
 import NavSocial from './NavSocial';
 
@@ -12,7 +12,7 @@ function Sidebar() {
             <LogoTop/>
             <SidebarNav/>
             <SidebarBottomNav/>
-            <SidebarSlider/>
+            {/* <SidebarSlider/> */}
             <NavSocial/>
         </div>
      );
