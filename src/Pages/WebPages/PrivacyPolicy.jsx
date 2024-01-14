@@ -1,6 +1,7 @@
 import React from 'react';
 import WebHeader from '../../HeaderFooterSidebar/WebHeaderFooter/WebHeader';
 import WebFooter from '../../HeaderFooterSidebar/WebHeaderFooter/WebFooter';
+import TitleBg from '../../assets/img/web/title-bg.png';
 import './WebHome.css';
 import './PrivacyPolicy.css';
 
@@ -13,6 +14,7 @@ function PrivacyPolicy() {
                         <div className="privacyPolicy">
                             <div className="container">
                                 <div className="privacyPolicyTitle">
+                                    <img src={TitleBg} className="TitleBg" alt="TitleBg" />
                                     <h1>Privacy Policy</h1>
                                     <p>Last updated: Jan 2024</p>
                                 </div>
