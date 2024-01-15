@@ -55,6 +55,16 @@
 }
 
 @media only screen and (max-width: 767px) {
+
+    .counterBox h3 {
+        font-size: 22px;
+        line-height: 38px;
+    }
+    
+    .counterBox span {
+        font-size: 14px;
+    }
+    
     .topArea {
         padding-top: 215px;
     }

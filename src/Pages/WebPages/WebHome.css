@@ -40,6 +40,9 @@ img.topArt2 {
     display: none;
 }
 
+.topArtMob {
+    display: none !important;
+}
 
 @media only screen and (max-width: 991px) {
     img.sliderArtDesk {
@@ -73,6 +76,15 @@ img.topArt2 {
 }/* (max-width: 991px) */
 
 @media only screen and (max-width: 767px) {
+
+    .topArt1 {
+        display: none !important;
+    }
+
+    .topArt1.topArtMob {
+        display: block !important;
+        top: 50px;
+    }
 
     .sliderArtDesk {
         display: none !important;

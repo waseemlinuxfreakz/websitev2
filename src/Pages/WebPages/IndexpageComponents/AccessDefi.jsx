@@ -11,13 +11,14 @@ import DefimobArt1 from '../../../assets/img/web/defi-art-1.1.png';
 import DefimobArt2 from '../../../assets/img/web/defi-art-2.2.png';
 
 function AccessDefi() {
+    const isMobile = window.innerWidth <= 768;
     return ( 
         <div className="AccessDefiContainer">
             <div className="container">
                 <div className="AccessDefi">
                     <img src={DefiDesk} alt="DefiDesk" className="defiBgDesk" />
-                    <img src={DefiDeskArt1} className='DefiDeskArt-1' alt="DefiDeskArt" />
-                    <img src={DefiDeskArt2} className='DefiDeskArt-2' alt="DefiDeskArt" />
+                    {isMobile ? null : <img src={DefiDeskArt1} className='DefiDeskArt-1' alt="DefiDeskArt" />}
+                    {isMobile ? null : <img src={DefiDeskArt2} className='DefiDeskArt-2' alt="DefiDeskArt" />}
 
                     <img src={DefimobArt1} className='DefiMobArt-1' alt="DefiDeskArt" />
                     <img src={DefimobArt2} className='DefiMobArt-2' alt="DefiDeskArt" />
