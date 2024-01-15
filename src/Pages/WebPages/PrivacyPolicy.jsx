@@ -21,10 +21,10 @@ function PrivacyPolicy() {
                                 <div className="privacyPolicyContent">
                                     Emmet Finance ("Emmet Finance") is committed to protecting and respecting your privacy. This Privacy Policy describes how your personal or behavioral data is collected, used, and stored when you access https://emmet.finance/ (the "Site").
                                     <br /><br />
-                                    <b>What does this Privacy Policy cover?</b>
+                                    <h3>What does this Privacy Policy cover? </h3>
                                     This Privacy Policy sets forth our policy for collecting or using personal or behavioral data in connection with users accessing and using the Site.
                                     <br /><br />
-                                    <b>The Information We Collect</b>
+                                    <h3>The Information We Collect</h3>
                                     Emmet Finance does not collect your personal information and does not use any automatic tracking technologies. The Emmet Finance application leverages blockchain technologies that use only public information available on the blockchain. You are not required to provide any personal information to the Site. However, the transactions conducted from your wallets are publicly accessible on blockchain networks accessed through the Site.
                                     <br /><br />
                                     Emmet Finance does not store any personal or messaging information or in any way use information to associate or cross-associate wallet data.
