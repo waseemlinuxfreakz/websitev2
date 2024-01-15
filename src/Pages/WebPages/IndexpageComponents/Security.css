@@ -62,3 +62,31 @@ img.securityBg {
     line-height: 20px;
     color: #B3B7BF;
 }
+
+@media only screen and (max-width: 767px) {
+    .SecurityArea {
+        padding: 60px 0;
+    }
+    
+    .SecurityArea .container {
+        max-width: 457px !important;
+    }
+    
+    .SecurityInner h2 {
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 120%; /* 43.2px */
+        letter-spacing: -1.08px;
+        max-width: 350px;
+        margin: 0 auto 46px auto;
+    }
+    
+    .securityBox {
+        padding: 24px;
+    }
+    
+    .SecurityInner .row {
+        row-gap: 16px;
+    } 
+}

@@ -7,7 +7,9 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 import './TopSlider.css';
-import ArtDesk from '../../../assets/img/web/parasuit.svg';
+import ArtDesk from '../../../assets/img/web/parasuit.png';
+import ArtMob1 from '../../../assets/img/web/ArtMob1.png';
+import ArtMob2 from '../../../assets/img/web/ArtMob2.png';
 import Fire from '../../../assets/img/web/fire.svg';
 
 export default function TopSlider() {
@@ -37,6 +39,8 @@ export default function TopSlider() {
           </Swiper>
         </div>
           <img src={ArtDesk} alt="ArtDesk" className="sliderArtDesk" />
+          <img src={ArtMob1} alt="ArtDesk" className="sliderArtMob-1" />
+          <img src={ArtMob2} alt="ArtDesk" className="sliderArtMob-2" />
       </div>
     </>
   );

@@ -17,3 +17,48 @@ footer.webFooterArea {
     position: relative;
     z-index: 2;
 }
+
+.CopyrightMob,
+.socialMob {
+    display: none;
+}
+
+
+@media only screen and (max-width: 767px) {
+    .CopyrightDesk,
+    .socialDesk {
+        display: none;
+    }
+
+    .socialMob {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .social {
+        gap: 8px;
+    }
+    
+    a.footeLogo {
+        width: 50px;
+        border-radius: 10.526px;
+        background: var(--Background-Background-tertiary, #202226);
+    }
+    
+    a.footeLogo img {
+        width: 100%;
+    }
+
+    .CopyrightMob {
+        display: inline;
+    }
+
+    .footerRight .row {
+        row-gap: 24px;
+    }
+    
+    .footerRight {
+        margin-bottom: 27px;
+    }
+}

@@ -6,7 +6,7 @@ function FooterRight() {
     return ( 
         <div className="footerRight">
             <div className="row">
-                <div className="col-lg-4 col-md-6 col-sm-12">
+                <div className="col-lg-4 col-md-6 col-sm-6 col-6">
                     <div className="footerLinks">
                         <h3>Products</h3>
                         <ul className="footerLink">
@@ -19,7 +19,7 @@ function FooterRight() {
                         </ul>
                     </div>
                 </div>
-                <div className="col-lg-4 col-md-6 col-sm-12">
+                <div className="col-lg-4 col-md-6 col-sm-6 col-6">
                     <div className="footerLinks">
                         <h3>Developers</h3>
                         <ul className="footerLink">
@@ -33,7 +33,7 @@ function FooterRight() {
                         </ul>
                     </div>
                 </div>
-                <div className="col-lg-4 col-md-6 col-sm-12">
+                <div className="col-lg-4 col-md-6 col-sm-6 col-6">
                     <div className="footerLinks">
                         <h3>About</h3>
                         <ul className="footerLink">

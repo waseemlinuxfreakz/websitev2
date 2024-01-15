@@ -27,3 +27,81 @@ img.OneStopImg {
 .oneStopContainer {
     padding-bottom: 80px;
 }
+
+.onestopBox {
+    display: flex;
+    padding: 36px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    align-self: stretch;
+    border-radius: 16px;
+    border: 1px solid #4D4D4D;
+    background: var(--Background-Background-secondary, #1B1D20);
+    height: 100%;
+}
+
+.onestopBox h3 {
+    color: var(--Text-Text-primary, #FFF);
+    font-feature-settings: 'clig' off, 'liga' off;
+/* Desktop/heading.lg 24 */
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 32px;
+}
+
+.onestopBox p {
+    color: var(--Text-Text-helper, #B3B7BF);
+/* Desktop/body.sm 14 */
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.onestopBox.lastOnestop {
+    padding-right: 0;
+}
+
+.onestopBox.lastOnestop h3, .onestopBox.lastOnestop p {
+    padding-right: 36px;
+}
+
+@media only screen and (max-width: 767px) {
+    .oneStopContent {
+        max-width: 425px;
+        margin: 0 auto;
+    }
+    
+    .oneStopContent h2 {
+        text-align: left;
+        font-size: 30px;
+        font-weight: 500;
+        line-height: 120%; /* 36px */
+        letter-spacing: -0.9px;
+        padding-top: 60px;
+        padding-bottom: 36px;
+        max-width: 345px;
+    }
+    
+    .oneStopContent .row {
+        row-gap: 16px;
+    }
+    
+    .onestopBox {
+        padding: 24px;
+    }
+    
+    .onestopBox.lastOnestop {
+        overflow: hidden;
+    }
+    
+    .onestopBox.lastOnestop img.OneStopImg {
+        height: 220px;
+        object-fit: cover;
+        object-position: left;
+    }
+}

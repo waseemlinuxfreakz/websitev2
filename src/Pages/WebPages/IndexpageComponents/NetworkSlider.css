@@ -19,3 +19,13 @@
     background: var(--Background-Background-secondary, #1B1D20);
     padding: 26px 5px;
 }
+
+.networkSliderWrap {
+    width: 900px;
+    bottom: 0;
+}
+
+.networkSliderWrap .container {
+    width: 100% !important;
+    max-width: 100% !important;
+}

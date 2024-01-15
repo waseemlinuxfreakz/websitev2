@@ -13,8 +13,8 @@ img.topArt1 {
     display: block;
     position: absolute;
     z-index: -2;
-    left: 90%;
-    width: 200vw;
+    left: 50%;
+    width: 100vw;
     top: 0;
     height: 100%;
     object-fit: cover;
@@ -34,3 +34,108 @@ img.topArt2 {
     transform: translate(-50%);
     pointer-events: none;
 }
+
+.sliderArtMob-1,
+.sliderArtMob-2 {
+    display: none;
+}
+
+
+@media only screen and (max-width: 991px) {
+    img.sliderArtDesk {
+        right: -40px;
+        width: 350px;
+        top: -14%;
+    }
+    
+    .topSliderWrap .topSliderOuter .swiper {
+        padding: 29px 25px;
+    }
+    
+    img.DefiDeskArt-2 {
+        width: 250px;
+        right: -30px;
+        bottom: -40px;
+    }
+    
+    img.DefiDeskArt-1 {
+        left: -40px;
+    }
+
+    .row.footer_Row> div {
+        width: 100%;
+    }
+    
+    .row.footer_Row {
+        gap: 50px;
+    }
+
+}/* (max-width: 991px) */
+
+@media only screen and (max-width: 767px) {
+
+    .sliderArtDesk {
+        display: none !important;
+    }
+
+    .sliderArtMob-1,
+    .sliderArtMob-2 {
+        display: block;
+        pointer-events: none;
+    }
+
+    .swiper-slide p {
+        text-align: center;
+        display: flex;
+        font-size: 17px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 32px;
+        justify-content: center;
+    }
+    
+    .swiper-slide p img {
+        height: 20px;
+        margin-top: -5px;
+    }
+
+    .topSliderWrap .topSliderOuter .swiper {
+        padding: 38px 33px 34px 33px;
+        border: 1px solid #256D2C;
+        background: linear-gradient(94deg, #191B1E 46.94%, #025230 115.51%);
+    }
+    
+    img.sliderArtMob-1 {
+        position: absolute;
+        z-index: 1;
+        top: -5px;
+        left: 0;
+    }
+    
+    img.sliderArtMob-2 {
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 1;
+    }
+    
+    .topSliderWrap {
+        max-width: 465px;
+    }
+
+    .topArea {
+        padding-bottom: 167px;
+        padding-top: 215px;
+    }
+
+    .webWraper .container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    img.logo-2 {
+        display: none;
+    }
+
+
+}/* (max-width: 767px) */

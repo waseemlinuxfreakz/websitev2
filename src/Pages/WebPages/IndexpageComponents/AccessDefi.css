@@ -5,7 +5,7 @@
 .AccessDefi {
     position: relative;
     z-index: 1;
-    padding: 94px;
+    padding: 94px 0px;
     border-radius: 16px;
     overflow: hidden;
 }
@@ -66,4 +66,79 @@ img.defiBgDesk {
     padding: 9px 18px 9px 24px;
     gap: 4px;
     transition: .3s ease all;
+}
+
+img.DefiDeskArt-1 {
+    display: block;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 10%;
+}
+
+img.DefiDeskArt-2 {
+    display: block;
+    position: absolute;
+    z-index: -1;
+    right: -5px;
+    bottom: -5px;
+}
+
+.DefiMobArt-1,
+.DefiMobArt-2 {
+    display: none;
+}
+
+@media only screen and (max-width: 767px) {
+    .AccessDefi {
+        padding: 76px 24px;
+        max-width: 425px;
+        margin: 0 auto;
+    }
+
+    .oneStopContainer {
+        padding-bottom: 0;
+    }
+
+    .AccessDefiContainer {
+        padding: 60px 0;
+    }
+
+    img.DefiDeskArt-1, img.DefiDeskArt-2 {
+        display: none !important;
+    }
+
+    .AccessDefiInner h2 {
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 120%; /* 43.2px */
+        letter-spacing: -1.08px;
+        margin-bottom: 16px;
+    }
+
+    .AccessDefiInner p {
+        margin-bottom: 30px;
+    }
+
+    .DefiMobArt-1,
+    .DefiMobArt-2 {
+        display: block;
+        pointer-events: none;
+    }
+
+    img.DefiMobArt-1 {
+        display: block;
+        position: absolute;
+        z-index: -1;
+        left: 0;
+        top: 0;
+    }
+    
+    img.DefiMobArt-2 {
+        position: absolute;
+        z-index: -1;
+        right: 0;
+        bottom: 0;
+    }
 }
