@@ -137,5 +137,9 @@ img.topArt2 {
         display: none;
     }
 
+    .navBrand img {
+        width: 43px;
+    }
+
 
 }/* (max-width: 767px) */
