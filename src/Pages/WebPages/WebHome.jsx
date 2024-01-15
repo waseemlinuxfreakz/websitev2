@@ -10,7 +10,8 @@ import Security from './IndexpageComponents/Security';
 
 import './WebHome.css';
 
-import TopArt1 from '../../assets/img/web/fire-bg.png';
+// import TopArt1 from '../../assets/img/web/fire-bg.png';
+import TopArt1 from '../../assets/img/web/bg-hero-new.webp';
 import TopArtMob from '../../assets/img/web/fire-bg2.png';
 import TopArt2 from '../../assets/img/web/line-bg.png';
 
@@ -24,9 +25,9 @@ function WebHome() {
                 <WebHeader />
                 <div className="pageWraper">
                     <div className="topArea">
-                        {isMobile ? null : <img src={TopArt1} alt="" className="topArt1" />}
-                        <img src={TopArtMob} alt="" className="topArt1 topArtMob" />
-                        <img src={TopArt2} alt="" className="topArt2" />
+                        {isMobile ? null : <img src={TopArt1} alt="Hero Background Art" className="topArt1" />}
+                        <img src={TopArtMob} alt="Hero Background Art" className="topArt1 topArtMob" />
+                        <img src={TopArt2} alt="Hero Background Art" className="topArt2" />
                         <TopSlider />
                         <IndexHero />
                         <NetworkSlider />

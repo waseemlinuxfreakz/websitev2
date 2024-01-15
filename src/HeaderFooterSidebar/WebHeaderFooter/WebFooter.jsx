@@ -16,7 +16,7 @@ function WebFooter() {
                 <div className="row footer_Row">
                     <div className="footerLeft">
                         <span className="socialMob">
-                            <a href="#" className='footeLogo'><img src={Logo1} className='logo-1' alt="Logo" /></a>
+                            <a href="#" className='footeLogo'><img src={Logo1} className='logo-1' alt="Emmet Logo" /></a>
                             <Social/>
                         </span>
                         <Subscrib/>

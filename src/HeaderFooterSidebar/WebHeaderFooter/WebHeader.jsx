@@ -14,11 +14,11 @@ function WebHeader() {
                     <div className="navBrand">
                         {isMobile ? null : 
                             <a href="./">
-                                <img src={Logo1} className='logo-1' alt="Logo" />
-                                <img src={Logo2} className='logo-2' alt="Logo" />
+                                <img src={Logo1} className='logo-1' alt="Emmet Logo" />
+                                <img src={Logo2} className='logo-2' alt="Emmet Logo" />
                             </a>
                         }
-                        <a href="./" className='mobLogo'><img src={LogoMob} alt="Emmet" className='' /></a>
+                        <a href="./" className='mobLogo'><img src={LogoMob} alt="Emmet Logo" className='' /></a>
                     </div>
                         <a href="/bridge" className='launchApp'>Launch dApp</a>
                 </div>

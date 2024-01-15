@@ -17,11 +17,11 @@ function AccessDefi() {
             <div className="container">
                 <div className="AccessDefi">
                     <img src={DefiDesk} alt="DefiDesk" className="defiBgDesk" />
-                    {isMobile ? null : <img src={DefiDeskArt1} className='DefiDeskArt-1' alt="DefiDeskArt" />}
-                    {isMobile ? null : <img src={DefiDeskArt2} className='DefiDeskArt-2' alt="DefiDeskArt" />}
+                    {isMobile ? null : <img src={DefiDeskArt1} className='DefiDeskArt-1' alt="Defi Background" />}
+                    {isMobile ? null : <img src={DefiDeskArt2} className='DefiDeskArt-2' alt="Defi Background Desk" />}
 
-                    <img src={DefimobArt1} className='DefiMobArt-1' alt="DefiDeskArt" />
-                    <img src={DefimobArt2} className='DefiMobArt-2' alt="DefiDeskArt" />
+                    <img src={DefimobArt1} className='DefiMobArt-1' alt="Defi Background Desk" />
+                    <img src={DefimobArt2} className='DefiMobArt-2' alt="Defi Background Desk" />
                     <div className="AccessDefiInner">
                         <h2>EMMET is your access to DeFi freedom</h2>
                         <p>Participate in the future of decentralized finance by joining our EMMET token sale. Secure your stake in the evolution of cross-chain DeFi, unlocking exclusive benefits and contributing to the growth of the Emmet Finance ecosystem</p>
