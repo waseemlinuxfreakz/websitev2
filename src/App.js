@@ -17,28 +17,48 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Web3Modal related
 import { Web3Modal } from '@web3modal/react';
-import { WagmiConfig } from 'wagmi';
-import { getWalletConnectInstance } from './walletConnectSetup';
+import { configureChains, createConfig, WagmiConfig } from 'wagmi';
+import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum';
+import { ALL_CHAINS } from './constants/chains/index';
+// import { getWalletConnectInstance } from './walletConnectSetup';
+
+const supportedChains = ALL_CHAINS;
+
+const projectId = "2bcf20e00bc0f72513e22cd16ce9ae83";
+const { publicClient } = configureChains(supportedChains, [w3mProvider({ projectId })]);
+const wagmiConfig = createConfig({
+  autoConnect: true,
+  connectors: w3mConnectors({ projectId, chains: supportedChains }),
+  publicClient
+});
+
+const ethereumClient = new EthereumClient(wagmiConfig, supportedChains);
 
 function App() {
   return (
     <>
-      <Router
-        // Open all the pages at the top
-        scrollBehavior={() => ({ y: 0 })}
-      >
-        <Routes>
-          <Route path="/" element={< WebHome />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/terms-of-service" element={<TermsService />} />
-          <Route path="/bridge" element={<BridgeWithWalletConnect />} />
-          <Route path="/explorer" element={<ExplorerWithWalletConnect />} />
-          <Route path="/swap" element={< SwapWithWalletConnect />} />
-          <Route path="/pool" element={<PoolWithWalletConnect />} />
-          <Route path="/pool/your-liquidity" element={<YourLiquidityPage />} />
-          <Route path="/transactionDetails/:hash" element={<TransactionDetailsWithWalletConnect />} />
-        </Routes>
-      </Router>
+      <WagmiConfig config={wagmiConfig}>
+        <Router
+          // Open all the pages at the top
+          scrollBehavior={() => ({ y: 0 })}
+        >
+          <Routes>
+            <Route path="/" element={< WebHome />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-service" element={<TermsService />} />
+            <Route path="/bridge" element={<Bridge />} />
+            <Route path="/explorer" element={<ExplorerPage />} />
+            <Route path="/swap" element={< HomePage />} />
+            <Route path="/pool" element={<PoolPage />} />
+            <Route path="/pool/your-liquidity" element={<YourLiquidityPage />} />
+            <Route path="/transactionDetails/:hash" element={<TransactionDetailsPage />} />
+          </Routes>
+        </Router>
+      </WagmiConfig>
+      <Web3Modal
+        projectId={projectId}
+        ethereumClient={ethereumClient}
+      />
 
     </>
   );
@@ -48,54 +68,54 @@ function App() {
 export default App;
 
 
-function WalletConnectWrapper({ children }) {
+// function WalletConnectWrapper({ children }) {
 
-  const walletConnectInstance = getWalletConnectInstance();
+//   const walletConnectInstance = getWalletConnectInstance();
 
-  return (
-    <>
-      <WagmiConfig config={walletConnectInstance.wagmiConfig}>
-        {children}
-      </WagmiConfig>
-      <Web3Modal
-        projectId={walletConnectInstance.projectId}
-        ethereumClient={walletConnectInstance.ethereumClient}
-      />
-    </>)
+//   return (
+//     <>
+//       <WagmiConfig config={walletConnectInstance.wagmiConfig}>
+//         {children}
+//       </WagmiConfig>
+//       <Web3Modal
+//         projectId={walletConnectInstance.projectId}
+//         ethereumClient={walletConnectInstance.ethereumClient}
+//       />
+//     </>)
 
-}
+// }
 
-function BridgeWithWalletConnect() {
+// function BridgeWithWalletConnect() {
 
-  return (<WalletConnectWrapper>
-    <Bridge />
-  </WalletConnectWrapper>)
-}
+//   return (<WalletConnectWrapper>
+//     <Bridge />
+//   </WalletConnectWrapper>)
+// }
 
-function ExplorerWithWalletConnect() {
+// function ExplorerWithWalletConnect() {
 
-  return (<WalletConnectWrapper>
-    <ExplorerPage />
-  </WalletConnectWrapper>)
-}
+//   return (<WalletConnectWrapper>
+//     <ExplorerPage />
+//   </WalletConnectWrapper>)
+// }
 
-function PoolWithWalletConnect() {
+// function PoolWithWalletConnect() {
 
-  return (<WalletConnectWrapper>
-    <PoolPage />
-  </WalletConnectWrapper>)
-}
+//   return (<WalletConnectWrapper>
+//     <PoolPage />
+//   </WalletConnectWrapper>)
+// }
 
-function SwapWithWalletConnect() {
+// function SwapWithWalletConnect() {
 
-  return (<WalletConnectWrapper>
-    <HomePage />
-  </WalletConnectWrapper>)
-}
+//   return (<WalletConnectWrapper>
+//     <HomePage />
+//   </WalletConnectWrapper>)
+// }
 
-function TransactionDetailsWithWalletConnect() {
+// function TransactionDetailsWithWalletConnect() {
 
-  return (<WalletConnectWrapper>
-    <TransactionDetailsPage />
-  </WalletConnectWrapper>)
-}
+//   return (<WalletConnectWrapper>
+//     <TransactionDetailsPage />
+//   </WalletConnectWrapper>)
+// }
