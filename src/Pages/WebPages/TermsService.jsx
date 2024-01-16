@@ -63,26 +63,26 @@ function TermsService() {
                                 <b>Assumption of Risk</b>
                                 You acknowledge and accept that there are risks associated with utilizing an Internet-based system including, but not limited to, the risk of failure of hardware, software, and Internet connections. You acknowledge that Emmet Finance shall not be responsible for any communication failures, disruptions, errors, distortions, or delays you may experience when using the Interface, however caused.
                                 <br /><br />
-                                13. Third-Party Resources and Promotions <br />
+                                <b>13. Third-Party Resources and Promotions</b>
                                 The Interface may contain links to third-party websites or services that are not owned or controlled by Emmet Finance. We do not endorse or assume any responsibility for any such third-party sites, information, materials, products, or services.
                                 <br /><br />
-                                14. Release of Claims <br />
+                                <b>14. Release of Claims</b>
                                 To the maximum extent permitted by applicable law, you release Emmet Finance and its officers, directors, employees, and agents from any and all claims, actions, damages, losses, liabilities, costs, and expenses of any kind whatsoever that you may have against them arising out of or in any way relating to your use of the Interface.
                                 <br /><br />
-                                15. Indemnity <br />
+                                <b>15. Indemnity</b>
                                 You agree to defend, indemnify, and hold harmless Emmet Finance and its officers, directors, employees, and agents from any claims, actions, damages, losses, liabilities, costs, and expenses, including, without limitation, reasonable legal and accounting fees, arising out of or in any way connected with your access to or use of the Interface or your violation of these Terms.
                                 <br /><br />
-                                16. Limitation of Liability <br />
+                                <b>16. Limitation of Liability</b>
                                 In no event shall Emmet Finance or its officers, directors, employees, or agents be liable for any special, incidental, indirect, or consequential damages whatsoever arising out of or in any way related to your use of or inability to use the Interface.
                                 <br /><br />
-                                17. Dispute Resolution <br />
+                                <b>17. Dispute Resolution</b>
                                 You agree to resolve any disputes arising out of or related to these Terms or the Interface through final and binding arbitration, except as set forth under exceptions to agreement to arbitrate below.
                                 <br /><br />
                                 18. Class Action and Jury Trial WaiverYou may only resolve disputes with us on an individual basis and may not bring a claim as a plaintiff or a class member in a class, consolidated, or representative action. <br /> <br />
-                                19. Governing Law <br />
+                                <b>19. Governing Law</b>
                                 These Terms and any dispute or claim arising out of or in connection with their subject matter or formation shall be governed by and construed in accordance with the law of [insert your jurisdiction].
                                 <br /><br />
-                                20. Entire Agreement <br />
+                                <b>20. Entire Agreement</b>
                                 These Terms, together with the Privacy Policy, constitute the entire agreement between you and Emmet Finance regarding the use of the Interface, superseding any prior agreements between you and Emmet Finance relating to your use of the Interface.
                                 <br /><br />
                                 Remember to consult with a legal professional when creating your terms of service agreement. This example does not constitute legal advice and may not be appropriate for your specific circumstances.
