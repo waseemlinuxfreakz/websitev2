@@ -60,15 +60,6 @@ img.TitleBg {
     line-height: 26px; /* 162.5% */
 }
 
-.privacyPolicyContent h3 {
-    color: #FFF;
-    font-family: Inter;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 32px;
-}
-
 .privacyPolicyContent b {
     display: block;
     color: #E0E3E6;
@@ -78,6 +69,16 @@ img.TitleBg {
     font-style: normal;
     font-weight: 500;
     line-height: 26px;
+}
+
+.privacyPolicyContent b,
+.privacyPolicyContent h3 {
+    color: #FFF;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 32px;
 }
 
 .privacyPolicyContent a {

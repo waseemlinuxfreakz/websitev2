@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './Subscrib.css';
 import { isValidEmail } from '../../../verifiers';
 
-function Subscrib() {
+function Subscribe() {
 
     const [value, setValue] = useState('');
 
@@ -43,4 +43,4 @@ function Subscrib() {
     );
 }
 
-export default Subscrib;
+export default Subscribe;

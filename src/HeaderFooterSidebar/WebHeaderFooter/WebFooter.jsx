@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './WebFooter.css'
-import Subscrib from './FooterComponenets/Subscrib';
+import Subscribe from './FooterComponenets/Subscrib';
 import FooterRight from './FooterComponenets/FooterRight';
 import Social from './FooterComponenets/Social';
 import Copyright from './FooterComponenets/Copyright';
@@ -16,10 +16,10 @@ function WebFooter() {
                 <div className="row footer_Row">
                     <div className="footerLeft">
                         <span className="socialMob">
-                            <a href="#" className='footeLogo'><img src={Logo1} className='logo-1' alt="Emmet Logo" /></a>
+                            <a href="./" className='footeLogo'><img src={Logo1} className='logo-1' alt="Emmet Logo" /></a>
                             <Social/>
                         </span>
-                        <Subscrib/>
+                        <Subscribe/>
                         <span className="socialDesk"><Social/></span>
                         <span className='CopyrightDesk'><Copyright/></span>
                     </div>
