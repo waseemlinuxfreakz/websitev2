@@ -7,8 +7,9 @@ import { getDestinationFee } from '../../utils';
 
 function BridgeTransactionDetails() {
 
-    const { nativeCurrency, formattedFee } = useBridgeFee();
+    // const { nativeCurrency, formattedFee } = useBridgeFee();
     const bridge = useAppSelector((state) => state.bridge);
+
 
     const destCurrency = SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.toChain]].nativeCurrency.symbol;
 
@@ -27,7 +28,8 @@ function BridgeTransactionDetails() {
                     Bridging Fee
                 </div>
                 <div className="bridgeTransDetRight">
-                {formattedFee && formattedFee.toFixed(6)} {nativeCurrency}
+                    {bridge.bridgeFee} {bridge.fromToken}
+                {/* {formattedFee && formattedFee.toFixed(6)} {nativeCurrency} */}
                 </div>
             </li>
             <li className='bridgeTransactionDetailsList'>

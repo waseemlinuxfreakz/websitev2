@@ -1,8 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from './store';
-import { BridgeTokens } from '../types'
+import { BridgeTokens, BridgeFeeStructure } from '../types'
 import { TChainType, TokenType } from './types';
 import { filterTwoChains, filterOneToken } from '../utils/filters';
+import { isStableCoin } from '../verifiers';
 
 export interface IBridgeState {
     allowance: number,
@@ -91,7 +92,23 @@ export const bridgeSlice = createSlice({
             state.amount = action.payload;
             // If we're bridging the same token
             if (state.fromToken == state.toToken) {
-                state.receive = state.amount;
+                if(action.payload){
+                    if(isStableCoin(state.fromToken)){
+                        const percentage: number = BridgeFeeStructure.stablecoins.percentage * action.payload;
+                        if(percentage > BridgeFeeStructure.stablecoins.minimum){
+                            state.receive = state.amount - percentage;
+                            state.bridgeFee = percentage;
+                        }
+                        else{
+                            state.receive = state.amount - BridgeFeeStructure.stablecoins.minimum;
+                            state.bridgeFee = BridgeFeeStructure.stablecoins.minimum;
+                        }
+                        console.log("percentage", percentage, BridgeFeeStructure.stablecoins.percentage, "*", action.payload)
+                    }
+                }else{
+                    state.receive = '';
+                }
+                
             } else {
                 // If we're swapping while bridging a slippage may occur
                 const slippageAmount = state.amount * state.slippage / 100;

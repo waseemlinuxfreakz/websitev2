@@ -56,8 +56,8 @@ export default function useBridgFee () {
                 if(fee_){
                     const _fee = Number(fee_.toString());
                     setFormattedfee(formatFee(_fee));
-                    setFee(_fee);
-                    dispatch(setBridgeFee(_fee));
+                    // setFee(_fee);
+                    // dispatch(setBridgeFee(_fee));
                 }
                 
             })().catch(e => {
