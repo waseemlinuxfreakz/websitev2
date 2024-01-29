@@ -1,0 +1,18 @@
+.headerNotify {
+    position: relative;
+    z-index: 1;
+    padding: 10px 30px;
+    background: #4A67FF;
+}
+
+.headerNotifyContent {
+    text-align: center;
+}
+
+.closeNotify {
+    position: absolute;
+    cursor: pointer;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}

@@ -1,7 +1,13 @@
-.navBrand a {
+.navBrand> a {
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.navBrand {
+    display: flex;
+    align-items: center;
+    gap: 32px;
 }
 
 .navArea {

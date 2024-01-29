@@ -19,12 +19,12 @@
 .heroContainer> h2 {
     text-align: center;
     font-family: Inter;
-    font-size: 91px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 110%; /* 100.1px */
-    letter-spacing: -2.73px;
     color: #fff;
+    font-size: 120px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 110%;
+    letter-spacing: -3.6px;
 }
 
 .counter {
@@ -32,7 +32,7 @@
     align-items: center;
     gap: 108px;
     max-width: 886px;
-    margin: 98px auto 0 auto;
+    margin: 195px auto 0 auto;
 }
 
 .counterBox h3 {
@@ -52,6 +52,16 @@
     line-height: 24px; /* 150% */
     letter-spacing: -0.3px;
     color: #B3B7BF;
+}
+
+img.galaxyImage {
+    display: block;
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    top: 0%;
+    left: 50%;
+    transform: translate(-52%);
 }
 
 @media only screen and (max-width: 767px) {

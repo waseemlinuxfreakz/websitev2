@@ -1,0 +1,24 @@
+.headerRIght {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+ul.headerRIghtBtn li a {
+    display: block;
+    text-align: center;
+    color: #FFF;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 14px; /* 100% */
+    text-transform: capitalize;
+    padding: 3px 20px;
+}
+
+ul.headerRIghtBtn {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
