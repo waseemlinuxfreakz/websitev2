@@ -94,7 +94,7 @@ img.galaxyImage {
     }
     
     .heroContainer> h2 {
-        font-size: 46px;
+        font-size: 45px;
         font-weight: 500;
         line-height: 110%; /* 50.6px */
         letter-spacing: -1.38px;
@@ -107,7 +107,7 @@ img.galaxyImage {
         gap: 0;
         justify-content: space-between;
         row-gap: 32px;
-        margin-top: 81px;
+        margin-top: 107px;
     }
     
     .counterBox {

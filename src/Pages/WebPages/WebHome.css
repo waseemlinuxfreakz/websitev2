@@ -136,8 +136,9 @@ img.topArt2 {
     }
 
     .topArea {
-        padding-bottom: 167px;
-        padding-top: 215px;
+        padding-bottom: 197px;
+        padding-top: 72px;
+        overflow: hidden;
     }
 
     .webWraper .container {
@@ -146,9 +147,15 @@ img.topArt2 {
     }
 
 
-    .navBrand img {
+    .navBrand> a img {
         width: 40px;
     }
 
 
+    img.galaxyImage {
+        max-width: 1000px;
+        width: 1500px;
+        top: -27%;
+    }
+    
 }/* (max-width: 767px) */

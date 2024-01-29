@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // import Rocket from '../../../assets/img/web/rocket.svg';
 import CloseButton from '../../../assets/img/web/CloseButton.svg';
@@ -6,17 +6,25 @@ import CloseButton from '../../../assets/img/web/CloseButton.svg';
 import './HeaderNotify.css'
 
 function HeaderNotify() {
-    return ( 
+
+    const [isVisible, setIsVisible] = useState(true);
+
+    // Function to handle the close button click
+    const handleCloseClick = () => {
+        // Hide the notification by updating the state
+        setIsVisible(false);
+    };
+
+    return isVisible ? (
         <div className="headerNotify">
             <div className="headerNotifyContent">
-                {/* <img src={Rocket} alt="Rocket" /> */}
-                <p>🚀 $EMMET Token Sale: February 15th at 18:00 UTC</p>
+                <p><b>🚀 $EMMET Token Sale:</b> February 15th at 18:00 UTC</p>
             </div>
-            <div className="closeNotify">
+            <div className="closeNotify" onClick={handleCloseClick}>
                 <img src={CloseButton} alt="CloseButton" />
             </div>
         </div>
-     );
+    ) : null;
 }
 
 export default HeaderNotify;
