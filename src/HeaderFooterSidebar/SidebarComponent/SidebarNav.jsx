@@ -36,13 +36,6 @@ function SidebarNav() {
     <div className="sidebarNav">
       <ul className="navlinks">
         <li>
-          {/* TODO: '/' mut be used for the HOME page, fix later */}
-          <Link to="/swap" className={`navLink ${location.pathname === '/swap' && 'active'}`} onClick={handleLinkClick}>
-            <img src={NavIcon1} alt="NavIcon" />
-            <span>Swap</span>
-          </Link>
-        </li>
-        <li>
           <Link to="/bridge" className={`navLink ${isActive('/bridge') && 'active'}`} onClick={handleLinkClick}>
             <img src={NavIcon2} alt="NavIcon" />
             <span>Bridge</span>
@@ -55,10 +48,26 @@ function SidebarNav() {
           </Link>
         </li>
         <li>
-            <Link to="/pool" className={`navLink ${isActive('/pool') && 'active'}`}>
+          {/* <Link to="/swap" className={`navLink ${location.pathname === '/swap' && 'active'}`} onClick={handleLinkClick}>
+            <img src={NavIcon1} alt="NavIcon" />
+            <span>Swap</span>
+          </Link> */}
+          <Link to="/" className={`navLink ${isActive('/') && ''}`} onClick={handleLinkClick}>
+          <img src={NavIcon1} alt="NavIcon" />
+            <span>Swap</span>
+            <span className="soon">Soon</span>
+          </Link>
+        </li>
+        <li>
+            {/* <Link to="/pool" className={`navLink ${isActive('/pool') && 'active'}`}>
                 <img src={Pool} alt="NavIcon" />
                 <span>Pool</span>
-            </Link>
+            </Link> */}
+            <Link to="/" className={`navLink ${isActive('/') && ''}`} onClick={handleLinkClick}>
+            <img src={Pool} alt="NavIcon" />
+            <span>Pool</span>
+            <span className="soon">Soon</span>
+          </Link>
         </li>
         <li>
           <Link to="/" className={`navLink ${isActive('/') && ''}`} onClick={handleLinkClick}>
