@@ -17,6 +17,13 @@ export enum Chain {
     ETH = 'ETH',
     OP = 'OP',
     POL = 'POL',
+    // ================================
+    sepolia         = 'sepolia',
+    avalancheFuji   = 'avalancheFuji',
+    optimismSepolia = 'optimismSepolia',
+    arbitrumSepolia = 'arbitrumSepolia',
+    baseSepolia     = 'baseSepolia',
+    polygonMumbai   = 'polygonMumbai',
     // Mainnets
 }
 
@@ -31,6 +38,13 @@ export enum SupportedChainId {
     ETH_GOERLI = 5,
     OP_GOERLI = 420,
     POL_MUMABI = 80001,
+    // ================================
+    sepolia         = 11155111,
+    avalancheFuji   = 43113,
+    optimismSepolia = 11155420,
+    arbitrumSepolia = 421614,
+    baseSepolia     = 84532,
+    polygonMumbai   = 80001,
     // Mainnets
 }
 
@@ -46,6 +60,13 @@ export const SupportedChainIdHex = {
     ETH_GOERLI: '0x5',
     OP_GOERLI: '0x1a4',
     POL_MUMABI: '0x13881',
+    // ================================
+    sepolia         : '0xaa36a7',
+    avalancheFuji   : '0xa869',
+    optimismSepolia : '0xaa37dc',
+    arbitrumSepolia : '0x66eee',
+    baseSepolia     : '0x14a34',
+    polygonMumbai   : '0x13881',
     // Mainnets
 }
 
@@ -64,6 +85,13 @@ export const CHAIN_TO_CHAIN_ID: ChainToChainIdMap = {
     [Chain.ETH]: SupportedChainId.ETH_GOERLI,
     [Chain.OP]: SupportedChainId.OP_GOERLI,
     [Chain.POL]: SupportedChainId.POL_MUMABI,
+    // ================================
+    [Chain.sepolia]: SupportedChainId.sepolia,
+    [Chain.avalancheFuji]: SupportedChainId.avalancheFuji,
+    [Chain.optimismSepolia]: SupportedChainId.optimismSepolia,
+    [Chain.arbitrumSepolia]: SupportedChainId.arbitrumSepolia,
+    [Chain.baseSepolia]: SupportedChainId.baseSepolia,
+    [Chain.polygonMumbai]: SupportedChainId.polygonMumbai,
 }
 
 interface ChainToChainNameMap {
@@ -79,7 +107,14 @@ export const CHAIN_TO_CHAIN_NAME: ChainToChainNameMap = {
     ARB: 'Arbitrum',
     OP: 'Optimism',
     POL: 'Polygon',
-    BASE: 'BASE'
+    BASE: 'BASE',
+    // ================================
+    sepolia: 'Sepolia',
+    avalancheFuji: 'Avalanche Fuji',
+    optimismSepolia: 'OP Sepolia',
+    arbitrumSepolia: 'Arb Sepolia',
+    baseSepolia: 'Base Sepolia',
+    polygonMumbai: 'Mumbai',
 }
 
 /**
@@ -98,7 +133,14 @@ export enum DestinationDomain {
     OP = 2,
     ARB = 3,
     BASE = 6,
-    POL = 7
+    POL = 7,
+    // ================================
+    sepolia = 0,
+    avalancheFuji = 1,
+    optimismSepolia = 2,
+    arbitrumSepolia = 3,
+    baseSepolia = 6,
+    polygonMumbai = 7,
 }
 
 export const CHAIN_ID_TO_DESTINATION_DOMAIN = {
@@ -108,6 +150,8 @@ export const CHAIN_ID_TO_DESTINATION_DOMAIN = {
     [SupportedChainId.ETH_GOERLI]: DestinationDomain.ETH,
     [SupportedChainId.OP_GOERLI]: DestinationDomain.OP,
     [SupportedChainId.POL_MUMABI]: DestinationDomain.POL,
+    // ================================
+    
 }
 
 // https://eips.ethereum.org/EIPS/eip-3085
@@ -219,4 +263,4 @@ export const MAINNETS: EmmetChain[] = [
     
 ]
 
-export const ALL_CHAINS: EmmetChain[] = TESTNETS;
+export const ALL_CHAINS: EmmetChain[] = TESTNETS && MAINNETS;
