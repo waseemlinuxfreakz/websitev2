@@ -1,12 +1,13 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import './Responsive.css';
-import HomePage from './Pages/Home';
 import Bridge from './Pages/Bridge';
 import ExplorerPage from './Pages/Explorer';
-import PoolPage from './Pages/Pool';
 import TransactionDetailsPage from './Pages/TransactionDetailsPage';
-import YourLiquidityPage from './Pages/YourLiquidityPage';
+// Comming Soon
+// import HomePage from './Pages/Home';
+// import PoolPage from './Pages/Pool';
+// import YourLiquidityPage from './Pages/YourLiquidityPage';
 
 // Web Page
 import WebHome from './Pages/WebPages/WebHome';
@@ -48,9 +49,9 @@ function App() {
             <Route path="/terms-of-service" element={<TermsService />} />
             <Route path="/bridge" element={<Bridge />} />
             <Route path="/explorer" element={<ExplorerPage />} />
-            <Route path="/swap" element={< HomePage />} />
-            <Route path="/pool" element={<PoolPage />} />
-            <Route path="/pool/your-liquidity" element={<YourLiquidityPage />} />
+            {/* <Route path="/swap" element={< HomePage />} /> */}
+            {/* <Route path="/pool" element={<PoolPage />} /> */}
+            {/* <Route path="/pool/your-liquidity" element={<YourLiquidityPage />} /> */}
             <Route path="/transactionDetails/:hash" element={<TransactionDetailsPage />} />
           </Routes>
         </Router>
