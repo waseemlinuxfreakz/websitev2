@@ -137,7 +137,7 @@ img.topArt2 {
 
     .topArea {
         padding-bottom: 197px;
-        padding-top: 72px;
+        padding-top: 40px;
         overflow: hidden;
     }
 
@@ -155,7 +155,7 @@ img.topArt2 {
     img.galaxyImage {
         max-width: 1000px;
         width: 1500px;
-        top: -27%;
+        top: -33%;
     }
     
 }/* (max-width: 767px) */

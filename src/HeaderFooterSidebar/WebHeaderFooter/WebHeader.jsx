@@ -28,7 +28,7 @@ function WebHeader() {
                             <HeaderNewBtns/>
                         </div>
                         <div className="headerRIght">
-                            <HeaderRightBtn/>
+                            {/* <HeaderRightBtn/> */}
                             <a href="/bridge" className='launchApp'>Launch dApp</a>
                         </div>
                     </div>

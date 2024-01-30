@@ -15,11 +15,11 @@ function IndexHero() {
                             <span>Total Volume</span>
                         </div>
                         <div className="counterBox">
-                            <h3>125K+</h3>
+                            <h3>150K+</h3>
                             <span>Total Transactions</span>
                         </div>
                         <div className="counterBox">
-                            <h3>{'<2 min'}</h3>
+                            <h3>{'<1 min'}</h3>
                             <span>AVG Transfer Time</span>
                         </div>
                         <div className="counterBox">

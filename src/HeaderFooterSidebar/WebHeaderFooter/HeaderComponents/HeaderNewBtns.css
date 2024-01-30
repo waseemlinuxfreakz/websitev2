@@ -4,11 +4,11 @@
     align-items: center;
     gap: 13px;
 }
-
+/* 
 .headerBottomContainer .container {
-    max-width: 1700px;
-    padding: 0 40px;
-}
+    max-width: 1700px !important;
+    padding: 0 40px !important;
+} */
 
 .AirdropEmmet, .EmmetTokken {
     color: #fff;
