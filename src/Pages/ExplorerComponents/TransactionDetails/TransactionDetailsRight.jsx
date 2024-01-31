@@ -3,7 +3,7 @@ import { useAppSelector } from '../../../hooks/storage';
 import { getDomainToChainName, getChainSymbolFromName } from '../../../utils';
 import useGetTxValue from '../../../hooks/useGetTxValue'
 
-function TransactionDetailsRight({fromFee, toFee}) {
+function TransactionDetailsRight({ fromFee, toFee }) {
 
     const explorer = useAppSelector(store => store.explorer);
 
@@ -12,8 +12,9 @@ function TransactionDetailsRight({fromFee, toFee}) {
         getDomainToChainName(explorer.bridgeTransaction.originalDomain)
     )
 
-    function decimals () {
-        switch(explorer.bridgeTransaction.symbol){
+    function decimals() {
+        switch (explorer.bridgeTransaction.symbol) {
+            case 'EURC':
             case 'USDC':
                 return 1e6;
             default:
@@ -29,7 +30,11 @@ function TransactionDetailsRight({fromFee, toFee}) {
                         Sent amount
                     </div>
                     <div className="transactionDetailsListRight">
-                        {explorer.bridgeTransaction.amount / decimals()} {explorer.bridgeTransaction.symbol}
+                        {/* If amount < 2,000 then fixed fee $0.4, else 0.02% of the amount */}
+                        {explorer.bridgeTransaction.amount < 2000000000
+                            ? explorer.bridgeTransaction.amount / decimals() + 0.4
+                            : explorer.bridgeTransaction.amount * 0.0002 / decimals()
+                            + explorer.bridgeTransaction.amount / decimals()} {explorer.bridgeTransaction.symbol}
                     </div>
                 </li>
                 <li className='transactionDetailsListItem'>

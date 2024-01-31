@@ -73,6 +73,12 @@ function MainActionButton() {
             } else {
                 if (isBurnReady) {
                     burnUSDC();
+                }else{
+                    try {
+                        burnUSDC();
+                    } catch (error) {
+                        console.error(error)
+                    }
                 }
 
             }

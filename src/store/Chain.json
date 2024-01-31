@@ -1,32 +1,32 @@
 [
   {
-    "id": 421613,
-    "name": "Arbitrum",
+    "id": 421614,
+    "name": "ArbSepolia",
     "icon": "img/chain/arbitrum.svg"
   },
   {
     "id": 43113,
-    "name": "Avalanche",
+    "name": "Fuji",
     "icon": "img/chain/avalanche.svg"
   },
   {
-    "id": 84531,
-    "name": "BASE",
+    "id": 84532,
+    "name": "BSepolia",
     "icon": "img/chain/base.svg"
   },
   {
-    "id": 5,
-    "name": "Ethereum",
+    "id": 11155111,
+    "name": "Sepolia",
     "icon": "img/Ethereum.svg"
   },
   {
-    "id": 420,
-    "name": "Optimism",
+    "id": 11155420,
+    "name": "OPSepolia",
     "icon": "img/chain/optimism.svg"
   },
   {
     "id": 80001,
-    "name": "Polygon",
+    "name": "Mumbai",
     "icon": "img/chain/polygon.svg"
   }
 ]

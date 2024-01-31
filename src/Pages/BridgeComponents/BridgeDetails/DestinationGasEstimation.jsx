@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppSelector } from '../../../hooks/storage';
-import { SUPPORTED_CHAINS, ChainNameToTypeChainName } from '../../../types';
+import { SUPPORTED_CHAINS, ChainNameToTypeChainName, destCircleClaimFee } from '../../../types';
 import { getDestinationFee } from '../../../utils';
 
 export default function DestinationGasEstimation() {
@@ -13,7 +13,7 @@ export default function DestinationGasEstimation() {
             Destination Gas Fee (Est.)
         </div>
         <div className="detialItemRight">
-            {getDestinationFee(destCurrency)} {destCurrency}
+            {destCircleClaimFee[ChainNameToTypeChainName[bridge.toChain]].toFixed(7)} {destCurrency}
         </div>
     </div>)
 }

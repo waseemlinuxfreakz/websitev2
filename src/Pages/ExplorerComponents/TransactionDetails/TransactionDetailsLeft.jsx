@@ -3,8 +3,6 @@ import React, { useState } from 'react';
 import Success from '../../../assets/img/CheckGreen.svg';
 import Copy from '../../../assets/img/copy.svg'
 import Clock from '../../../assets/img/Clock.svg'
-import Eth from '../../../assets/img/coin/eth.svg'
-import Op from '../../../assets/img/coin/op.svg'
 import Target from '../../../assets/img/target.svg';
 
 import { useAppSelector } from '../../../hooks/storage';
@@ -29,6 +27,8 @@ function TransactionDetailsLeft({ txStatus }) {
 
     const [isCopied, setIsCopied] = useState(false);
     const [isCopied2, setIsCopied2] = useState(false);
+
+
 
 
 

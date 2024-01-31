@@ -38,7 +38,7 @@ export default function useBridgeAllowance() {
                 ));
                 const chainName: TChainName = ChainNameToTypeChainName[bridge.fromChain];
                 const chain = SUPPORTED_CHAINS[chainName];
-                const spender:string = chain!.bridge;
+                const spender:string = chain!.emmetBridge.address;
                 const provider = getProvider(chainName);
     
                 if (tokenAddress) {

@@ -20,7 +20,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Web3Modal } from '@web3modal/react';
 import { configureChains, createConfig, WagmiConfig } from 'wagmi';
 import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum';
-import { ALL_CHAINS } from './constants/chains/index';
+import { ALL_CHAINS } from './types/chains';
 // import { getWalletConnectInstance } from './walletConnectSetup';
 
 const supportedChains = ALL_CHAINS;

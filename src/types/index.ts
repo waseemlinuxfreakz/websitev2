@@ -1,5 +1,6 @@
 export * from './chains';
 export * from './consts';
+export * from './emmetBridge';
 export * from './tokens';
 
 export enum AttestationStatus {

@@ -5,7 +5,8 @@ import {
     TEmmetChain, 
     DomainToChainName, 
     SupportedDomains, 
-    supportedChainnames
+    supportedChainnames,
+    CHAIN_LOGOS
 } from "../types";
 
 export function getChainData(chinName: TChainName, param: TChainDataParam):string | number | undefined {
@@ -13,9 +14,9 @@ export function getChainData(chinName: TChainName, param: TChainDataParam):strin
     if(chain){
         switch(param){
             case "bridge":
-                return chain.bridge;
+                return chain.emmetBridge.address;
             case "icon":
-                return chain.icon;
+                return CHAIN_LOGOS[chinName];
             case "url":
                 return chain.rpcUrls.default.http[0];
             case "id":
@@ -29,7 +30,7 @@ export function getChainData(chinName: TChainName, param: TChainDataParam):strin
 
 export function findChain(chinName: TChainName): TEmmetChain | undefined {
     if (!isChainSupported(chinName)) return undefined;
-    return SUPPORTED_CHAINS[chinName.toLocaleLowerCase() as TChainName];
+    return SUPPORTED_CHAINS[chinName as TChainName];
 }
 
 export function isChainSupported(chinName: TChainName): boolean {
@@ -47,6 +48,7 @@ export function getChainSymbolFromName(chinName: TChainName): string | undefined
 }
 
 export function getDomainToChainName(domain: number): TChainName | undefined {
+    
     if(SupportedDomains.includes(domain)){
         return DomainToChainName[domain];
     }
@@ -54,15 +56,16 @@ export function getDomainToChainName(domain: number): TChainName | undefined {
 }
 
 export function getLogoByChainName (chinName: TChainName): string {
+    // console.log("getLogoByChainName:chinName", chinName)
     if(supportedChainnames.includes(chinName)){
-        return SUPPORTED_CHAINS[chinName].icon;
+        return CHAIN_LOGOS[chinName];
     }
     return '';
 }
 
 export function getExplorerByChainName(chinName: TChainName): string {
     if(supportedChainnames.includes(chinName)){
-        return SUPPORTED_CHAINS[chinName].blockExplorers.default.url;
+        return SUPPORTED_CHAINS[chinName]!.blockExplorers!.default.url;
     }
     return '';
 }
@@ -87,9 +90,8 @@ export function getDestinationFee(coin:string){
 }
 
 export function getOfficialChainName (chinName: TChainName): string {
+    // console.log("getOfficialChainName:chinName", chinName)
     switch (chinName) {
-        case 'goerli':
-            return 'Ethereum';
         default:
             return SUPPORTED_CHAINS[chinName].name;
     }

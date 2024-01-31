@@ -1,5 +1,5 @@
-import { SUPPORTED_TOKENS, TChainName, TTokenName } from "../types";
+import { TOKEN_CHAIN_CONTRACT, TChainName, TTokenName } from "../types";
 
 export function getTokenAddress(chainName: TChainName, tokenName: TTokenName): string {
-    return SUPPORTED_TOKENS[tokenName][chainName];
+    return TOKEN_CHAIN_CONTRACT[tokenName][chainName];
 }

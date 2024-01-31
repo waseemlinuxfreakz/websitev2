@@ -40,11 +40,11 @@ export interface IBridgeState {
 }
 
 // FROM
-const fromChain = 'Ethereum';
+const fromChain = 'Sepolia';
 const fromToken = 'USDC';
 
 // TO
-const toChain = 'Avalanche';
+const toChain = 'Fuji';
 const toToken = fromToken;
 
 const initialState = {
@@ -97,13 +97,13 @@ export const bridgeSlice = createSlice({
                         const percentage: number = BridgeFeeStructure.stablecoins.percentage * action.payload;
                         if(percentage > BridgeFeeStructure.stablecoins.minimum){
                             state.receive = state.amount - percentage;
-                            state.bridgeFee = percentage;
+                            //state.bridgeFee = percentage;
                         }
                         else{
                             state.receive = state.amount - BridgeFeeStructure.stablecoins.minimum;
-                            state.bridgeFee = BridgeFeeStructure.stablecoins.minimum;
+                            //state.bridgeFee = BridgeFeeStructure.stablecoins.minimum;
                         }
-                        console.log("percentage", percentage, BridgeFeeStructure.stablecoins.percentage, "*", action.payload)
+                        
                     }
                 }else{
                     state.receive = '';

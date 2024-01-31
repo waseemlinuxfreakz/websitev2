@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Hash } from 'viem';
-import { useAccount, useWalletClient } from 'wagmi';
+import { useAccount } from 'wagmi';
 import { circleBurner } from '../abis/circleBurner';
 import getSigner from '../utils/getSigner';
 import { useAppDispatch, useAppSelector } from './storage';
-import { setBridgeError, setBridgeAllowance, setBridgeIsApproving, setBridgeFromHash, showBridgeProgress } from '../store/bridgeSlice';
-import { TChainName, TTokenName, ChainNameToTypeChainName, CHAIN_NAME_TO_ID, SUPPORTED_CHAINS, ChainToDestinationDomain } from '../types';
+import { setBridgeFromHash, showBridgeProgress } from '../store/bridgeSlice';
+import { TChainName, ChainNameToTypeChainName, SUPPORTED_CHAINS, ChainToDestinationDomain } from '../types';
 import { addressToBytes32, addressToAccount } from '../utils';
 
 import useBridgFee from './useBridgeFee';
@@ -37,11 +37,22 @@ export default function useBridgeTransferEmmet() {
                     const chainName: TChainName = ChainNameToTypeChainName[bridge.fromChain];
                     const decimals = bridge.decimals ? bridge.decimals : 18;
                     const formattedAmount = Number(bridge.amount) * 10 ** decimals;
-                    const bridgeAddress: string = SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]].bridge;
+                    const bridgeAddress: string = SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]].emmetBridge.address;
                     const destinationDomain = ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]];
                     const mintRecipient: Hash = addressToBytes32(addressToAccount(bridge.receiver));
                     const signer = getSigner(chainName);
                     const tokenName: string = bridge.fromToken;
+
+                    console.log(
+                        'chainName', chainName,
+                        'decimals', decimals,
+                        'formattedAmount', formattedAmount,
+                        'bridgeAddress', bridgeAddress,
+                        'destinationDomain', destinationDomain,
+                        'mintRecipient', mintRecipient,
+                        'tokenName', tokenName,
+                        'fee', fee
+                    )
 
                     const { request } = await signer.simulateContract({
                         address: addressToAccount(bridgeAddress),
@@ -56,6 +67,8 @@ export default function useBridgeTransferEmmet() {
                         ],
                         value: BigInt(fee),
                     });
+
+                    console.log('request:', request)
 
                     if (request) {
                         setIsReady(true);
@@ -73,15 +86,19 @@ export default function useBridgeTransferEmmet() {
             });
         }
 
-    }, [bridge.amount, address, bridge.allowance]);
+    }, [bridge.amount, address, bridge.allowance, fee]);
 
     const burnUSDC = () => {
+
         (async () => {
+
             try {
 
                 const chainName: TChainName = ChainNameToTypeChainName[bridge.fromChain];
                 const signer = getSigner(chainName);
-                const hash = await signer.writeContract(params);
+                let hash;
+                hash = await signer.writeContract(params);
+
 
                 if (hash) {
                     dispatch(setBridgeFromHash(hash));

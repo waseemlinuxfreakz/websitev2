@@ -2,7 +2,7 @@ import React from 'react';
 import './BridgeTransactionDetails.css';
 import useBridgeFee from '../../hooks/useBridgeFee';
 import { useAppSelector } from '../../hooks/storage';
-import { SUPPORTED_CHAINS, ChainNameToTypeChainName } from '../../types';
+import { SUPPORTED_CHAINS, ChainNameToTypeChainName, destCircleClaimFee, } from '../../types';
 import { getDestinationFee } from '../../utils';
 
 function BridgeTransactionDetails() {
@@ -37,7 +37,7 @@ function BridgeTransactionDetails() {
                     Destination Gas Fee (Est.)
                 </div>
                 <div className="bridgeTransDetRight">
-                    {getDestinationFee(destCurrency)} {destCurrency}
+                    {destCircleClaimFee[ChainNameToTypeChainName[bridge.toChain]].toFixed(7)} {destCurrency}
                 </div>
             </li>
             <li className='bridgeTransactionDetailsList'>

@@ -48,7 +48,7 @@ export default function useBridgeApproveERC20() {
 
     const [formattedAmount, setFormattedAmount] = useState<number>(Number(bridge.amount) * 10 ** Number(decimals.toString()));
 
-    const [spender, setSpender] = useState<string>(SUPPORTED_CHAINS[chainName].bridge);
+    const [spender, setSpender] = useState<string>(SUPPORTED_CHAINS[chainName].emmetBridge.address);
 
     useEffect(() => {
         setFormattedAmount(Number(bridge.amount) * 10 ** decimals)
@@ -64,7 +64,7 @@ export default function useBridgeApproveERC20() {
 
     useEffect(() => {
         setChainId(CHAIN_NAME_TO_ID[ChainNameToTypeChainName[chainName]]);
-        setSpender(SUPPORTED_CHAINS[chainName].bridge);
+        setSpender(SUPPORTED_CHAINS[chainName].emmetBridge.address);
         setTokenAddress(addressToAccount(getTokenAddress(chainName, tokenName)))
     }, [chainName]);
 

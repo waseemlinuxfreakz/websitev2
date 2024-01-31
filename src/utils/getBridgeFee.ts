@@ -1,14 +1,15 @@
-import { TChainName, ChainToBridge } from '../types';
+import { TChainName} from '../types';
 import { getContract } from './getContract';
 import { circleBurner } from '../abis/circleBurner';
 import { getProvider } from './getProvider';
+import { SUPPORTED_CHAINS } from '../types';
 
 export default async function getFee(
     chainName: TChainName,
 ) {
 
     const contract = getContract(
-        ChainToBridge[chainName],
+        SUPPORTED_CHAINS[chainName as TChainName].emmetBridge.address,
         circleBurner,
         getProvider(chainName)
         );

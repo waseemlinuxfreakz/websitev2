@@ -3,7 +3,7 @@ import Success from '../../assets/img/Success-Flower.svg';
 
 import { useAppSelector, useAppDispatch } from '../../hooks/storage';
 import { findChain } from '../../utils';
-import {ChainNameToTypeChainName}   from '../../types';
+import {ChainNameToTypeChainName, CHAIN_LOGOS, CHAIN_ID_TO_NAME}   from '../../types';
 import TransactionCountUp from './TransactionCountUp';
 import useCircleTxData from '../../hooks/useCircleTxData';
 import { setBridgeIsRunning, setBridgeToHash } from '../../store/bridgeSlice';
@@ -42,7 +42,7 @@ function TransactionProgress() {
         
         <div className={`progressBox ${txData.claimHash && "progressSuccess"}`}>
             <div className="fromProgress">
-                <img src={fromChain.icon} alt={fromChain.name} />
+                <img src={CHAIN_LOGOS[CHAIN_ID_TO_NAME[fromChain.id]]} alt={fromChain.name} />
             </div>
                 <div className="progressDetails">
                     <div className='progressTitle'>
@@ -55,7 +55,7 @@ function TransactionProgress() {
                     <TransactionCountUp />
                 </div>
             <div className="toProgress">
-                <img src={toChain.icon} alt={toChain.name} />
+                <img src={CHAIN_LOGOS[CHAIN_ID_TO_NAME[toChain.id]]} alt={toChain.name} />
             </div>
         </div>
      );
