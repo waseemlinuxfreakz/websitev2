@@ -1,0 +1,10 @@
+.distributionContent img {
+    display: block;
+    width: 100%;
+}
+
+.distributionContainer {
+    padding: 120px 0;
+    position: relative;
+    z-index: 1;
+}

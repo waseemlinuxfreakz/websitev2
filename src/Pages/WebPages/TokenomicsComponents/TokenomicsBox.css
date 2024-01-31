@@ -1,0 +1,126 @@
+.tokenomicsBox {
+    padding: 36px;
+    gap: 24px;
+    flex: 1 0 0;
+    border-radius: 16px;
+    border: 1px solid #4D4D4D;
+    background: var(--Background-Background-secondary, #1B1D20);
+    height: 100%;
+}
+
+.tokenomicsBox h2 {
+    color: #fff;
+    font-family: Inter;
+    font-size: 46px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%; /* 64.4px */
+    letter-spacing: -1.38px;
+    margin: 0 0 24px 0;
+}
+
+.emmetUnity ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.emmetUnity ul li {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    flex: 1 0 0;
+    color: var(--Text-Text-primary, #FFF);
+    font-feature-settings: 'clig' off, 'liga' off;
+
+/* Desktop/body.lg.bold 18 */
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 26px; /* 144.444% */
+    display: flex;
+    padding: 16px;
+    align-items: center;
+    gap: 16px;
+    align-self: stretch;
+    border-radius: 8px;
+    background: var(--Background-Background-tertiary, #202226);
+}
+
+.emmetUnity ul li img {
+    display: block;
+    flex-shrink: 0;
+    width: 40px;
+}
+
+.tokenMetrics ul {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.tokenMetrics ul li {
+    padding: 16px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.metricsLeft {
+    color: #B3B7BF;
+    font-feature-settings: 'clig' off, 'liga' off;
+
+/* Desktop/body.lg.bold 18 */
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 26px; /* 144.444% */
+}
+
+.metricsRight {
+    color: var(--Text-Text-primary, #FFF);
+    font-feature-settings: 'clig' off, 'liga' off;
+
+/* Desktop/body.lg.bold 18 */
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 26px; /* 144.444% */
+}
+
+.metricAddress {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.metricAddress p {
+    margin: 0;
+    color: #53B7FF;
+}
+
+span.preSeed {
+    color: var(--Text-Text-success, #40D86E);
+
+/* Desktop/body.sm.bold 14 */
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 142.857% */
+    display: flex;
+    padding: 1px 5px;
+    border-radius: 4px;
+    background: var(--Badge-Approval, rgba(16, 93, 39, 0.20));
+    display: inline-block;
+}
+
+.tokenomicsBoxContainer {
+    padding: 120px 0;
+}

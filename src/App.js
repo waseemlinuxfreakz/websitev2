@@ -13,6 +13,8 @@ import TransactionDetailsPage from './Pages/TransactionDetailsPage';
 import WebHome from './Pages/WebPages/WebHome';
 import PrivacyPolicy from './Pages/WebPages/PrivacyPolicy';
 import TermsService from './Pages/WebPages/TermsService';
+import Tokenomics from './Pages/WebPages/Tokenomics';
+
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -45,6 +47,7 @@ function App() {
         >
           <Routes>
             <Route path="/" element={< WebHome />} />
+            <Route path="/tokenomics" element={<Tokenomics />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsService />} />
             <Route path="/bridge" element={<Bridge />} />
