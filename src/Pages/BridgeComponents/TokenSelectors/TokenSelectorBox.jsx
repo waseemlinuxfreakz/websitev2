@@ -50,6 +50,7 @@ export default function TokenSelectorBox({ type }) {
                 .replace(/[^0-9.]/g, '') // any non digits
                 .replace(/^0+(\d+\.\d*|0\.)/, '$1') // multiple zeros before . with one
             if(parseFloat(sanitized) < 1) sanitized = 1
+            if(parseFloat(sanitized) > 10_000_000) sanitized = 10_000_000;
             setAmount(sanitized);
             setOldAmount(sanitized)
             if (sanitized != '.') {
