@@ -24,6 +24,55 @@ export default function useBridgeTransferEmmet() {
 
     const [params, setParams] = useState<any>(null);
 
+    const try_ = async (): Promise<any> => {
+        try {
+            const chainName: TChainName = ChainNameToTypeChainName[bridge.fromChain];
+            const decimals = bridge.decimals ? bridge.decimals : 18;
+            const formattedAmount = Number(bridge.amount) * 10 ** decimals;
+            const bridgeAddress: string = SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]].emmetBridge.address;
+            const destinationDomain = ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]];
+            const mintRecipient: Hash = addressToBytes32(addressToAccount(bridge.receiver));
+            const signer = getSigner(chainName);
+            const tokenName: string = bridge.fromToken;
+
+            console.log(
+                'chainName', chainName,
+                'decimals', decimals,
+                'formattedAmount', formattedAmount,
+                'bridgeAddress', bridgeAddress,
+                'destinationDomain', destinationDomain,
+                'mintRecipient', mintRecipient,
+                'tokenName', tokenName,
+                'fee', fee + 1000000000
+            )
+
+            const { request } = await signer.simulateContract({
+                address: addressToAccount(bridgeAddress),
+                account: address,
+                abi: circleBurner,
+                functionName: 'depositForBurn',
+                args: [
+                    BigInt(Math.ceil(formattedAmount)),
+                    destinationDomain,
+                    mintRecipient,
+                    tokenName
+                ],
+                value: BigInt(fee + 1000000000),
+            });
+
+            console.log('request:', request)
+
+            if (request) {
+                setIsReady(true);
+                setParams(request);
+            }
+
+        } catch (e: any) {
+            setIsReady(false);
+            console.warn(`useBridgeTransferEmmet Error: ${e.message}`);
+        }
+    }
+
     useEffect(() => {
 
         if (address
@@ -33,52 +82,7 @@ export default function useBridgeTransferEmmet() {
             && bridge.allowance >= Number(bridge.amount)
         ) {
             (async () => {
-                try {
-                    const chainName: TChainName = ChainNameToTypeChainName[bridge.fromChain];
-                    const decimals = bridge.decimals ? bridge.decimals : 18;
-                    const formattedAmount = Number(bridge.amount) * 10 ** decimals;
-                    const bridgeAddress: string = SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]].emmetBridge.address;
-                    const destinationDomain = ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]];
-                    const mintRecipient: Hash = addressToBytes32(addressToAccount(bridge.receiver));
-                    const signer = getSigner(chainName);
-                    const tokenName: string = bridge.fromToken;
-
-                    console.log(
-                        'chainName', chainName,
-                        'decimals', decimals,
-                        'formattedAmount', formattedAmount,
-                        'bridgeAddress', bridgeAddress,
-                        'destinationDomain', destinationDomain,
-                        'mintRecipient', mintRecipient,
-                        'tokenName', tokenName,
-                        'fee', fee
-                    )
-
-                    const { request } = await signer.simulateContract({
-                        address: addressToAccount(bridgeAddress),
-                        account: address,
-                        abi: circleBurner,
-                        functionName: 'depositForBurn',
-                        args: [
-                            BigInt(Math.ceil(formattedAmount)),
-                            destinationDomain,
-                            mintRecipient,
-                            tokenName
-                        ],
-                        value: BigInt(fee),
-                    });
-
-                    console.log('request:', request)
-
-                    if (request) {
-                        setIsReady(true);
-                        setParams(request);
-                    }
-
-                } catch (e: any) {
-                    setIsReady(false);
-                    console.warn(`useBridgeTransferEmmet Error: ${e.message}`);
-                }
+                await try_();
 
             })().catch((e: any) => {
                 setIsReady(false);
@@ -97,6 +101,11 @@ export default function useBridgeTransferEmmet() {
                 const chainName: TChainName = ChainNameToTypeChainName[bridge.fromChain];
                 const signer = getSigner(chainName);
                 let hash;
+                if(!params){
+                    (async () => {
+                        await try_();
+                    })()
+                }
                 hash = await signer.writeContract(params);
 
 

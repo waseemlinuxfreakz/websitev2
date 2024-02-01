@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
 
-import Success from '../../../assets/img/CheckGreen.svg';
-import Copy from '../../../assets/img/copy.svg'
-import Clock from '../../../assets/img/Clock.svg'
-import Target from '../../../assets/img/target.svg';
-
 import { useAppSelector } from '../../../hooks/storage';
 import {
     getDomainToChainName,
@@ -15,6 +10,13 @@ import {
 import useElapsedTime from '../../../hooks/useElapsedTime';
 
 function TransactionDetailsLeft({ txStatus }) {
+
+    const Clock = '/img/Clock.svg';
+    const Target = '/img/target.svg';
+
+    const Pending = '/img/explorer/Pending.svg';
+    const Success = '/img/explorer/Success.svg';
+    
 
     const explorer = useAppSelector(store => store.explorer);
 
@@ -27,9 +29,6 @@ function TransactionDetailsLeft({ txStatus }) {
 
     const [isCopied, setIsCopied] = useState(false);
     const [isCopied2, setIsCopied2] = useState(false);
-
-
-
 
 
     const handleCopyClick = () => {
@@ -83,7 +82,7 @@ function TransactionDetailsLeft({ txStatus }) {
                             className="success"
                         >
                             <img
-                                src={Success}
+                                src={ txStatus == 'Success' ? Success : Pending}
                                 alt="Success"
                             />
                             {' '}{txStatus}
@@ -141,7 +140,7 @@ function TransactionDetailsLeft({ txStatus }) {
                                 : <span className="copyHover">Copy to clipboard</span>
                             }
 
-                            <img src={Copy} alt="Copy" />
+                            <img src={'/img/copy.svg'} alt="Copy" />
                         </button>
                     </div>
                 </li>
@@ -196,7 +195,7 @@ function TransactionDetailsLeft({ txStatus }) {
                                 : <span className="copyHover">Copy to clipboard</span>
                             }
 
-                            <img src={Copy} alt="Copy" />
+                            <img src={'/img/copy.svg'} alt="Copy" />
                         </button>
                     </div>
 
@@ -208,10 +207,10 @@ function TransactionDetailsLeft({ txStatus }) {
                     <div className="transactionDetailsListRight">
                         <span className="time">
                             <img src={Clock} alt="Clock" />
-                            {elapsedTime.days ? `${elapsedTime.days} days ` : ''}
-                            {elapsedTime.hours ? `${elapsedTime.hours} hrs ` : ''}
-                            {elapsedTime.minutes ? `${elapsedTime.minutes} min ` : ''}
-                            {elapsedTime.seconds ? `${elapsedTime.seconds} sec ` : ''}
+                            {elapsedTime.days ? ` ${elapsedTime.days} days ` : ''}
+                            {elapsedTime.hours ? ` ${elapsedTime.hours} hrs ` : ''}
+                            {elapsedTime.minutes ? ` ${elapsedTime.minutes} min ` : ''}
+                            {elapsedTime.seconds ? ` ${elapsedTime.seconds} sec ` : ''}
                             {
                                 elapsedTime.days
                                     || elapsedTime.hours

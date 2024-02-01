@@ -46,9 +46,10 @@ export default function TokenSelectorBox({ type }) {
     useEffect(() => {
 
         if (amount) {
-            const sanitized = String(amount)
+            let sanitized = String(amount)
                 .replace(/[^0-9.]/g, '') // any non digits
                 .replace(/^0+(\d+\.\d*|0\.)/, '$1') // multiple zeros before . with one
+            if(parseFloat(sanitized) < 1) sanitized = 1
             setAmount(sanitized);
             setOldAmount(sanitized)
             if (sanitized != '.') {
@@ -92,7 +93,7 @@ export default function TokenSelectorBox({ type }) {
                                     : false}
                                 value={type && type === "from"
                                     ? bridge.amount
-                                    : bridge.receive
+                                    : bridge.receive && Number(bridge.receive).toFixed(2)
                                 }
                             />
                         </h2>

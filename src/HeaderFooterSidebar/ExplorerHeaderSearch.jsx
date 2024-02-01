@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Search from '../assets/img/explorer/search.svg';
 
 function ExplorerHeaderSearch() {
   const [isValid, setIsValid] = useState(false);
@@ -18,7 +17,7 @@ function ExplorerHeaderSearch() {
         onChange={handleInputChange}
       />
       <button type='button' className='searchBtn'>
-        <img src={Search} alt="Search" />
+        <img src={'../img/explorer/search.svg'} alt="Search" />
       </button>
     </div>
   );

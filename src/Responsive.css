@@ -141,12 +141,12 @@
         left: 0;
         right: 0;
         bottom: 0;
-        z-index: 999;
+        z-index: 80;
     }
 
     .mobileNavContainer {
         position: absolute;
-        z-index: 9999;
+        z-index: 99;
         background: #191B1E;
         left: auto;
         right: -16px;

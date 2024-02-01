@@ -46,7 +46,7 @@ export default function useBridgFee () {
             setProvider(getProvider(chainName));
             setNativeCurrency(chain.nativeCurrency.symbol)
         }
-    }, [bridge.fromChain]);
+    }, [bridge.fromChain, bridge.allowance]);
 
     useEffect(() => {
 
@@ -70,7 +70,7 @@ export default function useBridgFee () {
 
         }
 
-    }, [bridgeAddress])
+    }, [bridgeAddress, bridge.amount])
 
     // console.log('fee', fee, 'nativeCurrency', nativeCurrency, 'formattedFee', formattedFee, 'bridgeAddress', bridgeAddress, 'toChain:', ChainNameToTypeChainName[bridge.toChain])
     return { fee, nativeCurrency, formattedFee }

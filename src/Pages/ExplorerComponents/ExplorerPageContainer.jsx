@@ -4,8 +4,7 @@ import ExplorerTopGridRow from './ExplorerTopGridRow';
 import ExplorerTransactions from './ExplorerTransactions';
 import './ExplorerTransactions/ExplorerTransactions.css';
 import './ExplorerTopGrid/ExplorerTopGrid.css';
-import ExplorerTransactionsTable from './ExplorerTransactionsTable/ExplorerTransactionsTable';
-import ExplorerTransactionsSearch from './ExplorerTransactionsSearch';
+import './ExplorerTransactionsTable/ExplorerTransactionsTable.css';
 import DatatablePage from './ExplorerTransactionsTable/DataTable';
 
 function ExplorerPageContainer() {

@@ -1,8 +1,4 @@
 import React from 'react';
-import Xtwiter from '../assets/img/social/x.svg';
-import Github from '../assets/img/social/github.svg';
-import Discord from '../assets/img/social/Discord.svg';
-import Telegram from '../assets/img/social/Telegram.svg';
 import './NavSocial.css';
 
 
@@ -17,7 +13,7 @@ function NavSocial() {
                         target="_blank"
                     >
                         <img
-                            src={Xtwiter}
+                            src={'/img/social/x.svg'}
                             alt="X (former Twitter) Logo"
                         />
                     </a>
@@ -29,7 +25,7 @@ function NavSocial() {
                         target="_blank"
                     >
                         <img
-                            src={Github}
+                            src={'/img/social/github.svg'}
                             alt="GitHub Logo"
                         />
                     </a>
@@ -41,7 +37,7 @@ function NavSocial() {
                         target="_blank"
                     >
                         <img
-                            src={Discord}
+                            src={'/img/social/Discord.svg'}
                             alt="Discord Logo"
                         />
                     </a>
@@ -53,7 +49,7 @@ function NavSocial() {
                         target="_blank"
                     >
                         <img
-                            src={Telegram}
+                            src={'/img/social/Telegram.svg'}
                             alt="Telegram Logo"
                         />
                     </a>
