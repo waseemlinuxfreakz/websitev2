@@ -18,7 +18,7 @@ function TokenomicsBox() {
             <div className="tokenomicsBoxContainer">
                 <div className="container">
                     <div className="row">
-                        <div className="col-lg-6">
+                        <div className="col-md-6">
                             <div className="tokenomicsBox emmetUnity">
                                 <h2>$EMMET Utility</h2>
                                 <ul>
@@ -53,7 +53,7 @@ function TokenomicsBox() {
                                 </ul>
                             </div>
                         </div>
-                        <div className="col-lg-6">
+                        <div className="col-md-6">
                             <div className="tokenomicsBox tokenMetrics">
                                 <h2>Token Metrics</h2>
                                 <ul>

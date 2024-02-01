@@ -4,7 +4,7 @@
     flex: 1 0 0;
     border-radius: 16px;
     border: 1px solid #4D4D4D;
-    background: var(--Background-Background-secondary, #1B1D20);
+    background: #1B1D20;
     height: 100%;
 }
 
@@ -14,7 +14,7 @@
     font-size: 46px;
     font-style: normal;
     font-weight: 500;
-    line-height: 140%; /* 64.4px */
+    line-height: 140%;
     letter-spacing: -1.38px;
     margin: 0 0 24px 0;
 }
@@ -27,27 +27,21 @@
 
 .emmetUnity ul li {
     width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 16px;
-    flex: 1 0 0;
-    color: var(--Text-Text-primary, #FFF);
+    flex: 1 0;
+    color: #FFF;
     font-feature-settings: 'clig' off, 'liga' off;
-
-/* Desktop/body.lg.bold 18 */
     font-family: Inter;
     font-size: 18px;
     font-style: normal;
     font-weight: 500;
-    line-height: 26px; /* 144.444% */
+    line-height: 26px;
     display: flex;
     padding: 16px;
     align-items: center;
     gap: 16px;
     align-self: stretch;
     border-radius: 8px;
-    background: var(--Background-Background-tertiary, #202226);
+    background: #202226;
 }
 
 .emmetUnity ul li img {
@@ -73,25 +67,22 @@
 .metricsLeft {
     color: #B3B7BF;
     font-feature-settings: 'clig' off, 'liga' off;
-
-/* Desktop/body.lg.bold 18 */
     font-family: Inter;
     font-size: 18px;
     font-style: normal;
     font-weight: 500;
-    line-height: 26px; /* 144.444% */
+    line-height: 26px;
 }
 
 .metricsRight {
     color: var(--Text-Text-primary, #FFF);
     font-feature-settings: 'clig' off, 'liga' off;
-
-/* Desktop/body.lg.bold 18 */
+    text-align: right;
     font-family: Inter;
     font-size: 18px;
     font-style: normal;
     font-weight: 500;
-    line-height: 26px; /* 144.444% */
+    line-height: 26px;
 }
 
 .metricAddress {
@@ -107,17 +98,15 @@
 
 span.preSeed {
     color: var(--Text-Text-success, #40D86E);
-
-/* Desktop/body.sm.bold 14 */
     font-family: Inter;
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
-    line-height: 20px; /* 142.857% */
+    line-height: 20px; 
     display: flex;
     padding: 1px 5px;
     border-radius: 4px;
-    background: var(--Badge-Approval, rgba(16, 93, 39, 0.20));
+    background: rgba(16, 93, 39, 0.20);
     display: inline-block;
 }
 

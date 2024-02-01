@@ -8,7 +8,7 @@ function HeaderNewBtns() {
     return ( 
         <div className="headerBtn">
             <a href="#" className='AirdropEmmet'>
-                🔥 Airdrop $EMMET Inscription 
+                🔥 <span>Airdrop</span> $EMMET Inscription 
                 <img src={AirdropEmmet} alt="AirdropEmmet" />
             </a>
             <a href="#" className='EmmetTokken'>

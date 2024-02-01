@@ -22,10 +22,25 @@
     font-style: normal;
     font-weight: 500;
     line-height: 20px;
+    color: #fff;
+}
+
+.headerNotifyContent p a {
+    color: #fff;
+    font-weight: 400;
+    text-decoration: underline;
 }
 
 @media only screen and (max-width: 767px) {
     .headerNotifyContent p b {
         display: block;
     } 
+
+    .headerNotifyContent p {
+        text-align: left;
+    }
+
+    .headerNotify {
+        padding-left: 20px;
+    }
 }

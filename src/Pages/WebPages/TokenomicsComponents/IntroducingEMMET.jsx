@@ -2,6 +2,7 @@ import React from 'react';
 
 import './IntroducingEMMET.css';
 import EmmetIntro from '../../../assets/img/web/Tokenomics/card.png';
+import EmmetIntroMob from '../../../assets/img/web/Tokenomics/card-mob.png';
 import IntroArt from '../../../assets/img/web/Tokenomics/IntroArt.png';
 
 
@@ -11,7 +12,7 @@ function IntroducingEMMET() {
             <div className="container introEmmetContent">
                 <img src={IntroArt} alt="IntroArt" className="introArt" />
                 <div className="row">
-                    <div className="col-lg-6">
+                    <div className="col-md-6">
                         <div className="introEmmetLeft">
                             <h1>Introducing  <br />
                                 <span>$EMMET</span>
@@ -20,9 +21,10 @@ function IntroducingEMMET() {
                             <a href="#" className='whiteBtn'>Explore $EMMET Tokenomics</a>
                         </div>
                     </div>
-                    <div className="col-lg-6">
+                    <div className="col-md-6">
                         <div className="introEmmetRight">
-                            <img src={EmmetIntro} alt="EmmetIntro" />
+                            <img src={EmmetIntro} className='tokDesImg' alt="EmmetIntro" />
+                            <img src={EmmetIntroMob} className='tokMobImg' alt="EmmetIntro" />
                             <p>Min contribution: <span>500,000 EMMET</span></p>
                         </div>
                     </div>

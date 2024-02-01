@@ -52,6 +52,9 @@ img.securityBg {
     font-style: normal;
     font-weight: 600;
     line-height: 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
 }
 
 .securityBox p {
