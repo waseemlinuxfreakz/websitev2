@@ -1,5 +1,5 @@
 import React from 'react';
-import AirdropEmmet from '../../../assets/img/web/AirdropEmmet.png';
+import AirdropEmmet from '../../../assets/img/web/AirdropEmmet.svg';
 import EmmetTokken from '../../../assets/img/web/EmmetTokken.png';
 
 import './HeaderNewBtns.css';
