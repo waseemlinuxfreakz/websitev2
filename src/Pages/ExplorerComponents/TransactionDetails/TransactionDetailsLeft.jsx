@@ -16,7 +16,7 @@ function TransactionDetailsLeft({ txStatus }) {
 
     const Pending = '/img/explorer/Pending.svg';
     const Success = '/img/explorer/Success.svg';
-    
+
 
     const explorer = useAppSelector(store => store.explorer);
 
@@ -32,10 +32,13 @@ function TransactionDetailsLeft({ txStatus }) {
 
 
     const handleCopyClick = () => {
+
         try {
-            navigator.clipboard.writeText(
-                explorer.bridgeTransaction.burnHash
-            )
+            (async () => {
+                await navigator.clipboard.writeText(
+                    explorer.bridgeTransaction.burnHash
+                )
+            })()
             setIsCopied(true);
             setTimeout(() => {
                 setIsCopied(false);
@@ -46,10 +49,14 @@ function TransactionDetailsLeft({ txStatus }) {
     };
 
     const handleCopyClick2 = () => {
+
         try {
-            navigator.clipboard.writeText(
-                explorer.bridgeTransaction.claimHash
-            )
+            (async () => {
+                await navigator.clipboard.writeText(
+                    explorer.bridgeTransaction.claimHash
+                )
+            })()
+
             setIsCopied2(true);
             setTimeout(() => {
                 setIsCopied2(false);
@@ -82,7 +89,7 @@ function TransactionDetailsLeft({ txStatus }) {
                             className="success"
                         >
                             <img
-                                src={ txStatus == 'Success' ? Success : Pending}
+                                src={txStatus == 'Success' ? Success : Pending}
                                 alt="Success"
                             />
                             {' '}{txStatus}
@@ -134,7 +141,7 @@ function TransactionDetailsLeft({ txStatus }) {
                             </a>)
                         }
 
-                        <button className='copyLink' onClick={handleCopyClick}>
+                        <button className='copyLink' onClick={() => handleCopyClick()}>
                             {isCopied
                                 ? <span className="copiedAlert">Copied!</span>
                                 : <span className="copyHover">Copy to clipboard</span>
