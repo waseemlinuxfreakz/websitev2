@@ -1,0 +1,75 @@
+.trackExploerTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 8px;
+    border: 1px solid var(--card-card-border, rgba(97, 100, 107, 0.10));
+    background: var(--background-background-secondary, #1B1D20);
+    padding: 20px 16px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.trackExploerTitle h4 {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+}
+
+.arrowRight {
+    display: block;
+    position: relative;
+    transition: .3s;
+}
+
+.destinationHasTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+}
+
+.destinationHasTitle h4 {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+}
+
+.destinationHas {
+    border-radius: 8px;
+    border: 1px solid var(--card-card-border, rgba(97, 100, 107, 0.10));
+    background: var(--background-background-secondary, #1B1D20);
+    padding: 20px 16px;
+    margin-bottom: 15px;
+}
+
+.destinationHasLink {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    border-radius: 8px;
+    border: 1px solid var(--button-button-border, rgba(97, 100, 107, 0.30));
+    background: var(--field-field-01, #1B1D20);
+    padding: 7px 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #53B7FF;
+}
+
+.btn-copy {
+    cursor: pointer;
+}
+
+.btn-copy:hover {
+    -webkit-animation: none;
+    -webkit-transform: scale(1.5);
+    animation: none;
+    transform: scale(1.5);
+}
+
+.btn-copy:active {
+    transform: translateY(4px);
+  }
