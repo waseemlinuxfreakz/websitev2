@@ -47,7 +47,7 @@ function App() {
         >
           <Routes>
             <Route path="/" element={< WebHome />} />
-            <Route path="/tokenomics" element={<Tokenomics />} />
+            <Route path="/tokensale" element={<Tokenomics />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsService />} />
             <Route path="/bridge" element={<Bridge />} />
