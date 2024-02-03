@@ -5,6 +5,7 @@ import { useWeb3Modal } from '@web3modal/react';
 import { useAppSelector, useAppDispatch } from '../../hooks/storage';
 import useBridgeApproveERC20 from '../../hooks/useBridgeApproveERC20';
 import useBridgeTransferEmmet from '../../hooks/useBridgeTransferEmmet';
+import useBalance from '../../hooks/useBalance';
 // Components
 import ButtonSpinner from '../CommonComponents/Spinner/ButtonSpinner';
 // Actions
@@ -14,6 +15,7 @@ function MainActionButton() {
 
     const dispatch = useAppDispatch();
     const bridge = useAppSelector((state) => state.bridge);
+    const {fromBalance} = useBalance();
 
     const { isConnected } = useAccount();
     const { open } = useWeb3Modal();
@@ -44,6 +46,15 @@ function MainActionButton() {
             if (!bridge.amount || Number(bridge.amount) <= 0) {
                 setDisabled(true);
                 setCaption('Enter Amount');
+            }
+
+            if(bridge.isApproving){
+                setDisabled(true);
+            }
+
+            if(fromBalance < bridge.amount){
+                setDisabled(true);
+                setCaption('Amount exceeds the token balance');
             }
 
         } else {
