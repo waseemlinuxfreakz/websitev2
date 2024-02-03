@@ -3,7 +3,7 @@ import Header from '../HeaderFooterSidebar/Header';
 import Footer from '../HeaderFooterSidebar/Footer';
 import Sidebar from '../HeaderFooterSidebar/Sidebar';
 import BridgeSwapContainer from './BridgeComponents/BridgeSwapContainer';
-import BridgeSwapTransaction from './BridgeComponents/BridgeSwaptransaction';
+import BridgeTransferProgress from './BridgeComponents/BridgeTransferProgress';
 import MobileHeader from '../HeaderFooterSidebar/MobileHeader';
 import MainActionButton from './BridgeComponents/MainActionButton';
 // import SidebarSlider from '../HeaderFooterSidebar/SidebarComponent/SidebarSlider';
@@ -28,7 +28,7 @@ const Bridge = () => {
                     <div className="mobileArea" id='mobileContainer'>
                         <MobileHeader />
                         {showProgress
-                            ? < BridgeSwapTransaction />
+                            ? < BridgeTransferProgress />
                             : <BridgeSwapContainer />
                         }
                         {/* <SidebarSlider /> */}
@@ -51,7 +51,7 @@ const Bridge = () => {
                             <div className="pageContent">
                                 <div className="swapContainerArea">
                                     {showProgress
-                                        ? < BridgeSwapTransaction />
+                                        ? < BridgeTransferProgress />
                                         : <BridgeSwapContainer />
                                     }
                                 </div>

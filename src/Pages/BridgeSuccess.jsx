@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../HeaderFooterSidebar/Header';
 import Footer from '../HeaderFooterSidebar/Footer';
 import Sidebar from '../HeaderFooterSidebar/Sidebar';
-import BridgeSwapTransaction from './BridgeComponents/BridgeSwaptransaction';
+import BridgeTransferProgress from './BridgeComponents/BridgeTransferProgress';
 import MobileHeader from '../HeaderFooterSidebar/MobileHeader';
 // import SidebarSlider from '../HeaderFooterSidebar/SidebarComponent/SidebarSlider';
 import useMobileDetector from '../hooks/useMobileDetector';
@@ -17,7 +17,7 @@ const BridgeSuccess = () => {
                 <div className="MobilePageContainer">
                     <div className="mobileArea" id='mobileContainer'>
                         <MobileHeader />
-                        <BridgeSwapTransaction />
+                        <BridgeTransferProgress />
                         {/* <SidebarSlider /> */}
                         <Footer />
                     </div>
@@ -34,7 +34,7 @@ const BridgeSuccess = () => {
                             />
                             <div className="pageContent">
                                 <div className="swapContainerArea">
-                                    <BridgeSwapTransaction />
+                                    <BridgeTransferProgress />
                                 </div>
                             </div>
                             <Footer />

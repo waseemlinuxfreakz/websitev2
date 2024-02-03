@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useAppSelector, useAppDispatch } from '../../../hooks/storage'
-import InfoIcon from '../../../assets/img/InfoIcons.svg';
+import { useAppSelector, useAppDispatch } from '../../../hooks/storage';
 import { setBridgeDeadline, setBridgeSlippage } from '../../../store/bridgeSlice';
 import { setSwapDeadline, setSwapSlippage } from '../../../store/swapSlice';
 
 export default function SlippagePopUp({ parent }) {
+
+    const InfoIcon = '/img/transfer-progress/InfoIcon.svg'
 
     // ========== COMMON ==========
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import './Sidebar.css';
 
-
 function SidebarBottomNav() {
     return ( 
         <div className="SidebarBottomNav sidebarNav">
