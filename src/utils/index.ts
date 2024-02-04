@@ -4,6 +4,7 @@ export * from './filters';
 export * from './getBridgeFee';
 export * from './getContract';
 export * from './getProvider';
+export * from './numbers';
 export * from './sanitizeNumber';
 export * from './time';
 export * from './tokens';

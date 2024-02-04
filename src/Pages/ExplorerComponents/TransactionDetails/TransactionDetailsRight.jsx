@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppSelector } from '../../../hooks/storage';
-import { getDomainToChainName, getChainSymbolFromName } from '../../../utils';
+import { getDomainToChainName, getChainSymbolFromName, restoreOriginalSumSent } from '../../../utils';
 import useGetTxValue from '../../../hooks/useGetTxValue'
 
 function TransactionDetailsRight({ fromFee, toFee }) {
@@ -31,10 +31,7 @@ function TransactionDetailsRight({ fromFee, toFee }) {
                     </div>
                     <div className="transactionDetailsListRight">
                         {/* If amount < 2,000 then fixed fee $0.4, else 0.02% of the amount */}
-                        {explorer.bridgeTransaction.amount < 2000000000
-                            ? explorer.bridgeTransaction.amount / decimals() + 0.4
-                            : explorer.bridgeTransaction.amount * 0.0002 / decimals()
-                            + explorer.bridgeTransaction.amount / decimals()} {explorer.bridgeTransaction.symbol}
+                        {restoreOriginalSumSent(explorer.bridgeTransaction.amount / decimals())} {explorer.bridgeTransaction.symbol}
                     </div>
                 </li>
                 <li className='transactionDetailsListItem'>

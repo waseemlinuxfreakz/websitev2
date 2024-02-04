@@ -103,7 +103,7 @@ export const bridgeSlice = createSlice({
                             state.receive = state.amount - BridgeFeeStructure.stablecoins.minimum;
                             //state.bridgeFee = BridgeFeeStructure.stablecoins.minimum;
                         }
-                        
+                        console.log("amount:", action.payload, "percentage", percentage, "receive:", state.receive)
                     }
                 }else{
                     state.receive = '';
