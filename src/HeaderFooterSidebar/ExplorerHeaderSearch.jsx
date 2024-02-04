@@ -4,8 +4,9 @@ function ExplorerHeaderSearch() {
   const [isValid, setIsValid] = useState(false);
 
   const handleInputChange = (event) => {
-    // Your validation logic here
-    const inputIsValid = event.target.value.trim() !== '';
+    const rawInput = event.target.value.trim();
+    const sanitizedInput = rawInput.replace(/[^a-zA-Z0-9]/g, '');
+    const inputIsValid = sanitizedInput !== '';
     setIsValid(inputIsValid);
   };
 
@@ -13,7 +14,7 @@ function ExplorerHeaderSearch() {
     <div className={`explorerSearch ${isValid ? 'inputValid' : ''}`}>
       <input
         type="search"
-        placeholder='Search token / chain / transaction'
+        placeholder='Search token / sender / transaction'
         onChange={handleInputChange}
       />
       <button type='button' className='searchBtn'>

@@ -50,22 +50,22 @@ export const BridgeTokens = [
 ]
 
 export const TOKEN_CHAIN_CONTRACT = {
-  EURC: {
-      // Mainnets: https://developers.circle.com/stablecoins/docs/eurc-on-main-networks
-      arbitrum: '',
-      avalanche: '0xc891eb4cbdeff6e073e859e987815ed1505c2acd',
-      ethereum: '0x1aBaEA1f7C830bD89Acc67eC4af516284b1bC33c',
-      optimism: '',
-      base: '',
-      polygon: '',
-      // Testnets: https://developers.circle.com/stablecoins/docs/eurc-on-test-networks
-      arbitrumSepolia: '',
-      avalancheFuji: "0x5e44db7996c682e92a960b65ac713a54ad815c6b",
-      baseSepolia: '',
-      optimismSepolia: '',
-      sepolia: '0x08210F9170F89Ab7658F0B5E3fF39b0E03C594D4',
-      polygonMumbai: '',
-  },
+  // EURC: {
+  //     // Mainnets: https://developers.circle.com/stablecoins/docs/eurc-on-main-networks
+  //     arbitrum: '',
+  //     avalanche: '0xc891eb4cbdeff6e073e859e987815ed1505c2acd',
+  //     ethereum: '0x1aBaEA1f7C830bD89Acc67eC4af516284b1bC33c',
+  //     optimism: '',
+  //     base: '',
+  //     polygon: '',
+  //     // Testnets: https://developers.circle.com/stablecoins/docs/eurc-on-test-networks
+  //     arbitrumSepolia: '',
+  //     avalancheFuji: "0x5e44db7996c682e92a960b65ac713a54ad815c6b",
+  //     baseSepolia: '',
+  //     optimismSepolia: '',
+  //     sepolia: '0x08210F9170F89Ab7658F0B5E3fF39b0E03C594D4',
+  //     polygonMumbai: '',
+  // },
   USDC: {
       // Mainnets:
       arbitrum: '0xaf88d065e77c8cC2239327C5EDb3A432268e5831',

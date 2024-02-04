@@ -1,9 +1,12 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from './store';
-import { TxDetails } from '../types';
+import { TxDetails, SearchDataType } from '../types';
 
 export interface IExplorerState {
-    bridgeTransaction: TxDetails
+    bridgeTransaction: TxDetails,
+    filter: string,
+    filterType: SearchDataType,
+    tableData: TxDetails[],
 }
 
 const initialState: IExplorerState = {
@@ -22,13 +25,22 @@ const initialState: IExplorerState = {
         sender: '',
         status: 'Pending',
         symbol: 'USDC',
-    }
+    },
+    filter: '',
+    filterType: SearchDataType.None,
+    tableData: []
 };
 
 export const explorerSlice = createSlice({
     name: 'explorer',
     initialState,
     reducers: {
+        setSearchFilter(state:IExplorerState, action:PayloadAction<string>){
+            state.filter = action.payload;
+        },
+        setSearchFilterType(state: IExplorerState, action:PayloadAction<SearchDataType>){
+            state.filterType = action.payload;
+        },
         setBridgeTransaction(state: IExplorerState, action: PayloadAction<TxDetails>) {
             state.bridgeTransaction = action.payload
         },
@@ -37,14 +49,20 @@ export const explorerSlice = createSlice({
         },
         resetBridgeTransactionData(state: IExplorerState){
             state.bridgeTransaction = initialState.bridgeTransaction;
-        }
+        },
+        setTableData(state:IExplorerState, action:PayloadAction<TxDetails[]>){
+            state.tableData = action.payload;
+        },
     },
     extraReducers(builder: any) { }
 });
 
 export const {
+    setSearchFilter,
+    setSearchFilterType,
     resetBridgeTransactionData,
-    setBridgeTransaction
+    setBridgeTransaction,
+    setTableData,
 } = explorerSlice.actions;
 
 export default explorerSlice.reducer;

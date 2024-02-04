@@ -1,6 +1,14 @@
 
 export type TExplorerFilter = 'NONE' | 'SENDER' | 'FROMCHAIN' | 'TOCHAIN';
 
+export enum SearchDataType {
+    Token = 'Token',
+    EvmAddress = 'EvmAddress',
+    EvmTransaction = 'EvmTransaction',
+    BridgeTransaction = 'BridgeTransaction',
+    None = 'None',
+}
+
 export const ROWS_PER_PAGE = 10;
 
 export const columns = [
