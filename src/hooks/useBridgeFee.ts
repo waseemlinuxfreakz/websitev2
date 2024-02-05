@@ -27,12 +27,19 @@ export default function useBridgFee () {
     }
 
     async function getBridgeFee() {
-        return await provider.readContract({
-            address: addressToAccount(SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]].emmetFeeOracle.address),
-            abi: EmmetFeeOracleABI,
-            functionName:'calculateTransactionFee',
-            args:[ChainNameToTypeChainName[bridge.toChain]]
-        });
+        try {
+
+            return await provider.readContract({
+                address: addressToAccount(SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]].emmetFeeOracle.address),
+                abi: EmmetFeeOracleABI,
+                functionName:'calculateTransactionFee',
+                args:[ChainNameToTypeChainName[bridge.toChain]]
+            });
+            
+        } catch (error) {
+            console.warn(error)
+        }
+        
     }
 
     useEffect(() => {
@@ -54,7 +61,7 @@ export default function useBridgFee () {
             (async () => {
                 const fee_ = await getBridgeFee();
                 if(fee_){
-                    console.log("fee_", fee_, "contract:", bridgeAddress)
+                    // console.log("fee_", fee_, "contract:", bridgeAddress)
                     const _fee = Number(fee_.toString());
                     setFormattedfee(formatFee(_fee));
                     setFee(_fee);
