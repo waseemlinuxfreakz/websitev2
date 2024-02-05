@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 // Hooks
-import { useAccount } from 'wagmi';
+import { useAccount, useBalance as useWagmiBalance } from 'wagmi';
 import { useWeb3Modal } from '@web3modal/react';
 import { useAppSelector, useAppDispatch } from '../../hooks/storage';
 import useBridgeApproveERC20 from '../../hooks/useBridgeApproveERC20';
@@ -15,16 +15,20 @@ function MainActionButton() {
 
     const dispatch = useAppDispatch();
     const bridge = useAppSelector((state) => state.bridge);
-    const {fromBalance} = useBalance();
+    const { fromBalance } = useBalance();
 
-    const { isConnected } = useAccount();
+    const { isConnected, address } = useAccount();
     const { open } = useWeb3Modal();
 
     const [disabled, setDisabled] = useState(false);
     const [caption, setCaption] = useState('');
 
     const { approve } = useBridgeApproveERC20();
-    const { isBurnReady, burnUSDC } = useBridgeTransferEmmet();
+    const { estimation, isBurnReady, burnUSDC } = useBridgeTransferEmmet();
+
+    const txCoinBalance = useWagmiBalance({
+        address
+    });
 
     function isApproveRequired() {
         const needApproval = Number(bridge.amount) > (Number(bridge.allowance) / 10 ** Number(bridge.decimals));
@@ -35,27 +39,36 @@ function MainActionButton() {
 
         if (isConnected) {
 
-            if (isApproveRequired()) {
-                setDisabled(false);
-                setCaption('Approve');
+            if (txCoinBalance < estimation) {
+                setDisabled(true);
+                setCaption('Insufficient balance to pay the fee');
             } else {
-                setDisabled(false);
-                setCaption('Transfer');
+
+                if (isApproveRequired()) {
+                    setDisabled(false);
+                    setCaption('Approve');
+                } else {
+                    setDisabled(false);
+                    setCaption('Transfer');
+                }
+
+                if (!bridge.amount || Number(bridge.amount) <= 0) {
+                    setDisabled(true);
+                    setCaption('Enter Amount');
+                }
+
+                if (bridge.isApproving) {
+                    setDisabled(true);
+                }
+
+                if (fromBalance < bridge.amount) {
+                    setDisabled(true);
+                    setCaption('Amount exceeds the token balance');
+                }
+
             }
 
-            if (!bridge.amount || Number(bridge.amount) <= 0) {
-                setDisabled(true);
-                setCaption('Enter Amount');
-            }
 
-            if(bridge.isApproving){
-                setDisabled(true);
-            }
-
-            if(fromBalance < bridge.amount){
-                setDisabled(true);
-                setCaption('Amount exceeds the token balance');
-            }
 
         } else {
             setDisabled(false);
@@ -84,7 +97,7 @@ function MainActionButton() {
             } else {
                 if (isBurnReady) {
                     burnUSDC();
-                }else{
+                } else {
                     try {
                         burnUSDC();
                     } catch (error) {

@@ -24,6 +24,8 @@ export default function useBridgeTransferEmmet() {
 
     const [params, setParams] = useState<any>(null);
 
+    const [estimation, setEstimation] = useState<number>(0);
+
     const try_ = async (): Promise<any> => {
         try {
             const chainName: TChainName = ChainNameToTypeChainName[bridge.fromChain];
@@ -35,6 +37,24 @@ export default function useBridgeTransferEmmet() {
             const signer = getSigner(chainName);
             const tokenName: string = bridge.fromToken;
 
+            const gas = await signer.estimateContractGas({
+                address: addressToAccount(bridgeAddress),
+                account: `0x${address?.replace('0x', '')}`,
+                abi: circleBurner,
+                functionName: 'depositForBurn',
+                args: [
+                    BigInt(Math.ceil(formattedAmount)),
+                    destinationDomain,
+                    mintRecipient,
+                    tokenName
+                ],
+                value: BigInt(fee + 1000000000),
+            });
+
+            if(gas){
+                setEstimation(parseInt(gas.toString()));
+            }
+
             console.log(
                 'chainName', chainName,
                 'decimals', decimals,
@@ -43,8 +63,9 @@ export default function useBridgeTransferEmmet() {
                 'destinationDomain', destinationDomain,
                 'mintRecipient', mintRecipient,
                 'tokenName', tokenName,
-                'fee', fee + 1000000000
-            )
+                'fee', fee + 1000000000,
+                'gas', gas
+            );
 
             const { request } = await signer.simulateContract({
                 address: addressToAccount(bridgeAddress),
@@ -124,6 +145,6 @@ export default function useBridgeTransferEmmet() {
 
     }
 
-    return { isBurnReady, burnUSDC }
+    return {estimation, isBurnReady, burnUSDC }
 
 }
