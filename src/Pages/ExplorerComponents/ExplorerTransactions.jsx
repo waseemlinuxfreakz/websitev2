@@ -39,11 +39,13 @@ function ExplorerTransactions() {
                 {/* <button className="filterDropBTN" onClick={toggleTransactionRight}>
                     <img src={Filter} alt="Filter" />
                 </button> */}
+                {/* TODO: implement explorer filters:
+                
                 <div className={`transactionRight ${isTransactionRightOpen ? 'open' : ''}`}>
                     <ExplorerTransactionSelectDropdown/>
                     <ExplorerFromChainSelectDropdown/>
                     <ExplorerToChainSelectDropdown/>
-                </div>
+                </div> */}
             </div>
         </div>
     );

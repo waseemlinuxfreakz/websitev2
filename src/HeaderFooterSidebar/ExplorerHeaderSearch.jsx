@@ -10,17 +10,19 @@ function ExplorerHeaderSearch() {
     setIsValid(inputIsValid);
   };
 
-  return ( 
-    <div className={`explorerSearch ${isValid ? 'inputValid' : ''}`}>
-      <input
-        type="search"
-        placeholder='Search token / sender / transaction'
-        onChange={handleInputChange}
-      />
-      <button type='button' className='searchBtn'>
-        <img src={'../img/explorer/search.svg'} alt="Search" />
-      </button>
-    </div>
+  return ( <>
+  </>
+    // TODO: implement search box
+    // <div className={`explorerSearch ${isValid ? 'inputValid' : ''}`}>
+    //   <input
+    //     type="search"
+    //     placeholder='Search token / sender / transaction'
+    //     onChange={handleInputChange}
+    //   />
+    //   <button type='button' className='searchBtn'>
+    //     <img src={'../img/explorer/search.svg'} alt="Search" />
+    //   </button>
+    // </div>
   );
 }
 
