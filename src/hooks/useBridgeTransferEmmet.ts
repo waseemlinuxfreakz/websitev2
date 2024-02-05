@@ -48,11 +48,11 @@ export default function useBridgeTransferEmmet() {
                     mintRecipient,
                     tokenName
                 ],
-                value: BigInt(fee + 1000000000),
+                value: BigInt(fee + 1_000_000_000),
             });
 
-            if(gas){
-                setEstimation(parseInt(gas.toString()));
+            if(gas && fee){
+                setEstimation((parseInt(gas.toString()) * 83 + parseInt(fee.toString()) + 1_000_000_000)/ 1e18);
             }
 
             console.log(
@@ -63,7 +63,7 @@ export default function useBridgeTransferEmmet() {
                 'destinationDomain', destinationDomain,
                 'mintRecipient', mintRecipient,
                 'tokenName', tokenName,
-                'fee', fee + 1000000000,
+                'fee', fee + 1_000_000_000,
                 'gas', gas
             );
 
@@ -78,7 +78,7 @@ export default function useBridgeTransferEmmet() {
                     mintRecipient,
                     tokenName
                 ],
-                value: BigInt(fee + 1000000000),
+                value: BigInt(fee + 1_000_000_000),
             });
 
             console.log('request:', request)
@@ -111,7 +111,7 @@ export default function useBridgeTransferEmmet() {
             });
         }
 
-    }, [bridge.amount, address, bridge.allowance, fee]);
+    }, [bridge.amount, address, bridge.allowance, fee, bridge.toChain]);
 
     const burnUSDC = () => {
 

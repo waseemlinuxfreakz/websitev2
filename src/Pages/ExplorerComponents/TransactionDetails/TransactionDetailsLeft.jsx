@@ -141,15 +141,14 @@ function TransactionDetailsLeft({ txStatus }) {
                             </a>)
                         }
 
-                        {explorer.bridgeTransaction.claimHash
-                            && <button className='copyLink' onClick={() => handleCopyClick()}>
-                                {isCopied
-                                    ? <span className="copiedAlert">Copied!</span>
-                                    : <span className="copyHover">Copy to clipboard</span>
-                                }
+                        <button className='copyLink' onClick={() => handleCopyClick()}>
+                            {isCopied
+                                ? <span className="copiedAlert">Copied!</span>
+                                : <span className="copyHover">Copy to clipboard</span>
+                            }
 
-                                <img src={'/img/copy.svg'} alt="Copy" />
-                            </button>}
+                            <img src={'/img/copy.svg'} alt="Copy" />
+                        </button>
                     </div>
                 </li>
                 <li className='transactionDetailsListItem'>
@@ -197,14 +196,14 @@ function TransactionDetailsLeft({ txStatus }) {
                             </a>)
                         }
 
-                        <button className='copyLink' onClick={handleCopyClick2}>
-                            {isCopied2
-                                ? <span className="copiedAlert">Copied!</span>
-                                : <span className="copyHover">Copy to clipboard</span>
-                            }
-
-                            <img src={'/img/copy.svg'} alt="Copy" />
-                        </button>
+                        {explorer.bridgeTransaction.claimHash
+                            && (<button className='copyLink' onClick={handleCopyClick2}>
+                                {isCopied2
+                                    ? <span className="copiedAlert">Copied!</span>
+                                    : <span className="copyHover">Copy to clipboard</span>
+                                }
+                                <img src={'/img/copy.svg'} alt="Copy" />
+                            </button>)}
                     </div>
 
                 </li>

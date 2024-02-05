@@ -15,7 +15,7 @@ export default function useBalance() {
     const { address } = useAccount();
 
     const bridge = useAppSelector((state) => state.bridge);
-
+    const [txFeeCoinBalance, setTxFeeCoinbalance] = useState<number>(0);
     const [balance, setBalance] = useState<number>(bridge.balance);
     const [balanceTo, setBalanceTo] = useState<number>(bridge.balance);
 
@@ -85,6 +85,17 @@ export default function useBalance() {
             const chain = SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]];
             const decimals = chain.nativeCurrency.decimals;
 
+            (async () => {
+
+                const coinBalance: number = await getCoinBalance('from');
+                const formattedBalance = coinBalance / 10 ** decimals;
+                if(formattedBalance){
+                    setTxFeeCoinbalance(formattedBalance)
+                }
+
+            })()
+
+
             if (bridge.fromToken === chain.nativeCurrency.symbol) {
                 (async () => {
                     const bal: number = await getCoinBalance('from');
@@ -152,6 +163,6 @@ export default function useBalance() {
 
     }, [bridge.toChain, bridge.toToken, bridge.receiver]);
 
-    return { fromBalance: balance, toBalance: balanceTo }
+    return { coinBalance: txFeeCoinBalance, fromBalance: balance, toBalance: balanceTo }
 
 }

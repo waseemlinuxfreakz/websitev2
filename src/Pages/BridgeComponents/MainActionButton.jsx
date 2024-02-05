@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 // Hooks
-import { useAccount, useBalance as useWagmiBalance } from 'wagmi';
+import { useAccount } from 'wagmi';
 import { useWeb3Modal } from '@web3modal/react';
 import { useAppSelector, useAppDispatch } from '../../hooks/storage';
 import useBridgeApproveERC20 from '../../hooks/useBridgeApproveERC20';
@@ -9,13 +9,14 @@ import useBalance from '../../hooks/useBalance';
 // Components
 import ButtonSpinner from '../CommonComponents/Spinner/ButtonSpinner';
 // Actions
-import { setBridgeIsApproving } from '../../store/bridgeSlice';
+import { setBridgeIsApproving, setBridgeAmount } from '../../store/bridgeSlice';
+import { sleep } from '../../utils';
 
 function MainActionButton() {
 
     const dispatch = useAppDispatch();
     const bridge = useAppSelector((state) => state.bridge);
-    const { fromBalance } = useBalance();
+    const { coinBalance, fromBalance } = useBalance();
 
     const { isConnected, address } = useAccount();
     const { open } = useWeb3Modal();
@@ -26,20 +27,18 @@ function MainActionButton() {
     const { approve } = useBridgeApproveERC20();
     const { estimation, isBurnReady, burnUSDC } = useBridgeTransferEmmet();
 
-    const txCoinBalance = useWagmiBalance({
-        address
-    });
-
     function isApproveRequired() {
         const needApproval = Number(bridge.amount) > (Number(bridge.allowance) / 10 ** Number(bridge.decimals));
         return needApproval;
     }
 
+    console.log("coinBalance", coinBalance, 'estimation', estimation)
+
     useEffect(() => {
 
         if (isConnected) {
 
-            if (txCoinBalance < estimation) {
+            if (coinBalance < estimation) {
                 setDisabled(true);
                 setCaption('Insufficient balance to pay the fee');
             } else {
@@ -48,8 +47,19 @@ function MainActionButton() {
                     setDisabled(false);
                     setCaption('Approve');
                 } else {
-                    setDisabled(false);
-                    setCaption('Transfer');
+                    if(isBurnReady){
+                        setDisabled(false);
+                        setCaption('Transfer');
+                    }else{
+                        setDisabled(true);
+                        setCaption('Getting ready to transfer...');
+                        // Reestimate the Transfer
+                        const oldAmount = bridge.amount;
+                        dispatch(setBridgeAmount(0));
+                        sleep(1000);
+                        dispatch(setBridgeAmount(oldAmount));
+                    }
+                    
                 }
 
                 if (!bridge.amount || Number(bridge.amount) <= 0) {
@@ -121,6 +131,11 @@ function MainActionButton() {
                     ? (<>
                         <ButtonSpinner />
                         <span>Approving...</span>
+                    </>)
+                    : !isBurnReady 
+                    ? (<>
+                        <ButtonSpinner />
+                        <span>Preparing to transfer...</span>
                     </>)
                     : caption
                 }
