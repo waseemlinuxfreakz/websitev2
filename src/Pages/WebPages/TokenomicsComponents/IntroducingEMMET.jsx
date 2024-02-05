@@ -4,6 +4,8 @@ import './IntroducingEMMET.css';
 import EmmetIntro from '../../../assets/img/web/Tokenomics/card.png';
 import EmmetIntroMob from '../../../assets/img/web/Tokenomics/card-mob.png';
 import IntroArt from '../../../assets/img/web/Tokenomics/IntroArt.png';
+import BuyEmmet from './BuyEmmet';
+
 
 
 function IntroducingEMMET() {
@@ -23,9 +25,7 @@ function IntroducingEMMET() {
                     </div>
                     <div className="col-md-6">
                         <div className="introEmmetRight">
-                            <img src={EmmetIntro} className='tokDesImg' alt="EmmetIntro" />
-                            <img src={EmmetIntroMob} className='tokMobImg' alt="EmmetIntro" />
-                            <p>Min contribution: <span>500,000 EMMET</span></p>
+                            <BuyEmmet/>
                         </div>
                     </div>
                 </div>

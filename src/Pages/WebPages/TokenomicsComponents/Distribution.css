@@ -8,3 +8,108 @@
     position: relative;
     z-index: 1;
 }
+
+.dustruLeft h2 {
+    font-size: 46px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.4;
+    letter-spacing: -1.38px;
+    color: #fff;
+    margin-bottom: 36px;
+}
+
+.dustruRight {
+    padding-top: 64px;
+}
+
+.distributionBox {
+    margin-top: 36px;
+}
+
+.distributionBox h4 {
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.43;
+    letter-spacing: normal;
+    text-align: left;
+    color: #888b92;
+    margin-bottom: 16px;
+}
+
+.distributionBox ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.distributionBox ul li {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.44;
+    letter-spacing: normal;
+    text-align: left;
+    color: #b3b7bf;
+}
+
+.distributionBox ul li span {
+    color: #fff;
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+}
+
+.dustruRight img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+span.colorBox.pseed {
+    background-color: #45b6b7;
+}
+
+span.colorBox.publicSale {
+    background-color: #0080f7;
+}
+
+span.colorBox.stratInv {
+    background-color: #549fe5;
+}
+
+span.colorBox.comsal {
+    background-color: #2a8de9;
+}
+
+span.colorBox.prse {
+    background-color: #1da9c8;
+}
+
+span.colorBox.teamCore {
+    background-color: #4a67ff;
+}
+
+span.colorBox.marketingPar {
+    background-color: #7c69b6;
+}
+
+span.colorBox.liquiRew {
+    background-color: #8940d3;
+}
+
+span.colorBox.stakingRew {
+    background-color: #14bda8;
+}
+
+span.colorBox.echoSys {
+    background-color: #9afbc0;
+}
