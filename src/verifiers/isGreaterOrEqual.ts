@@ -1,4 +1,4 @@
-import { format2BigInt } from "../format";
+import { format2BigInt } from "../utils";
 
 /**
  * Checks if one value is greater than or equal to another value.
