@@ -18,7 +18,7 @@ function HeaderNotify() {
     return isVisible ? (
         <div className="headerNotify">
             <div className="headerNotifyContent">
-                <p><b>🚀 $EMMET Token Sale:</b> February 15th at 18:00 UTC. <a href="#">Join to Whitelist</a></p>
+                <p><b>🚀 $EMMET Token Sale:</b> February 15th at 18:00 UTC. <a href="#">Join the Whitelist</a></p>
             </div>
             <div className="closeNotify" onClick={handleCloseClick}>
                 <img src={CloseButton} alt="CloseButton" />

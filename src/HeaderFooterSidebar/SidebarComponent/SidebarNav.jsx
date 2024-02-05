@@ -44,7 +44,7 @@ function SidebarNav() {
             <img src={NavIcon1} alt="NavIcon" />
             <span>Swap</span>
           </Link> */}
-          <Link to="/" className={`navLink ${isActive('/') && ''}`} onClick={handleLinkClick}>
+          <Link to="#" className={`navLink ${isActive('/') && ''}`} onClick={handleLinkClick}>
           <img src={'/img/nav-icon/nav-Icons-1.svg'} alt="NavIcon" />
             <span>Swap</span>
             <span className="soon">Soon</span>
@@ -55,35 +55,35 @@ function SidebarNav() {
                 <img src={Pool} alt="NavIcon" />
                 <span>Pool</span>
             </Link> */}
-            <Link to="/" className={`navLink ${isActive('/') && ''}`} onClick={handleLinkClick}>
+            <Link to="#" className={`navLink ${isActive('/') && ''}`} onClick={handleLinkClick}>
             <img src={'/img/nav-icon/Pool.svg'} alt="NavIcon" />
             <span>Pool</span>
             <span className="soon">Soon</span>
           </Link>
         </li>
         <li>
-          <Link to="/" className={`navLink ${isActive('/') && ''}`} onClick={handleLinkClick}>
+          <Link to="#" className={`navLink ${isActive('/') && ''}`} onClick={handleLinkClick}>
             <img src={'/img/nav-icon/nav-Icons-4.svg'} alt="NavIcon" />
             <span>Farm</span>
             <span className="soon">Soon</span>
           </Link>
         </li>
         <li>
-          <Link to="/" className={`navLink ${isActive('/') && ''}`} onClick={handleLinkClick}>
+          <Link to="#" className={`navLink ${isActive('/') && ''}`} onClick={handleLinkClick}>
             <img src={'/img/nav-icon/nav-Icons-5.svg'} alt="NavIcon" />
             <span>Loans</span>
             <span className="soon">Soon</span>
           </Link>
         </li>
         <li>
-          <Link to="/" className={`navLink ${isActive('/') && ''}`} onClick={handleLinkClick}>
+          <Link to="#" className={`navLink ${isActive('/') && ''}`} onClick={handleLinkClick}>
             <img src={'/img/nav-icon/nav-Icons-6.svg'} alt="NavIcon" />
             <span>Stake</span>
             <span className="soon">Soon</span>
           </Link>
         </li>
         <li>
-          <Link to="/" className={`navLink ${isActive('/') && ''}`} onClick={handleLinkClick}>
+          <Link to="#" className={`navLink ${isActive('/') && ''}`} onClick={handleLinkClick}>
             <img src={'/img/nav-icon/nav-Icons-7.svg'} alt="NavIcon" />
             <span>Governance</span>
             <span className="soon">Soon</span>

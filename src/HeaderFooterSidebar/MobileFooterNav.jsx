@@ -24,14 +24,14 @@ function MobileFooterNav() {
                     </Link>
                 </li>
                 <li>
-                    <Link to="/#" className={`navLink ${isActive('/swap') && 'active'}`}>
+                    <Link to="#" className={`navLink ${isActive('/swap') && 'active'}`}>
                         <img src={'/img/nav-icon/nav-Icons-1.svg'} alt="NavIcon" />
                         <span>Swap</span>
                         <span className="soon">Soon</span>
                     </Link>
                 </li>
                 <li>
-                    <Link to="/#" className={`navLink ${isActive('/pool') && 'active'}`}>
+                    <Link to="#" className={`navLink ${isActive('/pool') && 'active'}`}>
                         <img src={'/img/nav-icon/Pool.svg'} alt="NavIcon" />
                         <span>Pool</span>
                         <span className="soon">Soon</span>
