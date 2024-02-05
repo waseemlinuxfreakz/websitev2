@@ -4,7 +4,6 @@ import { useAppDispatch, useAppSelector } from './storage';
 import { useState, useEffect } from 'react';
 import { EmmetFeeOracleABI } from '../abis/EmmetFeeOracle';
 import { setBridgeError, setBridgeFee } from '../store/bridgeSlice';
-import { EmmetChain } from '../constants/chains/chainTypes';
 
 export default function useBridgFee () {
 

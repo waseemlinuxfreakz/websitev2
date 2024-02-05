@@ -3,7 +3,7 @@ import Wallet from '../../../assets/img/Wallet.svg';
 import './WalletBalance.css';
 import { fetchBalance, getAccount, getNetwork } from '@wagmi/core';
 // @ts-ignore
-import { getTokenAddress } from '../../../constants/tokens.ts';
+import { getTokenAddress } from '../../../utils';
 
 
 export default function WalletBalance({ name, parent, balance }) {
