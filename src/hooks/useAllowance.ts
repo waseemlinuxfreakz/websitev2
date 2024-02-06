@@ -96,7 +96,7 @@ export default function useBridgeAllowance() {
 
         updateAllowance();
 
-    }, [address, bridge.amount, bridge.fromChain, bridge.fromToken, bridge.isApproving]);
+    }, [address, bridge.amount, bridge.fromChain, bridge.fromToken]);
 
     return { allowance, decimals, error, isApprovalRequired, updateAllowance };
 }

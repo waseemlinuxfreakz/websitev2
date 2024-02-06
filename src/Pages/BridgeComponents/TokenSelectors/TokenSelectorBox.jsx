@@ -24,11 +24,12 @@ export default function TokenSelectorBox({ type }) {
     function onInputChange(e) {
         e.preventDefault();
         let newValue = e.target.value;
+        
         // Ensure there is at most one period in the input
         const periodCount = (newValue.match(/\./g) || []).length;
         if (periodCount > 1) {
             // Remove the last period
-            newValue = newValue.slice(0, -1);
+            newValue = newValue.slice(0, -1);//
         }
         const commaCount = (newValue.match(/\,/g) || []).length;
         if(commaCount){
@@ -41,6 +42,8 @@ export default function TokenSelectorBox({ type }) {
             setOldAmount('');
         }
 
+        console.log("amount RAW:", newValue)
+
     }
 
     useEffect(() => {
@@ -48,14 +51,17 @@ export default function TokenSelectorBox({ type }) {
         if (amount) {
             let sanitized = String(amount)
                 .replace(/[^0-9.]/g, '') // any non digits
-                .replace(/^0+(\d+\.\d*|0\.)/, '$1') // multiple zeros before . with one
+                .replace(/^0+([1-9]+\.\d*|0\.)/, '$1') // multiple zeros before . with one
             if(parseFloat(sanitized) < 1) sanitized = 1
             if(parseFloat(sanitized) > 10_000_000) sanitized = 10_000_000;
             setAmount(sanitized);
             setOldAmount(sanitized)
+            
             if (sanitized != '.') {
                 dispatch(setBridgeAmount(sanitized));
             }
+
+            console.log('amount', amount,'sanitized', sanitized)
 
         } else {
             dispatch(setBridgeAmount(oldAmount));

@@ -17,7 +17,10 @@ export const arbitrumSepolia = {
       http: ['https://arbitrum-sepolia.blockpi.network/v1/rpc/public'],
     },
     public: {
-      http: ['https://arbitrum-sepolia.blockpi.network/v1/rpc/public'],
+      http: [
+        'https://arbitrum-sepolia.blockpi.network/v1/rpc/public',
+        'https://sepolia-rollup.arbitrum.io/rpc'
+      ],
     },
   },
   testnet: true,

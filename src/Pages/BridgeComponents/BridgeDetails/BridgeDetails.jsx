@@ -19,7 +19,7 @@ function BridgeDetails() {
 
     React.useEffect(() => {setTokenName(bridge.fromToken);}, [bridge.fromToken]);
 
-    React.useEffect(() => {updateAllowance()}, [bridge.allowance]);
+    React.useEffect(() => {updateAllowance()}, [bridge.allowance, bridge.fromToken, bridge.fromChain]);
 
     return ( 
         <div className="bridgeDetails">

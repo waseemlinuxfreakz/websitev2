@@ -18,7 +18,11 @@ export const baseSepolia = {
       http: ['https://sepolia.base.org'],
     },
     public: {
-      http: ['https://sepolia.base.org'],
+      http: [
+        'https://sepolia.base.org',
+        'https://base-sepolia.blockpi.network/v1/rpc/public',
+        'https://rpc.notadegen.com/base/sepolia'
+      ],
     },
   },
   testnet: true,

@@ -17,7 +17,14 @@ export const polygonMumbai = {
             http: ['https://rpc.ankr.com/polygon_mumbai'],
         },
         public: {
-            http: ['https://rpc.ankr.com/polygon_mumbai'],
+            http: [
+                'https://rpc.ankr.com/polygon_mumbai',
+                'https://rpc.ankr.com/polygon_mumbai',
+                'https://polygon-mumbai-bor.publicnode.com',
+                'https://polygon-mumbai-pokt.nodies.app',
+                'https://polygon-mumbai.blockpi.network/v1/rpc/public',
+                'https://polygon-testnet.public.blastapi.io'
+            ],
         }
     },
     testnet: true,

@@ -14,7 +14,13 @@ export const avalancheFuji = {
   name: "Avalanche Fuji",
   rpcUrls: {
     default: { http: ['https://api.avax-test.network/ext/bc/C/rpc'] },
-    public: { http: ['https://api.avax-test.network/ext/bc/C/rpc'] },
+    public: { http: [
+      'https://api.avax-test.network/ext/bc/C/rpc',
+      'https://avalanche-fuji-c-chain.publicnode.com',
+      'https://rpc.ankr.com/avalanche_fuji',
+      'https://avalanche-fuji.blockpi.network/v1/rpc/public',
+      'https://endpoints.omniatech.io/v1/avax/fuji/public'
+    ] },
   },
   testnet: true,
 } as TEmmetChain;

@@ -17,7 +17,10 @@ export const optimismSepolia = {
       http: ['https://sepolia.optimism.io'],
     },
     public: {
-      http: ['https://sepolia.optimism.io'],
+      http: [
+        'https://sepolia.optimism.io',
+        'https://optimism-sepolia.blockpi.network/v1/rpc/public'
+      ],
     },
   },
   testnet: true,

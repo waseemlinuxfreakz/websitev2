@@ -15,10 +15,15 @@ export const sepolia = {
   nativeCurrency: { name: 'Sepolia Ether', symbol: 'ETH', decimals: 18 },
   rpcUrls: {
     default: {
-      http: ['https://rpc.sepolia.org'],
+      http: ['https://ethereum-sepolia.publicnode.com'],
     },
     public: {
-      http: ['https://rpc.sepolia.org'],
+      http: [
+        'https://ethereum-sepolia.publicnode.com',
+        'https://rpc.notadegen.com/eth/sepolia',
+        'https://eth-sepolia.public.blastapi.io',
+        'https://eth-sepolia-public.unifra.io'
+      ],
     },
   },
   testnet: true,
