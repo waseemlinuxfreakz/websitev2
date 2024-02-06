@@ -1,8 +1,7 @@
 import React from 'react';
 
 import './Distribution.css';
-import EmmetSupply from '../../../assets/img/web/Tokenomics/Distribution/EmmetSupply.svg';
-import EmmetSupplyMob from '../../../assets/img/web/Tokenomics/Distribution/EmmetSupply-Mob.svg';
+import EmmetSupply from '../../../assets/img/web/Tokenomics/Distribution/pie-chart-desk.svg';
 
 
 function Distribution() {
@@ -32,6 +31,7 @@ function Distribution() {
                                     <li><span className="colorBox liquiRew"></span> <span>20%</span> Liquidity Rewards</li>
                                     <li><span className="colorBox stakingRew"></span> <span>20%</span> Staking Rewards</li>
                                     <li><span className="colorBox echoSys"></span> <span>20%</span> Ecosystem Fund</li>
+                                    <li><span className="colorBox echoSys"></span> <span>1%</span> Airdrop</li>
                                 </ul>
                             </div>
                         </div>
