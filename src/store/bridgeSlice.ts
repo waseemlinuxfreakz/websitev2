@@ -30,6 +30,7 @@ export interface IBridgeState {
     receive: number | string,
     receiver: string,
     slippage: number,
+    tempAmount: number | string,
     timeElapsed: number,
     toBalance: number,
     toChain: string,
@@ -72,6 +73,7 @@ const initialState = {
     receive: '',
     receiver: "",
     slippage: 0.5,
+    tempAmount: '',
     timeElapsed: 0,
     toBalance: 0,
     toChain,
@@ -88,32 +90,38 @@ export const bridgeSlice = createSlice({
         setBridgeAllowance(state: IBridgeState, action: PayloadAction<number>) {
             state.allowance = action.payload;
         },
-        setBridgeAmount(state: IBridgeState, action: PayloadAction<number>) {
-            state.amount = action.payload;
-            // If we're bridging the same token
-            if (state.fromToken == state.toToken) {
-                if(action.payload){
-                    if(isStableCoin(state.fromToken)){
-                        const percentage: number = BridgeFeeStructure.stablecoins.percentage * action.payload;
-                        if(percentage > BridgeFeeStructure.stablecoins.minimum){
-                            state.receive = state.amount - percentage;
-                            //state.bridgeFee = percentage;
+        setBridgeAmount(state: IBridgeState, action: PayloadAction<number|string>) {
+            
+            if(action.payload === ''){
+                state.amount = action.payload;
+                state.receive = '';
+            }else{
+                state.amount = typeof action.payload === 'string' ? parseFloat(action.payload) : action.payload;
+                // If we're bridging the same token
+                if (state.fromToken == state.toToken) {
+                    if(action.payload){
+                        if(isStableCoin(state.fromToken)){
+                            const percentage: number = BridgeFeeStructure.stablecoins.percentage * state.amount;
+                            if(percentage > BridgeFeeStructure.stablecoins.minimum){
+                                state.receive = state.amount - percentage;
+                                //state.bridgeFee = percentage;
+                            }
+                            else{
+                                state.receive = state.amount - BridgeFeeStructure.stablecoins.minimum;
+                                //state.bridgeFee = BridgeFeeStructure.stablecoins.minimum;
+                            }
                         }
-                        else{
-                            state.receive = state.amount - BridgeFeeStructure.stablecoins.minimum;
-                            //state.bridgeFee = BridgeFeeStructure.stablecoins.minimum;
-                        }
-                        console.log("amount:", action.payload, "percentage", percentage, "receive:", state.receive)
+                    }else{
+                        state.receive = '';
                     }
-                }else{
-                    state.receive = '';
+                    
+                } else {
+                    // If we're swapping while bridging a slippage may occur
+                    const slippageAmount = state.amount * state.slippage / 100;
+                    state.receive = state.amount - slippageAmount;
                 }
-                
-            } else {
-                // If we're swapping while bridging a slippage may occur
-                const slippageAmount = state.amount * state.slippage / 100;
-                state.receive = state.amount - slippageAmount;
             }
+            
         },
         setBridgeBalance(state: IBridgeState, action: PayloadAction<number>) {
             state.balance = action.payload;
@@ -197,6 +205,9 @@ export const bridgeSlice = createSlice({
                 state.receive = Number(state.amount) - slippageAmount;
             }
         },
+        setBridgeTempAmount(state: IBridgeState, action: PayloadAction<number|string>){
+            state.tempAmount = action.payload;
+        },
         setBridgeTimeElapsed(state: IBridgeState, action: PayloadAction<number>) {
             state.timeElapsed = action.payload;
         },
@@ -275,6 +286,7 @@ export const {
     setReceiver,
     setBridgeIsSuccess,
     setBridgeSlippage,
+    setBridgeTempAmount,
     setBridgeTimeElapsed,
     setBridgeToChain,
     setBridgeToBalance,

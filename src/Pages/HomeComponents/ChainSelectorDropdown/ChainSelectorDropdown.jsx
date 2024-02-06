@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNetwork, useSwitchNetwork } from 'wagmi'
 
-import Ethereum from '../../../assets/img/Ethereum.svg';
 import DownArrow from '../../../assets/img/down-white.svg';
 import chainData from '../../../store/Chain.json';
 
 import { useAppSelector, useAppDispatch } from '../../../hooks/storage';
-import { setBridgeFromChain } from '../../../store/bridgeSlice';
+import { setBridgeFromChain, setBridgeAmount } from '../../../store/bridgeSlice';
 import { setSwapFromChain } from '../../../store/swapSlice';
 
 const findChain = (chain) => {
@@ -30,8 +29,8 @@ export default function ChainSelectorDropdown({ parent, direction }) {
 
     // Local State
     const [selectedChain, setSelectedChain] = useState({
-        icon: chain && findChain(chain) ? `${isLayer2View() ? "..": ""}${findChain(chain).icon}` : Ethereum,
-        name: chain && findChain(chain) ? findChain(chain).name : 'Ethereum',
+        icon: chain && findChain(chain) ? `${isLayer2View() ? "..": ""}${findChain(chain).icon}` : "/img/chain/ethereum.svg",
+        name: chain && findChain(chain) ? findChain(chain).name : 'Sepolia',
     });
 
     const [isListVisible, setListVisible] = useState(false);
@@ -56,7 +55,10 @@ export default function ChainSelectorDropdown({ parent, direction }) {
     useEffect(() => {
 
         if(parent === "bridge"){
-            setChainArray(bridge.toChains)
+            setChainArray(bridge.toChains);
+            const oldBridgeAmount = bridge.amount;
+            dispatch(setBridgeAmount(0));
+            dispatch(setBridgeAmount(oldBridgeAmount));
         }
 
     },[bridge.toChain]);

@@ -72,8 +72,11 @@ export default function useBridgingFee(
             )) {
             (async () => {
                 const receipt = await getTxData(fromHash, fromChain);
-                setFromFee(getTxFee(receipt));
-                setFromStatus(toTitleCase(receipt!.status));
+                if(receipt){
+                    setFromFee(getTxFee(receipt));
+                    setFromStatus(toTitleCase(receipt!.status));
+                }
+                
             })();
         }
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 // Hooks
-import { useAccount, useBalance as useWagmiBalance } from 'wagmi';
+import { useAccount } from 'wagmi';
 import { useWeb3Modal } from '@web3modal/react';
 import { useAppSelector, useAppDispatch } from '../../hooks/storage';
 import useBridgeApproveERC20 from '../../hooks/useBridgeApproveERC20';
@@ -9,60 +9,76 @@ import useBalance from '../../hooks/useBalance';
 // Components
 import ButtonSpinner from '../CommonComponents/Spinner/ButtonSpinner';
 // Actions
-import { setBridgeIsApproving } from '../../store/bridgeSlice';
+import { setBridgeIsApproving, setBridgeAmount, setBridgeTempAmount } from '../../store/bridgeSlice';
+import { sleep } from '../../utils';
 
 function MainActionButton() {
 
     const dispatch = useAppDispatch();
     const bridge = useAppSelector((state) => state.bridge);
-    const { fromBalance } = useBalance();
+    const { coinBalance, fromBalance } = useBalance();
 
     const { isConnected, address } = useAccount();
     const { open } = useWeb3Modal();
 
     const [disabled, setDisabled] = useState(false);
     const [caption, setCaption] = useState('');
+    const [showSpinner, setShowSpiner] = useState(false);
 
     const { approve } = useBridgeApproveERC20();
-    const { estimation, isBurnReady, burnUSDC } = useBridgeTransferEmmet();
-
-    const txCoinBalance = useWagmiBalance({
-        address
-    });
+    const { estimation, isBurnReady, burnUSDC, retry, error } = useBridgeTransferEmmet();
 
     function isApproveRequired() {
         const needApproval = Number(bridge.amount) > (Number(bridge.allowance) / 10 ** Number(bridge.decimals));
         return needApproval;
     }
 
+    // console.log("coinBalance", coinBalance, 'estimation', estimation)
+
     useEffect(() => {
 
         if (isConnected) {
 
-            if (txCoinBalance < estimation) {
+            if (coinBalance < estimation || (error && error =='Insufficient fee coverage.')) {
                 setDisabled(true);
                 setCaption('Insufficient balance to pay the fee');
             } else {
 
-                if (isApproveRequired()) {
-                    setDisabled(false);
-                    setCaption('Approve');
-                } else {
-                    setDisabled(false);
-                    setCaption('Transfer');
-                }
+                console.log('isBurnReady', isBurnReady)
 
                 if (!bridge.amount || Number(bridge.amount) <= 0) {
                     setDisabled(true);
                     setCaption('Enter Amount');
-                }
+                    setShowSpiner(false);
+                } else if(isApproveRequired()) {
+                    setDisabled(false);
+                    setCaption('Approve');
+                    setShowSpiner(false);
+                } else if (isBurnReady) {
+                    setDisabled(false);
+                    setCaption('Transfer');
+                    setShowSpiner(false);
+                } else {
+                        setDisabled(true);
+                        setCaption('Preparing transfer...');
+                        setShowSpiner(true);
+                        // Reestimate the Transfer
+                        retry()
+                        // dispatch(setBridgeTempAmount(bridge.amount));
+                        // dispatch(setBridgeAmount(''));
+                        // dispatch(setBridgeAmount(bridge.tempAmount));
+                        // dispatch(setBridgeTempAmount(''));
+                    }
+
 
                 if (bridge.isApproving) {
                     setDisabled(true);
+                    setShowSpiner(true);
                 }
 
                 if (fromBalance < bridge.amount) {
                     setDisabled(true);
+                    setShowSpiner(false);
                     setCaption('Amount exceeds the token balance');
                 }
 
@@ -75,7 +91,7 @@ function MainActionButton() {
             setCaption('Conect wallet')
         }
 
-    }, [isConnected, bridge.amount, bridge.isApproving]);
+    }, [isConnected, bridge.amount, bridge.isApproving, isBurnReady]);
 
 
 
@@ -117,13 +133,8 @@ function MainActionButton() {
                 disabled={disabled}
                 onClick={onClickSelectAction}
             >
-                {bridge.isApproving
-                    ? (<>
-                        <ButtonSpinner />
-                        <span>Approving...</span>
-                    </>)
-                    : caption
-                }
+                {showSpinner && <ButtonSpinner />}
+                {caption}
 
             </button>
         </div>

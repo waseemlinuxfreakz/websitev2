@@ -97,10 +97,11 @@ export default function useBridgeApproveERC20() {
 
     if (data && isSuccess ) {
         (async () => {
+            await sleep(20_000);
             const TX = await getTxReceipt(data.hash, chainName);
 
             if (TX && TX.status === 'success') {
-                await sleep(20_000);
+                
                 dispatch(setBridgeAllowance(Number(bridge.amount) * 10 ** decimals));
                 dispatch(setBridgeIsApproving(false));
             }

@@ -6,7 +6,7 @@ import getSigner from '../utils/getSigner';
 import { useAppDispatch, useAppSelector } from './storage';
 import { setBridgeFromHash, showBridgeProgress } from '../store/bridgeSlice';
 import { TChainName, ChainNameToTypeChainName, SUPPORTED_CHAINS, ChainToDestinationDomain } from '../types';
-import { addressToBytes32, addressToAccount } from '../utils';
+import { addressToBytes32, addressToAccount, sleep } from '../utils';
 
 import useBridgFee from './useBridgeFee';
 
@@ -26,6 +26,10 @@ export default function useBridgeTransferEmmet() {
 
     const [estimation, setEstimation] = useState<number>(0);
 
+    const [error, setError] = useState('');
+
+    let interval: string | number | NodeJS.Timeout | undefined;
+
     const try_ = async (): Promise<any> => {
         try {
             const chainName: TChainName = ChainNameToTypeChainName[bridge.fromChain];
@@ -33,6 +37,7 @@ export default function useBridgeTransferEmmet() {
             const formattedAmount = Number(bridge.amount) * 10 ** decimals;
             const bridgeAddress: string = SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]].emmetBridge.address;
             const destinationDomain = ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]];
+            console.log("destinationDomain:", destinationDomain, ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]], 'bridge.toChain', bridge.toChain)
             const mintRecipient: Hash = addressToBytes32(addressToAccount(bridge.receiver));
             const signer = getSigner(chainName);
             const tokenName: string = bridge.fromToken;
@@ -48,11 +53,11 @@ export default function useBridgeTransferEmmet() {
                     mintRecipient,
                     tokenName
                 ],
-                value: BigInt(fee + 1000000000),
+                value: BigInt(fee + 1_000_000_000),
             });
 
-            if(gas){
-                setEstimation(parseInt(gas.toString()));
+            if (gas && fee) {
+                setEstimation((parseInt(gas.toString()) + parseInt(fee.toString()) + 1_000_000_000) / 1e18);
             }
 
             console.log(
@@ -63,7 +68,7 @@ export default function useBridgeTransferEmmet() {
                 'destinationDomain', destinationDomain,
                 'mintRecipient', mintRecipient,
                 'tokenName', tokenName,
-                'fee', fee + 1000000000,
+                'fee', fee + 1_000_000_000,
                 'gas', gas
             );
 
@@ -78,23 +83,31 @@ export default function useBridgeTransferEmmet() {
                     mintRecipient,
                     tokenName
                 ],
-                value: BigInt(fee + 1000000000),
+                value: BigInt(fee + 1_000_000_000),
             });
 
             console.log('request:', request)
 
-            if (request) {
+            if (request && request.args[1] == ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]]) {
                 setIsReady(true);
                 setParams(request);
+                setError('');
             }
 
         } catch (e: any) {
             setIsReady(false);
             console.warn(`useBridgeTransferEmmet Error: ${e.message}`);
+            if(e.message.includes('Insufficient fee coverage.')){
+                setError('Insufficient fee coverage.')
+            }
         }
     }
 
-    useEffect(() => {
+    function retry() {
+
+
+
+        console.log('retrying')
 
         if (address
             && fee
@@ -103,6 +116,8 @@ export default function useBridgeTransferEmmet() {
             && bridge.allowance >= Number(bridge.amount)
         ) {
             (async () => {
+
+                setError('');
                 await try_();
 
             })().catch((e: any) => {
@@ -111,7 +126,22 @@ export default function useBridgeTransferEmmet() {
             });
         }
 
-    }, [bridge.amount, address, bridge.allowance, fee]);
+    }
+
+    useEffect(() => {
+
+        if( bridge.amount && params && params.args[1] != ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]]){
+
+            setIsReady(false);
+            interval = setInterval(() => {
+                retry();
+            }, 5_000)
+    
+            return () => clearInterval(interval);
+
+        }        
+
+    }, [bridge.amount, address, bridge.allowance, fee, bridge.toChain]);
 
     const burnUSDC = () => {
 
@@ -122,7 +152,7 @@ export default function useBridgeTransferEmmet() {
                 const chainName: TChainName = ChainNameToTypeChainName[bridge.fromChain];
                 const signer = getSigner(chainName);
                 let hash;
-                if(!params){
+                if (!params) {
                     (async () => {
                         await try_();
                     })()
@@ -145,6 +175,6 @@ export default function useBridgeTransferEmmet() {
 
     }
 
-    return {estimation, isBurnReady, burnUSDC }
+    return { estimation, isBurnReady, burnUSDC, retry, error }
 
 }
