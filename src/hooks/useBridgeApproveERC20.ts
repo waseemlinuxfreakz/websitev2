@@ -108,6 +108,8 @@ export default function useBridgeApproveERC20() {
 
         })();
 
+    } else {
+        dispatch(setBridgeIsApproving(false));
     }
 
     return { approveData: data, isApproveLoading: isLoading, isApproveSuccess: isSuccess, approve: write };
