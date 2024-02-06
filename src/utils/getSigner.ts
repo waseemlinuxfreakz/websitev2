@@ -3,7 +3,7 @@ import { TChainName } from '../types';
 import { findChain } from './chain';
 import { createWalletClient, custom, publicActions  } from 'viem';
 
-export default function getSigner(chainName: TChainName){
+export function getSigner(chainName: TChainName){
 
     let transport;
 
