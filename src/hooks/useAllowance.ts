@@ -26,11 +26,11 @@ export default function useBridgeAllowance() {
     const [isApprovalRequired, setIsApprovalRequired] = useState<boolean>(false);
 
 
-    useEffect(() => {
+    const updateAllowance = () => {
 
         (async () => {
 
-            if(isConnected && bridge.fromChain && bridge.fromToken){
+            if (isConnected && bridge.fromChain && bridge.fromToken) {
 
                 const tokenAddress = addressToAccount(getTokenAddress(
                     ChainNameToTypeChainName[bridge.fromChain],
@@ -38,20 +38,20 @@ export default function useBridgeAllowance() {
                 ));
                 const chainName: TChainName = ChainNameToTypeChainName[bridge.fromChain];
                 const chain = SUPPORTED_CHAINS[chainName];
-                const spender:string = chain!.emmetBridge.address;
+                const spender: string = chain!.emmetBridge.address;
                 const provider = getProvider(chainName);
-    
+
                 if (tokenAddress) {
-    
+
                     const decimals = await provider.readContract({
                         address: tokenAddress,
                         abi: erc20ABI,
                         functionName: 'decimals'
                     });
-    
+
                     setDecimals(BigInt(decimals));
                     dispatch(setBridgeDecimals(decimals));
-    
+
                     const allowance = await provider.readContract({
                         address: tokenAddress,
                         abi: erc20ABI,
@@ -61,17 +61,17 @@ export default function useBridgeAllowance() {
                             addressToAccount(spender)
                         ]
                     });
-    
+
                     setAllowance(Number(allowance.toString()));
                     dispatch(setBridgeAllowance(Number(allowance.toString())));
                 }
-    
+
                 if (isApproveRequired()) {
                     setIsApprovalRequired(true);
                 } else {
                     setIsApprovalRequired(false);
                 }
-    
+
                 if (error) setError(undefined);
                 if (bridge.error) {
                     dispatch(setBridgeError(undefined));
@@ -85,9 +85,18 @@ export default function useBridgeAllowance() {
             setError(formattedError);
             dispatch(setBridgeError(formattedError));
             // console.log("tokenAddress", tokenAddress, "spender", spender)
-        });
+        })
+
+
+
+    }
+
+
+    useEffect(() => {
+
+        updateAllowance();
 
     }, [address, bridge.amount, bridge.fromChain, bridge.fromToken, bridge.isApproving]);
 
-    return { allowance, decimals, error, isApprovalRequired };
+    return { allowance, decimals, error, isApprovalRequired, updateAllowance };
 }

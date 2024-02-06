@@ -6,18 +6,20 @@ import DestinationGasEstimation from './DestinationGasEstimation';
 import BridgingTimeEstimation from './BridgingTimeEstimation';
 
 import { useAppSelector } from '../../../hooks/storage';
-import { bnWithoutDecimals } from '../../../utils/bnWithoutDecimals';
+import { bnWithoutDecimals } from '../../../utils/';
 import useBridgeAllowance from '../../../hooks/useAllowance';
 
 function BridgeDetails() {
 
     const bridge = useAppSelector((state) => state.bridge);
 
-    const { allowance } = useBridgeAllowance()
+    const { allowance, updateAllowance } = useBridgeAllowance();
 
     const [tokenName, setTokenName] = React.useState(bridge.fromToken);
 
     React.useEffect(() => {setTokenName(bridge.fromToken);}, [bridge.fromToken]);
+
+    React.useEffect(() => {updateAllowance()}, [bridge.allowance]);
 
     return ( 
         <div className="bridgeDetails">

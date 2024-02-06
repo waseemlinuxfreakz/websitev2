@@ -10,7 +10,7 @@ import useBalance from '../../hooks/useBalance';
 import ButtonSpinner from '../CommonComponents/Spinner/ButtonSpinner';
 // Actions
 import { setBridgeIsApproving, setBridgeAmount, setBridgeTempAmount } from '../../store/bridgeSlice';
-import { sleep } from '../../utils';
+
 
 function MainActionButton() {
 
@@ -18,22 +18,19 @@ function MainActionButton() {
     const bridge = useAppSelector((state) => state.bridge);
     const { coinBalance, fromBalance } = useBalance();
 
-    const { isConnected, address } = useAccount();
+    const { isConnected } = useAccount();
     const { open } = useWeb3Modal();
 
     const [disabled, setDisabled] = useState(false);
     const [caption, setCaption] = useState('');
     const [showSpinner, setShowSpiner] = useState(false);
-
-    const { approve } = useBridgeApproveERC20();
+    const { approve, isApproveLoading } = useBridgeApproveERC20();
     const { estimation, isBurnReady, burnUSDC, retry, error } = useBridgeTransferEmmet();
 
     function isApproveRequired() {
         const needApproval = Number(bridge.amount) > (Number(bridge.allowance) / 10 ** Number(bridge.decimals));
         return needApproval;
     }
-
-    // console.log("coinBalance", coinBalance, 'estimation', estimation)
 
     useEffect(() => {
 
@@ -71,7 +68,7 @@ function MainActionButton() {
                     }
 
 
-                if (bridge.isApproving) {
+                if (isApproveLoading) {
                     setDisabled(true);
                     setShowSpiner(true);
                 }
@@ -91,7 +88,7 @@ function MainActionButton() {
             setCaption('Conect wallet')
         }
 
-    }, [isConnected, bridge.amount, bridge.isApproving, isBurnReady]);
+    }, [isConnected, bridge.amount, isApproveLoading, isBurnReady]);
 
 
 

@@ -2,11 +2,10 @@ import { useEffect, useState } from 'react';
 import { Hash } from 'viem';
 import { useAccount } from 'wagmi';
 import { circleBurner } from '../abis/circleBurner';
-import getSigner from '../utils/getSigner';
 import { useAppDispatch, useAppSelector } from './storage';
 import { setBridgeFromHash, showBridgeProgress } from '../store/bridgeSlice';
 import { TChainName, ChainNameToTypeChainName, SUPPORTED_CHAINS, ChainToDestinationDomain } from '../types';
-import { addressToBytes32, addressToAccount, sleep } from '../utils';
+import { addressToBytes32, addressToAccount, sleep, getSigner } from '../utils';
 
 import useBridgFee from './useBridgeFee';
 
@@ -56,8 +55,14 @@ export default function useBridgeTransferEmmet() {
                 value: BigInt(fee + 1_000_000_000),
             });
 
-            if (gas && fee) {
-                setEstimation((parseInt(gas.toString()) + parseInt(fee.toString()) + 1_000_000_000) / 1e18);
+            const gasPrice = await signer.getGasPrice();
+
+            if (gas && fee && gasPrice) {
+                setEstimation((parseInt(gas.toString())
+                    * parseInt(gasPrice.toString())
+                    + parseInt(fee.toString())
+                    + 1_000_000_000)
+                    / 1e18);
             }
 
             console.log(
@@ -97,7 +102,7 @@ export default function useBridgeTransferEmmet() {
         } catch (e: any) {
             setIsReady(false);
             console.warn(`useBridgeTransferEmmet Error: ${e.message}`);
-            if(e.message.includes('Insufficient fee coverage.')){
+            if (e.message.includes('Insufficient fee coverage.')) {
                 setError('Insufficient fee coverage.')
             }
         }
@@ -130,16 +135,16 @@ export default function useBridgeTransferEmmet() {
 
     useEffect(() => {
 
-        if( bridge.amount && params && params.args[1] != ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]]){
+        if (bridge.amount && params && params.args[1] != ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]]) {
 
             setIsReady(false);
             interval = setInterval(() => {
                 retry();
             }, 5_000)
-    
+
             return () => clearInterval(interval);
 
-        }        
+        }
 
     }, [bridge.amount, address, bridge.allowance, fee, bridge.toChain]);
 
