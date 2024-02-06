@@ -14,10 +14,10 @@ export const arbitrumSepolia = {
   name: "Arbitrum Sepolia",
   rpcUrls: {
     default: {
-      http: ['https://sepolia-rollup.arbitrum.io/rpc'],
+      http: ['https://arbitrum-sepolia.blockpi.network/v1/rpc/public'],
     },
     public: {
-      http: ['https://sepolia-rollup.arbitrum.io/rpc'],
+      http: ['https://arbitrum-sepolia.blockpi.network/v1/rpc/public'],
     },
   },
   testnet: true,
