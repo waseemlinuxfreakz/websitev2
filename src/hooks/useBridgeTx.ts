@@ -14,9 +14,9 @@ const fetchData = async (hash:string): Promise<TxDetails | {}> => {
 
         if(data){
             if(data.claimHash){
-                data.status = 'Success';
+                data.status = 'success';
             }else{
-                data.status = 'Pending'
+                data.status = 'pending'
             }
             data.txType = 'Transfer'
             return data;

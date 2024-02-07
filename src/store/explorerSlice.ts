@@ -23,7 +23,7 @@ const initialState: IExplorerState = {
         originalDomain: -1,
         originFee: 0,
         sender: '',
-        status: 'Pending',
+        status: 'pending',
         symbol: 'USDC',
     },
     filter: '',

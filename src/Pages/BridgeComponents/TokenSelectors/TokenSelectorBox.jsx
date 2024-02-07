@@ -42,8 +42,6 @@ export default function TokenSelectorBox({ type }) {
             setOldAmount('');
         }
 
-        console.log("amount RAW:", newValue)
-
     }
 
     useEffect(() => {
@@ -60,8 +58,6 @@ export default function TokenSelectorBox({ type }) {
             if (sanitized != '.') {
                 dispatch(setBridgeAmount(sanitized));
             }
-
-            console.log('amount', amount,'sanitized', sanitized)
 
         } else {
             dispatch(setBridgeAmount(oldAmount));

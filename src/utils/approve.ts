@@ -1,12 +1,10 @@
 import { erc20ABI } from "wagmi";
 import { addressToAccount } from "./address";
 import { getSigner } from "./getSigner";
-import { TChainName } from "../types";
+import { TChainName, TTxStatus } from "../types";
 import { Hash, TransactionReceipt } from "viem";
 import { sleep } from "./time";
 import { getTxReceipt } from "./getTxReceipt";
-
-export type TTxStatus = 'success' | 'reverted';
 
 /**
  * Approves the `amount` allowed for the `spender` in and ERC20 contract
@@ -14,7 +12,7 @@ export type TTxStatus = 'success' | 'reverted';
  * @param tokenAddress the address of the ERC 20 token contract
  * @param spender the address of the EOA or contract
  * @param amount the number of wei
- * @returns Struct {hash: Hash | undefined, status: 'success' | 'reverted'}
+ * @returns Struct {hash: Hash | undefined, status: 'success' | 'reverted' | 'failed', error: string | undefined}
  */
 export async function Approve(
     chainName: TChainName,
@@ -47,17 +45,17 @@ export async function Approve(
             const receipt: TransactionReceipt = await getTxReceipt(hash, chainName);
 
             // Extract its status
-            const status: TTxStatus = receipt && receipt.status ? receipt.status : 'reverted';
+            const status: TTxStatus = receipt && receipt.status ? receipt.status : 'failed';
 
             return { hash, status, error: undefined }
 
         }
 
-        return { hash: undefined, status: 'reverted', error: 'Something went wrong...' }
+        return { hash: undefined, status: 'failed', error: 'Something went wrong...' }
 
     } catch (error: { message: string } | any) {
 
-        return { hash: undefined, status: 'reverted', error: error.message }
+        return { hash: undefined, status: 'failed', error: error.message }
     }
 
 

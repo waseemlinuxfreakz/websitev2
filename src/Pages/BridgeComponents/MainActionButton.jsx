@@ -9,7 +9,7 @@ import useBalance from '../../hooks/useBalance';
 // Components
 import ButtonSpinner from '../CommonComponents/Spinner/ButtonSpinner';
 // Actions
-import { setBridgeIsApproving, setBridgeAmount, setBridgeTempAmount } from '../../store/bridgeSlice';
+import { setBridgeIsApproving } from '../../store/bridgeSlice';
 
 
 function MainActionButton() {
@@ -25,7 +25,7 @@ function MainActionButton() {
     const [caption, setCaption] = useState('');
     const [showSpinner, setShowSpiner] = useState(false);
     const { approve, isApproveLoading } = useBridgeApproveERC20();
-    const { estimation, isBurnReady, burnUSDC, retry, error } = useBridgeTransferEmmet();
+    const { burnUSDC, isTransferProcessed } = useBridgeTransferEmmet();
 
     function isApproveRequired() {
         const needApproval = Number(bridge.amount) > (Number(bridge.allowance) / 10 ** Number(bridge.decimals));
@@ -36,59 +36,47 @@ function MainActionButton() {
 
         if (isConnected) {
 
-            if (coinBalance < estimation || (error && error =='Insufficient fee coverage.')) {
+            if (!bridge.amount || Number(bridge.amount) <= 0) {
                 setDisabled(true);
-                setCaption('Insufficient balance to pay the fee');
-            } else {
-
-                console.log('isBurnReady', isBurnReady)
-
-                if (!bridge.amount || Number(bridge.amount) <= 0) {
-                    setDisabled(true);
-                    setCaption('Enter Amount');
-                    setShowSpiner(false);
-                } else if(isApproveRequired()) {
-                    setDisabled(false);
-                    setCaption('Approve');
-                    setShowSpiner(false);
-                } else if (isBurnReady) {
-                    setDisabled(false);
-                    setCaption('Transfer');
-                    setShowSpiner(false);
-                } else {
-                        setDisabled(true);
-                        setCaption('Preparing transfer...');
-                        setShowSpiner(true);
-                        // Reestimate the Transfer
-                        retry()
-                        // dispatch(setBridgeTempAmount(bridge.amount));
-                        // dispatch(setBridgeAmount(''));
-                        // dispatch(setBridgeAmount(bridge.tempAmount));
-                        // dispatch(setBridgeTempAmount(''));
-                    }
-
-
-                if (isApproveLoading) {
-                    setDisabled(true);
-                    setShowSpiner(true);
-                }
-
-                if (fromBalance < bridge.amount) {
-                    setDisabled(true);
-                    setShowSpiner(false);
-                    setCaption('Amount exceeds the token balance');
-                }
-
+                setCaption('Enter Amount');
+                setShowSpiner(false);
+            } 
+            
+            if (isApproveRequired()) {
+                setDisabled(false);
+                setCaption('Approve');
+                setShowSpiner(false);
             }
 
+            if (isApproveLoading) {
+                setDisabled(true);
+                setShowSpiner(true);
+            }
 
+            if(bridge.amount && !isApproveRequired()){
+                setDisabled(false);
+                setCaption('Transfer');
+                setShowSpiner(false);
+            }
+
+            if (fromBalance < bridge.amount) {
+                setDisabled(true);
+                setShowSpiner(false);
+                setCaption('Amount exceeds the token balance');
+            }
+
+            if(isTransferProcessed){
+                setDisabled(true);
+                setShowSpiner(true);
+                setCaption('Processing Transfer...');
+            }
 
         } else {
             setDisabled(false);
             setCaption('Conect wallet')
         }
 
-    }, [isConnected, bridge.amount, isApproveLoading, isBurnReady]);
+    }, [isConnected, bridge.amount, isApproveLoading, isTransferProcessed]);
 
 
 
@@ -108,16 +96,7 @@ function MainActionButton() {
 
                 }
             } else {
-                if (isBurnReady) {
-                    burnUSDC();
-                } else {
-                    try {
-                        burnUSDC();
-                    } catch (error) {
-                        console.error(error)
-                    }
-                }
-
+                burnUSDC();
             }
         }
 

@@ -51,9 +51,9 @@ export default function useCircleTxData() {
                     CircleTXData.txType = 'Transfer';
 
                     if (CircleTXData && CircleTXData.claimHash) {
-                        CircleTXData.status = "Success"
+                        CircleTXData.status = "success"
                     } else {
-                        CircleTXData.status = "Pending"
+                        CircleTXData.status = "pending"
                     }
 
                     dispatch(setBridgeTransaction(CircleTXData));

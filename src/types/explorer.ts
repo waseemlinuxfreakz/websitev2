@@ -1,3 +1,4 @@
+import { TTxStatus } from "./emmetBridge";
 
 export type TExplorerFilter = 'NONE' | 'SENDER' | 'FROMCHAIN' | 'TOCHAIN';
 
@@ -61,12 +62,6 @@ export const columns = [
     | "Redem"
     | "Swap"
     | "Transfer";
-
-export type TTxStatus =
-    "Failed"
-    | "Pending"
-    | "Reverted"
-    | "Success";
 
 export type TxDetails = {
     age?: number,

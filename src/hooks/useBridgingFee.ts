@@ -54,9 +54,9 @@ export default function useBridgingFee(
     const [fromFee, setFromFee] = useState<number>(0);
     const [toFee, setToFee] = useState<number>(0);
 
-    const [fromStatus, setFromStatus] = useState<TTxStatus | undefined>('Pending');
-    const [toStatus, setToStatus] = useState<TTxStatus | undefined>('Pending');
-    const [status, setCommonStatus] = useState<TTxStatus>('Pending');
+    const [fromStatus, setFromStatus] = useState<TTxStatus | undefined>('pending');
+    const [toStatus, setToStatus] = useState<TTxStatus | undefined>('pending');
+    const [status, setCommonStatus] = useState<TTxStatus>('pending');
 
 
     useEffect(() => {
@@ -67,7 +67,7 @@ export default function useBridgingFee(
             // BUT
             && !fromFee // Original fee is 0.00
             && (
-                fromStatus == 'Pending' // Transaction has not resolved
+                fromStatus == 'pending' // Transaction has not resolved
                 || fromStatus == undefined // No status received
             )) {
             (async () => {
@@ -99,7 +99,7 @@ export default function useBridgingFee(
     useEffect(() => {
 
         if (fromStatus) {
-            if (fromStatus == 'Success') {
+            if (fromStatus == 'success') {
 
                 if (toStatus) {
                     setCommonStatus(toStatus)
