@@ -3,7 +3,7 @@ import React from 'react';
 import './FooterRight.css'
 
 function FooterRight() {
-    return ( 
+    return (
         <div className="footerRight">
             <div className="row">
                 <div className="col-lg-4 col-md-6 col-sm-6 col-6">
@@ -11,10 +11,14 @@ function FooterRight() {
                         <h3>Products</h3>
                         <ul className="footerLink">
                             <li><a href="/bridge" target='_blank'>Bridge</a></li>
+                            <li><a href="#" target='_blank'>Swap</a></li>
                             {/* <li><a href="/swap" target='_blank'>Swap</a></li> */}
+                            <li><a href="#" target='_blank'>Pool</a></li>
                             {/* <li><a href="/pool" target='_blank'>Pool</a></li> */}
                             <li><a href="/explorer" target='_blank'>Explorer</a></li>
+                            <li><a href="#" target='_blank'>Stake</a></li>
                             {/* <li><a href="/pool/your-liquidity" target='_blank'>Stake</a></li> */}
+                            <li><a href="#">Lend</a></li>
                             {/* <li><a href="#">Lend</a></li> */}
                         </ul>
                     </div>
@@ -48,7 +52,7 @@ function FooterRight() {
                 </div>
             </div>
         </div>
-     );
+    );
 }
 
 export default FooterRight;
