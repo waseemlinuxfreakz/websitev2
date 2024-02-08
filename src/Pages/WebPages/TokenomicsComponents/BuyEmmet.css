@@ -103,3 +103,55 @@
     background: #40d86e;
     width: 20%;
 }
+
+@media (max-width: 575px) {
+
+    .buyTopBox {
+        width: 100%;
+        flex-direction: row;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding: 10px 12px;
+        flex-wrap: wrap;
+    }
+    
+    .buyTopBox h5 {
+        margin: 0;
+    }
+    
+    .buyTopBox h6 {
+        margin: 0 0 0 auto;
+        display: flex;
+        flex-direction: column-reverse;
+        font-size: 12px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.33;
+        letter-spacing: normal;
+        text-align: left;
+        color: #888b92;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .preseedLine {
+        width: 100%;
+        margin-top: 10px;
+    }
+    
+    .buyTopBox h6 span {
+        font-size: 16px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        text-align: left;
+        color: #fff;
+    }
+}
+
+

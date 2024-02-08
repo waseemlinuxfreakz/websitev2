@@ -9,10 +9,10 @@ function Distribution() {
         <div className="distributionContainer">
             <div className="container">
                 <div className="row">
-                    <div className="col-lg-6">
+                    <div className="col-md-6">
                         <div className="dustruLeft">
                             <h2>$EMMET Distribution</h2>
-                            {/* <img src={EmmetSupplyMob} alt="Distribution" className="tokMobImg distribution" /> */}
+                            <img src={EmmetSupply} alt="Distribution" className="distribution forMob" />
                             <div className="distributionBox">
                                 <h4>Investors</h4>
                                 <ul>
@@ -36,7 +36,7 @@ function Distribution() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-lg-6">
+                    <div className="col-md-6">
                         <div className="dustruRight">
                             <img src={EmmetSupply} alt="Distribution" className="distribution" />
                         </div>

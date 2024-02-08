@@ -14,7 +14,7 @@ function IntroducingEMMET() {
             <div className="container introEmmetContent">
                 <img src={IntroArt} alt="IntroArt" className="introArt" />
                 <div className="row">
-                    <div className="col-md-6">
+                    <div className="col-lg  -6">
                         <div className="introEmmetLeft">
                             <h1>Introducing  <br />
                                 <span>$EMMET</span>
@@ -23,7 +23,7 @@ function IntroducingEMMET() {
                             <a href="#" className='whiteBtn'>Explore $EMMET Tokenomics</a>
                         </div>
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-lg  -6">
                         <div className="introEmmetRight">
                             <BuyEmmet/>
                         </div>
