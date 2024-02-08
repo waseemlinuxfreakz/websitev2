@@ -4,6 +4,7 @@ import CountdownTimer from './CountdownTimer';
 
 import lineLeft from '../../../assets/img/web/Tokenomics/BuyEmmet/line-left.png';
 import lineRight from '../../../assets/img/web/Tokenomics/BuyEmmet/line-right.png';
+import BuyEmmetCoin from './BuyEmmetCoin';
 
 
 function BuyEmmet() {
@@ -42,14 +43,7 @@ function BuyEmmet() {
                         <CountdownTimer targetDate={targetDate} />
                     </div>
                 </div>
-                <div className="iwantbuyEmmet">
-                    <div className="iwantBuyBox">
-
-                    </div>
-                    <div className="iwillReceiveBox">
-                        
-                    </div>
-                </div>
+                <BuyEmmetCoin/>
             </div>
         </div>
      );

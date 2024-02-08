@@ -29,7 +29,7 @@ function FooterRight() {
                         <ul className="footerLink">
                             <li><a href="https://docs.emmet.finance/" target='_blank'>Docs</a></li>
                             <li><a href="https://www.npmjs.com/package/emmet.sdk" target='_blank'>API / SDK</a></li>
-                            <li><a href="#" target='_blank'>Widget</a></li>
+                            {/* <li><a href="#" target='_blank'>Widget</a></li> */}
                             <li><a href="https://github.com/Emmet-Finance/whitepaper-v1.0" target='_blank'>White Paper</a></li>
                             <li><a href="https://github.com/Emmet-Finance" target='_blank'>GitHub</a></li>
                             <li><a href="https://docs.emmet.finance/security/bug-bounty" target='_blank'>Bug Bounty</a></li>
@@ -41,7 +41,7 @@ function FooterRight() {
                     <div className="footerLinks">
                         <h3>About</h3>
                         <ul className="footerLink">
-                            <li><a href="/terms-of-service" target='_blank'>Terms Of Service</a></li>
+                            <li><a href="/terms-of-service" target='_blank'>Terms of Service</a></li>
                             <li><a href="/privacy-policy" target='_blank'>Privacy Policy</a></li>
                             <li><a href="https://docs.emmet.finance/intro/roadmap" target='_blank'>Roadmap</a></li>
                             <li><a href="#" target='_blank'>News</a></li>

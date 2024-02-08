@@ -1,0 +1,105 @@
+.buyEmmet {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 24px;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 0 34px 0 rgba(0, 0, 0, 0.2);
+    border-style: solid;
+    border-width: 1px;
+    border-color: #4d4d4d;
+    background-image: linear-gradient(to bottom, #1b1d20, #1b1d20), linear-gradient(to bottom, #4d4d4d 0%, rgba(77, 77, 77, 0.41) 100%);
+    background: #1b1d20;
+    max-width: 488px;
+    margin-left: auto;
+}
+
+.buyEmmet h3 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.33;
+}
+
+.buyTopBoxWrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.buyEmmetInner {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.buyTopBox {
+    width: calc(33.333% - 7px);
+    flex-grow: 1;
+    padding: 16px 12px;
+    border: 1px solid #4d4d4d;
+    background-image: linear-gradient(to bottom, #202226, #202226), linear-gradient(to bottom, #4d4d4d 0%, rgba(77, 77, 77, 0.41) 100%);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.buyTopBox h5 {
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.43;
+    color: #888b92;
+    margin: 0 0 10px 0;
+}
+
+.notifyMe {
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.33;
+    letter-spacing: normal;
+    text-align: unset;
+    color: #53b7ff;
+    padding: 5px 12px;
+    border-radius: 6px;
+    border: solid 1px #53b7ff;
+    display: inline-block;
+}
+
+.buyTopBox h6 {
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.43;
+    letter-spacing: normal;
+    color: #888b92;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.buyTopBox h6 span {
+    color: #fff;
+}
+
+.preseedLine {
+    gap: 10px;
+    padding: 0;
+    border-radius: 10px;
+    background-color: rgba(97, 100, 107, 0.3);
+    height: 5px;
+    overflow: hidden;
+}
+
+.preseedLineProgress {
+    display: block;
+    height: 5px;
+    background: #40d86e;
+    width: 20%;
+}
