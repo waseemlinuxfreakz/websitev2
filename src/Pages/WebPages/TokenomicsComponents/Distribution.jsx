@@ -31,7 +31,7 @@ function Distribution() {
                                     <li><span className="colorBox liquiRew"></span> <span>20%</span> Liquidity Rewards</li>
                                     <li><span className="colorBox stakingRew"></span> <span>20%</span> Staking Rewards</li>
                                     <li><span className="colorBox echoSys"></span> <span>20%</span> Ecosystem Fund</li>
-                                    <li><span className="colorBox echoSys"></span> <span>1%</span> Airdrop</li>
+                                    <li><span className="colorBox airdrop"></span> <span>1%</span> Airdrop</li>
                                 </ul>
                             </div>
                         </div>

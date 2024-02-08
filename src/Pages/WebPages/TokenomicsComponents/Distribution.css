@@ -114,6 +114,10 @@ span.colorBox.echoSys {
     background-color: #9afbc0;
 }
 
+span.colorBox.airdrop {
+    background-color: #fffd78;
+}
+
 .forMob {
     display: none !important; 
 }

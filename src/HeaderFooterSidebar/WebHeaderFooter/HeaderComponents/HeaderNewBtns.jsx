@@ -7,7 +7,7 @@ import './HeaderNewBtns.css';
 function HeaderNewBtns() {
     return ( 
         <div className="headerBtn">
-            <a href="#" className='AirdropEmmet'>
+            <a href="https://docs.emmet.finance/ecosystem-and-partnerships/emmetcolony-airdrop-adventure" target='_blank' className='AirdropEmmet'>
                 🔥 <span>Airdrop</span> $EMMET Inscription 
                 <img src={AirdropEmmet} alt="AirdropEmmet" />
             </a>

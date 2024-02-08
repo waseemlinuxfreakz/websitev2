@@ -33,7 +33,7 @@ function FooterRight() {
                             <li><a href="https://github.com/Emmet-Finance/whitepaper-v1.0" target='_blank'>White Paper</a></li>
                             <li><a href="https://github.com/Emmet-Finance" target='_blank'>GitHub</a></li>
                             <li><a href="https://docs.emmet.finance/security/bug-bounty" target='_blank'>Bug Bounty</a></li>
-                            <li><a href="#" target='_blank'>List a Token</a></li>
+                            <li><a href="https://form.jotform.com/240382733218050" target='_blank'>List a Token</a></li>
                         </ul>
                     </div>
                 </div>
