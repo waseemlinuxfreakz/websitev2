@@ -13,7 +13,7 @@ function Social() {
             <a href="https://twitter.com/Emmet_Finance" target='_blank'><img src={X} alt="X" /></a>
             <a href="https://t.me/Emmet_Finance" target='_blank'><img src={Telegram} alt="Telegram" /></a>
             <a href="https://discord.gg/yuXxDctC4W" target='_blank'><img src={Discord} alt="Discord" /></a>
-            <a href="#" target='_blank'><img src={Linkedin} alt="Linkedin" /></a>
+            <a href="https://www.linkedin.com/company/emmet-finance/" target='_blank'><img src={Linkedin} alt="Linkedin" /></a>
         </div>
      );
 }

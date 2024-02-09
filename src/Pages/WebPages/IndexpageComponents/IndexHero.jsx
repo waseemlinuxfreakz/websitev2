@@ -20,7 +20,7 @@ function IndexHero() {
                         </div>
                         <div className="counterBox">
                             <h3>{'<1 min'}</h3>
-                            <span>AVG Transfer Time</span>
+                            <span>Average Fill Time</span>
                         </div>
                         <div className="counterBox">
                             <h3>25K+</h3>
