@@ -64,8 +64,29 @@ img.galaxyImage {
     transform: translate(-52%);
 }
 
+.counterBottomText {
+    text-align: center;
+    display: block;
+    margin-top: 52px;
+    color: #B3B7BF;
+    margin-bottom: -10px;
+}
+
+.counterBottomText span {
+    color: #888B92;
+}
+
 @media only screen and (max-width: 767px) {
 
+    .counterBottomText {
+        margin: 0;
+        text-align: left;
+        padding: 16px;
+        margin-top: 16px;
+        margin-bottom: -42px;
+        padding-left: 0;
+    }
+    
     .counterBox h3 {
         font-size: 22px;
         line-height: 38px;

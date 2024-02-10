@@ -27,6 +27,7 @@ function IndexHero() {
                             <span>Monthly active users</span>
                         </div>
                     </div>
+                    <div className="counterBottomText"><span>// *</span> Testnet Summary Bridge</div>
                 </div>
             </div>
         </div>
