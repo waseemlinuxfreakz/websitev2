@@ -5,6 +5,7 @@ import CountdownTimer from './CountdownTimer';
 import lineLeft from '../../../assets/img/web/Tokenomics/BuyEmmet/line-left.png';
 import lineRight from '../../../assets/img/web/Tokenomics/BuyEmmet/line-right.png';
 import BuyEmmetCoin from './BuyEmmetCoin';
+import NotifyMe from './NotifyMe';
 
 
 function BuyEmmet() {
@@ -26,11 +27,11 @@ function BuyEmmet() {
                         </div>
                         <div className="buyTopBox inactive buyPriSeed">
                             <h5>Private Seed</h5>
-                            <a href="#" className="notifyMe">Notify me</a>
+                            <NotifyMe/>
                         </div>
                         <div className="buyTopBox inactive buyCommu">
                             <h5>Community</h5>
-                            <a href="#" className="notifyMe">Notify me</a>
+                            <NotifyMe/>
                         </div>
                     </div>
                     <div className="emmetTousd">

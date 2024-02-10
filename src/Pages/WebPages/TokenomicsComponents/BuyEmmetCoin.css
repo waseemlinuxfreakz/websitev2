@@ -111,6 +111,7 @@ p.label.right-text {
     right: -16px;
     width: auto !important;
     left: -16px;
+    margin-top: 20px;
 }
 
 .emmetBalanceDrop .selectedCoin> img {
