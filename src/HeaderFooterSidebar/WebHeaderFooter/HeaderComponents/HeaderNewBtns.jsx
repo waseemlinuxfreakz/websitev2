@@ -11,10 +11,10 @@ function HeaderNewBtns() {
                 🔥 <span>Airdrop</span> $EMMET Inscription 
                 <img src={AirdropEmmet} alt="AirdropEmmet" />
             </a>
-            <a href="https://staging.emmet.finance/tokensale" target='_blank' className='EmmetTokken'>
+            {/* <a href="https://staging.emmet.finance/tokensale" target='_blank' className='EmmetTokken'>
                 $EMMET Token Pre-sale
                 <img src={EmmetTokken} alt="EmmetTokken" />
-            </a>
+            </a> */}
         </div>
      );
 }
