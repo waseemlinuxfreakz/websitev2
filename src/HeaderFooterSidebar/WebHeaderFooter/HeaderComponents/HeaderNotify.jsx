@@ -18,7 +18,7 @@ function HeaderNotify() {
     return isVisible ? (
         <div className="headerNotify">
             <div className="headerNotifyContent">
-                <p>$EMMET Bridge V2 Testnet Adventure: February 12th at 18:00 UTC. <a href="https://taskon.xyz/event/detail/34711" target='_blank'>Join Adventure</a></p>
+                <p>$EMMET Bridge V2 Testnet Adventure: February 12th at 18:00 UTC. <a href="https://taskon.xyz/event/detail/34711" target='_blank'>Join the Adventure</a></p>
             </div>
             <div className="closeNotify" onClick={handleCloseClick}>
                 <img src={CloseButton} alt="CloseButton" />

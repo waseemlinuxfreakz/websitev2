@@ -75,7 +75,7 @@ export default function useCircleTxData() {
 
         interval = setInterval(() => {
             fetchData();
-        }, 30_000)
+        }, 6_000)
 
         return () => clearInterval(interval);
 
