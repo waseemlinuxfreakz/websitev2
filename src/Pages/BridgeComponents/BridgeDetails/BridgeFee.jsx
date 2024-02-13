@@ -19,7 +19,7 @@ export default function BridgeFee() {
                 Destination Gas (Est.)
             </div>
             <div className="detialItemRight">
-                {formattedFee.toFixed(8)} {nativeCurrency}
+                {formattedFee && formattedFee.toFixed(8)} {nativeCurrency}
             </div>
         </div>
     </>
