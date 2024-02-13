@@ -49,16 +49,16 @@ const Bridge = () => {
                                 caption="Bridge"
                             />
                             <div className="pageContent">
-                                <h1 className='maintainance'>
+                                {/* <h1 className='maintainance'>
                                     UNDER MAINTENANCE
-                                </h1>
+                                </h1> */}
 
-                                {/* <div className="swapContainerArea">
+                                <div className="swapContainerArea">
                                     {showProgress
                                         ? < BridgeTransferProgress />
                                         : <BridgeSwapContainer />
                                     }
-                                </div> */}
+                                </div>
                                 {/* <SwapConfirm/> */}
 
                             </div>
