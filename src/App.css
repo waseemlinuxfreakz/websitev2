@@ -946,3 +946,8 @@ div#root {
 .deskPoolPageWrap .explorerSearch {
     display: none;
 }
+
+.maintainance{
+    text-align: center;
+    color: crimson;
+}
