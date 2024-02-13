@@ -26,21 +26,21 @@ function BridgeTransactionDetails() {
             </li>
             <li className='bridgeTransactionDetailsList'>
                 <div className="bridgeTransDetLeft">
-                    Bridging Fee
+                    Protocol Fee
                 </div>
                 <div className="bridgeTransDetRight">
                     {formattedFee} {nativeCurrency}
                 {/* {formattedFee && formattedFee.toFixed(6)} {nativeCurrency} */}
                 </div>
             </li>
-            <li className='bridgeTransactionDetailsList'>
+            {/* <li className='bridgeTransactionDetailsList'>
                 <div className="bridgeTransDetLeft">
                     Destination Gas Fee (Est.)
                 </div>
                 <div className="bridgeTransDetRight">
                     {destCircleClaimFee[ChainNameToTypeChainName[bridge.toChain]].toFixed(7)} {destCurrency}
                 </div>
-            </li>
+            </li> */}
             <li className='bridgeTransactionDetailsList'>
                 <div className="bridgeTransDetLeft">
                     Estimated waiting time 

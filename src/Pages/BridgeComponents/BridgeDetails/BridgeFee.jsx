@@ -4,15 +4,25 @@ import { useAppSelector } from '../../../hooks/storage'
 
 export default function BridgeFee() {
     const bridge = useAppSelector((state) => state.bridge);
-    const {nativeCurrency, formattedFee } = useBridgeFee();
-    return (
+    const { nativeCurrency, formattedFee } = useBridgeFee();
+    return (<>
         <div className="detialItem">
             <div className="detialItemLeft">
-                Bridging Fee
+            Protocol Fee
+            </div>
+            <div className="detialItemRight">
+                {Number(bridge.amount - bridge.receive).toFixed(2)} {bridge.fromToken}
+            </div>
+        </div>
+        <div className="detialItem">
+            <div className="detialItemLeft">
+                Destination Gas (Est.)
             </div>
             <div className="detialItemRight">
                 {formattedFee} {nativeCurrency}
             </div>
         </div>
+    </>
+
     )
 }

@@ -44,7 +44,7 @@ function TransactionDetailsRight({ fromFee, toFee }) {
                 </li>
                 <li className='transactionDetailsListItem'>
                     <div className="transactionDetailsListLeft">
-                        Bridge Fee
+                        Protocol Fee
                     </div>
                     <div className="transactionDetailsListRight">
                         <div className="bridgeFee">
@@ -79,7 +79,7 @@ function TransactionDetailsRight({ fromFee, toFee }) {
                 </li>
                 <li className='transactionDetailsListItem'>
                     <div className="transactionDetailsListLeft">
-                        Value
+                        Value Received
                     </div>
                     <div className="transactionDetailsListRight">
                         $ {explorer.bridgeTransaction.amount / decimals()}

@@ -24,7 +24,7 @@ function BridgeDetails() {
     return ( 
         <div className="bridgeDetails">
             <BridgeFee />
-            < DestinationGasEstimation />
+            {/* < DestinationGasEstimation /> */}
             < BridgingTimeEstimation />
             <div className="detialItem">
                 <div className="detialItemLeft">
