@@ -99,7 +99,7 @@ export default function useBridgingFee(
     useEffect(() => {
 
         if (fromStatus) {
-            if (fromStatus == 'success') {
+            if (fromStatus == 'Success' || fromStatus == 'success') {
 
                 if (toStatus) {
                     setCommonStatus(toStatus)

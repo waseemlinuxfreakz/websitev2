@@ -19,7 +19,6 @@ export const avalancheFuji = {
       'https://avalanche-fuji-c-chain.publicnode.com',
       'https://rpc.ankr.com/avalanche_fuji',
       'https://avalanche-fuji.blockpi.network/v1/rpc/public',
-      'https://endpoints.omniatech.io/v1/avax/fuji/public'
     ] },
   },
   testnet: true,

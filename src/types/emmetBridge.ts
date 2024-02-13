@@ -33,6 +33,6 @@ export const BridgeFeeStructure = {
 
 export type TTxStatus =
     "failed"
-    | "pending"
+    | "pending" | "Pending"
     | "reverted"
-    | "success";
+    | "success" | "Success";

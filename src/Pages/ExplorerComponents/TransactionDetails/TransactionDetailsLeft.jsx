@@ -67,6 +67,10 @@ function TransactionDetailsLeft({ txStatus }) {
 
     };
 
+    function capitalize(word) {
+        return word.charAt(0).toUpperCase() + word.slice(1);
+      }
+
     return (
         <div className="transactionDetailsBox">
             <ul className="transactionDetailsList">
@@ -92,7 +96,7 @@ function TransactionDetailsLeft({ txStatus }) {
                                 src={txStatus == 'Success' ? Success : Pending}
                                 alt="Success"
                             />
-                            {' '}{txStatus}
+                            {' '}{txStatus && capitalize(txStatus)}
                         </span>
                     </div>
                 </li>
