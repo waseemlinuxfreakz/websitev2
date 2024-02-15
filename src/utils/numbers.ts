@@ -118,3 +118,17 @@ export function hexToDecimalString(s: string): string {
 
     return decimalValue;
 }
+
+
+export function removeTrailingZeroes(num:number) {
+    // Convert number to string
+    let numStr = num.toString();
+
+    // Remove trailing zeroes after the decimal point
+    numStr = numStr.replace(/(\.\d*?[1-9])0+$/, '$1');
+    
+    // Remove trailing decimal point if it's the last character
+    numStr = numStr.replace(/\.$/, '');
+
+    return numStr;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAppSelector } from '../../../hooks/storage';
-import { getDomainToChainName, getChainSymbolFromName, restoreOriginalSumSent } from '../../../utils';
+import { getDomainToChainName, getChainSymbolFromName, restoreOriginalSumSent, removeTrailingZeroes } from '../../../utils';
 import useGetTxValue from '../../../hooks/useGetTxValue'
 
 function TransactionDetailsRight({ fromFee, toFee }) {
@@ -48,11 +48,15 @@ function TransactionDetailsRight({ fromFee, toFee }) {
                     </div>
                     <div className="transactionDetailsListRight">
                         <div className="bridgeFee">
-                            {bridgeFee && `${bridgeFee / 1e18}`.slice(0, 10)}{' '}
+                            {/* {bridgeFee && `${bridgeFee / 1e18}`.slice(0, 10)}{' '}
                             {getChainSymbolFromName(getDomainToChainName(
                                 explorer.bridgeTransaction.originalDomain
-                            ))}
-                            <span>{` = $ ${0.5}`}</span></div>
+                            ))} */}
+                            {removeTrailingZeroes(
+                                Number(restoreOriginalSumSent(explorer.bridgeTransaction.amount / decimals()) 
+                                - explorer.bridgeTransaction.amount / decimals()).toFixed(6)
+                            )} {explorer.bridgeTransaction.symbol}
+                        </div>
                     </div>
                 </li>
                 <li className='transactionDetailsListItem'>

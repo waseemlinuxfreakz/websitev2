@@ -76,7 +76,7 @@ export default function useBridgFee () {
 
         }
 
-    }, [bridgeAddress, bridge.amount])
+    }, [bridgeAddress, bridge.amount, bridge.toChain])
 
     // console.log('fee', fee, 'nativeCurrency', nativeCurrency, 'formattedFee', formattedFee, 'bridgeAddress', bridgeAddress, 'toChain:', ChainNameToTypeChainName[bridge.toChain])
     return { fee, nativeCurrency, formattedFee }

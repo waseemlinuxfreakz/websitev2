@@ -2,7 +2,7 @@ import React from 'react';
 import './BridgeTransactionDetails.css';
 import useBridgeFee from '../../../hooks/useBridgeFee';
 import { useAppSelector } from '../../../hooks/storage';
-import { SUPPORTED_CHAINS, ChainNameToTypeChainName, destCircleClaimFee, } from '../../../types';
+import { SUPPORTED_CHAINS, ChainNameToTypeChainName, destCircleClaimFee, EstimatedTimeFromChain } from '../../../types';
 import { getDestinationFee } from '../../../utils';
 
 function BridgeTransactionDetails() {
@@ -47,7 +47,7 @@ function BridgeTransactionDetails() {
                     {/* <img src="./img/InfoIcons.svg" alt="InfoIcons" /> */}
                 </div>
                 <div className="bridgeTransDetRight">
-                    1 min 59 sec
+                    {EstimatedTimeFromChain[ChainNameToTypeChainName[bridge.fromChain]]}
                 </div>
             </li>
         </ul>

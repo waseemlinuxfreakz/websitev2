@@ -189,3 +189,13 @@ export const CHAIN_LOGOS: { [key: string]: string } = {
     polygonMumbai: "img/chain/polygon.svg",
     sepolia: "img/chain/ethereum.svg",
 }
+
+
+export const EstimatedTimeFromChain = {
+    'avalancheFuji':"50 sec",
+    'baseSepolia':"4 min 30 sec",
+    "sepolia": "1 min 35 sec",
+    'optimismSepolia': '3 min 40 sec',
+    'polygonMumbai': '2 min 30 sec',
+    'arbitrumSepolia': '4 min 30 sec'
+}

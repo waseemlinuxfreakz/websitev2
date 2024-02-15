@@ -3,7 +3,7 @@ import './TokenSelectorBox.css';
 // Components
 import WalletBalance from '../../HomeComponents/WalletBalance/WalletBalance';
 import TokenSelectionDropdown from './TokenSelectionDropdown';
-
+import { removeTrailingZeroes } from '../../../utils'
 import { useAppSelector, useAppDispatch } from '../../../hooks/storage';
 import { setBridgeAmount } from '../../../store/bridgeSlice';
 import ChainSelectorDropdown from '../../HomeComponents/ChainSelectorDropdown/ChainSelectorDropdown';
@@ -96,7 +96,7 @@ export default function TokenSelectorBox({ type }) {
                                     : false}
                                 value={type && type === "from"
                                     ? bridge.amount
-                                    : bridge.receive && Number(bridge.receive).toFixed(2)
+                                    : bridge.receive && removeTrailingZeroes(Number(bridge.receive).toFixed(9)).replace('.000000000', '.0')
                                 }
                             />
                         </h2>
