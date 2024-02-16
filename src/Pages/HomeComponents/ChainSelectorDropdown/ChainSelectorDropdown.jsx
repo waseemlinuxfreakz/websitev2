@@ -7,6 +7,7 @@ import chainData from '../../../store/Chain.json';
 import { useAppSelector, useAppDispatch } from '../../../hooks/storage';
 import { setBridgeFromChain, setBridgeAmount } from '../../../store/bridgeSlice';
 import { setSwapFromChain } from '../../../store/swapSlice';
+import { isMobile } from 'react-device-detect';
 
 const findChain = (chain) => {
     return chainData.find(c => chain && chain.id === c.id);
@@ -26,6 +27,8 @@ export default function ChainSelectorDropdown({ parent, direction }) {
     const isLayer2View = () => 
         window.location.href.includes("/your-liquidity")
         || window.location.href.includes("/transactionDetails/");
+
+    const isExplorer = () => window.location.href.includes('/explorer');
 
     // Local State
     const [selectedChain, setSelectedChain] = useState({
@@ -120,9 +123,11 @@ export default function ChainSelectorDropdown({ parent, direction }) {
                 </div>
                 <img src={DownArrow} alt="Down Arrow" />
             </div>
-            <ul className={`selectCoinList ${isListVisible
+            <ul className={`selectCoinList
+            ${isListVisible
                 ? 'visible'
-                : 'hidden'}`}>
+                : 'hidden'}`} 
+            style={ isExplorer() && isMobile && {bottom:0}}>
                 {chainArray.map((chain) => (
                     <li className="coinItem" key={chain.id}>
                         <div
