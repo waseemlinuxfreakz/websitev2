@@ -26,7 +26,7 @@ function AccessDefi() {
                     <div className="AccessDefiInner">
                         <h2>EMMET is your access to DeFi freedom</h2>
                         <p>Participate in the future of decentralized finance by joining our EMMET token sale. Secure your stake in the evolution of cross-chain DeFi, unlocking exclusive benefits and contributing to the growth of the Emmet Finance ecosystem</p>
-                        <a href="https://form.jotform.com/231456892158061" target='_blank' className='whiteBtn'>join the waitlist <img src={Link} alt="Link" /></a>
+                        <a href="https://form.jotform.com/231456892158061" target='_blank' className='whiteBtn'>Fill the Investor Form <img src={Link} alt="Link" /></a>
                     </div>
                 </div>
             </div>

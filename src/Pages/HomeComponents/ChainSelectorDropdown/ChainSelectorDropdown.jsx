@@ -109,6 +109,12 @@ export default function ChainSelectorDropdown({ parent, direction }) {
             document.removeEventListener('click', handleClickOutside);
         };
     }, []);
+
+
+    const componentStyles = {
+        bottom: isExplorer() && isMobile ? 0 : 83
+    }
+
     return (
         <div className="selectCoinLeft" ref={selectCoinRef}>
             <div
@@ -127,7 +133,8 @@ export default function ChainSelectorDropdown({ parent, direction }) {
             ${isListVisible
                 ? 'visible'
                 : 'hidden'}`} 
-            style={ isExplorer() && isMobile && {bottom:0}}>
+            style={componentStyles}
+            >
                 {chainArray.map((chain) => (
                     <li className="coinItem" key={chain.id}>
                         <div
