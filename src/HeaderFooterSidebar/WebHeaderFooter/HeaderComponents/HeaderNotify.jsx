@@ -23,8 +23,7 @@ function HeaderNotify() {
     return isVisible ? (
         <div className="headerNotify">
             <div className="headerNotifyContent">
-                <p>EMMET Bridge V2 Testnet Adventure is LIVE
-                    {/* <a href="https://taskon.xyz/event/detail/34711" target='_blank'>Join the Adventure</a> */}
+                <p>EMMET Bridge V2 Testnet is LIVE! <a href="https://taskon.xyz/campaign/detail/35634" target='_blank'>Join the Adventure</a>
                 </p>
             </div>
             <div className="closeNotify" onClick={handleCloseClick}>
