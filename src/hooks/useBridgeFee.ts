@@ -21,6 +21,10 @@ export default function useBridgFee () {
 
     const [provider, setProvider] = useState(getProvider(ChainNameToTypeChainName[bridge.fromChain]));
 
+    const isMumbaiToOptimism = () => {
+        return bridge.fromChain == 'Mumbai' && bridge.toChain == 'OPSepolia';
+    }
+
     function formatFee(fee:number):number{
         const decimals = SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]].nativeCurrency.decimals;
         return fee / 10 ** Number(decimals);
@@ -28,9 +32,10 @@ export default function useBridgFee () {
 
     async function getBridgeFee() {
         try {
-
+            const address = addressToAccount(SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]].emmetFeeOracle.address);
+            // console.log("Oracle:", address, ChainNameToTypeChainName[bridge.toChain])
             return await provider.readContract({
-                address: addressToAccount(SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]].emmetFeeOracle.address),
+                address,
                 abi: EmmetFeeOracleABI,
                 functionName:'calculateTransactionFee',
                 args:[ChainNameToTypeChainName[bridge.toChain]]
@@ -62,7 +67,7 @@ export default function useBridgFee () {
                 const fee_ = await getBridgeFee();
                 if(fee_){
                     // console.log("fee_", fee_, "contract:", bridgeAddress)
-                    const _fee = Number(fee_.toString());
+                    const _fee = isMumbaiToOptimism() ?  Number(fee_.toString()) + 1_000_000_000_000_000_000 : Number(fee_.toString());
                     setFormattedfee(formatFee(_fee));
                     setFee(_fee);
                     dispatch(setBridgeFee(_fee));

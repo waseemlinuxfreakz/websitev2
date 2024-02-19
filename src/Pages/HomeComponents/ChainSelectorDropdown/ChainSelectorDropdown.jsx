@@ -20,7 +20,6 @@ export default function ChainSelectorDropdown({ parent, direction }) {
 
     // Global State
     const bridge = useAppSelector(state => state.bridge);
-    const swap = useAppSelector(state => state.swap);
     const [ chainArray, setChainArray] = useState(chainData);
     const dispatch = useAppDispatch();
 
@@ -116,8 +115,31 @@ export default function ChainSelectorDropdown({ parent, direction }) {
     }, []);
 
 
-    const componentStyles = {
-        bottom: isExplorer() && isMobile ? 0 : 83
+    const componentStyles = isExplorer() && isMobile ? {
+        bottom: 0,
+        position: "fixed",
+        zIndex: 111,
+        left: 0,
+        right: 0,
+        top: "unset",
+        borderRadius: "16px 16px 0px 0px",
+        borderTop: "1px solid #3C3F43",
+        background: "#1B1D20",
+        maxHeight: "50vh",
+        overflow: "auto"
+        
+    } : {
+        bottom: 83,
+        zIndex: 111,
+        // left: 0,
+        // right: 0,
+        // top: "unset",
+        borderRadius: "16px",
+        borderTop: "1px solid #3C3F43",
+        background: "#1B1D20",
+        maxHeight: "50vh",
+        // overflow: "auto",
+        height: 260
     }
 
     return (

@@ -28,7 +28,7 @@ import { ALL_CHAINS } from './types/chains';
 
 const supportedChains = ALL_CHAINS;
 
-const gaTrackingId = '389928258';
+const gaTrackingId = 'G-C8Z7ZSWB1L';
 const projectId = "2bcf20e00bc0f72513e22cd16ce9ae83";
 const { publicClient } = configureChains(supportedChains, [w3mProvider({ projectId })]);
 const wagmiConfig = createConfig({
