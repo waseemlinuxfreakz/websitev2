@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './TokenSelectionDropdown.css';
+import ReactGA from 'react-ga';
 // Icons
 import DownArrow from '../../../assets/img/down-white.svg';
 import Fox from '../../../assets/img/fox.svg';
@@ -45,6 +46,12 @@ export default function TokenSelectionDropdown ({type}) {
         toggleVisibility();
         // dispatch( getIsfrom() ? setFromToken(name) : setToToken(name));
         // dispatch(getIsfrom() ? setFromPrice(name) : setToPrice(name));
+        ReactGA.event({
+            category: 'User',
+            action: 'Clicked Button',
+            label: 'Select Swap Coin'
+          });
+          
     };
 
     const toggleVisibility = () => {

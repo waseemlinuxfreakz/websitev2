@@ -6,6 +6,7 @@ import { useAppSelector, useAppDispatch } from '../../hooks/storage';
 import useBridgeApproveERC20 from '../../hooks/useBridgeApproveERC20';
 import useBridgeTransferEmmet from '../../hooks/useBridgeTransferEmmet';
 import useBalance from '../../hooks/useBalance';
+import ReactGA from 'react-ga';
 // Components
 import ButtonSpinner from '../CommonComponents/Spinner/ButtonSpinner';
 // Actions
@@ -40,8 +41,8 @@ function MainActionButton() {
                 setDisabled(true);
                 setCaption('Enter Amount');
                 setShowSpiner(false);
-            } 
-            
+            }
+
             if (isApproveRequired()) {
                 setDisabled(false);
                 setCaption('Approve');
@@ -53,7 +54,7 @@ function MainActionButton() {
                 setShowSpiner(true);
             }
 
-            if(bridge.amount && !isApproveRequired()){
+            if (bridge.amount && !isApproveRequired()) {
                 setDisabled(false);
                 setCaption('Transfer');
                 setShowSpiner(false);
@@ -65,7 +66,7 @@ function MainActionButton() {
                 setCaption('Amount exceeds the token balance');
             }
 
-            if(isTransferProcessed){
+            if (isTransferProcessed) {
                 setDisabled(true);
                 setShowSpiner(true);
                 setCaption('Processing Transfer...');
@@ -87,6 +88,12 @@ function MainActionButton() {
             if (isApproveRequired()) {
                 if (approve) {
                     try {
+                        ReactGA.event({
+                            category: 'User',
+                            action: 'Clicked Button',
+                            label: 'Approve'
+                        });
+
                         approve();
                         dispatch(setBridgeIsApproving(true));
                     } catch (error) {
@@ -96,6 +103,11 @@ function MainActionButton() {
 
                 }
             } else {
+                ReactGA.event({
+                    category: 'User',
+                    action: 'Clicked Button',
+                    label: 'Transfer'
+                });
                 burnUSDC();
             }
         }

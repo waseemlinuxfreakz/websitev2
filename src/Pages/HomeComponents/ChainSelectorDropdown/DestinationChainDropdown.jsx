@@ -4,6 +4,7 @@ import DownArrow from '../../../assets/img/down-white.svg';
 import chainData from '../../../store/Chain.json';
 import { useAppSelector, useAppDispatch } from '../../../hooks/storage';
 import { setBridgeToChain } from '../../../store/bridgeSlice';
+import ReactGA from 'react-ga';
 
 export default function DestinationChainDropdown () {
 
@@ -24,6 +25,12 @@ export default function DestinationChainDropdown () {
         setSelectedChain({ icon, name });
         toggleVisibility();
         dispatch(setBridgeToChain(name));
+        ReactGA.event({
+            category: 'User',
+            action: 'Clicked Button',
+            label: 'Select Swap To Chain'
+          });
+          
     }
 
     useEffect(() => {

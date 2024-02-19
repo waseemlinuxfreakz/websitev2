@@ -3,7 +3,7 @@ import { useNetwork, useSwitchNetwork } from 'wagmi'
 
 import DownArrow from '../../../assets/img/down-white.svg';
 import chainData from '../../../store/Chain.json';
-
+import ReactGA from 'react-ga';
 import { useAppSelector, useAppDispatch } from '../../../hooks/storage';
 import { setBridgeFromChain, setBridgeAmount } from '../../../store/bridgeSlice';
 import { setSwapFromChain } from '../../../store/swapSlice';
@@ -87,7 +87,12 @@ export default function ChainSelectorDropdown({ parent, direction }) {
         if(parent != 'explorer'){
             switchNetwork?.(id);
         }
-        
+        ReactGA.event({
+            category: 'User',
+            action: 'Clicked Button',
+            label: 'Select a Swap Chain'
+          });
+          
     };
 
     const toggleVisibility = () => {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Down from '../../../assets/img/down-white.svg';
-
+import ReactGA from 'react-ga';
 function ExplorerTransactionSelectDropdown() {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState('All Types');
@@ -20,6 +20,12 @@ function ExplorerTransactionSelectDropdown() {
   const handleItemClick = (itemClassName) => {
     setSelectedItem(itemClassName);
     setDropdownOpen(false);
+    ReactGA.event({
+      category: 'User',
+      action: 'Clicked Button',
+      label: 'Explorer dropdown'
+    });
+    
   };
 
   useEffect(() => {

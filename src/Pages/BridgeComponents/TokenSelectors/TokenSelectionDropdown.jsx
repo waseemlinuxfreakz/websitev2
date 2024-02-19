@@ -3,6 +3,7 @@ import './TokenSelectionDropdown.css';
 // Icons
 import DownArrow from '../../../assets/img/down-white.svg';
 import Fox from '../../../assets/img/fox.svg';
+import ReactGA from 'react-ga';
 // Components
 import CoinLinkAddress from '../CoinLinkAddress';
 import { useAppSelector, useAppDispatch } from '../../../hooks/storage';
@@ -46,6 +47,12 @@ export default function TokenSelectionDropdown({ type }) {
         setSelectedCoin({ icon, name });
         toggleVisibility();
         dispatch(getIsfrom() ? setBridgeFromToken(name) : setBridgeToToken(name));
+        ReactGA.event({
+            category: 'User',
+            action: 'Clicked Button',
+            label: 'Token Select'
+          });
+          
     };
 
     const toggleVisibility = () => {

@@ -1,6 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import './Responsive.css';
+import { useEffect} from 'react';
+import ReactGA from 'react-ga';
 import Bridge from './Pages/Bridge';
 import ExplorerPage from './Pages/Explorer';
 import TransactionDetailsPage from './Pages/TransactionDetailsPage';
@@ -26,6 +28,7 @@ import { ALL_CHAINS } from './types/chains';
 
 const supportedChains = ALL_CHAINS;
 
+const gaTrackingId = '389928258';
 const projectId = "2bcf20e00bc0f72513e22cd16ce9ae83";
 const { publicClient } = configureChains(supportedChains, [w3mProvider({ projectId })]);
 const wagmiConfig = createConfig({
@@ -41,6 +44,13 @@ const wagmiConfig = createConfig({
 const ethereumClient = new EthereumClient(wagmiConfig, supportedChains);
 
 function App() {
+
+  useEffect(() => {
+    ReactGA.initialize(gaTrackingId);
+
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
+
   return (
     <>
       <WagmiConfig config={wagmiConfig}>

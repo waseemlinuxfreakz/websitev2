@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-
+import ReactGA from 'react-ga';
 // import Rocket from '../../../assets/img/web/rocket.svg';
 import CloseButton from '../../../assets/img/web/CloseButton.svg';
-
 import './HeaderNotify.css'
 
 function HeaderNotify() {
@@ -13,6 +12,12 @@ function HeaderNotify() {
     const handleCloseClick = () => {
         // Hide the notification by updating the state
         setIsVisible(false);
+        ReactGA.event({
+            category: 'User',
+            action: 'Clicked Button',
+            label: 'Join the Adventure'
+          });
+          
     };
 
     return isVisible ? (

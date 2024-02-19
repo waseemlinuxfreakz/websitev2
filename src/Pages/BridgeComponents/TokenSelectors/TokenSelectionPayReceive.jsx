@@ -7,6 +7,7 @@ import Fox from '../../../assets/img/fox.svg';
 import CoinLinkAddress from '../CoinLinkAddress';
 import { useAppSelector, useAppDispatch } from '../../../hooks/storage';
 import {setFromToken, setToToken} from '../../../store/swapSlice';
+import ReactGA from 'react-ga';
 
 export default function TokenSelectionPayReceive ({type}) {
 
@@ -39,6 +40,11 @@ export default function TokenSelectionPayReceive ({type}) {
         setSelectedCoin({ icon, name });
         toggleVisibility();
         dispatch( getIsfrom() ? setFromToken(name) : setToToken(name));
+        ReactGA.event({
+            category: 'User',
+            action: 'Clicked Button',
+            label: 'Select Token'
+          });          
     };
 
     const toggleVisibility = () => {

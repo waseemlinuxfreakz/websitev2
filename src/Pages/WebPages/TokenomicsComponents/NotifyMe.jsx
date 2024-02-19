@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 import './Notifyme.css';
 import Close from '../../../assets/img/close.svg';
+import ReactGA from 'react-ga';
 
 function NotifyMe() {
     const [isModalVisible, setModalVisible] = useState(false);
   
     const handleNotifyClick = () => {
       setModalVisible(true);
+      ReactGA.event({
+        category: 'User',
+        action: 'Clicked Button',
+        label: 'Notify me'
+      });
+      
     };
   
     const handleCloseClick = () => {
