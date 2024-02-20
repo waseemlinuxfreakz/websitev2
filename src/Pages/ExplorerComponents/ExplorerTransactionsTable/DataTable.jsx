@@ -2,7 +2,7 @@ import React from 'react';
 import { MDBDataTable } from 'mdbreact';
 import { useNavigate } from 'react-router-dom';
 import useExplorerTransactions from '../../../hooks/useExplorerTransactions';
-import { getLogoByChainName, getOfficialChainName, getTimeLength, restoreOriginalSumSent, unpackDateTime } from '../../../utils';
+import { getLogoByChainName, getOfficialChainName, getTimeLength, restoreOriginalSumSent, unpackDateTime, removeTrailingZeroes } from '../../../utils';
 import { columns, ROWS_PER_PAGE } from '../../../types'
 
 const DatatablePage = () => {
@@ -18,7 +18,7 @@ const DatatablePage = () => {
       TxnHash: `<span class="textOnly">${Tx.TxnHash.slice(0,6)}...${Tx.TxnHash.slice(-4)}</span>`,
       Originchain: `<div class="chainCell"><img src="${getLogoByChainName(Tx.Originchain)}" alt="From Chain Logo" width="25px"/> ${getOfficialChainName(Tx.Originchain)}</div>`,
       Destination: `<div class="chainCell"><img src="${getLogoByChainName(Tx.Destination)}" alt="To Chain Logo" width="25px"/> ${getOfficialChainName(Tx.Destination)}</div>`,
-      Sent: `<span class="textCell">${restoreOriginalSumSent(Tx.Sent)} ${Tx.SentToken}</span>`,
+      Sent: `<span class="textCell">${removeTrailingZeroes(restoreOriginalSumSent(Tx.Sent))} ${Tx.SentToken}</span>`,
       Received: `<span class="textCell">${Tx.Received} ${Tx.SentToken}</span>`,
       Age: `<span class="textCell">${unpackDateTime(getTimeLength(Tx.Start, new Date()))}</span>`,
       TxnStatus: `<span class="${Tx.TxnStatus.toLowerCase()}"><img src="img/explorer/${Tx.TxnStatus}.svg" alt="${Tx.TxnStatus}" /> ${Tx.TxnStatus}</span>`,

@@ -31,7 +31,7 @@ function TransactionDetailsRight({ fromFee, toFee }) {
                     </div>
                     <div className="transactionDetailsListRight">
                         {/* If amount < 2,000 then fixed fee $0.4, else 0.02% of the amount */}
-                        {restoreOriginalSumSent(explorer.bridgeTransaction.amount / decimals())} {explorer.bridgeTransaction.symbol}
+                        {removeTrailingZeroes(restoreOriginalSumSent(explorer.bridgeTransaction.amount / decimals()))} {explorer.bridgeTransaction.symbol}
                     </div>
                 </li>
                 <li className='transactionDetailsListItem'>

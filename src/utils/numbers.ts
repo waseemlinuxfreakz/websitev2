@@ -5,10 +5,10 @@ export function restoreOriginalSumSent(amount: number) {
     if (amount < 0) return 0;
 
     if (amount <= 2000) {
-        return Number(amount + 0.4).toFixed(2);
+        return Number(amount + 0.4).toFixed(8);
     }
 
-    return Number(amount + amount * 0.0002).toFixed(2);
+    return Number(amount + amount * 0.0002).toFixed(8);
 
 }
 
@@ -129,6 +129,9 @@ export function removeTrailingZeroes(num:number) {
     
     // Remove trailing decimal point if it's the last character
     numStr = numStr.replace(/\.$/, '');
+
+    // Special case for numbers like 1.00000000
+    numStr = numStr.replace('.00000000', '.00')
 
     return numStr;
 }

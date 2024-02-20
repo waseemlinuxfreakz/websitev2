@@ -3,7 +3,7 @@ import './BridgeTransactionDetails.css';
 import useBridgeFee from '../../../hooks/useBridgeFee';
 import { useAppSelector } from '../../../hooks/storage';
 import { SUPPORTED_CHAINS, ChainNameToTypeChainName, destCircleClaimFee, EstimatedTimeFromChain } from '../../../types';
-import { getDestinationFee } from '../../../utils';
+import { getDestinationFee, removeTrailingZeroes } from '../../../utils';
 
 function BridgeTransactionDetails() {
 
@@ -21,7 +21,7 @@ function BridgeTransactionDetails() {
                     You will receive
                 </div>
                 <div className="bridgeTransDetRight">
-                    {bridge.receive} {bridge.toToken}
+                    {removeTrailingZeroes(Number(bridge.receive).toFixed(8))} {bridge.toToken}
                 </div>
             </li>
             <li className='bridgeTransactionDetailsList'>
