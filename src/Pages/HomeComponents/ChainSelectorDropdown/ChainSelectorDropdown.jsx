@@ -139,7 +139,7 @@ export default function ChainSelectorDropdown({ parent, direction }) {
         background: "#1B1D20",
         maxHeight: "50vh",
         // overflow: "auto",
-        height: 260
+        height: chainArray.length * 44
     }
 
     return (
