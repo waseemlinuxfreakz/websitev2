@@ -8,7 +8,7 @@ export const arbitrumSepolia = {
     blockCreated: 10246143
   },
   emmetFeeOracle: {
-    address: "0xD62cF1Fe287361c042eB71b7121e3AFCC03D2A95",
+    address: "0x324852FBfC3759ad6bf52fD3e32B12e9E664a48C",
     blockCreated: 10588923
   },
   name: "Arbitrum Sepolia",

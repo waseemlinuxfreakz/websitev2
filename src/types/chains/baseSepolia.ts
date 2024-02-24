@@ -8,7 +8,7 @@ export const baseSepolia = {
     blockCreated: 0
   },
   emmetFeeOracle: {
-    address: "0xD62cF1Fe287361c042eB71b7121e3AFCC03D2A95",
+    address: "0xae36c4c6B05C8e3bf8E244dcf8aD1Dce813f9bf4",
     blockCreated: 5421678
   },
   name: "Base Sepolia",

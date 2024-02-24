@@ -8,7 +8,7 @@ export const optimismSepolia = {
     blockCreated: 7332935
   },
   emmetFeeOracle: {
-    address: "0xcD67bFa984C7D7F0c9Ec5558A86587a80f0aE71c",
+    address: "0x29fb9F83290eAD77Ca4fa4A8491c1065b46b2e6E",
     blockCreated: 7398828
   },
   name: 'Optimism Sepolia',
