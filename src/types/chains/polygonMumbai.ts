@@ -8,7 +8,7 @@ export const polygonMumbai = {
         blockCreated: 45310404
     },
     emmetFeeOracle: {
-        address: "0x874177F2854557a94347f5984FbC39954820beb0",
+        address: "0x8598059B6AC70E9a831638F670639c893d3C464d",
         blockCreated: 45306550
     },
     name: 'Polygon Mumbai',

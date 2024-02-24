@@ -8,7 +8,7 @@ export const avalancheFuji = {
     blockCreated: 29583260
   },
   emmetFeeOracle: {
-    address:"0xFe222aF63ed3E8B22C98A6E1c9bf53F04C45AA1E",
+    address:"0x5AF10b142775000e3140416F4a513E42922d480e",
     blockCreated: 29607286
   },
   name: "Avalanche Fuji",
