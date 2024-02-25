@@ -74,7 +74,7 @@ function MainActionButton() {
 
         } else {
             setDisabled(false);
-            setCaption('Conect wallet')
+            setCaption('Connect wallet')
         }
 
     }, [isConnected, bridge.amount, isApproveLoading, isTransferProcessed]);
