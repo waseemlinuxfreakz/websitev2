@@ -31,8 +31,8 @@ export default function ChainSelectorDropdown({ parent, direction }) {
 
     // Local State
     const [selectedChain, setSelectedChain] = useState({
-        icon: chain && findChain(chain) ? `${isLayer2View() ? "..": ""}${findChain(chain).icon}` : "/img/chain/ethereum.svg",
-        name: chain && findChain(chain) ? findChain(chain).name : 'Sepolia',
+        icon: chain && findChain(chain) ? `${isLayer2View() ? "..": ""}${findChain(chain).icon}` : "/img/chain/avalanche.svg",
+        name: chain && findChain(chain) ? findChain(chain).name : 'Avalanche',
     });
 
     const [isListVisible, setListVisible] = useState(false);
