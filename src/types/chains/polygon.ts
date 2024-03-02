@@ -4,11 +4,11 @@ import { TEmmetChain } from '.';
 export const polygon = {
   ...viemPolygon,
   emmetBridge: {
-    address: "",
+    address: "0x90Aba668F81330703732b78B9f1ED57456399fc1",
     blockCreated: 0
   },
   emmetFeeOracle:{
-    address:"",
+    address:"0x95db799744a5b36d6e7be9ad3b451dbc5b8de673",
     blockCreated: 0
   },
     name: 'Polygon',

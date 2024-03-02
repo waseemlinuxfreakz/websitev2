@@ -144,12 +144,12 @@ export const ChainToDestinationDomain: { [key in TChainName]: number } = {
 }
 
 export const DomainToChainName: { [key: number]: TChainName } = {
-    0: 'sepolia',
-    1: 'avalancheFuji',
-    2: 'optimismSepolia',
-    3: 'arbitrumSepolia',
-    6: 'baseSepolia',
-    7: 'polygonMumbai',
+    0: 'ethereum',
+    1: 'avalanche',
+    2: 'optimism',
+    3: 'arbitrum',
+    6: 'base',
+    7: 'polygon',
 }
 
 export const CHAIN_ID_TO_NAME: { [key: number]: TChainName } = {
@@ -192,10 +192,14 @@ export const CHAIN_LOGOS: { [key: string]: string } = {
 
 
 export const EstimatedTimeFromChain = {
+    // Mainnets
+    'avalanche':'1 min 30 sec',
+    'polygon':'5 min 30 sec',
+    // Testnets
     'avalancheFuji':"50 sec",
     'baseSepolia':"4 min 30 sec",
     "sepolia": "2 min 35 sec",
     'optimismSepolia': '3 min 40 sec',
-    'polygonMumbai': '2 min 30 sec',
+    'polygonMumbai': ' min 30 sec',
     'arbitrumSepolia': '4 min 30 sec'
 }

@@ -4,11 +4,11 @@ import { TEmmetChain } from '.';
 export const avalanche = {
   ...viemAvalanche,
   emmetBridge: {
-    address: "",
+    address: "0x858784325dB6B6D09a0bC6e198b9113861EB1ED5",
     blockCreated: 0
   },
   emmetFeeOracle:{
-    address:"",
+    address:"0x206959972584c8778f0C5bFA493EC753dB3c443A",
     blockCreated: 0
   },
   name: "Avalanche",
