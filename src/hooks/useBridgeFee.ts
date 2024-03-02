@@ -21,8 +21,8 @@ export default function useBridgFee () {
 
     const [provider, setProvider] = useState(getProvider(ChainNameToTypeChainName[bridge.fromChain]));
 
-    const isMumbaiToOptimism = () => {
-        return bridge.fromChain == 'Mumbai' && bridge.toChain == 'OPSepolia';
+    const isFromPolygon = () => {
+        return bridge.fromChain == 'Polygon';
     }
 
     function formatFee(fee:number):number{
@@ -67,7 +67,7 @@ export default function useBridgFee () {
                 const fee_ = await getBridgeFee();
                 if(fee_){
                     // console.log("fee_", fee_, "contract:", bridgeAddress)
-                    const _fee = isMumbaiToOptimism() ?  Number(fee_.toString()) + 1_000_000_000_000_000_000 : Number(fee_.toString());
+                    const _fee = isFromPolygon() ?  Number(fee_.toString()) + 50_000_000_000_000_000 : Number(fee_.toString());
                     setFormattedfee(formatFee(_fee));
                     setFee(_fee);
                     dispatch(setBridgeFee(_fee));
