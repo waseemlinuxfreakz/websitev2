@@ -14,10 +14,10 @@ export const polygon = {
     name: 'Polygon',
     rpcUrls: {
       default: {
-        http: ['https://polygon-rpc.com'],
+        http: ['https://endpoints.omniatech.io/v1/matic/mainnet/public'],
       },
       public: {
-        http: ['https://polygon-rpc.com'],
+        http: ['https://endpoints.omniatech.io/v1/matic/mainnet/public'],
       },
     },
     testnet: false,

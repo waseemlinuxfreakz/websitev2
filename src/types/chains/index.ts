@@ -193,8 +193,9 @@ export const CHAIN_LOGOS: { [key: string]: string } = {
 
 export const EstimatedTimeFromChain = {
     // Mainnets
+    'arbitrum':'24 min 00 sec',
     'avalanche':'1 min 30 sec',
-    'polygon':'5 min 30 sec',
+    'polygon':'8 min 30 sec',
     // Testnets
     'avalancheFuji':"50 sec",
     'baseSepolia':"4 min 30 sec",
