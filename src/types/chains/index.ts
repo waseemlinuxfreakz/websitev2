@@ -190,11 +190,14 @@ export const CHAIN_LOGOS: { [key: string]: string } = {
     sepolia: "img/chain/ethereum.svg",
 }
 
-
+// https://developers.circle.com/stablecoins/docs/required-block-confirmations
 export const EstimatedTimeFromChain = {
     // Mainnets
     'arbitrum':'24 min 00 sec',
     'avalanche':'1 min 30 sec',
+    'base': '14 min 30 sec',
+    'ethereum': '13 min 30 sec',
+    'optimism':'24 min 00 sec',
     'polygon':'8 min 30 sec',
     // Testnets
     'avalancheFuji':"50 sec",
