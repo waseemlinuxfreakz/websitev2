@@ -5,6 +5,11 @@
     "icon": "img/chain/avalanche.svg"
   },
   {
+    "id": 42161,
+    "name": "Arbitrum",
+    "icon": "img/chain/arbitrum.svg"
+  },
+  {
     "id": 137,
     "name": "Polygon",
     "icon": "img/chain/polygon.svg"
