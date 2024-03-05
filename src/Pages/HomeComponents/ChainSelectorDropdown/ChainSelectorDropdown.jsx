@@ -134,12 +134,12 @@ export default function ChainSelectorDropdown({ parent, direction }) {
         // left: 0,
         // right: 0,
         // top: "unset",
-        borderRadius: "16px",
+        borderRadius: "8px",
         borderTop: "1px solid #3C3F43",
         background: "#1B1D20",
         maxHeight: "50vh",
         // overflow: "auto",
-        height: chainArray.length * 44
+        height: chainArray.length * 44 + 15
     }
 
     return (
