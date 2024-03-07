@@ -10,7 +10,7 @@ import NotifyMe from './NotifyMe';
 
 function BuyEmmet() {
 
-    const targetDate = new Date('February 21, 2024 00:00:00 GMT+00:00');
+    const targetDate = new Date('April 7, 2024 00:00:00 GMT+00:00');
 
     return (
         <>
