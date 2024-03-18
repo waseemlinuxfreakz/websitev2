@@ -12,3 +12,38 @@ export enum FeeAmount {
     MEDIUM = 3000,
     HIGH = 10000
 }
+
+export type TLPToken = {
+    ethereum: string
+}
+
+export const SwapTokens: {[key:string]: TLPToken} = {
+    USDC: {
+        ethereum: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+    },
+    WETH: {
+        ethereum: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'
+    }
+}
+
+
+
+export type TSupportedToken = {
+    [key:string]: {
+        [key:string]: {
+            pool: string,
+            token0: string,
+            token1: string
+        }
+    }
+}
+
+export const supportedSwapTokens: TSupportedToken = {
+    ethereum: {
+        "USDC-ETH": {
+            pool: '0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640',
+            token0: SwapTokens.USDC.ethereum,
+            token1: SwapTokens.WETH.ethereum
+        }
+    }
+}
