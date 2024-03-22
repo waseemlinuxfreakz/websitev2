@@ -24,7 +24,7 @@ function HeaderNotify() {
         <div className="headerNotify">
             <div className="headerNotifyContent">
                 <p>Emmet Bridge Mainnet is LIVE! 
-                    {/* <a href="https://taskon.xyz/campaign/detail/35634" target='_blank'>Join the Adventure</a> */}
+                    <a href="https://taskon.xyz/campaign/detail/38483" target='_blank'> Join the Adventure</a>
                 </p>
             </div>
             <div className="closeNotify" onClick={handleCloseClick}>
