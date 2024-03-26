@@ -67,7 +67,7 @@ export default function useBridgFee () {
                 const fee_ = await getBridgeFee();
                 if(fee_){
                     // console.log("fee_", fee_, "contract:", bridgeAddress)
-                    const _fee = isFromPolygon() ?  Number(fee_.toString()) + 50_000_000_000_000_000 : Number(fee_.toString()) + 1_000_000_000_000_000;
+                    const _fee = isFromPolygon() ?  Number(fee_.toString()) + 50 : Number(fee_.toString()) + 10;
                     setFormattedfee(formatFee(_fee));
                     setFee(_fee);
                     dispatch(setBridgeFee(_fee));
