@@ -19,7 +19,7 @@ function ExplorerTopGridRow() {
                 <div className="col-xl-3">
                     <div className="ExplorerBoxGray feesBox">
                         <p>Fees</p>
-                        <h3>$ {Number(txCount * 0.05).toFixed(2)}</h3>
+                        <h3>$ {Number(ttlTransactions * 0.05).toFixed(2)}</h3>
                     </div>
                 </div>
                 <div className="col-xl-3">
