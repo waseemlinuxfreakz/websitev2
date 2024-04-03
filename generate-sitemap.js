@@ -10,17 +10,22 @@ const links = [
 ];
 
 // Replace 'https://example.com' with your actual site domain
-const sitemap = new SitemapStream({ hostname: 'https://emmet.finance' });
+const hostname = 'https://emmet.finance';
 
-// Generating the sitemap and handling errors
-streamToPromise(sitemap)
-  .then(content => console.log('Sitemap generated successfully'))
-  .catch(err => console.error('Sitemap generation failed:', err));
+// Create a stream to write your sitemap to
+const sitemapStream = new SitemapStream({ hostname });
+
+// Pipe the sitemap stream to a writeable stream
+const writeStream = createWriteStream('public/sitemap.xml');
+sitemapStream.pipe(writeStream);
+
+// When all links are added and the stream is ended, 
+// the 'finish' event is emitted
+writeStream.on('finish', () => console.log('Sitemap.xml has been written successfully'));
+writeStream.on('error', (e) => console.error('Error writing sitemap.xml:', e));
 
 // Adding routes to the sitemap
-links.forEach(link => sitemap.write(link));
-sitemap.end();
+links.forEach(link => sitemapStream.write(link));
+// You must end the stream to finalize the sitemap
+sitemapStream.end();
 
-// Writing the sitemap to a file in the 'public' directory
-const writeStream = createWriteStream('public/sitemap.xml');
-sitemap.pipe(writeStream).on('finish', () => console.log('Sitemap.xml has been written successfully'));
