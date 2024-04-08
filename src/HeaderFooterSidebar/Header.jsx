@@ -1,15 +1,16 @@
-import React from 'react';
-import './Header.css';
-import { Link, useLocation } from 'react-router-dom';
-import ConnectWallet from './ConnectWallet';
-import ConnectionIndicator from './ConnectionIndicator';
-import ExplorerHeaderSearch from './ExplorerHeaderSearch';
+import React from "react";
+import "./Header.css";
+import { useLocation } from "react-router-dom";
+import ConnectWalletModal from "./ConnectWalletModal";
+import ConnectionIndicator from "./ConnectionIndicator";
+import ExplorerHeaderSearch from "./ExplorerHeaderSearch";
 
 function Header({ caption }) {
   const location = useLocation();
 
   // Check if the current path matches either "/explorer" or "/pool"
-  const isExplorerOrPool = location.pathname === '/explorer' || location.pathname === '/pool';
+  const isExplorerOrPool =
+    location.pathname === "/explorer" || location.pathname === "/pool";
 
   return (
     <header id="header">
@@ -19,7 +20,8 @@ function Header({ caption }) {
           {isExplorerOrPool && <ExplorerHeaderSearch />}
           <div className="headerRightSide">
             <ConnectionIndicator />
-            <ConnectWallet />
+
+            <ConnectWalletModal />
           </div>
         </div>
       </div>
