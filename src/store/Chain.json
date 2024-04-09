@@ -13,5 +13,20 @@
     "id": 137,
     "name": "Polygon",
     "icon": "img/chain/polygon.svg"
+  },
+  {
+    "id": 80001,
+    "name": "Mumbai",
+    "icon": "img/chain/polygon.svg"
+  },
+  {
+    "id": 43113,
+    "name": "Fuji",
+    "icon": "img/chain/avalanche.svg"
+  },
+  {
+    "id": 84532,
+    "name": "BSepolia",
+    "icon": "img/chain/base.svg"
   }
 ]

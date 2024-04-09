@@ -5,14 +5,14 @@
   "packageManager": "yarn@4.0.2",
   "dependencies": {
     "@reduxjs/toolkit": "^2.0.1",
+    "@tanstack/react-query": "^5.29.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@tonconnect/ui-react": "^2.0.0",
     "@walletconnect/relay-auth": "latest",
     "@web3-react/injected-connector": "^6.0.7",
-    "@web3modal/ethereum": "^2.7.1",
-    "@web3modal/react": "^2.7.1",
+    "@web3modal/wagmi": "^4.1.6",
     "bootstrap": "^5.3.2",
     "mdb-react-ui-kit": "^7.0.0",
     "mdbreact": "^5.2.0",
@@ -26,8 +26,8 @@
     "react-scripts": "^5.0.1",
     "react-table": "^7.8.0",
     "swiper": "^11.0.4",
-    "viem": "^1.19.11",
-    "wagmi": "^1.4.12",
+    "viem": "2.x",
+    "wagmi": "^2.5.19",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

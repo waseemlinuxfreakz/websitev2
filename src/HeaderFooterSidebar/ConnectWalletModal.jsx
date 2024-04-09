@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Wallet from "../assets/img/Wallet.svg";
-import { useWeb3Modal } from "@web3modal/react";
+import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { useAccount } from "wagmi";
 import { isMobile } from "react-device-detect";
 import { useTonConnectModal } from "@tonconnect/ui-react";

@@ -1,4 +1,8 @@
-import { getContract as getViemContract, PublicClient } from "viem";
+import {
+  getContract as getViemContract,
+  PublicClient,
+  WalletClient,
+} from "viem";
 
 /**
  * Builds a contract handler
@@ -8,15 +12,17 @@ import { getContract as getViemContract, PublicClient } from "viem";
  * @returns a functional contract handler
  */
 export function getContract(
-    address: string,
-    abi: any,
-    publicClient: PublicClient | undefined
+  address: string,
+  abi: any,
+  publicClient: PublicClient
 ) {
-    const contract = getViemContract({
-        address: `0x${address.replace('0x','')}`,
-        abi,
-        publicClient,
-    });
+  const contract = getViemContract({
+    address: `0x${address.replace("0x", "")}`,
+    abi,
+    client: {
+      public: publicClient,
+    },
+  });
 
-    return contract;
+  return contract;
 }

@@ -22,34 +22,43 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { TonConnectUIProvider } from "@tonconnect/ui-react";
 
 // Web3Modal related
-import { Web3Modal } from "@web3modal/react";
-import { configureChains, createConfig, WagmiConfig } from "wagmi";
-import {
-  EthereumClient,
-  w3mConnectors,
-  w3mProvider,
-} from "@web3modal/ethereum";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { WagmiProvider, http } from "wagmi";
+import { createWeb3Modal } from "@web3modal/wagmi/react";
+import { defaultWagmiConfig } from "@web3modal/wagmi/react/config";
+
 import { ALL_CHAINS } from "./types/chains";
 // import { getWalletConnectInstance } from './walletConnectSetup';
+
+const queryClient = new QueryClient();
 
 const supportedChains = ALL_CHAINS;
 
 const gaTrackingId = "G-0DP30PHL61";
 const projectId = "2bcf20e00bc0f72513e22cd16ce9ae83";
-const { publicClient } = configureChains(supportedChains, [
-  w3mProvider({ projectId }),
-]);
-const wagmiConfig = createConfig({
+
+export const wagmiConfig = defaultWagmiConfig({
   autoConnect: true,
-  connectors: w3mConnectors({ projectId, chains: supportedChains }),
-  publicClient,
+  // connectors: w3mConnectors({ projectId, chains: supportedChains }),
+  projectId,
   featuredWalletIds: [
     "c57ca95b47569778a828d19178114f4db188b89b763c899ba0be274e97267d96", // Metamask
     "971e689d0a5be527bac79629b4ee9b925e82208e5168b733496a09c0faed0709", // OKX
   ],
+  chains: supportedChains,
+  transports: supportedChains.reduce((prev, current) => {
+    return { ...prev, [current.id]: http() };
+  }),
+  metadata: {
+    name: "Web3Modal",
+    description: "Web3Modal Example",
+    url: "https://web3modal.com",
+    icons: ["https://avatars.githubusercontent.com/u/37784886"],
+  },
 });
 
-const ethereumClient = new EthereumClient(wagmiConfig, supportedChains);
+// const ethereumClient = new EthereumClient(wagmiConfig, supportedChains);
+createWeb3Modal({ wagmiConfig, projectId, supportedChains });
 
 function App() {
   useEffect(() => {
@@ -61,30 +70,31 @@ function App() {
   return (
     <>
       <TonConnectUIProvider manifestUrl="https://<YOUR_APP_URL>/tonconnect-manifest.json">
-        <WagmiConfig config={wagmiConfig}>
-          <Router
-            // Open all the pages at the top
-            scrollBehavior={() => ({ y: 0 })}
-          >
-            <Routes>
-              <Route path="/" element={<WebHome />} />
-              <Route path="/tokensale" element={<Tokenomics />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-              <Route path="/terms-of-service" element={<TermsService />} />
-              <Route path="/bridge" element={<Bridge />} />
-              <Route path="/explorer" element={<ExplorerPage />} />
-              {/* <Route path="/swap" element={< HomePage />} /> */}
-              {/* <Route path="/pool" element={<PoolPage />} /> */}
-              {/* <Route path="/pool/your-liquidity" element={<YourLiquidityPage />} /> */}
-              <Route
-                path="/transactionDetails/:hash"
-                element={<TransactionDetailsPage />}
-              />
-            </Routes>
-          </Router>
-        </WagmiConfig>
+        <WagmiProvider config={wagmiConfig}>
+          <QueryClientProvider client={queryClient}>
+            <Router
+              // Open all the pages at the top
+              scrollBehavior={() => ({ y: 0 })}
+            >
+              <Routes>
+                <Route path="/" element={<WebHome />} />
+                <Route path="/tokensale" element={<Tokenomics />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/terms-of-service" element={<TermsService />} />
+                <Route path="/bridge" element={<Bridge />} />
+                <Route path="/explorer" element={<ExplorerPage />} />
+                {/* <Route path="/swap" element={< HomePage />} /> */}
+                {/* <Route path="/pool" element={<PoolPage />} /> */}
+                {/* <Route path="/pool/your-liquidity" element={<YourLiquidityPage />} /> */}
+                <Route
+                  path="/transactionDetails/:hash"
+                  element={<TransactionDetailsPage />}
+                />
+              </Routes>
+            </Router>
+          </QueryClientProvider>
+        </WagmiProvider>
       </TonConnectUIProvider>
-      <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
     </>
   );
 }
