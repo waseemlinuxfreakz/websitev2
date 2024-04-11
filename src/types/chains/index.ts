@@ -150,8 +150,8 @@ export const ChainToDestinationDomain: { [key in TChainName]: number } = {
   baseSepolia: 6,
   polygon: 7,
   polygonMumbai: 7,
-  ton: 8,
-  tonTestnet: 8,
+  ton: 65534,
+  tonTestnet: 65535,
 };
 
 export const DomainToChainName: { [key: number]: TChainName } = {

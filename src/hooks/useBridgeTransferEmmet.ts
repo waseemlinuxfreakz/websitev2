@@ -91,7 +91,7 @@ export default function useBridgeTransferEmmet() {
       const formattedAmount = Number(bridge.amount) * 10 ** decimals;
       const destinationDomain =
         ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]];
-      const mintRecipient: Hash = addressToAccount(bridge.receiver);
+      const mintRecipient = bridge.receiver;
       const tokenName: TTokenName = bridge.fromToken as TTokenName;
 
       const { hash, status, error } = await EmmetSendInstallment(

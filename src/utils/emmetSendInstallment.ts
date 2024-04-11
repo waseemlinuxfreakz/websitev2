@@ -22,7 +22,7 @@ export async function EmmetSendInstallment(
   bridgeAddress: Hash,
   amount: bigint,
   destinationDomain: number,
-  mintRecipient: Hash,
+  mintRecipient: string,
   tokenName: TTokenName,
   fee: number
 ): Promise<{

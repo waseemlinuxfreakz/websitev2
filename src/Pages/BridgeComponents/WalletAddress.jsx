@@ -50,6 +50,7 @@ function WalletAddress() {
     if (bridge.toChain === "TON" || bridge.toChain === "TONTestnet") {
       if (isValidTonAddress(inputValue)) {
         setDestAddress(truncate(inputValue));
+        dispatch(setReceiver(inputValue));
       } else {
         setDestAddress(destAddress);
         dispatch(setReceiver(""));
