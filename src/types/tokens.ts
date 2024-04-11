@@ -74,6 +74,7 @@ export const TOKEN_CHAIN_CONTRACT = {
       optimism: '0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85',
       base: '',
       polygon: '0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359',
+      ton: '',
       // Testnets:
       arbitrumSepolia: '0x75faf114eafb1BDbe2F0316DF893fd58CE46AA4d',
       avalancheFuji: '0x5425890298aed601595a70AB815c96711a31Bc65',
@@ -81,6 +82,7 @@ export const TOKEN_CHAIN_CONTRACT = {
       optimismSepolia: '0x5fd84259d66Cd46123540766Be93DFE6D43130D7',
       sepolia: '0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238',
       polygonMumbai: '0x9999f7Fea5938fD3b1E26A12c3f2fb024e194f97',
+      tonTestnet: 'EQDTmIlOD2eMZ89rCoTPIi5VU8IgTJIDQCtdTW6jLuq6m55O'
   }
 }
 

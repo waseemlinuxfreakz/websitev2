@@ -138,6 +138,12 @@ export default function useBalance() {
   useEffect(() => {
     if (bridge.toChain && bridge.toToken && bridge.receiver) {
       const chain = SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.toChain]];
+      console.log(
+        { chain },
+        ChainNameToTypeChainName[bridge.toChain],
+        bridge.toChain
+      );
+
       const decimals = chain.nativeCurrency.decimals;
 
       if (bridge.toToken === chain.nativeCurrency.symbol) {
