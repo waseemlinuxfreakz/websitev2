@@ -6,23 +6,11 @@ import TokenSelectionDropdown from "./TokenSelectionDropdown";
 import { removeTrailingZeroes } from "../../../utils";
 import { useAppSelector, useAppDispatch } from "../../../hooks/storage";
 import { setBridgeAmount } from "../../../store/bridgeSlice";
-import ChainSelectorDropdown from "../../HomeComponents/ChainSelectorDropdown/ChainSelectorDropdown";
-import DestinationChainDropdown from "../../HomeComponents/ChainSelectorDropdown/DestinationChainDropdown";
+import ChainSelectorDropdown from "../ChainSelectorDropdown/ChainSelectorDropdown";
+import DestinationChainDropdown from "../ChainSelectorDropdown/DestinationChainDropdown";
 import useBalance from "../../../hooks/useBalance";
-import { useLocation } from "react-router-dom";
 
 export default function TokenSelectorBox({ type }) {
-  const { pathname } = useLocation();
-  const [parent, setParent] = useState("bridge");
-
-  useEffect(() => {
-    if (pathname.includes("lock-and-mint")) {
-      setParent("lock-and-mint");
-    } else {
-      setParent("bridge");
-    }
-  }, [pathname]);
-
   const dispatch = useAppDispatch();
   // Global state
   const bridge = useAppSelector((state) => state.bridge);
@@ -84,7 +72,10 @@ export default function TokenSelectorBox({ type }) {
             <div className="payInput">
               <p>{isFromType() ? "From" : "To"}</p>
               {isFromType() ? (
-                <ChainSelectorDropdown parent="bridge" direction="from" />
+                <ChainSelectorDropdown
+                  parent="lock-and-mint"
+                  direction="from"
+                />
               ) : (
                 <DestinationChainDropdown />
               )}
@@ -108,7 +99,7 @@ export default function TokenSelectorBox({ type }) {
         </div>
         <div className="payReRight">
           <WalletBalance
-            parent="bridge"
+            parent="lock-and-mint"
             name={isFromType() ? bridge.fromToken : bridge.toToken}
             balance={isFromType() ? fromBalance : toBalance}
           />

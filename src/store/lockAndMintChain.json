@@ -1,0 +1,12 @@
+[
+  {
+    "id": 80001,
+    "name": "Mumbai",
+    "icon": "img/chain/polygon.svg"
+  },
+  {
+    "id": 65535,
+    "name": "TONTestnet",
+    "icon": "img/chain/Ton.svg"
+  }
+]

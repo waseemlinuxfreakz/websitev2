@@ -24,7 +24,8 @@ function MainActionButton() {
   const [caption, setCaption] = useState("");
   const [showSpinner, setShowSpiner] = useState(false);
   const { approve, isApproveLoading } = useBridgeApproveERC20();
-  const { burnUSDC, isTransferProcessed } = useBridgeTransferEmmet();
+  const { burnUSDC, isTransferProcessed, sendInstallment } =
+    useBridgeTransferEmmet();
 
   function isApproveRequired() {
     const needApproval =
@@ -101,7 +102,13 @@ function MainActionButton() {
           action: "Clicked Button",
           label: "Transfer",
         });
-        burnUSDC();
+        console.log(`Bridge rn: `, bridge.toChain);
+        if (bridge.toChain === "TONTestnet") {
+          console.log("send installment");
+          sendInstallment();
+        } else {
+          burnUSDC();
+        }
       }
     }
   };
