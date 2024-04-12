@@ -1,8 +1,7 @@
-import { getProvider, addressToAccount } from "../utils";
+import { getProvider, addressToAccount, getTonProvider } from "../utils";
 import {
   ChainNameToTypeChainName,
   SUPPORTED_CHAINS,
-  TChainName,
   TOKEN_CHAIN_CONTRACT,
   TOKEN_DECIMALS,
   TTokenName,
@@ -16,6 +15,7 @@ import {
   setBridgeError,
   setBridgeToBalance,
 } from "../store/bridgeSlice";
+import { Address, JettonMaster, JettonWallet } from "@ton/ton";
 
 type TDirection = "from" | "to";
 
@@ -32,14 +32,38 @@ export default function useBalance() {
   async function getCoinBalance(direction: TDirection) {
     try {
       const provider =
-        direction == "from"
+        direction === "from"
           ? getProvider(ChainNameToTypeChainName[bridge.fromChain])
           : getProvider(ChainNameToTypeChainName[bridge.toChain]);
 
       const addr =
-        direction == "from"
+        direction === "from"
           ? addressToAccount(address as string)
           : addressToAccount(bridge.receiver);
+
+      if (
+        direction === "from" &&
+        (bridge.fromChain === "TON" || bridge.fromChain === "TONTestnet")
+      ) {
+        const provider = getTonProvider(bridge.fromChain as any);
+
+        const balance = provider.getBalance(
+          Address.parse(address?.replace("0x", "")!)
+        );
+        return Number(balance);
+      }
+
+      if (
+        direction === "to" &&
+        (bridge.toChain === "TON" || bridge.toChain === "TONTestnet")
+      ) {
+        const provider = getTonProvider(bridge.toChain as any);
+
+        const balance = provider.getBalance(
+          Address.parse(bridge.receiver?.replace("0x", "")!)
+        );
+        return Number(balance);
+      }
 
       const bal = await provider.getBalance({
         address: addr,
@@ -55,25 +79,61 @@ export default function useBalance() {
   }
 
   async function getTokenBalance(direction: TDirection) {
+    const tokenAddress: string =
+      direction === "from"
+        ? TOKEN_CHAIN_CONTRACT["USDC"][
+            ChainNameToTypeChainName[bridge.fromChain]
+          ]
+        : TOKEN_CHAIN_CONTRACT["USDC"][
+            ChainNameToTypeChainName[bridge.toChain]
+          ];
     try {
+      console.log(bridge.toChain);
+      if (
+        direction === "from" &&
+        (bridge.fromChain === "TON" || bridge.fromChain === "TONTestnet")
+      ) {
+        const provider = getTonProvider(bridge.fromChain as any);
+
+        const jetton = provider.open(
+          JettonMaster.create(Address.parse(tokenAddress))
+        );
+
+        const jwa = await jetton.getWalletAddress(
+          Address.parse(address?.replace("0x", "")!)
+        );
+        const jw = provider.open(JettonWallet.create(jwa));
+        const balance = await jw.getBalance();
+        return Number(balance);
+      }
+
+      if (
+        direction === "to" &&
+        (bridge.toChain === "TON" || bridge.toChain === "TONTestnet")
+      ) {
+        const provider = getTonProvider(bridge.toChain as any);
+
+        const jetton = provider.open(
+          JettonMaster.create(Address.parse(tokenAddress))
+        );
+
+        const jwa = await jetton.getWalletAddress(
+          Address.parse(bridge.receiver?.replace("0x", "")!)
+        );
+        const jw = provider.open(JettonWallet.create(jwa));
+        const balance = await jw.getBalance();
+        return Number(balance);
+      }
+
       const provider =
-        direction == "from"
+        direction === "from"
           ? getProvider(ChainNameToTypeChainName[bridge.fromChain])
           : getProvider(ChainNameToTypeChainName[bridge.toChain]);
 
       const addr =
-        direction == "from"
+        direction === "from"
           ? addressToAccount(address as string)
           : addressToAccount(bridge.receiver);
-
-      const tokenAddress: string =
-        direction == "from"
-          ? TOKEN_CHAIN_CONTRACT["USDC"][
-              ChainNameToTypeChainName[bridge.fromChain]
-            ]
-          : TOKEN_CHAIN_CONTRACT["USDC"][
-              ChainNameToTypeChainName[bridge.toChain]
-            ];
 
       const bal = await provider.readContract({
         abi: erc20Abi,
