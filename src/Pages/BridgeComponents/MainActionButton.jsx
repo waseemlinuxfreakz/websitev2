@@ -6,11 +6,12 @@ import { useAppSelector, useAppDispatch } from "../../hooks/storage";
 import useBridgeApproveERC20 from "../../hooks/useBridgeApproveERC20";
 import useBridgeTransferEmmet from "../../hooks/useBridgeTransferEmmet";
 import useBalance from "../../hooks/useBalance";
-import ReactGA from "react-ga";
+import ReactGA, { set } from "react-ga";
 // Components
 import ButtonSpinner from "../CommonComponents/Spinner/ButtonSpinner";
 // Actions
 import { setBridgeIsApproving } from "../../store/bridgeSlice";
+import ConnectWalletModal from "../../HeaderFooterSidebar/ConnectWalletModal";
 
 function MainActionButton() {
   const dispatch = useAppDispatch();
@@ -21,6 +22,7 @@ function MainActionButton() {
   const { open } = useWeb3Modal();
 
   const [disabled, setDisabled] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [caption, setCaption] = useState("");
   const [showSpinner, setShowSpiner] = useState(false);
   const { approve, isApproveLoading } = useBridgeApproveERC20();
@@ -78,7 +80,7 @@ function MainActionButton() {
 
   const onClickSelectAction = () => {
     if (!isConnected) {
-      open();
+      setModalIsOpen(true);
     } else {
       if (isApproveRequired()) {
         if (approve) {
@@ -123,6 +125,10 @@ function MainActionButton() {
         {showSpinner && <ButtonSpinner />}
         {caption}
       </button>
+      <ConnectWalletModal
+        modalIsOpen={modalIsOpen}
+        setModalIsOpen={setModalIsOpen}
+      />
     </div>
   );
 }

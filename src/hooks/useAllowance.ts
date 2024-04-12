@@ -23,6 +23,11 @@ export default function useBridgeAllowance() {
   const bridge = useAppSelector((state) => state.bridge);
 
   function isApproveRequired() {
+    // TON does not require approval
+    if (bridge.fromChain === "TON" || bridge.fromChain === "TONTestnet") {
+      return false;
+    }
+
     return (
       Number(bridge.amount) >
       Number(bridge.allowance) / 10 ** Number(bridge.decimals)

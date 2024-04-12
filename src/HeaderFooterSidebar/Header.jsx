@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Header.css";
 import { useLocation } from "react-router-dom";
 import ConnectWalletModal from "./ConnectWalletModal";
 import ConnectionIndicator from "./ConnectionIndicator";
 import ExplorerHeaderSearch from "./ExplorerHeaderSearch";
+import Wallet from "../assets/img/Wallet.svg";
 
 function Header({ caption }) {
   const location = useLocation();
+  const [modalIsOpen, setModalIsOpen] = React.useState(false);
+
+  useEffect(() => {
+    console.log(modalIsOpen);
+  }, [modalIsOpen]);
 
   // Check if the current path matches either "/explorer" or "/pool"
   const isExplorerOrPool =
@@ -20,8 +26,19 @@ function Header({ caption }) {
           {isExplorerOrPool && <ExplorerHeaderSearch />}
           <div className="headerRightSide">
             <ConnectionIndicator />
-
-            <ConnectWalletModal />
+            <div
+              className="connectWallet"
+              onClick={() => setModalIsOpen(!modalIsOpen)}
+            >
+              <div>
+                <img src={Wallet} alt="Wallet" />
+                Connect
+              </div>
+            </div>
+            <ConnectWalletModal
+              modalIsOpen={modalIsOpen}
+              setModalIsOpen={setModalIsOpen}
+            />
           </div>
         </div>
       </div>

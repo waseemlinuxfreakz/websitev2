@@ -70,7 +70,7 @@ function App() {
 
   return (
     <>
-      <TonConnectUIProvider manifestUrl="https://<YOUR_APP_URL>/tonconnect-manifest.json">
+      <TonConnectUIProvider manifestUrl="http://localhost:3000/tonconnect-manifest.json">
         <WagmiProvider config={wagmiConfig}>
           <QueryClientProvider client={queryClient}>
             <Router

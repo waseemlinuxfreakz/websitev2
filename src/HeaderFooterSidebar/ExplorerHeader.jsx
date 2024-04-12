@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 import ConnectWalletModal from "./ConnectWalletModal";
 import ConnectionIndicator from "./ConnectionIndicator";
 import ExplorerHeaderSearch from "./ExplorerHeaderSearch";
+import Wallet from "../assets/img/Wallet.svg";
 
 function ExplorerHeader() {
+  const [modalIsOpen, setModalIsOpen] = React.useState(false);
   return (
     <header id="header">
       <div className="container">
@@ -14,8 +16,19 @@ function ExplorerHeader() {
           <ExplorerHeaderSearch />
           <div className="headerRightSide">
             <ConnectionIndicator />
-
-            <ConnectWalletModal />
+            <div
+              className="connectWallet"
+              onClick={() => setModalIsOpen(!modalIsOpen)}
+            >
+              <div>
+                <img src={Wallet} alt="Wallet" />
+                Connect
+              </div>
+            </div>
+            <ConnectWalletModal
+              modalIsOpen={modalIsOpen}
+              setModalIsOpen={setModalIsOpen}
+            />
           </div>
         </div>
       </div>

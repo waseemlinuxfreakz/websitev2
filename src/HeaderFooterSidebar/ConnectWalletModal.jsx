@@ -9,8 +9,7 @@ import Modal from "react-modal";
 
 Modal.setAppElement("#root");
 
-export default function ConnectWalletModal() {
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+export default function ConnectWalletModal({ modalIsOpen, setModalIsOpen }) {
   const { open } = useWeb3Modal();
   const { address, isConnected } = useAccount();
   const { open: openTonModal, close: closeTonModal } = useTonConnectModal();
@@ -29,30 +28,15 @@ export default function ConnectWalletModal() {
 
   const showCharacters = isMobile ? 3 : 6;
 
-  function openModal() {
-    setIsOpen(true);
-  }
-
   function closeModal() {
-    setIsOpen(false);
+    setModalIsOpen(false);
   }
 
   return (
     <div>
-      <div className="connectWallet" onClick={() => openModal()}>
-        <div>
-          <img src={Wallet} alt="Wallet" />
-          {isConnected
-            ? `${address.slice(0, showCharacters)}...${address.slice(
-                -showCharacters
-              )}`
-            : "Connect"}
-        </div>
-      </div>
-
       <Modal
         isOpen={modalIsOpen}
-        onRequestClose={closeModal}
+        onRequestClose={() => setModalIsOpen(false)}
         className="connectWalletModal"
         overlayClassName="connectWalletModalOverlay"
       >
