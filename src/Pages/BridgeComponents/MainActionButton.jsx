@@ -12,6 +12,7 @@ import ButtonSpinner from "../CommonComponents/Spinner/ButtonSpinner";
 // Actions
 import { setBridgeIsApproving } from "../../store/bridgeSlice";
 import ConnectWalletModal from "../../HeaderFooterSidebar/ConnectWalletModal";
+import { useTonWallet } from "@tonconnect/ui-react";
 
 function MainActionButton() {
   const dispatch = useAppDispatch();
@@ -19,6 +20,8 @@ function MainActionButton() {
   const { coinBalance, fromBalance } = useBalance();
 
   const { isConnected } = useAccount();
+  const wallet = useTonWallet();
+
   const { open } = useWeb3Modal();
 
   const [disabled, setDisabled] = useState(false);
@@ -37,7 +40,8 @@ function MainActionButton() {
   }
 
   useEffect(() => {
-    if (isConnected) {
+    // console.log("wallet", wallet.account);
+    if (isConnected || wallet?.account) {
       if (!bridge.amount || Number(bridge.amount) <= 0) {
         setDisabled(true);
         setCaption("Enter Amount");
@@ -76,10 +80,16 @@ function MainActionButton() {
       setDisabled(false);
       setCaption("Connect wallet");
     }
-  }, [isConnected, bridge.amount, isApproveLoading, isTransferProcessed]);
+  }, [
+    isConnected,
+    bridge.amount,
+    isApproveLoading,
+    isTransferProcessed,
+    wallet,
+  ]);
 
   const onClickSelectAction = () => {
-    if (!isConnected) {
+    if (!isConnected || !wallet?.account) {
       setModalIsOpen(true);
     } else {
       if (isApproveRequired()) {
