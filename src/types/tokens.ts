@@ -92,7 +92,7 @@ export const TOKEN_CHAIN_CONTRACT = {
   },
   TON: {
     tonTestnet: "",
-    polygonMumbai: "0x9999f7Fea5938fD3b1E26A12c3f2fb024e194f97",
+    polygonMumbai: "0x41e94eb019c0762f9bfcf9fb1e58725bfb0e7582",
   },
 };
 

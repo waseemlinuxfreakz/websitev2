@@ -10,6 +10,7 @@ import { useTonWallet } from "@tonconnect/ui-react";
 import { getTonProvider } from "../../utils";
 import { setSenderAddress } from "../../store/bridgeSlice";
 import { chainFactoryTestnet } from "../../store/chainFactory";
+import { ChainNameToTypeChainName } from "../../types";
 
 export default function WalletBalance({ name, parent, balance }) {
   const [balanceSwap, setBalance] = useState("0.00");
@@ -22,8 +23,8 @@ export default function WalletBalance({ name, parent, balance }) {
   const chain = chains.find((chain) => chain.name === bridge.fromChain);
   let tokenAddress;
   if (chain) {
-    console.log("getTokenAddress", chain.id, name);
-    tokenAddress = getTokenAddress(chain.id, name);
+    tokenAddress = getTokenAddress(ChainNameToTypeChainName[chain.name], name);
+    console.log("getTokenAddress", chain.id, name, tokenAddress);
   }
 
   useEffect(() => {
@@ -49,39 +50,46 @@ export default function WalletBalance({ name, parent, balance }) {
   }, [account, chain, tokenAddress]);
 
   useEffect(() => {
-    console.log({ senderAddress: bridge.senderAddress });
     if (!bridge.senderAddress) {
       return;
     }
 
     (async () => {
       const handler = await chainFactoryTestnet.inner(chain.id);
-      console.log({ handler });
 
       if (name === handler.nativeCoin()) {
         const balance = await handler.balance(bridge.senderAddress);
-        console.log({ balance });
-        setBalance(balance.toString());
+        const _bal = Number(balance) / 1e9;
+        setBalance(_bal.toString());
       } else {
-        const balance = await handler.tokenBalance(
-          tokenAddress,
-          bridge.senderAddress
-        );
+        console.log({ tokenAddress, sender: bridge.senderAddress });
+        const balance = await handler
+          .tokenBalance(
+            "kQDTzdCB4h4SU3qakSile70oeBoDGAtt3eOpy8OASPco5z7d",
+            "0QBY1FjQuc4O66eF7qkaNFmSKst3OYyUlwanCAml6hb6oHS4"
+          )
+          .catch((err) => console.log(err));
+        // const balance = await handler.tokenBalance(
+        //   tokenAddress,
+        //   bridge.senderAddress
+        // );
         console.log({ balance });
-        setBalance(balance.toString());
+        // const _bal = Number(balance) / 1e6;
+        const _bal = balance.toString();
+        setBalance(_bal.toString());
       }
     })();
-  }, [tonWallet, tokenAddress, name, bridge.senderAddress]);
+  }, [name]);
 
-  useEffect(() => {
-    console.log({ balance, balanceSwap, name, parent, chain });
-  }, [balance, balanceSwap, name]);
+  // useEffect(() => {
+  //   console.log({ balance, balanceSwap, name, parent, chain, tokenAddress });
+  // }, [balance, balanceSwap, name]);
 
   return (
     <div className="walletBalance">
       <img src={Wallet} alt="Wallet" />
 
-      <span>{parent == "lock-and-mint" ? balance : balanceSwap}</span>
+      <span>{balanceSwap}</span>
       <span>{name}</span>
     </div>
   );
