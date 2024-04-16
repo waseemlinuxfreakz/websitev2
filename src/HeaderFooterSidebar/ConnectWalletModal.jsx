@@ -4,6 +4,9 @@ import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { useAccount } from "wagmi";
 import { isMobile } from "react-device-detect";
 import { useTonConnectModal } from "@tonconnect/ui-react";
+import { useAppSelector, useAppDispatch } from "../hooks/storage";
+import { setSenderAddress } from "../store/bridgeSlice";
+import { useTonWallet } from "@tonconnect/ui-react";
 
 import Modal from "react-modal";
 
@@ -13,6 +16,9 @@ export default function ConnectWalletModal({ modalIsOpen, setModalIsOpen }) {
   const { open } = useWeb3Modal();
   const { address, isConnected } = useAccount();
   const { open: openTonModal, close: closeTonModal } = useTonConnectModal();
+  const bridge = useAppSelector((state) => state.bridge);
+  const dispatch = useAppDispatch();
+  const tonWallet = useTonWallet();
 
   const applyCssToShadowDom = () => {
     var style = document.createElement("style");
@@ -31,6 +37,17 @@ export default function ConnectWalletModal({ modalIsOpen, setModalIsOpen }) {
   function closeModal() {
     setModalIsOpen(false);
   }
+
+  useEffect(() => {
+    const tonAddress = tonWallet?.account?.address;
+    if (address) {
+      dispatch(setSenderAddress(address));
+    } else if (tonAddress) {
+      dispatch(setSenderAddress(tonAddress));
+    } else {
+      dispatch(setSenderAddress(""));
+    }
+  }, [address, tonWallet]);
 
   return (
     <div>

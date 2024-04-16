@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./TokenSelectorBox.css";
 // Components
-import WalletBalance from "../../HomeComponents/WalletBalance/WalletBalance";
+import WalletBalance from "../WalletBalance";
 import TokenSelectionDropdown from "./TokenSelectionDropdown";
 import { removeTrailingZeroes } from "../../../utils";
 import { useAppSelector, useAppDispatch } from "../../../hooks/storage";

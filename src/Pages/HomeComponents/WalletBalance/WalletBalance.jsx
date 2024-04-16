@@ -5,9 +5,14 @@ import { getBalance, getAccount } from "@wagmi/core";
 import { wagmiConfig } from "../../../App";
 // @ts-ignore
 import { getTokenAddress } from "../../../utils";
+import { useAppSelector } from "../../../hooks/storage";
+import { useTonWallet } from "@tonconnect/ui-react";
+import { getTonProvider } from "../../../utils";
 
 export default function WalletBalance({ name, parent, balance }) {
   const [balanceSwap, setBalance] = useState("0.00");
+  const bridge = useAppSelector((state) => state.bridge);
+  const tonWallet = useTonWallet();
 
   const chains = wagmiConfig.chains;
   const account = getAccount(wagmiConfig);
@@ -33,10 +38,28 @@ export default function WalletBalance({ name, parent, balance }) {
       fetchTokenBalance(account.address);
     }
 
-    if (!tokenAddress) {
-      setBalance("0.00");
-    }
+    // TODO: may need to be uncommented
+    // if (!tokenAddress) {
+    //   setBalance("0.00");
+    // }
   }, [account, chain, tokenAddress]);
+
+  useEffect(() => {
+    if (bridge.fromChain === "TON" || bridge.fromChain === "TONTestnet") {
+      console.log("run");
+      (async () => {
+        const tonProvider = getTonProvider(bridge.fromChain);
+        const tonAddress = tonWallet?.account?.address;
+        const tonBalance = await tonProvider.getBalance(tonAddress);
+        console.log({ tonAddress, tonBalance: Number(tonBalance) });
+        setBalance(Number(tonBalance).toFixed(2).toString());
+      })();
+    }
+  }, [tonWallet, bridge.fromChain]);
+
+  useEffect(() => {
+    console.log({ balance, balanceSwap, name });
+  }, [balance, balanceSwap, name]);
 
   return (
     <div className="walletBalance">

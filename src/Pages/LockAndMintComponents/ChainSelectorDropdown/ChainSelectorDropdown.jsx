@@ -18,7 +18,7 @@ const findChain = (chain) => {
 
 export default function ChainSelectorDropdown({ parent, direction }) {
   const { chain } = useConfig();
-  const { switchNetwork } = useSwitchChain();
+  const { switchChain } = useSwitchChain();
 
   // Global State
   const bridge = useAppSelector((state) => state.bridge);
@@ -57,6 +57,7 @@ export default function ChainSelectorDropdown({ parent, direction }) {
         setChainArray(chainData);
         break;
       case "lock-and-mint":
+        dispatch(setBridgeFromChain(name));
         setChainArray(chainData);
         break;
       case "explorer":
@@ -93,7 +94,8 @@ export default function ChainSelectorDropdown({ parent, direction }) {
     dispatchChain(name);
     toggleVisibility();
     if (parent != "explorer") {
-      switchNetwork?.(id);
+      switchChain(id);
+      console.log({ id });
     }
     ReactGA.event({
       category: "User",
@@ -101,6 +103,10 @@ export default function ChainSelectorDropdown({ parent, direction }) {
       label: "Select a Swap Chain",
     });
   };
+
+  useEffect(() => {
+    console.log("fromchain", bridge.fromChain);
+  }, [bridge.fromChain]);
 
   const toggleVisibility = () => {
     setListVisible(!isListVisible);
