@@ -74,12 +74,11 @@ export default function WalletBalance({ name, parent, balance }) {
         //   bridge.senderAddress
         // );
         console.log({ balance });
-        // const _bal = Number(balance) / 1e6;
-        const _bal = balance.toString();
+        const _bal = Number(balance) / 1e9;
         setBalance(_bal.toString());
       }
     })();
-  }, [name]);
+  }, [name, chain]);
 
   // useEffect(() => {
   //   console.log({ balance, balanceSwap, name, parent, chain, tokenAddress });
