@@ -5,6 +5,7 @@ import { isEvmAddress } from "../../verifiers";
 import { useAppSelector, useAppDispatch } from "../../hooks/storage";
 import { isMobile } from "react-device-detect";
 import { Address } from "@ton/core";
+import { useTonWallet } from "@tonconnect/ui-react";
 
 function isValidTonAddress(str) {
   try {
@@ -21,6 +22,7 @@ function WalletAddress() {
   const dispatch = useAppDispatch();
   const bridge = useAppSelector((state) => state.bridge);
   const { address, isConnected } = useAccount();
+  const tonWallet = useTonWallet();
 
   function truncate(address) {
     return address
@@ -41,7 +43,11 @@ function WalletAddress() {
     if (address && !bridge.receiver) {
       dispatch(setReceiver(address));
     }
-  }, [address]);
+    if (tonWallet?.account?.address && !bridge.receiver) {
+      setDestAddress(truncate(tonWallet?.account?.address));
+      dispatch(setReceiver(tonWallet?.account?.address));
+    }
+  }, [address, tonWallet]);
 
   function onChangeClickHandle(e) {
     e.preventDefault();
@@ -76,7 +82,7 @@ function WalletAddress() {
 
   return (
     <>
-      {isConnected ? (
+      {isConnected || tonWallet?.account?.address ? (
         <div className="wallet_Address">
           <div className="inputAddress Disenable">
             <input

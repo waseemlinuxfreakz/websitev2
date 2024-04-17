@@ -28,15 +28,5 @@
     "id": 84532,
     "name": "BSepolia",
     "icon": "img/chain/base.svg"
-  },
-  {
-    "id": 65535,
-    "name": "TONTestnet",
-    "icon": "img/chain/Ton.svg"
-  },
-  {
-    "id": 65534,
-    "name": "TON",
-    "icon": "img/chain/Ton.svg"
   }
 ]

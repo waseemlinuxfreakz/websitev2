@@ -44,22 +44,17 @@ export default function WalletBalance({ name, parent, balance }) {
     // }
   }, [account, chain, tokenAddress]);
 
-  useEffect(() => {
-    if (bridge.fromChain === "TON" || bridge.fromChain === "TONTestnet") {
-      console.log("run");
-      (async () => {
-        const tonProvider = getTonProvider(bridge.fromChain);
-        const tonAddress = tonWallet?.account?.address;
-        const tonBalance = await tonProvider.getBalance(tonAddress);
-        console.log({ tonAddress, tonBalance: Number(tonBalance) });
-        setBalance(Number(tonBalance).toFixed(2).toString());
-      })();
-    }
-  }, [tonWallet, bridge.fromChain]);
-
-  useEffect(() => {
-    console.log({ balance, balanceSwap, name });
-  }, [balance, balanceSwap, name]);
+  // useEffect(() => {
+  //   if (bridge.fromChain === "TON" || bridge.fromChain === "TONTestnet") {
+  //     (async () => {
+  //       const tonProvider = getTonProvider(bridge.fromChain);
+  //       const tonAddress = tonWallet?.account?.address;
+  //       const tonBalance = await tonProvider.getBalance(tonAddress);
+  //       console.log({ tonAddress, tonBalance: Number(tonBalance) });
+  //       setBalance(Number(tonBalance).toFixed(2).toString());
+  //     })();
+  //   }
+  // }, [tonWallet, bridge.fromChain]);
 
   return (
     <div className="walletBalance">

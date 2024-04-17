@@ -1,6 +1,7 @@
 import { getProvider, addressToAccount, getTonProvider } from "../utils";
 import {
   ChainNameToTypeChainName,
+  CHAIN_NAME_TO_ID,
   SUPPORTED_CHAINS,
   TOKEN_CHAIN_CONTRACT,
   TOKEN_DECIMALS,
@@ -15,7 +16,7 @@ import {
   setBridgeError,
   setBridgeToBalance,
 } from "../store/bridgeSlice";
-import { Address, JettonMaster, JettonWallet } from "@ton/ton";
+import { chainFactoryTestnet } from "../store/chainFactory";
 
 type TDirection = "from" | "to";
 
@@ -31,49 +32,34 @@ export default function useBalance() {
 
   async function getCoinBalance(direction: TDirection) {
     try {
-      const provider =
+      // const handler = await chainFactoryTestnet.inner(fromChain.id);
+
+      const handler =
         direction === "from"
-          ? getProvider(ChainNameToTypeChainName[bridge.fromChain])
-          : getProvider(ChainNameToTypeChainName[bridge.toChain]);
+          ? await chainFactoryTestnet.inner(
+              // @ts-ignore
+              CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.fromChain]]
+            )
+          : await chainFactoryTestnet.inner(
+              // @ts-ignore
+              CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.toChain]]
+            );
 
       const addr =
-        direction === "from"
-          ? addressToAccount(address as string)
-          : addressToAccount(bridge.receiver);
-
-      if (
-        direction === "from" &&
-        (bridge.fromChain === "TON" || bridge.fromChain === "TONTestnet")
-      ) {
-        const provider = getTonProvider(bridge.fromChain as any);
-
-        const balance = provider.getBalance(
-          Address.parse(address?.replace("0x", "")!)
-        );
-        return Number(balance);
-      }
-
-      if (
-        direction === "to" &&
-        (bridge.toChain === "TON" || bridge.toChain === "TONTestnet")
-      ) {
-        const provider = getTonProvider(bridge.toChain as any);
-
-        const balance = provider.getBalance(
-          Address.parse(bridge.receiver?.replace("0x", "")!)
-        );
-        return Number(balance);
-      }
-
-      const bal = await provider.getBalance({
-        address: addr,
+        direction === "from" ? bridge.senderAddress : bridge.receiver;
+      console.log({
+        receiverChainID:
+          CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.toChain]],
       });
+
+      const bal = await handler.balance(addr);
 
       if (bal) {
         return Number(bal.toString());
       }
       return 0;
     } catch (error) {
+      console.log("useBalance:getTokenBalance", error);
       return 0;
     }
   }
@@ -88,59 +74,21 @@ export default function useBalance() {
             ChainNameToTypeChainName[bridge.toChain]
           ];
     try {
-      console.log(bridge.toChain);
-      if (
-        direction === "from" &&
-        (bridge.fromChain === "TON" || bridge.fromChain === "TONTestnet")
-      ) {
-        const provider = getTonProvider(bridge.fromChain as any);
-
-        const jetton = provider.open(
-          JettonMaster.create(Address.parse(tokenAddress))
-        );
-
-        const jwa = await jetton.getWalletAddress(
-          Address.parse(address?.replace("0x", "")!)
-        );
-        const jw = provider.open(JettonWallet.create(jwa));
-        const balance = await jw.getBalance();
-        return Number(balance);
-      }
-
-      if (
-        direction === "to" &&
-        (bridge.toChain === "TON" || bridge.toChain === "TONTestnet")
-      ) {
-        const provider = getTonProvider(bridge.toChain as any);
-
-        const jetton = provider.open(
-          JettonMaster.create(Address.parse(tokenAddress))
-        );
-
-        const jwa = await jetton.getWalletAddress(
-          Address.parse(bridge.receiver?.replace("0x", "")!)
-        );
-        const jw = provider.open(JettonWallet.create(jwa));
-        const balance = await jw.getBalance();
-        return Number(balance);
-      }
-
-      const provider =
+      const handler =
         direction === "from"
-          ? getProvider(ChainNameToTypeChainName[bridge.fromChain])
-          : getProvider(ChainNameToTypeChainName[bridge.toChain]);
+          ? await chainFactoryTestnet.inner(
+              // @ts-ignore
+              CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.fromChain]]
+            )
+          : await chainFactoryTestnet.inner(
+              // @ts-ignore
+              CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.toChain]]
+            );
 
       const addr =
-        direction === "from"
-          ? addressToAccount(address as string)
-          : addressToAccount(bridge.receiver);
+        direction === "from" ? bridge.senderAddress : bridge.receiver;
 
-      const bal = await provider.readContract({
-        abi: erc20Abi,
-        address: addressToAccount(tokenAddress),
-        functionName: "balanceOf",
-        args: [addr],
-      });
+      const bal = await handler.tokenBalance(tokenAddress, addr);
 
       if (bal) {
         return Number(bal.toString());
@@ -153,7 +101,7 @@ export default function useBalance() {
   }
 
   useEffect(() => {
-    if (bridge.fromChain && bridge.fromToken && address) {
+    if (bridge.fromChain && bridge.fromToken && bridge.senderAddress) {
       const chain =
         SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]];
       const decimals = chain.nativeCurrency.decimals;
@@ -165,10 +113,11 @@ export default function useBalance() {
           setTxFeeCoinbalance(formattedBalance);
         }
       })();
-
+      console.log(bridge.toToken, chain.nativeCurrency.symbol);
       if (bridge.fromToken === chain.nativeCurrency.symbol) {
         (async () => {
           const bal: number = await getCoinBalance("from");
+          console.log("chalna chahiye", { bal });
           const formattedBalance = bal / 10 ** decimals;
           setBalance(formattedBalance);
           dispatch(setBridgeBalance(formattedBalance));
@@ -193,22 +142,19 @@ export default function useBalance() {
         });
       }
     }
-  }, [bridge.fromChain, bridge.fromToken, bridge.amount, address]);
+  }, [bridge.fromChain, bridge.fromToken, bridge.amount, bridge.senderAddress]);
 
   useEffect(() => {
     if (bridge.toChain && bridge.toToken && bridge.receiver) {
-      const chain = SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.toChain]];
-      console.log(
-        { chain },
-        ChainNameToTypeChainName[bridge.toChain],
-        bridge.toChain
-      );
+      const chain =
+        SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]];
 
       const decimals = chain.nativeCurrency.decimals;
 
-      if (bridge.toToken === chain.nativeCurrency.symbol) {
+      if (bridge.fromToken === chain.nativeCurrency.symbol) {
         (async () => {
           const bal: number = await getCoinBalance("to");
+
           const formattedBalance = bal / 10 ** decimals;
           setBalanceTo(formattedBalance);
           dispatch(setBridgeToBalance(formattedBalance));

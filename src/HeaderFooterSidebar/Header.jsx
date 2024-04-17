@@ -10,10 +10,6 @@ function Header({ caption }) {
   const location = useLocation();
   const [modalIsOpen, setModalIsOpen] = React.useState(false);
 
-  useEffect(() => {
-    console.log(modalIsOpen);
-  }, [modalIsOpen]);
-
   // Check if the current path matches either "/explorer" or "/pool"
   const isExplorerOrPool =
     location.pathname === "/explorer" || location.pathname === "/pool";

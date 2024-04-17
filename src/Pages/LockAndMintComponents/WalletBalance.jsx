@@ -24,7 +24,6 @@ export default function WalletBalance({ name, parent, balance }) {
   let tokenAddress;
   if (chain) {
     tokenAddress = getTokenAddress(ChainNameToTypeChainName[chain.name], name);
-    console.log("getTokenAddress", chain.id, name, tokenAddress);
   }
 
   useEffect(() => {
@@ -62,7 +61,6 @@ export default function WalletBalance({ name, parent, balance }) {
         const _bal = Number(balance) / 1e9;
         setBalance(_bal.toString());
       } else {
-        console.log({ tokenAddress, sender: bridge.senderAddress });
         const balance = await handler
           .tokenBalance(
             "kQDTzdCB4h4SU3qakSile70oeBoDGAtt3eOpy8OASPco5z7d",
@@ -73,22 +71,17 @@ export default function WalletBalance({ name, parent, balance }) {
         //   tokenAddress,
         //   bridge.senderAddress
         // );
-        console.log({ balance });
         const _bal = Number(balance) / 1e9;
         setBalance(_bal.toString());
       }
     })();
   }, [name, chain]);
 
-  // useEffect(() => {
-  //   console.log({ balance, balanceSwap, name, parent, chain, tokenAddress });
-  // }, [balance, balanceSwap, name]);
-
   return (
     <div className="walletBalance">
       <img src={Wallet} alt="Wallet" />
 
-      <span>{balanceSwap}</span>
+      <span>{parent === "lock-and-mint" ? balance : balanceSwap}</span>
       <span>{name}</span>
     </div>
   );

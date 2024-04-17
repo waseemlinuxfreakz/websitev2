@@ -1,6 +1,6 @@
 import React from "react";
 import SwapTop from "../BridgeComponents/SwapTop";
-import MainActionButton from "../BridgeComponents/MainActionButton";
+import MainActionButton from "./MainActionButton";
 import TokenSelectors from "./TokenSelectors/TokenSelectors";
 import BridgeDetails from "../BridgeComponents/BridgeDetails/BridgeDetails";
 import WalletAddress from "../BridgeComponents/WalletAddress";

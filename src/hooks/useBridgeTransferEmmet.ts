@@ -10,14 +10,19 @@ import {
   SUPPORTED_CHAINS,
   ChainToDestinationDomain,
   TTokenName,
+  CHAIN_NAME_TO_ID,
 } from "../types";
 import { addressToBytes32, addressToAccount, sleep, getSigner } from "../utils";
 import useBridgFee from "./useBridgeFee";
 import { BurnToTransfer } from "../utils";
 import { EmmetSendInstallment } from "../utils/emmetSendInstallment";
+import { useTonConnect } from "./useTonConnect";
+import { Chain } from "emmet.js/dist/factory/types";
+import { chainFactoryTestnet } from "../store/chainFactory";
 
 export default function useBridgeTransferEmmet() {
   const { fee } = useBridgFee();
+  const { sender: tonSender } = useTonConnect();
 
   const { address } = useAccount();
 
@@ -81,7 +86,6 @@ export default function useBridgeTransferEmmet() {
   const sendInstallment = () => {
     setError("");
     setIsTransferProcessed(true);
-
     (async () => {
       const chainName: TChainName = ChainNameToTypeChainName[bridge.fromChain];
       const bridgeAddress: string =
@@ -94,23 +98,44 @@ export default function useBridgeTransferEmmet() {
       const mintRecipient = bridge.receiver;
       const tokenName: TTokenName = bridge.fromToken as TTokenName;
 
-      const { hash, status, error } = await EmmetSendInstallment(
-        chainName,
-        addressToAccount(bridgeAddress),
-        BigInt(Math.ceil(formattedAmount)),
-        destinationDomain,
-        mintRecipient,
-        tokenName,
-        fee
-      );
+      // const { hash, status, error } = await EmmetSendInstallment(
+      //   chainName,
+      //   addressToAccount(bridgeAddress),
+      //   BigInt(Math.ceil(formattedAmount)),
+      //   destinationDomain,
+      //   mintRecipient,
+      //   tokenName,
+      //   fee
+      // );
+      const { hash, status, error } = await (async () => {
+        try {
+          const fromChainID = CHAIN_NAME_TO_ID[chainName];
 
-      if (error) {
-        console.warn(
-          "useBridgeTransferEmmet => sendInstallment => Error:",
-          error
-        );
-        setError(error);
-      }
+          console.log({ Amount: BigInt(Math.ceil(formattedAmount)), decimals });
+          if (fromChainID === Chain.TON) {
+            const handler = await chainFactoryTestnet.inner(fromChainID);
+            console.log({ signerAddress: tonSender.address });
+            await chainFactoryTestnet.sendInstallment(
+              handler,
+              tonSender,
+              BigInt(Math.ceil(formattedAmount)),
+              // @ts-ignore
+              destinationDomain,
+              tokenName,
+              mintRecipient
+            );
+          }
+
+          return {
+            hash: undefined,
+            status: "failed",
+            error: "Something went wrong...",
+          };
+        } catch (error: { message: string } | any) {
+          console.error(error);
+          return { hash: undefined, status: "failed", error: error.message };
+        }
+      })();
 
       if (hash) {
         dispatch(setBridgeFromHash(hash));
@@ -119,7 +144,7 @@ export default function useBridgeTransferEmmet() {
 
       setIsTransferProcessed(false);
     })().catch((e: { message: string }) => {
-      console.warn(
+      console.error(
         "useBridgeTransferEmmet => sendInstallment => Error:",
         e.message
       );

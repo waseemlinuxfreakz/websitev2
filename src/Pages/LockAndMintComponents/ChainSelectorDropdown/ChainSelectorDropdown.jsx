@@ -25,10 +25,6 @@ export default function ChainSelectorDropdown({ parent, direction }) {
   const [chainArray, setChainArray] = useState(chainData);
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    console.log(chainArray);
-  }, [chainArray]);
-
   const isLayer2View = () =>
     window.location.href.includes("/your-liquidity") ||
     window.location.href.includes("/transactionDetails/");
@@ -95,7 +91,6 @@ export default function ChainSelectorDropdown({ parent, direction }) {
     toggleVisibility();
     if (parent != "explorer") {
       switchChain(id);
-      console.log({ id });
     }
     ReactGA.event({
       category: "User",
@@ -103,10 +98,6 @@ export default function ChainSelectorDropdown({ parent, direction }) {
       label: "Select a Swap Chain",
     });
   };
-
-  useEffect(() => {
-    console.log("fromchain", bridge.fromChain);
-  }, [bridge.fromChain]);
 
   const toggleVisibility = () => {
     setListVisible(!isListVisible);

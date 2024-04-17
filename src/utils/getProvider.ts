@@ -23,7 +23,6 @@ export function getProvider(chainName: TChainName) {
 export function getTonProvider(chainName: "TON" | "TONTestnet") {
   const cn = chainName === "TON" ? "ton" : "tonTestnet";
   const chain: TEmmetChain = findChain(cn) as TEmmetChain;
-  console.log("rpc", chain.rpcUrls);
 
   return new TonClient({
     endpoint: chain.rpcUrls.default.http[0],

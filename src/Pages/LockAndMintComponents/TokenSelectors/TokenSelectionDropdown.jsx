@@ -8,9 +8,11 @@ import ReactGA from "react-ga";
 import CoinLinkAddress from "../CoinLinkAddress";
 import { useAppSelector, useAppDispatch } from "../../../hooks/storage";
 import {
+  setBridgeDecimals,
   setBridgeFromToken,
   setBridgeToToken,
 } from "../../../store/bridgeSlice";
+import { TOKEN_DECIMALS } from "../../../types";
 
 export default function TokenSelectionDropdown({ type }) {
   const bridge = useAppSelector((state) => state.bridge);
@@ -77,6 +79,10 @@ export default function TokenSelectionDropdown({ type }) {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
+
+  useEffect(() => {
+    dispatch(setBridgeDecimals(TOKEN_DECIMALS[selectedCoin.name]));
+  }, [selectedCoin]);
 
   return (
     <div className="selectCoin" ref={selectCoinRef}>

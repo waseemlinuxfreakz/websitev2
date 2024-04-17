@@ -88,7 +88,7 @@ export const TOKEN_CHAIN_CONTRACT = {
     optimismSepolia: "0x5fd84259d66Cd46123540766Be93DFE6D43130D7",
     sepolia: "0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238",
     polygonMumbai: "0x9999f7Fea5938fD3b1E26A12c3f2fb024e194f97",
-    tonTestnet: "kQDTzdCB4h4SU3qakSile70oeBoDGAtt3eOpy8OASPco5z7d",
+    tonTestnet: "kQDJxJsIQucWOv8C3mQC_8e87tsxwPYKZt7U7fotXB1HmsSB",
   },
   TON: {
     tonTestnet: "",
