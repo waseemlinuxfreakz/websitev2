@@ -47,10 +47,6 @@ export default function useBalance() {
 
       const addr =
         direction === "from" ? bridge.senderAddress : bridge.receiver;
-      console.log({
-        receiverChainID:
-          CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.toChain]],
-      });
 
       const bal = await handler.balance(addr);
 
