@@ -3,7 +3,7 @@ import Wallet from "../assets/img/Wallet.svg";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { useAccount } from "wagmi";
 import { isMobile } from "react-device-detect";
-import { useTonConnectModal } from "@tonconnect/ui-react";
+import { useTonConnectModal, useTonConnectUI } from "@tonconnect/ui-react";
 import { useAppSelector, useAppDispatch } from "../hooks/storage";
 import { setSenderAddress } from "../store/bridgeSlice";
 import { useTonWallet } from "@tonconnect/ui-react";
@@ -15,7 +15,12 @@ Modal.setAppElement("#root");
 export default function ConnectWalletModal({ modalIsOpen, setModalIsOpen }) {
   const { open } = useWeb3Modal();
   const { address, isConnected } = useAccount();
-  const { open: openTonModal, close: closeTonModal } = useTonConnectModal();
+  const {
+    state: tonState,
+    open: openTonModal,
+    close: closeTonModal,
+  } = useTonConnectModal();
+  const tonConnectUi = useTonConnectUI();
   const bridge = useAppSelector((state) => state.bridge);
   const dispatch = useAppDispatch();
   const tonWallet = useTonWallet();
@@ -74,16 +79,27 @@ export default function ConnectWalletModal({ modalIsOpen, setModalIsOpen }) {
               : "WalletConnect"}
           </div>
         </div>
-
-        <div
-          className="connectWallet"
-          onClick={() => openTonModal() && closeModal()}
-        >
-          <div>
-            <img src={Wallet} alt="Wallet" />
-            TON Connect
+        {tonWallet ? (
+          <div
+            className="connectWallet"
+            onClick={() => tonConnectUi[0].disconnect() && closeModal()}
+          >
+            <div>
+              <img src={Wallet} alt="Wallet" />
+              Disconnect TON wallet
+            </div>
           </div>
-        </div>
+        ) : (
+          <div
+            className="connectWallet"
+            onClick={() => openTonModal() && closeModal()}
+          >
+            <div>
+              <img src={Wallet} alt="Wallet" />
+              TON Connect
+            </div>
+          </div>
+        )}
       </Modal>
     </div>
   );
