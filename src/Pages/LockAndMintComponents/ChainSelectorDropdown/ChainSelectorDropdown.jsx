@@ -63,6 +63,10 @@ export default function ChainSelectorDropdown({ parent, direction }) {
   }
 
   useEffect(() => {
+    dispatchChain(selectedChain.name);
+  }, [selectedChain, bridge.fromChain]);
+
+  useEffect(() => {
     if (parent === "bridge") {
       setChainArray(bridge.toChains);
       const oldBridgeAmount = bridge.amount;

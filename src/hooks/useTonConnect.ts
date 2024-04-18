@@ -9,8 +9,6 @@ export function useTonConnect(): { sender: Sender; connected: boolean } {
   const [tonConnectUI] = useTonConnectUI();
   const address = useTonAddress();
 
-  console.log({ address });
-
   return {
     sender: {
       send: async (args: SenderArguments) => {

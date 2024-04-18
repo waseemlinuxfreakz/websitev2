@@ -40,6 +40,10 @@ export default function DestinationChainDropdown() {
   //     }
   //   }, [bridge.toChain]);
 
+  useEffect(() => {
+    dispatch(setBridgeToChain(selectedChain.name));
+  }, [selectedChain]);
+
   const toggleVisibility = () => {
     setListVisible(!isListVisible);
   };
