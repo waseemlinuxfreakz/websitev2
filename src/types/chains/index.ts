@@ -113,7 +113,7 @@ export const CHAIN_NAME_TO_ID: { [key in TChainName]: number } = {
   avalancheFuji: 43113, // 0xa869
   baseSepolia: 84532, // 0x14a34
   optimismSepolia: 11155420, // 0xaa37dc
-  polygonMumbai: 80001, // 0x13881
+  polygonMumbai: 80002, // 0x13881
   sepolia: 11155111, // 0xaa36a7
   tonTestnet: 65535, // 0xffff
 };
@@ -178,7 +178,7 @@ export const CHAIN_ID_TO_NAME: { [key: number]: TChainName } = {
   43113: "avalancheFuji",
   84532: "baseSepolia",
   11155420: "optimismSepolia",
-  80001: "polygonMumbai",
+  80002: "polygonMumbai",
   11155111: "sepolia",
   65535: "tonTestnet",
 };

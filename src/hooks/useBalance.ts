@@ -6,6 +6,7 @@ import {
   TOKEN_CHAIN_CONTRACT,
   TOKEN_DECIMALS,
   TTokenName,
+  ChainToDestinationDomain,
 } from "../types";
 import { useAppDispatch, useAppSelector } from "./storage";
 import { useState, useEffect } from "react";
@@ -32,17 +33,17 @@ export default function useBalance() {
 
   async function getCoinBalance(direction: TDirection) {
     try {
-      // const handler = await chainFactoryTestnet.inner(fromChain.id);
-
       const handler =
         direction === "from"
           ? await chainFactoryTestnet.inner(
               // @ts-ignore
-              CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.fromChain]]
+              ChainToDestinationDomain[
+                ChainNameToTypeChainName[bridge.fromChain]
+              ]
             )
           : await chainFactoryTestnet.inner(
               // @ts-ignore
-              CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.toChain]]
+              ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]]
             );
 
       const addr =
@@ -69,16 +70,26 @@ export default function useBalance() {
         : TOKEN_CHAIN_CONTRACT["USDC"][
             ChainNameToTypeChainName[bridge.toChain]
           ];
+
+    if (direction === "to") {
+      console.log({
+        chainID:
+          ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]],
+        tokenAddress,
+      });
+    }
     try {
       const handler =
         direction === "from"
           ? await chainFactoryTestnet.inner(
               // @ts-ignore
-              CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.fromChain]]
+              ChainToDestinationDomain[
+                ChainNameToTypeChainName[bridge.fromChain]
+              ]
             )
           : await chainFactoryTestnet.inner(
               // @ts-ignore
-              CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.toChain]]
+              ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]]
             );
 
       const addr =
@@ -109,11 +120,9 @@ export default function useBalance() {
           setTxFeeCoinbalance(formattedBalance);
         }
       })();
-      console.log(bridge.toToken, chain.nativeCurrency.symbol);
       if (bridge.fromToken === chain.nativeCurrency.symbol) {
         (async () => {
           const bal: number = await getCoinBalance("from");
-          console.log("chalna chahiye", { bal });
           const formattedBalance = bal / 10 ** decimals;
           setBalance(formattedBalance);
           dispatch(setBridgeBalance(formattedBalance));
