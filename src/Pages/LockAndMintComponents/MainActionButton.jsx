@@ -37,6 +37,10 @@ function MainActionButton() {
     const chainRequiresApproval = lockAndMintChains.find(
       (chain) => chain.name === bridge.fromChain
     )?.requiresApproval;
+    console.log({
+      chainRequiresApproval,
+      fromChain: bridge.fromChain,
+    });
     if (chainRequiresApproval) {
       const needApproval =
         Number(bridge.amount) >

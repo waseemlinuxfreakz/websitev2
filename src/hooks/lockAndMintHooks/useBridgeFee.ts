@@ -1,15 +1,15 @@
-import { getProvider, addressToAccount } from "../utils";
+import { getProvider, addressToAccount } from "../../utils";
 import {
   ChainNameToTypeChainName,
   ChainToDestinationDomain,
   SUPPORTED_CHAINS,
   TChainName,
-} from "../types";
-import { useAppDispatch, useAppSelector } from "./storage";
+} from "../../types";
+import { useAppDispatch, useAppSelector } from "../storage";
 import { useState, useEffect } from "react";
-import { EmmetFeeOracleABI } from "../abis/EmmetFeeOracle";
-import { setBridgeError, setBridgeFee } from "../store/bridgeSlice";
-import { chainFactoryTestnet } from "../store/chainFactory";
+import { EmmetFeeOracleABI } from "../../abis/EmmetFeeOracle";
+import { setBridgeError, setBridgeFee } from "../../store/bridgeSlice";
+import { chainFactoryTestnet } from "../../store/chainFactory";
 
 export default function useBridgFee() {
   const dispatch = useAppDispatch();
@@ -48,24 +48,6 @@ export default function useBridgFee() {
   }
 
   async function getBridgeFee() {
-    try {
-      const address = addressToAccount(
-        SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]]
-          .emmetFeeOracle.address
-      );
-      // console.log("Oracle:", address, ChainNameToTypeChainName[bridge.toChain])
-      return await provider.readContract({
-        address,
-        abi: EmmetFeeOracleABI,
-        functionName: "calculateTransactionFee",
-        args: [ChainNameToTypeChainName[bridge.toChain]],
-      });
-    } catch (error) {
-      console.warn(error);
-    }
-  }
-
-  async function getLockAndMintBridgeFee() {
     try {
       const handler = await chainFactoryTestnet.inner(
         //@ts-ignore

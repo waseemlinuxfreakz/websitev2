@@ -19,6 +19,7 @@ import { EmmetSendInstallment } from "../utils/emmetSendInstallment";
 import { useTonConnect } from "./useTonConnect";
 import { Chain } from "emmet.js/dist/factory/types";
 import { chainFactoryTestnet } from "../store/chainFactory";
+import { useEthersSigner } from "./lockAndMintHooks/useEthersSigner";
 
 export default function useBridgeTransferEmmet() {
   const { fee } = useBridgFee();
@@ -27,6 +28,8 @@ export default function useBridgeTransferEmmet() {
   const { address } = useAccount();
 
   const dispatch = useAppDispatch();
+
+  const signer = useEthersSigner();
 
   const bridge = useAppSelector((state) => state.bridge);
 
@@ -109,15 +112,25 @@ export default function useBridgeTransferEmmet() {
       // );
       const { hash, status, error } = await (async () => {
         try {
-          const fromChainID = CHAIN_NAME_TO_ID[chainName];
-
-          console.log({ Amount: BigInt(Math.ceil(formattedAmount)), decimals });
+          const fromChainID = ChainToDestinationDomain[chainName];
+          console.log(fromChainID);
           if (fromChainID === Chain.TON) {
             const handler = await chainFactoryTestnet.inner(fromChainID);
             console.log({ signerAddress: tonSender.address });
             await chainFactoryTestnet.sendInstallment(
               handler,
               tonSender,
+              BigInt(Math.ceil(formattedAmount)),
+              destinationDomain,
+              tokenName,
+              mintRecipient
+            );
+          } else if (fromChainID === Chain.POLYGON) {
+            const handler = await chainFactoryTestnet.inner(fromChainID);
+            await chainFactoryTestnet.sendInstallment(
+              handler,
+              // @ts-ignore
+              signer,
               BigInt(Math.ceil(formattedAmount)),
               // @ts-ignore
               destinationDomain,
