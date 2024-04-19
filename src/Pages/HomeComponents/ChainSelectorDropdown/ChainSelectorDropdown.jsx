@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useConfig, useSwitchChain } from "wagmi";
+import { useChainId, useSwitchChain } from "wagmi";
 
 import DownArrow from "../../../assets/img/down-white.svg";
 import chainData from "../../../store/Chain.json";
@@ -12,13 +12,13 @@ import {
 import { setSwapFromChain } from "../../../store/swapSlice";
 import { isMobile } from "react-device-detect";
 
-const findChain = (chain) => {
-  return chainData.find((c) => chain && chain.id === c.id);
+const findChain = (chainId) => {
+  return chainData.find((c) => chainId && chainId === c.id);
 };
 
 export default function ChainSelectorDropdown({ parent, direction }) {
-  const { chain } = useConfig();
-  const { switchNetwork } = useSwitchChain();
+  const chainId = useChainId();
+  const { switchChain } = useSwitchChain();
 
   // Global State
   const bridge = useAppSelector((state) => state.bridge);
@@ -34,10 +34,10 @@ export default function ChainSelectorDropdown({ parent, direction }) {
   // Local State
   const [selectedChain, setSelectedChain] = useState({
     icon:
-      chain && findChain(chain)
-        ? `${isLayer2View() ? ".." : ""}${findChain(chain).icon}`
+      chainId && findChain(chainId)
+        ? `${isLayer2View() ? ".." : ""}${findChain(chainId).icon}`
         : "/img/chain/avalanche.svg",
-    name: chain && findChain(chain) ? findChain(chain).name : "Avalanche",
+    name: chainId && findChain(chainId) ? findChain(chainId).name : "Avalanche",
   });
 
   const [isListVisible, setListVisible] = useState(false);
@@ -69,8 +69,8 @@ export default function ChainSelectorDropdown({ parent, direction }) {
 
   useEffect(() => {
     let selChain;
-    if (chain) {
-      selChain = findChain(chain);
+    if (chainId) {
+      selChain = findChain(chainId);
       if (selChain) {
         setSelectedChain({
           icon: selChain.icon,
@@ -79,14 +79,14 @@ export default function ChainSelectorDropdown({ parent, direction }) {
         dispatchChain(selChain.name);
       }
     }
-  }, [chain]);
+  }, [chainId]);
 
   const handleChainClick = (icon, name, id) => {
     setSelectedChain({ icon, name });
     dispatchChain(name);
     toggleVisibility();
     if (parent != "explorer") {
-      switchNetwork?.(id);
+      switchChain({ chainId: id });
     }
     ReactGA.event({
       category: "User",

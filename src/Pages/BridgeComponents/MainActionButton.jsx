@@ -116,7 +116,6 @@ function MainActionButton() {
         });
         console.log(`Bridge rn: `, bridge.toChain);
         if (bridge.toChain === "TONTestnet") {
-          console.log("send installment");
           sendInstallment();
         } else {
           burnUSDC();

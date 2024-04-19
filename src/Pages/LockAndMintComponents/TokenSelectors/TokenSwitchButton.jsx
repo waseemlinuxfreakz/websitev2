@@ -34,7 +34,7 @@ export default function TokenswitchButton() {
     dispatch(setBridgeError(""));
   };
 
-  const { switchNetwork } = useSwitchChain({ onError, onSuccess });
+  const { switchChain } = useSwitchChain({ onError, onSuccess });
 
   const handleSwitchButtonClick = () => {
     try {
@@ -52,7 +52,7 @@ export default function TokenswitchButton() {
       );
 
       // 3. Swap the from chain in the wallet
-      switchNetwork?.(id);
+      switchChain(id);
     } catch (error) {
       dispatch(setBridgeError(`TokenswitchButton Error: ${error.message}`));
     }

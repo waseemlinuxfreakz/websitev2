@@ -71,11 +71,6 @@ export default function useBalance() {
             ChainNameToTypeChainName[bridge.toChain]
           ];
 
-    console.log({
-      chainID:
-        ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]],
-      tokenAddress,
-    });
     try {
       const handler =
         direction === "from"
@@ -152,7 +147,6 @@ export default function useBalance() {
       const chain = SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.toChain]];
 
       const decimals = chain.nativeCurrency.decimals;
-      console.log({ toToken: bridge.toToken });
       if (bridge.toToken === chain.nativeCurrency.symbol) {
         (async () => {
           const bal: number = await getCoinBalance("to");
