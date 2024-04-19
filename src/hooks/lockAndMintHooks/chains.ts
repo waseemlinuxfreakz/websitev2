@@ -10,7 +10,7 @@ const chains = [
   {
     id: 65535,
     name: "TONTestnet",
-    icon: "img/chain/Ton.svg",
+    icon: "img/chain/ton.svg",
     domain: 65535,
     requiresApproval: false,
     nativeCurrency: { name: "TON", symbol: "TON", decimals: 9 },
