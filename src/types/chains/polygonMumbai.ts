@@ -11,7 +11,7 @@ export const polygonMumbai = {
     address: "0x8598059B6AC70E9a831638F670639c893d3C464d",
     blockCreated: 45306550,
   },
-  name: "Mumbai",
+  name: "Amoy",
   rpcUrls: {
     default: {
       http: ["https://rpc-amoy.polygon.technology"],

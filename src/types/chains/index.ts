@@ -132,7 +132,7 @@ export const ChainNameToTypeChainName: { [key: string]: TChainName } = {
   Fuji: "avalancheFuji",
   BSepolia: "baseSepolia",
   OPSepolia: "optimismSepolia",
-  Mumbai: "polygonMumbai",
+  Amoy: "polygonMumbai",
   Sepolia: "sepolia",
   TONTestnet: "tonTestnet",
 };

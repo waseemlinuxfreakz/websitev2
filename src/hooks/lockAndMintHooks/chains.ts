@@ -1,7 +1,7 @@
 const chains = [
   {
     id: 80002,
-    name: "Mumbai",
+    name: "Amoy",
     icon: "img/chain/polygon.svg",
     domain: 7,
     requiresApproval: true,
