@@ -83,9 +83,9 @@ function App() {
                 <Route path="/tokensale" element={<Tokenomics />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/terms-of-service" element={<TermsService />} />
-                <Route path="/bridge" element={<Bridge />} />
+                {/* <Route path="/bridge" element={<Bridge />} /> */}
                 <Route path="/explorer" element={<ExplorerPage />} />
-                <Route path="/lock-and-mint" element={<LockAndMint />} />
+                <Route path="/bridge" element={<LockAndMint />} />
                 {/* <Route path="/swap" element={< HomePage />} /> */}
                 {/* <Route path="/pool" element={<PoolPage />} /> */}
                 {/* <Route path="/pool/your-liquidity" element={<YourLiquidityPage />} /> */}
