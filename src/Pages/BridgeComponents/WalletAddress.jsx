@@ -44,7 +44,7 @@ function WalletAddress() {
       dispatch(setReceiver(address));
     }
     if (tonAddress && !bridge.receiver) {
-      setDestAddress(truncate(tonAddress));
+      // setDestAddress(truncate(tonAddress));
       dispatch(setReceiver(tonAddress));
     }
   }, [address, tonAddress]);
