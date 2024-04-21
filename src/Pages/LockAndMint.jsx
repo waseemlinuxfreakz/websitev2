@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Header from "../HeaderFooterSidebar/Header";
+import Header from "../HeaderFooterSidebar/LockAndMintHeader";
 import Footer from "../HeaderFooterSidebar/Footer";
 import Sidebar from "../HeaderFooterSidebar/Sidebar";
 import BridgeSwapContainer from "./LockAndMintComponents/BridgeSwapContainer";

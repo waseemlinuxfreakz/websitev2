@@ -5,6 +5,7 @@ import chainData from "../../../store/lockAndMintChain.json";
 import { useAppSelector, useAppDispatch } from "../../../hooks/storage";
 import { setBridgeToChain } from "../../../store/bridgeSlice";
 import ReactGA from "react-ga";
+import { CHAIN_NAME_TO_ID } from "../../../types";
 
 export default function DestinationChainDropdown() {
   const findChain = (chainName) => {
@@ -19,6 +20,14 @@ export default function DestinationChainDropdown() {
     icon: chainData[0].icon,
     name: chainData[0].name,
   });
+
+  const [chainArray, setChainArray] = useState(chainData);
+
+  useEffect(() => {
+    setChainArray(
+      chainData.filter((chain) => chain.name !== selectedChain.name)
+    );
+  }, [selectedChain]);
 
   function handleChainClick(icon, name, id) {
     setSelectedChain({ icon, name });
@@ -41,8 +50,15 @@ export default function DestinationChainDropdown() {
   //   }, [bridge.toChain]);
 
   useEffect(() => {
-    dispatch(setBridgeToChain(selectedChain.name));
-  }, [selectedChain]);
+    const chain = findChain(bridge.toChain);
+
+    console.log("did ran at destination chain", { chain });
+
+    if (chain && bridge.fromChain) {
+      setSelectedChain(chain);
+      dispatch(setBridgeToChain(bridge.toChain));
+    }
+  }, [bridge.toChain]);
 
   const toggleVisibility = () => {
     setListVisible(!isListVisible);
@@ -77,7 +93,7 @@ export default function DestinationChainDropdown() {
         <img src={DownArrow} alt="Down Arrow" />
       </div>
       <ul className={`selectCoinList ${isListVisible ? "visible" : "hidden"}`}>
-        {chainData.map((chain) => (
+        {chainArray.map((chain) => (
           <li className="coinItem" key={chain.id}>
             <div
               className="coinNameIcon"

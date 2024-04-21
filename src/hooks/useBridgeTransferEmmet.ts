@@ -110,49 +110,41 @@ export default function useBridgeTransferEmmet() {
       //   tokenName,
       //   fee
       // );
-      const { hash, status, error } = await (async () => {
-        try {
-          const fromChainID = ChainToDestinationDomain[chainName];
-          console.log(fromChainID);
-          if (fromChainID === Chain.TON) {
-            const handler = await chainFactoryTestnet.inner(fromChainID);
-            console.log({ signerAddress: tonSender.address });
-            await chainFactoryTestnet.sendInstallment(
-              handler,
-              tonSender,
-              BigInt(Math.ceil(formattedAmount)),
-              destinationDomain,
-              tokenName,
-              mintRecipient
-            );
-          } else if (fromChainID === Chain.POLYGON) {
-            const handler = await chainFactoryTestnet.inner(fromChainID);
-            await chainFactoryTestnet.sendInstallment(
-              handler,
-              // @ts-ignore
-              signer,
-              BigInt(Math.ceil(formattedAmount)),
-              // @ts-ignore
-              destinationDomain,
-              tokenName,
-              mintRecipient
-            );
+
+      try {
+        const fromChainID = ChainToDestinationDomain[chainName];
+        console.log(fromChainID);
+        if (fromChainID === Chain.TON) {
+          const handler = await chainFactoryTestnet.inner(fromChainID);
+          console.log({ signerAddress: tonSender.address });
+          const { hash } = await chainFactoryTestnet.sendInstallment(
+            handler,
+            tonSender,
+            BigInt(Math.ceil(formattedAmount)),
+            destinationDomain,
+            tokenName,
+            mintRecipient
+          );
+
+          if (hash) {
+            dispatch(setBridgeFromHash(hash));
+            dispatch(showBridgeProgress());
           }
-
-          return {
-            hash: undefined,
-            status: "failed",
-            error: "Something went wrong...",
-          };
-        } catch (error: { message: string } | any) {
-          console.error(error);
-          return { hash: undefined, status: "failed", error: error.message };
+        } else if (fromChainID === Chain.POLYGON) {
+          const handler = await chainFactoryTestnet.inner(fromChainID);
+          await chainFactoryTestnet.sendInstallment(
+            handler,
+            // @ts-ignore
+            signer,
+            BigInt(Math.ceil(formattedAmount)),
+            // @ts-ignore
+            destinationDomain,
+            tokenName,
+            mintRecipient
+          );
         }
-      })();
-
-      if (hash) {
-        dispatch(setBridgeFromHash(hash));
-        dispatch(showBridgeProgress());
+      } catch (error: { message: string } | any) {
+        console.error(error);
       }
 
       setIsTransferProcessed(false);

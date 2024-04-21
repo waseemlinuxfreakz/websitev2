@@ -9,6 +9,7 @@ import { setBridgeAmount } from "../../../store/bridgeSlice";
 import ChainSelectorDropdown from "../ChainSelectorDropdown/ChainSelectorDropdown";
 import DestinationChainDropdown from "../ChainSelectorDropdown/DestinationChainDropdown";
 import useBalance from "../../../hooks/useBalance";
+import { useTonAddress } from "@tonconnect/ui-react";
 
 export default function TokenSelectorBox({ type }) {
   const dispatch = useAppDispatch();

@@ -11,6 +11,7 @@ import {
 } from "../../../store/bridgeSlice";
 import { setSwapFromChain } from "../../../store/swapSlice";
 import { isMobile } from "react-device-detect";
+import { CHAIN_NAME_TO_ID } from "../../../types";
 
 const findChain = (chainId) => {
   return chainData.find((c) => chainId && chainId === c.id);
@@ -23,7 +24,7 @@ export default function ChainSelectorDropdown({ parent, direction }) {
 
   // Global State
   const bridge = useAppSelector((state) => state.bridge);
-  const [chainArray, setChainArray] = useState(chainData);
+
   const dispatch = useAppDispatch();
 
   const isLayer2View = () =>
@@ -44,13 +45,21 @@ export default function ChainSelectorDropdown({ parent, direction }) {
         : chainData[1].name,
   });
 
+  const [chainArray, setChainArray] = useState(chainData);
+
+  useEffect(() => {
+    setChainArray(
+      chainData.filter((chain) => chain.name !== selectedChain.name)
+    );
+  }, [selectedChain]);
+
   const [isListVisible, setListVisible] = useState(false);
 
   function dispatchChain(name) {
     switch (parent) {
       case "bridge":
         dispatch(setBridgeFromChain(name));
-        setChainArray(bridge.fromChains);
+        setChainArray(chainData);
         break;
       case "swap":
         dispatch(setSwapFromChain(name));
@@ -67,12 +76,21 @@ export default function ChainSelectorDropdown({ parent, direction }) {
   }
 
   useEffect(() => {
-    dispatchChain(selectedChain.name);
-  }, [selectedChain, bridge.fromChain]);
+    const chain = findChain(CHAIN_NAME_TO_ID[bridge.toChain]);
+
+    console.log("did ran at from chain", {
+      chainId: bridge.toChain,
+    });
+
+    if (chain && bridge.fromChain) {
+      setSelectedChain(chain);
+      dispatchChain(bridge.fromChain);
+    }
+  }, [bridge.fromChain]);
 
   useEffect(() => {
-    if (parent === "bridge") {
-      setChainArray(bridge.toChains);
+    if (parent === "lock-and-mint") {
+      setChainArray(chainArray);
       const oldBridgeAmount = bridge.amount;
       dispatch(setBridgeAmount(0));
       dispatch(setBridgeAmount(oldBridgeAmount));
