@@ -96,13 +96,13 @@ function MainActionButton() {
   ]);
 
   const onClickSelectAction = () => {
-    if (!bridge.receiver) {
-      alert("Receiver address is empty");
-      return;
-    }
     if (!isConnected && !wallet?.account) {
       setModalIsOpen(true);
     } else {
+      if (!bridge.receiver) {
+        alert("Receiver address is empty");
+        return;
+      }
       if (isApproveRequired()) {
         if (approve) {
           try {
