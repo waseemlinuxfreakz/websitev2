@@ -64,10 +64,12 @@ export default function useBalance() {
   async function getTokenBalance(direction: TDirection) {
     const tokenAddress: string =
       direction === "from"
-        ? TOKEN_CHAIN_CONTRACT["USDC"][
+        ? // @ts-ignore
+          TOKEN_CHAIN_CONTRACT[bridge.fromToken][
             ChainNameToTypeChainName[bridge.fromChain]
           ]
-        : TOKEN_CHAIN_CONTRACT["USDC"][
+        : // @ts-ignore
+          TOKEN_CHAIN_CONTRACT[bridge.fromToken][
             ChainNameToTypeChainName[bridge.toChain]
           ];
 
@@ -90,6 +92,7 @@ export default function useBalance() {
 
       const bal = await handler.tokenBalance(tokenAddress, addr);
 
+      console.log({ bal });
       if (bal) {
         return Number(bal.toString());
       }
