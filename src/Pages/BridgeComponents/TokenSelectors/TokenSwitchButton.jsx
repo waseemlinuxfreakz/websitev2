@@ -50,12 +50,6 @@ export default function TokenswitchButton() {
           toToken: bridge.fromToken,
         })
       );
-      console.log({
-        fromChain: bridge.toChain,
-        toChain: bridge.fromChain,
-        fromToken: bridge.toToken,
-        toToken: bridge.fromToken,
-      });
 
       // 3. Swap the from chain in the wallet
       switchChain({ chainId: id });

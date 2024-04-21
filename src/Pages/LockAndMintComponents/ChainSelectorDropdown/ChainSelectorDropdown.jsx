@@ -98,7 +98,6 @@ export default function ChainSelectorDropdown({ parent, direction }) {
   }, [bridge.toChain]);
 
   useEffect(() => {
-    console.log({ fromChain: bridge.fromChain });
     const selChain = findChain(
       CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.fromChain]]
     );
@@ -110,7 +109,6 @@ export default function ChainSelectorDropdown({ parent, direction }) {
       dispatchChain(chainData[1].name);
     }
     if (bridge.fromChain) {
-      console.log({ selChain });
       if (selChain) {
         setSelectedChain({
           icon: selChain.icon,

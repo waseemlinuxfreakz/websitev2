@@ -113,7 +113,6 @@ export default function useBridgeTransferEmmet() {
 
       try {
         const fromChainID = ChainToDestinationDomain[chainName];
-        console.log(fromChainID);
         if (fromChainID === Chain.TON) {
           const handler = await chainFactoryTestnet.inner(fromChainID);
           const { hash, tx } = await chainFactoryTestnet.sendInstallment(
@@ -124,7 +123,6 @@ export default function useBridgeTransferEmmet() {
             tokenName,
             mintRecipient
           );
-          console.log({ hash, tx });
           dispatch(setBridgeFromHash(hash ? hash : "N/A"));
           dispatch(showBridgeProgress());
         } else if (fromChainID === Chain.POLYGON) {
