@@ -115,7 +115,8 @@ export default function useBridgeTransferEmmet() {
         const fromChainID = ChainToDestinationDomain[chainName];
         if (fromChainID === Chain.TON) {
           const handler = await chainFactoryTestnet.inner(fromChainID);
-          const { hash, tx } = await chainFactoryTestnet.sendInstallment(
+
+          await chainFactoryTestnet.sendInstallment(
             handler,
             tonSender,
             BigInt(Math.ceil(formattedAmount)),
@@ -123,11 +124,11 @@ export default function useBridgeTransferEmmet() {
             tokenName,
             mintRecipient
           );
-          dispatch(setBridgeFromHash(hash ? hash : "N/A"));
           dispatch(showBridgeProgress());
         } else if (fromChainID === Chain.POLYGON) {
           const handler = await chainFactoryTestnet.inner(fromChainID);
-          await chainFactoryTestnet.sendInstallment(
+
+          const { hash, tx } = await chainFactoryTestnet.sendInstallment(
             handler,
             // @ts-ignore
             signer,
@@ -137,6 +138,8 @@ export default function useBridgeTransferEmmet() {
             tokenName,
             mintRecipient
           );
+          dispatch(setBridgeFromHash(hash ? hash : "N/A"));
+          dispatch(showBridgeProgress());
         }
       } catch (error: { message: string } | any) {
         console.error(error);
