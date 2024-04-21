@@ -71,7 +71,7 @@ function App() {
   return (
     <>
       {/* TODO: update tonconnect-manifesto url */}
-      <TonConnectUIProvider manifestUrl="http://testnet-ton.emmet.finance.s3-website.eu-north-1.amazonaws.com/tonconnect-manifest.json">
+      <TonConnectUIProvider manifestUrl="https://raw.githubusercontent.com/Emmet-Finance/websitev2/feat/TON/public/tonconnect-manifest.json">
         <WagmiProvider config={wagmiConfig}>
           <QueryClientProvider client={queryClient}>
             <Router
