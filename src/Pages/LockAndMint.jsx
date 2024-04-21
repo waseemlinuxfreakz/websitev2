@@ -4,7 +4,7 @@ import Footer from "../HeaderFooterSidebar/Footer";
 import Sidebar from "../HeaderFooterSidebar/Sidebar";
 import BridgeSwapContainer from "./LockAndMintComponents/BridgeSwapContainer";
 import BridgeTransferProgress from "./BridgeComponents/BridgeTransferProgress";
-import MobileHeader from "../HeaderFooterSidebar/MobileHeader";
+import MobileHeader from "../HeaderFooterSidebar/LockAndMintMobileHeader";
 import MainActionButton from "../Pages/LockAndMintComponents/MainActionButton";
 // import SidebarSlider from '../HeaderFooterSidebar/SidebarComponent/SidebarSlider';
 import { useAppSelector } from "../hooks/storage";
