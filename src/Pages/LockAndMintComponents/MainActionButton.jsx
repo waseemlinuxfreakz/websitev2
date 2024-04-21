@@ -96,6 +96,7 @@ function MainActionButton() {
     isApproveLoading,
     isTransferProcessed,
     wallet,
+    fromBalance,
   ]);
 
   const onClickSelectAction = () => {
