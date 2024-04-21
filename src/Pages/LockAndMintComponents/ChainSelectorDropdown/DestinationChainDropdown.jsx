@@ -50,6 +50,12 @@ export default function DestinationChainDropdown() {
   //   }, [bridge.toChain]);
 
   useEffect(() => {
+    const chain = findChain(selectedChain.name);
+    setSelectedChain(chain);
+    dispatch(setBridgeToChain(chain.name));
+  }, []);
+
+  useEffect(() => {
     const chain = findChain(bridge.toChain);
 
     console.log("did ran at destination chain", { chain });

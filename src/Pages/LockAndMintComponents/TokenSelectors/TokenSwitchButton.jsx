@@ -8,7 +8,6 @@ import {
   swapBridgeChainsAndTokens,
 } from "../../../store/bridgeSlice";
 import { getChainidByName } from "../../../utils/filters";
-import { Chain } from "emmet.js/dist/factory/types";
 
 export default function TokenswitchButton() {
   const bridge = useAppSelector((state) => state.bridge);
@@ -59,9 +58,7 @@ export default function TokenswitchButton() {
         toToken: bridge.fromToken,
       });
       // 3. Swap the from chain in the wallet
-      if (id !== Chain.TON) {
-        switchChain({ chainId: id });
-      }
+      switchChain({ chainId: id });
     } catch (error) {
       dispatch(setBridgeError(`TokenswitchButton Error: ${error.message}`));
     }

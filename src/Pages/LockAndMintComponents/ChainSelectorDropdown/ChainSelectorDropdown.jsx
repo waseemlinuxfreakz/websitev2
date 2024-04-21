@@ -11,7 +11,7 @@ import {
 } from "../../../store/bridgeSlice";
 import { setSwapFromChain } from "../../../store/swapSlice";
 import { isMobile } from "react-device-detect";
-import { CHAIN_NAME_TO_ID } from "../../../types";
+import { CHAIN_NAME_TO_ID, ChainNameToTypeChainName } from "../../../types";
 
 const findChain = (chainId) => {
   return chainData.find((c) => chainId && chainId === c.id);
@@ -75,18 +75,18 @@ export default function ChainSelectorDropdown({ parent, direction }) {
     }
   }
 
-  useEffect(() => {
-    const chain = findChain(CHAIN_NAME_TO_ID[bridge.toChain]);
+  // useEffect(() => {
+  //   const chain = findChain(CHAIN_NAME_TO_ID[bridge.fromChain]);
 
-    console.log("did ran at from chain", {
-      chainId: bridge.toChain,
-    });
+  //   console.log("did ran at from chain", {
+  //     chainId: bridge.fromChain,
+  //   });
 
-    if (chain && bridge.fromChain) {
-      setSelectedChain(chain);
-      dispatchChain(bridge.fromChain);
-    }
-  }, [bridge.fromChain]);
+  //   if (chain) {
+  //     setSelectedChain(chain);
+  //     dispatchChain(bridge.fromChain);
+  //   }
+  // }, [bridge.fromChain]);
 
   useEffect(() => {
     if (parent === "lock-and-mint") {
@@ -98,9 +98,19 @@ export default function ChainSelectorDropdown({ parent, direction }) {
   }, [bridge.toChain]);
 
   useEffect(() => {
-    let selChain;
-    if (chainId) {
-      selChain = findChain(chainId);
+    console.log({ fromChain: bridge.fromChain });
+    const selChain = findChain(
+      CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.fromChain]]
+    );
+    if (!selChain) {
+      setSelectedChain({
+        icon: chainData[1].icon,
+        name: chainData[1].name,
+      });
+      dispatchChain(chainData[1].name);
+    }
+    if (bridge.fromChain) {
+      console.log({ selChain });
       if (selChain) {
         setSelectedChain({
           icon: selChain.icon,
@@ -109,7 +119,18 @@ export default function ChainSelectorDropdown({ parent, direction }) {
         dispatchChain(selChain.name);
       }
     }
-  }, [chainId]);
+  }, [bridge.fromChain]);
+
+  // useEffect(() => {
+  //   const selChain = findChain(chainId);
+  //   if (selChain) {
+  //     setSelectedChain({
+  //       icon: selChain.icon,
+  //       name: selChain.name,
+  //     });
+  //     dispatchChain(selChain.name);
+  //   }
+  // }, [chainId]);
 
   const handleChainClick = (icon, name, id) => {
     setSelectedChain({ icon, name });
