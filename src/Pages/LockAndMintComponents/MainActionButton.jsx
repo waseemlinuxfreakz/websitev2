@@ -100,6 +100,9 @@ function MainActionButton() {
   ]);
 
   const onClickSelectAction = () => {
+    if (!bridge.receiver) {
+      alert("Destination address is empty");
+    }
     if (!isConnected && !wallet?.account) {
       setModalIsOpen(true);
     } else {
