@@ -119,16 +119,24 @@ function MainActionButton() {
         setMsg("Receiver address is empty");
         return;
       }
-      if (bridge.toChain === "TON" || bridge.toChain === "TONTestnet") {
+
+      if (bridge.toChain !== "TON" && bridge.toChain !== "TONTestnet") {
+        if (pattern.test(bridge.receiver)) {
+          setAlertIsOpen(true);
+          setMsg("Receiver address is invalid");
+          return;
+        }
         if (!isValidTonAddress(bridge.receiver)) {
           setAlertIsOpen(true);
           setMsg("Receiver address is invalid");
           return;
         }
-      } else if (!pattern.test(bridge.receiver)) {
-        setAlertIsOpen(true);
-        setMsg("Receiver address is invalid");
-        return;
+      } else {
+        if (!isValidTonAddress(bridge.receiver)) {
+          setAlertIsOpen(true);
+          setMsg("Receiver address is invalid");
+          return;
+        }
       }
 
       if (isApproveRequired()) {

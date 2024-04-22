@@ -37,27 +37,35 @@ function WalletAddress() {
     if (bridge.receiver && pattern.test(bridge.receiver)) {
       setDestAddress(truncate(bridge.receiver));
       setIsChangeVisivle(true);
-      setInvalidAddress(false);
     } else if (isValidTonAddress(bridge.receiver)) {
       setDestAddress(truncate(bridge.receiver));
       setIsChangeVisivle(true);
-      setInvalidAddress(false);
-    } else {
-      setInvalidAddress(true);
     }
   }, [bridge.receiver]);
 
   useEffect(() => {
-    console.log({ toChain: bridge.toChain });
-    if (bridge.toChain === "TON" || bridge.toChain === "TONTestnet") {
-      if (isValidTonAddress(bridge.receiver)) {
+    setInvalidAddress(true);
+    console.log({
+      toChain: bridge.toChain,
+      isTon: bridge.toChain !== "TON" && bridge.toChain !== "TONTestnet",
+      isTonTestnet: bridge.toChain !== "TONTestnet",
+    });
+
+    if (bridge.toChain !== "TON" && bridge.toChain !== "TONTestnet") {
+      if (!pattern.test(destAddress)) {
+        setInvalidAddress(true);
+        console.log("valid evm");
         setInvalidAddress(false);
       }
-      setInvalidAddress(true);
-    } else if (!pattern.test(destAddress)) {
-      setInvalidAddress(false);
+      if (isValidTonAddress(bridge.receiver)) {
+        setInvalidAddress(true);
+      }
     } else {
       setInvalidAddress(true);
+      if (isValidTonAddress(bridge.receiver)) {
+        console.log("valid ton");
+        setInvalidAddress(false);
+      }
     }
   }, [destAddress, bridge.toChain]);
 
