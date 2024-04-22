@@ -53,6 +53,7 @@ function WalletAddress() {
       if (isValidTonAddress(bridge.receiver)) {
         setInvalidAddress(false);
       }
+      setInvalidAddress(true);
     } else if (!pattern.test(destAddress)) {
       setInvalidAddress(false);
     } else {
