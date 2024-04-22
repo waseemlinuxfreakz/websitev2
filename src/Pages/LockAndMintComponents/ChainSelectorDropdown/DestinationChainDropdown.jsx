@@ -25,9 +25,12 @@ export default function DestinationChainDropdown() {
 
   useEffect(() => {
     setChainArray(
-      chainData.filter((chain) => chain.name !== selectedChain.name)
+      chainData.filter(
+        (chain) =>
+          chain.name !== selectedChain.name && chain.name !== bridge.fromChain
+      )
     );
-  }, [selectedChain]);
+  }, [selectedChain, bridge.fromChain]);
 
   function handleChainClick(icon, name, id) {
     setSelectedChain({ icon, name });

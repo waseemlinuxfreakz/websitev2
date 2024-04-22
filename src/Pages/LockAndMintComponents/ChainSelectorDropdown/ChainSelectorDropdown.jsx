@@ -49,9 +49,12 @@ export default function ChainSelectorDropdown({ parent, direction }) {
 
   useEffect(() => {
     setChainArray(
-      chainData.filter((chain) => chain.name !== selectedChain.name)
+      chainData.filter(
+        (chain) =>
+          chain.name !== selectedChain.name && chain.name !== bridge.toChain
+      )
     );
-  }, [selectedChain]);
+  }, [selectedChain, bridge.toChain]);
 
   const [isListVisible, setListVisible] = useState(false);
 
