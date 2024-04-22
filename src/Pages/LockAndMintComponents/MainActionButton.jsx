@@ -14,6 +14,19 @@ import { setBridgeIsApproving } from "../../store/bridgeSlice";
 import ConnectWalletModal from "../../HeaderFooterSidebar/ConnectWalletModal";
 import { useTonWallet } from "@tonconnect/ui-react";
 import lockAndMintChains from "../../hooks/lockAndMintHooks/chains";
+import { Address } from "@ton/core";
+import Modal from "react-modal";
+
+const pattern = /^[0x]{0,2}[0-9a-fA-F]{0,40}$/;
+
+function isValidTonAddress(str) {
+  try {
+    Address.parse(str);
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
 
 function MainActionButton() {
   const dispatch = useAppDispatch();
@@ -32,6 +45,8 @@ function MainActionButton() {
   const { approve, isApproveLoading } = useBridgeApproveERC20();
   const { burnUSDC, isTransferProcessed, sendInstallment } =
     useBridgeTransferEmmet();
+  const [msg, setMsg] = useState("");
+  const [alertIsOpen, setAlertIsOpen] = useState("");
 
   function isApproveRequired() {
     const chainRequiresApproval = lockAndMintChains.find(
@@ -100,9 +115,22 @@ function MainActionButton() {
       setModalIsOpen(true);
     } else {
       if (!bridge.receiver) {
-        alert("Receiver address is empty");
+        setAlertIsOpen(true);
+        setMsg("Receiver address is empty");
         return;
       }
+      if (bridge.toChain === "TON" || bridge.toChain === "TONTestnet") {
+        if (!isValidTonAddress(bridge.receiver)) {
+          setAlertIsOpen(true);
+          setMsg("Receiver address is invalid");
+          return;
+        }
+      } else if (!pattern.test(bridge.receiver)) {
+        setAlertIsOpen(true);
+        setMsg("Receiver address is invalid");
+        return;
+      }
+
       if (isApproveRequired()) {
         if (approve) {
           try {
@@ -132,6 +160,11 @@ function MainActionButton() {
 
   return (
     <div className="connectBtn">
+      <AlertModal
+        msg={msg}
+        alertIsOpen={alertIsOpen}
+        setAlertIsOpen={setAlertIsOpen}
+      />
       <button
         className="MainActionButton"
         disabled={disabled}
@@ -147,5 +180,44 @@ function MainActionButton() {
     </div>
   );
 }
+
+const AlertModal = ({ msg, alertIsOpen, setAlertIsOpen }) => {
+  return (
+    <div>
+      <Modal
+        isOpen={alertIsOpen}
+        onRequestClose={() => setAlertIsOpen(false)}
+        // style={customStyles}
+        contentLabel="Example Modal"
+        className="alertModal whiteBorder"
+        overlayClassName="alertModalOverlay"
+      >
+        <div className="alertModalHeader">
+          <h4 className="alertModalTitle">Alert</h4>
+          <button
+            className="alertModalCloseBtn"
+            onClick={() => setAlertIsOpen(false)}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="#fff"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18 18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+        <div>{msg}</div>
+      </Modal>
+    </div>
+  );
+};
 
 export default MainActionButton;

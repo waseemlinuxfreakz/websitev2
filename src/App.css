@@ -953,3 +953,11 @@ div#root {
   display: flex;
   gap: 10px;
 }
+
+.whiteBorder {
+  border: 1px solid white !important;
+}
+
+.redBorder {
+  border: 1px solid red !important;
+}

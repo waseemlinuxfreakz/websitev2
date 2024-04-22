@@ -23,6 +23,7 @@ function WalletAddress() {
   const bridge = useAppSelector((state) => state.bridge);
   const { address, isConnected } = useAccount();
   const tonAddress = useTonAddress();
+  const [invalidAddress, setInvalidAddress] = useState(false);
 
   function truncate(address) {
     return address
@@ -36,8 +37,28 @@ function WalletAddress() {
     if (bridge.receiver && pattern.test(bridge.receiver)) {
       setDestAddress(truncate(bridge.receiver));
       setIsChangeVisivle(true);
+      setInvalidAddress(false);
+    } else if (isValidTonAddress(bridge.receiver)) {
+      setDestAddress(truncate(bridge.receiver));
+      setIsChangeVisivle(true);
+      setInvalidAddress(false);
+    } else {
+      setInvalidAddress(true);
     }
   }, [bridge.receiver]);
+
+  useEffect(() => {
+    console.log({ toChain: bridge.toChain });
+    if (bridge.toChain === "TON" || bridge.toChain === "TONTestnet") {
+      if (isValidTonAddress(bridge.receiver)) {
+        setInvalidAddress(false);
+      }
+    } else if (!pattern.test(destAddress)) {
+      setInvalidAddress(false);
+    } else {
+      setInvalidAddress(true);
+    }
+  }, [destAddress, bridge.toChain]);
 
   useEffect(() => {
     if (address && !bridge.receiver) {
@@ -89,6 +110,7 @@ function WalletAddress() {
               onChange={onChangeClickHandle}
               value={destAddress}
               type="text"
+              className={`${invalidAddress && "redBorder"}`}
               placeholder="Paste the receiver address"
               // style={{"textAlign":"center"}}
             />
