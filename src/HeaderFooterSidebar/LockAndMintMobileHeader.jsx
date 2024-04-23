@@ -7,9 +7,11 @@ import MobileFooterNav from "./MobileFooterNav";
 import NetworkSwitch from "../HeaderFooterSidebar/NetworkSwitch/NetworkSwitch";
 import ConnectWalletModal from "./ConnectWalletModal";
 import ConnectionIndicator from "./LockAndMintConnectionIndicator";
+import Wallet from "../assets/img/Wallet.svg";
 
 const MobileHeader = () => {
   const [isBodyClassAdded, setIsBodyClassAdded] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const handleButtonClick = () => {
     // Toggle the class on the body element
@@ -29,7 +31,15 @@ const MobileHeader = () => {
         </a>
         <div className="headerRightSide">
           <ConnectionIndicator />
-          <ConnectWalletModal />
+          <div
+            className="connectWallet"
+            onClick={() => setModalIsOpen(!modalIsOpen)}
+          >
+            <div>
+              <img src={Wallet} alt="Wallet" />
+              Connect
+            </div>
+          </div>
           <div className="mobileNavTriger" onClick={handleButtonClick}>
             <img src={OpenNav} alt="Nav Triger" className="openNav" />
             <img src={CloseNav} alt="Nav Triger" className="closeNav" />
@@ -37,6 +47,10 @@ const MobileHeader = () => {
           <MobileNav />
         </div>
       </div>
+      <ConnectWalletModal
+        modalIsOpen={modalIsOpen}
+        setModalIsOpen={setModalIsOpen}
+      />
       <MobileFooterNav />
     </header>
   );
