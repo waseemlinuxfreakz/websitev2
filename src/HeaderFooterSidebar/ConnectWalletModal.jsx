@@ -10,7 +10,8 @@ import {
 } from "@tonconnect/ui-react";
 import { useAppSelector, useAppDispatch } from "../hooks/storage";
 import { setSenderAddress } from "../store/bridgeSlice";
-import { useTonWallet } from "@tonconnect/ui-react";
+import TonIcon from "../assets/img/ton.svg";
+import WalletConnectIcon from "../assets/img/wallet-connect.svg";
 
 import Modal from "react-modal";
 
@@ -74,7 +75,7 @@ export default function ConnectWalletModal({ modalIsOpen, setModalIsOpen }) {
           }}
         >
           <div>
-            <img src={Wallet} alt="Wallet" />
+            <img src={WalletConnectIcon} alt="Wallet" height={24} />
             {isConnected
               ? `${address.slice(0, showCharacters)}...${address.slice(
                   -showCharacters
@@ -88,7 +89,7 @@ export default function ConnectWalletModal({ modalIsOpen, setModalIsOpen }) {
             onClick={() => tonConnectUi[0].disconnect() && closeModal()}
           >
             <div>
-              <img src={Wallet} alt="Wallet" />
+              <img src={TonIcon} alt="Wallet" />
               {`${tonAddress.slice(0, showCharacters)}...${tonAddress.slice(
                 -showCharacters
               )}`}
@@ -100,7 +101,7 @@ export default function ConnectWalletModal({ modalIsOpen, setModalIsOpen }) {
             onClick={() => openTonModal() && closeModal()}
           >
             <div>
-              <img src={Wallet} alt="Wallet" />
+              <img src={TonIcon} alt="Wallet" height={24} />
               TON Connect
             </div>
           </div>

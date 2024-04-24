@@ -910,6 +910,11 @@ span.SwapReceive_box {
   height: 40px;
 }
 
+.connectWallet div {
+  display: flex;
+  gap: 4px;
+}
+
 .bridgeSwap span.order1 .SwapPay.swapPayReceive {
   /* position: relative; */
   /* z-index: 2; */
