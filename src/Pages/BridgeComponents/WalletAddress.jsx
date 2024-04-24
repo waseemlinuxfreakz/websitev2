@@ -53,7 +53,6 @@ function WalletAddress() {
 
     if (bridge.toChain !== "TON" && bridge.toChain !== "TONTestnet") {
       if (!pattern.test(destAddress)) {
-        setInvalidAddress(true);
         console.log("valid evm");
         setInvalidAddress(false);
       }
