@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Wallet from "../assets/img/Wallet.svg";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { useAccount } from "wagmi";
@@ -25,10 +25,11 @@ export default function ConnectWalletModal({ modalIsOpen, setModalIsOpen }) {
     open: openTonModal,
     close: closeTonModal,
   } = useTonConnectModal();
-  const tonConnectUi = useTonConnectUI();
+
   const bridge = useAppSelector((state) => state.bridge);
   const dispatch = useAppDispatch();
   const tonAddress = useTonAddress();
+  const [alertIsOpen, setAlertIsOpen] = useState(false);
 
   const applyCssToShadowDom = () => {
     var style = document.createElement("style");
@@ -86,10 +87,10 @@ export default function ConnectWalletModal({ modalIsOpen, setModalIsOpen }) {
         {tonAddress ? (
           <div
             className="connectWallet"
-            onClick={() => tonConnectUi[0].disconnect() && closeModal()}
+            onClick={() => setAlertIsOpen(true) && closeModal()}
           >
             <div>
-              <img src={TonIcon} alt="Wallet" />
+              <img src={TonIcon} alt="Wallet" height={24} />
               {`${tonAddress.slice(0, showCharacters)}...${tonAddress.slice(
                 -showCharacters
               )}`}
@@ -107,6 +108,54 @@ export default function ConnectWalletModal({ modalIsOpen, setModalIsOpen }) {
           </div>
         )}
       </Modal>
+      <DisconnectTonModal
+        alertIsOpen={alertIsOpen}
+        setAlertIsOpen={setAlertIsOpen}
+      />
     </div>
   );
 }
+
+const DisconnectTonModal = ({ alertIsOpen, setAlertIsOpen }) => {
+  const tonConnectUi = useTonConnectUI();
+  return (
+    <div>
+      <Modal
+        isOpen={alertIsOpen}
+        onRequestClose={() => setAlertIsOpen(false)}
+        className="alertModal whiteBorder"
+        overlayClassName="alertModalOverlay"
+      >
+        <div className="alertModalHeader">
+          <h4 className="alertModalTitle">Alert</h4>
+          <button
+            className="alertModalCloseBtn"
+            onClick={() => setAlertIsOpen(false)}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="#fff"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18 18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+        <div>Do you want to disconnect Ton Wallet?</div>
+        <button
+          className="disconnectTonButton"
+          onClick={() => tonConnectUi[0].disconnect() && setAlertIsOpen(false)}
+        >
+          <div>Disconnect</div>
+        </button>
+      </Modal>
+    </div>
+  );
+};
