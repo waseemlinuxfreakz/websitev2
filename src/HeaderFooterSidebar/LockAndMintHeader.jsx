@@ -5,10 +5,14 @@ import ConnectWalletModal from "./ConnectWalletModal";
 import ConnectionIndicator from "./LockAndMintConnectionIndicator";
 import ExplorerHeaderSearch from "./ExplorerHeaderSearch";
 import Wallet from "../assets/img/Wallet.svg";
+import { useTonAddress } from "@tonconnect/ui-react";
+import { useAccount } from "wagmi";
 
 function Header({ caption }) {
   const location = useLocation();
   const [modalIsOpen, setModalIsOpen] = React.useState(false);
+  const tonAddress = useTonAddress();
+  const { isConnected } = useAccount();
 
   // Check if the current path matches either "/explorer" or "/pool"
   const isExplorerOrPool =
@@ -28,7 +32,7 @@ function Header({ caption }) {
             >
               <div>
                 <img src={Wallet} alt="Wallet" />
-                Connect
+                {isConnected && tonAddress ? "Disconnect" : "Connect"}
               </div>
             </div>
             <ConnectWalletModal

@@ -8,10 +8,14 @@ import NetworkSwitch from "../HeaderFooterSidebar/NetworkSwitch/NetworkSwitch";
 import ConnectWalletModal from "./ConnectWalletModal";
 import ConnectionIndicator from "./LockAndMintConnectionIndicator";
 import Wallet from "../assets/img/Wallet.svg";
+import { useTonAddress } from "@tonconnect/ui-react";
+import { useAccount } from "wagmi";
 
 const MobileHeader = () => {
   const [isBodyClassAdded, setIsBodyClassAdded] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const tonAddress = useTonAddress();
+  const { isConnected } = useAccount();
 
   const handleButtonClick = () => {
     // Toggle the class on the body element
@@ -37,7 +41,7 @@ const MobileHeader = () => {
           >
             <div>
               <img src={Wallet} alt="Wallet" />
-              Connect
+              {isConnected && tonAddress ? "Disconnect" : "Connect"}
             </div>
           </div>
           <div className="mobileNavTriger" onClick={handleButtonClick}>
