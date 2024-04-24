@@ -121,16 +121,10 @@ function MainActionButton() {
       }
 
       if (bridge.toChain !== "TON" && bridge.toChain !== "TONTestnet") {
-        if (pattern.test(bridge.receiver)) {
+        if (!pattern.test(bridge.receiver)) {
           setAlertIsOpen(true);
           setMsg("Receiver address is invalid");
           console.log("Receiver address is invalid ton");
-          return;
-        }
-        if (isValidTonAddress(bridge.receiver)) {
-          setAlertIsOpen(true);
-          setMsg("Receiver address is invalid");
-          console.log("Receiver address is invalid evm");
           return;
         }
       } else {
