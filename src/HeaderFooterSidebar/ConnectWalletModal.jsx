@@ -3,7 +3,11 @@ import Wallet from "../assets/img/Wallet.svg";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { useAccount } from "wagmi";
 import { isMobile } from "react-device-detect";
-import { useTonConnectModal, useTonConnectUI } from "@tonconnect/ui-react";
+import {
+  useTonAddress,
+  useTonConnectModal,
+  useTonConnectUI,
+} from "@tonconnect/ui-react";
 import { useAppSelector, useAppDispatch } from "../hooks/storage";
 import { setSenderAddress } from "../store/bridgeSlice";
 import { useTonWallet } from "@tonconnect/ui-react";
@@ -23,7 +27,7 @@ export default function ConnectWalletModal({ modalIsOpen, setModalIsOpen }) {
   const tonConnectUi = useTonConnectUI();
   const bridge = useAppSelector((state) => state.bridge);
   const dispatch = useAppDispatch();
-  const tonWallet = useTonWallet();
+  const tonAddress = useTonAddress();
 
   const applyCssToShadowDom = () => {
     var style = document.createElement("style");
@@ -44,7 +48,6 @@ export default function ConnectWalletModal({ modalIsOpen, setModalIsOpen }) {
   }
 
   useEffect(() => {
-    const tonAddress = tonWallet?.account?.address;
     if (address) {
       dispatch(setSenderAddress(address));
     } else if (tonAddress) {
@@ -52,7 +55,7 @@ export default function ConnectWalletModal({ modalIsOpen, setModalIsOpen }) {
     } else {
       dispatch(setSenderAddress(""));
     }
-  }, [address, tonWallet]);
+  }, [address, tonAddress]);
 
   return (
     <div>
@@ -79,14 +82,16 @@ export default function ConnectWalletModal({ modalIsOpen, setModalIsOpen }) {
               : "WalletConnect"}
           </div>
         </div>
-        {tonWallet ? (
+        {tonAddress ? (
           <div
             className="connectWallet"
             onClick={() => tonConnectUi[0].disconnect() && closeModal()}
           >
             <div>
               <img src={Wallet} alt="Wallet" />
-              Disconnect TON wallet
+              {`${tonAddress.slice(0, showCharacters)}...${tonAddress.slice(
+                -showCharacters
+              )}`}
             </div>
           </div>
         ) : (
