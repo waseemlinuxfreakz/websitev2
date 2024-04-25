@@ -161,7 +161,12 @@ export const DomainToChainName: { [key: number]: TChainName } = {
   3: "arbitrum",
   6: "base",
   7: "polygon",
-  8: "ton",
+  65534: "ton",
+};
+
+export const DomainToChainNameTestnet: { [key: number]: TChainName } = {
+  7: "polygonAmoy",
+  65535: "tonTestnet",
 };
 
 export const CHAIN_ID_TO_NAME: { [key: number]: TChainName } = {
@@ -183,7 +188,7 @@ export const CHAIN_ID_TO_NAME: { [key: number]: TChainName } = {
   65535: "tonTestnet",
 };
 
-export const SupportedDomains = [0, 1, 2, 3, 6, 7];
+export const SupportedDomains = [0, 1, 2, 3, 6, 7, 65534, 65535];
 
 export const supportedChainnames: TChainName[] = Object.keys(
   SUPPORTED_CHAINS

@@ -27,7 +27,7 @@ export const ton = {
   blockExplorers: {
     default: {
       name: "TONScan",
-      url: "https://tonscan.org/",
+      url: "https://tonscan.org",
       // apiUrl: "https://api.polygonscan.com/api",
     },
   },
