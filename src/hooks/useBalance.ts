@@ -23,39 +23,41 @@ type TDirection = "from" | "to";
 
 export default function useBalance() {
   const dispatch = useAppDispatch();
-
-  const { address } = useAccount();
-
   const bridge = useAppSelector((state) => state.bridge);
   const [txFeeCoinBalance, setTxFeeCoinbalance] = useState<number>(0);
   const [balance, setBalance] = useState<number>(bridge.balance);
   const [balanceTo, setBalanceTo] = useState<number>(bridge.balance);
 
   async function getCoinBalance(direction: TDirection) {
-    // try {
-    const handler =
-      direction === "from"
-        ? await chainFactoryTestnet.inner(
-            // @ts-ignore
-            ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]]
-          )
-        : await chainFactoryTestnet.inner(
-            // @ts-ignore
-            ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]]
-          );
+    try {
+      const handler =
+        direction === "from"
+          ? await chainFactoryTestnet.inner(
+              // @ts-ignore
+              ChainToDestinationDomain[
+                ChainNameToTypeChainName[bridge.fromChain]
+              ]
+            )
+          : await chainFactoryTestnet.inner(
+              // @ts-ignore
+              ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]]
+            );
+      const addr =
+        direction === "from" ? bridge.senderAddress : bridge.receiver;
 
-    const addr = direction === "from" ? bridge.senderAddress : bridge.receiver;
+      // if (addr) {
 
-    const bal = await handler.balance(addr);
+      const bal = await handler?.balance(addr);
+      // }
 
-    if (bal) {
-      return Number(bal.toString());
+      if (bal) {
+        return Number(bal.toString());
+      }
+      return 0;
+    } catch (error) {
+      console.log("useBalance:getTokenBalance", error);
+      return 0;
     }
-    return 0;
-    // } catch (error) {
-    //   console.log("useBalance:getTokenBalance", error);
-    //   return 0;
-    // }
   }
 
   async function getTokenBalance(direction: TDirection) {
