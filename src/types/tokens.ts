@@ -70,7 +70,7 @@ export const TOKEN_CHAIN_CONTRACT = {
   //     baseSepolia: '',
   //     optimismSepolia: '',
   //     sepolia: '0x08210F9170F89Ab7658F0B5E3fF39b0E03C594D4',
-  //     polygonMumbai: '',
+  //     polygonAmoy: '',
   // },
   USDC: {
     // Mainnets:
@@ -87,12 +87,12 @@ export const TOKEN_CHAIN_CONTRACT = {
     baseSepolia: "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
     optimismSepolia: "0x5fd84259d66Cd46123540766Be93DFE6D43130D7",
     sepolia: "0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238",
-    polygonMumbai: "0x41e94eb019c0762f9bfcf9fb1e58725bfb0e7582",
+    polygonAmoy: "0x41e94eb019c0762f9bfcf9fb1e58725bfb0e7582",
     tonTestnet: "kQAxUmtcvJrOJYXW4z1ESci3R1I88IhjhurLVfE5AdFK7rMO",
   },
   TON: {
     tonTestnet: "",
-    polygonMumbai: "0xf2851831674d1630f49a9c000a34d5a8e167577c",
+    polygonAmoy: "0xf2851831674d1630f49a9c000a34d5a8e167577c",
   },
 };
 

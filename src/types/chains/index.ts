@@ -9,7 +9,7 @@ import { ethereum } from "./ethereum";
 import { optimism } from "./optimism";
 import { optimismSepolia } from "./optimismSepolia";
 import { polygon } from "./polygon";
-import { polygonMumbai } from "./polygonMumbai";
+import { polygonAmoy } from "./polygonAmoy";
 import { sepolia } from "./sepolia";
 import { ton } from "./ton";
 import { tonTestnet } from "./tonTestnet";
@@ -29,7 +29,7 @@ export * from "./arbitrumSepolia";
 export * from "./avalancheFuji";
 export * from "./baseSepolia";
 export * from "./optimismSepolia";
-export * from "./polygonMumbai";
+export * from "./polygonAmoy";
 export * from "./sepolia";
 
 export type TChainDataParam = "bridge" | "id" | "icon" | "name" | "url";
@@ -60,7 +60,7 @@ export const TESTNETS = {
   avalancheFuji: avalancheFuji,
   baseSepolia: baseSepolia,
   optimismSepolia: optimismSepolia,
-  polygonMumbai: polygonMumbai,
+  polygonAmoy: polygonAmoy,
   sepolia: sepolia,
   tonTestnet: tonTestnet,
 };
@@ -90,7 +90,7 @@ export const infuraEndpoints = {
   avalancheFuji: "https://avalanche-fuji.infura.io/v3/",
   baseSepolia: "",
   optimismSepolia: "https://optimism-sepolia.infura.io/v3/",
-  polygonMumbai: "https://polygon-mumbai.infura.io/v3/",
+  polygonAmoy: "https://polygon-mumbai.infura.io/v3/",
   sepolia: "https://sepolia.infura.io/v3/",
 };
 
@@ -113,7 +113,7 @@ export const CHAIN_NAME_TO_ID: { [key in TChainName]: number } = {
   avalancheFuji: 43113, // 0xa869
   baseSepolia: 84532, // 0x14a34
   optimismSepolia: 11155420, // 0xaa37dc
-  polygonMumbai: 80002, // 0x13881
+  polygonAmoy: 80002, // 0x13881
   sepolia: 11155111, // 0xaa36a7
   tonTestnet: 65535, // 0xffff
 };
@@ -132,7 +132,7 @@ export const ChainNameToTypeChainName: { [key: string]: TChainName } = {
   Fuji: "avalancheFuji",
   BSepolia: "baseSepolia",
   OPSepolia: "optimismSepolia",
-  Amoy: "polygonMumbai",
+  Amoy: "polygonAmoy",
   Sepolia: "sepolia",
   TONTestnet: "tonTestnet",
 };
@@ -149,7 +149,7 @@ export const ChainToDestinationDomain: { [key in TChainName]: number } = {
   base: 6,
   baseSepolia: 6,
   polygon: 7,
-  polygonMumbai: 7,
+  polygonAmoy: 7,
   ton: 65534,
   tonTestnet: 65535,
 };
@@ -178,7 +178,7 @@ export const CHAIN_ID_TO_NAME: { [key: number]: TChainName } = {
   43113: "avalancheFuji",
   84532: "baseSepolia",
   11155420: "optimismSepolia",
-  80002: "polygonMumbai",
+  80002: "polygonAmoy",
   11155111: "sepolia",
   65535: "tonTestnet",
 };
@@ -203,7 +203,7 @@ export const CHAIN_LOGOS: { [key: string]: string } = {
   avalancheFuji: "img/chain/avalanche.svg",
   baseSepolia: "img/chain/base.svg",
   optimismSepolia: "img/chain/optimism.svg",
-  polygonMumbai: "img/chain/polygon.svg",
+  polygonAmoy: "img/chain/polygon.svg",
   sepolia: "img/chain/ethereum.svg",
   tonTestnet: "img/chain/ton.svg",
 };
@@ -223,7 +223,7 @@ export const EstimatedTimeFromChain = {
   baseSepolia: "4 min 30 sec",
   sepolia: "2 min 35 sec",
   optimismSepolia: "3 min 40 sec",
-  polygonMumbai: " min 30 sec",
+  polygonAmoy: " min 30 sec",
   arbitrumSepolia: "4 min 30 sec",
   tonTestnet: "4 min 30 sec", // TODO: change
 };

@@ -1,8 +1,8 @@
-import { polygonAmoy as viemPolygonMumbai } from "viem/chains";
+import { polygonAmoy as viempolygonAmoy } from "viem/chains";
 import { TEmmetChain } from ".";
 
-export const polygonMumbai = {
-  ...viemPolygonMumbai,
+export const polygonAmoy = {
+  ...viempolygonAmoy,
   emmetBridge: {
     address: "0x6b30f76cece9f92d27f0e9ad78312e77709e74a5",
     blockCreated: 45310404,
