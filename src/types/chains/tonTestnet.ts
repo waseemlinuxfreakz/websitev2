@@ -24,4 +24,11 @@ export const tonTestnet = {
   testnet: true,
   id: 65535,
   nativeCurrency: { name: "TON", symbol: "TON", decimals: 9 },
+  blockExplorers: {
+    default: {
+      name: "TONScan",
+      url: "https://testnet.tonscan.org/",
+      // apiUrl: "https://api.polygonscan.com/api",
+    },
+  },
 } as TEmmetChain;
