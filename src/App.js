@@ -67,23 +67,6 @@ function App() {
 
     ReactGA.pageview(window.location.pathname + window.location.search);
 
-    (async () => {
-      // const _hash = "";
-      // const res = await fetch(
-      //   `https://testnet.toncenter.com/api/index/getTransactionByInMessageHash?msg_hash=${"uYDAezXlMoBoBSNKJZMAywEN8jJnKV11yDv079f8p10="}`,
-      //   {
-      //     headers: {
-      //       "x-api-key":
-      //         "1b651340a347951cc8b9a102c406ab2a05226d59d6354aa009049d6fbbb17b0b",
-      //     },
-      //     method: "GET",
-      //   }
-      // );
-      // const data = await res.json();
-      // console.log({ data, _hash });
-    })();
-  }, []);
-
   return (
     <>
       {/* TODO: update tonconnect-manifesto url */}
