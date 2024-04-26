@@ -66,6 +66,7 @@ function App() {
     ReactGA.initialize(gaTrackingId);
 
     ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
 
   return (
     <>
