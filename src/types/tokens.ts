@@ -105,6 +105,7 @@ export const TOKEN_DECIMALS = {
   // ETH: 18,
   USDC: 6,
   TON: 9,
+  MATIC: 18,
   // USDT:18,
   // WBTC:18
 };
