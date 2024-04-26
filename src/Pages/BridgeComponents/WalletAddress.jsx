@@ -45,18 +45,12 @@ function WalletAddress() {
 
   useEffect(() => {
     setInvalidAddress(true);
-    console.log({
-      toChain: bridge.toChain,
-      isTon: bridge.toChain !== "TON" && bridge.toChain !== "TONTestnet",
-      isTonTestnet: bridge.toChain !== "TONTestnet",
-    });
 
     if (bridge.toChain !== "TON" && bridge.toChain !== "TONTestnet") {
       setInvalidAddress(pattern.test(destAddress));
     } else {
       setInvalidAddress(true);
       if (isValidTonAddress(bridge.receiver)) {
-        console.log("valid ton");
         setInvalidAddress(false);
       }
     }

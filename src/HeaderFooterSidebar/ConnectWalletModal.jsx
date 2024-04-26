@@ -51,12 +51,10 @@ export default function ConnectWalletModal({ modalIsOpen, setModalIsOpen }) {
 
   useEffect(() => {
     if (bridge.fromChain === "TON" || bridge.fromChain === "TONTestnet") {
-      console.log("ton", { tonAddress });
       if (tonAddress) {
         dispatch(setSenderAddress(tonAddress));
       }
     } else if (address) {
-      console.log("evm", { address });
       dispatch(setSenderAddress(address));
     } else {
       dispatch(setSenderAddress(""));

@@ -76,7 +76,6 @@ export default function useBridgeTransferEmmet() {
       if (hash) {
         dispatch(setBridgeFromHash(hash));
         dispatch(showBridgeProgress());
-        console.log("burnUSDC");
       }
 
       setIsTransferProcessed(false);
@@ -102,16 +101,6 @@ export default function useBridgeTransferEmmet() {
       const mintRecipient = bridge.receiver;
       const tokenName: TTokenName = bridge.fromToken as TTokenName;
 
-      // const { hash, status, error } = await EmmetSendInstallment(
-      //   chainName,
-      //   addressToAccount(bridgeAddress),
-      //   BigInt(Math.ceil(formattedAmount)),
-      //   destinationDomain,
-      //   mintRecipient,
-      //   tokenName,
-      //   fee
-      // );
-      console.log("Send Installment");
       try {
         const fromChainID = ChainToDestinationDomain[chainName];
         if (fromChainID === Chain.TON) {

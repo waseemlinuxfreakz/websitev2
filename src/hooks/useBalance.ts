@@ -128,8 +128,6 @@ export default function useBalance() {
           const bal: number = await getTokenBalance("from");
           const formattedBalance =
             bal / 10 ** Number(TOKEN_DECIMALS[bridge.fromToken as TTokenName]);
-          console.log({ formattedBalance });
-          setBalance(formattedBalance);
           dispatch(setBridgeBalance(formattedBalance));
           dispatch(setBridgeError(""));
         })().catch((e) => {
@@ -175,10 +173,6 @@ export default function useBalance() {
       }
     }
   }, [bridge.toChain, bridge.toToken, bridge.receiver, bridge.senderAddress]);
-
-  useEffect(() => {
-    console.log({ sender: bridge.senderAddress, balance, balanceTo });
-  }, [bridge.senderAddress, balance, balanceTo]);
 
   return {
     coinBalance: txFeeCoinBalance,
