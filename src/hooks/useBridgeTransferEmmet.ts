@@ -76,6 +76,7 @@ export default function useBridgeTransferEmmet() {
       if (hash) {
         dispatch(setBridgeFromHash(hash));
         dispatch(showBridgeProgress());
+        console.log("burnUSDC");
       }
 
       setIsTransferProcessed(false);
@@ -110,7 +111,7 @@ export default function useBridgeTransferEmmet() {
       //   tokenName,
       //   fee
       // );
-
+      console.log("Send Installment");
       try {
         const fromChainID = ChainToDestinationDomain[chainName];
         if (fromChainID === Chain.TON) {
@@ -125,6 +126,7 @@ export default function useBridgeTransferEmmet() {
             mintRecipient
           );
           dispatch(showBridgeProgress());
+          setIsTransferProcessed(false);
         } else if (fromChainID === Chain.POLYGON) {
           const handler = await chainFactoryTestnet.inner(fromChainID);
 
@@ -138,11 +140,14 @@ export default function useBridgeTransferEmmet() {
             tokenName,
             mintRecipient
           );
+
           dispatch(setBridgeFromHash(hash ? hash : "N/A"));
           dispatch(showBridgeProgress());
+          setIsTransferProcessed(false);
         }
       } catch (error: { message: string } | any) {
         console.error(error);
+        setIsTransferProcessed(false);
       }
     })().catch((e: { message: string }) => {
       console.error(
