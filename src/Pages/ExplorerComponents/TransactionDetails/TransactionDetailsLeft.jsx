@@ -81,10 +81,10 @@ function TransactionDetailsLeft({ txStatus }) {
           <div className="transactionDetailsListRight">
             <span className="success">
               <img
-                src={txStatus == "Success" ? Success : Pending}
-                alt="Success"
+                src={explorer.bridgeTransaction.claimHash ? Success : Pending}
+                alt="Status"
               />{" "}
-              {txStatus && capitalize(txStatus)}
+              {explorer.bridgeTransaction.claimHash ? "Success" : "Pending"}
             </span>
           </div>
         </li>

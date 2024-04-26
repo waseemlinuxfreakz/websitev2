@@ -83,4 +83,5 @@ export type TxDetails = {
     finished?: Date
     txType?: TTxType,
     status?: TTxStatus
+    
 }
