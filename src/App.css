@@ -964,14 +964,14 @@ div#root {
 }
 
 .redBorder {
-  border: 1px solid red !important;
+  border: 1px solid #efeb00 !important;
 }
 
 .disconnectTonButton {
   background: black;
-  border: 1px solid red;
+  border: 1px solid #efeb00;
   text-align: center;
-  color: red;
+  color: #efeb00;
   border-radius: 4px;
   padding: 8px;
   display: block;
