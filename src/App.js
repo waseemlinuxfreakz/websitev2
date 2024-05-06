@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import "./Responsive.css";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import ReactGA from "react-ga";
 import Bridge from "./Pages/Bridge";
 import ExplorerPage from "./Pages/Explorer";
@@ -22,6 +22,15 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import { TonConnectUIProvider } from "@tonconnect/ui-react";
 
+// Solana
+import {
+  ConnectionProvider,
+  WalletProvider,
+} from "@solana/wallet-adapter-react";
+import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
+import { clusterApiUrl } from "@solana/web3.js";
+import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
+
 // Web3Modal related
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiProvider, http } from "wagmi";
@@ -29,6 +38,7 @@ import { createWeb3Modal } from "@web3modal/wagmi/react";
 import { defaultWagmiConfig } from "@web3modal/wagmi/react/config";
 
 import { ALL_CHAINS } from "./types/chains";
+require("@solana/wallet-adapter-react-ui/styles.css");
 // import { getWalletConnectInstance } from './walletConnectSetup';
 
 const queryClient = new QueryClient();
@@ -62,6 +72,30 @@ export const wagmiConfig = defaultWagmiConfig({
 createWeb3Modal({ wagmiConfig, projectId, supportedChains });
 
 function App() {
+  const network = WalletAdapterNetwork.Devnet;
+
+  // You can also provide a custom RPC endpoint.
+  const endpoint = useMemo(() => clusterApiUrl(network), [network]);
+
+  const wallets = useMemo(
+    () => [
+      /**
+       * Wallets that implement either of these standards will be available automatically.
+       *
+       *   - Solana Mobile Stack Mobile Wallet Adapter Protocol
+       *     (https://github.com/solana-mobile/mobile-wallet-adapter)
+       *   - Solana Wallet Standard
+       *     (https://github.com/anza-xyz/wallet-standard)
+       *
+       * If you wish to support a wallet that supports neither of those standards,
+       * instantiate its legacy wallet adapter here. Common legacy adapters can be found
+       * in the npm package `@solana/wallet-adapter-wallets`.
+       */
+    ],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [network]
+  );
+
   useEffect(() => {
     ReactGA.initialize(gaTrackingId);
 
@@ -70,34 +104,46 @@ function App() {
 
   return (
     <>
-      {/* TODO: update tonconnect-manifesto url */}
-      <TonConnectUIProvider manifestUrl="https://raw.githubusercontent.com/Emmet-Finance/websitev2/feat/TON/public/tonconnect-manifest.json">
-        <WagmiProvider config={wagmiConfig}>
-          <QueryClientProvider client={queryClient}>
-            <Router
-              // Open all the pages at the top
-              scrollBehavior={() => ({ y: 0 })}
-            >
-              <Routes>
-                <Route path="/" element={<WebHome />} />
-                <Route path="/tokensale" element={<Tokenomics />} />
-                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                <Route path="/terms-of-service" element={<TermsService />} />
-                {/* <Route path="/bridge" element={<Bridge />} /> */}
-                <Route path="/explorer" element={<ExplorerPage />} />
-                <Route path="/bridge" element={<LockAndMint />} />
-                {/* <Route path="/swap" element={< HomePage />} /> */}
-                {/* <Route path="/pool" element={<PoolPage />} /> */}
-                {/* <Route path="/pool/your-liquidity" element={<YourLiquidityPage />} /> */}
-                <Route
-                  path="/transactionDetails/:hash"
-                  element={<TransactionDetailsPage />}
-                />
-              </Routes>
-            </Router>
-          </QueryClientProvider>
-        </WagmiProvider>
-      </TonConnectUIProvider>
+      <ConnectionProvider endpoint={endpoint}>
+        <WalletProvider wallets={wallets} autoConnect>
+          <WalletModalProvider>
+            {/* TODO: update tonconnect-manifesto url */}
+            <TonConnectUIProvider manifestUrl="https://raw.githubusercontent.com/Emmet-Finance/websitev2/feat/TON/public/tonconnect-manifest.json">
+              <WagmiProvider config={wagmiConfig}>
+                <QueryClientProvider client={queryClient}>
+                  <Router
+                    // Open all the pages at the top
+                    scrollBehavior={() => ({ y: 0 })}
+                  >
+                    <Routes>
+                      <Route path="/" element={<WebHome />} />
+                      <Route path="/tokensale" element={<Tokenomics />} />
+                      <Route
+                        path="/privacy-policy"
+                        element={<PrivacyPolicy />}
+                      />
+                      <Route
+                        path="/terms-of-service"
+                        element={<TermsService />}
+                      />
+                      {/* <Route path="/bridge" element={<Bridge />} /> */}
+                      <Route path="/explorer" element={<ExplorerPage />} />
+                      <Route path="/bridge" element={<LockAndMint />} />
+                      {/* <Route path="/swap" element={< HomePage />} /> */}
+                      {/* <Route path="/pool" element={<PoolPage />} /> */}
+                      {/* <Route path="/pool/your-liquidity" element={<YourLiquidityPage />} /> */}
+                      <Route
+                        path="/transactionDetails/:hash"
+                        element={<TransactionDetailsPage />}
+                      />
+                    </Routes>
+                  </Router>
+                </QueryClientProvider>
+              </WagmiProvider>
+            </TonConnectUIProvider>
+          </WalletModalProvider>
+        </WalletProvider>
+      </ConnectionProvider>
     </>
   );
 }

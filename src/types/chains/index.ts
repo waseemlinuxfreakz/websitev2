@@ -13,6 +13,8 @@ import { polygonAmoy } from "./polygonAmoy";
 import { sepolia } from "./sepolia";
 import { ton } from "./ton";
 import { tonTestnet } from "./tonTestnet";
+import { solana } from "./solana";
+import { bsc } from "./bsc";
 
 // https://github.com/wevm/viem/blob/main/src/chains/definitions
 
@@ -23,6 +25,8 @@ export * from "./base";
 export * from "./ethereum";
 export * from "./optimism";
 export * from "./polygon";
+export * from "./solana";
+export * from "./bsc";
 
 // TESTNETS:
 export * from "./arbitrumSepolia";
@@ -53,6 +57,8 @@ export const MAINNETS = {
   optimism: optimism,
   polygon: polygon,
   ton: ton,
+  solana: solana,
+  bsc: bsc,
 };
 
 export const TESTNETS = {
@@ -85,6 +91,8 @@ export const infuraEndpoints = {
   ethereum: "https://mainnet.infura.io/v3/",
   optimism: "https://optimism-mainnet.infura.io/v3/",
   polygon: "https://polygon-mainnet.infura.io/v3/",
+  bsc: "", // TODO: change
+  solana: "", // TODO: change
   // Testnets:
   arbitrumSepolia: "https://arbitrum-sepolia.infura.io/v3/",
   avalancheFuji: "https://avalanche-fuji.infura.io/v3/",
@@ -108,6 +116,8 @@ export const CHAIN_NAME_TO_ID: { [key in TChainName]: number } = {
   optimism: 10, // 0xa (OP Mainnet)
   polygon: 137, // 0x89
   ton: 65534, // 0xfffe
+  solana: 5426,
+  bsc: 1839,
   // Testnets:
   arbitrumSepolia: 421614, // 0x66eee
   avalancheFuji: 43113, // 0xa869
@@ -152,6 +162,8 @@ export const ChainToDestinationDomain: { [key in TChainName]: number } = {
   polygonAmoy: 7,
   ton: 65534,
   tonTestnet: 65535,
+  solana: 0, // TODO: change
+  bsc: 56,
 };
 
 export const DomainToChainName: { [key: number]: TChainName } = {
@@ -162,6 +174,8 @@ export const DomainToChainName: { [key: number]: TChainName } = {
   6: "base",
   7: "polygon",
   65534: "ton",
+  10: "solana", // TODO: change
+  56: "bsc",
 };
 
 export const DomainToChainNameTestnet: { [key: number]: TChainName } = {
@@ -178,6 +192,8 @@ export const CHAIN_ID_TO_NAME: { [key: number]: TChainName } = {
   10: "optimism",
   137: "polygon",
   65534: "ton",
+  5426: "solana",
+  1839: "bsc",
   // Testnets:
   421614: "arbitrumSepolia",
   43113: "avalancheFuji",
@@ -188,7 +204,7 @@ export const CHAIN_ID_TO_NAME: { [key: number]: TChainName } = {
   65535: "tonTestnet",
 };
 
-export const SupportedDomains = [0, 1, 2, 3, 6, 7, 65534, 65535];
+export const SupportedDomains = [0, 1, 2, 3, 6, 7, 65534, 65535, 56]; // TODO: add solana
 
 export const supportedChainnames: TChainName[] = Object.keys(
   SUPPORTED_CHAINS
@@ -203,6 +219,8 @@ export const CHAIN_LOGOS: { [key: string]: string } = {
   optimism: "img/chain/optimism.svg",
   polygon: "img/chain/polygon.svg",
   ton: "img/chain/ton.svg",
+  solana: "img/chain/solana.svg",
+  bsc: "img/chain/bsc.svg",
   // Testnets:
   arbitrumSepolia: "img/chain/arbitrum.svg",
   avalancheFuji: "img/chain/avalanche.svg",
@@ -223,6 +241,8 @@ export const EstimatedTimeFromChain = {
   optimism: "24 min 00 sec",
   polygon: "8 min 30 sec",
   ton: "4 min 30 sec", // TODO: change
+  solana: "4 min 30 sec", // TODO: change
+  bsc: "4 min 30 sec", // TODO: change
   // Testnets
   avalancheFuji: "50 sec",
   baseSepolia: "4 min 30 sec",
