@@ -8,15 +8,5 @@
     "id": 65535,
     "name": "TONTestnet",
     "icon": "img/chain/ton.svg"
-  },
-  {
-    "id": 5426,
-    "name": "Solana",
-    "icon": "img/chain/solana.svg"
-  },
-  {
-    "id": 1839,
-    "name": "BSC",
-    "icon": "img/chain/bnb.svg"
   }
 ]
