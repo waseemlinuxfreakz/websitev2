@@ -6,6 +6,7 @@ import { useAppSelector, useAppDispatch } from "../../hooks/storage";
 import { isMobile } from "react-device-detect";
 import { Address } from "@ton/core";
 import { useTonAddress } from "@tonconnect/ui-react";
+import { useWallet } from "@solana/wallet-adapter-react";
 
 function isValidTonAddress(str) {
   try {
@@ -23,6 +24,7 @@ function WalletAddress() {
   const bridge = useAppSelector((state) => state.bridge);
   const { address, isConnected } = useAccount();
   const tonAddress = useTonAddress();
+  const solanaWallet = useWallet();
   const [invalidAddress, setInvalidAddress] = useState(false);
 
   function truncate(address) {
@@ -66,6 +68,13 @@ function WalletAddress() {
     }
   }, [address, tonAddress]);
 
+  useEffect(() => {
+    if (bridge.senderAddress) {
+      setIsChangeVisivle(true);
+    }
+    console.log(isChangeVisible);
+  }, [bridge.senderAddress]);
+
   function onChangeClickHandle(e) {
     e.preventDefault();
     const inputValue = e.target.value;
@@ -99,7 +108,7 @@ function WalletAddress() {
 
   return (
     <>
-      {isConnected || tonAddress ? (
+      {isConnected || tonAddress || solanaWallet.publicKey ? (
         <div className="wallet_Address">
           <div className="inputAddress Disenable">
             <input

@@ -72,7 +72,7 @@ export default function ConnectWalletModal({ modalIsOpen, setModalIsOpen }) {
       bridge.fromChain === "Solana" ||
       bridge.fromChain === "SolanaDevnet"
     ) {
-      if (solanaWallet.publicKey) {
+      if (solanaWallet?.publicKey) {
         dispatch(setSenderAddress(solanaWallet.publicKey.toString()));
       }
     } else if (address) {
@@ -80,7 +80,7 @@ export default function ConnectWalletModal({ modalIsOpen, setModalIsOpen }) {
     } else {
       dispatch(setSenderAddress(""));
     }
-  }, [address, tonAddress, bridge.fromChain, solanaWallet.connected]);
+  }, [address, tonAddress, bridge.fromChain, solanaWallet?.publicKey]);
 
   return (
     <div>
