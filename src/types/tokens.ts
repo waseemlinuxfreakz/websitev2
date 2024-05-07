@@ -6,10 +6,10 @@ export const BridgeTokens = [
   //   "price": 2062.25
   // },
   {
-    "cmc_id": 3408,
-    "name": "USDC",
-    "icon": "img/coin/usdc.svg",
-    "price": 0.9998
+    cmc_id: 3408,
+    name: "USDC",
+    icon: "img/coin/usdc.svg",
+    price: 0.9998,
   },
   // {
   //   "cmc_id": 1027,
@@ -47,7 +47,7 @@ export const BridgeTokens = [
   //   "icon": "img/coin/usdt.svg",
   //   "price": 1
   // }
-]
+];
 
 export const TOKEN_CHAIN_CONTRACT = {
   // EURC: {
@@ -64,25 +64,30 @@ export const TOKEN_CHAIN_CONTRACT = {
   //     baseSepolia: '',
   //     optimismSepolia: '',
   //     sepolia: '0x08210F9170F89Ab7658F0B5E3fF39b0E03C594D4',
-  //     polygonMumbai: '',
+  //     polygonAmoy: '',
   // },
   USDC: {
-      // Mainnets:
-      arbitrum: '0xaf88d065e77c8cC2239327C5EDb3A432268e5831',
-      avalanche: '0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E',
-      ethereum: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
-      optimism: '0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85',
-      base: '',
-      polygon: '0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359',
-      // Testnets:
-      arbitrumSepolia: '0x75faf114eafb1BDbe2F0316DF893fd58CE46AA4d',
-      avalancheFuji: '0x5425890298aed601595a70AB815c96711a31Bc65',
-      baseSepolia: '0x036CbD53842c5426634e7929541eC2318f3dCF7e',
-      optimismSepolia: '0x5fd84259d66Cd46123540766Be93DFE6D43130D7',
-      sepolia: '0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238',
-      polygonMumbai: '0x9999f7Fea5938fD3b1E26A12c3f2fb024e194f97',
-  }
-}
+    // Mainnets:
+    arbitrum: "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
+    avalanche: "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E",
+    ethereum: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    optimism: "0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85",
+    base: "",
+    polygon: "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359",
+    // Testnets:
+    arbitrumSepolia: "0x75faf114eafb1BDbe2F0316DF893fd58CE46AA4d",
+    avalancheFuji: "0x5425890298aed601595a70AB815c96711a31Bc65",
+    baseSepolia: "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+    optimismSepolia: "0x5fd84259d66Cd46123540766Be93DFE6D43130D7",
+    sepolia: "0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238",
+    polygonAmoy: "0x9999f7Fea5938fD3b1E26A12c3f2fb024e194f97",
+    tonTestnet: "kQAxUmtcvJrOJYXW4z1ESci3R1I88IhjhurLVfE5AdFK7rMO",
+  },
+  TON: {
+    tonTestnet: "",
+    polygonAmoy: "0xf2851831674d1630f49a9c000a34d5a8e167577c",
+  },
+};
 
 export type TTokenName = keyof typeof TOKEN_CHAIN_CONTRACT;
 
@@ -92,7 +97,8 @@ export const TOKEN_DECIMALS = {
   EURC: 6,
   // ETH: 18,
   USDC: 6,
+  TON: 9,
+  MATIC: 18,
   // USDT:18,
   // WBTC:18
-
-}
+};
