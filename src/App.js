@@ -7,9 +7,9 @@ import Bridge from "./Pages/Bridge";
 import ExplorerPage from "./Pages/Explorer";
 import TransactionDetailsPage from "./Pages/TransactionDetailsPage";
 import LockAndMint from "./Pages/LockAndMint";
+import HomePage from "./Pages/Home";
+import PoolPage from "./Pages/Pool";
 // Comming Soon
-// import HomePage from './Pages/Home';
-// import PoolPage from './Pages/Pool';
 // import YourLiquidityPage from './Pages/YourLiquidityPage';
 
 // Web Page
@@ -129,8 +129,8 @@ function App() {
                       {/* <Route path="/bridge" element={<Bridge />} /> */}
                       <Route path="/explorer" element={<ExplorerPage />} />
                       <Route path="/bridge" element={<LockAndMint />} />
-                      {/* <Route path="/swap" element={< HomePage />} /> */}
-                      {/* <Route path="/pool" element={<PoolPage />} /> */}
+                      <Route path="/swap" element={<HomePage />} />
+                      <Route path="/pool" element={<PoolPage />} />
                       {/* <Route path="/pool/your-liquidity" element={<YourLiquidityPage />} /> */}
                       <Route
                         path="/transactionDetails/:hash"
