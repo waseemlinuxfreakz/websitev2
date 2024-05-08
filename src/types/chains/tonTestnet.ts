@@ -3,6 +3,7 @@ import { getHttpEndpoint } from "@orbs-network/ton-access";
 
 const rpc = await getHttpEndpoint({ network: "testnet" });
 
+// @ts-ignore
 export const tonTestnet = {
   emmetBridge: {
     address: "EQDTmIlOD2eMZ89rCoTPIi5VU8IgTJIDQCtdTW6jLuq6m55O",

@@ -1,5 +1,6 @@
 import { TEmmetChain } from ".";
 
+// @ts-ignore
 export const polygonAmoy = {
   emmetBridge: {
     address: "0x6b30f76cece9f92d27f0e9ad78312e77709e74a5",
