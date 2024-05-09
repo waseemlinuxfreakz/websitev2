@@ -16,6 +16,7 @@ import { useTonWallet } from "@tonconnect/ui-react";
 import lockAndMintChains from "../../hooks/lockAndMintHooks/chains";
 import { Address } from "@ton/core";
 import Modal from "react-modal";
+import { useWallet } from "@solana/wallet-adapter-react";
 
 const pattern = /^[0x]{0,2}[0-9a-fA-F]{0,40}$/;
 
@@ -35,6 +36,7 @@ function MainActionButton() {
 
   const { isConnected } = useAccount();
   const wallet = useTonWallet();
+  const solanaWallet = useWallet();
 
   const { open } = useWeb3Modal();
 
@@ -62,7 +64,7 @@ function MainActionButton() {
 
   useEffect(() => {
     // console.log("wallet", wallet.account);
-    if (isConnected || wallet?.account) {
+    if (isConnected || wallet?.account || solanaWallet.publicKey) {
       if (!bridge.amount || Number(bridge.amount) <= 0) {
         setDisabled(true);
         setCaption("Enter Amount");
@@ -108,6 +110,7 @@ function MainActionButton() {
     isTransferProcessed,
     wallet,
     fromBalance,
+    solanaWallet.publicKey,
   ]);
 
   const onClickSelectAction = () => {
