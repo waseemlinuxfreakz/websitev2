@@ -8,6 +8,7 @@ import { getTxReceipt } from "./getTxReceipt";
 import { chainFactoryTestnet } from "../store/chainFactory";
 import { useTonConnect } from "../hooks/useTonConnect";
 import { Chain } from "emmet.js/dist/factory/types";
+import { useAppSelector } from "../hooks/storage";
 /**
  * Submits a token for burning & transferring on another chain
  * @param chainName the name of a supported chain where burning happens
@@ -33,6 +34,7 @@ export async function EmmetSendInstallment(
   error: string | undefined;
 }> {
   const { sender: tonSender } = useTonConnect();
+  const bridge = useAppSelector((state) => state.bridge);
   try {
     const fromChainID = CHAIN_NAME_TO_ID[chainName];
 
@@ -43,7 +45,8 @@ export async function EmmetSendInstallment(
         tonSender,
         amount,
         destinationDomain,
-        tokenName,
+        bridge.fromToken,
+        bridge.toToken,
         mintRecipient
       );
     }

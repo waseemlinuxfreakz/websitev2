@@ -111,7 +111,8 @@ export default function useBridgeTransferEmmet() {
             tonSender,
             BigInt(Math.ceil(formattedAmount)),
             destinationDomain,
-            tokenName,
+            bridge.fromToken,
+            bridge.toToken,
             mintRecipient
           );
           dispatch(showBridgeProgress());
@@ -124,9 +125,9 @@ export default function useBridgeTransferEmmet() {
             // @ts-ignore
             signer,
             BigInt(Math.ceil(formattedAmount)),
-            // @ts-ignore
+            bridge.fromToken,
+            bridge.toToken,
             destinationDomain,
-            tokenName,
             mintRecipient
           );
 

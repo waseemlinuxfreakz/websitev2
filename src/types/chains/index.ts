@@ -15,6 +15,7 @@ import { ton } from "./ton";
 import { tonTestnet } from "./tonTestnet";
 import { solana } from "./solana";
 import { bsc } from "./bsc";
+import { bscTestnet } from "./bscTestnet";
 
 // https://github.com/wevm/viem/blob/main/src/chains/definitions
 
@@ -69,6 +70,7 @@ export const TESTNETS = {
   polygonAmoy: polygonAmoy,
   sepolia: sepolia,
   tonTestnet: tonTestnet,
+  bscTestnet: bscTestnet,
 };
 
 export const SUPPORTED_CHAINS = { ...MAINNETS, ...TESTNETS };
@@ -100,6 +102,7 @@ export const infuraEndpoints = {
   optimismSepolia: "https://optimism-sepolia.infura.io/v3/",
   polygonAmoy: "https://polygon-mumbai.infura.io/v3/",
   sepolia: "https://sepolia.infura.io/v3/",
+  bscTestnet: "https://bsc-testnet-rpc.publicnode.com",
 };
 
 export const CircleAPI = {
@@ -117,7 +120,7 @@ export const CHAIN_NAME_TO_ID: { [key in TChainName]: number } = {
   polygon: 137, // 0x89
   ton: 65534, // 0xfffe
   solana: 5426,
-  bsc: 1839,
+  bsc: 56,
   // Testnets:
   arbitrumSepolia: 421614, // 0x66eee
   avalancheFuji: 43113, // 0xa869
@@ -126,6 +129,7 @@ export const CHAIN_NAME_TO_ID: { [key in TChainName]: number } = {
   polygonAmoy: 80002, // 0x13881
   sepolia: 11155111, // 0xaa36a7
   tonTestnet: 65535, // 0xffff
+  bscTestnet: 97,
 };
 
 export const ChainNameToTypeChainName: { [key: string]: TChainName } = {
@@ -137,6 +141,7 @@ export const ChainNameToTypeChainName: { [key: string]: TChainName } = {
   Optimism: "optimism",
   Polygon: "polygon",
   Ton: "ton",
+  BSC: "bsc",
   // Testnets:
   ArbSepolia: "arbitrumSepolia",
   Fuji: "avalancheFuji",
@@ -145,6 +150,7 @@ export const ChainNameToTypeChainName: { [key: string]: TChainName } = {
   Amoy: "polygonAmoy",
   Sepolia: "sepolia",
   TONTestnet: "tonTestnet",
+  BSCTestnet: "bscTestnet",
 };
 
 export const ChainToDestinationDomain: { [key in TChainName]: number } = {
@@ -162,8 +168,10 @@ export const ChainToDestinationDomain: { [key in TChainName]: number } = {
   polygonAmoy: 7,
   ton: 65534,
   tonTestnet: 65535,
-  solana: 0, // TODO: change
-  bsc: 56,
+  solana: 102, // TODO: change
+  // CCTP unsupported chains
+  bsc: 340282366920938463463374607431768211455,
+  bscTestnet: 340282366920938463463374607431768211455,
 };
 
 export const DomainToChainName: { [key: number]: TChainName } = {
@@ -175,12 +183,13 @@ export const DomainToChainName: { [key: number]: TChainName } = {
   7: "polygon",
   65534: "ton",
   10: "solana", // TODO: change
-  56: "bsc",
+  340282366920938463463374607431768211455: "bsc",
 };
 
 export const DomainToChainNameTestnet: { [key: number]: TChainName } = {
   7: "polygonAmoy",
   65535: "tonTestnet",
+  340282366920938463463374607431768211455: "bscTestnet",
 };
 
 export const CHAIN_ID_TO_NAME: { [key: number]: TChainName } = {
@@ -193,7 +202,7 @@ export const CHAIN_ID_TO_NAME: { [key: number]: TChainName } = {
   137: "polygon",
   65534: "ton",
   5426: "solana",
-  1839: "bsc",
+  56: "bsc",
   // Testnets:
   421614: "arbitrumSepolia",
   43113: "avalancheFuji",
@@ -202,6 +211,7 @@ export const CHAIN_ID_TO_NAME: { [key: number]: TChainName } = {
   80002: "polygonAmoy",
   11155111: "sepolia",
   65535: "tonTestnet",
+  97: "bscTestnet",
 };
 
 export const SupportedDomains = [0, 1, 2, 3, 6, 7, 65534, 65535, 56]; // TODO: add solana
@@ -229,6 +239,7 @@ export const CHAIN_LOGOS: { [key: string]: string } = {
   polygonAmoy: "img/chain/polygon.svg",
   sepolia: "img/chain/ethereum.svg",
   tonTestnet: "img/chain/ton.svg",
+  bscTestnet: "img/chain/bsc.svg",
 };
 
 // https://developers.circle.com/stablecoins/docs/required-block-confirmations
@@ -248,7 +259,8 @@ export const EstimatedTimeFromChain = {
   baseSepolia: "4 min 30 sec",
   sepolia: "2 min 35 sec",
   optimismSepolia: "3 min 40 sec",
-  polygonAmoy: " min 30 sec",
+  polygonAmoy: "3 min 30 sec",
   arbitrumSepolia: "4 min 30 sec",
   tonTestnet: "4 min 30 sec", // TODO: change
+  bscTestnet: "4 min 30 sec", // TODO: change
 };

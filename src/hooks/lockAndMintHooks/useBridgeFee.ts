@@ -54,7 +54,8 @@ export default function useBridgFee() {
         ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]]
       );
 
-      const fee = await handler.calculateTransactionFees(bridge.toChain);
+      // const fee = await handler.calculateTransactionFees(bridge.toChain);
+      const fee = 0;
 
       return fee;
     } catch (error) {
