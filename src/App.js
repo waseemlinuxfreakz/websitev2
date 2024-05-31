@@ -9,14 +9,13 @@ import TransactionDetailsPage from "./Pages/TransactionDetailsPage";
 import LockAndMint from "./Pages/LockAndMint";
 import HomePage from "./Pages/Home";
 import PoolPage from "./Pages/Pool";
-// Comming Soon
-// import YourLiquidityPage from './Pages/YourLiquidityPage';
 
 // Web Page
 import WebHome from "./Pages/WebPages/WebHome";
 import PrivacyPolicy from "./Pages/WebPages/PrivacyPolicy";
 import TermsService from "./Pages/WebPages/TermsService";
 import Tokenomics from "./Pages/WebPages/Tokenomics";
+import YourLiquidityPage from "./Pages/YourLiquidityPage";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -131,7 +130,10 @@ function App() {
                       <Route path="/bridge" element={<LockAndMint />} />
                       <Route path="/swap" element={<HomePage />} />
                       <Route path="/pool" element={<PoolPage />} />
-                      {/* <Route path="/pool/your-liquidity" element={<YourLiquidityPage />} /> */}
+                      <Route
+                        path="/pool/your-liquidity"
+                        element={<YourLiquidityPage />}
+                      />
                       <Route
                         path="/transactionDetails/:hash"
                         element={<TransactionDetailsPage />}

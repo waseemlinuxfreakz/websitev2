@@ -5,7 +5,7 @@ import "./Yourliquidity.css";
 import Close from "../../../assets/img/close.svg";
 import Info from "../../../assets/img/InfoIcons.svg";
 import ChainSelectorDropdown from "../../HomeComponents/ChainSelectorDropdown/ChainSelectorDropdown";
-import TokenSelectorBox from "../../HomeComponents/TokenSelectors/TokenSelectorBox";
+import TokenSelectorBox from "../TokenSelectors/TokenSelectorBox";
 
 function Yourliquidity() {
   const [activeButton, setActiveButton] = useState("Deposit");
@@ -65,7 +65,7 @@ function Yourliquidity() {
               </div>
             </div>
             <div className="yourliquidityInput">
-              <TokenSelectorBox type="LP" />
+              <TokenSelectorBox type={activeButton} />
             </div>
             <ul className="YourliquidityList">
               <li>
