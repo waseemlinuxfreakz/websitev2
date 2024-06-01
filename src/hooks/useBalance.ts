@@ -88,6 +88,8 @@ export default function useBalance() {
 
     const bal = await handler.tokenBalance(tokenAddress, addr);
 
+    // console.log({ addr: tokenAddress, direction, bal });
+
     if (bal) {
       return Number(bal.toString());
     }
@@ -128,6 +130,7 @@ export default function useBalance() {
           const bal: number = await getTokenBalance("from");
           const formattedBalance =
             bal / 10 ** Number(TOKEN_DECIMALS[bridge.fromToken as TTokenName]);
+          setBalance(formattedBalance);
           dispatch(setBridgeBalance(formattedBalance));
           dispatch(setBridgeError(""));
         })().catch((e) => {

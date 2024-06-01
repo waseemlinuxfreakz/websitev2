@@ -49,10 +49,10 @@ export default function useBridgFee() {
 
   async function getBridgeFee() {
     try {
-      const handler = await chainFactoryTestnet.inner(
-        //@ts-ignore
-        ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]]
-      );
+      // const handler = await chainFactoryTestnet.inner(
+      //   //@ts-ignore
+      //   ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]]
+      // );
 
       // const fee = await handler.calculateTransactionFees(bridge.toChain);
       const fee = 0;

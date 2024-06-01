@@ -170,8 +170,8 @@ export const ChainToDestinationDomain: { [key in TChainName]: number } = {
   tonTestnet: 65535,
   solana: 102, // TODO: change
   // CCTP unsupported chains
-  bsc: 340282366920938463463374607431768211455,
-  bscTestnet: 340282366920938463463374607431768211455,
+  bsc: 4,
+  bscTestnet: 4,
 };
 
 export const DomainToChainName: { [key: number]: TChainName } = {
@@ -183,13 +183,13 @@ export const DomainToChainName: { [key: number]: TChainName } = {
   7: "polygon",
   65534: "ton",
   10: "solana", // TODO: change
-  340282366920938463463374607431768211455: "bsc",
+  4: "bsc",
 };
 
 export const DomainToChainNameTestnet: { [key: number]: TChainName } = {
   7: "polygonAmoy",
   65535: "tonTestnet",
-  340282366920938463463374607431768211455: "bscTestnet",
+  4: "bscTestnet",
 };
 
 export const CHAIN_ID_TO_NAME: { [key: number]: TChainName } = {
@@ -214,7 +214,7 @@ export const CHAIN_ID_TO_NAME: { [key: number]: TChainName } = {
   97: "bscTestnet",
 };
 
-export const SupportedDomains = [0, 1, 2, 3, 6, 7, 65534, 65535, 56]; // TODO: add solana
+export const SupportedDomains = [0, 1, 2, 3, 6, 7, 65534, 65535, 56, 4]; // TODO: add solana
 
 export const supportedChainnames: TChainName[] = Object.keys(
   SUPPORTED_CHAINS

@@ -89,6 +89,7 @@ export const TOKEN_CHAIN_CONTRACT = {
     sepolia: "0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238",
     polygonAmoy: "0x41e94eb019c0762f9bfcf9fb1e58725bfb0e7582",
     tonTestnet: "kQAxUmtcvJrOJYXW4z1ESci3R1I88IhjhurLVfE5AdFK7rMO",
+    bscTestnet: "0x94Fe860a1FdED058E050e5Aa28faa060a76301Ed",
   },
   TON: {
     tonTestnet: "",

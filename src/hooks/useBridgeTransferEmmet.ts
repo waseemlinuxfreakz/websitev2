@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Hash } from "viem";
+import { Hash, parseEther } from "viem";
 import { useAccount } from "wagmi";
 import { circleBurner } from "../abis/circleBurner";
 import { useAppDispatch, useAppSelector } from "./storage";
@@ -20,6 +20,8 @@ import { useTonConnect } from "./useTonConnect";
 import { Chain } from "emmet.js/dist/factory/types";
 import { chainFactoryTestnet } from "../store/chainFactory";
 import { useEthersSigner } from "./lockAndMintHooks/useEthersSigner";
+import { ErrorDecoder } from "ethers-decode-error";
+import { EmmetBridge__factory } from "@emmet-contracts/web3";
 
 export default function useBridgeTransferEmmet() {
   const { fee } = useBridgFee();
@@ -120,16 +122,37 @@ export default function useBridgeTransferEmmet() {
         } else if (fromChainID === Chain.POLYGON) {
           const handler = await chainFactoryTestnet.inner(fromChainID);
 
+          console.log({
+            handler,
+            signer,
+            amount: BigInt(Math.ceil(formattedAmount)),
+            fromToken: bridge.fromToken,
+            toToken: bridge.toToken,
+            destinationDomain,
+            destinationChain: ChainNameToTypeChainName[bridge.toChain],
+            mintRecipient,
+          });
+
+          // const decoder = ErrorDecoder.create([
+          //   EmmetBridge__factory.createInterface(),
+          // ]);
+
           const { hash, tx } = await chainFactoryTestnet.sendInstallment(
             handler,
             // @ts-ignore
             signer,
             BigInt(Math.ceil(formattedAmount)),
+            destinationDomain,
             bridge.fromToken,
             bridge.toToken,
-            destinationDomain,
-            mintRecipient
+            mintRecipient,
+            {
+              value: parseEther("0.00001"),
+            }
           );
+          // .catch((e) => decoder.decode(e));
+
+          // console.log(response);
 
           dispatch(setBridgeFromHash(hash ? hash : "N/A"));
           dispatch(showBridgeProgress());

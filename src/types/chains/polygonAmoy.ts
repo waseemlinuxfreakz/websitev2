@@ -4,7 +4,7 @@ import { TEmmetChain } from ".";
 export const polygonAmoy = {
   ...viempolygonAmoy,
   emmetBridge: {
-    address: "0x6b30f76cece9f92d27f0e9ad78312e77709e74a5",
+    address: "0x32Ce282B7dc2526a341787Aa84599Dd3D8e7243C",
     blockCreated: 45310404,
   },
   emmetFeeOracle: {

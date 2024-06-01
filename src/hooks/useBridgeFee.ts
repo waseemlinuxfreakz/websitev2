@@ -61,7 +61,8 @@ export default function useBridgFee() {
         args: [ChainNameToTypeChainName[bridge.toChain]],
       });
     } catch (error) {
-      console.warn(error);
+      console.error(error);
+      return 0;
     }
   }
 
