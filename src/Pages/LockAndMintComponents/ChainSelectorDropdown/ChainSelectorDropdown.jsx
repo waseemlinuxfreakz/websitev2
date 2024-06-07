@@ -54,6 +54,7 @@ export default function ChainSelectorDropdown({ parent, direction }) {
           chain.name !== selectedChain.name && chain.name !== bridge.toChain
       )
     );
+    console.log({ chainArray });
   }, [selectedChain, bridge.toChain]);
 
   const [isListVisible, setListVisible] = useState(false);
@@ -78,22 +79,9 @@ export default function ChainSelectorDropdown({ parent, direction }) {
     }
   }
 
-  // useEffect(() => {
-  //   const chain = findChain(CHAIN_NAME_TO_ID[bridge.fromChain]);
-
-  //   console.log("did ran at from chain", {
-  //     chainId: bridge.fromChain,
-  //   });
-
-  //   if (chain) {
-  //     setSelectedChain(chain);
-  //     dispatchChain(bridge.fromChain);
-  //   }
-  // }, [bridge.fromChain]);
-
   useEffect(() => {
     if (parent === "lock-and-mint") {
-      setChainArray(chainArray);
+      // setChainArray(chainArray);
       const oldBridgeAmount = bridge.amount;
       dispatch(setBridgeAmount(0));
       dispatch(setBridgeAmount(oldBridgeAmount));
