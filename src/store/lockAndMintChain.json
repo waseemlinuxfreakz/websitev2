@@ -13,5 +13,10 @@
     "id": 97,
     "name": "BSCTestnet",
     "icon": "img/chain/bsc.svg"
+  },
+  {
+    "id": 84532,
+    "name": "BSepolia",
+    "icon": "img/chain/base.svg"
   }
 ]
