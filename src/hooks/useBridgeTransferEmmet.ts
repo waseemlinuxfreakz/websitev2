@@ -20,8 +20,8 @@ import { useTonConnect } from "./useTonConnect";
 import { Chain } from "emmet.js/dist/factory/types";
 import { chainFactoryTestnet } from "../store/chainFactory";
 import { useEthersSigner } from "./lockAndMintHooks/useEthersSigner";
-import { ErrorDecoder } from "ethers-decode-error";
-import { EmmetBridge__factory } from "@emmet-contracts/web3";
+// import { ErrorDecoder } from "ethers-decode-error";
+// import { EmmetBridge__factory } from "@emmet-contracts/web3";
 
 export default function useBridgeTransferEmmet() {
   const { fee } = useBridgFee();
@@ -133,10 +133,6 @@ export default function useBridgeTransferEmmet() {
             mintRecipient,
           });
 
-          // const decoder = ErrorDecoder.create([
-          //   EmmetBridge__factory.createInterface(),
-          // ]);
-
           const { hash, tx } = await chainFactoryTestnet.sendInstallment(
             handler,
             // @ts-ignore
@@ -150,9 +146,6 @@ export default function useBridgeTransferEmmet() {
               value: parseEther("0.00001"),
             }
           );
-          // .catch((e) => decoder.decode(e));
-
-          // console.log(response);
 
           dispatch(setBridgeFromHash(hash ? hash : "N/A"));
           dispatch(showBridgeProgress());

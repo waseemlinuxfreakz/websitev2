@@ -5,6 +5,7 @@ import { useAppSelector, useAppDispatch } from "./storage";
 import { getProvider, getTokenAddress, addressToAccount } from "../utils";
 import {
   ChainNameToTypeChainName,
+  ChainToDestinationDomain,
   SUPPORTED_CHAINS,
   TChainName,
   TTokenName,
@@ -14,6 +15,7 @@ import {
   setBridgeDecimals,
   setBridgeError,
 } from "../store/bridgeSlice";
+import { chainFactoryTestnet } from "../store/chainFactory";
 
 export default function useBridgeAllowance() {
   const { address, isConnected } = useAccount();
@@ -69,15 +71,26 @@ export default function useBridgeAllowance() {
           setDecimals(BigInt(decimals));
           dispatch(setBridgeDecimals(decimals));
 
-          const allowance = await provider.readContract({
-            address: tokenAddress,
-            abi: erc20Abi,
-            functionName: "allowance",
-            args: [addressToAccount(address!), addressToAccount(spender)],
-          });
+          // const allowance = await provider.readContract({
+          //   address: tokenAddress,
+          //   abi: erc20Abi,
+          //   functionName: "allowance",
+          //   args: [addressToAccount(address!), addressToAccount(spender)],
+          // });
 
-          setAllowance(Number(allowance.toString()));
-          dispatch(setBridgeAllowance(Number(allowance.toString())));
+          const handler = await chainFactoryTestnet.inner(
+            // @ts-ignore
+            ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]]
+          );
+
+          if ("getApprovedAmount" in handler) {
+            const allowance = await handler.getApprovedAmount(
+              tokenAddress,
+              bridge.senderAddress
+            );
+            setAllowance(Number(allowance.toString()));
+            dispatch(setBridgeAllowance(Number(allowance.toString())));
+          }
         }
 
         if (isApproveRequired()) {

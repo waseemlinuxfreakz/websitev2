@@ -113,7 +113,7 @@ function MainActionButton() {
     solanaWallet.publicKey,
   ]);
 
-  const onClickSelectAction = () => {
+  const onClickSelectAction = async () => {
     if (!isConnected && !wallet?.account) {
       setModalIsOpen(true);
     } else {
