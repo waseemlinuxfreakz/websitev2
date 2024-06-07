@@ -103,7 +103,7 @@ export const TOKEN_DECIMALS = {
   // DAI: 18,
   // EMMET:18,
   EURC: 6,
-  // ETH: 18,
+  ETH: 18,
   USDC: 6,
   TON: 9,
   MATIC: 18,

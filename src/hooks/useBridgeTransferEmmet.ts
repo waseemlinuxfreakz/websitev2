@@ -119,7 +119,11 @@ export default function useBridgeTransferEmmet() {
           );
           dispatch(showBridgeProgress());
           setIsTransferProcessed(false);
-        } else if (fromChainID === Chain.POLYGON) {
+        } else if (
+          fromChainID === Chain.POLYGON ||
+          fromChainID === Chain.ETHEREUM ||
+          fromChainID === Chain.BSC
+        ) {
           const handler = await chainFactoryTestnet.inner(fromChainID);
 
           console.log({

@@ -89,6 +89,7 @@ export default function useBridgeAllowance() {
               bridge.senderAddress
             );
             setAllowance(Number(allowance.toString()));
+            console.log({ allowance: Number(allowance.toString()) });
             dispatch(setBridgeAllowance(Number(allowance.toString())));
           }
         }

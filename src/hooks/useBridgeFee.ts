@@ -1,5 +1,6 @@
 import { getProvider, addressToAccount } from "../utils";
 import {
+  CHAIN_NAME_TO_ID,
   ChainNameToTypeChainName,
   ChainToDestinationDomain,
   SUPPORTED_CHAINS,
@@ -74,7 +75,11 @@ export default function useBridgFee() {
       );
 
       // const fee = await handler.calculateTransactionFees(bridge.toChain);
-      const fee = 0;
+      const fee = handler.txFee(
+        BigInt(CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.toChain]]),
+        bridge.fromToken,
+        bridge.toToken
+      );
 
       return fee;
     } catch (error) {
