@@ -1,188 +1,191 @@
 .transactionTable table {
-    width: 100%;
+  width: 100%;
 }
 
 .transactionTable thead tr th {
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 20px;
-    /* 142.857% */
-    letter-spacing: -0.3px;
-    color: #B3B7BF;
-    background-color: transparent;
-    border: 0;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+  /* 142.857% */
+  letter-spacing: -0.3px;
+  color: #b3b7bf;
+  background-color: transparent;
+  border: 0;
 }
 
-.transactionTable thead tr th, .transactionTable tbody tr td {
-    padding: 10px;
+.transactionTable thead tr th,
+.transactionTable tbody tr td {
+  padding: 10px;
 }
 
 .transactionTable tbody tr td:first-child span {
-    display: inline-block;
-    padding: 0px 12px;
-    border-radius: 6px;
+  display: inline-block;
+  padding: 0px 12px;
+  border-radius: 6px;
 }
 
 .chainCell {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
 }
 
 span.textOnly {
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 24px;
-    color: #fff;
-    white-space: nowrap;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    line-clamp: 1;
-    -webkit-box-orient: vertical;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 
 span.textCell {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    line-clamp: 1;
-    -webkit-box-orient: vertical;
-    color: #E0E3E6;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  color: #e0e3e6;
 }
 
 .transactionTable tbody tr td {
-    background: #191B1E;
-    border-bottom: 1px solid #000;
-    color: #fff;
+  background: #191b1e;
+  border-bottom: 1px solid #000;
+  color: #fff;
 }
 
 .transactionTable tbody tr td:first-child {
-    border-radius: 8px 0px 0px 8px;
+  border-radius: 8px 0px 0px 8px;
 }
 
 .transactionTable tbody tr td:last-child {
-    border-radius: 0px 8px 8px 0px;
+  border-radius: 0px 8px 8px 0px;
 }
 
 .transactionTable tbody tr:hover td {
-    background: #202226;
+  background: #202226;
 }
 
 .transactionTable {
-    /* overflow: auto; */
+  /* overflow: auto; */
 }
 
 .transactionTable table {
-    min-width: 992px;
+  min-width: 992px;
 }
 
 /* Data Table Css  */
 
 .col-sm-12.col-md-6[data-test="datatable-entries"] {
-    display: none !important;
+  display: none !important;
 }
 
 .col-sm-12.col-md-6[data-test="datatable-search"] {
-    display: none !important;
+  display: none !important;
 }
 
 thead[data-test="table-foot"] {
-    display: none !important;
+  display: none !important;
 }
 
-span.pending, span.Success, span.Failled {
-    color: #fff;
+span.pending,
+span.success,
+span.failed {
+  color: #fff;
 }
 
 ul.pagination {
-    justify-content: flex-end;
-    background: transparent;
-    gap: 5px;
+  justify-content: flex-end;
+  background: transparent;
+  gap: 5px;
 }
 
 ul.pagination a.page-link.page-link {
-    background: transparent;
-    border: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 24px;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 20px;
-    color: #B3B7BF;
-    border-radius: 6px;
-    cursor: pointer;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  color: #b3b7bf;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 ul.pagination li.page-item {
-    flex-shrink: 0;
+  flex-shrink: 0;
 }
 
 span.sr-only {
-    display: none !important;
+  display: none !important;
 }
 
 ul.pagination li.active.page-item a.page-link.page-link {
-    color: #fff;
-    background: #202226;
+  color: #fff;
+  background: #202226;
 }
 
 ul.pagination a.page-link.page-link[aria-label="Next"],
 ul.pagination a.page-link.page-link[aria-label="Previous"] {
-    font-size: 0;
-    background-image: url("../../../assets/img/down-Icons.svg");
-    background-repeat: no-repeat;
-    background-size: 20px;
-    background-position: center;
-    transform: rotate(90deg);
+  font-size: 0;
+  background-image: url("../../../assets/img/down-Icons.svg");
+  background-repeat: no-repeat;
+  background-size: 20px;
+  background-position: center;
+  transform: rotate(90deg);
 }
 
 ul.pagination a.page-link.page-link[aria-label="Next"] span,
 ul.pagination a.page-link.page-link[aria-label="Previous"] span {
-    display: none;
+  display: none;
 }
 
 ul.pagination a.page-link.page-link[aria-label="Next"] {
-    transform: rotate(-90deg);
+  transform: rotate(-90deg);
 }
 
 .dataTables_info {
-    color: #888B92;
-    font-family: Inter;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 20px;
+  color: #888b92;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
 }
 
 div[data-test="table"] {
-    overflow: auto;
-    margin-bottom: 10px;
+  overflow: auto;
+  margin-bottom: 10px;
 }
 
 div[data-test="table"]::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 @media only screen and (max-width: 768px) {
-    ul.pagination {
-        justify-content: center;
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
-    
-    .dataTables_info {
-        text-align: center;
-    }
+  ul.pagination {
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .dataTables_info {
+    text-align: center;
+  }
 }

@@ -135,7 +135,7 @@ function App() {
                         element={<YourLiquidityPage />}
                       />
                       <Route
-                        path="/transactionDetails/:hash"
+                        path="/transactionDetails/:nonce"
                         element={<TransactionDetailsPage />}
                       />
                     </Routes>

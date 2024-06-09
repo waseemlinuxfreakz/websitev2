@@ -3,30 +3,25 @@ import { setBridgeToHash } from "../store/bridgeSlice";
 import { useAppSelector, useAppDispatch } from "./storage";
 import { TTxType, TxDetails, txBackend } from "../types";
 import { setBridgeTransaction } from "../store/explorerSlice";
+import { Transaction } from "emmet.js/dist/factory/types";
 
 export default function useCircleTxData() {
   const bridge = useAppSelector((state) => state.bridge);
   const dispatch = useAppDispatch();
 
   const initData = {
-    amount: 0,
-    bridgeHash: "",
-    burnToken: "",
-    mintRecipient: bridge.receiver,
-    destinationFee: 0,
-    destinationDomain: -1,
-    originalDomain: -1,
-    originFee: 0,
-    sender: "",
-    burnHash: bridge.fromHash,
-    start: new Date(),
-    symbol: "",
-    claimHash: "",
-    finished: new Date(),
-    txType: "Transfer",
-  } as TxDetails;
+    amount: BigInt(0),
+    fromToken: "USDC",
+    toToken: "USDC",
+    destinationHash: "",
+    originalHash: "",
+    fromChainId: BigInt(0),
+    toChainId: BigInt(0),
+    nonce: BigInt(0),
+    recipient: "",
+  } as Transaction;
 
-  const [txData, setTxData] = useState<TxDetails>(initData);
+  const [txData, setTxData] = useState<Transaction>(initData);
   const [hash, setHash] = useState(bridge.fromHash);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -39,22 +34,23 @@ export default function useCircleTxData() {
     try {
       if (hash) {
         const result: Response = await fetch(`${txBackend}/hash/?hash=${hash}`);
-        let CircleTXData: TxDetails = await result.json();
+        let CircleTXData: Transaction = await result.json();
 
         console.log({ result });
 
         if (CircleTXData) {
           setTxData(CircleTXData);
 
-          CircleTXData.txType = "Transfer";
+          // CircleTXData.txType = "Transfer";
 
-          if (CircleTXData && CircleTXData.claimHash) {
-            CircleTXData.status = "success";
-          } else {
-            CircleTXData.status = "pending";
-          }
+          // if (CircleTXData && CircleTXData.claimHash) {
+          //   CircleTXData.status = "success";
+          // } else {
+          //   CircleTXData.status = "pending";
+          // }
 
-          dispatch(setBridgeTransaction(CircleTXData));
+          // TODO: may need to uncomment later
+          // dispatch(setBridgeTransaction(CircleTXData));
         }
       }
     } catch (error) {

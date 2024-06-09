@@ -7,7 +7,7 @@ import {
   removeTrailingZeroes,
 } from "../../../utils";
 import useGetTxValue from "../../../hooks/useGetTxValue";
-import { TOKEN_DECIMALS } from "../../../types";
+import { CHAIN_ID_TO_NAME, TOKEN_DECIMALS } from "../../../types";
 
 function TransactionDetailsRight({ fromFee, toFee }) {
   const explorer = useAppSelector((store) => store.explorer);
@@ -36,20 +36,20 @@ function TransactionDetailsRight({ fromFee, toFee }) {
             {/* If amount < 2,000 then fixed fee $0.4, else 0.02% of the amount */}
             {removeTrailingZeroes(
               restoreOriginalSumSent(
-                explorer.bridgeTransaction.amount / decimals()
+                Number(explorer.bridgeTransaction.amount) / decimals()
               )
             )}{" "}
-            {explorer.bridgeTransaction.symbol}
+            {explorer.bridgeTransaction.fromToken}
           </div>
         </li>
         <li className="transactionDetailsListItem">
           <div className="transactionDetailsListLeft">Received amount</div>
           <div className="transactionDetailsListRight">
             {explorer.bridgeTransaction.amount
-              ? explorer.bridgeTransaction.amount /
-                10 ** Number(TOKEN_DECIMALS[explorer.bridgeTransaction.symbol])
+              ? Number(explorer.bridgeTransaction.amount) /
+                10 ** Number(TOKEN_DECIMALS[explorer.bridgeTransaction.toToken])
               : 0}{" "}
-            {explorer.bridgeTransaction.symbol}
+            {explorer.bridgeTransaction.toToken}
           </div>
         </li>
         <li className="transactionDetailsListItem">
@@ -63,9 +63,9 @@ function TransactionDetailsRight({ fromFee, toFee }) {
               {removeTrailingZeroes(
                 Number(
                   restoreOriginalSumSent(
-                    explorer.bridgeTransaction.amount / decimals()
+                    Number(explorer.bridgeTransaction.amount) / decimals()
                   ) -
-                    explorer.bridgeTransaction.amount / decimals()
+                    Number(explorer.bridgeTransaction.amount) / decimals()
                 ).toFixed(6)
               )}{" "}
               {explorer.bridgeTransaction.symbol}
@@ -82,14 +82,16 @@ function TransactionDetailsRight({ fromFee, toFee }) {
                     TOKEN_DECIMALS[
                       getChainSymbolFromName(
                         getDomainToChainName(
-                          explorer.bridgeTransaction.originalDomain
+                          CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId]
                         )
                       )
                     ]
                   )
               : 0}{" "}
             {getChainSymbolFromName(
-              getDomainToChainName(explorer.bridgeTransaction.originalDomain)
+              getDomainToChainName(
+                CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId]
+              )
             )}
           </div>
         </li>
@@ -103,14 +105,16 @@ function TransactionDetailsRight({ fromFee, toFee }) {
                     TOKEN_DECIMALS[
                       getChainSymbolFromName(
                         getDomainToChainName(
-                          explorer.bridgeTransaction.destinationDomain
+                          CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId]
                         )
                       )
                     ]
                   )
               : 0}{" "}
             {getChainSymbolFromName(
-              getDomainToChainName(explorer.bridgeTransaction.destinationDomain)
+              getDomainToChainName(
+                CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId]
+              )
             )}
           </div>
         </li>
@@ -119,8 +123,8 @@ function TransactionDetailsRight({ fromFee, toFee }) {
           <div className="transactionDetailsListRight">
             ${" "}
             {explorer.bridgeTransaction.amount
-              ? explorer.bridgeTransaction.amount /
-                10 ** Number(TOKEN_DECIMALS[explorer.bridgeTransaction.symbol])
+              ? Number(explorer.bridgeTransaction.amount) /
+                10 ** Number(TOKEN_DECIMALS[explorer.bridgeTransaction.toToken])
               : 0}
           </div>
         </li>

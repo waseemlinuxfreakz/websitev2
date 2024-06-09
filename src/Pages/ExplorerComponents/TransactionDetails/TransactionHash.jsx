@@ -52,7 +52,7 @@ function TransactionHash() {
           </button>
         </div>
       </div>
-      <h3>{hash}</h3>
+      <h3>{explorer.bridgeTransaction.originalHash}</h3>
     </div>
   );
 }

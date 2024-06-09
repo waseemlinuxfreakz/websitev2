@@ -9,7 +9,7 @@ import {
 } from "../../../utils";
 import useElapsedTime from "../../../hooks/useElapsedTime";
 
-function TransactionDetailsLeft({ txStatus }) {
+function TransactionDetailsLeft() {
   const Clock = "/img/Clock.svg";
   const Target = "/img/target.svg";
 
@@ -71,9 +71,7 @@ function TransactionDetailsLeft({ txStatus }) {
         <li className="transactionDetailsListItem">
           <div className="transactionDetailsListLeft">Txn type</div>
           <div className="transactionDetailsListRight">
-            <span className="transfer">
-              {explorer.bridgeTransaction.txType}
-            </span>
+            <span className="transfer">{"Transfer"}</span>
           </div>
         </li>
         <li className="transactionDetailsListItem">
@@ -81,10 +79,14 @@ function TransactionDetailsLeft({ txStatus }) {
           <div className="transactionDetailsListRight">
             <span className="success">
               <img
-                src={explorer.bridgeTransaction.claimHash ? Success : Pending}
+                src={
+                  explorer.bridgeTransaction.destinationHash ? Success : Pending
+                }
                 alt="Status"
               />{" "}
-              {explorer.bridgeTransaction.claimHash ? "Success" : "Pending"}
+              {explorer.bridgeTransaction.destinationHash
+                ? "Success"
+                : "Pending"}
             </span>
           </div>
         </li>
@@ -92,12 +94,10 @@ function TransactionDetailsLeft({ txStatus }) {
           <div className="transactionDetailsListLeft">From</div>
           <div className="transactionDetailsListRight">
             <div className="chainAddress">
-              {explorer.bridgeTransaction.originalDomain != -1 && (
+              {explorer.bridgeTransaction.fromChainId != -1 && (
                 <img
                   src={`../${getLogoByChainName(
-                    getDomainToChainName(
-                      explorer.bridgeTransaction.originalDomain
-                    )
+                    getDomainToChainName(explorer.bridgeTransaction.fromChainId)
                   )}`}
                   alt="Original Blockchain Logo"
                   width="25px"
@@ -106,23 +106,23 @@ function TransactionDetailsLeft({ txStatus }) {
               )}
 
               <div className="chainLink">
-                {explorer.bridgeTransaction.burnHash != -1 &&
+                {explorer.bridgeTransaction.originalHash != -1 &&
                   `${
-                    explorer.bridgeTransaction.burnHash &&
-                    explorer.bridgeTransaction.burnHash.slice(0, 6)
+                    explorer.bridgeTransaction.originalHash &&
+                    explorer.bridgeTransaction.originalHash.slice(0, 6)
                   }...${
-                    explorer.bridgeTransaction.burnHash &&
-                    explorer.bridgeTransaction.burnHash.slice(-10)
+                    explorer.bridgeTransaction.originalHash &&
+                    explorer.bridgeTransaction.originalHash.slice(-10)
                   }`}
               </div>
             </div>
-            {explorer.bridgeTransaction.burnHash && (
+            {explorer.bridgeTransaction.originalHash && (
               <a
                 href={`${getExplorerByChainName(
                   getDomainToChainName(
                     explorer.bridgeTransaction.originalDomain
                   )
-                )}/tx/${explorer.bridgeTransaction.burnHash}`}
+                )}/tx/${explorer.bridgeTransaction.originalHash}`}
                 className="exportLink"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -149,12 +149,10 @@ function TransactionDetailsLeft({ txStatus }) {
           <div className="transactionDetailsListLeft">To</div>
           <div className="transactionDetailsListRight">
             <div className="chainAddress">
-              {explorer.bridgeTransaction.destinationDomain != -1 && (
+              {explorer.bridgeTransaction.toChainId != -1 && (
                 <img
                   src={`../${getLogoByChainName(
-                    getDomainToChainName(
-                      explorer.bridgeTransaction.destinationDomain
-                    )
+                    getDomainToChainName(explorer.bridgeTransaction.toChainId)
                   )}`}
                   alt="Destination Blockchain Logo"
                   width="25px"
@@ -163,24 +161,24 @@ function TransactionDetailsLeft({ txStatus }) {
               )}
 
               <div className="chainLink">
-                {explorer.bridgeTransaction.claimHash &&
+                {explorer.bridgeTransaction.destinationHash &&
                   `${
-                    explorer.bridgeTransaction.claimHash &&
-                    explorer.bridgeTransaction.claimHash.slice(0, 6)
+                    explorer.bridgeTransaction.destinationHash &&
+                    explorer.bridgeTransaction.destinationHash.slice(0, 6)
                   }...${
-                    explorer.bridgeTransaction.claimHash &&
-                    explorer.bridgeTransaction.claimHash.slice(-10)
+                    explorer.bridgeTransaction.destinationHash &&
+                    explorer.bridgeTransaction.destinationHash.slice(-10)
                   }`}
               </div>
             </div>
 
-            {explorer.bridgeTransaction.claimHash && (
+            {explorer.bridgeTransaction.destinationHash && (
               <a
                 href={`${getExplorerByChainName(
                   getDomainToChainName(
                     explorer.bridgeTransaction.destinationDomain
                   )
-                )}/tx/${explorer.bridgeTransaction.claimHash}`}
+                )}/tx/${explorer.bridgeTransaction.destinationHash}`}
                 className="exportLink"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -192,7 +190,7 @@ function TransactionDetailsLeft({ txStatus }) {
               </a>
             )}
 
-            {explorer.bridgeTransaction.claimHash && (
+            {explorer.bridgeTransaction.destinationHash && (
               <button className="copyLink" onClick={handleCopyClick2}>
                 {isCopied2 ? (
                   <span className="copiedAlert">Copied!</span>
