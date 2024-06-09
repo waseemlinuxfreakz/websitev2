@@ -25,7 +25,10 @@ export default function TransactionDetailsArea() {
         </div>
         {/* TODO: update fromFee and toFee */}
         <div className="col-lg-6">
-          <TransactionDetailsRight fromFee={0} toFee={0} />
+          <TransactionDetailsRight
+            fromFee={Number(btx.fromChainFees)}
+            toFee={Number(btx.targetChainFees)}
+          />
         </div>
       </div>
     </div>

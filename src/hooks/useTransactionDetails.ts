@@ -10,14 +10,14 @@ import { setBridgeTransaction } from "../store/explorerSlice";
  * @param hash
  * @returns TxDetails | {} in a promise
  */
-const fetchData = async (nonce: string): Promise<DetailedTx | {}> => {
+const fetchData = async (emmetHash: string): Promise<DetailedTx | {}> => {
   try {
     // const response: Response = await fetch(
     //   `${txBackend}/transactions/tx/?tx=${hash}`
     // );
     // const data: TxDetails = await response.json();
-    console.log({ running: true, nonce });
-    const data = await chainFactoryTestnet.getTransaction(nonce);
+    console.log({ running: true, emmetHash });
+    const data = await chainFactoryTestnet.getTransaction(emmetHash);
     console.log({ data });
 
     return data;
@@ -29,24 +29,24 @@ const fetchData = async (nonce: string): Promise<DetailedTx | {}> => {
 
 /**
  * HOOK: Retrievs a Bridge TX data
- * @param hash - bridge transaction hash
+ * @param emmetHash - bridge transaction hash
  * @returns Transaction data or {}
  */
-export default function useTransactionDetails(nonce: string) {
+export default function useTransactionDetails(emmetHash: string) {
   const [data, setData] = useState<DetailedTx | {}>();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (nonce) {
+    if (emmetHash) {
       (async () => {
-        const _data = await fetchData(nonce);
+        const _data = await fetchData(emmetHash);
         if ("nonce" in _data) {
           setData(_data);
           dispatch(setBridgeTransaction(_data));
         }
       })();
     }
-  }, [nonce]);
+  }, [emmetHash]);
 
   return data;
 }

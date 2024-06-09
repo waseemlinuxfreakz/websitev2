@@ -6,7 +6,7 @@ import useTransactionDetails from "../../../hooks/useTransactionDetails";
 import { useParams } from "react-router-dom";
 
 function TransactionDetails() {
-  const { nonce } = useParams();
+  const { emmetHash } = useParams();
   const [scrolledTop, setScrolledTop] = useState(false);
 
   if (!scrolledTop) {
@@ -14,11 +14,7 @@ function TransactionDetails() {
     setScrolledTop(true);
   }
 
-  const txn = useTransactionDetails(nonce);
-
-  useEffect(() => {
-    console.log({ txn });
-  }, [txn]);
+  useTransactionDetails(emmetHash);
 
   return (
     <div className="TransactionDetailsArea">

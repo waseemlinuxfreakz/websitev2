@@ -8,6 +8,7 @@ import {
   getExplorerByChainName,
 } from "../../../utils";
 import useElapsedTime from "../../../hooks/useElapsedTime";
+import { CHAIN_ID_TO_NAME } from "../../../types";
 
 function TransactionDetailsLeft() {
   const Clock = "/img/Clock.svg";
@@ -18,11 +19,13 @@ function TransactionDetailsLeft() {
 
   const explorer = useAppSelector((store) => store.explorer);
 
-  const elapsedTime = useElapsedTime(explorer.bridgeTransaction.start);
+  const elapsedTime = useElapsedTime(
+    explorer.bridgeTransaction.started.toString()
+  );
 
   const txLength = getTimeLength(
-    explorer.bridgeTransaction.start,
-    explorer.bridgeTransaction.finished
+    explorer.bridgeTransaction.started.toString(),
+    explorer.bridgeTransaction.finished.toString()
   );
 
   const [isCopied, setIsCopied] = useState(false);
@@ -97,7 +100,7 @@ function TransactionDetailsLeft() {
               {explorer.bridgeTransaction.fromChainId != -1 && (
                 <img
                   src={`../${getLogoByChainName(
-                    getDomainToChainName(explorer.bridgeTransaction.fromChainId)
+                    CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId]
                   )}`}
                   alt="Original Blockchain Logo"
                   width="25px"
@@ -152,7 +155,7 @@ function TransactionDetailsLeft() {
               {explorer.bridgeTransaction.toChainId != -1 && (
                 <img
                   src={`../${getLogoByChainName(
-                    getDomainToChainName(explorer.bridgeTransaction.toChainId)
+                    CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId]
                   )}`}
                   alt="Destination Blockchain Logo"
                   width="25px"

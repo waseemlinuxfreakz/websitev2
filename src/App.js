@@ -135,7 +135,7 @@ function App() {
                         element={<YourLiquidityPage />}
                       />
                       <Route
-                        path="/transactionDetails/:nonce"
+                        path="/transactionDetails/:emmetHash"
                         element={<TransactionDetailsPage />}
                       />
                     </Routes>

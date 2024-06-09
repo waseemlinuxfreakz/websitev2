@@ -21,7 +21,7 @@ const DatatablePage = () => {
     txs &&
     txs.map((Tx) => {
       return {
-        clickEvent: () => navigate(`/transactionDetails/${Tx.nonce}`),
+        clickEvent: () => navigate(`/transactionDetails/${Tx.txHash}`),
         TxnType: `<span class="${"transfer"}">${"Transfer"}</span>`,
         TxnHash: `<span class="textOnly">${Tx.originalHash.slice(
           0,

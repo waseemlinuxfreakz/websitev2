@@ -45,11 +45,12 @@ function TransactionDetailsRight({ fromFee, toFee }) {
         <li className="transactionDetailsListItem">
           <div className="transactionDetailsListLeft">Received amount</div>
           <div className="transactionDetailsListRight">
-            {explorer.bridgeTransaction.amount
-              ? Number(explorer.bridgeTransaction.amount) /
-                10 ** Number(TOKEN_DECIMALS[explorer.bridgeTransaction.toToken])
-              : 0}{" "}
-            {explorer.bridgeTransaction.toToken}
+            {removeTrailingZeroes(
+              restoreOriginalSumSent(
+                Number(explorer.bridgeTransaction.amount) / decimals()
+              )
+            )}{" "}
+            {explorer.bridgeTransaction.fromToken}
           </div>
         </li>
         <li className="transactionDetailsListItem">
@@ -68,53 +69,45 @@ function TransactionDetailsRight({ fromFee, toFee }) {
                     Number(explorer.bridgeTransaction.amount) / decimals()
                 ).toFixed(6)
               )}{" "}
-              {explorer.bridgeTransaction.symbol}
+              {explorer.bridgeTransaction.fromToken}
             </div>
           </div>
         </li>
         <li className="transactionDetailsListItem">
           <div className="transactionDetailsListLeft">Origin Fee</div>
           <div className="transactionDetailsListRight">
-            {explorer.bridgeTransaction.originFee
-              ? explorer.bridgeTransaction.originFee /
+            {explorer.bridgeTransaction.fromChainFees
+              ? Number(explorer.bridgeTransaction.fromChainFees) /
                 10 **
                   Number(
                     TOKEN_DECIMALS[
                       getChainSymbolFromName(
-                        getDomainToChainName(
-                          CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId]
-                        )
+                        CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId]
                       )
                     ]
                   )
               : 0}{" "}
             {getChainSymbolFromName(
-              getDomainToChainName(
-                CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId]
-              )
+              CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId]
             )}
           </div>
         </li>
         <li className="transactionDetailsListItem">
           <div className="transactionDetailsListLeft">Destination Fee</div>
           <div className="transactionDetailsListRight">
-            {explorer.bridgeTransaction.destinationFee
-              ? explorer.bridgeTransaction.destinationFee /
+            {explorer.bridgeTransaction.targetChainFees
+              ? Number(explorer.bridgeTransaction.targetChainFees) /
                 10 **
                   Number(
                     TOKEN_DECIMALS[
                       getChainSymbolFromName(
-                        getDomainToChainName(
-                          CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId]
-                        )
+                        CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId]
                       )
                     ]
                   )
               : 0}{" "}
             {getChainSymbolFromName(
-              getDomainToChainName(
-                CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId]
-              )
+              CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId]
             )}
           </div>
         </li>
