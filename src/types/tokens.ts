@@ -11,12 +11,12 @@ export const BridgeTokens = [
     icon: "img/coin/usdc.svg",
     price: 0.9998,
   },
-  {
-    cmc_id: 11419,
-    name: "TON",
-    icon: "img/chain/ton.svg",
-    price: 7.09,
-  },
+  // {
+  //   cmc_id: 11419,
+  //   name: "TON",
+  //   icon: "img/chain/ton.svg",
+  //   price: 7.09,
+  // },
   // {
   //   cmc_id: 1027,
   //   name: "ETH",
