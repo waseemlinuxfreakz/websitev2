@@ -63,13 +63,8 @@ function TransactionDetailsRight() {
           <div className="transactionDetailsListRight">
             <div className="bridgeFee">
               {removeTrailingZeroes(
-                Number(
-                  Number(explorer.bridgeTransaction.amount) /
-                    10 ** TOKEN_DECIMALS[explorer.bridgeTransaction.fromToken] -
-                    Number(explorer.bridgeTransaction.amount) /
-                      10 **
-                        TOKEN_DECIMALS[explorer.bridgeTransaction.fromToken],
-                ).toFixed(6),
+                Number(explorer.bridgeTransaction.protocolFee) /
+                  10 ** TOKEN_DECIMALS[explorer.bridgeTransaction.fromToken],
               )}{" "}
               {explorer.bridgeTransaction.fromToken}
             </div>

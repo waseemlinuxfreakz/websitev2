@@ -40,6 +40,7 @@ const initialState: IExplorerState = {
     finished: BigInt(Date.now()),
     started: BigInt(Date.now()),
     txHash: "",
+    protocolFee: BigInt(0),
   },
   filter: "",
   filterType: SearchDataType.None,
