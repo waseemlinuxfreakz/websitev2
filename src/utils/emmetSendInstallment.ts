@@ -27,7 +27,7 @@ export async function EmmetSendInstallment(
   destinationDomain: number,
   mintRecipient: string,
   tokenName: TTokenName,
-  fee: number
+  fee: number,
 ): Promise<{
   hash: Hash | undefined;
   status: TTxStatus;
@@ -47,7 +47,7 @@ export async function EmmetSendInstallment(
         destinationDomain,
         bridge.fromToken,
         bridge.toToken,
-        mintRecipient
+        mintRecipient,
       );
     }
 

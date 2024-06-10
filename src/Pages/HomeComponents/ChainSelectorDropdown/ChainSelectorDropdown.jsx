@@ -173,7 +173,7 @@ export default function ChainSelectorDropdown({ parent, direction }) {
                 handleChainClick(
                   `${isLayer2View() ? "../" : ""}${chain.icon}`,
                   chain.name,
-                  chain.id
+                  chain.id,
                 )
               }
             >

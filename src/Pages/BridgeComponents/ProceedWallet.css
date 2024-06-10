@@ -1,23 +1,23 @@
 .proceed_Wallet {
-    position: fixed;
-    z-index: 111;
-    left: 0;
-    right: 0;
-    bottom: 60px;
-    padding-left: 280px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    display: none;
+  position: fixed;
+  z-index: 111;
+  left: 0;
+  right: 0;
+  bottom: 60px;
+  padding-left: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: none;
 }
 
 .proceedWalletText {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border-radius: 8px;
-    background: var(--button-button-ghost, rgba(148, 151, 158, 0.16));
-    padding: 8px 16px 8px 8px;
-    width: 487px;
-    max-width: 95vw;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  background: var(--button-button-ghost, rgba(148, 151, 158, 0.16));
+  padding: 8px 16px 8px 8px;
+  width: 487px;
+  max-width: 95vw;
 }

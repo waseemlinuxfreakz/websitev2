@@ -52,7 +52,7 @@ function MainActionButton() {
 
   function isApproveRequired() {
     const chainRequiresApproval = lockAndMintChains.find(
-      (chain) => chain.name === bridge.fromChain
+      (chain) => chain.name === bridge.fromChain,
     )?.requiresApproval;
     if (chainRequiresApproval) {
       const needApproval =

@@ -16,7 +16,7 @@ const LockAndMint = () => {
   const isMobile = useMobileDetector();
 
   const [showProgress, setShowProgress] = useState(
-    bridge.isTransferProgressVisible
+    bridge.isTransferProgressVisible,
   );
 
   // Show bridge transaction progress

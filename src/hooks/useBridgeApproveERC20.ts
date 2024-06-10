@@ -31,7 +31,7 @@ export default function useBridgeApproveERC20() {
       const chainName: TChainName = ChainNameToTypeChainName[bridge.fromChain];
       const tokenName: TTokenName = bridge.fromToken as TTokenName;
       const tokenAddress: Hash = addressToAccount(
-        getTokenAddress(ChainNameToTypeChainName[bridge.fromChain], tokenName)
+        getTokenAddress(ChainNameToTypeChainName[bridge.fromChain], tokenName),
       );
       const spender: Hash = `0x${SUPPORTED_CHAINS[
         chainName
@@ -61,7 +61,7 @@ export default function useBridgeApproveERC20() {
 
       const handler = await chainFactoryTestnet.inner(
         // @ts-ignore
-        ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]]
+        ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]],
       );
 
       await chainFactoryTestnet.preTransfer(
@@ -70,7 +70,7 @@ export default function useBridgeApproveERC20() {
         signer,
         tokenAddress,
         BigInt(Math.ceil(formattedAmount)),
-        {}
+        {},
       );
 
       setIsSuccess(true);

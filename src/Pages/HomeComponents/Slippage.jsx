@@ -1,16 +1,16 @@
-import React, { useEffect, useState, useRef } from 'react';
-import ArrowDonw from '../../assets/img/dow-Icons-s.svg';
+import React, { useEffect, useState, useRef } from "react";
+import ArrowDonw from "../../assets/img/dow-Icons-s.svg";
 
 const Slippage = () => {
-    // State to manage the visibility of the modal
-    const [isModalVisible, setModalVisible] = useState(false);
-    
-    // Function to toggle the modal visibility
-    const toggleModal = () => {
-        setModalVisible(!isModalVisible);
-    };
-    
-    const [isToggleVisible, setToggleVisible] = useState(false);
+  // State to manage the visibility of the modal
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  // Function to toggle the modal visibility
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
+  const [isToggleVisible, setToggleVisible] = useState(false);
 
   // Handler function for the .slipageTitle click event
   const handleTitleClick = () => {
@@ -18,38 +18,31 @@ const Slippage = () => {
     setToggleVisible(true);
   };
 
-
   const modalRef = useRef(null);
 
-    const handleClickOutside = (event) => {
-        if (modalRef.current && !modalRef.current.contains(event.target)) {
-            setModalVisible(false);
-        }
+  const handleClickOutside = (event) => {
+    if (modalRef.current && !modalRef.current.contains(event.target)) {
+      setModalVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
     };
+  }, []);
 
-    useEffect(() => {
-        document.addEventListener('mousedown', handleClickOutside);
-
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, []);
-
-
-    return ( 
-        <div className="slippageContainer">
-            <div className="slipageTitle" onClick={handleTitleClick}>
-                <div className="slippageLeft">
-                    Slippage
-                </div>
-                <div className="slippageRight">
-                    <div className="slipageSelect" onClick={toggleModal}>
-                        <span className="slipageSelectValue">
-                            0.5%
-                        </span>
-                        
-                    </div>
-                    {/* <img src={ArrowDonw} alt="ArrowDonw" className="selectArrow" /> {isModalVisible && (
+  return (
+    <div className="slippageContainer">
+      <div className="slipageTitle" onClick={handleTitleClick}>
+        <div className="slippageLeft">Slippage</div>
+        <div className="slippageRight">
+          <div className="slipageSelect" onClick={toggleModal}>
+            <span className="slipageSelectValue">0.5%</span>
+          </div>
+          {/* <img src={ArrowDonw} alt="ArrowDonw" className="selectArrow" /> {isModalVisible && (
                         <div className="slipageModal">
                             <div className="slipageModalTitle">
                                 Max slippage <img src={InfoIcon} title='Info' alt="InfoIcon" />
@@ -67,51 +60,56 @@ const Slippage = () => {
                             </div>
                         </div>
                     )} */}
-                </div>
-            </div>
-
-            {isToggleVisible &&
-            <div className="slipageToggle">
-                <div className="slipageList">
-                    <div className="slipageListLeft">
-                        <span>Minimum received</span>
-                        {/* <img src={InfoIcon} title='Info' alt="InfoIcon" /> */}
-                    </div>
-                    <div className="slipageListRight">0.003 ETH</div>
-                </div>
-                <div className="slipageList">
-                    <div className="slipageListLeft">
-                        <span>Price impact</span>
-                        {/* <img src={InfoIcon} title='Info' alt="InfoIcon" /> */}
-                    </div>
-                    <div className="slipageListRight"> <span className="fw6">0.5%</span></div>
-                </div>
-                <div className="slipageList">
-                    <div className="slipageListLeft">
-                        <span>Trading fee</span>
-                        {/* <img src={InfoIcon} title='Info' alt="InfoIcon" /> */}
-                    </div>
-                    <div className="slipageListRight"><span className="fw6">0.5%</span></div>
-                </div>
-                <div className="slipageList">
-                    <div className="slipageListLeft">
-                        <span>Route</span>
-                        {/* <img src={InfoIcon} title='Info' alt="InfoIcon" /> */}
-                    </div>
-                    <div className="slipageListRight">
-                        <div className="slipageSelect">
-                            <select name="" id="">
-                                <option value="ETH > USDT">ETH {'->'} USDT</option>
-                                <option value="USDT > ETH">USDT {'->'} ETH</option>
-                            </select>
-                            <img src={ArrowDonw} alt="ArrowDonw" className="selectArrow" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            }
         </div>
-     );
-}
+      </div>
+
+      {isToggleVisible && (
+        <div className="slipageToggle">
+          <div className="slipageList">
+            <div className="slipageListLeft">
+              <span>Minimum received</span>
+              {/* <img src={InfoIcon} title='Info' alt="InfoIcon" /> */}
+            </div>
+            <div className="slipageListRight">0.003 ETH</div>
+          </div>
+          <div className="slipageList">
+            <div className="slipageListLeft">
+              <span>Price impact</span>
+              {/* <img src={InfoIcon} title='Info' alt="InfoIcon" /> */}
+            </div>
+            <div className="slipageListRight">
+              {" "}
+              <span className="fw6">0.5%</span>
+            </div>
+          </div>
+          <div className="slipageList">
+            <div className="slipageListLeft">
+              <span>Trading fee</span>
+              {/* <img src={InfoIcon} title='Info' alt="InfoIcon" /> */}
+            </div>
+            <div className="slipageListRight">
+              <span className="fw6">0.5%</span>
+            </div>
+          </div>
+          <div className="slipageList">
+            <div className="slipageListLeft">
+              <span>Route</span>
+              {/* <img src={InfoIcon} title='Info' alt="InfoIcon" /> */}
+            </div>
+            <div className="slipageListRight">
+              <div className="slipageSelect">
+                <select name="" id="">
+                  <option value="ETH > USDT">ETH {"->"} USDT</option>
+                  <option value="USDT > ETH">USDT {"->"} ETH</option>
+                </select>
+                <img src={ArrowDonw} alt="ArrowDonw" className="selectArrow" />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default Slippage;

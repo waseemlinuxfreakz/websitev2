@@ -10,7 +10,7 @@ import { getContract as getViemContract, PublicClient } from "viem";
 export function getFTBridgeContract(
   address: string,
   abi: any,
-  publicClient: PublicClient
+  publicClient: PublicClient,
 ) {
   const contract = getViemContract({
     address: `0x${address.replace("0x", "")}`,

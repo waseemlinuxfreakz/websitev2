@@ -1,228 +1,227 @@
 .yourliquidityArea {
-    padding-top: 12px;
-    padding-bottom: 12px;
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 
 .yourliquidity {
-    max-width: 480px;
-    width: calc(100% - 32px);
-    margin: 0 auto;
-    border-radius: 16px;
-    border: 1px solid var(--Card-Card-border, rgba(97, 100, 107, 0.10));
-    background: var(--Background-Background-secondary, #1B1D20);
-    box-shadow: 0px 9px 15px 7px rgba(0, 0, 0, 0.10);
-    padding: 24px 24px 32px 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+  max-width: 480px;
+  width: calc(100% - 32px);
+  margin: 0 auto;
+  border-radius: 16px;
+  border: 1px solid var(--Card-Card-border, rgba(97, 100, 107, 0.1));
+  background: var(--Background-Background-secondary, #1b1d20);
+  box-shadow: 0px 9px 15px 7px rgba(0, 0, 0, 0.1);
+  padding: 24px 24px 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .YourliquidityTop {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .closeLiquidity {
-    display: block;
-    cursor: pointer;
+  display: block;
+  cursor: pointer;
 }
 
 .YourliquidityTop h2 {
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 32px;
-    color: #fff;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px;
+  color: #fff;
 }
 
 .toggleLiquidity {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    border-radius: 8px;
-    border: 1px solid var(--Stroke-Stroke-primary, #3C3F43);
-    background: var(--Background-Background-primary, #191B1E);
-    padding: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 8px;
+  border: 1px solid var(--Stroke-Stroke-primary, #3c3f43);
+  background: var(--Background-Background-primary, #191b1e);
+  padding: 4px;
 }
 
 .depositeToggle,
 .withdrawToggle {
-    display: block;
-    width: calc(50% - 2px);
-    text-align: center;
-    border-radius: 8px;
-    /* border: 1px solid var(--Stroke-Stroke-primary, #3C3F43); */
-    /* background: var(--Background-Background-primary, #191B1E); */
-    border: 0;
-    outline: none;
-    box-shadow: none;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 20px;
-    /* 142.857% */
-    letter-spacing: -0.3px;
-    height: 32px;
-    background: transparent;
-    color: #B3B7BF;
+  display: block;
+  width: calc(50% - 2px);
+  text-align: center;
+  border-radius: 8px;
+  /* border: 1px solid var(--Stroke-Stroke-primary, #3C3F43); */
+  /* background: var(--Background-Background-primary, #191B1E); */
+  border: 0;
+  outline: none;
+  box-shadow: none;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+  /* 142.857% */
+  letter-spacing: -0.3px;
+  height: 32px;
+  background: transparent;
+  color: #b3b7bf;
 }
 
 .depositeToggle.active,
 .withdrawToggle.active {
-    background: #fff;
-    color: #191B1E;
+  background: #fff;
+  color: #191b1e;
 }
 
 .YourliquidityChain {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
 }
 
 .YourliquidityChainApy {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .YourliquidityChainApy p {
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 5px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .YourliquidityChainApy span {
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 24px;
-    /* 150% */
-    letter-spacing: -0.3px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  /* 150% */
+  letter-spacing: -0.3px;
 }
 
 .yourliquidityInput {
-    margin-bottom: 24px;
+  margin-bottom: 24px;
 }
 
 .depositeBtn {
-    display: block;
-    width: 100%;
-    text-align: center;
-    border-radius: 8px;
-    background: var(--Button-Button-primary, #EFEB00);
-    padding: 12px 16px 12px 14px;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 24px;
-    /* 150% */
-    letter-spacing: -0.3px;
-    color: #191B1E;
-    border: 0;
+  display: block;
+  width: 100%;
+  text-align: center;
+  border-radius: 8px;
+  background: var(--Button-Button-primary, #efeb00);
+  padding: 12px 16px 12px 14px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  /* 150% */
+  letter-spacing: -0.3px;
+  color: #191b1e;
+  border: 0;
 }
 
 .poolMobileData .transactionRight.poolTableRight {
-    position: unset;
-    display: flex;
-    width: 100%;
-    background: transparent;
-    border: 0;
-    padding: 0;
-    flex-direction: row;
-    max-width: 475px;
-    margin-right: auto;
-    margin-left: 0;
-    flex-wrap: wrap;
+  position: unset;
+  display: flex;
+  width: 100%;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  flex-direction: row;
+  max-width: 475px;
+  margin-right: auto;
+  margin-left: 0;
+  flex-wrap: wrap;
 }
 
 .poolMobileData .poolTableTop.explorerTransactions {
-    flex-direction: column;
-    gap: 16px !important;
-    padding: 24px 0;
+  flex-direction: column;
+  gap: 16px !important;
+  padding: 24px 0;
 }
 
 .poolMobileData .transactionRight.poolTableRight .filterName {
-    font-size: 14px;
-    white-space: nowrap;
+  font-size: 14px;
+  white-space: nowrap;
 }
 
 .poolMobileData .coinNameIcon {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 .poolMobileData .coinNameIcon img {
-    width: 18px;
+  width: 18px;
 }
 
 .poolMobileData .ExplorerTransactionsFilter {
-    max-width: fit-content;
+  max-width: fit-content;
 }
 
 .poolBox.addDepositBox {
-    border: 1px solid #3C3F43;
-    background: #191B1E;
+  border: 1px solid #3c3f43;
+  background: #191b1e;
 }
 
 .poolMobileData {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .addDepositBtn {
-    display: block;
-    width: 100%;
-    text-align: center;
-    margin-top: 16px;
-    border-radius: 8px;
-    border: 1.5px solid var(--Stroke-Stroke-primary, #3C3F43);
-    background: var(--Background-Background-tertiary, #202226);
-    color: #fff;
-    padding: 8px;
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 16px;
+  border-radius: 8px;
+  border: 1.5px solid var(--Stroke-Stroke-primary, #3c3f43);
+  background: var(--Background-Background-tertiary, #202226);
+  color: #fff;
+  padding: 8px;
 }
 
 ul.YourliquidityList li {
-    border-bottom: 1px solid #3C3F43;
-    padding: 12px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 24px;
-    /* 150% */
-    letter-spacing: -0.3px;
-    color: #B3B7BF;
+  border-bottom: 1px solid #3c3f43;
+  padding: 12px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  /* 150% */
+  letter-spacing: -0.3px;
+  color: #b3b7bf;
 }
 
 .LiquidityrightText {
-    font-weight: 400;
+  font-weight: 400;
 }
 
 ul.YourliquidityList {
-    padding-bottom: 16px;
-    margin-bottom: 24px;
+  padding-bottom: 16px;
+  margin-bottom: 24px;
 }
 
 .mobileDeposite {
-    display: none;
+  display: none;
 }
 
 .addLiquidityPage .mainWrap {
-    background-image: none;
+  background-image: none;
 }
 
 .addLiquidityPage ul.breadcum {
-    margin-bottom: 4px;
+  margin-bottom: 4px;
 }
 
 @media only screen and (max-width: 1025px) {
-
-    /* .yourliquidity .depositeBtn {
+  /* .yourliquidity .depositeBtn {
         display: none;
             
         position: fixed;
@@ -232,46 +231,45 @@ ul.YourliquidityList {
         z-index: 999;
     } */
 
-    ul.YourliquidityList {
-        margin-bottom: 0;
-        padding-bottom: 0;
-    }
+  ul.YourliquidityList {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
 
-    .mobileDeposite,
-    .poolTitlerRight {
-        display: block;
-        position: fixed;
-        z-index: 9;
-        left: 0;
-        top: auto;
-        bottom: 0;
-        right: 0;
-        width: auto;
-        background-color: #000;
-        padding: 16px 16px 19px 16px;
-    }
+  .mobileDeposite,
+  .poolTitlerRight {
+    display: block;
+    position: fixed;
+    z-index: 9;
+    left: 0;
+    top: auto;
+    bottom: 0;
+    right: 0;
+    width: auto;
+    background-color: #000;
+    padding: 16px 16px 19px 16px;
+  }
 
-    .poolTitlerRight {
-        display: none;
-    }
-/* 
+  .poolTitlerRight {
+    display: none;
+  }
+  /* 
     .yourliquidity {
         max-height: calc(100vh - 114px);
         overflow: auto;
     } */
 
-    .yourliquidityArea {
-        padding-bottom: 24px;
-        padding-top: 0px;
-    }
+  .yourliquidityArea {
+    padding-bottom: 24px;
+    padding-top: 0px;
+  }
 
-    .poolTitlerRight button.addLiquidity {
-        display: block;
-        width: 100%;
-    }
+  .poolTitlerRight button.addLiquidity {
+    display: block;
+    width: 100%;
+  }
 
-    .yourliquidity {
-        width: 100%;
-    }
-
+  .yourliquidity {
+    width: 100%;
+  }
 }

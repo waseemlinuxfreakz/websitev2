@@ -36,11 +36,13 @@ export default function useBalance() {
               // @ts-ignore
               ChainToDestinationDomain[
                 ChainNameToTypeChainName[bridge.fromChain]
-              ]
+              ],
             )
           : await chainFactoryTestnet.inner(
               // @ts-ignore
-              ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]]
+              ChainToDestinationDomain[
+                ChainNameToTypeChainName[bridge.toChain]
+              ],
             );
       const addr =
         direction === "from" ? bridge.senderAddress : bridge.receiver;
@@ -77,11 +79,13 @@ export default function useBalance() {
       direction === "from"
         ? await chainFactoryTestnet.inner(
             // @ts-ignore
-            ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]]
+            ChainToDestinationDomain[
+              ChainNameToTypeChainName[bridge.fromChain]
+            ],
           )
         : await chainFactoryTestnet.inner(
             // @ts-ignore
-            ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]]
+            ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]],
           );
 
     const addr = direction === "from" ? bridge.senderAddress : bridge.receiver;

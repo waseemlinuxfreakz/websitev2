@@ -1,115 +1,121 @@
 .tokenomicsBox {
-    padding: 36px;
-    gap: 24px;
-    flex: 1 0 0;
-    border-radius: 16px;
-    border: 1px solid #4D4D4D;
-    background: #1B1D20;
-    height: 100%;
+  padding: 36px;
+  gap: 24px;
+  flex: 1 0 0;
+  border-radius: 16px;
+  border: 1px solid #4d4d4d;
+  background: #1b1d20;
+  height: 100%;
 }
 
 .tokenomicsBox h2 {
-    color: #fff;
-    font-family: Inter;
-    font-size: 46px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 140%;
-    letter-spacing: -1.38px;
-    margin: 0 0 24px 0;
+  color: #fff;
+  font-family: Inter;
+  font-size: 46px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: -1.38px;
+  margin: 0 0 24px 0;
 }
 
 .emmetUnity ul {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .emmetUnity ul li {
-    width: 100%;
-    flex: 1 0;
-    color: #FFF;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Inter;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 26px;
-    display: flex;
-    padding: 16px;
-    align-items: center;
-    gap: 16px;
-    align-self: stretch;
-    border-radius: 8px;
-    background: #202226;
+  width: 100%;
+  flex: 1 0;
+  color: #fff;
+  font-feature-settings:
+    "clig" off,
+    "liga" off;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
+  display: flex;
+  padding: 16px;
+  align-items: center;
+  gap: 16px;
+  align-self: stretch;
+  border-radius: 8px;
+  background: #202226;
 }
 
 .emmetUnity ul li img {
-    display: block;
-    flex-shrink: 0;
-    width: 40px;
+  display: block;
+  flex-shrink: 0;
+  width: 40px;
 }
 
 .tokenMetrics ul {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .tokenMetrics ul li {
-    padding: 16px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
+  padding: 16px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
 }
 
 .metricsLeft {
-    color: #B3B7BF;
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Inter;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 26px;
+  color: #b3b7bf;
+  font-feature-settings:
+    "clig" off,
+    "liga" off;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
 }
 
 .metricsRight {
-    color: var(--Text-Text-primary, #FFF);
-    font-feature-settings: 'clig' off, 'liga' off;
-    text-align: right;
-    font-family: Inter;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 26px;
+  color: var(--Text-Text-primary, #fff);
+  font-feature-settings:
+    "clig" off,
+    "liga" off;
+  text-align: right;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
 }
 
 .metricAddress {
-    display: flex;
-    align-items: center;
-    gap: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .metricAddress p {
-    margin: 0;
-    color: #53B7FF;
+  margin: 0;
+  color: #53b7ff;
 }
 
 span.preSeed {
-    color: var(--Text-Text-success, #40D86E);
-    font-family: Inter;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 20px; 
-    display: flex;
-    padding: 1px 5px;
-    border-radius: 4px;
-    background: rgba(16, 93, 39, 0.20);
-    display: inline-block;
+  color: var(--Text-Text-success, #40d86e);
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  display: flex;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: rgba(16, 93, 39, 0.2);
+  display: inline-block;
 }
 
 .tokenomicsBoxContainer {
-    padding: 120px 0;
+  padding: 120px 0;
 }

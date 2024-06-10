@@ -20,12 +20,12 @@ function TransactionDetailsLeft() {
   const explorer = useAppSelector((store) => store.explorer);
 
   const elapsedTime = useElapsedTime(
-    explorer.bridgeTransaction.started.toString()
+    explorer.bridgeTransaction.started.toString(),
   );
 
   const txLength = getTimeLength(
     explorer.bridgeTransaction.started.toString(),
-    explorer.bridgeTransaction.finished.toString()
+    explorer.bridgeTransaction.finished.toString(),
   );
 
   const [isCopied, setIsCopied] = useState(false);
@@ -35,7 +35,7 @@ function TransactionDetailsLeft() {
     try {
       (async () => {
         await navigator.clipboard.writeText(
-          explorer.bridgeTransaction.burnHash
+          explorer.bridgeTransaction.burnHash,
         );
       })();
       setIsCopied(true);
@@ -51,7 +51,7 @@ function TransactionDetailsLeft() {
     try {
       (async () => {
         await navigator.clipboard.writeText(
-          explorer.bridgeTransaction.claimHash
+          explorer.bridgeTransaction.claimHash,
         );
       })();
 
@@ -100,7 +100,7 @@ function TransactionDetailsLeft() {
               {explorer.bridgeTransaction.fromChainId != -1 && (
                 <img
                   src={`../${getLogoByChainName(
-                    CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId]
+                    CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId],
                   )}`}
                   alt="Original Blockchain Logo"
                   width="25px"
@@ -123,8 +123,8 @@ function TransactionDetailsLeft() {
               <a
                 href={`${getExplorerByChainName(
                   getDomainToChainName(
-                    explorer.bridgeTransaction.originalDomain
-                  )
+                    explorer.bridgeTransaction.originalDomain,
+                  ),
                 )}/tx/${explorer.bridgeTransaction.originalHash}`}
                 className="exportLink"
                 target="_blank"
@@ -155,7 +155,7 @@ function TransactionDetailsLeft() {
               {explorer.bridgeTransaction.toChainId != -1 && (
                 <img
                   src={`../${getLogoByChainName(
-                    CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId]
+                    CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId],
                   )}`}
                   alt="Destination Blockchain Logo"
                   width="25px"
@@ -179,8 +179,8 @@ function TransactionDetailsLeft() {
               <a
                 href={`${getExplorerByChainName(
                   getDomainToChainName(
-                    explorer.bridgeTransaction.destinationDomain
-                  )
+                    explorer.bridgeTransaction.destinationDomain,
+                  ),
                 )}/tx/${explorer.bridgeTransaction.destinationHash}`}
                 className="exportLink"
                 target="_blank"

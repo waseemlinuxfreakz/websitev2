@@ -10,7 +10,7 @@ import { chainFactoryTestnet } from "../store/chainFactory";
 const fetchData = async (hash: string): Promise<TxDetails | {}> => {
   try {
     const response: Response = await fetch(
-      `${txBackend}/transactions/tx/?tx=${hash}`
+      `${txBackend}/transactions/tx/?tx=${hash}`,
     );
     const data: TxDetails = await response.json();
     // const data = await chainFactoryTestnet.getTransaction(hash);

@@ -1,26 +1,26 @@
 .explorerTransactionsSearch {
-    padding: 24px 0;
-    text-align: center;
+  padding: 24px 0;
+  text-align: center;
 }
 
 .explorerTransactionsSearch img {
-    display: block;
-    margin: 0 auto 32px auto;
+  display: block;
+  margin: 0 auto 32px auto;
 }
 
 .explorerTransactionsSearch p {
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 26px;
-    color: #fff;
-    margin: 0 0 16px 0;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
+  color: #fff;
+  margin: 0 0 16px 0;
 }
 
 .explorerTransactionsSearch span {
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 24px;
-    color: #B3B7BF;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  color: #b3b7bf;
 }

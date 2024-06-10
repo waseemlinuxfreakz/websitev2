@@ -1,273 +1,274 @@
 .yourPoolTitle {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
 }
 
 .poolTitleLeft h5 {
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 26px;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
 }
 
 .poolTitleLeft p {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 .addLiquidity {
-    border-radius: 8px;
-    background: var(--Button-Button-primary, #EFEB00);
-    padding: 8px 12px;
-    border: 0;
-    outline: none;
-    box-shadow: none;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 20px; /* 142.857% */
-    letter-spacing: -0.3px;
-    color: #191B1E;
+  border-radius: 8px;
+  background: var(--Button-Button-primary, #efeb00);
+  padding: 8px 12px;
+  border: 0;
+  outline: none;
+  box-shadow: none;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: -0.3px;
+  color: #191b1e;
 }
 
 .poolBox {
-    border-radius: 16px;
-    /* border: 1px solid var(--Text-Text-helper, #B3B7BF); */
-    /* background: var(--Background-Background-primary, #191B1E); */
-    padding: 16px;
-    border: 1px solid var(--Stroke-Stroke-primary, #3C3F43);
-    background: var(--Background-Background-primary, #191B1E);
+  border-radius: 16px;
+  /* border: 1px solid var(--Text-Text-helper, #B3B7BF); */
+  /* background: var(--Background-Background-primary, #191B1E); */
+  padding: 16px;
+  border: 1px solid var(--Stroke-Stroke-primary, #3c3f43);
+  background: var(--Background-Background-primary, #191b1e);
 }
 
 .poolboxTop {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid #3C3F43;
-    padding-bottom: 16px;
-    margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #3c3f43;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
 }
 
 .poolboxTopRight {
-    text-align: right;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    align-items: flex-end;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
 }
 
 .poolboxTopRight p {
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 20px;
-    color: #fff;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  color: #fff;
 }
 
 .poolboxTopRight p b {
-    color: #B3B7BF;
-    font-weight: 600;
-    line-height: 20px; /* 142.857% */
-    letter-spacing: -0.3px;
+  color: #b3b7bf;
+  font-weight: 600;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: -0.3px;
 }
 
 .poolboxTopLeft {
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-    font-size: 14px;
-    line-height: 20px;
-    gap: 17px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  font-size: 14px;
+  line-height: 20px;
+  gap: 17px;
 }
 
 .chainToken {
-    position: relative;
-    z-index: 1;
-    width: 40px;
+  position: relative;
+  z-index: 1;
+  width: 40px;
 }
 
 .mainChain {
-    display: block;
-    width: 100%;
+  display: block;
+  width: 100%;
 }
 
 .onChain {
-    display: block;
-    position: absolute;
-    right: -10px;
-    top: 0;
-    width: 19px;
-    border-radius: 50%;
-    box-shadow: 0 0 0 3px #000;
-    height: 19px;
+  display: block;
+  position: absolute;
+  right: -10px;
+  top: 0;
+  width: 19px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px #000;
+  height: 19px;
 }
 
 .poolboxTopLeft h2 {
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 24px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
 }
 
 .poolboxBottom h4 {
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 20px; /* 142.857% */
-    letter-spacing: -0.3px;
-    color: #B3B7BF;
-    white-space: nowrap;
-    margin: 0 0 6px 0;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: -0.3px;
+  color: #b3b7bf;
+  white-space: nowrap;
+  margin: 0 0 6px 0;
 }
 
 .poolboxBottom h3 {
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 26px;
-    color: #fff;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
+  color: #fff;
 }
 
 .yourPool {
-    padding-bottom: 24px;
+  padding-bottom: 24px;
 }
 
 button.addPoll {
-    background: transparent;
-    border: 0;
-    outline: none;
-    box-shadow: none;
-    padding: 0;
+  background: transparent;
+  border: 0;
+  outline: none;
+  box-shadow: none;
+  padding: 0;
 }
 
 .poolCoin {
-    display: inline-flex !important;
-    align-items: center;
-    gap: 12px;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px;
-    color: #E0E3E6;
+  display: inline-flex !important;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  color: #e0e3e6;
 }
 
 span.poolCoin img {
-    display: block;
-    width: 24px;
-    height: 24px;
+  display: block;
+  width: 24px;
+  height: 24px;
 }
 
 .pollRow.row {
-    row-gap: 24px;
+  row-gap: 24px;
 }
 
 .poolBox:empty {
-    height: 100%;
-    border-radius: 16px;
-    border: 1px solid rgba(60, 63, 67, 0.50);
-    background: #111112;
+  height: 100%;
+  border-radius: 16px;
+  border: 1px solid rgba(60, 63, 67, 0.5);
+  background: #111112;
 }
 
 @media (max-width: 1366px) {
-    .pollRow.row .col-lg-3 {
-        width: 33.3333% !important;
-    }
+  .pollRow.row .col-lg-3 {
+    width: 33.3333% !important;
+  }
 
-    .pollRow.row {
-        row-gap: 16px;
-    }
+  .pollRow.row {
+    row-gap: 16px;
+  }
 }
 
 @media (max-width: 1280px) {
-    .pollRow.row .col-lg-3 {
-        width: 50% !important;
-    }
+  .pollRow.row .col-lg-3 {
+    width: 50% !important;
+  }
 
-    .pollRow.row {
-        row-gap: 16px;
-    }
+  .pollRow.row {
+    row-gap: 16px;
+  }
 }
 
-@media only screen and (max-width: 1025px)  {
-    .pollRow.row {
-        display: flex;
-        flex-wrap: nowrap;
-        gap: 16px;
-        margin: 0;
-        overflow: auto;
-    }
+@media only screen and (max-width: 1025px) {
+  .pollRow.row {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 16px;
+    margin: 0;
+    overflow: auto;
+  }
 
-    .pollRow.row::-webkit-scrollbar {
-        display: none;
-    }
-    
-    .pollRow.row .col-lg-3 {
-        width: 290px !important;
-        flex-shrink: 0;
-        padding: 0;
-    }
+  .pollRow.row::-webkit-scrollbar {
+    display: none;
+  }
 
-    .transactionRight.poolTableRight {
-        display: block !important;
-        position: unset;
-        margin: 0;
-        width: 100%;
-        padding: 0;
-        background: transparent;
-        display: flex !important;
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-    
-    .poolTableTop.explorerTransactions {
-        flex-direction: column;
-        gap: 16px;
-    }
-    
-    .transactionRight.poolTableRight> div {
-        max-width: fit-content;
-    }
-    
-    .transactionRight.poolTableRight .filterName, .transactionRight.poolTableRight .coinNameIcon {
-        font-size: 14px;
-    }
+  .pollRow.row .col-lg-3 {
+    width: 290px !important;
+    flex-shrink: 0;
+    padding: 0;
+  }
 
-    .poolBox {
-        border-radius: 16px;
-        border: 1px solid var(--Stroke-Stroke-primary, #3C3F43);
-        background: var(--Background-Background-primary, #191B1E);
-    }
-    
-    .poolboxBottom .col-6:last-child {
-        text-align: right;
-    }
-    
-    .poolboxBottom h4 {
-        font-size: 12px;
-    }
+  .transactionRight.poolTableRight {
+    display: block !important;
+    position: unset;
+    margin: 0;
+    width: 100%;
+    padding: 0;
+    background: transparent;
+    display: flex !important;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 
-    .transactionRight.poolTableRight .ExplorerTransactionsFilter.buyChainFilter:first-child {
-        position: relative;
-        z-index: 999;
-    }
-    
+  .poolTableTop.explorerTransactions {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .transactionRight.poolTableRight > div {
+    max-width: fit-content;
+  }
+
+  .transactionRight.poolTableRight .filterName,
+  .transactionRight.poolTableRight .coinNameIcon {
+    font-size: 14px;
+  }
+
+  .poolBox {
+    border-radius: 16px;
+    border: 1px solid var(--Stroke-Stroke-primary, #3c3f43);
+    background: var(--Background-Background-primary, #191b1e);
+  }
+
+  .poolboxBottom .col-6:last-child {
+    text-align: right;
+  }
+
+  .poolboxBottom h4 {
+    font-size: 12px;
+  }
+
+  .transactionRight.poolTableRight
+    .ExplorerTransactionsFilter.buyChainFilter:first-child {
+    position: relative;
+    z-index: 999;
+  }
 }
 
 @media only screen and (max-width: 575px) {
-    .transactionRight.poolTableRight> div {
-        max-width: unset;
-        width: calc(50% - 5px);
-        display: block;
-    }
-    
-    .transactionRight.poolTableRight> div .filterName {
-        text-align: left;
-        border: 0;
-        margin-bottom: 10px;
-    }
+  .transactionRight.poolTableRight > div {
+    max-width: unset;
+    width: calc(50% - 5px);
+    display: block;
+  }
 
-    .poolTableRight.transactionRight .buyChainFilter:first-child .selectCoinList {
-        right: auto;
-        left: -11px !important;
-    }
+  .transactionRight.poolTableRight > div .filterName {
+    text-align: left;
+    border: 0;
+    margin-bottom: 10px;
+  }
+
+  .poolTableRight.transactionRight .buyChainFilter:first-child .selectCoinList {
+    right: auto;
+    left: -11px !important;
+  }
 }

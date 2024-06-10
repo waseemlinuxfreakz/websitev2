@@ -1,24 +1,22 @@
 import React, { useState } from "react";
-import './NetworkSwitch.css';
+import "./NetworkSwitch.css";
 
 export default function NetworkSwitch() {
+  // Global State
+  // TODO:
 
-    // Global State
-    // TODO:
+  // Local State
+  const [mainnetDisabled, setMainnetDisabled] = useState(true);
+  const [testnetDisabled, setTestnetDisabled] = useState(false);
 
-    // Local State
-    const [mainnetDisabled, setMainnetDisabled] = useState(true);
-    const [testnetDisabled, setTestnetDisabled] = useState(false);
+  const onClickHandler = () => {
+    setMainnetDisabled(!mainnetDisabled);
+    setTestnetDisabled(!testnetDisabled);
+  };
 
-    const onClickHandler = () => {
-        setMainnetDisabled(!mainnetDisabled);
-        setTestnetDisabled(!testnetDisabled);
-    }
-
-    return (
-        <>
-            {
-                /* <div className="toggleSwitch">
+  return (
+    <>
+      {/* <div className="toggleSwitch">
                     <div
                         className={testnetDisabled ? '' : 'active'}
                         onClick={onClickHandler}
@@ -32,9 +30,7 @@ export default function NetworkSwitch() {
                         Mainnet
                     </div> 
                 </div>
-                */
-            }
-
-        </>
-    )
+                */}
+    </>
+  );
 }

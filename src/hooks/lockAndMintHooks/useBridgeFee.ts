@@ -17,23 +17,23 @@ export default function useBridgFee() {
   const bridge = useAppSelector((state) => state.bridge);
 
   const [fee, setFee] = useState<number>(
-    bridge.bridgeFee ? bridge.bridgeFee : 0
+    bridge.bridgeFee ? bridge.bridgeFee : 0,
   );
 
   const [formattedFee, setFormattedfee] = useState<number>();
 
   const [bridgeAddress, setBridgeAddress] = useState<string>(
     SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]].emmetFeeOracle
-      .address
+      .address,
   );
 
   const [nativeCurrency, setNativeCurrency] = useState<string>(
     SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]].nativeCurrency
-      .symbol
+      .symbol,
   );
 
   const [provider, setProvider] = useState(
-    getProvider(ChainNameToTypeChainName[bridge.fromChain])
+    getProvider(ChainNameToTypeChainName[bridge.fromChain]),
   );
 
   const isFromPolygon = () => {

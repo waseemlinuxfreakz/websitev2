@@ -13,7 +13,7 @@ export default function useExplorerTransactions(page: number) {
       // const data = await response.json();
       const data = await chainFactoryTestnet.getTransactions(
         10,
-        (page - 1) * 10
+        (page - 1) * 10,
       );
       console.log({ data });
       data && setTxs(data);

@@ -18,7 +18,7 @@ export async function Approve(
   chainName: TChainName,
   tokenAddress: Hash,
   spender: string,
-  amount: bigint
+  amount: bigint,
 ): Promise<{
   hash: Hash | undefined;
   status: TTxStatus;

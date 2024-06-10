@@ -1,357 +1,351 @@
-
 @media (max-width: 1300px) and (min-width: 1025px) {
-    .explorereTopRow .col-xl-3 {
-        flex: 0 0 auto;
-        width: 25%;
-    }
+  .explorereTopRow .col-xl-3 {
+    flex: 0 0 auto;
+    width: 25%;
+  }
 
-    .explorerTransactions {
-        flex-direction: column;
-        align-items: flex-start !important;
-        gap: 20px;
-    }
+  .explorerTransactions {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 20px;
+  }
 }
 
 @media (min-width: 1025px) {
-    .filterDropdownBox {
-        display: contents;
-    }
-    
-    .filterDropBTNClose,
-    .filterDropBTN {
-        display: none;
-    }
-}
+  .filterDropdownBox {
+    display: contents;
+  }
 
+  .filterDropBTNClose,
+  .filterDropBTN {
+    display: none;
+  }
+}
 
 @media only screen and (max-width: 1025px) {
+  .progressBox {
+    padding: 16px 16px;
+  }
 
-    .progressBox {
-        padding: 16px 16px;
-    }
+  .progressDetails {
+    padding: 0;
+  }
 
-    .progressDetails {
-        padding: 0;
-    }
+  .progressTitle p {
+    font-size: 15px;
+  }
 
-    .progressTitle p {
-        font-size: 15px;
-    }
+  .switchOptimism {
+    margin-left: 0;
+    bottom: 120px;
+    background-color: #111112;
+    border-radius: 5px;
+  }
 
-    .switchOptimism {
-        margin-left: 0;
-        bottom: 120px;
-        background-color: #111112;
-        border-radius: 5px;
-    }
+  .mobileHeader {
+    position: relative;
+    z-index: 11111;
+    padding: 16px;
+  }
 
-    .mobileHeader {
-        position: relative;
-        z-index: 11111;
-        padding: 16px;
-    }
+  .mobileHeaderCenter {
+    padding: 0px 0 16px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 99999;
+  }
 
-    .mobileHeaderCenter {
-        padding: 0px 0 16px 0;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        position: relative;
-        z-index: 99999;
-    }
+  .w3m-container {
+    position: absolute;
+    border: 0px;
+    padding-bottom: 90px;
+    z-index: 100000;
+  }
 
-    .w3m-container {
-        position: absolute;
-        border: 0px;
-        padding-bottom: 90px;
-        z-index: 100000;
-    }
+  .mobileFooterNav ul.navlinks {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    flex-direction: row;
+    gap: 10px;
+    padding: 5px 0px 5px 2px;
+    overflow: auto;
+  }
 
-    .mobileFooterNav ul.navlinks {
-        background: transparent;
-        border: 0;
-        padding: 0;
-        flex-direction: row;
-        gap: 10px;
-        padding: 5px 0px 5px 2px;
-        overflow: auto;
-    }
+  .mobileFooterNav ul.navlinks::-webkit-scrollbar {
+    display: none;
+  }
 
-    .mobileFooterNav ul.navlinks::-webkit-scrollbar {
-        display: none;
-    }
+  .mobileFooterNav {
+    margin: 0 0px;
+  }
 
-    .mobileFooterNav {
-        margin: 0 0px;
-    }
+  .mobileFooterNav ul.navlinks > li {
+    flex: 1;
+    flex-shrink: 0;
+  }
 
-    .mobileFooterNav ul.navlinks>li {
-        flex: 1;
-        flex-shrink: 0;
-    }
+  .mobileFooterNav ul.navlinks > li .navLink {
+    border-radius: 8px;
+    outline: 1px solid #3c3f43;
+    padding: 8px;
+    gap: 5px;
+  }
 
-    .mobileFooterNav ul.navlinks>li .navLink {
-        border-radius: 8px;
-        outline: 1px solid #3C3F43;
-        padding: 8px;
-        gap: 5px;
-    }
+  .mobileFooterNav ul.navlinks > li a.navLink.active {
+    outline: none;
+    color: #efeb00;
+  }
 
-    .mobileFooterNav ul.navlinks>li a.navLink.active {
-        outline: none;
-        color: #EFEB00;
-    }
+  .mobileArea .swapContainerBox .connectBtn {
+    display: none;
+  }
 
-    .mobileArea .swapContainerBox .connectBtn {
-        display: none;
-    }
+  .mobileArea .sidebarSliderArea {
+    padding: 16px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
 
-    .mobileArea .sidebarSliderArea {
-        padding: 16px;
-        max-width: 480px;
-        margin: 0 auto;
-    }
+  .footerRow {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 32px 30px 32px;
+    gap: 10px;
+  }
 
-    .footerRow {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 16px 32px 30px 32px;
-        gap: 10px;
-    }
+  .footerRow > div {
+    width: 100% !important;
+    padding: 0 !important;
+    text-align: center !important;
+  }
 
-    .footerRow>div {
-        width: 100% !important;
-        padding: 0 !important;
-        text-align: center !important;
-    }
+  .footerNav a,
+  .footerNav {
+    justify-content: flex-start;
+  }
 
-    .footerNav a,
-    .footerNav {
-        justify-content: flex-start;
-    }
+  .powerBy {
+    text-align: center !important;
+  }
 
-    .powerBy {
-        text-align: center !important;
-    }
+  .connectBtn {
+    padding: 16px 16px 30px 16px;
+    background: #191b1e;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 80;
+  }
 
-    .connectBtn {
-        padding: 16px 16px 30px 16px;
-        background: #191B1E;
-        position: fixed;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 80;
-    }
+  .mobileNavContainer {
+    position: absolute;
+    z-index: 99;
+    background: #191b1e;
+    left: auto;
+    right: -16px;
+    height: calc(100vh - 70px);
+    max-height: calc(100vh - 70px);
+    width: 100vw;
+    overflow: auto;
+    top: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s ease all;
+    border-top: 1px solid rgba(97, 100, 107, 0.1);
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 30px;
+    padding-bottom: 100px;
+  }
 
-    .mobileNavContainer {
-        position: absolute;
-        z-index: 99;
-        background: #191B1E;
-        left: auto;
-        right: -16px;
-        height: calc(100vh - 70px);
-        max-height: calc(100vh - 70px);
-        width: 100vw;
-        overflow: auto;
-        top: 100%;
-        opacity: 0;
-        visibility: hidden;
-        transition: .3s ease all;
-        border-top: 1px solid rgba(97, 100, 107, 0.10);
-        padding-left: 16px;
-        padding-right: 16px;
-        padding-bottom: 30px;
-        padding-bottom: 100px;
-    }
+  .mobileNavContainer::-webkit-scrollbar {
+    display: none;
+  }
 
-    .mobileNavContainer::-webkit-scrollbar {
-        display: none;
-    }
+  body.activeMobileMenu {
+    overflow: hidden;
+  }
 
-    body.activeMobileMenu {
-        overflow: hidden;
-    }
+  .closeNav {
+    display: none;
+  }
 
-    .closeNav {
-        display: none;
-    }
+  body.activeMobileMenu img.openNav {
+    display: none;
+  }
 
-    body.activeMobileMenu img.openNav {
-        display: none;
-    }
+  body.activeMobileMenu img.closeNav {
+    display: block;
+  }
 
-    body.activeMobileMenu img.closeNav {
-        display: block;
-    }
+  .navlinks {
+    border: 0;
+    padding: 16px 10px;
+  }
 
-    .navlinks {
-        border: 0;
-        padding: 16px 10px;
-    }
+  .SidebarBottomNav.sidebarNav {
+    border-top: 1px solid rgba(97, 100, 107, 0.1);
+    border-bottom: 1px solid rgba(97, 100, 107, 0.1);
+  }
 
-    .SidebarBottomNav.sidebarNav {
-        border-top: 1px solid rgba(97, 100, 107, 0.10);
-        border-bottom: 1px solid rgba(97, 100, 107, 0.10);
-    }
+  body.activeMobileMenu .mobileNavContainer {
+    opacity: 1;
+    visibility: visible;
+  }
 
+  footer#footerArea .container {
+    max-width: 480px;
+    margin: 0 auto;
+    /* position: fixed; */
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
 
-    body.activeMobileMenu .mobileNavContainer {
-        opacity: 1;
-        visibility: visible;
-    }
+  .selectCoinList {
+    position: fixed;
+    z-index: 111;
+    left: 0;
+    right: 0;
+    bottom: 83px;
+    top: unset;
+    border-radius: 16px 16px 0px 0px;
+    border-top: 1px solid #3c3f43;
+    background: #1b1d20;
+    max-height: 50vh;
+    overflow: auto;
+  }
 
-    footer#footerArea .container {
-        max-width: 480px;
-        margin: 0 auto;
-        /* position: fixed; */
-        left: 0;
-        right: 0;
-        bottom: 0;
-    }
+  .Copyalert {
+    top: 0;
+    left: 0;
+    padding: 0;
+    align-items: flex-start;
+    padding-top: 160px;
+    background: rgb(21 21 22 / 80%);
+    bottom: 0;
+    z-index: -1;
+  }
 
-    .selectCoinList {
-        position: fixed;
-        z-index: 111;
-        left: 0;
-        right: 0;
-        bottom: 83px;
-        top: unset;
-        border-radius: 16px 16px 0px 0px;
-        border-top: 1px solid #3C3F43;
-        background: #1B1D20;
-        max-height: 50vh;
-        overflow: auto;
-    }
+  .Copyalert img {
+    width: auto;
+    height: 50px;
+    background: #15241a;
+  }
 
-    .Copyalert {
-        top: 0;
-        left: 0;
-        padding: 0;
-        align-items: flex-start;
-        padding-top: 160px;
-        background: rgb(21 21 22 / 80%);
-        bottom: 0;
-        z-index: -1;
-    }
+  .swapMenuContainer .slipageModal {
+    position: fixed;
+    z-index: 11;
+    left: 0;
+    bottom: 93px;
+    right: 0;
+    top: auto;
+    border: 0;
+    box-shadow: none;
+  }
 
-    .Copyalert img {
-        width: auto;
-        height: 50px;
-        background: #15241A;
-    }
+  .swapContainerBox {
+    position: relative;
+    z-index: 11;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 14px;
+    padding-left: 14px;
+  }
 
-    .swapMenuContainer .slipageModal {
-        position: fixed;
-        z-index: 11;
-        left: 0;
-        bottom: 93px;
-        right: 0;
-        top: auto;
-        border: 0;
-        box-shadow: none;
-    }
+  .swapPayReceive {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
 
-    .swapContainerBox {
-        position: relative;
-        z-index: 11;
-        margin-right: auto;
-        margin-left: auto;
-        padding-right: 14px;
-        padding-left: 14px;
-    }
+  .swapMenuContainer .slipageModal:after {
+    position: absolute;
+    z-index: -3;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100vh;
+    content: "";
+    background: #000;
+    opacity: 0.8;
+    background: #151516;
+    pointer-events: none;
+  }
 
-    .swapPayReceive {
-        padding-left: 14px;
-        padding-right: 14px;
-    }
+  .swapMenuBtn {
+    position: relative;
+    z-index: 99999;
+  }
 
-    .swapMenuContainer .slipageModal:after {
-        position: absolute;
-        z-index: -3;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 100vh;
-        content: "";
-        background: #000;
-        opacity: 0.8;
-        background: #151516;
-        pointer-events: none;
-    }
+  .swapMenuContainer .slipageModal:before {
+    content: "";
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 16px 16px 0px 0px;
+    border-top: 1px solid #3c3f43;
+    background: #1b1d20;
+    box-shadow: 0px 2px 12px 6px rgba(0, 0, 0, 0.2);
+    display: block;
+    position: absolute;
+    z-index: -1;
+  }
 
-    .swapMenuBtn {
-        position: relative;
-        z-index: 99999;
-    }
+  footer#footerArea {
+    padding-bottom: 100px;
+  }
 
-    .swapMenuContainer .slipageModal:before {
-        content: "";
-        left: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        border-radius: 16px 16px 0px 0px;
-        border-top: 1px solid #3C3F43;
-        background: #1B1D20;
-        box-shadow: 0px 2px 12px 6px rgba(0, 0, 0, 0.20);
-        display: block;
-        position: absolute;
-        z-index: -1;
-    }
+  .headerRightSide .connectWallet div {
+    white-space: nowrap;
+    max-width: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-    footer#footerArea {
-        padding-bottom: 100px;
-    }
+  .selectCoin {
+    min-width: unset;
+  }
 
-    .headerRightSide .connectWallet div {
-        white-space: nowrap;
-        max-width: 130px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+  .w3m-overlay {
+    padding-bottom: 90px !important;
+  }
 
-    .selectCoin {
-        min-width: unset;
-    }
+  .explorereTopRow {
+    padding: 0 15px 32px 15px;
+  }
 
-    .w3m-overlay {
-        padding-bottom: 90px !important;
-    }
+  .explorereTopRow .row {
+    gap: 8px;
+  }
 
-    .explorereTopRow {
-        padding: 0 15px 32px 15px;
-    }
-    
-    .explorereTopRow .row {
-        gap: 8px;
-    }
+  .explorerTransactions,
+  .explorerTransactionsTable {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 
-    .explorerTransactions,
-    .explorerTransactionsTable {
-        padding-left: 16px;
-        padding-right: 16px;
-    }
+  .poolpageContainer {
+    padding: 0 16px;
+    padding-bottom: 24px;
+  }
 
-    .poolpageContainer {
-        padding: 0 16px;
-        padding-bottom: 24px;
-    }
+  .poolTableArea .poolTableTop.explorerTransactions {
+    padding-left: 0;
+    padding-right: 0;
+  }
 
-    .poolTableArea .poolTableTop.explorerTransactions {
-        padding-left: 0;
-        padding-right: 0;
-    }
+  .poolPageWrap footer#footerArea {
+    /* padding-bottom: 30px; */
+  }
 
-    .poolPageWrap footer#footerArea {
-        /* padding-bottom: 30px; */
-    }
-
-    .payReLeft p,
-    .coinNameIcon,
-    .walletBalance {
-        font-size: 14px;
-    }
-
+  .payReLeft p,
+  .coinNameIcon,
+  .walletBalance {
+    font-size: 14px;
+  }
 }
-

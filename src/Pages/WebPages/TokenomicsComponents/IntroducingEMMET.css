@@ -1,143 +1,143 @@
 .introEmmetContent {
-    position: relative;
-    z-index: 1;
-    padding-top: 140px;
-    padding-bottom: 140px;
+  position: relative;
+  z-index: 1;
+  padding-top: 140px;
+  padding-bottom: 140px;
 }
 
 .introEmmetLeft h1 {
-    font-size: 91px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 110%; /* 100.1px */
-    letter-spacing: -2.73px;
-    margin-bottom: 16px;
+  font-size: 91px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 110%; /* 100.1px */
+  letter-spacing: -2.73px;
+  margin-bottom: 16px;
 }
 
 .introEmmetLeft h1 span {
-    display: inline-block;
-    color: #202226;
-    background: linear-gradient(138deg, #BA936C 10%,  #724DE2 90%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  display: inline-block;
+  color: #202226;
+  background: linear-gradient(138deg, #ba936c 10%, #724de2 90%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .introEmmetLeft p {
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 160%; /* 28.8px */
-    letter-spacing: -0.54px;
-    margin: 0 0 36px 0;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%; /* 28.8px */
+  letter-spacing: -0.54px;
+  margin: 0 0 36px 0;
 }
 
 .introEmmetContainer {
-    position: relative;
-    z-index: 1;
+  position: relative;
+  z-index: 1;
 }
 
 img.introArt {
-    width: 316.904px;
-    height: 274.651px;
-    mix-blend-mode: color-dodge;
-    opacity: .2;
-    display: block;
-    position: absolute;
-    z-index: -1;
-    pointer-events: none;
-    bottom: 154px;
-    left: -157px;
+  width: 316.904px;
+  height: 274.651px;
+  mix-blend-mode: color-dodge;
+  opacity: 0.2;
+  display: block;
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  bottom: 154px;
+  left: -157px;
 }
 
 .emmetTousd {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .emmetTousd span {
-    display: block;
-    white-space: nowrap;
-    font-size: 18px;
-    font-weight: 500;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.44;
-    letter-spacing: normal;
-    text-align: left;
-    color: #e0e3e6;
-    padding: 0 24px;
+  display: block;
+  white-space: nowrap;
+  font-size: 18px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.44;
+  letter-spacing: normal;
+  text-align: left;
+  color: #e0e3e6;
+  padding: 0 24px;
 }
 
-.emmetTousd> img {
-    display: block;
-    flex-grow: 1;
-    width: 10px;
+.emmetTousd > img {
+  display: block;
+  flex-grow: 1;
+  width: 10px;
 }
 
 .priceIncress p {
-    text-align: center;
-    font-size: 14px;
-    font-weight: 500;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.43;
-    letter-spacing: normal;
-    text-align: center;
-    color: #b3b7bf;
-    margin: 0 0 10px 0;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: center;
+  color: #b3b7bf;
+  margin: 0 0 10px 0;
 }
 
-.timer> div {
-    gap: 18px;
-    padding: 9px 18px;
-    border-radius: 6.9px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 252px;
-    margin: 0 auto;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-image: url(/public/img/timerBg.png);
+.timer > div {
+  gap: 18px;
+  padding: 9px 18px;
+  border-radius: 6.9px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 252px;
+  margin: 0 auto;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-image: url(/public/img/timerBg.png);
 }
 
-.timer> div> div {
-    width: 25%;
-    text-align: center;
-    font-size: 14px;
-    font-weight: 500;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.43;
-    letter-spacing: normal;
-    color: #fff;
+.timer > div > div {
+  width: 25%;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  color: #fff;
 }
 
 .buyEmmetFooter {
-    font-size: 14px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.57;
-    letter-spacing: normal;
-    text-align: center;
-    color: #b3b7bf;
-    margin-top: 23px;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.57;
+  letter-spacing: normal;
+  text-align: center;
+  color: #b3b7bf;
+  margin-top: 23px;
 }
 
 .buyEmmetFooter span {
-    color: #fff;
+  color: #fff;
 }
 
 @media (max-width: 991px) {
-    .introEmmetLeft {
-        margin-bottom: 56px;
-        text-align: center;
-        max-width: 750px;
-        margin: 0 auto 56px auto;
-    }
+  .introEmmetLeft {
+    margin-bottom: 56px;
+    text-align: center;
+    max-width: 750px;
+    margin: 0 auto 56px auto;
+  }
 
-    .buyEmmet {
-        margin: 0 auto;
-    }
+  .buyEmmet {
+    margin: 0 auto;
+  }
 }

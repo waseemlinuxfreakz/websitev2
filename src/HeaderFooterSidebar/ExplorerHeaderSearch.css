@@ -1,73 +1,73 @@
 .explorerSearch {
-    position: relative;
-    z-index: 1;
-    width: 45%;
-    max-width: 450px;
-    margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  width: 45%;
+  max-width: 450px;
+  margin: 0 auto;
 }
 
 .explorerSearch input {
-    display: block;
-    width: 100%;
-    background: transparent;
-    border-radius: 8px;
-    border: 1px solid #3C3F43;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 20px;
-    padding: 8px 50px 8px 10px;
-    outline: none;
-    transition: .2s;
-    color: #fff;
+  display: block;
+  width: 100%;
+  background: transparent;
+  border-radius: 8px;
+  border: 1px solid #3c3f43;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  padding: 8px 50px 8px 10px;
+  outline: none;
+  transition: 0.2s;
+  color: #fff;
 }
 
 .searchBtn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 24px;
-    border-radius: 6px;
-    border: 0.75px solid rgba(97, 100, 107, 0.10);
-    background: rgba(148, 151, 158, 0.16);
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  border: 0.75px solid rgba(97, 100, 107, 0.1);
+  background: rgba(148, 151, 158, 0.16);
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .explorerSearch input:focus {
-    border: 1px solid  #61646B;
-    background:#191B1E;
+  border: 1px solid #61646b;
+  background: #191b1e;
 }
 
 .explorerSearch input::placeholder {
-    color: #888B92;
+  color: #888b92;
 }
 
 .explorerSearch.inputValid input:valid {
-    border: 1px solid var(--button-button-primary, #EFEB00);
-    background:#191B1E;
-    box-shadow: 0px 0px 0px 4px rgba(148, 151, 158, 0.10);
+  border: 1px solid var(--button-button-primary, #efeb00);
+  background: #191b1e;
+  box-shadow: 0px 0px 0px 4px rgba(148, 151, 158, 0.1);
 }
 
 .explorerSearch.inputValid button.searchBtn {
-    background: #fff;
+  background: #fff;
 }
 
 .explorerSearch.inputValid button.searchBtn img {
-    filter: brightness(0);
+  filter: brightness(0);
 }
 
 @media only screen and (max-width: 1025px) {
-    .explorerSearch {
-        margin-bottom: 24px;
-        width: calc(100% - 32px);
-        max-width: 480px;
-    }
+  .explorerSearch {
+    margin-bottom: 24px;
+    width: calc(100% - 32px);
+    max-width: 480px;
+  }
 
-    .poolPageWrap .explorerSearch {
-        width: 100%;
-    }
+  .poolPageWrap .explorerSearch {
+    width: 100%;
+  }
 }

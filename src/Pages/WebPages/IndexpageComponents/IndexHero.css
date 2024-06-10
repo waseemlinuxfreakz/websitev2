@@ -1,139 +1,137 @@
 .heroContainer {
-    text-align: center;
-    max-width: 960px;
-    margin: 0 auto;
+  text-align: center;
+  max-width: 960px;
+  margin: 0 auto;
 }
 
-.heroContainer> p {
-    color: var(--Text-Text-helper, #B3B7BF);
-    text-align: center;
-    font-family: Inter;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 110%; /* 19.8px */
-    letter-spacing: -0.54px;
-    margin: 0 0 36px 0;
+.heroContainer > p {
+  color: var(--Text-Text-helper, #b3b7bf);
+  text-align: center;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 110%; /* 19.8px */
+  letter-spacing: -0.54px;
+  margin: 0 0 36px 0;
 }
 
-.heroContainer> h2 {
-    text-align: center;
-    font-family: Inter;
-    color: #fff;
-    font-size: 120px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 110%;
-    letter-spacing: -3.6px;
+.heroContainer > h2 {
+  text-align: center;
+  font-family: Inter;
+  color: #fff;
+  font-size: 120px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 110%;
+  letter-spacing: -3.6px;
 }
 
 .counter {
-    display: flex;
-    align-items: center;
-    gap: 108px;
-    max-width: 886px;
-    margin: 195px auto 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 108px;
+  max-width: 886px;
+  margin: 195px auto 0 auto;
 }
 
 .counterBox h3 {
-    font-family: Inter;
-    font-size: 30px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 38px;
-    margin: 0 0 6px 0;
+  font-family: Inter;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 38px;
+  margin: 0 0 6px 0;
 }
 
 .counterBox span {
-    font-family: Inter;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 24px; /* 150% */
-    letter-spacing: -0.3px;
-    color: #B3B7BF;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px; /* 150% */
+  letter-spacing: -0.3px;
+  color: #b3b7bf;
 }
 
 img.galaxyImage {
-    display: block;
-    position: absolute;
-    z-index: -1;
-    pointer-events: none;
-    top: 0%;
-    left: 50%;
-    transform: translate(-52%);
+  display: block;
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  top: 0%;
+  left: 50%;
+  transform: translate(-52%);
 }
 
 .counterBottomText {
-    text-align: center;
-    display: block;
-    margin-top: 52px;
-    color: #B3B7BF;
-    margin-bottom: -10px;
+  text-align: center;
+  display: block;
+  margin-top: 52px;
+  color: #b3b7bf;
+  margin-bottom: -10px;
 }
 
 .counterBottomText span {
-    color: #888B92;
+  color: #888b92;
 }
 
 @media only screen and (max-width: 767px) {
+  .counterBottomText {
+    margin: 0;
+    text-align: left;
+    padding: 16px;
+    margin-top: 16px;
+    margin-bottom: -42px;
+    padding-left: 0;
+  }
 
-    .counterBottomText {
-        margin: 0;
-        text-align: left;
-        padding: 16px;
-        margin-top: 16px;
-        margin-bottom: -42px;
-        padding-left: 0;
-    }
-    
-    .counterBox h3 {
-        font-size: 22px;
-        line-height: 38px;
-    }
-    
-    .counterBox span {
-        font-size: 14px;
-    }
-    
-    .topArea {
-        padding-top: 215px;
-    }
-    
-    .heroContainer .heroContainer {
-        max-width: 425px;
-    }
-    
-    .heroContainer> p {
-        margin: 0 0 24px 0;
-        font-size: 15px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 110%; /* 16.5px */
-        letter-spacing: -0.45px;
-        text-align: left;
-    }
-    
-    .heroContainer> h2 {
-        font-size: 45px;
-        /* font-weight: 700; */
-        line-height: 110%; /* 50.6px */
-        letter-spacing: -1.38px;
-        text-align: left;
-        margin: 0 auto;
-    }
-    
-    .counter {
-        flex-wrap: wrap;
-        gap: 0;
-        justify-content: space-between;
-        row-gap: 32px;
-        margin-top: 107px;
-    }
-    
-    .counterBox {
-        width: 156px;
-        text-align: left;
-    }
-    
+  .counterBox h3 {
+    font-size: 22px;
+    line-height: 38px;
+  }
+
+  .counterBox span {
+    font-size: 14px;
+  }
+
+  .topArea {
+    padding-top: 215px;
+  }
+
+  .heroContainer .heroContainer {
+    max-width: 425px;
+  }
+
+  .heroContainer > p {
+    margin: 0 0 24px 0;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 110%; /* 16.5px */
+    letter-spacing: -0.45px;
+    text-align: left;
+  }
+
+  .heroContainer > h2 {
+    font-size: 45px;
+    /* font-weight: 700; */
+    line-height: 110%; /* 50.6px */
+    letter-spacing: -1.38px;
+    text-align: left;
+    margin: 0 auto;
+  }
+
+  .counter {
+    flex-wrap: wrap;
+    gap: 0;
+    justify-content: space-between;
+    row-gap: 32px;
+    margin-top: 107px;
+  }
+
+  .counterBox {
+    width: 156px;
+    text-align: left;
+  }
 }

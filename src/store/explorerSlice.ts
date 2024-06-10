@@ -55,19 +55,19 @@ export const explorerSlice = createSlice({
     },
     setSearchFilterType(
       state: IExplorerState,
-      action: PayloadAction<SearchDataType>
+      action: PayloadAction<SearchDataType>,
     ) {
       state.filterType = action.payload;
     },
     setBridgeTransaction(
       state: IExplorerState,
-      action: PayloadAction<DetailedTx>
+      action: PayloadAction<DetailedTx>,
     ) {
       state.bridgeTransaction = action.payload;
     },
     setBridgeTimeElapsedSinceStart(
       state: IExplorerState,
-      action: PayloadAction<number>
+      action: PayloadAction<number>,
     ) {
       //   state.bridgeTransaction.age = action.payload;
     },

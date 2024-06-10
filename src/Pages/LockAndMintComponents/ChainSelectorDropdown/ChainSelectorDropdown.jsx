@@ -51,8 +51,8 @@ export default function ChainSelectorDropdown({ parent, direction }) {
     setChainArray(
       chainData.filter(
         (chain) =>
-          chain.name !== selectedChain.name && chain.name !== bridge.toChain
-      )
+          chain.name !== selectedChain.name && chain.name !== bridge.toChain,
+      ),
     );
     console.log({ chainArray });
   }, [selectedChain, bridge.toChain]);
@@ -90,7 +90,7 @@ export default function ChainSelectorDropdown({ parent, direction }) {
 
   useEffect(() => {
     const selChain = findChain(
-      CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.fromChain]]
+      CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.fromChain]],
     );
     if (!selChain) {
       setSelectedChain({
@@ -213,7 +213,7 @@ export default function ChainSelectorDropdown({ parent, direction }) {
                 handleChainClick(
                   `${isLayer2View() ? "../" : ""}${chain.icon}`,
                   chain.name,
-                  chain.id
+                  chain.id,
                 )
               }
             >

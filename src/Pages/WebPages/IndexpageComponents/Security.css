@@ -1,95 +1,97 @@
 .SecurityArea {
-    padding: 80px 0;
-    position: relative;
-    z-index: 1;
+  padding: 80px 0;
+  position: relative;
+  z-index: 1;
 }
 
 img.securityBg {
-    display: block;
-    position: absolute;
-    z-index: -1;
-    left: 50%;
-    transform: translate(-50%);
-    width: 100vw;
-    height: auto;
-    top: 50%;
-    pointer-events: none;
+  display: block;
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  transform: translate(-50%);
+  width: 100vw;
+  height: auto;
+  top: 50%;
+  pointer-events: none;
 }
 
 .SecurityInner h2 {
-    margin-bottom: 36px;
-    text-align: center;
-    font-family: Inter;
-    font-size: 46px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 140%; /* 64.4px */
-    letter-spacing: -1.38px;
-    color: #fff;
+  margin-bottom: 36px;
+  text-align: center;
+  font-family: Inter;
+  font-size: 46px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%; /* 64.4px */
+  letter-spacing: -1.38px;
+  color: #fff;
 }
 
 .securityBox {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    align-items: flex-start;
-    border-radius: 16px;
-    border: 1px solid #4D4D4D;
-    background: var(--Background-Background-secondary, #1B1D20);
-    padding: 36px;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+  border-radius: 16px;
+  border: 1px solid #4d4d4d;
+  background: var(--Background-Background-secondary, #1b1d20);
+  padding: 36px;
+  height: 100%;
 }
 
 .SecurityInner .row {
-    row-gap: 24px;
+  row-gap: 24px;
 }
 
 .securityBox h3 {
-    color: var(--Text-Text-primary, #FFF);
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Inter;
-    font-size: 22px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 32px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
+  color: var(--Text-Text-primary, #fff);
+  font-feature-settings:
+    "clig" off,
+    "liga" off;
+  font-family: Inter;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .securityBox p {
-    font-family: Inter;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 20px;
-    color: #B3B7BF;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  color: #b3b7bf;
 }
 
 @media only screen and (max-width: 767px) {
-    .SecurityArea {
-        padding: 60px 0 30px 0;
-    }
-    
-    .SecurityArea .container {
-        max-width: 457px !important;
-    }
-    
-    .SecurityInner h2 {
-        font-size: 36px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 120%; /* 43.2px */
-        letter-spacing: -1.08px;
-        max-width: 350px;
-        margin: 0 auto 46px auto;
-    }
-    
-    .securityBox {
-        padding: 24px;
-    }
-    
-    .SecurityInner .row {
-        row-gap: 16px;
-    } 
+  .SecurityArea {
+    padding: 60px 0 30px 0;
+  }
+
+  .SecurityArea .container {
+    max-width: 457px !important;
+  }
+
+  .SecurityInner h2 {
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%; /* 43.2px */
+    letter-spacing: -1.08px;
+    max-width: 350px;
+    margin: 0 auto 46px auto;
+  }
+
+  .securityBox {
+    padding: 24px;
+  }
+
+  .SecurityInner .row {
+    row-gap: 16px;
+  }
 }

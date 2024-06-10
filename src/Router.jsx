@@ -1,12 +1,12 @@
 // In your App.js or any other component file
 
 // Import necessary components from react-router-dom
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // Import your components or pages
-import Home from './components/Home';
-import About from './components/About';
-import Contact from './components/Contact';
+import Home from "./components/Home";
+import About from "./components/About";
+import Contact from "./components/Contact";
 
 // Define your main component with the Router and Routes
 function App() {

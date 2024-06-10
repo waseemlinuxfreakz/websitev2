@@ -138,7 +138,7 @@ export const bridgeSlice = createSlice({
     },
     setBridgeDecimals(
       state: IBridgeState,
-      action: PayloadAction<number | bigint>
+      action: PayloadAction<number | bigint>,
     ) {
       if (typeof action.payload === "bigint") {
         state.decimals = parseInt(action.payload.toString());
@@ -148,7 +148,7 @@ export const bridgeSlice = createSlice({
     },
     setBridgeError(
       state: IBridgeState,
-      action: PayloadAction<string | undefined>
+      action: PayloadAction<string | undefined>,
     ) {
       state.error = action.payload;
       state.isFailure = action.payload ? true : false;
@@ -223,7 +223,7 @@ export const bridgeSlice = createSlice({
     },
     setBridgeTempAmount(
       state: IBridgeState,
-      action: PayloadAction<number | string>
+      action: PayloadAction<number | string>,
     ) {
       state.tempAmount = action.payload;
     },
@@ -257,7 +257,7 @@ export const bridgeSlice = createSlice({
         toChain: string;
         fromToken: string;
         toToken: string;
-      }>
+      }>,
     ) {
       state.fromChain = action.payload.fromChain;
       state.toChain = action.payload.toChain;
@@ -265,11 +265,11 @@ export const bridgeSlice = createSlice({
       state.toToken = action.payload.toToken;
       state.fromChains = filterTwoChains(
         action.payload.fromChain,
-        action.payload.toChain
+        action.payload.toChain,
       );
       state.toChains = filterTwoChains(
         action.payload.fromChain,
-        action.payload.toChain
+        action.payload.toChain,
       );
     },
     resetBridgeProgress(state: IBridgeState) {

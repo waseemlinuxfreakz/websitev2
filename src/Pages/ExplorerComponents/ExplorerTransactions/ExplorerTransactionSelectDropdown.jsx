@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
-import Down from '../../../assets/img/down-white.svg';
-import ReactGA from 'react-ga';
+import React, { useState, useEffect, useRef } from "react";
+import Down from "../../../assets/img/down-white.svg";
+import ReactGA from "react-ga";
 function ExplorerTransactionSelectDropdown() {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState('All Types');
-  
+  const [selectedItem, setSelectedItem] = useState("All Types");
+
   const dropdownRef = useRef(null);
 
   const toggleDropdown = () => {
@@ -21,18 +21,17 @@ function ExplorerTransactionSelectDropdown() {
     setSelectedItem(itemClassName);
     setDropdownOpen(false);
     ReactGA.event({
-      category: 'User',
-      action: 'Clicked Button',
-      label: 'Explorer dropdown'
+      category: "User",
+      action: "Clicked Button",
+      label: "Explorer dropdown",
     });
-    
   };
 
   useEffect(() => {
-    document.addEventListener('click', handleClickOutside);
+    document.addEventListener("click", handleClickOutside);
 
     return () => {
-      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener("click", handleClickOutside);
     };
   }, []);
 
@@ -46,25 +45,25 @@ function ExplorerTransactionSelectDropdown() {
         </div>
         {isDropdownOpen && (
           <ul className="filterDropList">
-            <li onClick={() => handleItemClick('All Types')}>
+            <li onClick={() => handleItemClick("All Types")}>
               <span className="allType">All Types</span>
             </li>
-            <li onClick={() => handleItemClick('Redeem')}>
+            <li onClick={() => handleItemClick("Redeem")}>
               <span className="redeem">Redeem</span>
             </li>
-            <li onClick={() => handleItemClick('Transfer')}>
+            <li onClick={() => handleItemClick("Transfer")}>
               <span className="transfer">Transfer</span>
             </li>
-            <li onClick={() => handleItemClick('Deposit')}>
+            <li onClick={() => handleItemClick("Deposit")}>
               <span className="deposit">Deposit</span>
             </li>
-            <li onClick={() => handleItemClick('Borrow')}>
+            <li onClick={() => handleItemClick("Borrow")}>
               <span className="borrow">Borrow</span>
             </li>
-            <li onClick={() => handleItemClick('Approval')}>
+            <li onClick={() => handleItemClick("Approval")}>
               <span className="approval">Approval</span>
             </li>
-            <li onClick={() => handleItemClick('Swap')}>
+            <li onClick={() => handleItemClick("Swap")}>
               <span className="swap">Swap</span>
             </li>
           </ul>

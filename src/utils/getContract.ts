@@ -14,7 +14,7 @@ import {
 export function getContract(
   address: string,
   abi: any,
-  publicClient: PublicClient
+  publicClient: PublicClient,
 ) {
   const contract = getViemContract({
     address: `0x${address.replace("0x", "")}`,

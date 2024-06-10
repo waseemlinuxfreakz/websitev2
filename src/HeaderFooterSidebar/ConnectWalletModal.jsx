@@ -102,7 +102,7 @@ export default function ConnectWalletModal({ modalIsOpen, setModalIsOpen }) {
             <img src={WalletConnectIcon} alt="Wallet" height={24} />
             {isConnected
               ? `${address.slice(0, showCharacters)}...${address.slice(
-                  -showCharacters
+                  -showCharacters,
                 )}`
               : "WalletConnect"}
           </div>
@@ -115,7 +115,7 @@ export default function ConnectWalletModal({ modalIsOpen, setModalIsOpen }) {
             <div>
               <img src={TonIcon} alt="Wallet" height={24} />
               {`${tonAddress.slice(0, showCharacters)}...${tonAddress.slice(
-                -showCharacters
+                -showCharacters,
               )}`}
             </div>
           </div>

@@ -27,7 +27,7 @@ function TransactionHash() {
       } catch (error) {
         console.warn(
           `Error: could not copy to clipboard. Reason:`,
-          error.message
+          error.message,
         );
       }
     } else {

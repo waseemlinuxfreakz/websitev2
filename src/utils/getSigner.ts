@@ -1,26 +1,22 @@
+import { TChainName } from "../types";
+import { findChain } from "./chain";
+import { createWalletClient, custom, publicActions } from "viem";
 
-import { TChainName } from '../types';
-import { findChain } from './chain';
-import { createWalletClient, custom, publicActions  } from 'viem';
+export function getSigner(chainName: TChainName) {
+  let transport;
 
-export function getSigner(chainName: TChainName){
+  if ((window as any).ethereum) {
+    transport = custom((window as any).ethereum);
+  } else {
+    throw new Error("No wallet available");
+  }
 
-    let transport;
+  const chain = findChain(chainName);
 
-    if((window as any).ethereum){
-        transport = custom((window as any).ethereum);
-    }else{
-        throw new Error("No wallet available");
-    }
+  const signer = createWalletClient({
+    chain,
+    transport,
+  }).extend(publicActions);
 
-    const chain = findChain(chainName);
-
-    const signer = createWalletClient({
-        chain,
-        transport
-    })
-    .extend(publicActions);
-
-    return signer;
-
+  return signer;
 }

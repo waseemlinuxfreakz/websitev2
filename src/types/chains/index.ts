@@ -82,7 +82,7 @@ export const ALL_CHAINS = Object.keys(SUPPORTED_CHAINS).map((chainName) => {
 export type TChainName = keyof typeof SUPPORTED_CHAINS;
 
 export const SUPPORTED_CHAIN_IDS: number[] = Object.keys(SUPPORTED_CHAINS).map(
-  (chainName) => SUPPORTED_CHAINS[chainName as TChainName].id
+  (chainName) => SUPPORTED_CHAINS[chainName as TChainName].id,
 );
 
 export const infuraEndpoints = {
@@ -217,7 +217,7 @@ export const CHAIN_ID_TO_NAME: { [key: number]: TChainName } = {
 export const SupportedDomains = [0, 1, 2, 3, 6, 7, 65534, 65535, 56, 4]; // TODO: add solana
 
 export const supportedChainnames: TChainName[] = Object.keys(
-  SUPPORTED_CHAINS
+  SUPPORTED_CHAINS,
 ) as TChainName[];
 
 export const CHAIN_LOGOS: { [key: string]: string } = {

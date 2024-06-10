@@ -13,7 +13,7 @@ export function getProvider(chainName: TChainName) {
     transport: fallback(
       chain?.rpcUrls.public.http.map((RPC) => {
         return http(RPC);
-      })
+      }),
     ),
   });
 

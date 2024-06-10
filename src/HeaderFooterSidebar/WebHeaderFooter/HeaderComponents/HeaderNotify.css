@@ -1,46 +1,46 @@
 .headerNotify {
-    position: relative;
-    z-index: 1;
-    padding: 10px 30px;
-    background: #4A67FF;
+  position: relative;
+  z-index: 1;
+  padding: 10px 30px;
+  background: #4a67ff;
 }
 
 .headerNotifyContent {
-    text-align: center;
+  text-align: center;
 }
 
 .closeNotify {
-    position: absolute;
-    cursor: pointer;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
+  position: absolute;
+  cursor: pointer;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
 }
 
 .headerNotifyContent p {
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 20px;
-    color: #fff;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  color: #fff;
 }
 
 .headerNotifyContent p a {
-    color: #fff;
-    font-weight: 400;
-    text-decoration: underline;
+  color: #fff;
+  font-weight: 400;
+  text-decoration: underline;
 }
 
 @media only screen and (max-width: 767px) {
-    .headerNotifyContent p b {
-        display: block;
-    } 
+  .headerNotifyContent p b {
+    display: block;
+  }
 
-    .headerNotifyContent p {
-        text-align: left;
-    }
+  .headerNotifyContent p {
+    text-align: left;
+  }
 
-    .headerNotify {
-        padding-left: 20px;
-    }
+  .headerNotify {
+    padding-left: 20px;
+  }
 }

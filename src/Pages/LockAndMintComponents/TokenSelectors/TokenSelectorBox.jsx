@@ -91,7 +91,7 @@ export default function TokenSelectorBox({ type }) {
                     ? bridge.amount
                     : bridge.receive &&
                       removeTrailingZeroes(
-                        Number(bridge.receive).toFixed(9)
+                        Number(bridge.receive).toFixed(9),
                       ).replace(".000000000", ".0")
                 }
               />

@@ -30,23 +30,23 @@ const DatatablePage = () => {
         TxnType: `<span class="${"transfer"}">${"Transfer"}</span>`,
         TxnHash: `<span class="textOnly">${Tx.txHash.slice(
           0,
-          6
+          6,
         )}...${Tx.originalHash.slice(-4)}</span>`,
         Originchain: `<div class="chainCell"><img src="${getLogoByChainName(
-          CHAIN_ID_TO_NAME[Tx.fromChainId]
+          CHAIN_ID_TO_NAME[Tx.fromChainId],
         )}" alt="From Chain Logo" width="25px"/> ${getOfficialChainName(
-          CHAIN_ID_TO_NAME[Tx.fromChainId]
+          CHAIN_ID_TO_NAME[Tx.fromChainId],
         )}</div>`,
         Destination: `<div class="chainCell"><img src="${getLogoByChainName(
-          CHAIN_ID_TO_NAME[Tx.toChainId]
+          CHAIN_ID_TO_NAME[Tx.toChainId],
         )}" alt="To Chain Logo" width="25px"/> ${getOfficialChainName(
-          CHAIN_ID_TO_NAME[Tx.toChainId]
+          CHAIN_ID_TO_NAME[Tx.toChainId],
         )}</div>`,
         Sent: `<span class="textCell">${removeTrailingZeroes(
-          Number(Tx.amount.toString()) / 10 ** TOKEN_DECIMALS[Tx.fromToken]
+          Number(Tx.amount.toString()) / 10 ** TOKEN_DECIMALS[Tx.fromToken],
         )} ${Tx.fromToken}</span>`,
         Received: `<span class="textCell">${removeTrailingZeroes(
-          Number(Tx.amount.toString()) / 10 ** TOKEN_DECIMALS[Tx.fromToken]
+          Number(Tx.amount.toString()) / 10 ** TOKEN_DECIMALS[Tx.fromToken],
         )} ${Tx.toToken}</span>`,
         // Age: `<span class="textCell">${unpackDateTime(
         //   getTimeLength(Tx.Time, new Date())

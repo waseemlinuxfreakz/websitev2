@@ -8,7 +8,7 @@ import { TOKEN_CHAIN_CONTRACT, TChainName, TTokenName } from "../types";
  */
 export function getTokenAddress(
   chainName: TChainName,
-  tokenName: TTokenName
+  tokenName: TTokenName,
 ): string {
   // @ts-ignore
   return TOKEN_CHAIN_CONTRACT[tokenName][chainName];

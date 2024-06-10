@@ -17,12 +17,12 @@ import { format2BigInt } from "../utils";
  * ```
  */
 export const isGreaterOrEqual = (
-    a: string | number | bigint,
-    b: string | number | bigint
+  a: string | number | bigint,
+  b: string | number | bigint,
 ): boolean => {
-    // Convert the input values to BigInt using format2BigInt
-    const { _a, _b } = format2BigInt(a, b);
+  // Convert the input values to BigInt using format2BigInt
+  const { _a, _b } = format2BigInt(a, b);
 
-    // Compare the values using BigInt and return the result as a boolean
-    return BigInt(_a) >= BigInt(_b);
-}
+  // Compare the values using BigInt and return the result as a boolean
+  return BigInt(_a) >= BigInt(_b);
+};

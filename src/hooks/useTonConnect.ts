@@ -10,8 +10,8 @@ async function fetchHash(_hash: string) {
   const _res = await fetch(
     new URL(
       `https://testnet.toncenter.com/api/index/getTransactionByInMessageHash?msg_hash=${encodeURIComponent(
-        _hash
-      )}`
+        _hash,
+      )}`,
     ).toString(),
     {
       headers: {
@@ -19,7 +19,7 @@ async function fetchHash(_hash: string) {
           "1b651340a347951cc8b9a102c406ab2a05226d59d6354aa009049d6fbbb17b0b",
       },
       method: "GET",
-    }
+    },
   );
   const _data: any = await _res.json();
 
@@ -27,8 +27,8 @@ async function fetchHash(_hash: string) {
     const res = await fetch(
       new URL(
         `https://testnet.toncenter.com/api/index/getTransactionByInMessageHash?msg_hash=${encodeURIComponent(
-          _data[0].out_msgs[0].hash
-        )}`
+          _data[0].out_msgs[0].hash,
+        )}`,
       ).toString(),
       {
         headers: {
@@ -36,7 +36,7 @@ async function fetchHash(_hash: string) {
             "1b651340a347951cc8b9a102c406ab2a05226d59d6354aa009049d6fbbb17b0b",
         },
         method: "GET",
-      }
+      },
     );
 
     const data: any = await res.json();

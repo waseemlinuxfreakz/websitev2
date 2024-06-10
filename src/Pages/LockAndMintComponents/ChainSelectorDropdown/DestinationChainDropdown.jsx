@@ -27,8 +27,8 @@ export default function DestinationChainDropdown() {
     setChainArray(
       chainData.filter(
         (chain) =>
-          chain.name !== selectedChain.name && chain.name !== bridge.fromChain
-      )
+          chain.name !== selectedChain.name && chain.name !== bridge.fromChain,
+      ),
     );
   }, [selectedChain, bridge.fromChain]);
 

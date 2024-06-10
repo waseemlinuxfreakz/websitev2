@@ -1,67 +1,69 @@
 .subscribBox {
-    border-radius: 16px;
-    border: 1px solid #4D4D4D;
-    background: linear-gradient(180deg, #24262A 0%, #1B1D20 100%);
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  border-radius: 16px;
+  border: 1px solid #4d4d4d;
+  background: linear-gradient(180deg, #24262a 0%, #1b1d20 100%);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .subscribBox h2 {
-    color: var(--Text-Text-primary, #FFF);
-    font-feature-settings: 'clig' off, 'liga' off;
-/* Desktop/heading.sm 16 */
-    font-family: Inter;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 24px;
+  color: var(--Text-Text-primary, #fff);
+  font-feature-settings:
+    "clig" off,
+    "liga" off;
+  /* Desktop/heading.sm 16 */
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
 }
 
 .subscribForm {
-    display: flex;
-    align-items: center;
-    gap: 14px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
 .subscribForm input {
-    flex-grow: 1;
-    border-radius: 8px;
-    border: 1px solid var(--Button-Button-border, rgba(97, 100, 107, 0.30));
-    background: var(--Field-Field-01, #1B1D20);
-    padding: 9px 12px;
-    font-family: Inter;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 20px;
-    display: block;
-    color: #fff;
-    outline: none;
+  flex-grow: 1;
+  border-radius: 8px;
+  border: 1px solid var(--Button-Button-border, rgba(97, 100, 107, 0.3));
+  background: var(--Field-Field-01, #1b1d20);
+  padding: 9px 12px;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  display: block;
+  color: #fff;
+  outline: none;
 }
 
 .subscribForm input::placeholder {
-    color: #888B92;
+  color: #888b92;
 }
 
 .subscribForm button {
-    height: 40px;
-    color: #1E2124;
-    font-family: Inter;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 24px;
-    background: #fff;
-    border: 1px solid #fff;
-    border-radius: 8px;
-    padding: 7px 18px;
-    flex-shrink: 0;
+  height: 40px;
+  color: #1e2124;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  background: #fff;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  padding: 7px 18px;
+  flex-shrink: 0;
 }
 
 @media only screen and (max-width: 767px) {
-    .subscribForm input {
-        width: 50%;
-    }
+  .subscribForm input {
+    width: 50%;
+  }
 }

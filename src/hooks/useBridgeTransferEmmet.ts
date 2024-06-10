@@ -67,7 +67,7 @@ export default function useBridgeTransferEmmet() {
         destinationDomain,
         mintRecipient,
         tokenName,
-        fee
+        fee,
       );
 
       if (error) {
@@ -115,7 +115,7 @@ export default function useBridgeTransferEmmet() {
             destinationDomain,
             bridge.fromToken,
             bridge.toToken,
-            mintRecipient
+            mintRecipient,
           );
           dispatch(showBridgeProgress());
           setIsTransferProcessed(false);
@@ -148,7 +148,7 @@ export default function useBridgeTransferEmmet() {
             mintRecipient,
             {
               value: parseEther("0.00001"),
-            }
+            },
           );
 
           dispatch(setBridgeFromHash(hash ? hash : "N/A"));
@@ -162,7 +162,7 @@ export default function useBridgeTransferEmmet() {
     })().catch((e: { message: string }) => {
       console.error(
         "useBridgeTransferEmmet => sendInstallment => Error:",
-        e.message
+        e.message,
       );
       setError(e.message);
       setIsTransferProcessed(false);

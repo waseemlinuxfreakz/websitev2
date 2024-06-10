@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function ExplorerHeaderSearch() {
   const [isValid, setIsValid] = useState(false);
 
   const handleInputChange = (event) => {
     const rawInput = event.target.value.trim();
-    const sanitizedInput = rawInput.replace(/[^a-zA-Z0-9]/g, '');
-    const inputIsValid = sanitizedInput !== '';
+    const sanitizedInput = rawInput.replace(/[^a-zA-Z0-9]/g, "");
+    const inputIsValid = sanitizedInput !== "";
     setIsValid(inputIsValid);
   };
 
-  return ( <>
-  </>
+  return (
+    <></>
     // TODO: implement search box
     // <div className={`explorerSearch ${isValid ? 'inputValid' : ''}`}>
     //   <input

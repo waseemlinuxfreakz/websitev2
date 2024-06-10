@@ -34,7 +34,7 @@ module.exports = function override(config, webpackEnv) {
           "babel-preset-react-app",
           "react-dev-utils",
           "react-scripts",
-        ]
+        ],
       ),
       // @remove-on-eject-end
       // Babel sourcemaps are needed for debugging into node_modules

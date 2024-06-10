@@ -1,18 +1,18 @@
 .switchOptimism {
-    position: fixed;
-    z-index: 111;
-    left: 50%;
-    bottom: 70px;
-    transform: translate(-50%);
-    margin-left: 140px;
+  position: fixed;
+  z-index: 111;
+  left: 50%;
+  bottom: 70px;
+  transform: translate(-50%);
+  margin-left: 140px;
 }
 
 .switchOptimismText {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px 8px 8px;
-    border-radius: 8px;
-    background: var(--Badge-Error, rgba(152, 52, 51, 0.20));
-    color: #F86F6E;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px 8px 8px;
+  border-radius: 8px;
+  background: var(--Badge-Error, rgba(152, 52, 51, 0.2));
+  color: #f86f6e;
 }

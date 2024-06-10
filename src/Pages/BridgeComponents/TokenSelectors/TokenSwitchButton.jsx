@@ -17,7 +17,7 @@ export default function TokenswitchButton() {
   const onError = () => {
     // If a user rejects or another error occurs
     dispatch(
-      setBridgeError("UserRejectedRequestError: User rejected the request.")
+      setBridgeError("UserRejectedRequestError: User rejected the request."),
     );
     // Revert the swap to its initial state
     dispatch(
@@ -26,7 +26,7 @@ export default function TokenswitchButton() {
         toChain: bridge.fromChain,
         fromToken: bridge.toToken,
         toToken: bridge.fromToken,
-      })
+      }),
     );
   };
 
@@ -48,7 +48,7 @@ export default function TokenswitchButton() {
           toChain: bridge.fromChain,
           fromToken: bridge.toToken,
           toToken: bridge.fromToken,
-        })
+        }),
       );
 
       // 3. Swap the from chain in the wallet

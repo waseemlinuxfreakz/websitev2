@@ -19,7 +19,7 @@ export const getTimeLength = (start: string, end: string) => {
   // Calculate days, hours, minutes, and seconds
   const days = Math.floor(elapsed / (1000 * 60 * 60 * 24));
   const hours = Math.floor(
-    (elapsed % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    (elapsed % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
   );
   const minutes = Math.floor((elapsed % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((elapsed % (1000 * 60)) / 1000);

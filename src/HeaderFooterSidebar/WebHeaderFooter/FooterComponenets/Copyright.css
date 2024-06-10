@@ -1,20 +1,20 @@
 .social {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .copyrightBox {
-    display: block;
-    width: 100%;
-    font-family: Inter;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 16px;
-    color: #888B92;
+  display: block;
+  width: 100%;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  color: #888b92;
 }
 
 .copyrightTop {
-    margin-bottom: 24px;
+  margin-bottom: 24px;
 }

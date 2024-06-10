@@ -1,29 +1,29 @@
 .footerLinks h3 {
-    font-family: Inter;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 20px;
-    color: #E0E3E6;
-    margin-bottom: 10px;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  color: #e0e3e6;
+  margin-bottom: 10px;
 }
 
 .footerLink {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .footerLink li a {
-    font-family: Inter;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 20px;
-    color: #888B92;
-    transition: .3s ease all;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  color: #888b92;
+  transition: 0.3s ease all;
 }
 
 .footerLink li a:hover {
-    color: #fff;
+  color: #fff;
 }

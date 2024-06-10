@@ -741,7 +741,7 @@ function initOracle_init_args(src: Oracle_init_args) {
     b_0.storeDict(
       src.init_price_fee,
       Dictionary.Keys.BigInt(257),
-      dictValueParserPriceInfo()
+      dictValueParserPriceInfo(),
     );
     b_0.storeAddress(src.owner);
   };
@@ -749,19 +749,19 @@ function initOracle_init_args(src: Oracle_init_args) {
 
 async function Oracle_init(
   init_price_fee: Dictionary<bigint, PriceInfo>,
-  owner: Address
+  owner: Address,
 ) {
   const __code = Cell.fromBase64(
-    "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"
+    "te6ccgECGgEABLUAART/APSkE/S88sgLAQIBYgIDAtTQAdDTAwFxsKMB+kABINdJgQELuvLgiCDXCwoggQT/uvLQiYMJuvLgiFRQUwNvBPhhAvhi2zxa2zzy4ILI+EMBzH8BygBZWSDXSYEBC7ry4Igg1wsKIIEE/7ry0ImDCbry4IjPFvQAye1UFQQCASAODwTsAZIwf+BwIddJwh+VMCDXCx/eIIIQMXazIbqOxTDTHwGCEDF2syG68uCBgQEB1wD6ANQB0BIQI2wTUEPbPASBAQEEyFlZ+gLIWM8WyQHMyRRDMCBulTBZ9FowlEEz9BXif+AgghC2gzOUuuMCIIIQlGqYtrrjAgoFBgcBUjDTHwGCELaDM5S68uCBgQEB1wCBAQHXANIAAZPUAdCRbeJDMGwT2zx/CAFQMNMfAYIQlGqYtrry4IHTPwExyAGCEK/5D1dYyx/LP8n4QgFwbds8fwsC9IIQgZ2+mbqPbtMfAYIQgZ2+mbry4IHTP/pAASDXSYEBC7ry4Igg1wsKIIEE/7ry0ImDCbry4IgSbBJa2zwxUSHIWYIQMnsrSlADyx/LPwEg10mBAQu68uCIINcLCiCBBP+68tCJgwm68uCIzxbJEvhCAX9t2zx/4DBwCgsByoEBAVREFFn0DW+hkjBt3yBukjBtm9D6ANQB0BJsEm8C4oIAxnghbrPy9IEBAVREE1n0DW+hkjBt3yBukjBtm9D6ANQB0BJsEm8C4oF3liFus/L0ASBu8tCAbyICIG7y0IBvIkEECQGCyFVAghAbvuC7UAbLH0BDWfoCyFjPFskBzAJZ+gLIWM8WyQHMIW6zm38BygDIWM8WyQHMlHAyygDiyfhCAX9t2zwLABL4QlIgxwXy4IQBOm1tIm6zmVsgbvLQgG8iAZEy4hAkcAMEgEJQI9s8DAHKyHEBygFQBwHKAHABygJQBSDXSYEBC7ry4Igg1wsKIIEE/7ry0ImDCbry4IjPFlAD+gJwAcpoI26zkX+TJG6z4pczMwFwAcoA4w0hbrOcfwHKAAEgbvLQgAHMlTFwAcoA4skB+wANAJh/AcoAyHABygBwAcoAJG6znX8BygAEIG7y0IBQBMyWNANwAcoA4iRus51/AcoABCBu8tCAUATMljQDcAHKAOJwAcoAAn8BygACyVjMAhG+KO7Z5tnjYQwVEAIBIBESAAIhAgFuExQCAUgYGQIRr/Xtnm2eNhDAFRYA3a3owTgudh6ullc9j0J2HOslQo2zQThO6xqWlbI+WZFp15b++LEcwTgQKuANwDOxymcsHVcjktlhwThOy6ctWadluZ0HSzbKM3RSQTh5c7/V80L0FnItVoVdgtilQTggZzq084r86ShYDrC3EyPZQAHI7UTQ1AH4Y9IAAY4l+kABINdJgQELuvLgiCDXCwoggQT/uvLQiYMJuvLgiAH0BFlsEuD4KNcLCoMJuvLgifQE+kABINdJgQELuvLgiCDXCwoggQT/uvLQiYMJuvLgiBIC0QHbPBcAAiAAAgEAEbCvu1E0NIAAYAB1sm7jQ1aXBmczovL1FtUGhyTHh3eGZFVVV2SnBUVG5ueDJndnlOdkhRaWdDZlhHWXZNc3h6Skxpc0OCA=",
   );
   const __system = Cell.fromBase64(
-    "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"
+    "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",
   );
   let builder = beginCell();
   builder.storeRef(__system);
   builder.storeUint(0, 1);
   initOracle_init_args({ $$type: "Oracle_init_args", init_price_fee, owner })(
-    builder
+    builder,
   );
   const __data = builder.endCell();
   return { code: __code, data: __data };
@@ -1010,14 +1010,14 @@ const Oracle_receivers: ABIReceiver[] = [
 export class Oracle implements Contract {
   static async init(
     init_price_fee: Dictionary<bigint, PriceInfo>,
-    owner: Address
+    owner: Address,
   ) {
     return await Oracle_init(init_price_fee, owner);
   }
 
   static async fromInit(
     init_price_fee: Dictionary<bigint, PriceInfo>,
-    owner: Address
+    owner: Address,
   ) {
     const init = await Oracle_init(init_price_fee, owner);
     const address = contractAddress(0, init);
@@ -1046,7 +1046,7 @@ export class Oracle implements Contract {
     provider: ContractProvider,
     via: Sender,
     args: { value: bigint; bounce?: boolean | null | undefined },
-    message: UpdatePrice | QueryPrice | Deploy | ChangeOwner
+    message: UpdatePrice | QueryPrice | Deploy | ChangeOwner,
   ) {
     let body: Cell | null = null;
     if (
@@ -1094,7 +1094,7 @@ export class Oracle implements Contract {
     let result = Dictionary.loadDirect(
       Dictionary.Keys.BigInt(257),
       dictValueParserPriceInfo(),
-      source.readCellOpt()
+      source.readCellOpt(),
     );
     return result;
   }

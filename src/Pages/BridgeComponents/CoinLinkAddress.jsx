@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import Copy from '../../assets/img/copy.svg';
-import Copyalert from '../../assets/img/copyalert.svg';
-
+import React, { Component } from "react";
+import Copy from "../../assets/img/copy.svg";
+import Copyalert from "../../assets/img/copyalert.svg";
 
 class CoinLinkAddress extends Component {
   constructor(props) {
@@ -13,9 +12,10 @@ class CoinLinkAddress extends Component {
   }
 
   copyToClipboard = () => {
-    const linkToCopy = 'https://example.com';
+    const linkToCopy = "https://example.com";
 
-    navigator.clipboard.writeText(linkToCopy)
+    navigator.clipboard
+      .writeText(linkToCopy)
       .then(() => {
         this.setState({ isPopupVisible: true });
 
@@ -25,7 +25,7 @@ class CoinLinkAddress extends Component {
         }, 700);
       })
       .catch((err) => {
-        console.error('Error copying link to clipboard: ', err);
+        console.error("Error copying link to clipboard: ", err);
       });
   };
 

@@ -39,7 +39,7 @@ export default function useBridgeAllowance() {
   const [allowance, setAllowance] = useState<string | number>(bridge.allowance);
 
   const [decimals, setDecimals] = useState<bigint>(
-    bridge.decimals ? BigInt(bridge.decimals) : 18n
+    bridge.decimals ? BigInt(bridge.decimals) : 18n,
   );
 
   const [error, setError] = useState<string | undefined>(undefined);
@@ -52,8 +52,8 @@ export default function useBridgeAllowance() {
         const tokenAddress = addressToAccount(
           getTokenAddress(
             ChainNameToTypeChainName[bridge.fromChain],
-            bridge.fromToken as TTokenName
-          )
+            bridge.fromToken as TTokenName,
+          ),
         );
         const chainName: TChainName =
           ChainNameToTypeChainName[bridge.fromChain];
@@ -80,13 +80,15 @@ export default function useBridgeAllowance() {
 
           const handler = await chainFactoryTestnet.inner(
             // @ts-ignore
-            ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]]
+            ChainToDestinationDomain[
+              ChainNameToTypeChainName[bridge.fromChain]
+            ],
           );
 
           if ("getApprovedAmount" in handler) {
             const allowance = await handler.getApprovedAmount(
               tokenAddress,
-              bridge.senderAddress
+              bridge.senderAddress,
             );
             setAllowance(Number(allowance.toString()));
             console.log({ allowance: Number(allowance.toString()) });

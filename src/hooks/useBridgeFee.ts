@@ -18,23 +18,23 @@ export default function useBridgFee() {
   const bridge = useAppSelector((state) => state.bridge);
 
   const [fee, setFee] = useState<number>(
-    bridge.bridgeFee ? bridge.bridgeFee : 0
+    bridge.bridgeFee ? bridge.bridgeFee : 0,
   );
 
   const [formattedFee, setFormattedfee] = useState<number>();
 
   const [bridgeAddress, setBridgeAddress] = useState<string>(
     SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]].emmetFeeOracle
-      .address
+      .address,
   );
 
   const [nativeCurrency, setNativeCurrency] = useState<string>(
     SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]].nativeCurrency
-      .symbol
+      .symbol,
   );
 
   const [provider, setProvider] = useState(
-    getProvider(ChainNameToTypeChainName[bridge.fromChain])
+    getProvider(ChainNameToTypeChainName[bridge.fromChain]),
   );
 
   const isFromPolygon = () => {
@@ -52,7 +52,7 @@ export default function useBridgFee() {
     try {
       const address = addressToAccount(
         SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]]
-          .emmetFeeOracle.address
+          .emmetFeeOracle.address,
       );
       // console.log("Oracle:", address, ChainNameToTypeChainName[bridge.toChain])
       return await provider.readContract({
@@ -71,14 +71,14 @@ export default function useBridgFee() {
     try {
       const handler = await chainFactoryTestnet.inner(
         //@ts-ignore
-        ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]]
+        ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]],
       );
 
       // const fee = await handler.calculateTransactionFees(bridge.toChain);
       const fee = handler.txFee(
         BigInt(CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.toChain]]),
         bridge.fromToken,
-        bridge.toToken
+        bridge.toToken,
       );
 
       return fee;

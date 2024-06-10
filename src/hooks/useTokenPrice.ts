@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 /**
  * Custom hook to fetch token price
@@ -6,43 +6,42 @@ import { useState, useEffect } from 'react';
  * @returns [loading, price]
  */
 const useTokenPrice = (name: string): [boolean, number] => {
-    const [loading, setLoading] = useState(true);
-    const [price, setPrice] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [price, setPrice] = useState(0);
 
-    useEffect(() => {
-        const fetchTokenPrice = async () => {
-            setLoading(true);
+  useEffect(() => {
+    const fetchTokenPrice = async () => {
+      setLoading(true);
 
-            if (name === 'EMMET') {
-                setPrice(2);
-                setLoading(false);
-                return;
-            }
+      if (name === "EMMET") {
+        setPrice(2);
+        setLoading(false);
+        return;
+      }
 
-            const apiURL = "https://fee-oracle-3efdd870fbf2.herokuapp.com/?name=";
-            try {
-                const response = await fetch(`${apiURL}${name}`);
-                if (response) {
-                    const data = await response.json();
-                    if (data && data.price) {
-                        setPrice(Number(data.price));
-                    } else {
-                        setPrice(0);
-                    }
-                }
-            } catch (error) {
-                console.error(error);
-                setPrice(0);
-            } finally {
-                setLoading(false);
-            }
-        };
+      const apiURL = "https://fee-oracle-3efdd870fbf2.herokuapp.com/?name=";
+      try {
+        const response = await fetch(`${apiURL}${name}`);
+        if (response) {
+          const data = await response.json();
+          if (data && data.price) {
+            setPrice(Number(data.price));
+          } else {
+            setPrice(0);
+          }
+        }
+      } catch (error) {
+        console.error(error);
+        setPrice(0);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-        if (name) fetchTokenPrice();
+    if (name) fetchTokenPrice();
+  }, [name]);
 
-    }, [name]);
-
-    return [loading, price];
+  return [loading, price];
 };
 
 export default useTokenPrice;

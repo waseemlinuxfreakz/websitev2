@@ -12,7 +12,7 @@ import {
 
 export function getChainData(
   chinName: TChainName,
-  param: TChainDataParam
+  param: TChainDataParam,
 ): string | number | undefined {
   const chain = findChain(chinName);
   if (chain) {
@@ -45,7 +45,7 @@ export function isChainSupported(chinName: TChainName): boolean {
 }
 
 export function getChainSymbolFromName(
-  chinName: TChainName
+  chinName: TChainName,
 ): string | undefined {
   if (chinName) {
     return SUPPORTED_CHAINS[chinName].nativeCurrency.symbol;

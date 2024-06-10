@@ -8,10 +8,10 @@
 // import { FallbackTransport } from 'viem';
 
 // // Singleton
-// let walletConnectInstance: { 
-//     projectId: string; 
-//     ethereumClient: EthereumClient; 
-//     wagmiConfig: Config<P<FallbackTransport>, W> & { queryClient: QueryClient; }; 
+// let walletConnectInstance: {
+//     projectId: string;
+//     ethereumClient: EthereumClient;
+//     wagmiConfig: Config<P<FallbackTransport>, W> & { queryClient: QueryClient; };
 // } | null = null;
 
 // /**
@@ -41,7 +41,6 @@
 //         return walletConnectInstance;
 //     }
 
-    
 // }
 
 // export { getWalletConnectInstance };
