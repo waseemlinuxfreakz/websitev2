@@ -25,8 +25,8 @@ export type TCircleClaimFeeChainName = keyof typeof destCircleClaimFee;
 
 export const BridgeFeeStructure = {
   stablecoins: {
-    percentage: 0.0002,
-    minimum: 0.05,
+    percentage: 0,
+    minimum: 0,
   },
 };
 
