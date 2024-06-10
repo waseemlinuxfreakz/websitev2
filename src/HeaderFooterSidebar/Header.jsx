@@ -5,10 +5,12 @@ import ConnectWalletModal from "./ConnectWalletModal";
 import ConnectionIndicator from "./ConnectionIndicator";
 import ExplorerHeaderSearch from "./ExplorerHeaderSearch";
 import Wallet from "../assets/img/Wallet.svg";
+import { useAppSelector } from "../hooks/storage";
 
 function Header({ caption }) {
   const location = useLocation();
   const [modalIsOpen, setModalIsOpen] = React.useState(false);
+  const bridge = useAppSelector((state) => state.bridge);
 
   // Check if the current path matches either "/explorer" or "/pool"
   const isExplorerOrPool =
@@ -28,7 +30,7 @@ function Header({ caption }) {
             >
               <div>
                 <img src={Wallet} alt="Wallet" />
-                Connect
+                {bridge.senderAddress ? "Connected" : "Connect"}
               </div>
             </div>
             <ConnectWalletModal
