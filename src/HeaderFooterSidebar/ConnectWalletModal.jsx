@@ -130,7 +130,7 @@ export default function ConnectWalletModal({ modalIsOpen, setModalIsOpen }) {
             </div>
           </div>
         )}
-        {solanaWallet.connected ? (
+        {/* {solanaWallet.connected ? (
           <div
             className="connectWallet"
             onClick={() => {
@@ -160,7 +160,7 @@ export default function ConnectWalletModal({ modalIsOpen, setModalIsOpen }) {
               Solana Connect
             </div>
           </div>
-        )}
+        )} */}
       </Modal>
       <DisconnectTonModal
         alertIsOpen={alertIsOpen}

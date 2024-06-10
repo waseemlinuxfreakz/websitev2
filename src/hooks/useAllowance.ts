@@ -16,6 +16,7 @@ import {
   setBridgeError,
 } from "../store/bridgeSlice";
 import { chainFactoryTestnet } from "../store/chainFactory";
+import { Web3Helper } from "emmet.js/dist/chains/web3";
 
 export default function useBridgeAllowance() {
   const { address, isConnected } = useAccount();
@@ -49,12 +50,14 @@ export default function useBridgeAllowance() {
   const updateAllowance = () => {
     (async () => {
       if (isConnected && bridge.fromChain && bridge.fromToken) {
-        const tokenAddress = addressToAccount(
-          getTokenAddress(
-            ChainNameToTypeChainName[bridge.fromChain],
-            bridge.fromToken as TTokenName,
-          ),
+        const handler = await chainFactoryTestnet.inner(
+          // @ts-ignore
+          ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]],
         );
+
+        const tokenAddress = (
+          await (handler as Web3Helper).token(bridge.fromToken)
+        ).address;
         const chainName: TChainName =
           ChainNameToTypeChainName[bridge.fromChain];
         const chain = SUPPORTED_CHAINS[chainName];
@@ -63,6 +66,7 @@ export default function useBridgeAllowance() {
 
         if (tokenAddress) {
           const decimals = await provider.readContract({
+            // @ts-ignore
             address: tokenAddress,
             abi: erc20Abi,
             functionName: "decimals",
@@ -77,13 +81,6 @@ export default function useBridgeAllowance() {
           //   functionName: "allowance",
           //   args: [addressToAccount(address!), addressToAccount(spender)],
           // });
-
-          const handler = await chainFactoryTestnet.inner(
-            // @ts-ignore
-            ChainToDestinationDomain[
-              ChainNameToTypeChainName[bridge.fromChain]
-            ],
-          );
 
           if ("getApprovedAmount" in handler) {
             const allowance = await handler.getApprovedAmount(

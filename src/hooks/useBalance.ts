@@ -18,6 +18,7 @@ import {
   setBridgeToBalance,
 } from "../store/bridgeSlice";
 import { chainFactoryTestnet } from "../store/chainFactory";
+import { Web3Helper } from "emmet.js/dist/chains/web3";
 
 type TDirection = "from" | "to";
 
@@ -53,7 +54,7 @@ export default function useBalance() {
       // }
 
       if (bal) {
-        return Number(bal.toString());
+        return Number(bal);
       }
       return 0;
     } catch (error) {
@@ -63,17 +64,6 @@ export default function useBalance() {
   }
 
   async function getTokenBalance(direction: TDirection) {
-    const tokenAddress: string =
-      direction === "from"
-        ? // @ts-ignore
-          TOKEN_CHAIN_CONTRACT[bridge.fromToken][
-            ChainNameToTypeChainName[bridge.fromChain]
-          ]
-        : // @ts-ignore
-          TOKEN_CHAIN_CONTRACT[bridge.fromToken][
-            ChainNameToTypeChainName[bridge.toChain]
-          ];
-
     // try {
     const handler =
       direction === "from"
@@ -87,6 +77,13 @@ export default function useBalance() {
             // @ts-ignore
             ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]],
           );
+    //TODO: Remove Web3Helper type assertion after SDK supports for TON.
+
+    const tokenAddress: string = (
+      await (handler as Web3Helper).token(bridge.fromToken)
+    ).address;
+
+    console.log({ fromToken: bridge.fromToken, tokenAddress });
 
     const addr = direction === "from" ? bridge.senderAddress : bridge.receiver;
 
@@ -95,7 +92,7 @@ export default function useBalance() {
     // console.log({ addr: tokenAddress, direction, bal });
 
     if (bal) {
-      return Number(bal.toString());
+      return Number(bal);
     }
     return 0;
     // } catch (error) {
@@ -132,8 +129,9 @@ export default function useBalance() {
       } else {
         (async () => {
           const bal: number = await getTokenBalance("from");
-          const formattedBalance =
+          let fmb =
             bal / 10 ** Number(TOKEN_DECIMALS[bridge.fromToken as TTokenName]);
+          let formattedBalance = Number(fmb);
           setBalance(formattedBalance);
           dispatch(setBridgeBalance(formattedBalance));
           dispatch(setBridgeError(""));

@@ -12,6 +12,7 @@ import { setBridgeError, setBridgeAllowance } from "../store/bridgeSlice";
 import { useAppDispatch, useAppSelector } from "./storage";
 import { useEthersSigner } from "../hooks/lockAndMintHooks/useEthersSigner";
 import { chainFactoryTestnet } from "../store/chainFactory";
+import { Web3Helper } from "emmet.js/dist/chains/web3";
 
 export default function useBridgeApproveERC20() {
   const dispatch = useAppDispatch();
@@ -30,9 +31,7 @@ export default function useBridgeApproveERC20() {
 
       const chainName: TChainName = ChainNameToTypeChainName[bridge.fromChain];
       const tokenName: TTokenName = bridge.fromToken as TTokenName;
-      const tokenAddress: Hash = addressToAccount(
-        getTokenAddress(ChainNameToTypeChainName[bridge.fromChain], tokenName),
-      );
+
       const spender: Hash = `0x${SUPPORTED_CHAINS[
         chainName
       ].emmetBridge.address.replace("0x", "")}`;
@@ -59,10 +58,15 @@ export default function useBridgeApproveERC20() {
       //     dispatch(setBridgeError(''));
       // }
 
+      console.log({ tokenName });
       const handler = await chainFactoryTestnet.inner(
         // @ts-ignore
         ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]],
       );
+      const token = await (handler as Web3Helper).token(tokenName);
+      const tokenAddress = token.address;
+
+      console.log({ tokenAddress });
 
       await chainFactoryTestnet.preTransfer(
         // @ts-ignore

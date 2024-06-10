@@ -11,6 +11,12 @@ export const BridgeTokens = [
     icon: "img/coin/usdc.svg",
     price: 0.9998,
   },
+  {
+    cmc_id: 3408,
+    name: "USD//C",
+    icon: "img/coin/usdc.svg",
+    price: 0.9998,
+  },
   // {
   //   cmc_id: 11419,
   //   name: "TON",
@@ -41,12 +47,12 @@ export const BridgeTokens = [
   //   "icon": "img/coin/op.svg",
   //   "price": 1.73
   // },
-  // {
-  //   "cmc_id":4943,
-  //   "name": "DAI",
-  //   "icon": "img/coin/dai.svg",
-  //   "price": 1
-  // },
+  {
+    cmc_id: 4943,
+    name: "DAI",
+    icon: "img/coin/dai.svg",
+    price: 1,
+  },
   // {
   //   "cmc_id":825,
   //   "name": "USDT",
