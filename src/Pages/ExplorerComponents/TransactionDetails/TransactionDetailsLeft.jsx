@@ -97,7 +97,7 @@ function TransactionDetailsLeft() {
           <div className="transactionDetailsListLeft">From</div>
           <div className="transactionDetailsListRight">
             <div className="chainAddress">
-              {explorer.bridgeTransaction.fromChainId != -1 && (
+              {explorer.bridgeTransaction.fromChainId && (
                 <img
                   src={`../${getLogoByChainName(
                     CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId],
@@ -109,14 +109,15 @@ function TransactionDetailsLeft() {
               )}
 
               <div className="chainLink">
-                {explorer.bridgeTransaction.originalHash != -1 &&
-                  `${
-                    explorer.bridgeTransaction.originalHash &&
-                    explorer.bridgeTransaction.originalHash.slice(0, 6)
-                  }...${
-                    explorer.bridgeTransaction.originalHash &&
-                    explorer.bridgeTransaction.originalHash.slice(-10)
-                  }`}
+                {explorer.bridgeTransaction.originalHash
+                  ? `${
+                      explorer.bridgeTransaction.originalHash &&
+                      explorer.bridgeTransaction.originalHash.slice(0, 6)
+                    }...${
+                      explorer.bridgeTransaction.originalHash &&
+                      explorer.bridgeTransaction.originalHash.slice(-10)
+                    }`
+                  : "N/A"}
               </div>
             </div>
             {explorer.bridgeTransaction.originalHash && (
@@ -136,23 +137,24 @@ function TransactionDetailsLeft() {
                 />
               </a>
             )}
+            {explorer.bridgeTransaction.originalHash && (
+              <button className="copyLink" onClick={() => handleCopyClick()}>
+                {isCopied ? (
+                  <span className="copiedAlert">Copied!</span>
+                ) : (
+                  <span className="copyHover">Copy to clipboard</span>
+                )}
 
-            <button className="copyLink" onClick={() => handleCopyClick()}>
-              {isCopied ? (
-                <span className="copiedAlert">Copied!</span>
-              ) : (
-                <span className="copyHover">Copy to clipboard</span>
-              )}
-
-              <img src={"/img/copy.svg"} alt="Copy" />
-            </button>
+                <img src={"/img/copy.svg"} alt="Copy" />
+              </button>
+            )}
           </div>
         </li>
         <li className="transactionDetailsListItem">
           <div className="transactionDetailsListLeft">To</div>
           <div className="transactionDetailsListRight">
             <div className="chainAddress">
-              {explorer.bridgeTransaction.toChainId != -1 && (
+              {explorer.bridgeTransaction.toChainId && (
                 <img
                   src={`../${getLogoByChainName(
                     CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId],
@@ -164,14 +166,15 @@ function TransactionDetailsLeft() {
               )}
 
               <div className="chainLink">
-                {explorer.bridgeTransaction.destinationHash &&
-                  `${
-                    explorer.bridgeTransaction.destinationHash &&
-                    explorer.bridgeTransaction.destinationHash.slice(0, 6)
-                  }...${
-                    explorer.bridgeTransaction.destinationHash &&
-                    explorer.bridgeTransaction.destinationHash.slice(-10)
-                  }`}
+                {explorer.bridgeTransaction.destinationHash
+                  ? `${
+                      explorer.bridgeTransaction.destinationHash &&
+                      explorer.bridgeTransaction.destinationHash.slice(0, 6)
+                    }...${
+                      explorer.bridgeTransaction.destinationHash &&
+                      explorer.bridgeTransaction.destinationHash.slice(-10)
+                    }`
+                  : "N/A"}
               </div>
             </div>
 
@@ -208,28 +211,36 @@ function TransactionDetailsLeft() {
         <li className="transactionDetailsListItem">
           <div className="transactionDetailsListLeft">Age</div>
           <div className="transactionDetailsListRight">
-            <span className="time">
-              <img src={Clock} alt="Clock" />
-              {elapsedTime.days ? ` ${elapsedTime.days} days ` : ""}
-              {elapsedTime.hours ? ` ${elapsedTime.hours} hrs ` : ""}
-              {elapsedTime.minutes ? ` ${elapsedTime.minutes} min ` : ""}
-              {elapsedTime.seconds ? ` ${elapsedTime.seconds} sec ` : ""}
-              {elapsedTime.days ||
-              elapsedTime.hours ||
-              elapsedTime.minutes ||
-              elapsedTime.seconds
-                ? " ago"
-                : ""}
-            </span>
+            {explorer.bridgeTransaction.started && (
+              <span className="time">
+                <img src={Clock} alt="Clock" />
+                {elapsedTime.days ? ` ${elapsedTime.days} days ` : ""}
+                {elapsedTime.hours ? ` ${elapsedTime.hours} hrs ` : ""}
+                {elapsedTime.minutes ? ` ${elapsedTime.minutes} min ` : ""}
+                {elapsedTime.seconds ? ` ${elapsedTime.seconds} sec ` : ""}
+                {elapsedTime.days ||
+                elapsedTime.hours ||
+                elapsedTime.minutes ||
+                elapsedTime.seconds
+                  ? " ago"
+                  : ""}
+              </span>
+            )}
           </div>
         </li>
         <li className="transactionDetailsListItem">
           <div className="transactionDetailsListLeft">Transaction length</div>
           <div className="transactionDetailsListRight">
-            {txLength.days ? `${txLength.days} days ` : ""}
-            {txLength.hours ? `${txLength.hours} hrs ` : ""}
-            {txLength.minutes ? `${txLength.minutes} min ` : ""}
-            {txLength.seconds ? `${txLength.seconds} sec ` : ""}
+            {explorer.bridgeTransaction.finished ? (
+              <span>
+                {txLength.days ? `${txLength.days} days ` : ""}
+                {txLength.hours ? `${txLength.hours} hrs ` : ""}
+                {txLength.minutes ? `${txLength.minutes} min ` : ""}
+                {txLength.seconds ? `${txLength.seconds} sec ` : ""}
+              </span>
+            ) : (
+              "N/A"
+            )}
           </div>
         </li>
       </ul>

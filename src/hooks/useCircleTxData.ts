@@ -4,6 +4,7 @@ import { useAppSelector, useAppDispatch } from "./storage";
 import { TTxType, TxDetails, txBackend } from "../types";
 import { setBridgeTransaction } from "../store/explorerSlice";
 import { Transaction } from "emmet.js/dist/factory/types";
+import { chainFactoryTestnet } from "../store/chainFactory";
 
 export default function useCircleTxData() {
   const bridge = useAppSelector((state) => state.bridge);
@@ -19,6 +20,9 @@ export default function useCircleTxData() {
     toChainId: BigInt(0),
     nonce: BigInt(0),
     recipient: "",
+    finished: BigInt(0),
+    started: BigInt(0),
+    txHash: "",
   } as Transaction;
 
   const [txData, setTxData] = useState<Transaction>(initData);
@@ -33,24 +37,20 @@ export default function useCircleTxData() {
 
     try {
       if (hash) {
-        const result: Response = await fetch(`${txBackend}/hash/?hash=${hash}`);
-        let CircleTXData: Transaction = await result.json();
+        // const result: Response = await fetch(`${txBackend}/hash/?hash=${hash}`);
+        // let CircleTXData: Transaction = await result.json();
+        const result = await chainFactoryTestnet.getTransactions(25, 0);
 
-        console.log({ result });
+        const txn = result.find(
+          (tx) => tx.originalHash === hash.replace("0x", ""),
+        );
 
-        if (CircleTXData) {
-          setTxData(CircleTXData);
+        console.log({ txn });
 
-          // CircleTXData.txType = "Transfer";
-
-          // if (CircleTXData && CircleTXData.claimHash) {
-          //   CircleTXData.status = "success";
-          // } else {
-          //   CircleTXData.status = "pending";
-          // }
-
+        if (txn) {
+          setTxData(txn);
           // TODO: may need to uncomment later
-          // dispatch(setBridgeTransaction(CircleTXData));
+          // dispatch(setBridgeTransaction(txn));
         }
       }
     } catch (error) {

@@ -19,7 +19,7 @@ function TransactionProgress() {
 
   const bridge = useAppSelector((state) => state.bridge);
   const dispatch = useAppDispatch();
-  const [{ txData, isLoading, isError }, setTxHash] = useCircleTxData();
+  const [{ txData }, setTxHash] = useCircleTxData();
 
   const [fromChain, setFromChain] = useState(
     findChain(ChainNameToTypeChainName[bridge.fromChain]),
@@ -41,14 +41,16 @@ function TransactionProgress() {
   }, [bridge.toChain]);
 
   useEffect(() => {
-    if (txData.claimHash) {
+    if (txData.destinationHash) {
       dispatch(setBridgeIsRunning(false));
-      dispatch(setBridgeToHash(txData.claimHash));
+      dispatch(setBridgeToHash(txData.destinationHash));
     }
-  }, [txData.claimHash]);
+  }, [txData.destinationHash]);
 
   return (
-    <div className={`progressBox ${txData.claimHash && "progressSuccess"}`}>
+    <div
+      className={`progressBox ${txData.destinationHash && "progressSuccess"}`}
+    >
       {/* The first chain Circle */}
       <div className="fromProgress">
         <img
@@ -64,7 +66,7 @@ function TransactionProgress() {
             Successful transaction!
           </p>
         </div>
-        <TransactionCountUp start={txData.start} />
+        <TransactionCountUp start={txData.started} />
       </div>
       {/* The second chain Circle */}
       <div className="toProgress">
