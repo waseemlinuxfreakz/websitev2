@@ -5,16 +5,6 @@
     "icon": "img/chain/polygon.svg"
   },
   {
-    "id": 65535,
-    "name": "TONTestnet",
-    "icon": "img/chain/ton.svg"
-  },
-  {
-    "id": 97,
-    "name": "BSCTestnet",
-    "icon": "img/chain/bsc.svg"
-  },
-  {
     "id": 11155111,
     "name": "Sepolia",
     "icon": "img/chain/ethereum.svg"
