@@ -1,10 +1,10 @@
-import ChainSelectorDropdown from "../Pages/LockAndMintComponents/ChainSelectorDropdown/ChainSelectorDropdown";
+import ConnectionIndicatorDropdown from "./ConnectionIndicatorDropdown";
 
 export default function ConnectionIndicator() {
   return (
     <>
       <div className="EthereumTop">
-        <ChainSelectorDropdown parent="header" direction="from" />
+        <ConnectionIndicatorDropdown parent="header" direction="from" />
       </div>
     </>
   );
