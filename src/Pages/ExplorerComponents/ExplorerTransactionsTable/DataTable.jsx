@@ -10,7 +10,12 @@ import {
   unpackDateTime,
   removeTrailingZeroes,
 } from "../../../utils";
-import { CHAIN_ID_TO_NAME, columns, ROWS_PER_PAGE } from "../../../types";
+import {
+  CHAIN_ID_TO_NAME,
+  columns,
+  ROWS_PER_PAGE,
+  TOKEN_DECIMALS,
+} from "../../../types";
 
 const DatatablePage = () => {
   const navigate = useNavigate();
@@ -38,9 +43,11 @@ const DatatablePage = () => {
           CHAIN_ID_TO_NAME[Tx.toChainId]
         )}</div>`,
         Sent: `<span class="textCell">${removeTrailingZeroes(
-          restoreOriginalSumSent(Number(Tx.amount.toString()))
+          Number(Tx.amount.toString()) / 10 ** TOKEN_DECIMALS[Tx.fromToken]
         )} ${Tx.fromToken}</span>`,
-        Received: `<span class="textCell">${Tx.amount} ${Tx.toToken}</span>`,
+        Received: `<span class="textCell">${removeTrailingZeroes(
+          Number(Tx.amount.toString()) / 10 ** TOKEN_DECIMALS[Tx.fromToken]
+        )} ${Tx.toToken}</span>`,
         // Age: `<span class="textCell">${unpackDateTime(
         //   getTimeLength(Tx.Time, new Date())
         // )}</span>`,

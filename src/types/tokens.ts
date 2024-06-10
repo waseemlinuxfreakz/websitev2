@@ -100,13 +100,14 @@ export const TOKEN_CHAIN_CONTRACT = {
 export type TTokenName = keyof typeof TOKEN_CHAIN_CONTRACT;
 
 export const TOKEN_DECIMALS = {
-  // DAI: 18,
-  // EMMET:18,
+  DAI: 18,
+  EMMET: 18,
   EURC: 6,
   ETH: 18,
   USDC: 6,
+  "USD//C": 6,
   TON: 9,
   MATIC: 18,
-  // USDT:18,
-  // WBTC:18
+  USDT: 18,
+  WBTC: 18,
 };

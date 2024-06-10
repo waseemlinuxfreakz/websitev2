@@ -12,10 +12,8 @@ export const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
  * @returns a time struct: {days:number, hours: number, minutes: number, seconds: number}
  */
 export const getTimeLength = (start: string, end: string) => {
-  console.log({ start, end });
   const s: number = new Date(parseInt(start)).getTime();
   const e: number = new Date(parseInt(end)).getTime();
-  console.log({ s, e });
   const elapsed: number = e - s;
 
   // Calculate days, hours, minutes, and seconds

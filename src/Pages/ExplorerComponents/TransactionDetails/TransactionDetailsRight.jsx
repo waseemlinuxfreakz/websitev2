@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAppSelector } from "../../../hooks/storage";
 import {
   getDomainToChainName,
@@ -9,23 +9,30 @@ import {
 import useGetTxValue from "../../../hooks/useGetTxValue";
 import { CHAIN_ID_TO_NAME, TOKEN_DECIMALS } from "../../../types";
 
-function TransactionDetailsRight({ fromFee, toFee }) {
+function TransactionDetailsRight() {
   const explorer = useAppSelector((store) => store.explorer);
 
-  const bridgeFee = useGetTxValue(
-    explorer.bridgeTransaction.burnHash,
-    getDomainToChainName(explorer.bridgeTransaction.originalDomain)
-  );
+  useEffect(() => {
+    const fees =
+      Number(explorer.bridgeTransaction.fromChainFees) /
+      10 **
+        TOKEN_DECIMALS[
+          getChainSymbolFromName(
+            CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId]
+          )
+        ];
 
-  function decimals() {
-    switch (explorer.bridgeTransaction.symbol) {
-      case "EURC":
-      case "USDC":
-        return 1e6;
-      default:
-        return 1e18;
-    }
-  }
+    console.log({
+      fees,
+      decimals:
+        TOKEN_DECIMALS[
+          getChainSymbolFromName(
+            CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId]
+          )
+        ],
+      fee: Number(explorer.bridgeTransaction.fromChainFees),
+    });
+  }, [explorer.bridgeTransaction]);
 
   return (
     <div className="transactionDetailsBox">
@@ -35,9 +42,8 @@ function TransactionDetailsRight({ fromFee, toFee }) {
           <div className="transactionDetailsListRight">
             {/* If amount < 2,000 then fixed fee $0.4, else 0.02% of the amount */}
             {removeTrailingZeroes(
-              restoreOriginalSumSent(
-                Number(explorer.bridgeTransaction.amount) / decimals()
-              )
+              Number(explorer.bridgeTransaction.amount) /
+                10 ** TOKEN_DECIMALS[explorer.bridgeTransaction.fromToken]
             )}{" "}
             {explorer.bridgeTransaction.fromToken}
           </div>
@@ -46,9 +52,8 @@ function TransactionDetailsRight({ fromFee, toFee }) {
           <div className="transactionDetailsListLeft">Received amount</div>
           <div className="transactionDetailsListRight">
             {removeTrailingZeroes(
-              restoreOriginalSumSent(
-                Number(explorer.bridgeTransaction.amount) / decimals()
-              )
+              Number(explorer.bridgeTransaction.amount) /
+                10 ** TOKEN_DECIMALS[explorer.bridgeTransaction.toToken]
             )}{" "}
             {explorer.bridgeTransaction.fromToken}
           </div>
@@ -57,16 +62,12 @@ function TransactionDetailsRight({ fromFee, toFee }) {
           <div className="transactionDetailsListLeft">Protocol Fee</div>
           <div className="transactionDetailsListRight">
             <div className="bridgeFee">
-              {/* {bridgeFee && `${bridgeFee / 1e18}`.slice(0, 10)}{' '}
-                            {getChainSymbolFromName(getDomainToChainName(
-                                explorer.bridgeTransaction.originalDomain
-                            ))} */}
               {removeTrailingZeroes(
                 Number(
-                  restoreOriginalSumSent(
-                    Number(explorer.bridgeTransaction.amount) / decimals()
-                  ) -
-                    Number(explorer.bridgeTransaction.amount) / decimals()
+                  Number(explorer.bridgeTransaction.amount) /
+                    10 ** TOKEN_DECIMALS[explorer.bridgeTransaction.fromToken] -
+                    Number(explorer.bridgeTransaction.amount) /
+                      10 ** TOKEN_DECIMALS[explorer.bridgeTransaction.fromToken]
                 ).toFixed(6)
               )}{" "}
               {explorer.bridgeTransaction.fromToken}
@@ -79,13 +80,11 @@ function TransactionDetailsRight({ fromFee, toFee }) {
             {explorer.bridgeTransaction.fromChainFees
               ? Number(explorer.bridgeTransaction.fromChainFees) /
                 10 **
-                  Number(
-                    TOKEN_DECIMALS[
-                      getChainSymbolFromName(
-                        CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId]
-                      )
-                    ]
-                  )
+                  TOKEN_DECIMALS[
+                    getChainSymbolFromName(
+                      CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId]
+                    )
+                  ]
               : 0}{" "}
             {getChainSymbolFromName(
               CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId]
@@ -98,13 +97,11 @@ function TransactionDetailsRight({ fromFee, toFee }) {
             {explorer.bridgeTransaction.targetChainFees
               ? Number(explorer.bridgeTransaction.targetChainFees) /
                 10 **
-                  Number(
-                    TOKEN_DECIMALS[
-                      getChainSymbolFromName(
-                        CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId]
-                      )
-                    ]
-                  )
+                  TOKEN_DECIMALS[
+                    getChainSymbolFromName(
+                      CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId]
+                    )
+                  ]
               : 0}{" "}
             {getChainSymbolFromName(
               CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId]
