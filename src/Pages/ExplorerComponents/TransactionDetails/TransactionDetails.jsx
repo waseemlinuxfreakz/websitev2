@@ -4,15 +4,22 @@ import TransactionHash from "./TransactionHash";
 import TransactionDetailsArea from "./TransactionDetailsBox";
 import useTransactionDetails from "../../../hooks/useTransactionDetails";
 import { useParams } from "react-router-dom";
+import { useAppDispatch } from "../../../hooks/storage";
+import { resetBridgeTransactionData } from "../../../store/explorerSlice";
 
 function TransactionDetails() {
   const { emmetHash } = useParams();
   const [scrolledTop, setScrolledTop] = useState(false);
+  const dispatch = useAppDispatch();
 
   if (!scrolledTop) {
     window.scroll(0, 0);
     setScrolledTop(true);
   }
+
+  useEffect(() => {
+    dispatch(resetBridgeTransactionData());
+  }, []);
 
   useTransactionDetails(emmetHash);
 

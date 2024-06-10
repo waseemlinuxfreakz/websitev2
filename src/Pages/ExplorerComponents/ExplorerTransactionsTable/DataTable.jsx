@@ -28,7 +28,7 @@ const DatatablePage = () => {
       return {
         clickEvent: () => navigate(`/transactionDetails/${Tx.txHash}`),
         TxnType: `<span class="${"transfer"}">${"Transfer"}</span>`,
-        TxnHash: `<span class="textOnly">${Tx.originalHash.slice(
+        TxnHash: `<span class="textOnly">${Tx.txHash.slice(
           0,
           6
         )}...${Tx.originalHash.slice(-4)}</span>`,
