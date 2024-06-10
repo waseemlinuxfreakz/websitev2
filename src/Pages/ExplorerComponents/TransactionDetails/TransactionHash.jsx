@@ -6,16 +6,16 @@ import useBridgeTx from "../../../hooks/useBridgeTx";
 import { setBridgeTransaction } from "../../../store/explorerSlice";
 
 function TransactionHash() {
-  const { hash } = useParams();
+  const { emmetHash } = useParams();
   const explorer = useAppSelector((state) => state.explorer);
   const dispatch = useAppDispatch();
-  const data = useBridgeTx(hash);
+  const data = useBridgeTx(emmetHash);
   const bridge = useAppSelector((state) => state.bridge);
 
   const [isCopied, setIsCopied] = useState(false);
 
   useEffect(() => {
-    if (hash && data) {
+    if (emmetHash && data) {
       dispatch(setBridgeTransaction(data));
     }
   }, [data]);
@@ -23,7 +23,7 @@ function TransactionHash() {
   const handleCopyClick = () => {
     if (navigator && navigator.clipboard) {
       try {
-        navigator.clipboard.writeText(hash);
+        navigator.clipboard.writeText(emmetHash);
       } catch (error) {
         console.warn(
           `Error: could not copy to clipboard. Reason:`,

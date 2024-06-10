@@ -6,6 +6,7 @@ import {
   getTimeLength,
   getLogoByChainName,
   getExplorerByChainName,
+  addressToAccount,
 } from "../../../utils";
 import useElapsedTime from "../../../hooks/useElapsedTime";
 import { CHAIN_ID_TO_NAME } from "../../../types";
@@ -35,7 +36,7 @@ function TransactionDetailsLeft() {
     try {
       (async () => {
         await navigator.clipboard.writeText(
-          explorer.bridgeTransaction.burnHash,
+          addressToAccount(explorer.bridgeTransaction.originalHash),
         );
       })();
       setIsCopied(true);
@@ -51,7 +52,7 @@ function TransactionDetailsLeft() {
     try {
       (async () => {
         await navigator.clipboard.writeText(
-          explorer.bridgeTransaction.claimHash,
+          addressToAccount(explorer.bridgeTransaction.destinationHash),
         );
       })();
 
@@ -110,23 +111,23 @@ function TransactionDetailsLeft() {
 
               <div className="chainLink">
                 {explorer.bridgeTransaction.originalHash
-                  ? `${
-                      explorer.bridgeTransaction.originalHash &&
-                      explorer.bridgeTransaction.originalHash.slice(0, 6)
-                    }...${
-                      explorer.bridgeTransaction.originalHash &&
-                      explorer.bridgeTransaction.originalHash.slice(-10)
-                    }`
+                  ? addressToAccount(
+                      `${
+                        explorer.bridgeTransaction.originalHash &&
+                        explorer.bridgeTransaction.originalHash.slice(0, 6)
+                      }...${
+                        explorer.bridgeTransaction.originalHash &&
+                        explorer.bridgeTransaction.originalHash.slice(-10)
+                      }`,
+                    )
                   : "N/A"}
               </div>
             </div>
             {explorer.bridgeTransaction.originalHash && (
               <a
                 href={`${getExplorerByChainName(
-                  getDomainToChainName(
-                    explorer.bridgeTransaction.originalDomain,
-                  ),
-                )}/tx/${explorer.bridgeTransaction.originalHash}`}
+                  CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId],
+                )}/tx/${addressToAccount(explorer.bridgeTransaction.originalHash)}`}
                 className="exportLink"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -167,13 +168,15 @@ function TransactionDetailsLeft() {
 
               <div className="chainLink">
                 {explorer.bridgeTransaction.destinationHash
-                  ? `${
-                      explorer.bridgeTransaction.destinationHash &&
-                      explorer.bridgeTransaction.destinationHash.slice(0, 6)
-                    }...${
-                      explorer.bridgeTransaction.destinationHash &&
-                      explorer.bridgeTransaction.destinationHash.slice(-10)
-                    }`
+                  ? addressToAccount(
+                      `${
+                        explorer.bridgeTransaction.destinationHash &&
+                        explorer.bridgeTransaction.destinationHash.slice(0, 6)
+                      }...${
+                        explorer.bridgeTransaction.destinationHash &&
+                        explorer.bridgeTransaction.destinationHash.slice(-10)
+                      }`,
+                    )
                   : "N/A"}
               </div>
             </div>
@@ -181,10 +184,8 @@ function TransactionDetailsLeft() {
             {explorer.bridgeTransaction.destinationHash && (
               <a
                 href={`${getExplorerByChainName(
-                  getDomainToChainName(
-                    explorer.bridgeTransaction.destinationDomain,
-                  ),
-                )}/tx/${explorer.bridgeTransaction.destinationHash}`}
+                  CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId],
+                )}/tx/${addressToAccount(explorer.bridgeTransaction.destinationHash)}`}
                 className="exportLink"
                 target="_blank"
                 rel="noopener noreferrer"
