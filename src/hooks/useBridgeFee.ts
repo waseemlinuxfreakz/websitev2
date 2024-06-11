@@ -48,25 +48,6 @@ export default function useBridgFee() {
     return fee / 10 ** Number(decimals);
   }
 
-  async function getBridgeFee() {
-    try {
-      const address = addressToAccount(
-        SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]]
-          .emmetFeeOracle.address,
-      );
-      // console.log("Oracle:", address, ChainNameToTypeChainName[bridge.toChain])
-      return await provider.readContract({
-        address,
-        abi: EmmetFeeOracleABI,
-        functionName: "calculateTransactionFee",
-        args: [ChainNameToTypeChainName[bridge.toChain]],
-      });
-    } catch (error) {
-      console.error(error);
-      return 0;
-    }
-  }
-
   async function getLockAndMintBridgeFee() {
     try {
       const handler = await chainFactoryTestnet.inner(
@@ -75,15 +56,15 @@ export default function useBridgFee() {
       );
 
       // const fee = await handler.calculateTransactionFees(bridge.toChain);
-      const fee = handler.txFee(
+      const fee = await handler.txFee(
         BigInt(CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.toChain]]),
         bridge.fromToken,
         bridge.toToken,
       );
 
-      return fee;
+      return Number(fee);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       // TODO: Fix this
       return 0;
     }
@@ -104,12 +85,10 @@ export default function useBridgFee() {
   useEffect(() => {
     if (bridgeAddress && provider) {
       (async () => {
-        const fee_ = await getBridgeFee();
+        const fee_ = await getLockAndMintBridgeFee();
         if (fee_) {
           // console.log("fee_", fee_, "contract:", bridgeAddress)
-          const _fee = isFromPolygon()
-            ? Number(fee_.toString()) + 50
-            : Number(fee_.toString()) + 10;
+          const _fee = isFromPolygon() ? fee_ + 50 : fee_ + 10;
           setFormattedfee(formatFee(_fee));
           setFee(_fee);
           dispatch(setBridgeFee(_fee));

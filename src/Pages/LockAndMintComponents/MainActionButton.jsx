@@ -48,7 +48,7 @@ function MainActionButton() {
   const { burnUSDC, isTransferProcessed, sendInstallment } =
     useBridgeTransferEmmet();
   const [msg, setMsg] = useState("");
-  const [alertIsOpen, setAlertIsOpen] = useState("");
+  const [alertIsOpen, setAlertIsOpen] = useState(false);
 
   function isApproveRequired() {
     const chainRequiresApproval = lockAndMintChains.find(

@@ -17,6 +17,7 @@ import {
 } from "../store/bridgeSlice";
 import { chainFactoryTestnet } from "../store/chainFactory";
 import { Web3Helper } from "emmet.js/dist/chains/web3";
+import { ethers } from "ethers";
 
 export default function useBridgeAllowance() {
   const { address, isConnected } = useAccount();
@@ -55,10 +56,13 @@ export default function useBridgeAllowance() {
           ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]],
         );
 
-        const token = await (handler as Web3Helper).token(bridge.fromToken);
-        if (token.address) {
+        const token = await handler.token(bridge.fromToken);
+        if (
+          token.address !== ethers.ZeroAddress &&
+          bridge.senderAddress !== ""
+        ) {
           setDecimals(token.decimals);
-          dispatch(setBridgeDecimals(token.decimals));
+          dispatch(setBridgeDecimals(Number(token.decimals)));
 
           if ("getApprovedAmount" in handler) {
             const allowance = await handler.getApprovedAmount(
@@ -69,7 +73,6 @@ export default function useBridgeAllowance() {
             dispatch(setBridgeAllowance(Number(allowance)));
           }
         }
-
         if (isApproveRequired()) {
           setIsApprovalRequired(true);
         } else {

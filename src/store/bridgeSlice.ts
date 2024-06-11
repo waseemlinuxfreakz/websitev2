@@ -42,11 +42,11 @@ export interface IBridgeState {
 }
 
 // FROM
-const fromChain = "Avalanche";
+const fromChain = "Amoy";
 const fromToken = "USD//C";
 
 // TO
-const toChain = "Polygon";
+const toChain = "Sepolia";
 const toToken = fromToken;
 
 const initialState = {
