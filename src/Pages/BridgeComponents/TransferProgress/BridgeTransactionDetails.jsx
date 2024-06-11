@@ -1,20 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./BridgeTransactionDetails.css";
 import useBridgeFee from "../../../hooks/useBridgeFee";
 import { useAppSelector } from "../../../hooks/storage";
-import {
-  SUPPORTED_CHAINS,
-  ChainNameToTypeChainName,
-  destCircleClaimFee,
-  EstimatedTimeFromChain,
-} from "../../../types";
-import { getDestinationFee, removeTrailingZeroes } from "../../../utils";
+import { SUPPORTED_CHAINS, ChainNameToTypeChainName } from "../../../types";
+import { removeTrailingZeroes } from "../../../utils";
+import { chainFactoryTestnet } from "../../../store/chainFactory";
+import { ChainToDestinationDomain } from "../../../types";
+import { msToTime } from "../../../utils/msToTime";
 
 function BridgeTransactionDetails() {
   // const { nativeCurrency, formattedFee } = useBridgeFee();
   const bridge = useAppSelector((state) => state.bridge);
 
   const { nativeCurrency, formattedFee } = useBridgeFee();
+  const { estimateTime, setEstimatedTime } = useState(40 * 1000);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const handler = await chainFactoryTestnet.inner(
+          ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]],
+        );
+
+        const time = await handler.estimateTime(
+          // eslint-disable-next-line no-undef
+          BigInt(CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.toChain]]),
+          bridge.fromToken,
+          bridge.toToken,
+        );
+        if (time) {
+          setEstimatedTime(Number(time));
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, [bridge.fromChain, bridge.toChain, bridge.fromToken, bridge.toToken]);
 
   const destCurrency =
     SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.toChain]].nativeCurrency
@@ -49,9 +70,7 @@ function BridgeTransactionDetails() {
           Estimated waiting time
           {/* <img src="./img/InfoIcons.svg" alt="InfoIcons" /> */}
         </div>
-        <div className="bridgeTransDetRight">
-          {EstimatedTimeFromChain[ChainNameToTypeChainName[bridge.fromChain]]}
-        </div>
+        <div className="bridgeTransDetRight">{msToTime(estimateTime)}</div>
       </li>
     </ul>
   );
