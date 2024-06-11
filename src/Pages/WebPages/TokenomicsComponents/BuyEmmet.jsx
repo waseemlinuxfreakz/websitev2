@@ -8,7 +8,7 @@ import BuyEmmetCoin from "./BuyEmmetCoin";
 import NotifyMe from "./NotifyMe";
 
 function BuyEmmet() {
-  const targetDate = new Date("December 31, 2024 00:00:00 GMT+00:00");
+  const targetDate = new Date("Augus 31, 2024 00:00:00 GMT+00:00");
 
   return (
     <>
