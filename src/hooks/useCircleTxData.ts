@@ -45,8 +45,6 @@ export default function useCircleTxData() {
           (tx) => tx.originalHash === hash.replace("0x", ""),
         );
 
-        console.log({ txn });
-
         if (txn) {
           setTxData(txn);
           // TODO: may need to uncomment later

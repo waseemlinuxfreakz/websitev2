@@ -60,7 +60,6 @@ export default function ChainSelectorDropdown({ parent, direction }) {
         ),
       );
     }
-    console.log({ chainArray });
   }, [selectedChain, bridge.toChain]);
 
   const [isListVisible, setListVisible] = useState(false);

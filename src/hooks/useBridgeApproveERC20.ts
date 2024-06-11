@@ -58,15 +58,12 @@ export default function useBridgeApproveERC20() {
       //     dispatch(setBridgeError(''));
       // }
 
-      console.log({ tokenName });
       const handler = await chainFactoryTestnet.inner(
         // @ts-ignore
         ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]],
       );
       const token = await (handler as Web3Helper).token(tokenName);
       const tokenAddress = token.address;
-
-      console.log({ tokenAddress });
 
       await chainFactoryTestnet.preTransfer(
         // @ts-ignore

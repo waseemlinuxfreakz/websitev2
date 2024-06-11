@@ -58,13 +58,12 @@ export default function useBalance() {
       }
       return 0;
     } catch (error) {
-      console.log("useBalance:getTokenBalance", error);
+      console.error("useBalance:getTokenBalance", error);
       return 0;
     }
   }
 
   async function getTokenBalance(direction: TDirection) {
-    // try {
     const handler =
       direction === "from"
         ? await chainFactoryTestnet.inner(
@@ -83,22 +82,14 @@ export default function useBalance() {
       await (handler as Web3Helper).token(bridge.fromToken)
     ).address;
 
-    console.log({ fromToken: bridge.fromToken, tokenAddress });
-
     const addr = direction === "from" ? bridge.senderAddress : bridge.receiver;
 
     const bal = await handler.tokenBalance(tokenAddress, addr);
-
-    // console.log({ addr: tokenAddress, direction, bal });
 
     if (bal) {
       return Number(bal);
     }
     return 0;
-    // } catch (error) {
-    //   console.log("useBalance:getTokenBalance", error);
-    //   return 0;
-    // }
   }
 
   useEffect(() => {
@@ -117,7 +108,8 @@ export default function useBalance() {
       if (bridge.fromToken === chain.nativeCurrency.symbol) {
         (async () => {
           const bal: number = await getCoinBalance("from");
-          const formattedBalance = bal / 10 ** decimals;
+          const fmb = bal / 10 ** decimals;
+          const formattedBalance = Number(fmb);
           setBalance(formattedBalance);
           dispatch(setBridgeBalance(formattedBalance));
           dispatch(setBridgeError(""));
@@ -129,9 +121,9 @@ export default function useBalance() {
       } else {
         (async () => {
           const bal: number = await getTokenBalance("from");
-          let fmb =
+          const fmb =
             bal / 10 ** Number(TOKEN_DECIMALS[bridge.fromToken as TTokenName]);
-          let formattedBalance = Number(fmb);
+          const formattedBalance = Number(fmb);
           setBalance(formattedBalance);
           dispatch(setBridgeBalance(formattedBalance));
           dispatch(setBridgeError(""));
@@ -152,8 +144,8 @@ export default function useBalance() {
       if (bridge.toToken === chain.nativeCurrency.symbol) {
         (async () => {
           const bal: number = await getCoinBalance("to");
-
-          const formattedBalance = bal / 10 ** decimals;
+          const fmb = bal / 10 ** decimals;
+          const formattedBalance = Number(fmb);
           setBalanceTo(formattedBalance);
           dispatch(setBridgeToBalance(formattedBalance));
           dispatch(setBridgeError(""));
@@ -165,8 +157,9 @@ export default function useBalance() {
       } else {
         (async () => {
           const bal: number = await getTokenBalance("to");
-          const formattedBalance =
+          const fmb =
             bal / 10 ** Number(TOKEN_DECIMALS[bridge.fromToken as TTokenName]);
+          const formattedBalance = Number(fmb);
           setBalanceTo(formattedBalance);
           dispatch(setBridgeToBalance(formattedBalance));
           dispatch(setBridgeError(""));

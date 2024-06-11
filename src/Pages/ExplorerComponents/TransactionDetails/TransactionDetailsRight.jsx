@@ -21,17 +21,6 @@ function TransactionDetailsRight() {
             CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId],
           )
         ];
-
-    console.log({
-      fees,
-      decimals:
-        TOKEN_DECIMALS[
-          getChainSymbolFromName(
-            CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId],
-          )
-        ],
-      fee: Number(explorer.bridgeTransaction.fromChainFees),
-    });
   }, [explorer.bridgeTransaction]);
 
   return (

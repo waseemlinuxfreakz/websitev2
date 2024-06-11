@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 // import { TxDetails, txBackend } from "../types";
 import { chainFactoryTestnet } from "../store/chainFactory";
-import { DetailedTx } from "emmet.js/dist/factory/types";
 import { useAppSelector, useAppDispatch } from "./storage";
-import { setBridgeTransaction } from "../store/explorerSlice";
+import {
+  setBridgeTransaction,
+  DetailedTx as _DetailedTx,
+} from "../store/explorerSlice";
+import { DetailedTx } from "emmet.js/dist/factory/types";
 
 /**
  * Requests for data by a bridge TX
@@ -16,10 +19,7 @@ const fetchData = async (emmetHash: string): Promise<DetailedTx | {}> => {
     //   `${txBackend}/transactions/tx/?tx=${hash}`
     // );
     // const data: TxDetails = await response.json();
-    console.log({ running: true, emmetHash });
     const data = await chainFactoryTestnet.getTransaction(emmetHash);
-    console.log({ data });
-
     return data;
   } catch (error: any) {
     console.warn(`useGetBridgeTx:fetchData:Error: ${error.message}`);
@@ -33,7 +33,7 @@ const fetchData = async (emmetHash: string): Promise<DetailedTx | {}> => {
  * @returns Transaction data or {}
  */
 export default function useTransactionDetails(emmetHash: string) {
-  const [data, setData] = useState<DetailedTx | {}>();
+  const [data, setData] = useState<_DetailedTx | {}>();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -41,8 +41,27 @@ export default function useTransactionDetails(emmetHash: string) {
       (async () => {
         const _data = await fetchData(emmetHash);
         if ("nonce" in _data) {
-          setData(_data);
-          dispatch(setBridgeTransaction(_data));
+          const __data = {
+            txHash: _data.txHash,
+            nonce: Number(_data.nonce),
+            amount: Number(_data.amount),
+            fromChainId: Number(_data.fromChainId),
+            toChainId: Number(_data.toChainId),
+            fromToken: _data.fromToken,
+            toToken: _data.toToken,
+            recipient: _data.recipient,
+            originalHash: _data.originalHash,
+            destinationHash: _data.destinationHash,
+            started: Number(_data.started),
+            finished: Number(_data.finished),
+            fromChainTimestamp: Number(_data.fromChainTimestamp),
+            targetChainTimestamp: Number(_data.targetChainTimestamp),
+            fromChainFees: Number(_data.fromChainFees),
+            targetChainFees: Number(_data.targetChainFees),
+            protocolFee: Number(_data.protocolFee),
+          };
+          setData(__data);
+          dispatch(setBridgeTransaction(__data));
         }
       })();
     }

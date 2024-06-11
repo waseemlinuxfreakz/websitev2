@@ -21,20 +21,17 @@ export default function WalletBalance({ name, parent, balance }) {
   const chain = chains.find((chain) => chain.id === account.chainId);
   let tokenAddress;
   if (chain) {
-    console.log({ name, chain });
     tokenAddress = getTokenAddress(ChainNameToTypeChainName[chain.name], name);
   }
 
   useEffect(() => {
     async function fetchTokenBalance(address) {
       if (chain) {
-        console.log({ fromBalance });
         // const bal = await getBalance({
         //   address,
         //   chainId: chain.id,
         //   token: tokenAddress,
         // });
-
         // setBalance(bal.formatted.slice(0, 8));
       }
     }

@@ -1,7 +1,27 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "./store";
 import { TxDetails, SearchDataType } from "../types";
-import { DetailedTx, Transaction } from "emmet.js/dist/factory/types";
+import { Transaction } from "emmet.js/dist/factory/types";
+
+export interface DetailedTx {
+  txHash: string;
+  nonce: number;
+  amount: number;
+  fromChainId: number;
+  toChainId: number;
+  fromToken: string;
+  toToken: string;
+  recipient: string;
+  originalHash: string;
+  destinationHash: string;
+  started: number;
+  finished: number;
+  fromChainTimestamp: number;
+  targetChainTimestamp: number;
+  fromChainFees: number;
+  targetChainFees: number;
+  protocolFee: number;
+}
 
 export interface IExplorerState {
   bridgeTransaction: DetailedTx;
@@ -12,35 +32,23 @@ export interface IExplorerState {
 
 const initialState: IExplorerState = {
   bridgeTransaction: {
-    amount: BigInt(0),
-    // age: 0,    // time elapsed since TX start
-    // txType: 'Transfer',
-    // bridgeFee: 0,
-    // bridgeHash: '',
-    // burnHash: '',
-    // claimHash: '',
-    // destinationFee: 0,
-    // destinationDomain: -1,
-    // originalDomain: -1,
-    // originFee: 0,
-    // sender: '',
-    // status: 'pending',
+    amount: 0,
     fromToken: "USDC",
     toToken: "USDC",
     destinationHash: "",
     originalHash: "",
-    fromChainId: BigInt(0),
-    toChainId: BigInt(0),
-    nonce: BigInt(0),
+    fromChainId: 0,
+    toChainId: 0,
+    nonce: 0,
     recipient: "",
-    fromChainFees: BigInt(0),
-    fromChainTimestamp: BigInt(0),
-    targetChainFees: BigInt(0),
-    targetChainTimestamp: BigInt(0),
-    finished: BigInt(Date.now()),
-    started: BigInt(Date.now()),
+    fromChainFees: 0,
+    fromChainTimestamp: 0,
+    targetChainFees: 0,
+    targetChainTimestamp: 0,
+    finished: Date.now(),
+    started: Date.now(),
     txHash: "",
-    protocolFee: BigInt(0),
+    protocolFee: 0,
   },
   filter: "",
   filterType: SearchDataType.None,

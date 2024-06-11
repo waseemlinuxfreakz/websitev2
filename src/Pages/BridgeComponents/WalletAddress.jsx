@@ -72,7 +72,6 @@ function WalletAddress() {
     if (bridge.senderAddress) {
       setIsChangeVisivle(true);
     }
-    console.log(isChangeVisible);
   }, [bridge.senderAddress]);
 
   function onChangeClickHandle(e) {

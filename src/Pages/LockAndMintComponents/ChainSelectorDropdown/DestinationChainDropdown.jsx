@@ -75,10 +75,6 @@ export default function DestinationChainDropdown() {
     }
   }, [bridge.toChain]);
 
-  useEffect(() => {
-    console.log({ toChain: bridge.toChain });
-  }, [bridge.toChain]);
-
   const toggleVisibility = () => {
     setListVisible(!isListVisible);
   };

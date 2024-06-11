@@ -55,41 +55,18 @@ export default function useBridgeAllowance() {
           ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]],
         );
 
-        const tokenAddress = (
-          await (handler as Web3Helper).token(bridge.fromToken)
-        ).address;
-        const chainName: TChainName =
-          ChainNameToTypeChainName[bridge.fromChain];
-        const chain = SUPPORTED_CHAINS[chainName];
-        const spender: string = chain!.emmetBridge.address;
-        const provider = getProvider(chainName);
-
-        if (tokenAddress) {
-          const decimals = await provider.readContract({
-            // @ts-ignore
-            address: tokenAddress,
-            abi: erc20Abi,
-            functionName: "decimals",
-          });
-
-          setDecimals(BigInt(decimals));
-          dispatch(setBridgeDecimals(decimals));
-
-          // const allowance = await provider.readContract({
-          //   address: tokenAddress,
-          //   abi: erc20Abi,
-          //   functionName: "allowance",
-          //   args: [addressToAccount(address!), addressToAccount(spender)],
-          // });
+        const token = await (handler as Web3Helper).token(bridge.fromToken);
+        if (token.address) {
+          setDecimals(token.decimals);
+          dispatch(setBridgeDecimals(token.decimals));
 
           if ("getApprovedAmount" in handler) {
             const allowance = await handler.getApprovedAmount(
-              tokenAddress,
+              token.address,
               bridge.senderAddress,
             );
-            setAllowance(Number(allowance.toString()));
-            console.log({ allowance: Number(allowance.toString()) });
-            dispatch(setBridgeAllowance(Number(allowance.toString())));
+            setAllowance(Number(allowance));
+            dispatch(setBridgeAllowance(Number(allowance)));
           }
         }
 

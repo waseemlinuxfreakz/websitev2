@@ -13,7 +13,7 @@ export default function TokenSelectorBox({ type }) {
   const dispatch = useAppDispatch();
 
   function onInputChange(e) {
-    console.log("onInputChange:", Number(e.target.value));
+    // console.log("onInputChange:", Number(e.target.value));
   }
 
   function isFromType() {

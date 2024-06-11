@@ -125,18 +125,6 @@ export default function useBridgeTransferEmmet() {
           fromChainID === Chain.BSC
         ) {
           const handler = await chainFactoryTestnet.inner(fromChainID);
-
-          console.log({
-            handler,
-            signer,
-            amount: BigInt(Math.ceil(formattedAmount)),
-            fromToken: bridge.fromToken,
-            toToken: bridge.toToken,
-            destinationDomain,
-            destinationChain: ChainNameToTypeChainName[bridge.toChain],
-            mintRecipient,
-          });
-
           const { hash, tx } = await chainFactoryTestnet.sendInstallment(
             handler,
             // @ts-ignore

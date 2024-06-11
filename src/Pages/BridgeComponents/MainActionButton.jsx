@@ -114,7 +114,7 @@ function MainActionButton() {
           action: "Clicked Button",
           label: "Transfer",
         });
-        console.log(`Bridge rn: `, bridge.toChain);
+
         if (bridge.toChain === "TONTestnet") {
           sendInstallment();
         } else {

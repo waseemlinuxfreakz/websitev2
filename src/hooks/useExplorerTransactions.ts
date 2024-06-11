@@ -15,7 +15,6 @@ export default function useExplorerTransactions(page: number) {
         10,
         (page - 1) * 10,
       );
-      console.log({ data });
       data && setTxs(data);
     } catch (error: any) {
       console.error(error.message);
