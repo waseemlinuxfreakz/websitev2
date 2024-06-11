@@ -48,12 +48,18 @@ export default function ChainSelectorDropdown({ parent, direction }) {
   const [chainArray, setChainArray] = useState(chainData);
 
   useEffect(() => {
-    setChainArray(
-      chainData.filter(
-        (chain) =>
-          chain.name !== selectedChain.name && chain.name !== bridge.toChain,
-      ),
-    );
+    if (parent === "header") {
+      setChainArray(
+        chainData.filter((chain) => chain.name !== selectedChain.name),
+      );
+    } else {
+      setChainArray(
+        chainData.filter(
+          (chain) =>
+            chain.name !== selectedChain.name && chain.name !== bridge.toChain,
+        ),
+      );
+    }
     console.log({ chainArray });
   }, [selectedChain, bridge.toChain]);
 
@@ -110,16 +116,16 @@ export default function ChainSelectorDropdown({ parent, direction }) {
     }
   }, [bridge.fromChain]);
 
-  // useEffect(() => {
-  //   const selChain = findChain(chainId);
-  //   if (selChain) {
-  //     setSelectedChain({
-  //       icon: selChain.icon,
-  //       name: selChain.name,
-  //     });
-  //     dispatchChain(selChain.name);
-  //   }
-  // }, [chainId]);
+  useEffect(() => {
+    const selChain = findChain(chainId);
+    if (selChain) {
+      setSelectedChain({
+        icon: selChain.icon,
+        name: selChain.name,
+      });
+      dispatchChain(selChain.name);
+    }
+  }, [chainId]);
 
   const handleChainClick = (icon, name, id) => {
     setSelectedChain({ icon, name });

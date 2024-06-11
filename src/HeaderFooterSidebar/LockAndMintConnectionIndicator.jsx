@@ -1,4 +1,4 @@
-import ConnectionIndicatorDropdown from "./ConnectionIndicatorDropdown";
+import ConnectionIndicatorDropdown from "../Pages/LockAndMintComponents/ChainSelectorDropdown/ChainSelectorDropdown";
 
 export default function ConnectionIndicator() {
   return (

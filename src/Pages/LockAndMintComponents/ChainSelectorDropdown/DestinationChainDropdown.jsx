@@ -8,11 +8,11 @@ import ReactGA from "react-ga";
 import { CHAIN_NAME_TO_ID } from "../../../types";
 
 export default function DestinationChainDropdown() {
+  const bridge = useAppSelector((state) => state.bridge);
   const findChain = (chainName) => {
     return chainData.find((c) => c.name === chainName);
   };
 
-  const bridge = useAppSelector((state) => state.bridge);
   const dispatch = useAppDispatch();
 
   const [isListVisible, setListVisible] = useState(false);
@@ -24,6 +24,12 @@ export default function DestinationChainDropdown() {
   const [chainArray, setChainArray] = useState(chainData);
 
   useEffect(() => {
+    const chain = chainArray[0];
+    setSelectedChain(chain);
+    dispatch(setBridgeToChain(chain.name));
+  }, []);
+
+  useEffect(() => {
     setChainArray(
       chainData.filter(
         (chain) =>
@@ -31,6 +37,17 @@ export default function DestinationChainDropdown() {
       ),
     );
   }, [selectedChain, bridge.fromChain]);
+
+  useEffect(() => {
+    const chain = chainArray[0];
+    if (chain) {
+      setSelectedChain({
+        icon: chain.icon,
+        name: chain.name,
+      });
+      dispatch(setBridgeToChain(chain.name));
+    }
+  }, [chainArray]);
 
   function handleChainClick(icon, name, id) {
     setSelectedChain({ icon, name });
@@ -43,20 +60,11 @@ export default function DestinationChainDropdown() {
     });
   }
 
-  //   useEffect(() => {
-  //     if (bridge && bridge.toChain) {
-  //       setSelectedChain({
-  //         icon: chainData[0].icon,
-  //         name: chainData[0].name,
-  //       });
-  //     }
-  //   }, [bridge.toChain]);
-
-  useEffect(() => {
-    const chain = findChain(selectedChain.name);
-    setSelectedChain(chain);
-    dispatch(setBridgeToChain(chain.name));
-  }, []);
+  // useEffect(() => {
+  //   if (bridge.toChain) {
+  //     setSelectedChain(findChain(bridge.toChain));
+  //   }
+  // }, [bridge.toChain]);
 
   useEffect(() => {
     const chain = findChain(bridge.toChain);
