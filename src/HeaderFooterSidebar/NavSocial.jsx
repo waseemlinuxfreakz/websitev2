@@ -41,6 +41,15 @@ function NavSocial() {
             <img src={"/img/social/Telegram.svg"} alt="Telegram Logo" />
           </a>
         </li>
+        <li>
+          <a
+            aria-label="Go to the corporate Telegram channel"
+            href="https://t.me/Emmet_Finance_Announcements"
+            target="_blank"
+          >
+            <img src={"/img/social/Telegram.svg"} alt="Telegram Logo" />
+          </a>
+        </li>
       </ul>
     </div>
   );

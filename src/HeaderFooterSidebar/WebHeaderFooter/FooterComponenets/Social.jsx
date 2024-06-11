@@ -16,6 +16,9 @@ function Social() {
       <a href="https://t.me/Emmet_Finance" target="_blank">
         <img src={Telegram} alt="Telegram" />
       </a>
+      <a href="https://t.me/Emmet_Finance_Announcements" target="_blank">
+        <img src={Telegram} alt="Telegram" />
+      </a>
       <a href="https://discord.gg/yuXxDctC4W" target="_blank">
         <img src={Discord} alt="Discord" />
       </a>
