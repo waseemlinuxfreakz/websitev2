@@ -1,16 +1,7 @@
-import { base as viemBase } from "viem/chains";
-import { TEmmetChain } from ".";
+import { Chain, base as viemBase } from "viem/chains";
 
-export const base = {
+export const base: Chain = {
   ...viemBase,
-  emmetBridge: {
-    address: "",
-    blockCreated: 0,
-  },
-  emmetFeeOracle: {
-    address: "",
-    blockCreated: 0,
-  },
   rpcUrls: {
     default: {
       http: ["https://mainnet.base.org"],
@@ -19,4 +10,4 @@ export const base = {
       http: ["https://mainnet.base.org"],
     },
   },
-} as TEmmetChain;
+};

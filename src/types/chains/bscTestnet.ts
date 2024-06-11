@@ -1,16 +1,7 @@
-import { bscTestnet as viemBsc } from "viem/chains";
-import { TEmmetChain } from ".";
+import { Chain, bscTestnet as viemBSCTestnet } from "viem/chains";
 
-export const bscTestnet = {
-  ...viemBsc,
-  emmetBridge: {
-    address: "", // TODO: change
-    blockCreated: 45310404, // TODO: change
-  },
-  emmetFeeOracle: {
-    address: "", // TODO: change
-    blockCreated: 45306550, // TODO: change
-  },
+export const bscTestnet: Chain = {
+  ...viemBSCTestnet,
   name: "BSCTestnet",
   rpcUrls: {
     default: {
@@ -28,4 +19,4 @@ export const bscTestnet = {
     },
   },
   testnet: true,
-} as TEmmetChain;
+};

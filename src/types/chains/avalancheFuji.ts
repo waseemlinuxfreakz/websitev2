@@ -1,16 +1,7 @@
-import { avalancheFuji as viemAlancheFuji } from "viem/chains";
-import { TEmmetChain } from ".";
+import { Chain, avalancheFuji as viemAlancheFuji } from "viem/chains";
 
-export const avalancheFuji = {
+export const avalancheFuji: Chain = {
   ...viemAlancheFuji,
-  emmetBridge: {
-    address: "0x0F416Ea0661BfD7Ffb5b79259Bd98Bd4496a5558",
-    blockCreated: 29583260,
-  },
-  emmetFeeOracle: {
-    address: "0x5AF10b142775000e3140416F4a513E42922d480e",
-    blockCreated: 29607286,
-  },
   name: "Avalanche Fuji",
   rpcUrls: {
     default: { http: ["https://avalanche-fuji.blockpi.network/v1/rpc/public"] },
@@ -23,5 +14,4 @@ export const avalancheFuji = {
       ],
     },
   },
-  testnet: true,
-} as TEmmetChain;
+};

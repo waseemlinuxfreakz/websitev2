@@ -1,7 +1,5 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "./store";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TxDetails, SearchDataType } from "../types";
-import { Transaction } from "emmet.js/dist/factory/types";
 
 export interface DetailedTx {
   txHash: string;
@@ -78,7 +76,7 @@ export const explorerSlice = createSlice({
       state: IExplorerState,
       action: PayloadAction<number>,
     ) {
-      //   state.bridgeTransaction.age = action.payload;
+        // state.bridgeTransaction.age = action.payload;
     },
     resetBridgeTransactionData(state: IExplorerState) {
       state.bridgeTransaction = initialState.bridgeTransaction;

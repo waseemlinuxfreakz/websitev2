@@ -1,18 +1,7 @@
-import { optimism as viemOptimism } from "viem/chains";
-import { TEmmetChain } from ".";
+import { Chain, optimism as viemOptimism } from "viem/chains";
 
-const sourceId = 1; // Ethereum
-
-export const optimism = {
+export const optimism: Chain = {
   ...viemOptimism,
-  emmetBridge: {
-    address: "",
-    blockCreated: 0,
-  },
-  emmetFeeOracle: {
-    address: "",
-    blockCreated: 0,
-  },
   name: "Optimism",
   rpcUrls: {
     default: {
@@ -22,4 +11,4 @@ export const optimism = {
       http: ["https://mainnet.optimism.io"],
     },
   },
-} as TEmmetChain;
+};

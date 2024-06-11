@@ -1,27 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useAppSelector } from "../../../hooks/storage";
 import {
-  getDomainToChainName,
   getChainSymbolFromName,
-  restoreOriginalSumSent,
   removeTrailingZeroes,
 } from "../../../utils";
-import useGetTxValue from "../../../hooks/useGetTxValue";
 import { CHAIN_ID_TO_NAME, TOKEN_DECIMALS } from "../../../types";
 
 function TransactionDetailsRight() {
   const explorer = useAppSelector((store) => store.explorer);
-
-  useEffect(() => {
-    const fees =
-      Number(explorer.bridgeTransaction.fromChainFees) /
-      10 **
-        TOKEN_DECIMALS[
-          getChainSymbolFromName(
-            CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId],
-          )
-        ];
-  }, [explorer.bridgeTransaction]);
 
   return (
     <div className="transactionDetailsBox">

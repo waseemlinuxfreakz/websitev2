@@ -1,13 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { MDBDataTable } from "mdbreact";
 import { useNavigate } from "react-router-dom";
 import useExplorerTransactions from "../../../hooks/useExplorerTransactions";
 import {
   getLogoByChainName,
   getOfficialChainName,
-  getTimeLength,
-  restoreOriginalSumSent,
-  unpackDateTime,
   removeTrailingZeroes,
 } from "../../../utils";
 import {
@@ -20,7 +17,7 @@ import {
 const DatatablePage = () => {
   const navigate = useNavigate();
 
-  const { txs, refresh } = useExplorerTransactions(1);
+  const { txs } = useExplorerTransactions(1);
 
   const rows =
     txs &&

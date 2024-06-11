@@ -1,17 +1,12 @@
-import { getProvider, addressToAccount, getTonProvider } from "../utils";
 import {
   ChainNameToTypeChainName,
-  CHAIN_NAME_TO_ID,
   SUPPORTED_CHAINS,
-  TOKEN_CHAIN_CONTRACT,
   TOKEN_DECIMALS,
   TTokenName,
   ChainToDestinationDomain,
 } from "../types";
 import { useAppDispatch, useAppSelector } from "./storage";
 import { useState, useEffect } from "react";
-import { useAccount } from "wagmi";
-import { erc20Abi } from "viem";
 import {
   setBridgeBalance,
   setBridgeError,
@@ -134,6 +129,7 @@ export default function useBalance() {
         });
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bridge.fromChain, bridge.fromToken, bridge.amount, bridge.senderAddress]);
 
   useEffect(() => {
@@ -170,6 +166,7 @@ export default function useBalance() {
         });
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bridge.toChain, bridge.toToken, bridge.receiver, bridge.senderAddress]);
 
   return {

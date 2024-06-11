@@ -2,7 +2,6 @@ import React from "react";
 import CheckGreen from "../../../assets/img/CheckGreen.svg";
 
 import BridgeFee from "./BridgeFee";
-import DestinationGasEstimation from "./DestinationGasEstimation";
 import BridgingTimeEstimation from "./BridgingTimeEstimation";
 
 import { useAppSelector } from "../../../hooks/storage";
@@ -27,7 +26,6 @@ function BridgeDetails() {
   return (
     <div className="bridgeDetails">
       <BridgeFee />
-      {/* < DestinationGasEstimation /> */}
       <BridgingTimeEstimation />
       <div className="detialItem">
         <div className="detialItemLeft">Token allowance</div>

@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react";
 import "./BridgeTransactionDetails.css";
 import useBridgeFee from "../../../hooks/useBridgeFee";
 import { useAppSelector } from "../../../hooks/storage";
-import { SUPPORTED_CHAINS, ChainNameToTypeChainName } from "../../../types";
+import { ChainNameToTypeChainName } from "../../../types";
 import { removeTrailingZeroes } from "../../../utils";
 import { chainFactoryTestnet } from "../../../store/chainFactory";
 import { ChainToDestinationDomain } from "../../../types";
 import { msToTime } from "../../../utils/msToTime";
 
 function BridgeTransactionDetails() {
-  // const { nativeCurrency, formattedFee } = useBridgeFee();
   const bridge = useAppSelector((state) => state.bridge);
 
   const { nativeCurrency, formattedFee } = useBridgeFee();
@@ -35,11 +34,8 @@ function BridgeTransactionDetails() {
         console.log(error);
       }
     })();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bridge.fromChain, bridge.toChain, bridge.fromToken, bridge.toToken]);
-
-  const destCurrency =
-    SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.toChain]].nativeCurrency
-      .symbol;
 
   return (
     <ul className="bridgeTransactionDetails">

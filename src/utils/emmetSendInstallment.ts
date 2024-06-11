@@ -1,10 +1,5 @@
-import { Hash, TransactionReceipt } from "viem";
+import { Hash } from "viem";
 import { CHAIN_NAME_TO_ID, TChainName, TTokenName, TTxStatus } from "../types";
-import { getSigner } from "./getSigner";
-import FTBridge from "../abis/FTBridge";
-import { addressToAccount, addressToBytes32 } from "./address";
-import { sleep } from "./time";
-import { getTxReceipt } from "./getTxReceipt";
 import { chainFactoryTestnet } from "../store/chainFactory";
 import { useTonConnect } from "../hooks/useTonConnect";
 import { Chain } from "emmet.js/dist/factory/types";

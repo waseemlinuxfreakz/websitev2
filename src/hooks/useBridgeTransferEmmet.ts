@@ -1,33 +1,21 @@
-import { useEffect, useState } from "react";
-import { Hash, parseEther } from "viem";
-import { useAccount } from "wagmi";
-import { circleBurner } from "../abis/circleBurner";
+import { useState } from "react";
+import { parseEther } from "viem";
 import { useAppDispatch, useAppSelector } from "./storage";
 import { setBridgeFromHash, showBridgeProgress } from "../store/bridgeSlice";
 import {
   TChainName,
   ChainNameToTypeChainName,
-  SUPPORTED_CHAINS,
   ChainToDestinationDomain,
-  TTokenName,
-  CHAIN_NAME_TO_ID,
 } from "../types";
-import { addressToBytes32, addressToAccount, sleep, getSigner } from "../utils";
-import useBridgFee from "./useBridgeFee";
-import { BurnToTransfer } from "../utils";
-import { EmmetSendInstallment } from "../utils/emmetSendInstallment";
 import { useTonConnect } from "./useTonConnect";
 import { Chain } from "emmet.js/dist/factory/types";
 import { chainFactoryTestnet } from "../store/chainFactory";
-import { useEthersSigner } from "./lockAndMintHooks/useEthersSigner";
+import { useEthersSigner } from "./useEthersSigner";
 // import { ErrorDecoder } from "ethers-decode-error";
 // import { EmmetBridge__factory } from "@emmet-contracts/web3";
 
 export default function useBridgeTransferEmmet() {
-  const { fee } = useBridgFee();
   const { sender: tonSender } = useTonConnect();
-
-  const { address } = useAccount();
 
   const dispatch = useAppDispatch();
 
@@ -35,73 +23,21 @@ export default function useBridgeTransferEmmet() {
 
   const bridge = useAppSelector((state) => state.bridge);
 
-  const [estimation, setEstimation] = useState<number>(0);
-
   const [isTransferProcessed, setIsTransferProcessed] =
     useState<boolean>(false);
 
   const [error, setError] = useState("");
-
-  let interval: string | number | NodeJS.Timeout | undefined;
-
-  const burnUSDC = () => {
-    setError("");
-    setIsTransferProcessed(true);
-
-    (async () => {
-      const chainName: TChainName = ChainNameToTypeChainName[bridge.fromChain];
-      const bridgeAddress: string =
-        SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]].emmetBridge
-          .address;
-      const decimals = bridge.decimals ? bridge.decimals : 18;
-      const formattedAmount = Number(bridge.amount) * 10 ** decimals;
-      const destinationDomain =
-        ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]];
-      const mintRecipient: Hash = addressToAccount(bridge.receiver);
-      const tokenName: TTokenName = bridge.fromToken as TTokenName;
-
-      const { hash, status, error } = await BurnToTransfer(
-        chainName,
-        addressToAccount(bridgeAddress),
-        BigInt(Math.ceil(formattedAmount)),
-        destinationDomain,
-        mintRecipient,
-        tokenName,
-        fee,
-      );
-
-      if (error) {
-        console.warn("useBridgeTransferEmmet => burnUSDC => Error:", error);
-        setError(error);
-      }
-
-      if (hash) {
-        dispatch(setBridgeFromHash(hash));
-        dispatch(showBridgeProgress());
-      }
-
-      setIsTransferProcessed(false);
-    })().catch((e: { message: string }) => {
-      console.warn("useBridgeTransferEmmet => burnUSDC => Error:", e.message);
-      setError(e.message);
-      setIsTransferProcessed(false);
-    });
-  };
 
   const sendInstallment = () => {
     setError("");
     setIsTransferProcessed(true);
     (async () => {
       const chainName: TChainName = ChainNameToTypeChainName[bridge.fromChain];
-      const bridgeAddress: string =
-        SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]].emmetBridge
-          .address;
       const decimals = bridge.decimals ? bridge.decimals : 18;
       const formattedAmount = Number(bridge.amount) * 10 ** decimals;
       const destinationDomain =
         ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]];
       const mintRecipient = bridge.receiver;
-      const tokenName: TTokenName = bridge.fromToken as TTokenName;
 
       try {
         const fromChainID = ChainToDestinationDomain[chainName];
@@ -125,7 +61,7 @@ export default function useBridgeTransferEmmet() {
           fromChainID === Chain.BSC
         ) {
           const handler = await chainFactoryTestnet.inner(fromChainID);
-          const { hash, tx } = await chainFactoryTestnet.sendInstallment(
+          const { hash } = await chainFactoryTestnet.sendInstallment(
             handler,
             // @ts-ignore
             signer,
@@ -157,125 +93,5 @@ export default function useBridgeTransferEmmet() {
     });
   };
 
-  return { burnUSDC, error, isTransferProcessed, sendInstallment };
+  return { error, isTransferProcessed, sendInstallment };
 }
-
-// const try_ = async (): Promise<any> => {
-//     try {
-//         const chainName: TChainName = ChainNameToTypeChainName[bridge.fromChain];
-//         const decimals = bridge.decimals ? bridge.decimals : 18;
-//         const formattedAmount = Number(bridge.amount) * 10 ** decimals;
-//         const bridgeAddress: string = SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]].emmetBridge.address;
-//         const destinationDomain = ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]];
-//         console.log("destinationDomain:", destinationDomain, ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]], 'bridge.toChain', bridge.toChain)
-//         const mintRecipient: Hash = addressToBytes32(addressToAccount(bridge.receiver));
-//         const signer = getSigner(chainName);
-//         const tokenName: string = bridge.fromToken;
-
-//         const gas = await signer.estimateContractGas({
-//             address: addressToAccount(bridgeAddress),
-//             account: `0x${address?.replace('0x', '')}`,
-//             abi: circleBurner,
-//             functionName: 'depositForBurn',
-//             args: [
-//                 BigInt(Math.ceil(formattedAmount)),
-//                 destinationDomain,
-//                 mintRecipient,
-//                 tokenName
-//             ],
-//             value: BigInt(fee + 1_000_000_000),
-//         });
-
-//         const gasPrice = await signer.getGasPrice();
-
-//         if (gas && fee && gasPrice) {
-//             setEstimation((parseInt(gas.toString())
-//                 * parseInt(gasPrice.toString())
-//                 + parseInt(fee.toString())
-//                 + 1_000_000_000)
-//                 / 1e18);
-//         }
-
-//         if (request && request.args[1] == ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]]) {
-//             setIsReady(true);
-//             setParams(request);
-//             setError('');
-//         }
-
-//     } catch (e: any) {
-//         setIsReady(false);
-//         console.warn(`useBridgeTransferEmmet Error: ${e.message}`);
-//         if (e.message.includes('Insufficient fee coverage.')) {
-//             setError('Insufficient fee coverage.')
-//         }
-//     }
-// }
-
-// function retry() {
-
-//     console.log('retrying')
-
-//     if (address
-//         && fee
-//         && bridge.amount && Number(bridge.amount) > 0
-//         && bridge.allowance
-//         && bridge.allowance >= Number(bridge.amount)
-//     ) {
-//         (async () => {
-
-//             setError('');
-//             await try_();
-
-//         })().catch((e: any) => {
-//             setIsReady(false);
-//             console.warn(`useBridgeTransferEmmet Error: ${e.message}`);
-//         });
-//     }
-
-// }
-
-// useEffect(() => {
-
-//     if (bridge.amount && params && params.args[1] != ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]]) {
-
-//         setIsReady(false);
-//         interval = setInterval(() => {
-//             retry();
-//         }, 5_000)
-
-//         return () => clearInterval(interval);
-
-//     }
-
-// }, [bridge.amount, address, bridge.allowance, fee, bridge.toChain]);
-
-// const burnUSDC = () => {
-
-//     (async () => {
-
-//         try {
-
-//             const chainName: TChainName = ChainNameToTypeChainName[bridge.fromChain];
-//             const signer = getSigner(chainName);
-//             let hash;
-//             if (!params) {
-//                 (async () => {
-//                     await try_();
-//                 })()
-//             }
-//             hash = await signer.writeContract(params);
-
-//             if (hash) {
-//                 dispatch(setBridgeFromHash(hash));
-//                 dispatch(showBridgeProgress());
-//             }
-
-//         } catch (e: any) {
-//             console.warn(`useBridgeTransferEmmet Error: ${e.message}`);
-//         }
-
-//     })().catch((e: any) => {
-//         console.warn(`useBridgeTransferEmmet Error: ${e.message}`);
-//     });
-
-// }

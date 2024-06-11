@@ -1,4 +1,4 @@
-import { getProvider, addressToAccount } from "../utils";
+import { getProvider } from "../utils";
 import {
   CHAIN_NAME_TO_ID,
   ChainNameToTypeChainName,
@@ -8,11 +8,10 @@ import {
 } from "../types";
 import { useAppDispatch, useAppSelector } from "./storage";
 import { useState, useEffect } from "react";
-import { EmmetFeeOracleABI } from "../abis/EmmetFeeOracle";
 import { setBridgeError, setBridgeFee } from "../store/bridgeSlice";
 import { chainFactoryTestnet } from "../store/chainFactory";
 
-export default function useBridgFee() {
+export default function useBridgeFee() {
   const dispatch = useAppDispatch();
 
   const bridge = useAppSelector((state) => state.bridge);
@@ -22,11 +21,6 @@ export default function useBridgFee() {
   );
 
   const [formattedFee, setFormattedfee] = useState<number>();
-
-  const [bridgeAddress, setBridgeAddress] = useState<string>(
-    SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]].emmetFeeOracle
-      .address,
-  );
 
   const [nativeCurrency, setNativeCurrency] = useState<string>(
     SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]].nativeCurrency
@@ -38,7 +32,7 @@ export default function useBridgFee() {
   );
 
   const isFromPolygon = () => {
-    return bridge.fromChain == "Polygon";
+    return bridge.fromChain === "Polygon";
   };
 
   function formatFee(fee: number): number {
@@ -76,14 +70,13 @@ export default function useBridgFee() {
         SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]];
       const chainName: TChainName = ChainNameToTypeChainName[bridge.fromChain];
 
-      setBridgeAddress(chain.emmetFeeOracle.address);
       setProvider(getProvider(chainName));
       setNativeCurrency(chain.nativeCurrency.symbol);
     }
   }, [bridge.fromChain, bridge.allowance]);
 
   useEffect(() => {
-    if (bridgeAddress && provider) {
+    if (provider) {
       (async () => {
         const fee_ = await getLockAndMintBridgeFee();
         if (fee_) {
@@ -99,7 +92,8 @@ export default function useBridgFee() {
         console.log(err);
       });
     }
-  }, [bridgeAddress, bridge.amount, bridge.toChain]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ bridge.amount, bridge.toChain]);
 
   // console.log('fee', fee, 'nativeCurrency', nativeCurrency, 'formattedFee', formattedFee, 'bridgeAddress', bridgeAddress, 'toChain:', ChainNameToTypeChainName[bridge.toChain])
   return { fee, nativeCurrency, formattedFee };

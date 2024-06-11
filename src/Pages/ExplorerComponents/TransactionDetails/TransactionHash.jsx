@@ -1,24 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import Copy from "../../../assets/img/copy.svg";
-import { useAppSelector, useAppDispatch } from "../../../hooks/storage";
-import useBridgeTx from "../../../hooks/useBridgeTx";
-import { setBridgeTransaction } from "../../../store/explorerSlice";
+import { useAppSelector } from "../../../hooks/storage";
 
 function TransactionHash() {
   const { emmetHash } = useParams();
   const explorer = useAppSelector((state) => state.explorer);
-  const dispatch = useAppDispatch();
-  const data = useBridgeTx(emmetHash);
-  const bridge = useAppSelector((state) => state.bridge);
 
   const [isCopied, setIsCopied] = useState(false);
-
-  useEffect(() => {
-    if (emmetHash && data) {
-      dispatch(setBridgeTransaction(data));
-    }
-  }, [data]);
 
   const handleCopyClick = () => {
     if (navigator && navigator.clipboard) {

@@ -1,17 +1,15 @@
 import { createPublicClient, http, fallback } from "viem";
-import { TChainName, TEmmetChain, options } from "../types";
-import { findChain, getChainData } from "./chain";
+import { TChainName } from "../types";
+import { findChain } from "./chain";
 import { TonClient } from "@ton/ton";
 
 export function getProvider(chainName: TChainName) {
-  const chain: TEmmetChain = findChain(chainName) as TEmmetChain;
-
-  const rpcURL: string = getChainData(chainName, "url") as string;
+  const chain = findChain(chainName);
 
   const provider = createPublicClient({
     chain,
     transport: fallback(
-      chain?.rpcUrls.public.http.map((RPC) => {
+      chain!.rpcUrls.public.http.map((RPC) => {
         return http(RPC);
       }),
     ),
@@ -22,9 +20,9 @@ export function getProvider(chainName: TChainName) {
 
 export function getTonProvider(chainName: "TON" | "TONTestnet") {
   const cn = chainName === "TON" ? "ton" : "tonTestnet";
-  const chain: TEmmetChain = findChain(cn) as TEmmetChain;
+  const chain = findChain(cn);
 
   return new TonClient({
-    endpoint: chain.rpcUrls.default.http[0],
+    endpoint: chain!.rpcUrls.default.http[0],
   });
 }

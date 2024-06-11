@@ -1,16 +1,7 @@
-import { optimismSepolia as viemOptimismSepolia } from "viem/chains";
-import { TEmmetChain } from ".";
+import { Chain, optimismSepolia as viemOptimismSepolia } from "viem/chains";
 
-export const optimismSepolia = {
+export const optimismSepolia: Chain = {
   ...viemOptimismSepolia,
-  emmetBridge: {
-    address: "0x0A6A1Beb7b0b3545578818f45f4e6219615d25aD",
-    blockCreated: 7332935,
-  },
-  emmetFeeOracle: {
-    address: "0x29fb9F83290eAD77Ca4fa4A8491c1065b46b2e6E",
-    blockCreated: 7398828,
-  },
   name: "Optimism Sepolia",
   rpcUrls: {
     default: {
@@ -23,5 +14,4 @@ export const optimismSepolia = {
       ],
     },
   },
-  testnet: true,
-} as TEmmetChain;
+};

@@ -2,37 +2,13 @@ import {
   SUPPORTED_CHAINS,
   TChainDataParam,
   TChainName,
-  TEmmetChain,
-  DomainToChainName,
   SupportedDomains,
   supportedChainnames,
   CHAIN_LOGOS,
   DomainToChainNameTestnet,
 } from "../types";
 
-export function getChainData(
-  chinName: TChainName,
-  param: TChainDataParam,
-): string | number | undefined {
-  const chain = findChain(chinName);
-  if (chain) {
-    switch (param) {
-      case "bridge":
-        return chain.emmetBridge.address;
-      case "icon":
-        return CHAIN_LOGOS[chinName];
-      case "url":
-        return chain.rpcUrls.default.http[0];
-      case "id":
-        return chain.id;
-      default:
-        return undefined;
-    }
-  }
-  return undefined;
-}
-
-export function findChain(chinName: TChainName): TEmmetChain | undefined {
+export function findChain(chinName: TChainName) {
   if (!isChainSupported(chinName)) return undefined;
   return SUPPORTED_CHAINS[chinName as TChainName];
 }

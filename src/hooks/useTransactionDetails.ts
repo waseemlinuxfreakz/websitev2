@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-// import { TxDetails, txBackend } from "../types";
 import { chainFactoryTestnet } from "../store/chainFactory";
 import { useAppSelector, useAppDispatch } from "./storage";
 import {
@@ -11,14 +10,13 @@ import { DetailedTx } from "emmet.js/dist/factory/types";
 /**
  * Requests for data by a bridge TX
  * @param hash
- * @returns TxDetails | {} in a promise
+ * @returns DetailedTx | {} in a promise
  */
 const fetchData = async (emmetHash: string): Promise<DetailedTx | {}> => {
   try {
     // const response: Response = await fetch(
     //   `${txBackend}/transactions/tx/?tx=${hash}`
     // );
-    // const data: TxDetails = await response.json();
     const data = await chainFactoryTestnet.getTransaction(emmetHash);
     return data;
   } catch (error: any) {

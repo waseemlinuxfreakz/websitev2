@@ -1,14 +1,10 @@
 import { useEffect, useState } from "react";
-import { setBridgeToHash } from "../store/bridgeSlice";
-import { useAppSelector, useAppDispatch } from "./storage";
-import { TTxType, TxDetails, txBackend } from "../types";
-import { setBridgeTransaction } from "../store/explorerSlice";
+import { useAppSelector } from "./storage";
 import { Transaction } from "emmet.js/dist/factory/types";
 import { chainFactoryTestnet } from "../store/chainFactory";
 
 export default function useCircleTxData() {
   const bridge = useAppSelector((state) => state.bridge);
-  const dispatch = useAppDispatch();
 
   const initData = {
     amount: BigInt(0),

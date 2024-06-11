@@ -1,4 +1,3 @@
-import { Chain } from "viem";
 import { arbitrum } from "./arbitrum";
 import { arbitrumSepolia } from "./arbitrumSepolia";
 import { avalanche } from "./avalanche";
@@ -39,17 +38,6 @@ export * from "./sepolia";
 
 export type TChainDataParam = "bridge" | "id" | "icon" | "name" | "url";
 
-export type TEmmetChain = Chain & {
-  emmetBridge: {
-    address: string;
-    blockCreated: number;
-  };
-  emmetFeeOracle: {
-    address: string;
-    blockCreated: number;
-  };
-};
-
 export const MAINNETS = {
   arbitrum: arbitrum,
   avalanche: avalanche,
@@ -84,31 +72,6 @@ export type TChainName = keyof typeof SUPPORTED_CHAINS;
 export const SUPPORTED_CHAIN_IDS: number[] = Object.keys(SUPPORTED_CHAINS).map(
   (chainName) => SUPPORTED_CHAINS[chainName as TChainName].id,
 );
-
-export const infuraEndpoints = {
-  // Mainnets:
-  arbitrum: "https://arbitrum-mainnet.infura.io/v3/",
-  avalanche: "https://avalanche-mainnet.infura.io/v3/",
-  base: "",
-  ethereum: "https://mainnet.infura.io/v3/",
-  optimism: "https://optimism-mainnet.infura.io/v3/",
-  polygon: "https://polygon-mainnet.infura.io/v3/",
-  bsc: "", // TODO: change
-  solana: "", // TODO: change
-  // Testnets:
-  arbitrumSepolia: "https://arbitrum-sepolia.infura.io/v3/",
-  avalancheFuji: "https://avalanche-fuji.infura.io/v3/",
-  baseSepolia: "",
-  optimismSepolia: "https://optimism-sepolia.infura.io/v3/",
-  polygonAmoy: "https://polygon-mumbai.infura.io/v3/",
-  sepolia: "https://sepolia.infura.io/v3/",
-  bscTestnet: "https://bsc-testnet-rpc.publicnode.com",
-};
-
-export const CircleAPI = {
-  mainnet: "https://iris-api.circle.com",
-  testnet: "https://iris-api-sandbox.circle.com",
-};
 
 export const CHAIN_NAME_TO_ID: { [key in TChainName]: number } = {
   // Mainnets:
@@ -240,27 +203,4 @@ export const CHAIN_LOGOS: { [key: string]: string } = {
   sepolia: "img/chain/ethereum.svg",
   tonTestnet: "img/chain/ton.svg",
   bscTestnet: "img/chain/bsc.svg",
-};
-
-// https://developers.circle.com/stablecoins/docs/required-block-confirmations
-export const EstimatedTimeFromChain = {
-  // Mainnets
-  arbitrum: "24 min 00 sec",
-  avalanche: "1 min 30 sec",
-  base: "14 min 30 sec",
-  ethereum: "13 min 30 sec",
-  optimism: "24 min 00 sec",
-  polygon: "8 min 30 sec",
-  ton: "4 min 30 sec", // TODO: change
-  solana: "4 min 30 sec", // TODO: change
-  bsc: "4 min 30 sec", // TODO: change
-  // Testnets
-  avalancheFuji: "50 sec",
-  baseSepolia: "4 min 30 sec",
-  sepolia: "2 min 35 sec",
-  optimismSepolia: "3 min 40 sec",
-  polygonAmoy: "3 min 30 sec",
-  arbitrumSepolia: "4 min 30 sec",
-  tonTestnet: "4 min 30 sec", // TODO: change
-  bscTestnet: "4 min 30 sec", // TODO: change
 };

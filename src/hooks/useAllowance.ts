@@ -1,14 +1,9 @@
 import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
-import { erc20Abi } from "viem";
 import { useAppSelector, useAppDispatch } from "./storage";
-import { getProvider, getTokenAddress, addressToAccount } from "../utils";
 import {
   ChainNameToTypeChainName,
   ChainToDestinationDomain,
-  SUPPORTED_CHAINS,
-  TChainName,
-  TTokenName,
 } from "../types";
 import {
   setBridgeAllowance,
@@ -16,7 +11,6 @@ import {
   setBridgeError,
 } from "../store/bridgeSlice";
 import { chainFactoryTestnet } from "../store/chainFactory";
-import { Web3Helper } from "emmet.js/dist/chains/web3";
 import { ethers } from "ethers";
 
 export default function useBridgeAllowance() {

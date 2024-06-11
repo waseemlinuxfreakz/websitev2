@@ -1,7 +1,5 @@
 import { TTxStatus } from "./emmetBridge";
 
-export type TExplorerFilter = "NONE" | "SENDER" | "FROMCHAIN" | "TOCHAIN";
-
 export enum SearchDataType {
   Token = "Token",
   EvmAddress = "EvmAddress",

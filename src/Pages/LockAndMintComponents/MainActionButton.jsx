@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 // Hooks
 import { useAccount } from "wagmi";
-import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { useAppSelector, useAppDispatch } from "../../hooks/storage";
 import useBridgeApproveERC20 from "../../hooks/useBridgeApproveERC20";
 import useBridgeTransferEmmet from "../../hooks/useBridgeTransferEmmet";
@@ -13,7 +12,7 @@ import ButtonSpinner from "../CommonComponents/Spinner/ButtonSpinner";
 import { setBridgeIsApproving } from "../../store/bridgeSlice";
 import ConnectWalletModal from "../../HeaderFooterSidebar/ConnectWalletModal";
 import { useTonWallet } from "@tonconnect/ui-react";
-import lockAndMintChains from "../../hooks/lockAndMintHooks/chains";
+import lockAndMintChains from "../../hooks/chains";
 import { Address } from "@ton/core";
 import Modal from "react-modal";
 import { useWallet } from "@solana/wallet-adapter-react";
@@ -32,20 +31,18 @@ function isValidTonAddress(str) {
 function MainActionButton() {
   const dispatch = useAppDispatch();
   const bridge = useAppSelector((state) => state.bridge);
-  const { coinBalance, fromBalance } = useBalance();
+  const { fromBalance } = useBalance();
 
   const { isConnected } = useAccount();
   const wallet = useTonWallet();
   const solanaWallet = useWallet();
-
-  const { open } = useWeb3Modal();
 
   const [disabled, setDisabled] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [caption, setCaption] = useState("");
   const [showSpinner, setShowSpiner] = useState(false);
   const { approve, isApproveLoading } = useBridgeApproveERC20();
-  const { burnUSDC, isTransferProcessed, sendInstallment } =
+  const { isTransferProcessed, sendInstallment } =
     useBridgeTransferEmmet();
   const [msg, setMsg] = useState("");
   const [alertIsOpen, setAlertIsOpen] = useState(false);
@@ -103,6 +100,7 @@ function MainActionButton() {
       setDisabled(false);
       setCaption("Connect wallet");
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     isConnected,
     bridge.amount,

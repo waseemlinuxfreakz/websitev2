@@ -1,14 +1,6 @@
-import { TEmmetChain } from ".";
+import { Chain } from "viem";
 
-export const solana = {
-  emmetBridge: {
-    address: "", // TODO
-    blockCreated: 0, // TODO
-  },
-  emmetFeeOracle: {
-    address: "", // TODO
-    blockCreated: 0, // TODO
-  },
+export const solana: Chain = {
   name: "Solana",
   rpcUrls: {
     default: {
@@ -18,14 +10,13 @@ export const solana = {
       http: ["https://api.mainnet-beta.solana.com"],
     },
   },
-  testnet: true,
+  testnet: false,
   id: 0,
   nativeCurrency: { name: "SOL", symbol: "SOL", decimals: 9 },
   blockExplorers: {
     default: {
       name: "Solana Explorer",
       url: "https://explorer.solana.com",
-      // apiUrl: "https://api.polygonscan.com/api",
     },
   },
-} as TEmmetChain;
+};

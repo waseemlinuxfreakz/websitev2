@@ -1,17 +1,9 @@
-import { TEmmetChain } from ".";
+import { Chain } from "viem";
 import { getHttpEndpoint } from "@orbs-network/ton-access";
 
 const rpc = await getHttpEndpoint();
 
-export const ton = {
-  emmetBridge: {
-    address: "", // TODO
-    blockCreated: 0, // TODO
-  },
-  emmetFeeOracle: {
-    address: "", // TODO
-    blockCreated: 0, // TODO
-  },
+export const ton: Chain = {
   name: "TON",
   rpcUrls: {
     default: {
@@ -21,14 +13,13 @@ export const ton = {
       http: [rpc],
     },
   },
-  testnet: true,
+  testnet: false,
   id: 65534,
   nativeCurrency: { name: "TON", symbol: "TON", decimals: 9 },
   blockExplorers: {
     default: {
       name: "TONScan",
       url: "https://tonscan.org",
-      // apiUrl: "https://api.polygonscan.com/api",
     },
   },
-} as TEmmetChain;
+};
