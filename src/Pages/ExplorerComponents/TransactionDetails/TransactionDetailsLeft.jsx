@@ -20,8 +20,14 @@ function TransactionDetailsLeft() {
 
   const explorer = useAppSelector((store) => store.explorer);
 
+  const start = explorer
+    && explorer.bridgeTransaction
+    && explorer.bridgeTransaction.started
+    ? explorer.bridgeTransaction.started.toString()
+    : ""
+
   const elapsedTime = useElapsedTime(
-    explorer.bridgeTransaction.started.toString(),
+    start,
   );
 
   const txLength = getTimeLength(
@@ -112,14 +118,12 @@ function TransactionDetailsLeft() {
               <div className="chainLink">
                 {explorer.bridgeTransaction.originalHash
                   ? addressToAccount(
-                      `${
-                        explorer.bridgeTransaction.originalHash &&
-                        explorer.bridgeTransaction.originalHash.slice(0, 6)
-                      }...${
-                        explorer.bridgeTransaction.originalHash &&
-                        explorer.bridgeTransaction.originalHash.slice(-10)
-                      }`,
-                    )
+                    `${explorer.bridgeTransaction.originalHash &&
+                    explorer.bridgeTransaction.originalHash.slice(0, 6)
+                    }...${explorer.bridgeTransaction.originalHash &&
+                    explorer.bridgeTransaction.originalHash.slice(-10)
+                    }`,
+                  )
                   : "N/A"}
               </div>
             </div>
@@ -169,14 +173,12 @@ function TransactionDetailsLeft() {
               <div className="chainLink">
                 {explorer.bridgeTransaction.destinationHash
                   ? addressToAccount(
-                      `${
-                        explorer.bridgeTransaction.destinationHash &&
-                        explorer.bridgeTransaction.destinationHash.slice(0, 6)
-                      }...${
-                        explorer.bridgeTransaction.destinationHash &&
-                        explorer.bridgeTransaction.destinationHash.slice(-10)
-                      }`,
-                    )
+                    `${explorer.bridgeTransaction.destinationHash &&
+                    explorer.bridgeTransaction.destinationHash.slice(0, 6)
+                    }...${explorer.bridgeTransaction.destinationHash &&
+                    explorer.bridgeTransaction.destinationHash.slice(-10)
+                    }`,
+                  )
                   : "N/A"}
               </div>
             </div>
@@ -220,9 +222,9 @@ function TransactionDetailsLeft() {
                 {elapsedTime.minutes ? ` ${elapsedTime.minutes} min ` : ""}
                 {elapsedTime.seconds ? ` ${elapsedTime.seconds} sec ` : ""}
                 {elapsedTime.days ||
-                elapsedTime.hours ||
-                elapsedTime.minutes ||
-                elapsedTime.seconds
+                  elapsedTime.hours ||
+                  elapsedTime.minutes ||
+                  elapsedTime.seconds
                   ? " ago"
                   : ""}
               </span>
