@@ -10,7 +10,7 @@ function IndexHero() {
           <p>All-in-One Decentralized Cross-Chain DeFi Hub</p>
           <h2>Unlock the Full Potential of DeFi</h2>
           <div className="counter">
-            <div className="counterBox">
+            {/* <div className="counterBox">
               <h3>$10.5M+</h3>
               <span>Total Volume</span>
             </div>
@@ -25,10 +25,10 @@ function IndexHero() {
             <div className="counterBox">
               <h3>25K+</h3>
               <span>Monthly active users</span>
-            </div>
+            </div> */}
           </div>
           <div className="counterBottomText">
-            <span>// *</span> Testnet Summary Bridge
+            {/* <span>// *</span> Testnet Summary Bridge */}
           </div>
         </div>
       </div>

@@ -12,7 +12,7 @@ function WebHeader() {
   const isMobile = window.innerWidth <= 768;
   return (
     <header className="webHeader">
-      <HeaderNotify />
+      {/* <HeaderNotify /> */}
       <div className="headerBottomContainer">
         <div className="container">
           <div className="navArea">
@@ -26,7 +26,7 @@ function WebHeader() {
               <a href="./" className="mobLogo">
                 <img src={LogoMob} alt="Emmet Logo" className="" />
               </a>
-              <HeaderNewBtns />
+              {/* <HeaderNewBtns /> */}
             </div>
             <div className="headerRIght">
               {/* <HeaderRightBtn/> */}
