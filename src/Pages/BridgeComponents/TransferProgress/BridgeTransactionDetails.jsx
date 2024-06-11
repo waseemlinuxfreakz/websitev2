@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./BridgeTransactionDetails.css";
 import useBridgeFee from "../../../hooks/useBridgeFee";
 import { useAppSelector } from "../../../hooks/storage";
-import { ChainNameToTypeChainName } from "../../../types";
+import { ChainNameToTypeChainName, CHAIN_NAME_TO_ID } from "../../../types";
 import { removeTrailingZeroes } from "../../../utils";
 import { chainFactoryTestnet } from "../../../store/chainFactory";
 import { ChainToDestinationDomain } from "../../../types";
