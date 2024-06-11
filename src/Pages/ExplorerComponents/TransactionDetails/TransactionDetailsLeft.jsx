@@ -20,19 +20,25 @@ function TransactionDetailsLeft() {
 
   const explorer = useAppSelector((store) => store.explorer);
 
-  const start = explorer
+  const started = explorer
     && explorer.bridgeTransaction
     && explorer.bridgeTransaction.started
     ? explorer.bridgeTransaction.started.toString()
+    : "";
+
+  const finished = explorer
+    && explorer.bridgeTransaction
+    && explorer.bridgeTransaction.finished
+    ? explorer.bridgeTransaction.finished.toString()
     : ""
 
   const elapsedTime = useElapsedTime(
-    start,
+    started,
   );
 
   const txLength = getTimeLength(
-    explorer.bridgeTransaction.started.toString(),
-    explorer.bridgeTransaction.finished.toString(),
+    started,
+    finished,
   );
 
   const [isCopied, setIsCopied] = useState(false);
