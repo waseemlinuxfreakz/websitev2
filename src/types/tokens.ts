@@ -5,12 +5,12 @@ export const BridgeTokens = [
   //   "icon": "img/coin/eurc.svg",
   //   "price": 2062.25
   // },
-  {
-    cmc_id: 3408,
-    name: "USDC",
-    icon: "img/coin/usdc.svg",
-    price: 0.9998,
-  },
+  // {
+  //   cmc_id: 3408,
+  //   name: "USDC",
+  //   icon: "img/coin/usdc.svg",
+  //   price: 0.9998,
+  // },
   {
     cmc_id: 3408,
     name: "USD//C",
@@ -116,4 +116,14 @@ export const TOKEN_DECIMALS = {
   MATIC: 18,
   USDT: 18,
   WBTC: 18,
+};
+
+export const TOKEN_SYMBOL_TO_TOKEN = {
+  "USD//C": "USDC",
+  DAI: "DAI",
+  TON: "TON",
+  EMMET: "EMMET",
+  ETH: "ETH",
+  MATIC: "MATIC",
+  USDT: "USDT",
 };

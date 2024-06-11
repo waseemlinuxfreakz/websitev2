@@ -12,7 +12,7 @@ import {
   setBridgeFromToken,
   setBridgeToToken,
 } from "../../../store/bridgeSlice";
-import { TOKEN_DECIMALS } from "../../../types";
+import { TOKEN_DECIMALS, TOKEN_SYMBOL_TO_TOKEN } from "../../../types";
 
 export default function TokenSelectionDropdown({ type }) {
   const bridge = useAppSelector((state) => state.bridge);
@@ -43,7 +43,9 @@ export default function TokenSelectionDropdown({ type }) {
   useEffect(() => {
     setSelectedCoin({
       icon: getIsfrom() ? getIcon(bridge.fromToken) : getIcon(bridge.toToken),
-      name: getIsfrom() ? bridge.fromToken : bridge.toToken,
+      name: getIsfrom()
+        ? TOKEN_SYMBOL_TO_TOKEN[bridge.fromToken]
+        : TOKEN_SYMBOL_TO_TOKEN[bridge.toToken],
     });
   }, [bridge.fromToken, bridge.toToken]);
 
@@ -104,7 +106,7 @@ export default function TokenSelectionDropdown({ type }) {
                 onClick={() => handleCoinClick(coin.icon, coin.name)}
               >
                 <img src={coin.icon} alt={coin.name} />
-                <span>{coin.name}</span>
+                <span>{TOKEN_SYMBOL_TO_TOKEN[coin.name]}</span>
               </div>
               <div className="coinItemRight">
                 {/* <CoinLinkAddress /> */}
