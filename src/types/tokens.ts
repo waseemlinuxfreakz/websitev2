@@ -59,6 +59,12 @@ export const BridgeTokens = [
   //   "icon": "img/coin/usdt.svg",
   //   "price": 1
   // }
+  {
+    cmc_id: 26960,
+    name: "GrabClub",
+    icon: "img/coin/grabclub.png",
+    price: 1,
+  },
 ];
 
 export const TOKEN_DECIMALS = {
