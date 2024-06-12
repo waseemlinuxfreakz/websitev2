@@ -23,14 +23,13 @@
 }
 
 @media only screen and (max-width: 1025px) {
-
   ::-webkit-scrollbar {
     display: none;
   }
 
   body {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
   }
 
   .progressBox {

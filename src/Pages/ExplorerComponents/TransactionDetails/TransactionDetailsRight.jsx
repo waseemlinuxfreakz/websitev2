@@ -1,7 +1,7 @@
 import React from "react";
 import { useAppSelector } from "../../../hooks/storage";
 import { getChainSymbolFromName, removeTrailingZeroes } from "../../../utils";
-import { CHAIN_ID_TO_NAME, TOKEN_DECIMALS } from "../../../types";
+import { CHAIN_ID_TO_NAME, TOKEN_DECIMALS, TOKEN_SYMBOL_TO_TOKEN } from "../../../types";
 
 function TransactionDetailsRight() {
   const explorer = useAppSelector((store) => store.explorer);
@@ -17,7 +17,7 @@ function TransactionDetailsRight() {
               Number(explorer.bridgeTransaction.amount) /
                 10 ** TOKEN_DECIMALS[explorer.bridgeTransaction.fromToken],
             )}{" "}
-            {explorer.bridgeTransaction.fromToken}
+            {TOKEN_SYMBOL_TO_TOKEN[explorer.bridgeTransaction.fromToken]}
           </div>
         </li>
         <li className="transactionDetailsListItem">
@@ -27,7 +27,7 @@ function TransactionDetailsRight() {
               Number(explorer.bridgeTransaction.amount) /
                 10 ** TOKEN_DECIMALS[explorer.bridgeTransaction.toToken],
             )}{" "}
-            {explorer.bridgeTransaction.fromToken}
+            {TOKEN_SYMBOL_TO_TOKEN[explorer.bridgeTransaction.toToken]}
           </div>
         </li>
         <li className="transactionDetailsListItem">
@@ -38,7 +38,7 @@ function TransactionDetailsRight() {
                 Number(explorer.bridgeTransaction.protocolFee) /
                   10 ** TOKEN_DECIMALS[explorer.bridgeTransaction.fromToken],
               )}{" "}
-              {explorer.bridgeTransaction.fromToken}
+              {TOKEN_SYMBOL_TO_TOKEN[explorer.bridgeTransaction.fromToken]}
             </div>
           </div>
         </li>

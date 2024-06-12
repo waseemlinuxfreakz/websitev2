@@ -12,6 +12,7 @@ import {
   columns,
   ROWS_PER_PAGE,
   TOKEN_DECIMALS,
+  TOKEN_SYMBOL_TO_TOKEN,
 } from "../../../types";
 import { getTimeLength, unpackDateTime } from "../../../utils";
 
@@ -52,10 +53,10 @@ const DatatablePage = () => {
         )}</div>`,
         Sent: `<span class="textCell">${removeTrailingZeroes(
           Number(Tx.amount.toString()) / 10 ** TOKEN_DECIMALS[Tx.fromToken],
-        )} ${Tx.fromToken}</span>`,
+        )} ${TOKEN_SYMBOL_TO_TOKEN[Tx.fromToken]}</span>`,
         Received: `<span class="textCell">${removeTrailingZeroes(
           Number(Tx.amount.toString()) / 10 ** TOKEN_DECIMALS[Tx.fromToken],
-        )} ${Tx.toToken}</span>`,
+        )} ${TOKEN_SYMBOL_TO_TOKEN[Tx.toToken]}</span>`,
         Age: `<span class="textCell">${unpackDateTime(
           getTimeLength(Tx.started.toString(), Date.now().toString()),
         )}</span>`,
