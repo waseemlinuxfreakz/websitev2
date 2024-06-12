@@ -12,12 +12,12 @@ export const ROWS_PER_PAGE = 10;
 
 export const columns = [
   {
-    label: "Txn Type",
+    label: "Type",
     field: "TxnType",
     sort: "asc",
   },
   {
-    label: "Txn Hash",
+    label: "Hash",
     field: "TxnHash",
     sort: "asc",
   },
@@ -47,7 +47,7 @@ export const columns = [
     sort: 'asc',
   },
   {
-    label: "Txn Status",
+    label: "Status",
     field: "TxnStatus",
     sort: "asc",
   },
