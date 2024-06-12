@@ -55,8 +55,6 @@ export default function useBridgeFee() {
         const _fee = await getLockAndMintBridgeFee();
         const _formatedFee = _fee / 10 ** chain.nativeCurrency.decimals;
 
-        console.log({ _fee });
-
         setFormattedfee(_formatedFee);
         setFee(_fee);
         dispatch(setBridgeFee(_fee));

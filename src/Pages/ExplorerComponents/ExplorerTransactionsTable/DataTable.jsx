@@ -21,16 +21,6 @@ const DatatablePage = () => {
 
   const { txs } = useExplorerTransactions(1);
 
-  useEffect(() => {
-    if (txs[0]) {
-      const time = getTimeLength(
-        txs[0].started.toString(),
-        Date.now().toString(),
-      );
-      console.log({ time });
-    }
-  }, [txs]);
-
   const rows =
     txs &&
     txs.map((Tx) => {

@@ -48,7 +48,6 @@ export default function ConnectionIndicatorDropdown({ parent, direction }) {
     setChainArray(
       chainData.filter((chain) => chain.name !== selectedChain.name),
     );
-    console.log({ chainArray });
   }, [selectedChain, bridge.toChain]);
 
   const [isListVisible, setListVisible] = useState(false);

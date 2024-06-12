@@ -58,7 +58,6 @@ export default function TokenSelectionDropdown({ type }) {
   const selectCoinRef = useRef(null);
 
   useEffect(() => {
-    console.log({ icon: getIcon(pool.token), token: pool.token });
 
     const handleClickOutside = (event) => {
       if (
