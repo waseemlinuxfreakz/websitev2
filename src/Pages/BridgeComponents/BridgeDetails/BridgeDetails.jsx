@@ -7,6 +7,7 @@ import BridgingTimeEstimation from "./BridgingTimeEstimation";
 import { useAppSelector } from "../../../hooks/storage";
 import { bnWithoutDecimals } from "../../../utils/";
 import useBridgeAllowance from "../../../hooks/useAllowance";
+import { TOKEN_SYMBOL_TO_TOKEN } from "../../../types";
 
 function BridgeDetails() {
   const bridge = useAppSelector((state) => state.bridge);
@@ -31,7 +32,7 @@ function BridgeDetails() {
         <div className="detialItemLeft">Token allowance</div>
         <div className="detialItemRight">
           <img src={CheckGreen} alt="CheckGreen" />
-          {bnWithoutDecimals(allowance, bridge.fromToken)} {tokenName}
+          {bnWithoutDecimals(allowance, bridge.fromToken)} {TOKEN_SYMBOL_TO_TOKEN[tokenName]}
         </div>
       </div>
     </div>
