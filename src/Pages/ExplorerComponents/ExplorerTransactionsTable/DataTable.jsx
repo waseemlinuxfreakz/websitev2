@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { MDBDataTable } from "mdbreact";
 import { useNavigate } from "react-router-dom";
 import useExplorerTransactions from "../../../hooks/useExplorerTransactions";
@@ -13,11 +13,19 @@ import {
   ROWS_PER_PAGE,
   TOKEN_DECIMALS,
 } from "../../../types";
+import { getTimeLength, unpackDateTime } from "../../../utils";
 
 const DatatablePage = () => {
   const navigate = useNavigate();
 
   const { txs } = useExplorerTransactions(1);
+
+  useEffect(() => {
+    if (txs[0]) {
+      const time = getTimeLength(txs[0].started.toString(), Date.now().toString())
+      console.log({time});
+    }
+  }, [txs])
 
   const rows =
     txs &&
@@ -45,9 +53,9 @@ const DatatablePage = () => {
         Received: `<span class="textCell">${removeTrailingZeroes(
           Number(Tx.amount.toString()) / 10 ** TOKEN_DECIMALS[Tx.fromToken],
         )} ${Tx.toToken}</span>`,
-        // Age: `<span class="textCell">${unpackDateTime(
-        //   getTimeLength(Tx.Time, new Date())
-        // )}</span>`,
+        Age: `<span class="textCell">${unpackDateTime(
+          getTimeLength(Tx.started.toString(), Date.now().toString())
+        )}</span>`,
         TxnStatus: `<span class="${
           Tx.destinationHash ? "success" : "failed"
         }"><img src="img/explorer/${
@@ -85,7 +93,7 @@ const DatatablePage = () => {
               Received: (
                 <div dangerouslySetInnerHTML={createMarkup(row.Received)} />
               ),
-              // Age: <div dangerouslySetInnerHTML={createMarkup(row.Age)} />,
+              Age: <div dangerouslySetInnerHTML={createMarkup(row.Age)} />,
               TxnStatus: (
                 <div dangerouslySetInnerHTML={createMarkup(row.TxnStatus)} />
               ),

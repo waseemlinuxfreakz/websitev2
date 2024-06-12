@@ -41,11 +41,11 @@ export const columns = [
     field: "Received",
     sort: "asc",
   },
-  // {
-  //   label: 'Age',
-  //   field: 'Age',
-  //   sort: 'asc',
-  // },
+  {
+    label: 'Age',
+    field: 'Age',
+    sort: 'asc',
+  },
   {
     label: "Txn Status",
     field: "TxnStatus",
