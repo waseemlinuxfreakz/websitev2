@@ -21,8 +21,8 @@ export default function useBalance() {
   const dispatch = useAppDispatch();
   const bridge = useAppSelector((state) => state.bridge);
   const [txFeeCoinBalance, setTxFeeCoinbalance] = useState<number>(0);
-  const [balance, setBalance] = useState<number>(bridge.balance);
-  const [balanceTo, setBalanceTo] = useState<number>(bridge.balance);
+  const [balance, setBalance] = useState<number>(0);
+  const [balanceTo, setBalanceTo] = useState<number>(0);
 
   async function getCoinBalance(direction: TDirection) {
     try {
