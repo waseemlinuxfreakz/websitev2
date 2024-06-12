@@ -44,7 +44,17 @@ export default function useBridgeTransferEmmet() {
         if (fromChainID === Chain.TON) {
           const handler = await chainFactoryTestnet.inner(fromChainID);
 
-          await chainFactoryTestnet.sendInstallment(
+          console.log({
+            handler,
+            tonSender,
+            amount: BigInt(Math.ceil(formattedAmount)),
+            destinationDomain,
+            fromToken: bridge.fromToken,
+            toToken: bridge.toToken,
+            mintRecipient,
+          });
+
+          const { hash } = await chainFactoryTestnet.sendInstallment(
             handler,
             tonSender,
             BigInt(Math.ceil(formattedAmount)),
@@ -53,6 +63,8 @@ export default function useBridgeTransferEmmet() {
             bridge.toToken,
             mintRecipient,
           );
+
+          dispatch(setBridgeFromHash(hash ? hash : "N/A"));
           dispatch(showBridgeProgress());
           setIsTransferProcessed(false);
         } else if (

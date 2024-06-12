@@ -40,14 +40,15 @@ export default function DestinationChainDropdown() {
 
   useEffect(() => {
     const chain = chainArray[0];
-    if (chain) {
+    console.log({ equalChains: chain.name !== selectedChain.name });
+    if (chain === selectedChain) {
       setSelectedChain({
         icon: chain.icon,
         name: chain.name,
       });
       dispatch(setBridgeToChain(chain.name));
     }
-  }, [chainArray]);
+  }, [chainArray, selectedChain]);
 
   function handleChainClick(icon, name, id) {
     setSelectedChain({ icon, name });
