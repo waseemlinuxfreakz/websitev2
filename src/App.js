@@ -3,7 +3,6 @@ import "./App.css";
 import "./Responsive.css";
 import { useEffect, useMemo } from "react";
 import ReactGA from "react-ga";
-import Bridge from "./Pages/Bridge";
 import ExplorerPage from "./Pages/Explorer";
 import TransactionDetailsPage from "./Pages/TransactionDetailsPage";
 import LockAndMint from "./Pages/LockAndMint";

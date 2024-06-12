@@ -73,6 +73,7 @@ export const TOKEN_DECIMALS = {
   USDT: 18,
   WBTC: 18,
   GrabClub: 18,
+  TestRED: 0,
 };
 
 export type TTokenName = keyof typeof TOKEN_DECIMALS;
@@ -86,4 +87,5 @@ export const TOKEN_SYMBOL_TO_TOKEN = {
   MATIC: "MATIC",
   USDT: "USDT",
   GrabClub: "GrabClub",
+  TestRED: "TestRED",
 };
