@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
 import { useAppSelector, useAppDispatch } from "./storage";
-import {
-  ChainNameToTypeChainName,
-  ChainToDestinationDomain,
-} from "../types";
+import { ChainNameToTypeChainName, ChainToDestinationDomain } from "../types";
 import {
   setBridgeAllowance,
   setBridgeDecimals,

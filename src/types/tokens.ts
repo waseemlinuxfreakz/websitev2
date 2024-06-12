@@ -61,9 +61,6 @@ export const BridgeTokens = [
   // }
 ];
 
-
-
-
 export const TOKEN_DECIMALS = {
   DAI: 18,
   EMMET: 18,

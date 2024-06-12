@@ -22,10 +22,13 @@ const DatatablePage = () => {
 
   useEffect(() => {
     if (txs[0]) {
-      const time = getTimeLength(txs[0].started.toString(), Date.now().toString())
-      console.log({time});
+      const time = getTimeLength(
+        txs[0].started.toString(),
+        Date.now().toString(),
+      );
+      console.log({ time });
     }
-  }, [txs])
+  }, [txs]);
 
   const rows =
     txs &&
@@ -54,7 +57,7 @@ const DatatablePage = () => {
           Number(Tx.amount.toString()) / 10 ** TOKEN_DECIMALS[Tx.fromToken],
         )} ${Tx.toToken}</span>`,
         Age: `<span class="textCell">${unpackDateTime(
-          getTimeLength(Tx.started.toString(), Date.now().toString())
+          getTimeLength(Tx.started.toString(), Date.now().toString()),
         )}</span>`,
         TxnStatus: `<span class="${
           Tx.destinationHash ? "success" : "failed"

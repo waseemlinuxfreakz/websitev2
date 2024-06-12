@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { useAccount } from "wagmi";
 import useActionButtonDiabled from "../../hooks/useActionButtonDisabled";
 import { useTonAddress } from "@tonconnect/ui-react";

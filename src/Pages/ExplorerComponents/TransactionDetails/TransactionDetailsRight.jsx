@@ -1,9 +1,6 @@
 import React from "react";
 import { useAppSelector } from "../../../hooks/storage";
-import {
-  getChainSymbolFromName,
-  removeTrailingZeroes,
-} from "../../../utils";
+import { getChainSymbolFromName, removeTrailingZeroes } from "../../../utils";
 import { CHAIN_ID_TO_NAME, TOKEN_DECIMALS } from "../../../types";
 
 function TransactionDetailsRight() {

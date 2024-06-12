@@ -13,7 +13,7 @@ import { useAppSelector } from "../hooks/storage";
 const MobileHeader = () => {
   // const [isBodyClassAdded, setIsBodyClassAdded] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const bridge = useAppSelector(state => state.bridge)
+  const bridge = useAppSelector((state) => state.bridge);
 
   const handleButtonClick = () => {
     // Toggle the class on the body element
@@ -39,9 +39,11 @@ const MobileHeader = () => {
           >
             <div>
               <img src={Wallet} alt="Wallet" />
-              {bridge.senderAddress ? `${bridge.senderAddress.slice(0, 6)}...${bridge.senderAddress.slice(
-                  -6,
-                )}`: "Connect"}
+              {bridge.senderAddress
+                ? `${bridge.senderAddress.slice(0, 6)}...${bridge.senderAddress.slice(
+                    -6,
+                  )}`
+                : "Connect"}
             </div>
           </div>
           <div className="mobileNavTriger" onClick={handleButtonClick}>

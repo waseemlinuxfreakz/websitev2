@@ -12,7 +12,7 @@ function BridgeTransactionDetails() {
   const bridge = useAppSelector((state) => state.bridge);
 
   const { nativeCurrency, formattedFee } = useBridgeFee();
-  const { estimateTime, setEstimatedTime } = useState(40 * 1000);
+  const [estimatedTime, setEstimatedTime] = useState(40 * 1000);
 
   useEffect(() => {
     (async () => {
@@ -34,7 +34,7 @@ function BridgeTransactionDetails() {
         console.log(error);
       }
     })();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bridge.fromChain, bridge.toChain, bridge.fromToken, bridge.toToken]);
 
   return (
@@ -66,7 +66,7 @@ function BridgeTransactionDetails() {
           Estimated waiting time
           {/* <img src="./img/InfoIcons.svg" alt="InfoIcons" /> */}
         </div>
-        <div className="bridgeTransDetRight">{msToTime(estimateTime)}</div>
+        <div className="bridgeTransDetRight">{msToTime(estimatedTime)}</div>
       </li>
     </ul>
   );

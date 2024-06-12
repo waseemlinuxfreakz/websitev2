@@ -129,7 +129,7 @@ export default function useBalance() {
         });
       }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bridge.fromChain, bridge.fromToken, bridge.amount, bridge.senderAddress]);
 
   useEffect(() => {
@@ -166,7 +166,7 @@ export default function useBalance() {
         });
       }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bridge.toChain, bridge.toToken, bridge.receiver, bridge.senderAddress]);
 
   return {

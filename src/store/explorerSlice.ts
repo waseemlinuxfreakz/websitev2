@@ -76,7 +76,7 @@ export const explorerSlice = createSlice({
       state: IExplorerState,
       action: PayloadAction<number>,
     ) {
-        // state.bridgeTransaction.age = action.payload;
+      // state.bridgeTransaction.age = action.payload;
     },
     resetBridgeTransactionData(state: IExplorerState) {
       state.bridgeTransaction = initialState.bridgeTransaction;

@@ -42,9 +42,9 @@ export const columns = [
     sort: "asc",
   },
   {
-    label: 'Age',
-    field: 'Age',
-    sort: 'asc',
+    label: "Age",
+    field: "Age",
+    sort: "asc",
   },
   {
     label: "Status",

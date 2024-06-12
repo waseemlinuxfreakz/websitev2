@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 
 import RightArrow from "../../../assets/img/right-arrow.svg";
 import Copy from "../../../assets/img/copy.svg";
+import Target from "../../../assets/img/target.svg";
+import { getExplorerByChainName, addressToAccount } from "../../../utils";
+import { ChainNameToTypeChainName } from "../../../types";
 
 import { useAppSelector, useAppDispatch } from "../../../hooks/storage";
 import { resetBridgeProgress } from "../../../store/bridgeSlice";
@@ -39,12 +42,28 @@ function TrackExplorer() {
         <div className="destinationHas">
           <div className="destinationHasTitle">
             <h4>Original hash</h4>
-            <img
-              className="btn-copy"
-              src={Copy}
-              alt="Copy"
-              onClick={() => navigator.clipboard.writeText(bridge.fromHash)}
-            />
+
+            <span>
+              <a
+                href={`${getExplorerByChainName(
+                  ChainNameToTypeChainName[bridge.fromChain],
+                )}/tx/${addressToAccount(bridge.fromHash)}`}
+                className="exportLink"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={Target}
+                  alt="Open transaction in the destination chain explorer"
+                />
+              </a>
+              <img
+                className="btn-copy"
+                src={Copy}
+                alt="Copy"
+                onClick={() => navigator.clipboard.writeText(bridge.fromHash)}
+              />
+            </span>
           </div>
           <div className="destinationHasLink" style={{ textAlign: "center" }}>
             {`${bridge.fromHash.slice(0, showCharacters)}...${bridge.fromHash.slice(-showCharacters)}`}
@@ -56,12 +75,27 @@ function TrackExplorer() {
         <div className="destinationHas">
           <div className="destinationHasTitle">
             <h4>Destination hash</h4>
-            <img
-              className="btn-copy"
-              src={Copy}
-              alt="Copy"
-              onClick={() => navigator.clipboard.writeText(bridge.toHash)}
-            />
+            <span>
+              <a
+                href={`${getExplorerByChainName(
+                  ChainNameToTypeChainName[bridge.toChain],
+                )}/tx/${addressToAccount(bridge.toHash)}`}
+                className="exportLink"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={Target}
+                  alt="Open transaction in the destination chain explorer"
+                />
+              </a>
+              <img
+                className="btn-copy"
+                src={Copy}
+                alt="Copy"
+                onClick={() => navigator.clipboard.writeText(bridge.toHash)}
+              />
+            </span>
           </div>
           <div className="destinationHasLink" style={{ textAlign: "center" }}>
             {`${bridge.toHash.slice(0, showCharacters)}...${bridge.toHash.slice(-showCharacters)}`}

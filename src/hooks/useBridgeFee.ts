@@ -92,8 +92,8 @@ export default function useBridgeFee() {
         console.log(err);
       });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ bridge.amount, bridge.toChain]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [bridge.amount, bridge.toChain]);
 
   // console.log('fee', fee, 'nativeCurrency', nativeCurrency, 'formattedFee', formattedFee, 'bridgeAddress', bridgeAddress, 'toChain:', ChainNameToTypeChainName[bridge.toChain])
   return { fee, nativeCurrency, formattedFee };

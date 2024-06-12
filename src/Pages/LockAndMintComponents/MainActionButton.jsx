@@ -42,8 +42,7 @@ function MainActionButton() {
   const [caption, setCaption] = useState("");
   const [showSpinner, setShowSpiner] = useState(false);
   const { approve, isApproveLoading } = useBridgeApproveERC20();
-  const { isTransferProcessed, sendInstallment } =
-    useBridgeTransferEmmet();
+  const { isTransferProcessed, sendInstallment } = useBridgeTransferEmmet();
   const [msg, setMsg] = useState("");
   const [alertIsOpen, setAlertIsOpen] = useState(false);
 
@@ -100,7 +99,7 @@ function MainActionButton() {
       setDisabled(false);
       setCaption("Connect wallet");
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     isConnected,
     bridge.amount,
