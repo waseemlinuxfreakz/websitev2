@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./Header.css";
 import { useLocation } from "react-router-dom";
 import ConnectWalletModal from "./ConnectWalletModal";
@@ -30,7 +30,9 @@ function Header({ caption }) {
             >
               <div>
                 <img src={Wallet} alt="Wallet" />
-                {bridge.senderAddress ? "Connected" : "Connect"}
+                {bridge.senderAddress ? `${bridge.senderAddress.slice(0, 6)}...${bridge.senderAddress.slice(
+                  -6,
+                )}` : "Connect"}
               </div>
             </div>
             <ConnectWalletModal

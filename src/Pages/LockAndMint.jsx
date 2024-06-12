@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Header from "../HeaderFooterSidebar/LockAndMintHeader";
+import Header from "../HeaderFooterSidebar/Header";
 import Footer from "../HeaderFooterSidebar/Footer";
 import Sidebar from "../HeaderFooterSidebar/Sidebar";
 import BridgeSwapContainer from "./LockAndMintComponents/BridgeSwapContainer";
 import BridgeTransferProgress from "./BridgeComponents/BridgeTransferProgress";
-import MobileHeader from "../HeaderFooterSidebar/LockAndMintMobileHeader";
+import MobileHeader from "../HeaderFooterSidebar/MobileHeader";
 import MainActionButton from "../Pages/LockAndMintComponents/MainActionButton";
 // import SidebarSlider from '../HeaderFooterSidebar/SidebarComponent/SidebarSlider';
 import { useAppSelector } from "../hooks/storage";
