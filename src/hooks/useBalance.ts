@@ -102,7 +102,7 @@ export default function useBalance() {
       })();
       if (bridge.fromToken === chain.nativeCurrency.symbol) {
         (async () => {
-          // setBalance(0);
+          setBalance(0);
           const bal: number = await getCoinBalance("from");
           const fmb = bal / 10 ** decimals;
           const formattedBalance = Number(fmb);
@@ -116,7 +116,7 @@ export default function useBalance() {
         });
       } else {
         (async () => {
-          // setBalance(0);
+          setBalance(0);
           const bal: number = await getTokenBalance("from");
           const fmb =
             bal / 10 ** Number(TOKEN_DECIMALS[bridge.fromToken as TTokenName]);
@@ -132,7 +132,7 @@ export default function useBalance() {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [bridge.fromChain, bridge.fromToken, bridge.amount, bridge.senderAddress]);
+  }, [bridge.fromChain, bridge.fromToken, bridge.senderAddress]);
 
   useEffect(() => {
     if (bridge.toChain && bridge.toToken && bridge.receiver) {
@@ -141,7 +141,7 @@ export default function useBalance() {
       const decimals = chain.nativeCurrency.decimals;
       if (bridge.toToken === chain.nativeCurrency.symbol) {
         (async () => {
-          // setBalanceTo(0);
+          setBalanceTo(0);
           const bal: number = await getCoinBalance("to");
           const fmb = bal / 10 ** decimals;
           const formattedBalance = Number(fmb);
@@ -155,7 +155,7 @@ export default function useBalance() {
         });
       } else {
         (async () => {
-          // setBalanceTo(0);
+          setBalanceTo(0);
           const bal: number = await getTokenBalance("to");
           const fmb =
             bal / 10 ** Number(TOKEN_DECIMALS[bridge.fromToken as TTokenName]);
