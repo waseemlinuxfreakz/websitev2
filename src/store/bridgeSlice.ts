@@ -63,7 +63,7 @@ const initialState = {
   fromContractAddress: "",
   fromHash: "",
   fromToken,
-  fromTokens: filterOneToken(fromToken, fromChain),
+  fromTokens: filterOneToken(fromToken, fromChain, toChain),
   isApproving: false,
   isFailure: false,
   isLoading: false,
@@ -81,7 +81,7 @@ const initialState = {
   toChains: filterTwoChains(fromChain, toChain),
   toHash: "",
   toToken,
-  toTokens: filterOneToken(toToken, toChain),
+  toTokens: filterOneToken(toToken, fromChain, toChain),
   senderAddress: "",
 } as IBridgeState;
 
@@ -162,8 +162,16 @@ export const bridgeSlice = createSlice({
           }
         });
       }
-      state.fromTokens = filterOneToken(state.fromToken, state.fromChain);
-      state.toTokens = filterOneToken(state.toToken, state.toChain);
+      state.fromTokens = filterOneToken(
+        state.fromToken,
+        state.fromChain,
+        state.toChain,
+      );
+      state.toTokens = filterOneToken(
+        state.toToken,
+        state.fromChain,
+        state.toChain,
+      );
       state.fromChains = filterTwoChains(state.fromChain, state.toChain);
       state.toChains = filterTwoChains(state.fromChain, state.toChain);
     },
@@ -179,8 +187,16 @@ export const bridgeSlice = createSlice({
     setBridgeFromToken(state: IBridgeState, action: PayloadAction<string>) {
       state.fromToken = action.payload;
       state.toToken = action.payload;
-      state.fromTokens = filterOneToken(state.fromToken, state.fromChain);
-      state.toTokens = filterOneToken(state.toToken, state.fromChain);
+      state.fromTokens = filterOneToken(
+        state.fromToken,
+        state.fromChain,
+        state.toChain,
+      );
+      state.toTokens = filterOneToken(
+        state.toToken,
+        state.fromChain,
+        state.toChain,
+      );
     },
     setBridgeIsApproving(state: IBridgeState, action: PayloadAction<boolean>) {
       state.isApproving = action.payload;
@@ -236,6 +252,16 @@ export const bridgeSlice = createSlice({
       state.toChain = action.payload;
       state.fromChains = filterTwoChains(state.fromChain, state.toChain);
       state.toChains = filterTwoChains(state.fromChain, state.toChain);
+      state.fromTokens = filterOneToken(
+        state.fromToken,
+        state.fromChain,
+        state.toChain,
+      );
+      state.toTokens = filterOneToken(
+        state.toToken,
+        state.fromChain,
+        state.toChain,
+      );
     },
     setBridgeToBalance(state: IBridgeState, action: PayloadAction<number>) {
       state.toBalance = action.payload;
@@ -246,8 +272,16 @@ export const bridgeSlice = createSlice({
     setBridgeToToken(state: IBridgeState, action: PayloadAction<string>) {
       state.toToken = action.payload;
       state.fromToken = action.payload;
-      state.fromTokens = filterOneToken(state.fromToken, state.fromChain);
-      state.toTokens = filterOneToken(state.toToken, state.toChain);
+      state.fromTokens = filterOneToken(
+        state.fromToken,
+        state.fromChain,
+        state.toChain,
+      );
+      state.toTokens = filterOneToken(
+        state.toToken,
+        state.fromChain,
+        state.toChain,
+      );
     },
     setSenderAddress(state: IBridgeState, action: PayloadAction<string>) {
       state.senderAddress = action.payload;

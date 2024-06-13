@@ -29,14 +29,38 @@ export function filterTwoTokens(name1: string, name2: string): TokenType[] {
   );
 }
 
+export function getSupportedTokens(fromChain: string, toChain: string) {
+  // @ts-ignore
+  const fromChainSupportedTokens = new Set<string>(CHAIN_TO_TOKENS[fromChain]);
+  // @ts-ignore
+  const toChainSupportedTokens = new Set<string>(CHAIN_TO_TOKENS[toChain]);
+
+  // @ts-ignore
+  const supportedTokens = fromChainSupportedTokens.intersection(
+    toChainSupportedTokens,
+  );
+  return Array.from(supportedTokens);
+}
+
 /**
  * Used in the Bridge only
  * @param name name of the selected token
  * @returns an array of yet unselected tokens
  */
-export function filterOneToken(name: string, fromChain: string): TokenType[] {
-  // @ts-ignore
-  const supportedTokens = CHAIN_TO_TOKENS[fromChain];
+export function filterOneToken(
+  name: string,
+  fromChain: string,
+  toChain: string,
+): TokenType[] {
+  const supportedTokens = getSupportedTokens(fromChain, toChain);
+
+  const tokens = BridgeTokens.filter(
+    (token: TokenType) =>
+      token.name !== name && supportedTokens.includes(token.name),
+  );
+
+  console.log({ tokens });
+
   return BridgeTokens.filter(
     (token: TokenType) =>
       token.name !== name && supportedTokens.includes(token.name),

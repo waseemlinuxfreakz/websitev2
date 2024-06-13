@@ -12,7 +12,13 @@ import {
   setBridgeFromToken,
   setBridgeToToken,
 } from "../../../store/bridgeSlice";
-import { TOKEN_DECIMALS, TOKEN_SYMBOL_TO_TOKEN } from "../../../types";
+import {
+  BridgeTokens,
+  CHAIN_TO_TOKENS,
+  TOKEN_DECIMALS,
+  TOKEN_SYMBOL_TO_TOKEN,
+} from "../../../types";
+import { getSupportedTokens } from "../../../utils";
 
 export default function TokenSelectionDropdown({ type }) {
   const bridge = useAppSelector((state) => state.bridge);
@@ -50,11 +56,14 @@ export default function TokenSelectionDropdown({ type }) {
   }, [bridge.fromToken, bridge.toToken]);
 
   useEffect(() => {
-    if (!bridge.fromTokens.includes(bridge.fromToken)) {
-      dispatch(setBridgeFromToken(bridge.fromTokens[0].name));
-    }
-    if (!bridge.toTokens.includes(bridge.toToken)) {
-      dispatch(setBridgeToToken(bridge.toTokens[0].name));
+    const supportedTokens = getSupportedTokens(
+      bridge.fromChain,
+      bridge.toChain,
+    );
+    console.log({ supportedTokens });
+    if (!supportedTokens.includes(bridge.fromToken)) {
+      dispatch(setBridgeFromToken(BridgeTokens[0].name));
+      dispatch(setBridgeToToken(BridgeTokens[0].name));
     }
   }, [bridge.fromChain, bridge.toChain]);
 

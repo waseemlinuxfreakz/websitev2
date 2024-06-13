@@ -18,6 +18,7 @@
     "@ton/crypto": "^3.2.0",
     "@ton/ton": "^13.11.1",
     "@tonconnect/ui-react": "^2.0.0",
+    "@types/node": "^20.14.2",
     "@walletconnect/relay-auth": "latest",
     "@web3-react/injected-connector": "^6.0.7",
     "@web3modal/wagmi": "^4.1.6",
