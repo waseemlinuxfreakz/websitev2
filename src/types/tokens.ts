@@ -73,6 +73,12 @@ export const BridgeTokens = [
   // },
 ];
 
+export const CHAIN_TO_TOKENS = {
+  TONTestnet: ["USD//C", "TON", "DAI"],
+  Amoy: ["USD//C", "TON", "DAI", "GrabClub"],
+  Sepolia: ["USD//C", "TON", "DAI", "GrabClub"],
+};
+
 export const TOKEN_DECIMALS = {
   DAI: 18,
   EMMET: 18,

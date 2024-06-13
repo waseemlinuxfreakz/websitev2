@@ -3,6 +3,7 @@ import chainList from "../store/Chain.json";
 import coinsData from "../store/coins.json";
 import { BridgeTokens } from "../types/tokens";
 import { TChainType, TokenType } from "../store/types";
+import { CHAIN_TO_TOKENS } from "../types";
 
 /**
  * Used by the bridge to disable sending inside the same chain
@@ -33,8 +34,13 @@ export function filterTwoTokens(name1: string, name2: string): TokenType[] {
  * @param name name of the selected token
  * @returns an array of yet unselected tokens
  */
-export function filterOneToken(name: string): TokenType[] {
-  return BridgeTokens.filter((token: TokenType) => token.name != name);
+export function filterOneToken(name: string, fromChain: string): TokenType[] {
+  // @ts-ignore
+  const supportedTokens = CHAIN_TO_TOKENS[fromChain];
+  return BridgeTokens.filter(
+    (token: TokenType) =>
+      token.name !== name && supportedTokens.includes(token.name),
+  );
 }
 
 /**

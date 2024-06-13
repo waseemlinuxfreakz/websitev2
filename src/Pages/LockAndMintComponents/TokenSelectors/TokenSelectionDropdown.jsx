@@ -49,6 +49,15 @@ export default function TokenSelectionDropdown({ type }) {
     });
   }, [bridge.fromToken, bridge.toToken]);
 
+  useEffect(() => {
+    if (!bridge.fromTokens.includes(bridge.fromToken)) {
+      dispatch(setBridgeFromToken(bridge.fromTokens[0].name));
+    }
+    if (!bridge.toTokens.includes(bridge.toToken)) {
+      dispatch(setBridgeToToken(bridge.toTokens[0].name));
+    }
+  }, [bridge.fromChain, bridge.toChain]);
+
   const handleCoinClick = (icon, name) => {
     setSelectedCoin({ icon, name });
     toggleVisibility();

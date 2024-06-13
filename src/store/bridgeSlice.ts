@@ -63,7 +63,7 @@ const initialState = {
   fromContractAddress: "",
   fromHash: "",
   fromToken,
-  fromTokens: filterOneToken(fromToken),
+  fromTokens: filterOneToken(fromToken, fromChain),
   isApproving: false,
   isFailure: false,
   isLoading: false,
@@ -81,7 +81,7 @@ const initialState = {
   toChains: filterTwoChains(fromChain, toChain),
   toHash: "",
   toToken,
-  toTokens: filterOneToken(toToken),
+  toTokens: filterOneToken(toToken, toChain),
   senderAddress: "",
 } as IBridgeState;
 
@@ -162,6 +162,8 @@ export const bridgeSlice = createSlice({
           }
         });
       }
+      state.fromTokens = filterOneToken(state.fromToken, state.fromChain);
+      state.toTokens = filterOneToken(state.toToken, state.toChain);
       state.fromChains = filterTwoChains(state.fromChain, state.toChain);
       state.toChains = filterTwoChains(state.fromChain, state.toChain);
     },
@@ -177,8 +179,8 @@ export const bridgeSlice = createSlice({
     setBridgeFromToken(state: IBridgeState, action: PayloadAction<string>) {
       state.fromToken = action.payload;
       state.toToken = action.payload;
-      state.fromTokens = filterOneToken(state.fromToken);
-      state.toTokens = filterOneToken(state.toToken);
+      state.fromTokens = filterOneToken(state.fromToken, state.fromChain);
+      state.toTokens = filterOneToken(state.toToken, state.fromChain);
     },
     setBridgeIsApproving(state: IBridgeState, action: PayloadAction<boolean>) {
       state.isApproving = action.payload;
@@ -244,8 +246,8 @@ export const bridgeSlice = createSlice({
     setBridgeToToken(state: IBridgeState, action: PayloadAction<string>) {
       state.toToken = action.payload;
       state.fromToken = action.payload;
-      state.fromTokens = filterOneToken(state.fromToken);
-      state.toTokens = filterOneToken(state.toToken);
+      state.fromTokens = filterOneToken(state.fromToken, state.fromChain);
+      state.toTokens = filterOneToken(state.toToken, state.toChain);
     },
     setSenderAddress(state: IBridgeState, action: PayloadAction<string>) {
       state.senderAddress = action.payload;
