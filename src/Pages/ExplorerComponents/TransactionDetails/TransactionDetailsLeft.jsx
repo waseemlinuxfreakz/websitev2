@@ -17,6 +17,7 @@ function TransactionDetailsLeft() {
 
   const Pending = "/img/explorer/Pending.svg";
   const Success = "/img/explorer/Success.svg";
+  const Failed = "/img/explorer/Failed.svg";
 
   const explorer = useAppSelector((store) => store.explorer);
 
@@ -80,7 +81,7 @@ function TransactionDetailsLeft() {
     <div className="transactionDetailsBox">
       <ul className="transactionDetailsList">
         <li className="transactionDetailsListItem">
-          <div className="transactionDetailsListLeft">Txn type</div>
+          <div className="transactionDetailsListLeft">Type</div>
           <div className="transactionDetailsListRight">
             <span className="transfer">{"Transfer"}</span>
           </div>
@@ -91,13 +92,21 @@ function TransactionDetailsLeft() {
             <span className="success">
               <img
                 src={
-                  explorer.bridgeTransaction.destinationHash ? Success : Pending
+                  explorer.bridgeTransaction.destinationHash
+                    ? Success
+                    : Date.now() - Number(explorer.bridgeTransaction.started) <
+                        5 * 60 * 1000 // 5 mins
+                      ? Pending
+                      : Failed
                 }
                 alt="Status"
               />{" "}
               {explorer.bridgeTransaction.destinationHash
                 ? "Success"
-                : "Pending"}
+                : Date.now() - Number(explorer.bridgeTransaction.started) <
+                    5 * 60 * 1000 // 5 mins
+                  ? "Pending"
+                  : "Failed"}
             </span>
           </div>
         </li>
