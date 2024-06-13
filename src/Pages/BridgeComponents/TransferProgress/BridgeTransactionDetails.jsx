@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import "./BridgeTransactionDetails.css";
 import useBridgeFee from "../../../hooks/useBridgeFee";
 import { useAppSelector } from "../../../hooks/storage";
-import { ChainNameToTypeChainName, CHAIN_NAME_TO_ID } from "../../../types";
+import {
+  ChainNameToTypeChainName,
+  CHAIN_NAME_TO_ID,
+  TOKEN_SYMBOL_TO_TOKEN,
+} from "../../../types";
 import { removeTrailingZeroes } from "../../../utils";
 import { chainFactoryTestnet } from "../../../store/chainFactory";
 import { ChainToDestinationDomain } from "../../../types";
@@ -43,7 +47,7 @@ function BridgeTransactionDetails() {
         <div className="bridgeTransDetLeft">You will receive</div>
         <div className="bridgeTransDetRight">
           {removeTrailingZeroes(Number(bridge.receive).toFixed(8))}{" "}
-          {bridge.toToken}
+          {TOKEN_SYMBOL_TO_TOKEN[bridge.toToken]}
         </div>
       </li>
       <li className="bridgeTransactionDetailsList">
