@@ -4,14 +4,15 @@
     "name": "Sepolia",
     "icon": "img/chain/ethereum.svg"
   },
-  {
-    "id": 65535,
-    "name": "TONTestnet",
-    "icon": "img/chain/ton.svg"
-  },
+
   {
     "id": 80002,
     "name": "Amoy",
     "icon": "img/chain/polygon.svg"
+  },
+  {
+    "id": 65535,
+    "name": "TONTestnet",
+    "icon": "img/chain/ton.svg"
   }
 ]

@@ -94,51 +94,38 @@ export default function useBalance() {
 
   useEffect(() => {
     setBalance(0);
-    if (bridge.fromChain && bridge.fromToken && bridge.senderAddress) {
-      const chain =
-        SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]];
-      const decimals = chain.nativeCurrency.decimals;
+    const chain = SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]];
 
-      // (async () => {
-      //   const coinBalance: number = await getCoinBalance("from");
-      //   const formattedBalance = coinBalance / 10 ** decimals;
-      //   if (formattedBalance) {
-      //     setTxFeeCoinbalance(formattedBalance);
-      //   }
-      // })();
+    // (async () => {
+    //   const coinBalance: number = await getCoinBalance("from");
+    //   const formattedBalance = coinBalance / 10 ** decimals;
+    //   if (formattedBalance) {
+    //     setTxFeeCoinbalance(formattedBalance);
+    //   }
+    // })();
+    (async () => {
+      let bal = 0;
       if (bridge.fromToken === chain.nativeCurrency.symbol) {
-        (async () => {
-          const bal: number = await getCoinBalance("from");
-          const fmb = bal / 10 ** decimals;
-          const formattedBalance = Number(fmb);
-          setBalance(formattedBalance);
-          dispatch(setBridgeBalance(formattedBalance));
-          dispatch(setBridgeError(""));
-        })().catch((e) => {
-          const formattedError = `useCoinBalanceFrom:Error: ${e}`;
-          console.error(formattedError);
-          dispatch(setBridgeError(formattedError));
-        });
+        bal = await getCoinBalance("from");
       } else {
-        (async () => {
-          const bal: number = await getTokenBalance("from");
-          const fmb =
-            bal / 10 ** Number(TOKEN_DECIMALS[bridge.fromToken as TTokenName]);
-          const formattedBalance = Number(fmb);
-          setBalance(formattedBalance);
-          dispatch(setBridgeBalance(formattedBalance));
-          dispatch(setBridgeError(""));
-        })().catch((e) => {
-          const formattedError = `useTokenBalanceFrom:Error: ${e}`;
-          console.error(formattedError);
-          dispatch(setBridgeError(formattedError));
-        });
+        bal = await getTokenBalance("from");
       }
-    }
+      const fmb =
+        bal / 10 ** Number(TOKEN_DECIMALS[bridge.fromToken as TTokenName]);
+      const formattedBalance = Number(fmb);
+      console.log({ fromChain: bridge.fromChain, formattedBalance });
+      setBalance(formattedBalance);
+      dispatch(setBridgeBalance(formattedBalance));
+      dispatch(setBridgeError(""));
+    })().catch((e) => {
+      const formattedError = `useCoinBalanceFrom:Error: ${e}`;
+      console.error(formattedError);
+      dispatch(setBridgeError(formattedError));
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     bridge.fromChain,
-    // bridge.toChain,
+    bridge.toChain,
     bridge.fromToken,
     // bridge.toToken,
     bridge.senderAddress,
@@ -147,42 +134,31 @@ export default function useBalance() {
 
   useEffect(() => {
     setBalanceTo(0);
-    if (bridge.toChain && bridge.toToken && bridge.receiver) {
-      const chain = SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.toChain]];
+    // if (bridge.receiver) {
+    const chain = SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.toChain]];
 
-      const decimals = chain.nativeCurrency.decimals;
-      if (bridge.toToken === chain.nativeCurrency.symbol) {
-        (async () => {
-          const bal: number = await getCoinBalance("to");
-          const fmb = bal / 10 ** decimals;
-          const formattedBalance = Number(fmb);
-          setBalanceTo(formattedBalance);
-          dispatch(setBridgeToBalance(formattedBalance));
-          dispatch(setBridgeError(""));
-        })().catch((e) => {
-          const formattedError = `useCoinBalanceTo:Error: ${e}`;
-          console.error(formattedError);
-          dispatch(setBridgeError(formattedError));
-        });
+    (async () => {
+      let bal = 0;
+      if (bridge.fromToken === chain.nativeCurrency.symbol) {
+        bal = await getCoinBalance("to");
       } else {
-        (async () => {
-          const bal: number = await getTokenBalance("to");
-          const fmb =
-            bal / 10 ** Number(TOKEN_DECIMALS[bridge.fromToken as TTokenName]);
-          const formattedBalance = Number(fmb);
-          setBalanceTo(formattedBalance);
-          dispatch(setBridgeToBalance(formattedBalance));
-          dispatch(setBridgeError(""));
-        })().catch((e) => {
-          const formattedError = `useTokenBalanceTo:Error: ${e}`;
-          console.error(formattedError);
-          dispatch(setBridgeError(formattedError));
-        });
+        bal = await getTokenBalance("to");
       }
-    }
+      const fmb =
+        bal / 10 ** Number(TOKEN_DECIMALS[bridge.fromToken as TTokenName]);
+      const formattedBalance = Number(fmb);
+      console.log({ toChain: bridge.toChain, formattedBalance });
+      setBalanceTo(formattedBalance);
+      dispatch(setBridgeBalance(formattedBalance));
+      dispatch(setBridgeError(""));
+    })().catch((e) => {
+      const formattedError = `useCoinBalanceFrom:Error: ${e}`;
+      console.error(formattedError);
+      dispatch(setBridgeError(formattedError));
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
-    // bridge.fromChain,
+    bridge.fromChain,
     bridge.toChain,
     // bridge.fromToken,
     bridge.toToken,
@@ -194,18 +170,18 @@ export default function useBalance() {
     console.log({
       fromChain: bridge.fromChain,
       toChain: bridge.toChain,
-      fromBalance: balance,
-      toBalance: balanceTo,
-      fromToken: bridge.fromToken,
-      toToken: bridge.toToken,
+      // fromBalance: balance,
+      // toBalance: balanceTo,
+      // fromToken: bridge.fromToken,
+      // toToken: bridge.toToken,
     });
   }, [
-    balance,
-    balanceTo,
+    // balance,
+    // balanceTo,
     bridge.fromChain,
     bridge.toChain,
-    bridge.fromToken,
-    bridge.toToken,
+    // bridge.fromToken,
+    // bridge.toToken,
   ]);
 
   return {
