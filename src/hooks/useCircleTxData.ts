@@ -7,7 +7,8 @@ export default function useCircleTxData() {
   const bridge = useAppSelector((state) => state.bridge);
 
   const initData = {
-    amount: BigInt(0),
+    sentAmount: BigInt(0),
+    receivedAmount: BigInt(0),
     fromToken: "USDC",
     toToken: "USDC",
     destinationHash: "",

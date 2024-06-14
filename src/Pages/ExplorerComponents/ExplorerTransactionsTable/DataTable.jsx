@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { MDBDataTable } from "mdbreact";
 import { useNavigate } from "react-router-dom";
 import useExplorerTransactions from "../../../hooks/useExplorerTransactions";
@@ -42,10 +42,10 @@ const DatatablePage = () => {
           CHAIN_ID_TO_NAME[Tx.toChainId],
         )}</div>`,
         Sent: `<span class="textCell">${removeTrailingZeroes(
-          Number(Tx.amount.toString()) / 10 ** TOKEN_DECIMALS[Tx.fromToken],
+          Number(Tx.sentAmount) / 10 ** TOKEN_DECIMALS[Tx.fromToken],
         )} ${TOKEN_SYMBOL_TO_TOKEN[Tx.fromToken]}</span>`,
         Received: `<span class="textCell">${removeTrailingZeroes(
-          Number(Tx.amount.toString()) / 10 ** TOKEN_DECIMALS[Tx.fromToken],
+          Number(Tx.receivedAmount) / 10 ** TOKEN_DECIMALS[Tx.fromToken],
         )} ${TOKEN_SYMBOL_TO_TOKEN[Tx.toToken]}</span>`,
         Age: `<span class="textCell">${unpackDateTime(
           getTimeLength(Tx.started.toString(), Date.now().toString()),

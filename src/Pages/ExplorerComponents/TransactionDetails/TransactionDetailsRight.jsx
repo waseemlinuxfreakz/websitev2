@@ -18,7 +18,7 @@ function TransactionDetailsRight() {
           <div className="transactionDetailsListRight">
             {/* If amount < 2,000 then fixed fee $0.4, else 0.02% of the amount */}
             {removeTrailingZeroes(
-              Number(explorer.bridgeTransaction.amount) /
+              Number(explorer.bridgeTransaction.sentAmount) /
                 10 ** TOKEN_DECIMALS[explorer.bridgeTransaction.fromToken],
             )}{" "}
             {TOKEN_SYMBOL_TO_TOKEN[explorer.bridgeTransaction.fromToken]}
@@ -28,7 +28,7 @@ function TransactionDetailsRight() {
           <div className="transactionDetailsListLeft">Received amount</div>
           <div className="transactionDetailsListRight">
             {removeTrailingZeroes(
-              Number(explorer.bridgeTransaction.amount) /
+              Number(explorer.bridgeTransaction.receivedAmount) /
                 10 ** TOKEN_DECIMALS[explorer.bridgeTransaction.toToken],
             )}{" "}
             {TOKEN_SYMBOL_TO_TOKEN[explorer.bridgeTransaction.toToken]}

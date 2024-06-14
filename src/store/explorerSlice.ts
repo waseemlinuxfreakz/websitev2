@@ -4,7 +4,8 @@ import { TxDetails, SearchDataType } from "../types";
 export interface DetailedTx {
   txHash: string;
   nonce: number;
-  amount: number;
+  sentAmount: number;
+  receivedAmount: number;
   fromChainId: number;
   toChainId: number;
   fromToken: string;
@@ -30,7 +31,8 @@ export interface IExplorerState {
 
 const initialState: IExplorerState = {
   bridgeTransaction: {
-    amount: 0,
+    sentAmount: 0,
+    receivedAmount: 0,
     fromToken: "USDC",
     toToken: "USDC",
     destinationHash: "",

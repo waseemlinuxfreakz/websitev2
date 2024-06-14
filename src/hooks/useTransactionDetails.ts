@@ -42,7 +42,8 @@ export default function useTransactionDetails(emmetHash: string) {
           const __data = {
             txHash: _data.txHash,
             nonce: Number(_data.nonce),
-            amount: Number(_data.amount),
+            sentAmount: Number(_data.sentAmount),
+            receivedAmount: Number(_data.receivedAmount),
             fromChainId: Number(_data.fromChainId),
             toChainId: Number(_data.toChainId),
             fromToken: _data.fromToken,
