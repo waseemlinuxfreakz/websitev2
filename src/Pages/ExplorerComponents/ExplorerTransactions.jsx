@@ -43,7 +43,7 @@ function ExplorerTransactions() {
                     <img src={Filter} alt="Filter" />
                 </button> */}
         {/* TODO: implement explorer filters:
-                
+
                 <div className={`transactionRight ${isTransactionRightOpen ? 'open' : ''}`}>
                     <ExplorerTransactionSelectDropdown/>
                     <ExplorerFromChainSelectDropdown/>

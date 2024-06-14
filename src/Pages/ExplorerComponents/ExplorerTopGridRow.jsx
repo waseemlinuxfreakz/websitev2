@@ -3,8 +3,7 @@ import "./ExplorerTopGrid/ExplorerTopGrid.css";
 import useExplorerStats from "../../hooks/useExplorerStats";
 
 function ExplorerTopGridRow() {
-  const { txCount, uniqueAddresses, ttlTransactions, ttlAmount } =
-    useExplorerStats();
+  const { stats } = useExplorerStats();
 
   return (
     <div className="explorereTopRow">
@@ -12,25 +11,25 @@ function ExplorerTopGridRow() {
         <div className="col-xl-3">
           <div className="ExplorerBoxGray valueBox">
             <p>Total Volume</p>
-            <h3>$ {ttlAmount}</h3>
+            <h3>$ {Number(stats.totalVolume)}</h3>
           </div>
         </div>
         <div className="col-xl-3">
           <div className="ExplorerBoxGray feesBox">
             <p>Fees</p>
-            <h3>$ {Number(ttlTransactions * 0.05).toFixed(2)}</h3>
+            <h3>$ {Number(stats.totalFees)}</h3>
           </div>
         </div>
         <div className="col-xl-3">
           <div className="ExplorerBoxGray Totaltransactions">
             <p>Total transactions</p>
-            <h3>{ttlTransactions}</h3>
+            <h3>{Number(stats.totalTransactions)}</h3>
           </div>
         </div>
         <div className="col-xl-3">
           <div className="ExplorerBoxGray addressBox">
             <p>Unique Addresses</p>
-            <h3>{uniqueAddresses}</h3>
+            <h3>{Number(stats.uniqueUser)}</h3>
           </div>
         </div>
       </div>
