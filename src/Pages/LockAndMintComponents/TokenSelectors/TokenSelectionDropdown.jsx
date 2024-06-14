@@ -60,7 +60,6 @@ export default function TokenSelectionDropdown({ type }) {
       bridge.fromChain,
       bridge.toChain,
     );
-    console.log({ supportedTokens });
     if (!supportedTokens.includes(bridge.fromToken)) {
       dispatch(setBridgeFromToken(BridgeTokens[0].name));
       dispatch(setBridgeToToken(BridgeTokens[0].name));

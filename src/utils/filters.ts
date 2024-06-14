@@ -54,13 +54,6 @@ export function filterOneToken(
 ): TokenType[] {
   const supportedTokens = getSupportedTokens(fromChain, toChain);
 
-  const tokens = BridgeTokens.filter(
-    (token: TokenType) =>
-      token.name !== name && supportedTokens.includes(token.name),
-  );
-
-  console.log({ tokens });
-
   return BridgeTokens.filter(
     (token: TokenType) =>
       token.name !== name && supportedTokens.includes(token.name),

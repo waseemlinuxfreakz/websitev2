@@ -17,6 +17,15 @@ export default function TokenSelectorBox({ type }) {
 
   const { fromBalance, toBalance } = useBalance();
 
+  // useEffect(() => {
+  //   console.log({
+  //     fromChain: bridge.fromChain,
+  //     toChain: bridge.toChain,
+  //     fromBalance,
+  //     toBalance,
+  //   });
+  // }, [fromBalance, toBalance]);
+
   const [amount, setAmount] = useState("");
   const [oldAmount, setOldAmount] = useState("");
 

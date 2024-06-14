@@ -23,11 +23,17 @@ export default function DestinationChainDropdown() {
 
   const [chainArray, setChainArray] = useState(chainData);
 
-  useEffect(() => {
-    const chain = chainArray[0];
-    setSelectedChain(chain);
-    dispatch(setBridgeToChain(chain.name));
-  }, []);
+  useEffect(
+    () => {
+      if (bridge.fromChain === selectedChain.name) {
+        const chain = chainArray[0];
+        setSelectedChain(chain);
+        dispatch(setBridgeToChain(chain.name));
+      }
+    },
+    //  [chainArray]
+    [chainArray],
+  );
 
   useEffect(() => {
     setChainArray(
@@ -40,7 +46,6 @@ export default function DestinationChainDropdown() {
 
   useEffect(() => {
     const chain = chainArray[0];
-    console.log({ equalChains: chain.name !== selectedChain.name });
     if (chain === selectedChain) {
       setSelectedChain({
         icon: chain.icon,

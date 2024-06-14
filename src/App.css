@@ -260,7 +260,8 @@ ul.selectCoinList.hidden {
 }
 
 .selectCoinLeft ul.selectCoinList {
-  width: 150px;
+  /* width: 150px; */
+  max-width: fit-content;
 }
 
 .coinItemRight {
@@ -902,7 +903,7 @@ span.SwapReceive_box {
 }
 
 .payInput .selectCoinList {
-  width: 150px !important;
+  /* width: 150px !important; */
 }
 
 .headerRightSide .connectWallet {

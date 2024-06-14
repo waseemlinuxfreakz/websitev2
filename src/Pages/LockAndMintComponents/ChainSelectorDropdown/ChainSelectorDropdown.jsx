@@ -81,6 +81,8 @@ export default function ChainSelectorDropdown({ parent, direction }) {
       case "explorer":
         break;
       default:
+        dispatch(setBridgeFromChain(name));
+        setChainArray(chainData);
     }
   }
 
@@ -97,6 +99,8 @@ export default function ChainSelectorDropdown({ parent, direction }) {
     const selChain = findChain(
       CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.fromChain]],
     );
+
+    selChain && switchChain({ chainId: selChain.id });
     if (!selChain) {
       setSelectedChain({
         icon: chainData[1].icon,
@@ -130,9 +134,7 @@ export default function ChainSelectorDropdown({ parent, direction }) {
     setSelectedChain({ icon, name });
     dispatchChain(name);
     toggleVisibility();
-    if (parent != "explorer") {
-      switchChain({ chainId: id });
-    }
+    switchChain({ chainId: id });
     ReactGA.event({
       category: "User",
       action: "Clicked Button",
