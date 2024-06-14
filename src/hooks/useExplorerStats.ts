@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { txBackend } from "../types";
 import { chainFactoryTestnet } from "../store/chainFactory";
 import { ExplorerMeta } from "emmet.js/dist/factory/types";
 

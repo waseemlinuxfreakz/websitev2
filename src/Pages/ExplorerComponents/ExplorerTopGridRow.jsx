@@ -1,6 +1,7 @@
 import React from "react";
 import "./ExplorerTopGrid/ExplorerTopGrid.css";
 import useExplorerStats from "../../hooks/useExplorerStats";
+import { removeTrailingZeroes } from "../../utils";
 
 function ExplorerTopGridRow() {
   const { stats } = useExplorerStats();
@@ -11,13 +12,13 @@ function ExplorerTopGridRow() {
         <div className="col-xl-3">
           <div className="ExplorerBoxGray valueBox">
             <p>Total Volume</p>
-            <h3>$ {Number(stats.totalVolume)}</h3>
+            <h3>$ {removeTrailingZeroes(Number(stats.totalVolume) / 1e6)}</h3>
           </div>
         </div>
         <div className="col-xl-3">
           <div className="ExplorerBoxGray feesBox">
             <p>Fees</p>
-            <h3>$ {Number(stats.totalFees)}</h3>
+            <h3>$ {removeTrailingZeroes(Number(stats.totalFees) / 1e6)}</h3>
           </div>
         </div>
         <div className="col-xl-3">
