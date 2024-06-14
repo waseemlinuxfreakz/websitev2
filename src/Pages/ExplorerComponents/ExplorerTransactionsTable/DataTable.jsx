@@ -53,7 +53,11 @@ const DatatablePage = () => {
         TxnStatus: `<span class="${
           Tx.destinationHash ? "success" : "failed"
         }"><img src="img/explorer/${
-          Tx.destinationHash ? "Success" : "Failed"
+          Tx.destinationHash
+            ? "Success"
+            : Date.now() - Number(Tx.started) < 5 * 60 * 1000 // 5 mins
+              ? "Pending"
+              : "Failed"
         }.svg" alt="${
           Tx.destinationHash
             ? "Success"

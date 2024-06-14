@@ -1,7 +1,6 @@
 import React from "react";
 import "./ExplorerTopGrid/ExplorerTopGrid.css";
 import useExplorerStats from "../../hooks/useExplorerStats";
-import { removeTrailingZeroes } from "../../utils";
 
 function ExplorerTopGridRow() {
   const { stats } = useExplorerStats();
