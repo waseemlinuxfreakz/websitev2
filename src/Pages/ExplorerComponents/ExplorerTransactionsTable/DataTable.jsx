@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MDBDataTable } from "mdbreact";
 import { useNavigate } from "react-router-dom";
 import useExplorerTransactions from "../../../hooks/useExplorerTransactions";
@@ -15,11 +15,14 @@ import {
   TOKEN_SYMBOL_TO_TOKEN,
 } from "../../../types";
 import { getTimeLength, unpackDateTime } from "../../../utils";
+import useExplorerStats from "../../../hooks/useExplorerStats";
 
 const DatatablePage = () => {
   const navigate = useNavigate();
 
   const { txs } = useExplorerTransactions(1);
+
+  useEffect(() => {}, []);
 
   const rows =
     txs &&
