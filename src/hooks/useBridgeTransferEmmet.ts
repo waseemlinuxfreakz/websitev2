@@ -11,11 +11,13 @@ import { useTonConnect } from "./useTonConnect";
 import { Chain } from "emmet.js/dist/factory/types";
 import { chainFactoryTestnet } from "../store/chainFactory";
 import { useEthersSigner } from "./useEthersSigner";
+import useBridgeFee from "./useBridgeFee";
 // import { ErrorDecoder } from "ethers-decode-error";
 // import { EmmetBridge__factory } from "@emmet-contracts/web3";
 
 export default function useBridgeTransferEmmet() {
   const { sender: tonSender } = useTonConnect();
+  const { fee } = useBridgeFee();
 
   const dispatch = useAppDispatch();
 
@@ -73,6 +75,20 @@ export default function useBridgeTransferEmmet() {
           fromChainID === Chain.BSC
         ) {
           const handler = await chainFactoryTestnet.inner(fromChainID);
+          console.log({
+            handler,
+            // @ts-ignore
+            signer,
+            amount: BigInt(Math.ceil(formattedAmount)),
+            destinationDomain,
+            fromToken: bridge.fromToken,
+            toToken: bridge.toToken,
+            mintRecipient,
+            gas: {
+              value: fee ? BigInt(fee) : parseEther("0.00001"),
+            },
+          });
+
           const { hash } = await chainFactoryTestnet.sendInstallment(
             handler,
             // @ts-ignore
@@ -83,7 +99,7 @@ export default function useBridgeTransferEmmet() {
             bridge.toToken,
             mintRecipient,
             {
-              value: parseEther("0.00001"),
+              value: fee,
             },
           );
 

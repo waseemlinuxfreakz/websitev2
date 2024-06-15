@@ -108,6 +108,7 @@ function MainActionButton() {
     wallet,
     fromBalance,
     solanaWallet.publicKey,
+    bridge.allowance,
   ]);
 
   const onClickSelectAction = async () => {
