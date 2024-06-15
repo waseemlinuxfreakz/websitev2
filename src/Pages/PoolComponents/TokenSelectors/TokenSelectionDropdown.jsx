@@ -58,7 +58,6 @@ export default function TokenSelectionDropdown({ type }) {
   const selectCoinRef = useRef(null);
 
   useEffect(() => {
-
     const handleClickOutside = (event) => {
       if (
         selectCoinRef.current &&
@@ -78,7 +77,7 @@ export default function TokenSelectionDropdown({ type }) {
     <div className="selectCoin" ref={selectCoinRef}>
       <div className="selectedCoin" onClick={toggleVisibility}>
         <div className="coinNameIcon">
-          <img src={selectedCoin.icon} alt={selectedCoin.name} />
+          <img src={`/${selectedCoin.icon}`} alt={selectedCoin.name} />
           <span>{selectedCoin.name}</span>
         </div>
         <img src={DownArrow} alt="Down Arrow" />
@@ -90,7 +89,10 @@ export default function TokenSelectionDropdown({ type }) {
               className="coinNameIcon"
               onClick={() => handleCoinClick(coin.icon, coin.name)}
             >
-              <img src={`${isLP() ? "../" : ""}${coin.icon}`} alt={coin.name} />
+              <img
+                src={`${isLP() ? "../" : "/"}${coin.icon}`}
+                alt={coin.name}
+              />
               <span>{coin.name}</span>
             </div>
             <div className="coinItemRight">

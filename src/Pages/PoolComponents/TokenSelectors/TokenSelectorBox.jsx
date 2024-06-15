@@ -9,7 +9,7 @@ import { setFromToken, setToToken } from "../../../store/swapSlice";
 
 export default function TokenSelectorBox({ type }) {
   // Global state
-  const swap = useAppSelector((state) => state.swap);
+  const pool = useAppSelector((state) => state.pool);
   const dispatch = useAppDispatch();
 
   function onInputChange(e) {
@@ -39,7 +39,7 @@ export default function TokenSelectorBox({ type }) {
           </div>
         </div>
         <div className="payReRight">
-          <WalletBalance name={isDeposit() ? swap.fromToken : swap.toToken} />
+          <WalletBalance name={pool.token} />
           <TokenSelectionDropdown type={type} />
         </div>
       </div>

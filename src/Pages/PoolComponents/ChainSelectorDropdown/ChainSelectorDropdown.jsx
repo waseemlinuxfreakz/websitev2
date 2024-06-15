@@ -49,18 +49,9 @@ export default function ChainSelectorDropdown({ parent, direction }) {
   const [chainArray, setChainArray] = useState(chainData);
 
   useEffect(() => {
-    if (parent === "header") {
-      setChainArray(
-        chainData.filter((chain) => chain.name !== selectedChain.name),
-      );
-    } else {
-      setChainArray(
-        chainData.filter(
-          (chain) =>
-            chain.name !== selectedChain.name && chain.name !== bridge.toChain,
-        ),
-      );
-    }
+    setChainArray(
+      chainData.filter((chain) => chain.name !== selectedChain.name),
+    );
   }, [selectedChain, bridge.toChain]);
 
   const [isListVisible, setListVisible] = useState(false);
@@ -79,7 +70,8 @@ export default function ChainSelectorDropdown({ parent, direction }) {
         dispatch(setBridgeFromChain(name));
         setChainArray(chainData);
         break;
-      case "pool":
+      case "LP":
+        dispatch(setBridgeFromChain(name));
         dispatch(setChain(name));
         setChainArray(chainData);
         break;

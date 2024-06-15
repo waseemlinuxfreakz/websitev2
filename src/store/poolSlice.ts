@@ -1,10 +1,8 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "./store";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 // Mock Data
 import chainList from "./Chain.json";
 import coinsData from "./coins.json";
 import { TChainType, TokenType } from "./types";
-import { filterOneToken, filterTwoTokens } from "../utils/filters";
 
 interface IPoolState {
   chain: string;

@@ -4,7 +4,7 @@ import "./Yourliquidity.css";
 
 import Close from "../../../assets/img/close.svg";
 import Info from "../../../assets/img/InfoIcons.svg";
-import ChainSelectorDropdown from "../../HomeComponents/ChainSelectorDropdown/ChainSelectorDropdown";
+import ChainSelectorDropdown from "../ChainSelectorDropdown/ChainSelectorDropdown";
 import TokenSelectorBox from "../TokenSelectors/TokenSelectorBox";
 
 function Yourliquidity() {
