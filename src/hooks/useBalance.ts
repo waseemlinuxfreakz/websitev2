@@ -133,24 +133,27 @@ export default function useBalance() {
   ]);
 
   useEffect(() => {
+    console.log({ toChain: bridge.toChain });
     setBalanceTo(0);
     // if (bridge.receiver) {
     const chain = SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.toChain]];
 
     (async () => {
       let bal = 0;
-      if (bridge.fromToken === chain.nativeCurrency.symbol) {
-        bal = await getCoinBalance("to");
-      } else {
-        bal = await getTokenBalance("to");
+      if (bridge.fromChain !== bridge.toChain) {
+        if (bridge.fromToken === chain.nativeCurrency.symbol) {
+          bal = await getCoinBalance("to");
+        } else {
+          bal = await getTokenBalance("to");
+        }
+        const fmb =
+          bal / 10 ** Number(TOKEN_DECIMALS[bridge.fromToken as TTokenName]);
+        const formattedBalance = Number(fmb);
+        console.log({ toChain: bridge.toChain, formattedBalance });
+        setBalanceTo(formattedBalance);
+        dispatch(setBridgeBalance(formattedBalance));
+        dispatch(setBridgeError(""));
       }
-      const fmb =
-        bal / 10 ** Number(TOKEN_DECIMALS[bridge.fromToken as TTokenName]);
-      const formattedBalance = Number(fmb);
-      console.log({ toChain: bridge.toChain, formattedBalance });
-      setBalanceTo(formattedBalance);
-      dispatch(setBridgeBalance(formattedBalance));
-      dispatch(setBridgeError(""));
     })().catch((e) => {
       const formattedError = `useCoinBalanceFrom:Error: ${e}`;
       console.error(formattedError);
