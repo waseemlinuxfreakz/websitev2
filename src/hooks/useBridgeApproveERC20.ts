@@ -37,12 +37,15 @@ export default function useBridgeApproveERC20() {
       const tokenAddress = token.address;
       const bridgeAddress = await handler.bridge()
 
+      console.log({bridgeAddress});
+
+
       await chainFactoryTestnet.preTransfer(
         // @ts-ignore
         handler,
         signer,
-        bridgeAddress,
         tokenAddress,
+        bridgeAddress,
         BigInt(Math.ceil(formattedAmount)),
         {},
       );
