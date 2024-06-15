@@ -40,8 +40,8 @@ const MobileHeader = () => {
             <div>
               <img src={Wallet} alt="Wallet" />
               {bridge.senderAddress
-                ? `${bridge.senderAddress.slice(0, 6)}...${bridge.senderAddress.slice(
-                    -6,
+                ? `${bridge.senderAddress.slice(0, 3)}...${bridge.senderAddress.slice(
+                    -3,
                   )}`
                 : "Connect"}
             </div>
