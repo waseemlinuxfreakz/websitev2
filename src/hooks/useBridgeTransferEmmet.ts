@@ -6,6 +6,7 @@ import {
   TChainName,
   ChainNameToTypeChainName,
   ChainToDestinationDomain,
+  TOKEN_DECIMALS,
 } from "../types";
 import { useTonConnect } from "./useTonConnect";
 import { Chain } from "emmet.js/dist/factory/types";
@@ -35,8 +36,9 @@ export default function useBridgeTransferEmmet() {
     setIsTransferProcessed(true);
     (async () => {
       const chainName: TChainName = ChainNameToTypeChainName[bridge.fromChain];
-      const decimals = bridge.decimals ? bridge.decimals : 18;
-      const formattedAmount = Number(bridge.amount) * 10 ** decimals;
+      const formattedAmount =
+        Number(bridge.amount) *
+        10 ** TOKEN_DECIMALS[bridge.fromToken as keyof typeof TOKEN_DECIMALS];
       const destinationDomain =
         ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]];
       const mintRecipient = bridge.receiver;
