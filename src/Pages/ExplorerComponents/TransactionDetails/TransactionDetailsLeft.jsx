@@ -43,9 +43,19 @@ function TransactionDetailsLeft() {
   const handleCopyClick = () => {
     try {
       (async () => {
-        await navigator.clipboard.writeText(
-          addressToAccount(explorer.bridgeTransaction.originalHash),
-        );
+        if (
+          CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId] === "ton" ||
+          CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId] ===
+            "tonTestnet"
+        ) {
+          await navigator.clipboard.writeText(
+            explorer.bridgeTransaction.originalHash,
+          );
+        } else {
+          await navigator.clipboard.writeText(
+            addressToAccount(explorer.bridgeTransaction.originalHash),
+          );
+        }
       })();
       setIsCopied(true);
       setTimeout(() => {
@@ -59,9 +69,19 @@ function TransactionDetailsLeft() {
   const handleCopyClick2 = () => {
     try {
       (async () => {
-        await navigator.clipboard.writeText(
-          addressToAccount(explorer.bridgeTransaction.destinationHash),
-        );
+        if (
+          CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId] === "ton" ||
+          CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId] ===
+            "tonTestnet"
+        ) {
+          await navigator.clipboard.writeText(
+            explorer.bridgeTransaction.destinationHash,
+          );
+        } else {
+          await navigator.clipboard.writeText(
+            addressToAccount(explorer.bridgeTransaction.destinationHash),
+          );
+        }
       })();
 
       setIsCopied2(true);
@@ -127,15 +147,26 @@ function TransactionDetailsLeft() {
 
               <div className="chainLink">
                 {explorer.bridgeTransaction.originalHash
-                  ? addressToAccount(
-                      `${
+                  ? CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId] ===
+                      "ton" ||
+                    CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId] ===
+                      "tonTestnet"
+                    ? `${
                         explorer.bridgeTransaction.originalHash &&
                         explorer.bridgeTransaction.originalHash.slice(0, 6)
                       }...${
                         explorer.bridgeTransaction.originalHash &&
                         explorer.bridgeTransaction.originalHash.slice(-10)
-                      }`,
-                    )
+                      }`
+                    : addressToAccount(
+                        `${
+                          explorer.bridgeTransaction.originalHash &&
+                          explorer.bridgeTransaction.originalHash.slice(0, 6)
+                        }...${
+                          explorer.bridgeTransaction.originalHash &&
+                          explorer.bridgeTransaction.originalHash.slice(-10)
+                        }`,
+                      )
                   : "N/A"}
               </div>
             </div>
@@ -143,7 +174,7 @@ function TransactionDetailsLeft() {
               <a
                 href={`${getExplorerByChainName(
                   CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId],
-                )}/tx/${addressToAccount(explorer.bridgeTransaction.originalHash)}`}
+                )}/tx/${CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId] === "tonTestnet" || CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId] === "ton" ? explorer.bridgeTransaction.originalHash : addressToAccount(explorer.bridgeTransaction.originalHash)}`}
                 className="exportLink"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -184,15 +215,26 @@ function TransactionDetailsLeft() {
 
               <div className="chainLink">
                 {explorer.bridgeTransaction.destinationHash
-                  ? addressToAccount(
-                      `${
+                  ? CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId] ===
+                      "ton" ||
+                    CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId] ===
+                      "tonTestnet"
+                    ? `${
                         explorer.bridgeTransaction.destinationHash &&
                         explorer.bridgeTransaction.destinationHash.slice(0, 6)
                       }...${
                         explorer.bridgeTransaction.destinationHash &&
                         explorer.bridgeTransaction.destinationHash.slice(-10)
-                      }`,
-                    )
+                      }`
+                    : addressToAccount(
+                        `${
+                          explorer.bridgeTransaction.destinationHash &&
+                          explorer.bridgeTransaction.destinationHash.slice(0, 6)
+                        }...${
+                          explorer.bridgeTransaction.destinationHash &&
+                          explorer.bridgeTransaction.destinationHash.slice(-10)
+                        }`,
+                      )
                   : "N/A"}
               </div>
             </div>
@@ -201,7 +243,7 @@ function TransactionDetailsLeft() {
               <a
                 href={`${getExplorerByChainName(
                   CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId],
-                )}/tx/${addressToAccount(explorer.bridgeTransaction.destinationHash)}`}
+                )}/tx/${CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId] === "tonTestnet" || CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId] === "ton" ? explorer.bridgeTransaction.destinationHash : addressToAccount(explorer.bridgeTransaction.destinationHash)}`}
                 className="exportLink"
                 target="_blank"
                 rel="noopener noreferrer"
