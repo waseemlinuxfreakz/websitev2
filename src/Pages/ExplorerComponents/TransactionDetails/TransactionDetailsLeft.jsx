@@ -28,8 +28,8 @@ function TransactionDetailsLeft() {
 
   const finished =
     explorer &&
-    explorer.bridgeTransaction &&
-    explorer.bridgeTransaction.finished
+      explorer.bridgeTransaction &&
+      explorer.bridgeTransaction.finished
       ? explorer.bridgeTransaction.finished.toString()
       : "";
 
@@ -46,7 +46,7 @@ function TransactionDetailsLeft() {
         if (
           CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId] === "ton" ||
           CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId] ===
-            "tonTestnet"
+          "tonTestnet"
         ) {
           await navigator.clipboard.writeText(
             explorer.bridgeTransaction.originalHash,
@@ -72,7 +72,7 @@ function TransactionDetailsLeft() {
         if (
           CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId] === "ton" ||
           CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId] ===
-            "tonTestnet"
+          "tonTestnet"
         ) {
           await navigator.clipboard.writeText(
             explorer.bridgeTransaction.destinationHash,
@@ -115,7 +115,7 @@ function TransactionDetailsLeft() {
                   explorer.bridgeTransaction.destinationHash
                     ? Success
                     : Date.now() - Number(explorer.bridgeTransaction.started) <
-                        5 * 60 * 1000 // 5 mins
+                      5 * 60 * 1000 // 5 mins
                       ? Pending
                       : Failed
                 }
@@ -124,7 +124,7 @@ function TransactionDetailsLeft() {
               {explorer.bridgeTransaction.destinationHash
                 ? "Success"
                 : Date.now() - Number(explorer.bridgeTransaction.started) <
-                    5 * 60 * 1000 // 5 mins
+                  5 * 60 * 1000 // 5 mins
                   ? "Pending"
                   : "Failed"}
             </span>
@@ -148,25 +148,21 @@ function TransactionDetailsLeft() {
               <div className="chainLink">
                 {explorer.bridgeTransaction.originalHash
                   ? CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId] ===
-                      "ton" ||
+                    "ton" ||
                     CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId] ===
-                      "tonTestnet"
-                    ? `${
-                        explorer.bridgeTransaction.originalHash &&
-                        explorer.bridgeTransaction.originalHash.slice(0, 6)
-                      }...${
-                        explorer.bridgeTransaction.originalHash &&
-                        explorer.bridgeTransaction.originalHash.slice(-10)
-                      }`
+                    "tonTestnet"
+                    ? `${explorer.bridgeTransaction.originalHash &&
+                    explorer.bridgeTransaction.originalHash.slice(0, 6)
+                    }...${explorer.bridgeTransaction.originalHash &&
+                    explorer.bridgeTransaction.originalHash.slice(-10)
+                    }`
                     : addressToAccount(
-                        `${
-                          explorer.bridgeTransaction.originalHash &&
-                          explorer.bridgeTransaction.originalHash.slice(0, 6)
-                        }...${
-                          explorer.bridgeTransaction.originalHash &&
-                          explorer.bridgeTransaction.originalHash.slice(-10)
-                        }`,
-                      )
+                      `${explorer.bridgeTransaction.originalHash &&
+                      explorer.bridgeTransaction.originalHash.slice(0, 6)
+                      }...${explorer.bridgeTransaction.originalHash &&
+                      explorer.bridgeTransaction.originalHash.slice(-10)
+                      }`,
+                    )
                   : "N/A"}
               </div>
             </div>
@@ -174,7 +170,10 @@ function TransactionDetailsLeft() {
               <a
                 href={`${getExplorerByChainName(
                   CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId],
-                )}/tx/${CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId] === "tonTestnet" || CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId] === "ton" ? explorer.bridgeTransaction.originalHash : addressToAccount(explorer.bridgeTransaction.originalHash)}`}
+                )}${CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId] === "tonTestnet"
+                  || CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId] === "ton"
+                  ? '/transaction/' + explorer.bridgeTransaction.originalHash
+                  : '/tx/' + addressToAccount(explorer.bridgeTransaction.originalHash)}`}
                 className="exportLink"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -216,25 +215,21 @@ function TransactionDetailsLeft() {
               <div className="chainLink">
                 {explorer.bridgeTransaction.destinationHash
                   ? CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId] ===
-                      "ton" ||
+                    "ton" ||
                     CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId] ===
-                      "tonTestnet"
-                    ? `${
-                        explorer.bridgeTransaction.destinationHash &&
-                        explorer.bridgeTransaction.destinationHash.slice(0, 6)
-                      }...${
-                        explorer.bridgeTransaction.destinationHash &&
-                        explorer.bridgeTransaction.destinationHash.slice(-10)
-                      }`
+                    "tonTestnet"
+                    ? `${explorer.bridgeTransaction.destinationHash &&
+                    explorer.bridgeTransaction.destinationHash.slice(0, 6)
+                    }...${explorer.bridgeTransaction.destinationHash &&
+                    explorer.bridgeTransaction.destinationHash.slice(-10)
+                    }`
                     : addressToAccount(
-                        `${
-                          explorer.bridgeTransaction.destinationHash &&
-                          explorer.bridgeTransaction.destinationHash.slice(0, 6)
-                        }...${
-                          explorer.bridgeTransaction.destinationHash &&
-                          explorer.bridgeTransaction.destinationHash.slice(-10)
-                        }`,
-                      )
+                      `${explorer.bridgeTransaction.destinationHash &&
+                      explorer.bridgeTransaction.destinationHash.slice(0, 6)
+                      }...${explorer.bridgeTransaction.destinationHash &&
+                      explorer.bridgeTransaction.destinationHash.slice(-10)
+                      }`,
+                    )
                   : "N/A"}
               </div>
             </div>
@@ -243,7 +238,10 @@ function TransactionDetailsLeft() {
               <a
                 href={`${getExplorerByChainName(
                   CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId],
-                )}/tx/${CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId] === "tonTestnet" || CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId] === "ton" ? explorer.bridgeTransaction.destinationHash : addressToAccount(explorer.bridgeTransaction.destinationHash)}`}
+                )}${CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId] === "tonTestnet"
+                  || CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId] === "ton"
+                  ? '/transaction/' + explorer.bridgeTransaction.destinationHash
+                  : '/tx/' + addressToAccount(explorer.bridgeTransaction.destinationHash)}`}
                 className="exportLink"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -278,9 +276,9 @@ function TransactionDetailsLeft() {
                 {elapsedTime.minutes ? ` ${elapsedTime.minutes} min ` : ""}
                 {elapsedTime.seconds ? ` ${elapsedTime.seconds} sec ` : ""}
                 {elapsedTime.days ||
-                elapsedTime.hours ||
-                elapsedTime.minutes ||
-                elapsedTime.seconds
+                  elapsedTime.hours ||
+                  elapsedTime.minutes ||
+                  elapsedTime.seconds
                   ? " ago"
                   : ""}
               </span>
