@@ -55,10 +55,13 @@ export default function useBridgeAllowance() {
           setDecimals(token.decimals);
           dispatch(setBridgeDecimals(Number(token.decimals)));
 
+          const bridgeAddress: string = await handler.bridge();
+
           if ("getApprovedAmount" in handler) {
             const allowance = await handler.getApprovedAmount(
               token.address,
               bridge.senderAddress,
+              bridgeAddress
             );
             setAllowance(Number(allowance));
             dispatch(setBridgeAllowance(Number(allowance)));
