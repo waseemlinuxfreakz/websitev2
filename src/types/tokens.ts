@@ -65,18 +65,18 @@ export const BridgeTokens = [
     icon: "img/coin/grabclub.png",
     price: 1,
   },
-  // {
-  //   cmc_id: 26960,
-  //   name: "TestRED",
-  //   icon: "img/coin/grabclub.png",
-  //   price: 1,
-  // },
+  {
+    cmc_id: 26960,
+    name: "TestRED",
+    icon: "img/coin/testRED.svg",
+    price: 1,
+  },
 ];
 
 export const CHAIN_TO_TOKENS = {
-  TONTestnet: ["USDC", "TON", "DAI"],
-  Amoy: ["USDC", "TON", "DAI", "GrabClub"],
-  Sepolia: ["USDC", "TON", "DAI", "GrabClub"],
+  TONTestnet: ["USDC", "TON", "TestRED"],
+  Amoy: ["USDC", "TON", "DAI", "GrabClub", "TestRED"],
+  Sepolia: ["USDC", "TON", "DAI", "GrabClub", "TestRED"],
 };
 
 export const TOKEN_DECIMALS = {
@@ -90,7 +90,7 @@ export const TOKEN_DECIMALS = {
   USDT: 18,
   WBTC: 18,
   GrabClub: 18,
-  TestRED: 0,
+  TestRED: 9,
 };
 
 export type TTokenName = keyof typeof TOKEN_DECIMALS;

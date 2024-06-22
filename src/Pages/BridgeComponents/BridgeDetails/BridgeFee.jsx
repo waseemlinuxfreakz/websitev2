@@ -11,7 +11,7 @@ export default function BridgeFee() {
       <div className="detialItem">
         <div className="detialItemLeft">Protocol Fee</div>
         <div className="detialItemRight">
-          {Number(bridge.amount - bridge.receive).toFixed(2)} {TOKEN_SYMBOL_TO_TOKEN[bridge.fromToken]}
+          {Number(bridge.amount - bridge.receive).toFixed(2)} USD
         </div>
       </div>
       <div className="detialItem">
