@@ -6,7 +6,6 @@ export default function useExplorerStats() {
   let interval: string | number | NodeJS.Timeout | undefined;
 
   const [stats, setStats] = useState<ExplorerMeta>({
-    total24HourTransactions: BigInt(0),
     totalFees: BigInt(0),
     totalTransactions: BigInt(0),
     totalVolume: BigInt(0),

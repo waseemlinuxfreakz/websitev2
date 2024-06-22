@@ -13,7 +13,7 @@ export const BridgeTokens = [
   // },
   {
     cmc_id: 3408,
-    name: "USD//C",
+    name: "USDC",
     icon: "img/coin/usdc.svg",
     price: 0.9998,
   },
@@ -74,9 +74,9 @@ export const BridgeTokens = [
 ];
 
 export const CHAIN_TO_TOKENS = {
-  TONTestnet: ["USD//C", "TON", "DAI"],
-  Amoy: ["USD//C", "TON", "DAI", "GrabClub"],
-  Sepolia: ["USD//C", "TON", "DAI", "GrabClub"],
+  TONTestnet: ["USDC", "TON", "DAI"],
+  Amoy: ["USDC", "TON", "DAI", "GrabClub"],
+  Sepolia: ["USDC", "TON", "DAI", "GrabClub"],
 };
 
 export const TOKEN_DECIMALS = {
@@ -85,7 +85,6 @@ export const TOKEN_DECIMALS = {
   EURC: 6,
   ETH: 18,
   USDC: 6,
-  "USD//C": 6,
   TON: 9,
   MATIC: 18,
   USDT: 18,
@@ -97,7 +96,7 @@ export const TOKEN_DECIMALS = {
 export type TTokenName = keyof typeof TOKEN_DECIMALS;
 
 export const TOKEN_SYMBOL_TO_TOKEN = {
-  "USD//C": "USDC",
+  USDC: "USDC",
   DAI: "DAI",
   TON: "TON",
   EMMET: "EMMET",
