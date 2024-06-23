@@ -67,22 +67,22 @@ export const BridgeTokens = [
   },
   {
     cmc_id: 26960,
-    name: "TestRED",
+    name: "TRT",
     icon: "img/coin/testRED.svg",
     price: 1,
   },
   {
     cmc_id: 26961,
-    name: "CAVI",
+    name: "$CAVI",
     icon: "img/coin/cavi.png",
     price: 1,
   },
 ];
 
 export const CHAIN_TO_TOKENS = {
-  TONTestnet: ["USDC", "TON", "TestRED", "CAVI"],
+  TONTestnet: ["USDC", "TON", "TRT", "$CAVI"],
   Amoy: ["USDC", "TON", "DAI", "GrabClub"],
-  Sepolia: ["USDC", "TON", "DAI", "GrabClub", "TestRED", "CAVI"],
+  Sepolia: ["USDC", "TON", "DAI", "GrabClub", "TRT", "$CAVI"],
 };
 
 export const TOKEN_DECIMALS = {
@@ -96,8 +96,8 @@ export const TOKEN_DECIMALS = {
   USDT: 18,
   WBTC: 18,
   GrabClub: 18,
-  TestRED: 9,
-  CAVI: 9,
+  TRT: 9,
+  $CAVI: 9,
 };
 
 export type TTokenName = keyof typeof TOKEN_DECIMALS;
@@ -111,6 +111,6 @@ export const TOKEN_SYMBOL_TO_TOKEN = {
   MATIC: "MATIC",
   USDT: "USDT",
   GrabClub: "GrabClub",
-  TestRED: "TestRED",
-  CAVI: "CAVI",
+  TRT: "TestRED",
+  $CAVI: "CAVI",
 };
