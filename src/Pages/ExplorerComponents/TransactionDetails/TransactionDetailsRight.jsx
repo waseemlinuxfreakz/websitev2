@@ -38,13 +38,20 @@ function TransactionDetailsRight() {
           <div className="transactionDetailsListLeft">Protocol Fee</div>
           <div className="transactionDetailsListRight">
             <div className="bridgeFee">
-              {removeTrailingZeroes(
-                Number(explorer.bridgeTransaction.protocolFee) /
-                  10 ** TOKEN_DECIMALS[explorer.bridgeTransaction.fromToken],
-              )}{" "}
+              {explorer.bridgeTransaction.protocolFee
+                ? Number(explorer.bridgeTransaction.protocolFee) /
+                  10 **
+                    TOKEN_DECIMALS[
+                      getChainSymbolFromName(
+                        CHAIN_ID_TO_NAME[
+                          explorer.bridgeTransaction.fromChainId
+                        ],
+                      )
+                    ]
+                : 0}{" "}
               {getChainSymbolFromName(
-              CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId],
-            )}
+                CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId],
+              )}
             </div>
           </div>
         </li>
