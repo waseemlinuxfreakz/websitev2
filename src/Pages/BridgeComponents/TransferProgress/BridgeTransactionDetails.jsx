@@ -53,7 +53,7 @@ function BridgeTransactionDetails() {
       <li className="bridgeTransactionDetailsList">
         <div className="bridgeTransDetLeft">Protocol Fee</div>
         <div className="bridgeTransDetRight">
-          {formattedFee} USD
+          {formattedFee} {nativeCurrency}
           {/* {formattedFee && formattedFee.toFixed(6)} {nativeCurrency} */}
         </div>
       </li>

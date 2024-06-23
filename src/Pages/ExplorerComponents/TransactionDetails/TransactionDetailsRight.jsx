@@ -42,7 +42,9 @@ function TransactionDetailsRight() {
                 Number(explorer.bridgeTransaction.protocolFee) /
                   10 ** TOKEN_DECIMALS[explorer.bridgeTransaction.fromToken],
               )}{" "}
-              USD
+              {getChainSymbolFromName(
+              CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId],
+            )}
             </div>
           </div>
         </li>

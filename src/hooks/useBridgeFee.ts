@@ -67,11 +67,13 @@ export default function useBridgeFee() {
         ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]],
       );
 
-      const fee = await handler.txFee(
-        BigInt(CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.toChain]]),
+      const chainId: bigint = BigInt(CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.toChain]]);
+
+      console.log(chainId,
         bridge.fromToken,
-        bridge.toToken,
-      );
+        bridge.toToken)
+
+      const fee = await handler.txFee(chainId, bridge.fromToken, bridge.toToken);
 
       return Number(fee);
     } catch (error) {
