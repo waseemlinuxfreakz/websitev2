@@ -14,8 +14,8 @@ export default function useBridgeFee() {
 
   const bridge = useAppSelector((state) => state.bridge);
 
-  const [formattedProtocolFee, setFormattedProtocolFee] = useState<number>()
-  const [protocolFee, setProtocolFee] = useState<bigint>(BigInt(0))
+  const [protocolFeeInUSD, setProtocolFeeInUSD] = useState<number>(0);
+  const [protocolFee, setProtocolFee] = useState<bigint>(BigInt(0));
   const [fee, setFee] = useState<number>(0);
 
   const [formattedFee, setFormattedfee] = useState<number>(0);
@@ -50,9 +50,9 @@ export default function useBridgeFee() {
         ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]],
       );
 
-      // const _protocolFee = await handler.protocolFee();
+      const _protocolFeeInUSD = await handler.protocolFeeInUSD();
 
-      return 5;
+      return Number(_protocolFeeInUSD) / 10 ** 6;
     } catch (error) {
       console.error(error);
       // TODO: Fix this
@@ -67,13 +67,17 @@ export default function useBridgeFee() {
         ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]],
       );
 
-      const chainId: bigint = BigInt(CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.toChain]]);
+      const chainId: bigint = BigInt(
+        CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.toChain]],
+      );
 
-      console.log(chainId,
+      console.log(chainId, bridge.fromToken, bridge.toToken);
+
+      const fee = await handler.txFee(
+        chainId,
         bridge.fromToken,
-        bridge.toToken)
-
-      const fee = await handler.txFee(chainId, bridge.fromToken, bridge.toToken);
+        bridge.toToken,
+      );
 
       return Number(fee);
     } catch (error) {
@@ -92,12 +96,14 @@ export default function useBridgeFee() {
 
       (async () => {
         const _fee = await getBridgeFee();
-        const _protocolFee = await getBridgeProtocolFee()
+        const _protocolFee = await getBridgeProtocolFee();
         const _formatedFee = _fee / 10 ** chain.nativeCurrency.decimals;
+        const _protocolFeeInUSD = await getBridgeProtocolFeeInUSD();
         // const _formatedProtocolFee = Number(_protocolFee) / 10 ** chain.nativeCurrency.decimals;
 
         setFormattedfee(_formatedFee);
         setProtocolFee(_protocolFee);
+        setProtocolFeeInUSD(_protocolFeeInUSD);
         // setFormattedProtocolFee(_formatedProtocolFee)
         setFee(_fee);
         dispatch(setBridgeFee(_fee));
@@ -111,5 +117,5 @@ export default function useBridgeFee() {
   }, [bridge.amount, bridge.toChain, bridge.fromChain, bridge.allowance]);
 
   // console.log('fee', fee, 'nativeCurrency', nativeCurrency, 'formattedFee', formattedFee, 'bridgeAddress', bridgeAddress, 'toChain:', ChainNameToTypeChainName[bridge.toChain])
-  return { fee, nativeCurrency, formattedFee, protocolFee };
+  return { fee, nativeCurrency, formattedFee, protocolFee, protocolFeeInUSD };
 }
