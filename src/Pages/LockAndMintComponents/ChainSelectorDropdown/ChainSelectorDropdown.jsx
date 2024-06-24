@@ -116,7 +116,7 @@ export default function ChainSelectorDropdown({ parent, direction }) {
         dispatchChain(selChain.name);
       }
     }
-  }, [bridge.fromChain, chainId]);
+  }, [bridge.fromChain]);
 
   useEffect(() => {
     const selChain = findChain(chainId);

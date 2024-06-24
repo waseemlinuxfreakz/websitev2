@@ -55,7 +55,7 @@ export default function TokenswitchButton() {
       );
 
       // 3. Swap the from chain in the wallet
-      // await switchChain({ chainId: id });
+      switchChain({ chainId: id });
     } catch (error) {
       dispatch(setBridgeError(`TokenswitchButton Error: ${error.message}`));
     }
