@@ -34,31 +34,25 @@ export default function ChainSelectorDropdown({ parent, direction }) {
   const isExplorer = () => window.location.href.includes("/explorer");
 
   // Local State
-  const [selectedChain, setSelectedChain] = useState({
-    icon:
-      chainId && findChain(chainId)
-        ? `${isLayer2View() ? ".." : ""}${findChain(chainId).icon}`
-        : chainData[1].icon,
-    name:
-      chainId && findChain(chainId)
-        ? findChain(chainId).name
-        : chainData[1].name,
-  });
+  const [selectedChain, setSelectedChain] = useState();
 
   const [chainArray, setChainArray] = useState(chainData);
 
   useEffect(() => {
-    if (parent === "header") {
-      setChainArray(
-        chainData.filter((chain) => chain.name !== selectedChain.name),
-      );
-    } else {
-      setChainArray(
-        chainData.filter(
-          (chain) =>
-            chain.name !== selectedChain.name && chain.name !== bridge.toChain,
-        ),
-      );
+    if (selectedChain) {
+      if (parent === "header") {
+        setChainArray(
+          chainData.filter((chain) => chain.name !== selectedChain.name),
+        );
+      } else {
+        setChainArray(
+          chainData.filter(
+            (chain) =>
+              chain.name !== selectedChain.name &&
+              chain.name !== bridge.toChain,
+          ),
+        );
+      }
     }
   }, [selectedChain, bridge.toChain]);
 
@@ -79,6 +73,8 @@ export default function ChainSelectorDropdown({ parent, direction }) {
         setChainArray(chainData);
         break;
       case "explorer":
+        dispatch(setBridgeFromChain(name));
+        setChainArray(chainData);
         break;
       default:
         dispatch(setBridgeFromChain(name));
@@ -95,29 +91,29 @@ export default function ChainSelectorDropdown({ parent, direction }) {
     }
   }, [bridge.toChain]);
 
-  useEffect(() => {
-    const selChain = findChain(
-      CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.fromChain]],
-    );
+  // useEffect(() => {
+  //   const selChain = findChain(
+  //     CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.fromChain]],
+  //   );
 
-    selChain && switchChain({ chainId: selChain.id });
-    if (!selChain) {
-      setSelectedChain({
-        icon: chainData[1].icon,
-        name: chainData[1].name,
-      });
-      dispatchChain(chainData[1].name);
-    }
-    if (bridge.fromChain) {
-      if (selChain) {
-        setSelectedChain({
-          icon: selChain.icon,
-          name: selChain.name,
-        });
-        dispatchChain(selChain.name);
-      }
-    }
-  }, [bridge.fromChain]);
+  //   selChain && switchChain({ chainId: selChain.id });
+  //   if (!selChain) {
+  //     setSelectedChain({
+  //       icon: chainData[1].icon,
+  //       name: chainData[1].name,
+  //     });
+  //     dispatchChain(chainData[1].name);
+  //   }
+  //   if (bridge.fromChain) {
+  //     if (selChain) {
+  //       setSelectedChain({
+  //         icon: selChain.icon,
+  //         name: selChain.name,
+  //       });
+  //       dispatchChain(selChain.name);
+  //     }
+  //   }
+  // }, [bridge.fromChain]);
 
   useEffect(() => {
     const selChain = findChain(chainId);
@@ -197,14 +193,17 @@ export default function ChainSelectorDropdown({ parent, direction }) {
   return (
     <div className="selectCoinLeft" ref={selectCoinRef}>
       <div className="selectedCoin" onClick={toggleVisibility}>
-        <div className="coinNameIcon">
-          <img
-            src={`${isLayer2View() ? "../" : ""}${selectedChain.icon}`}
-            alt={selectedChain.name}
-            width="30px"
-          />
-          <span>{selectedChain.name}</span>
-        </div>
+        {selectedChain && (
+          <div className="coinNameIcon">
+            <img
+              src={`${isLayer2View() ? "../" : ""}${selectedChain.icon}`}
+              alt={selectedChain.name}
+              width="30px"
+            />
+            <span>{selectedChain.name}</span>
+          </div>
+        )}
+
         <img src={DownArrow} alt="Down Arrow" />
       </div>
       <ul
