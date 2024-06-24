@@ -5,10 +5,10 @@ import {
   CHAIN_ID_TO_NAME,
   TOKEN_DECIMALS,
   TOKEN_SYMBOL_TO_TOKEN,
-  ChainNameToTypeChainName,
   ChainToDestinationDomain,
 } from "../../../types";
 import { chainFactoryTestnet } from "../../../store/chainFactory";
+import { Chain } from "emmet.js/dist/factory/types";
 
 function TransactionDetailsRight() {
   const explorer = useAppSelector((store) => store.explorer);
@@ -94,15 +94,19 @@ function TransactionDetailsRight() {
         <li className="transactionDetailsListItem">
           <div className="transactionDetailsListLeft">Origin Fee</div>
           <div className="transactionDetailsListRight">
-            {explorer.bridgeTransaction.fromChainFees
-              ? Number(explorer.bridgeTransaction.fromChainFees) /
-                10 **
-                  TOKEN_DECIMALS[
-                    getChainSymbolFromName(
-                      CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId],
-                    )
-                  ]
-              : 0}{" "}
+            {explorer.bridgeTransaction.fromChainId === Chain.TON
+              ? 0.45
+              : explorer.bridgeTransaction.fromChainFees
+                ? Number(explorer.bridgeTransaction.fromChainFees) /
+                  10 **
+                    TOKEN_DECIMALS[
+                      getChainSymbolFromName(
+                        CHAIN_ID_TO_NAME[
+                          explorer.bridgeTransaction.fromChainId
+                        ],
+                      )
+                    ]
+                : 0}{" "}
             {getChainSymbolFromName(
               CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId],
             )}
