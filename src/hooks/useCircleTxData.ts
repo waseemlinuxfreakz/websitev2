@@ -18,7 +18,7 @@ export default function useCircleTxData() {
     nonce: BigInt(0),
     recipient: "",
     finished: BigInt(0),
-    started: BigInt(0),
+    started: BigInt(Date.now()),
     txHash: "",
   } as Transaction;
 
