@@ -94,8 +94,7 @@ function TrackExplorer() {
                 href={`${getExplorerByChainName(
                   ChainNameToTypeChainName[bridge.toChain],
                 )}${
-                  bridge.fromChain === "tonTestnet" ||
-                  bridge.fromChain === "ton"
+                  bridge.toChain === "tonTestnet" || bridge.toChain === "ton"
                     ? "/transaction/" + bridge.toHash
                     : "/tx/" + addressToAccount(bridge.toHash)
                 }`}
