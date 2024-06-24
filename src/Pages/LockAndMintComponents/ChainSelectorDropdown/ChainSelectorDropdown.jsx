@@ -91,29 +91,32 @@ export default function ChainSelectorDropdown({ parent, direction }) {
     }
   }, [bridge.toChain]);
 
-  // useEffect(() => {
-  //   const selChain = findChain(
-  //     CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.fromChain]],
-  //   );
+  useEffect(() => {
+    // if (CHAIN_NAME_TO_ID[bridge.fromChain] !== chainId) {
+    const selChain = findChain(
+      CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.fromChain]],
+    );
 
-  //   selChain && switchChain({ chainId: selChain.id });
-  //   if (!selChain) {
-  //     setSelectedChain({
-  //       icon: chainData[1].icon,
-  //       name: chainData[1].name,
-  //     });
-  //     dispatchChain(chainData[1].name);
-  //   }
-  //   if (bridge.fromChain) {
-  //     if (selChain) {
-  //       setSelectedChain({
-  //         icon: selChain.icon,
-  //         name: selChain.name,
-  //       });
-  //       dispatchChain(selChain.name);
-  //     }
-  //   }
-  // }, [bridge.fromChain]);
+    selChain && switchChain({ chainId: selChain.id });
+    // }
+
+    if (!selChain) {
+      setSelectedChain({
+        icon: chainData[1].icon,
+        name: chainData[1].name,
+      });
+      dispatchChain(chainData[1].name);
+    }
+    if (bridge.fromChain) {
+      if (selChain) {
+        setSelectedChain({
+          icon: selChain.icon,
+          name: selChain.name,
+        });
+        dispatchChain(selChain.name);
+      }
+    }
+  }, [bridge.fromChain, chainId]);
 
   useEffect(() => {
     const selChain = findChain(chainId);

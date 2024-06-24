@@ -113,7 +113,7 @@ export default function useBalance() {
       const fmb =
         bal / 10 ** Number(TOKEN_DECIMALS[bridge.fromToken as TTokenName]);
       const formattedBalance = Number(fmb);
-      console.log({ fromChain: bridge.fromChain, formattedBalance });
+      // console.log({ fromChain: bridge.fromChain, formattedBalance });
       setBalance(formattedBalance);
       dispatch(setBridgeBalance(formattedBalance));
       dispatch(setBridgeError(""));
@@ -133,7 +133,7 @@ export default function useBalance() {
   ]);
 
   useEffect(() => {
-    console.log({ toChain: bridge.toChain });
+    // console.log({ toChain: bridge.toChain });
     setBalanceTo(0);
     // if (bridge.receiver) {
     const chain = SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.toChain]];
@@ -149,7 +149,7 @@ export default function useBalance() {
         const fmb =
           bal / 10 ** Number(TOKEN_DECIMALS[bridge.fromToken as TTokenName]);
         const formattedBalance = Number(fmb);
-        console.log({ toChain: bridge.toChain, formattedBalance });
+        // console.log({ toChain: bridge.toChain, formattedBalance });
         setBalanceTo(formattedBalance);
         dispatch(setBridgeBalance(formattedBalance));
         dispatch(setBridgeError(""));
@@ -167,24 +167,6 @@ export default function useBalance() {
     bridge.toToken,
     // bridge.senderAddress,
     bridge.receiver,
-  ]);
-
-  useEffect(() => {
-    console.log({
-      fromChain: bridge.fromChain,
-      toChain: bridge.toChain,
-      // fromBalance: balance,
-      // toBalance: balanceTo,
-      // fromToken: bridge.fromToken,
-      // toToken: bridge.toToken,
-    });
-  }, [
-    // balance,
-    // balanceTo,
-    bridge.fromChain,
-    bridge.toChain,
-    // bridge.fromToken,
-    // bridge.toToken,
   ]);
 
   return {

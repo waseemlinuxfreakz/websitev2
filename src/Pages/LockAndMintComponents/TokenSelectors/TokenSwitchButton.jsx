@@ -8,6 +8,7 @@ import {
   swapBridgeChainsAndTokens,
 } from "../../../store/bridgeSlice";
 import { getChainidByName } from "../../../utils/filters";
+import { CHAIN_ID_TO_NAME, CHAIN_NAME_TO_ID } from "../../../types";
 
 export default function TokenswitchButton() {
   const bridge = useAppSelector((state) => state.bridge);
@@ -34,12 +35,14 @@ export default function TokenswitchButton() {
     dispatch(setBridgeError(""));
   };
 
-  const { switchChain } = useSwitchChain({ onError, onSuccess });
+  const { switchChain } = useSwitchChain();
 
-  const handleSwitchButtonClick = () => {
+  const handleSwitchButtonClick = async () => {
     try {
       // 1. Get the target chain ID
       const id = getChainidByName(bridge.toChain);
+
+      console.log({ id });
 
       // 2. Swap the chains & tokens in the UI
       dispatch(
@@ -50,8 +53,9 @@ export default function TokenswitchButton() {
           toToken: bridge.fromToken,
         }),
       );
+
       // 3. Swap the from chain in the wallet
-      switchChain({ chainId: id });
+      // await switchChain({ chainId: id });
     } catch (error) {
       dispatch(setBridgeError(`TokenswitchButton Error: ${error.message}`));
     }

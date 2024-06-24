@@ -71,7 +71,7 @@ export default function useBridgeFee() {
         CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.toChain]],
       );
 
-      console.log(chainId, bridge.fromToken, bridge.toToken);
+      // console.log(chainId, bridge.fromToken, bridge.toToken);
 
       const fee = await handler.txFee(
         chainId,

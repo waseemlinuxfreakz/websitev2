@@ -103,16 +103,16 @@ export default function ConnectionIndicatorDropdown({ parent, direction }) {
     }
   }, [bridge.fromChain]);
 
-  // useEffect(() => {
-  //   const selChain = findChain(chainId);
-  //   if (selChain) {
-  //     setSelectedChain({
-  //       icon: selChain.icon,
-  //       name: selChain.name,
-  //     });
-  //     dispatchChain(selChain.name);
-  //   }
-  // }, [chainId]);
+  useEffect(() => {
+    const selChain = findChain(chainId);
+    if (selChain) {
+      setSelectedChain({
+        icon: selChain.icon,
+        name: selChain.name,
+      });
+      dispatchChain(selChain.name);
+    }
+  }, [chainId]);
 
   const handleChainClick = (icon, name, id) => {
     setSelectedChain({ icon, name });
