@@ -47,11 +47,25 @@ function TrackExplorer() {
               <a
                 href={`${getExplorerByChainName(
                   ChainNameToTypeChainName[bridge.fromChain],
-                )}/tx/${addressToAccount(bridge.fromHash)}`}
+                )}${
+                  bridge.fromChain === "tonTestnet" ||
+                  bridge.fromChain === "ton"
+                    ? "/transaction/" + bridge.fromHash
+                    : "/tx/" + addressToAccount(bridge.fromHash)
+                }`}
                 className="exportLink"
                 target="_blank"
                 rel="noopener noreferrer"
               >
+                {/* <a
+                href={`${getExplorerByChainName(
+                  ChainNameToTypeChainName[bridge.fromChain],
+                )}/tx/${addressToAccount(bridge.fromHash)}`}
+                className="exportLink"
+                target="_blank"
+                rel="noopener noreferrer"
+              > */}
+
                 <img
                   src={Target}
                   alt="Open transaction in the destination chain explorer"
@@ -79,7 +93,12 @@ function TrackExplorer() {
               <a
                 href={`${getExplorerByChainName(
                   ChainNameToTypeChainName[bridge.toChain],
-                )}/tx/${addressToAccount(bridge.toHash)}`}
+                )}${
+                  bridge.fromChain === "tonTestnet" ||
+                  bridge.fromChain === "ton"
+                    ? "/transaction/" + bridge.toHash
+                    : "/tx/" + addressToAccount(bridge.toHash)
+                }`}
                 className="exportLink"
                 target="_blank"
                 rel="noopener noreferrer"

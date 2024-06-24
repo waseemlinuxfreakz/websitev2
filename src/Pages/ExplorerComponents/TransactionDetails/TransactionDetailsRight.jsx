@@ -115,15 +115,17 @@ function TransactionDetailsRight() {
         <li className="transactionDetailsListItem">
           <div className="transactionDetailsListLeft">Destination Fee</div>
           <div className="transactionDetailsListRight">
-            {explorer.bridgeTransaction.targetChainFees
-              ? Number(explorer.bridgeTransaction.targetChainFees) /
-                10 **
-                  TOKEN_DECIMALS[
-                    getChainSymbolFromName(
-                      CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId],
-                    )
-                  ]
-              : 0}{" "}
+            {explorer.bridgeTransaction.toChainId === Chain.TON
+              ? 0.45
+              : explorer.bridgeTransaction.targetChainFees
+                ? Number(explorer.bridgeTransaction.targetChainFees) /
+                  10 **
+                    TOKEN_DECIMALS[
+                      getChainSymbolFromName(
+                        CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId],
+                      )
+                    ]
+                : 0}{" "}
             {getChainSymbolFromName(
               CHAIN_ID_TO_NAME[explorer.bridgeTransaction.toChainId],
             )}
