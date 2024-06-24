@@ -39,8 +39,8 @@ export function unpackDateTime(dt: {
   seconds: number;
 }): string {
   if (dt.days) return `${dt.days} day${dt.days > 1 ? "s" : ""}`;
-  if (dt.hours) return `${dt.hours} hour${dt.hours > 1 ? "s" : ""}`;
-  if (dt.minutes) return `${dt.minutes} minute${dt.minutes > 1 ? "s" : ""}`;
-  if (dt.seconds) return `${dt.seconds} second${dt.seconds > 1 ? "s" : ""}`;
+  if (dt.hours) return `${dt.hours} hr${dt.hours > 1 ? "s" : ""}`;
+  if (dt.minutes) return `${dt.minutes} min${dt.minutes > 1 ? "s" : ""}`;
+  if (dt.seconds) return `${dt.seconds} sec${dt.seconds > 1 ? "s" : ""}`;
   return "";
 }
