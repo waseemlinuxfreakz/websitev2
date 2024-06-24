@@ -1,14 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useAppSelector } from "../../../hooks/storage";
 import { getChainSymbolFromName, removeTrailingZeroes } from "../../../utils";
 import {
   CHAIN_ID_TO_NAME,
   TOKEN_DECIMALS,
   TOKEN_SYMBOL_TO_TOKEN,
+  ChainNameToTypeChainName,
+  ChainToDestinationDomain,
 } from "../../../types";
+import { chainFactoryTestnet } from "../../../store/chainFactory";
 
 function TransactionDetailsRight() {
   const explorer = useAppSelector((store) => store.explorer);
+  const [valueReceived, setValueReceived] = useState(0);
+
+  useEffect(() => {
+    (async () => {
+      if (explorer.bridgeTransaction.fromChainId) {
+        try {
+          setValueReceived(0);
+          const handler = await chainFactoryTestnet.inner(
+            ChainToDestinationDomain[
+              CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId]
+            ],
+          );
+
+          const tokenPrice = await handler.getTokenPrice(
+            explorer.bridgeTransaction.fromToken,
+          );
+          const tokenPriceDecimals = await handler.getPriceDecimals(
+            explorer.bridgeTransaction.fromToken,
+          );
+
+          const _valueReceived =
+            (explorer.bridgeTransaction.receivedAmount * Number(tokenPrice)) /
+            10 **
+              (TOKEN_DECIMALS[explorer.bridgeTransaction.fromToken] +
+                Number(tokenPriceDecimals));
+
+          setValueReceived(removeTrailingZeroes(_valueReceived));
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    })();
+  }, [explorer.bridgeTransaction]);
 
   return (
     <div className="transactionDetailsBox">
@@ -91,13 +127,7 @@ function TransactionDetailsRight() {
         </li>
         <li className="transactionDetailsListItem">
           <div className="transactionDetailsListLeft">Value Received</div>
-          <div className="transactionDetailsListRight">
-            ${" "}
-            {explorer.bridgeTransaction.amount
-              ? Number(explorer.bridgeTransaction.amount) /
-                10 ** Number(TOKEN_DECIMALS[explorer.bridgeTransaction.toToken])
-              : 0}
-          </div>
+          <div className="transactionDetailsListRight">${valueReceived}</div>
         </li>
       </ul>
     </div>
