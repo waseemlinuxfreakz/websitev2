@@ -48,8 +48,8 @@ function TrackExplorer() {
                 href={`${getExplorerByChainName(
                   ChainNameToTypeChainName[bridge.fromChain],
                 )}${
-                  bridge.fromChain === "tonTestnet" ||
-                  bridge.fromChain === "ton"
+                  bridge.fromChain === "TON" ||
+                  bridge.fromChain === "TONTestnet"
                     ? "/transaction/" + bridge.fromHash
                     : "/tx/" + addressToAccount(bridge.fromHash)
                 }`}
@@ -94,7 +94,7 @@ function TrackExplorer() {
                 href={`${getExplorerByChainName(
                   ChainNameToTypeChainName[bridge.toChain],
                 )}${
-                  bridge.toChain === "tonTestnet" || bridge.toChain === "ton"
+                  bridge.toChain === "TON" || bridge.toChain === "TONTestnet"
                     ? "/transaction/" + bridge.toHash
                     : "/tx/" + addressToAccount(bridge.toHash)
                 }`}
