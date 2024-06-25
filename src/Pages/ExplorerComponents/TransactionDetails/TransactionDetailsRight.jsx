@@ -15,20 +15,14 @@ function TransactionDetailsRight() {
   const [valueReceived, setValueReceived] = useState(0);
 
   useEffect(() => {
+    setValueReceived(0);
     (async () => {
       if (explorer.bridgeTransaction.fromChainId) {
         try {
-          setValueReceived(0);
-          const handler = await chainFactoryTestnet.inner(
-            ChainToDestinationDomain[
-              CHAIN_ID_TO_NAME[explorer.bridgeTransaction.fromChainId]
-            ],
-          );
-
-          const tokenPrice = await handler.getTokenPrice(
+          const tokenPrice = await chainFactoryTestnet.getTokenPrice(
             explorer.bridgeTransaction.fromToken,
           );
-          const tokenPriceDecimals = await handler.getPriceDecimals(
+          const tokenPriceDecimals = await chainFactoryTestnet.getPriceDecimals(
             explorer.bridgeTransaction.fromToken,
           );
 
