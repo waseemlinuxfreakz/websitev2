@@ -49,10 +49,10 @@ export default function useBridgeFee() {
         //@ts-ignore
         ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]],
       );
+      const _protocolFeeInUSD =
+        await chainFactoryTestnet.getProtocolFeeInUSD(handler);
 
-      const _protocolFeeInUSD = await handler.protocolFeeInUSD();
-
-      return Number(_protocolFeeInUSD) / 10 ** 6;
+      return _protocolFeeInUSD;
     } catch (error) {
       console.error(error);
       // TODO: Fix this
