@@ -15,7 +15,7 @@ import { msToTime } from "../../../utils/msToTime";
 function BridgeTransactionDetails() {
   const bridge = useAppSelector((state) => state.bridge);
 
-  const { nativeCurrency, formattedFee } = useBridgeFee();
+  const { nativeCurrency, protocolFee } = useBridgeFee();
   const [estimatedTime, setEstimatedTime] = useState(40 * 1000);
 
   useEffect(() => {
@@ -53,7 +53,7 @@ function BridgeTransactionDetails() {
       <li className="bridgeTransactionDetailsList">
         <div className="bridgeTransDetLeft">Protocol Fee</div>
         <div className="bridgeTransDetRight">
-          {nativeCurrency === "TON" ? 0.45 : formattedFee} {nativeCurrency}
+          {protocolFee} {nativeCurrency}
           {/* {formattedFee && formattedFee.toFixed(6)} {nativeCurrency} */}
         </div>
       </li>

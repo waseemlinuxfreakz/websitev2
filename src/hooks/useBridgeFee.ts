@@ -15,7 +15,7 @@ export default function useBridgeFee() {
   const bridge = useAppSelector((state) => state.bridge);
 
   const [protocolFeeInUSD, setProtocolFeeInUSD] = useState<number>(0);
-  const [protocolFee, setProtocolFee] = useState<bigint>(BigInt(0));
+  const [protocolFee, setProtocolFee] = useState<number>(0);
   const [fee, setFee] = useState<number>(0);
 
   const [formattedFee, setFormattedfee] = useState<number>(0);
@@ -99,10 +99,11 @@ export default function useBridgeFee() {
         const _protocolFee = await getBridgeProtocolFee();
         const _formatedFee = _fee / 10 ** chain.nativeCurrency.decimals;
         const _protocolFeeInUSD = await getBridgeProtocolFeeInUSD();
-        // const _formatedProtocolFee = Number(_protocolFee) / 10 ** chain.nativeCurrency.decimals;
+        const _formatedProtocolFee =
+          Number(_protocolFee) / 10 ** chain.nativeCurrency.decimals;
 
         setFormattedfee(_formatedFee);
-        setProtocolFee(_protocolFee);
+        setProtocolFee(_formatedProtocolFee);
         setProtocolFeeInUSD(_protocolFeeInUSD);
         // setFormattedProtocolFee(_formatedProtocolFee)
         setFee(_fee);
