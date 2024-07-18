@@ -12,7 +12,7 @@ export const onlylayerTestnet: Chain = {
   },
   testnet: true,
   id: 728696,
-  nativeCurrency: { name: "ETH", symbol: "ETH", decimals: 9 },
+  nativeCurrency: { name: "ETH", symbol: "ETH", decimals: 18 },
   blockExplorers: {
     default: {
       name: "Only Layer Testnet Explorer",
