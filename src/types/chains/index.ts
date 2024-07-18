@@ -16,6 +16,7 @@ import { solana } from "./solana";
 import { bsc } from "./bsc";
 import { bscTestnet } from "./bscTestnet";
 import { berachainBartio } from "./berachainBartio";
+import { onlylayerTestnet } from "./onlylayerTestnet";
 
 // https://github.com/wevm/viem/blob/main/src/chains/definitions
 
@@ -61,6 +62,7 @@ export const TESTNETS = {
   tonTestnet: tonTestnet,
   bscTestnet: bscTestnet,
   berachainBartio: berachainBartio,
+  onlylayerTestnet: onlylayerTestnet,
 };
 
 export const SUPPORTED_CHAINS = { ...MAINNETS, ...TESTNETS };
@@ -96,6 +98,7 @@ export const CHAIN_NAME_TO_ID: { [key in TChainName]: number } = {
   tonTestnet: 65535, // 0xffff
   bscTestnet: 97,
   berachainBartio: 80084,
+  onlylayerTestnet: 728696,
 };
 
 export const ChainNameToTypeChainName: { [key: string]: TChainName } = {
@@ -118,6 +121,7 @@ export const ChainNameToTypeChainName: { [key: string]: TChainName } = {
   TONTestnet: "tonTestnet",
   BSCTestnet: "bscTestnet",
   Bartio: "berachainBartio",
+  OnlyTestnet: "onlylayerTestnet",
 };
 
 export const ChainToDestinationDomain: { [key in TChainName]: number } = {
@@ -140,6 +144,7 @@ export const ChainToDestinationDomain: { [key in TChainName]: number } = {
   bsc: 4,
   bscTestnet: 4,
   berachainBartio: 80084,
+  onlylayerTestnet: 728696,
 };
 
 export const DomainToChainName: { [key: number]: TChainName } = {
@@ -159,6 +164,7 @@ export const DomainToChainNameTestnet: { [key: number]: TChainName } = {
   65535: "tonTestnet",
   4: "bscTestnet",
   80084: "berachainBartio",
+  728696: "onlylayerTestnet",
 };
 
 export const CHAIN_ID_TO_NAME: { [key: number]: TChainName } = {
@@ -182,6 +188,7 @@ export const CHAIN_ID_TO_NAME: { [key: number]: TChainName } = {
   65535: "tonTestnet",
   97: "bscTestnet",
   80084: "berachainBartio",
+  728696: "onlylayerTestnet",
 };
 
 export const SupportedDomains = [0, 1, 2, 3, 6, 7, 65534, 65535, 56, 4]; // TODO: add solana
@@ -211,4 +218,5 @@ export const CHAIN_LOGOS: { [key: string]: string } = {
   tonTestnet: "img/chain/ton.svg",
   bscTestnet: "img/chain/bsc.svg",
   berachainBartio: "img/chain/berachain.png",
+  onlylayerTestnet: "img/chain/onlylayer.png",
 };
