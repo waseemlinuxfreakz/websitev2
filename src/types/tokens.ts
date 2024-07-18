@@ -83,6 +83,7 @@ export const CHAIN_TO_TOKENS = {
   TONTestnet: ["USDC", "TON", "TRT", "$CAVI"],
   Amoy: ["USDC", "TON", "DAI", "GrabClub"],
   Sepolia: ["USDC", "TON", "DAI", "GrabClub", "TRT", "$CAVI"],
+  Bartio: ["USDC", "TON"],
 };
 
 export const TOKEN_DECIMALS = {

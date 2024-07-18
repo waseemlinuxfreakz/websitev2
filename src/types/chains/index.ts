@@ -15,6 +15,7 @@ import { tonTestnet } from "./tonTestnet";
 import { solana } from "./solana";
 import { bsc } from "./bsc";
 import { bscTestnet } from "./bscTestnet";
+import { berachainBartio } from "./berachainBartio";
 
 // https://github.com/wevm/viem/blob/main/src/chains/definitions
 
@@ -59,6 +60,7 @@ export const TESTNETS = {
   sepolia: sepolia,
   tonTestnet: tonTestnet,
   bscTestnet: bscTestnet,
+  berachainBartio: berachainBartio,
 };
 
 export const SUPPORTED_CHAINS = { ...MAINNETS, ...TESTNETS };
@@ -93,6 +95,7 @@ export const CHAIN_NAME_TO_ID: { [key in TChainName]: number } = {
   sepolia: 11155111, // 0xaa36a7
   tonTestnet: 65535, // 0xffff
   bscTestnet: 97,
+  berachainBartio: 80084,
 };
 
 export const ChainNameToTypeChainName: { [key: string]: TChainName } = {
@@ -114,6 +117,7 @@ export const ChainNameToTypeChainName: { [key: string]: TChainName } = {
   Sepolia: "sepolia",
   TONTestnet: "tonTestnet",
   BSCTestnet: "bscTestnet",
+  Bartio: "berachainBartio",
 };
 
 export const ChainToDestinationDomain: { [key in TChainName]: number } = {
@@ -135,6 +139,7 @@ export const ChainToDestinationDomain: { [key in TChainName]: number } = {
   // CCTP unsupported chains
   bsc: 4,
   bscTestnet: 4,
+  berachainBartio: 80084,
 };
 
 export const DomainToChainName: { [key: number]: TChainName } = {
@@ -153,6 +158,7 @@ export const DomainToChainNameTestnet: { [key: number]: TChainName } = {
   7: "polygonAmoy",
   65535: "tonTestnet",
   4: "bscTestnet",
+  80084: "berachainBartio",
 };
 
 export const CHAIN_ID_TO_NAME: { [key: number]: TChainName } = {
@@ -175,6 +181,7 @@ export const CHAIN_ID_TO_NAME: { [key: number]: TChainName } = {
   11155111: "sepolia",
   65535: "tonTestnet",
   97: "bscTestnet",
+  80084: "berachainBartio",
 };
 
 export const SupportedDomains = [0, 1, 2, 3, 6, 7, 65534, 65535, 56, 4]; // TODO: add solana
@@ -203,4 +210,5 @@ export const CHAIN_LOGOS: { [key: string]: string } = {
   sepolia: "img/chain/ethereum.svg",
   tonTestnet: "img/chain/ton.svg",
   bscTestnet: "img/chain/bsc.svg",
+  berachainBartio: "img/chain/berachain.png",
 };
