@@ -7,7 +7,7 @@ import Fox from "../../../assets/img/fox.svg";
 // Components
 import CoinLinkAddress from "../../HomeComponents/CoinLinkAddress";
 import { useAppSelector, useAppDispatch } from "../../../hooks/storage";
-import { setChain, setToken } from "../../../store/poolSlice";
+import { setPoolChain, setPoolToken } from "../../../store/poolSlice";
 
 export default function TokenSelectionDropdown({ type }) {
   const pool = useAppSelector((state) => state.pool);
@@ -42,7 +42,7 @@ export default function TokenSelectionDropdown({ type }) {
   const handleCoinClick = (icon, name) => {
     setSelectedCoin({ icon, name });
     toggleVisibility();
-    dispatch(setToken(name));
+    dispatch(setPoolToken(name));
     // dispatch(getIsfrom() ? setFromPrice(name) : setToPrice(name));
     ReactGA.event({
       category: "User",

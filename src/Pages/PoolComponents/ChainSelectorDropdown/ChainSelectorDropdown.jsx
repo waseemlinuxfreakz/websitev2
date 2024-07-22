@@ -10,7 +10,7 @@ import {
   setBridgeAmount,
 } from "../../../store/bridgeSlice";
 import { setSwapFromChain } from "../../../store/swapSlice";
-import { setChain } from "../../../store/poolSlice";
+import { setPoolChain } from "../../../store/poolSlice";
 import { isMobile } from "react-device-detect";
 import { CHAIN_NAME_TO_ID, ChainNameToTypeChainName } from "../../../types";
 
@@ -72,7 +72,7 @@ export default function ChainSelectorDropdown({ parent, direction }) {
         break;
       case "LP":
         dispatch(setBridgeFromChain(name));
-        dispatch(setChain(name));
+        dispatch(setPoolChain(name));
         setChainArray(chainData);
         break;
       default:

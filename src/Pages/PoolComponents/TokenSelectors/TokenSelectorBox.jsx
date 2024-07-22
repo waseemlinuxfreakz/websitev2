@@ -5,7 +5,7 @@ import WalletBalance from "../WalletBalance/WalletBalance";
 import TokenSelectionDropdown from "./TokenSelectionDropdown";
 
 import { useAppSelector, useAppDispatch } from "../../../hooks/storage";
-import { setFromToken, setToToken } from "../../../store/swapSlice";
+import { setPoolAmount } from "../../../store/poolSlice";
 
 export default function TokenSelectorBox({ type }) {
   // Global state
@@ -13,7 +13,7 @@ export default function TokenSelectorBox({ type }) {
   const dispatch = useAppDispatch();
 
   function onInputChange(e) {
-    console.log("onInputChange:", Number(e.target.value));
+    dispatch(setPoolAmount(Number(e.target.value)));
   }
 
   function isDeposit() {
@@ -30,9 +30,10 @@ export default function TokenSelectorBox({ type }) {
             </div>
             <h2 className="amount">
               <input
-                onChange={(e) => onInputChange(e)}
+                onChange={onInputChange}
                 type="number"
                 placeholder="0.0"
+                value={pool.amount}
                 disabled={type && type === "to" ? true : false}
               />
             </h2>

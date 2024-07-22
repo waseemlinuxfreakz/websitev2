@@ -8,6 +8,13 @@ interface IPoolState {
   chain: string;
   token: string;
   tokens: TokenType[];
+  amount: number | null;
+  apy: number;
+  totalSupply: number;
+  protocolFee: number;
+  protocolFeeAmount: number;
+  tokenFee: number;
+  balance: number;
 }
 
 const chain = chainList[0].name;
@@ -17,22 +24,59 @@ const initialState = {
   chain,
   token,
   tokens: coinsData,
+  amount: null,
+  apy: 0.25,
+  totalSupply: 0,
+  protocolFee: 0,
+  protocolFeeAmount: 0,
+  tokenFee: 0,
+  balance: 0,
 } as IPoolState;
 
 export const poolslice = createSlice({
   name: "pool",
   initialState,
   reducers: {
-    setChain(state: IPoolState, action: PayloadAction<string>) {
+    setPoolChain(state: IPoolState, action: PayloadAction<string>) {
       state.chain = action.payload;
     },
-    setToken: (state: IPoolState, action: PayloadAction<string>) => {
+    setPoolToken: (state: IPoolState, action: PayloadAction<string>) => {
       state.token = action.payload;
+    },
+    setPoolAmount: (state: IPoolState, action: PayloadAction<number>) => {
+      state.amount = action.payload;
+    },
+    setPoolApy: (state: IPoolState, action: PayloadAction<number>) => {
+      state.apy = action.payload;
+    },
+    setPoolTotalSupply: (state: IPoolState, action: PayloadAction<number>) => {
+      state.totalSupply = action.payload;
+    },
+    setPoolProtocolFee: (state: IPoolState, action: PayloadAction<number>) => {
+      state.protocolFee = action.payload;
+    },
+    setPoolProtocolFeeAmount: (
+      state: IPoolState,
+      action: PayloadAction<number>,
+    ) => {
+      state.protocolFeeAmount = action.payload;
+    },
+    setPoolTokenFee: (state: IPoolState, action: PayloadAction<number>) => {
+      state.tokenFee = action.payload;
     },
   },
   extraReducers(builder: any) {},
 });
 
-export const { setChain, setToken } = poolslice.actions;
+export const {
+  setPoolChain,
+  setPoolAmount,
+  setPoolToken,
+  setPoolApy,
+  setPoolProtocolFee,
+  setPoolProtocolFeeAmount,
+  setPoolTokenFee,
+  setPoolTotalSupply,
+} = poolslice.actions;
 
 export default poolslice.reducer;
