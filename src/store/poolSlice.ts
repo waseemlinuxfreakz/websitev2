@@ -3,6 +3,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import chainList from "./Chain.json";
 import coinsData from "./coins.json";
 import { TChainType, TokenType } from "./types";
+import { BridgeFeeStructure } from "../types";
+import { isStableCoin } from "../verifiers";
 
 interface IPoolState {
   chain: string;
@@ -15,6 +17,8 @@ interface IPoolState {
   protocolFeeAmount: number;
   tokenFee: number;
   balance: number;
+  stakedBalance: number;
+  allowance: number;
 }
 
 const chain = chainList[0].name;
@@ -31,6 +35,8 @@ const initialState = {
   protocolFeeAmount: 0,
   tokenFee: 0,
   balance: 0,
+  stakedBalance: 0,
+  allowance: 0,
 } as IPoolState;
 
 export const poolslice = createSlice({
@@ -64,6 +70,18 @@ export const poolslice = createSlice({
     setPoolTokenFee: (state: IPoolState, action: PayloadAction<number>) => {
       state.tokenFee = action.payload;
     },
+    setPoolBalance: (state: IPoolState, action: PayloadAction<number>) => {
+      state.balance = action.payload;
+    },
+    setPoolStakedBalance: (
+      state: IPoolState,
+      action: PayloadAction<number>,
+    ) => {
+      state.stakedBalance = action.payload;
+    },
+    setPoolAllowance(state: IPoolState, action: PayloadAction<number>) {
+      state.allowance = action.payload;
+    },
   },
   extraReducers(builder: any) {},
 });
@@ -77,6 +95,9 @@ export const {
   setPoolProtocolFeeAmount,
   setPoolTokenFee,
   setPoolTotalSupply,
+  setPoolBalance,
+  setPoolStakedBalance,
+  setPoolAllowance,
 } = poolslice.actions;
 
 export default poolslice.reducer;

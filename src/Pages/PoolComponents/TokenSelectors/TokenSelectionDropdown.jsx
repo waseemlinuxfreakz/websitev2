@@ -15,7 +15,6 @@ export default function TokenSelectionDropdown({ type }) {
 
   function getIcon(tokenName) {
     const selTkn = pool.tokens.find((t) => t.name === tokenName);
-    console.log({ selTkn, tokenName });
     return selTkn ? `${isLP() ? "../" : ""}${selTkn.icon}` : "";
   }
 
