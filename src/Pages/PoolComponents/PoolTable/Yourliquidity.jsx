@@ -48,7 +48,7 @@ function Yourliquidity() {
     const chainRequiresApproval = lockAndMintChains.find(
       (chain) => chain.name === pool.chain,
     )?.requiresApproval;
-    if (chainRequiresApproval) {
+    if (chainRequiresApproval && activeButton === "Deposit") {
       const needApproval =
         Number(pool.amount) >
         Number(pool.allowance) / 10 ** Number(TOKEN_DECIMALS[pool.token]);
