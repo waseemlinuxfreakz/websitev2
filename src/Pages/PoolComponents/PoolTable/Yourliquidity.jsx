@@ -182,7 +182,7 @@ function Yourliquidity() {
               <TokenSelectorBox type={activeButton} />
             </div>
             <ul className="YourliquidityList">
-              <li>
+              {/* <li>
                 <div className="LiquidityleftText">LPT Available</div>
                 <div className="LiquidityrightText">
                   {pool.protocolFee / 10000}%
@@ -193,7 +193,7 @@ function Yourliquidity() {
                 <div className="LiquidityrightText">
                   {pool.tokenFee / 10000}%
                 </div>
-              </li>
+              </li> */}
               <li>
                 <div className="LiquidityleftText">LPT staked</div>
                 <div className="LiquidityrightText">
