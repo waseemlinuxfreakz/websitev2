@@ -11,7 +11,10 @@ import { useEthersSigner } from "./useEthersSigner";
 import { Web3Helper } from "emmet.js/dist/chains/web3";
 import {
   setPoolApy,
+  setPoolProtocolFee,
+  setPoolProtocolFeeAmount,
   setPoolStakedBalance,
+  setPoolTokenFee,
   setPoolTotalSupply,
 } from "../store/poolSlice";
 import { AddressBookKeys } from "emmet.js";
@@ -26,16 +29,16 @@ export default function usePool() {
 
   const [error, setError] = useState("");
 
-  const getData = async () => {
+  const getData = async (chain = pool.chain, token = pool.token) => {
     try {
       const handler = await chainFactoryTestnet.inner(
         // @ts-ignore
-        ChainToDestinationDomain[ChainNameToTypeChainName[pool.chain]],
+        ChainToDestinationDomain[ChainNameToTypeChainName[chain]],
       );
 
       if ("address" in handler) {
         const poolAddress = await handler.address(
-          `elp${pool.token}` as AddressBookKeys,
+          `elp${token}` as AddressBookKeys,
         );
 
         const apy = await handler.getLpCurrentAPY(poolAddress);
@@ -45,15 +48,14 @@ export default function usePool() {
         dispatch(setPoolTotalSupply(Number(totalSupply)));
 
         const protocolFee = await handler.getLpProtocolFee(poolAddress);
-        dispatch(setPoolTotalSupply(Number(protocolFee)));
+        dispatch(setPoolProtocolFee(Number(protocolFee)));
 
-        const protocolFeeAmount = await (
-          handler as Web3Helper
-        ).getLpProtocolFeeAmount(poolAddress);
-        dispatch(setPoolTotalSupply(Number(protocolFeeAmount)));
+        const protocolFeeAmount =
+          await handler.getLpProtocolFeeAmount(poolAddress);
+        dispatch(setPoolProtocolFeeAmount(Number(protocolFeeAmount)));
 
         const tokenFee = await handler.getLpTokenFee(poolAddress);
-        dispatch(setPoolTotalSupply(Number(tokenFee)));
+        dispatch(setPoolTokenFee(Number(tokenFee)));
       }
     } catch (error: { message: string } | any) {
       setError(error.message);
@@ -76,6 +78,7 @@ export default function usePool() {
         pool.amount * 10 ** TOKEN_DECIMALS[pool.token],
         undefined,
       );
+      await getData();
     } catch (error: { message: string } | any) {
       console.error(error);
       setError(error.message);
@@ -97,6 +100,7 @@ export default function usePool() {
         pool.amount * 10 ** TOKEN_DECIMALS[pool.token],
         undefined,
       );
+      await getData();
     } catch (error: { message: string } | any) {
       console.error(error);
       setError(error.message);
@@ -142,13 +146,17 @@ export default function usePool() {
     }
   };
 
+  const getStakedBalance = async () => {
+    const stakedBalance = await getBalance("Withdraw");
+    dispatch(setPoolStakedBalance(stakedBalance));
+  };
+
   useEffect(() => {
     (async () => {
-      const stakedBalance = await getBalance("Withdraw");
-      dispatch(setPoolStakedBalance(stakedBalance));
+      await getStakedBalance();
       await getData();
     })();
   }, [pool.chain, pool.token]);
 
-  return { error, getData, stake, withdraw, getBalance };
+  return { error, getData, stake, withdraw, getBalance, getStakedBalance };
 }

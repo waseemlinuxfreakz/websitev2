@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import YourPoolTitle from "./YourPoolTitle";
 import PoolBox1 from "./PoolBox1";
 import PoolBox2 from "./PoolBox2";
 import PoolBox3 from "./PoolBox3";
 import PoolBox4 from "./PoolBox4";
+import usePool from "../../../hooks/usePool";
 
 function YourPool() {
+  const { getData, getStakedBalance } = usePool();
+
+  useEffect(() => {
+    (async () => {
+      await getData("Sepolia", "USDC");
+      await getStakedBalance();
+    })();
+  });
   return (
     <div className="yourPool">
       <YourPoolTitle />
@@ -13,7 +22,7 @@ function YourPool() {
         <div className="col-lg-3">
           <PoolBox1 />
         </div>
-        <div className="col-lg-3">
+        {/* <div className="col-lg-3">
           <PoolBox2 />
         </div>
         <div className="col-lg-3">
@@ -33,7 +42,7 @@ function YourPool() {
         </div>
         <div className="col-lg-3">
           <div className="poolBox"></div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

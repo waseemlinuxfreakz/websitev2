@@ -3,8 +3,10 @@ import React from "react";
 import USDT from "../../../assets/img/coin/usdc.svg";
 import ETH from "../../../assets/img/coin/eth.svg";
 import Target from "../../../assets/img/target.svg";
+import { useAppSelector } from "../../../hooks/storage";
 
 function PoolBox1() {
+  const pool = useAppSelector((state) => state.pool);
   return (
     <div className="poolBox">
       <div className="poolboxTop">
@@ -23,7 +25,7 @@ function PoolBox1() {
             <img src={Target} alt="Target" />
           </a>
           <p>
-            <b>APY</b> 0.38%
+            <b>APY</b> {pool.apy}%
           </p>
         </div>
       </div>
@@ -31,7 +33,7 @@ function PoolBox1() {
         <div className="row">
           <div className="col-6">
             <h4>Deposit (USDC)</h4>
-            <h3>238.9</h3>
+            <h3>{pool.stakedBalance}</h3>
           </div>
           <div className="col-6">
             <h4>Fees ($)</h4>
