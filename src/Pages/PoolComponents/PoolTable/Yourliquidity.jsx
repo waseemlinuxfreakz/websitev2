@@ -173,7 +173,14 @@ function Yourliquidity() {
               <ChainSelectorDropdown parent={"LP"} />
               <div className="YourliquidityChainApy">
                 <p>
-                  APY <img src={Info} alt="Info" />
+                  APY{" "}
+                  <button className="copyLink">
+                    <span className="copyHover YourliquidityChainApyHoverText">
+                      Calculations based on data from the past 30 days,
+                      extrapolated to a year.
+                    </span>
+                    <img src={Info} alt="Info" />
+                  </button>
                 </p>{" "}
                 <span>{pool.apy}%</span>
               </div>

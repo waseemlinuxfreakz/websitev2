@@ -223,7 +223,7 @@ ul.YourliquidityList {
 @media only screen and (max-width: 1025px) {
   /* .yourliquidity .depositeBtn {
         display: none;
-            
+
         position: fixed;
         left: 0;
         right: 0;
@@ -253,7 +253,7 @@ ul.YourliquidityList {
   .poolTitlerRight {
     display: none;
   }
-  /* 
+  /*
     .yourliquidity {
         max-height: calc(100vh - 114px);
         overflow: auto;
@@ -272,4 +272,10 @@ ul.YourliquidityList {
   .yourliquidity {
     width: 100%;
   }
+}
+
+.YourliquidityChainApyHoverText {
+  font-size: 12px !important;
+  line-height: 1.3 !important;
+  font-weight: 400 !important;
 }

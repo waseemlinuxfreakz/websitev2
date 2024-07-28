@@ -94,7 +94,6 @@ ul.breadcum li {
 
 .copyHover {
   width: 155px;
-  height: 40px;
   opacity: 0;
   visibility: hidden;
   z-index: 2;
