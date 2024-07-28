@@ -18,11 +18,13 @@ import {
   setPoolTotalSupply,
 } from "../store/poolSlice";
 import { AddressBookKeys } from "emmet.js";
+import { useTonConnect } from "./useTonConnect";
 
 export default function usePool() {
   const dispatch = useAppDispatch();
 
   const signer = useEthersSigner();
+  const { sender: tonSender } = useTonConnect();
 
   const pool = useAppSelector((state) => state.pool);
   const bridge = useAppSelector((state) => state.bridge);
@@ -64,11 +66,11 @@ export default function usePool() {
   };
 
   const stake = async () => {
+    const handler = await chainFactoryTestnet.inner(
+      // @ts-ignore
+      ChainToDestinationDomain[ChainNameToTypeChainName[pool.chain]],
+    );
     try {
-      const handler = await chainFactoryTestnet.inner(
-        // @ts-ignore
-        ChainToDestinationDomain[ChainNameToTypeChainName[pool.chain]],
-      );
       await chainFactoryTestnet.stakeLiqiduity(
         // @ts-ignore
         handler,
@@ -78,19 +80,29 @@ export default function usePool() {
         pool.amount * 10 ** TOKEN_DECIMALS[pool.token],
         undefined,
       );
-      await getData();
     } catch (error: { message: string } | any) {
+      // For TON
+      await chainFactoryTestnet.stakeLiqiduity(
+        // @ts-ignore
+        handler,
+        tonSender,
+        pool.token,
+        // @ts-ignore
+        pool.amount * 10 ** TOKEN_DECIMALS[pool.token],
+        undefined,
+      );
       console.error(error);
       setError(error.message);
     }
+    await getData();
   };
 
   const withdraw = async () => {
+    const handler = await chainFactoryTestnet.inner(
+      // @ts-ignore
+      ChainToDestinationDomain[ChainNameToTypeChainName[pool.chain]],
+    );
     try {
-      const handler = await chainFactoryTestnet.inner(
-        // @ts-ignore
-        ChainToDestinationDomain[ChainNameToTypeChainName[pool.chain]],
-      );
       await chainFactoryTestnet.withdrawLiqiduity(
         // @ts-ignore
         handler,
@@ -100,11 +112,21 @@ export default function usePool() {
         pool.amount * 10 ** TOKEN_DECIMALS[pool.token],
         undefined,
       );
-      await getData();
     } catch (error: { message: string } | any) {
+      // For TON
+      await chainFactoryTestnet.withdrawLiqiduity(
+        // @ts-ignore
+        handler,
+        tonSender,
+        pool.token,
+        // @ts-ignore
+        pool.amount * 10 ** TOKEN_DECIMALS[pool.token],
+        undefined,
+      );
       console.error(error);
       setError(error.message);
     }
+    await getData();
   };
 
   const getBalance = async (
