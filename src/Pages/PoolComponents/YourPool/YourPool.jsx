@@ -12,7 +12,7 @@ function YourPool() {
   useEffect(() => {
     (async () => {
       await getData("Sepolia", "USDC");
-      await getStakedBalance();
+      await getStakedBalance("Sepolia", "USDC");
     })();
   });
   return (

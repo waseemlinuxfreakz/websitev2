@@ -21,8 +21,8 @@ interface IPoolState {
   allowance: number;
 }
 
-const chain = "Sepolia";
-const token = "USDC";
+const chain = chainList[0].name;
+const token = coinsData[4].name;
 
 const initialState = {
   chain,

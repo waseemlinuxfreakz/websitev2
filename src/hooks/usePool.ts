@@ -107,19 +107,21 @@ export default function usePool() {
     }
   };
 
-  const getBalance = async (type: "Deposit" | "Withdraw") => {
+  const getBalance = async (
+    type: "Deposit" | "Withdraw",
+    chain = pool.chain,
+    token = pool.token,
+  ) => {
     try {
       const handler = await chainFactoryTestnet.inner(
         // @ts-ignore
-        ChainToDestinationDomain[ChainNameToTypeChainName[pool.chain]],
+        ChainToDestinationDomain[ChainNameToTypeChainName[chain]],
       );
 
       console.log(pool.token, bridge.senderAddress);
       if ("address" in handler) {
         if (type === "Deposit") {
-          const tokenAddress = await handler.address(
-            pool.token as AddressBookKeys,
-          );
+          const tokenAddress = await handler.address(token as AddressBookKeys);
           return (
             Number(
               await handler.tokenBalance(tokenAddress, bridge.senderAddress),
@@ -146,14 +148,14 @@ export default function usePool() {
     }
   };
 
-  const getStakedBalance = async () => {
-    const stakedBalance = await getBalance("Withdraw");
+  const getStakedBalance = async (chain?: string, token?: string) => {
+    const stakedBalance = await getBalance("Withdraw", chain, token);
     dispatch(setPoolStakedBalance(stakedBalance));
   };
 
   useEffect(() => {
     (async () => {
-      await getStakedBalance();
+      await getStakedBalance(pool.chain, pool.token);
       await getData();
     })();
   }, [pool.chain, pool.token]);
