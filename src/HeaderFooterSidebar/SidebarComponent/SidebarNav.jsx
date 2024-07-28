@@ -60,6 +60,7 @@ function SidebarNav() {
           <Link
             to="/pool"
             className={`navLink ${isActive("/pool") && "active"}`}
+            onClick={handleLinkClick}
           >
             <img src={"/img/nav-icon/Pool.svg"} alt="NavIcon" />
             <span>Pool</span>
