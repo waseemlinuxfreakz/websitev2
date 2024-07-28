@@ -39,15 +39,16 @@ export default function usePool() {
       );
 
       if ("address" in handler) {
-        const poolAddress = await handler.address(
-          `elp${token}` as AddressBookKeys,
-        );
+        const poolAddress = await handler.address(`elp${token}`);
+
+        const decimals = await handler.decimals(poolAddress);
 
         const apy = await handler.getLpCurrentAPY(poolAddress);
         dispatch(setPoolApy(Number(apy) / 100));
 
         const totalSupply = await handler.getLpTotalSupply(poolAddress);
-        dispatch(setPoolTotalSupply(Number(totalSupply)));
+
+        dispatch(setPoolTotalSupply(Number(totalSupply) / 10 ** decimals));
 
         const protocolFee = await handler.getLpProtocolFee(poolAddress);
         dispatch(setPoolProtocolFee(Number(protocolFee)));

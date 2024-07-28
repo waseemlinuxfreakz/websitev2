@@ -216,7 +216,7 @@ function Yourliquidity() {
               <li>
                 <div className="LiquidityleftText">Share of Pool</div>
                 <div className="LiquidityrightText">
-                  {(pool.stakedBalance / (pool.totalSupply / 10 ** 6)) * 100}%
+                  {(pool.stakedBalance / pool.totalSupply) * 100}%
                 </div>
               </li>
               {/* <li>
@@ -225,9 +225,7 @@ function Yourliquidity() {
               </li> */}
               <li>
                 <div className="LiquidityleftText">Liquidity Pool</div>
-                <div className="LiquidityrightText">
-                  ${pool.totalSupply / 10 ** 6}
-                </div>
+                <div className="LiquidityrightText">${pool.totalSupply}</div>
               </li>
             </ul>
             <div className="connectBtn">
