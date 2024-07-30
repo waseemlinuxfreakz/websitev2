@@ -11,6 +11,9 @@ import { useEthersSigner } from "./useEthersSigner";
 import { Web3Helper } from "emmet.js/dist/chains/web3";
 import {
   setPoolApy,
+  setPoolFeeDecimals,
+  setPoolFeeGrowthGlobal,
+  setPoolPendingRewards,
   setPoolProtocolFee,
   setPoolProtocolFeeAmount,
   setPoolStakedBalance,
@@ -59,6 +62,24 @@ export default function usePool() {
 
         const tokenFee = await handler.getLpTokenFee(poolAddress);
         dispatch(setPoolTokenFee(Number(tokenFee)));
+
+        const feeGrowthGlobal = await (
+          handler as Web3Helper
+        ).getLpFeeGrowthGlobal(poolAddress);
+        dispatch(
+          setPoolFeeGrowthGlobal(Number(feeGrowthGlobal) / 10 ** decimals),
+        );
+
+        const feeDecimals = await (handler as Web3Helper).getLpFeeDecimals(
+          poolAddress,
+        );
+        dispatch(setPoolFeeDecimals(Number(feeDecimals)));
+
+        const pendingRewards = await (
+          handler as Web3Helper
+        ).getLpProviderRewards(poolAddress, bridge.senderAddress);
+        dispatch(setPoolPendingRewards(Number(pendingRewards)));
+        console.log({ pendingRewards });
       }
     } catch (error: { message: string } | any) {
       setError(error.message);
@@ -179,9 +200,9 @@ export default function usePool() {
   useEffect(() => {
     (async () => {
       await getStakedBalance(pool.chain, pool.token);
-      await getData();
+      await getData(pool.chain, pool.token);
     })();
-  }, [pool.chain, pool.token]);
+  }, [pool.chain, pool.token, bridge.senderAddress]);
 
   return { error, getData, stake, withdraw, getBalance, getStakedBalance };
 }

@@ -87,7 +87,7 @@ function Yourliquidity() {
       const _balance = await getBalance(activeButton);
       dispatch(setPoolBalance(_balance));
     })();
-  }, [pool.chain, pool.token, activeButton]);
+  }, [pool.chain, pool.token, activeButton, bridge.senderAddress]);
 
   useEffect(() => {
     if (bridge.senderAddress) {
@@ -210,7 +210,7 @@ function Yourliquidity() {
               <li>
                 <div className="LiquidityleftText">Pending Rewards</div>
                 <div className="LiquidityrightText">
-                  {pool.stakedBalance} {pool.token}
+                  {pool.pendingRewards} {pool.token}
                 </div>
               </li>
               <li>

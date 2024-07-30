@@ -4,6 +4,7 @@ import ReactGA from "react-ga";
 // Icons
 import DownArrow from "../../../assets/img/down-white.svg";
 import Fox from "../../../assets/img/fox.svg";
+import coins from "./../../../store/coins.json";
 // Components
 import CoinLinkAddress from "../../HomeComponents/CoinLinkAddress";
 import { useAppSelector, useAppDispatch } from "../../../hooks/storage";
@@ -14,7 +15,7 @@ export default function TokenSelectionDropdown({ type }) {
   const dispatch = useAppDispatch();
 
   function getIcon(tokenName) {
-    const selTkn = pool.tokens.find((t) => t.name === tokenName);
+    const selTkn = coins.find((t) => t.name === tokenName);
     return selTkn ? `${isLP() ? "../" : ""}${selTkn.icon}` : "";
   }
 

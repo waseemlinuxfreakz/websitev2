@@ -1,10 +1,12 @@
 import React from "react";
+import { useAppSelector } from "../../../hooks/storage";
 
 function PoolTableTitle() {
+  const pool = useAppSelector((state) => state.pool);
   return (
     <div className="poolTableTitle explorerTransactionsTitle">
       <h2>Active pool</h2>
-      <p>TVL: $330,843,482.47</p>
+      <p>TVL: ${pool.totalSupply}</p>
     </div>
   );
 }

@@ -6,6 +6,7 @@ import MobileHeader from "../HeaderFooterSidebar/MobileHeader";
 // import SidebarSlider from '../HeaderFooterSidebar/SidebarComponent/SidebarSlider';
 import Yourliquidity from "./PoolComponents/PoolTable/Yourliquidity";
 import useMobileDetector from "../hooks/useMobileDetector";
+import { Link } from "react-router-dom";
 
 const YourLiquidityPage = () => {
   const isMobile = useMobileDetector();
@@ -34,7 +35,7 @@ const YourLiquidityPage = () => {
                 <div className="swapContainerArea">
                   <ul className="breadcum">
                     <li>
-                      <a href="/pool">All pools</a>
+                      <Link to="/pool">All pools</Link>
                     </li>
                     <li>Add liquidity</li>
                   </ul>

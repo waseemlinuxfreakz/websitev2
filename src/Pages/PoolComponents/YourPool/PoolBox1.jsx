@@ -4,6 +4,7 @@ import USDT from "../../../assets/img/coin/usdc.svg";
 import ETH from "../../../assets/img/coin/eth.svg";
 import Target from "../../../assets/img/target.svg";
 import { useAppSelector } from "../../../hooks/storage";
+import { Link } from "react-router-dom";
 
 function PoolBox1() {
   const pool = useAppSelector((state) => state.pool);
@@ -21,9 +22,9 @@ function PoolBox1() {
           </div>
         </div>
         <div className="poolboxTopRight">
-          <a href="#" className="tragetLink">
+          <Link to="./your-liquidity" className="tragetLink">
             <img src={Target} alt="Target" />
-          </a>
+          </Link>
           <p>
             <b>APY</b> {pool.apy}%
           </p>
@@ -36,8 +37,8 @@ function PoolBox1() {
             <h3>{pool.stakedBalance}</h3>
           </div>
           <div className="col-6">
-            <h4>Fees ($)</h4>
-            <h3>$654</h3>
+            <h4>Fees</h4>
+            <h3>{pool.feeGrowthGlobal}</h3>
           </div>
         </div>
       </div>

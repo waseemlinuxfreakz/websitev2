@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import USDT from "../../../assets/img/coin/usdc.svg";
 import ETH from "../../../assets/img/coin/eth.svg";
 import Yourliquidity from "./Yourliquidity";
+import { Link } from "react-router-dom";
 
 function PoolMobileData() {
   const [isYourLiquidityVisible, setYourLiquidityVisible] = useState(false);
@@ -37,13 +38,13 @@ function PoolMobileData() {
                 <h3>0.6%</h3>
               </div>
               <div className="addDeposit">
-                <a
-                  href="./pool/your-liquidity"
+                <Link
+                  to="./your-liquidity"
                   className="addDepositBtn"
                   onClick={handleAddPollClick}
                 >
                   + Add deposit
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -72,13 +73,13 @@ function PoolMobileData() {
                 <h3>0.6%</h3>
               </div>
               <div className="addDeposit">
-                <a
-                  href="./pool/your-liquidity"
+                <Link
+                  to="./your-liquidity"
                   className="addDepositBtn"
                   onClick={handleAddPollClick}
                 >
                   + Add deposit
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -107,13 +108,13 @@ function PoolMobileData() {
                 <h3>0.6%</h3>
               </div>
               <div className="addDeposit">
-                <a
-                  href="./pool/your-liquidity"
+                <Link
+                  to="./your-liquidity"
                   className="addDepositBtn"
                   onClick={handleAddPollClick}
                 >
                   + Add deposit
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -142,13 +143,13 @@ function PoolMobileData() {
                 <h3>0.6%</h3>
               </div>
               <div className="addDeposit">
-                <a
-                  href="./pool/your-liquidity"
+                <Link
+                  to="./your-liquidity"
                   className="addDepositBtn"
                   onClick={handleAddPollClick}
                 >
                   + Add deposit
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -156,10 +157,9 @@ function PoolMobileData() {
       </div>
       {/* {isYourLiquidityVisible && <Yourliquidity />} */}
       <div className="mobileDeposite">
-        <button type="button" className="depositeBtn ">
-          {" "}
-          Deposit{" "}
-        </button>
+        <Link to="./your-liquidity" type="button" className="depositeBtn ">
+          Deposit
+        </Link>
       </div>
     </>
   );

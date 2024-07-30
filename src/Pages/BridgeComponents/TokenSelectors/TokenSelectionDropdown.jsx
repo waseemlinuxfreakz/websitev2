@@ -100,12 +100,12 @@ export default function TokenSelectionDropdown({ type }) {
                 <img src={coin.icon} alt={coin.name} />
                 <span>{coin.name}</span>
               </div>
-              <div className="coinItemRight">
+              {/* <div className="coinItemRight">
                 <CoinLinkAddress />
                 <a href="#" className="foxLink">
                   <img src={Fox} alt="Metamask" />
                 </a>
-              </div>
+              </div> */}
             </li>
           ))}
         </ul>

@@ -2,48 +2,24 @@ import React, { useState } from "react";
 
 import Updown from "../../../assets/img/table-updown.svg";
 import Yourliquidity from "./Yourliquidity";
+import { useAppSelector } from "../../../hooks/storage";
+import { Link } from "react-router-dom";
 
 const PoolTable = () => {
   const [sortBy, setSortBy] = useState(null);
   const [sortOrder, setSortOrder] = useState("asc");
   const [isYourLiquidityVisible, setYourLiquidityVisible] = useState(false);
+  const pool = useAppSelector((state) => state.pool);
 
   const data = [
     {
       Token:
-        '<span class="poolCoin"><img src="/img/coin/eth.svg" alt="eth" /> ETH</span>',
-      Chain:
-        '<span class="poolCoin"><img src="/img/coin/Linea.svg" alt="Linea" /> Linea</span>',
-      APY: '<span style="color: #E0E3E6;">4%</span>',
-      Daily: "0.3849%",
-      TotalLiquidity: '<span class="totleLiqui">1,085 ETH</span>',
-    },
-    {
-      Token:
         '<span class="poolCoin"><img src="/img/coin/usdc.svg" alt="usdc" /> USDC</span>',
       Chain:
-        '<span class="poolCoin"><img src="/img/coin/eth.svg" alt="eth" /> ETH</span>',
-      APY: '<span style="color: #E0E3E6;">30%</span>',
-      Daily: "0.3849%",
-      TotalLiquidity: '<span class="totleLiqui">1,085 ETH</span>',
-    },
-    {
-      Token:
-        '<span class="poolCoin"><img src="/img/coin/usdt.svg" alt="usdt" /> USDT</span>',
-      Chain:
-        '<span class="poolCoin"><img src="/img/coin/Base.svg" alt="Base" /> Base</span>',
-      APY: '<span style="color: #E0E3E6;">4%</span>',
-      Daily: "0.3849%",
-      TotalLiquidity: '<span class="totleLiqui">1,085 ETH</span>',
-    },
-    {
-      Token:
-        '<span class="poolCoin"><img src="/img/coin/dai.svg" alt="dai" /> DIA</span>',
-      Chain:
-        '<span class="poolCoin"><img src="/img/coin/optimism.svg" alt="optimism" /> optimism</span>',
-      APY: '<span style="color: #E0E3E6;">10%</span>',
-      Daily: "0.3849%",
-      TotalLiquidity: '<span class="totleLiqui">1,085 ETH</span>',
+        '<span class="poolCoin"><img src="/img/coin/eth.svg" alt="eth" /> Sepolia</span>',
+      APY: `<span style="color: #E0E3E6;">${pool.apy}%</span>`,
+      Volume: "$43,432.00",
+      TotalLiquidity: `<span class="totleLiqui">$${pool.totalSupply}</span>`,
     },
   ];
 
@@ -93,7 +69,7 @@ const PoolTable = () => {
                 </span>
               </th>
               <th onClick={() => handleSort("Daily")}>
-                Daily{" "}
+                Volume (24h){" "}
                 <span className="upDown">
                   <img src={Updown} alt="Updown" />
                 </span>
@@ -113,16 +89,16 @@ const PoolTable = () => {
                 <td dangerouslySetInnerHTML={{ __html: item.Token }} />
                 <td dangerouslySetInnerHTML={{ __html: item.Chain }} />
                 <td dangerouslySetInnerHTML={{ __html: item.APY }} />
-                <td dangerouslySetInnerHTML={{ __html: item.Daily }} />
+                <td dangerouslySetInnerHTML={{ __html: item.Volume }} />
                 <td dangerouslySetInnerHTML={{ __html: item.TotalLiquidity }} />
                 <td>
-                  <a
-                    href="./pool/your-liquidity"
+                  <Link
+                    to="./your-liquidity"
                     className="addPoll"
                     onClick={handleAddPollClick}
                   >
                     <img src="/img/add.svg" alt="Add" />
-                  </a>
+                  </Link>
                 </td>
               </tr>
             ))}

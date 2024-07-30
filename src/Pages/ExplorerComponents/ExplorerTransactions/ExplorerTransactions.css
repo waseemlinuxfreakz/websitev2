@@ -241,7 +241,7 @@ ul.filterDropList li:not(:first-child) {
     bottom: 0;
     left: auto !important;
     max-height: unset !important;
-    min-height: 270px;
+    min-height: fit-content;
     border-radius: 10px !important;
   }
 

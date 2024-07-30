@@ -1,0 +1,12 @@
+[
+  {
+    "id": 11155111,
+    "name": "Sepolia",
+    "icon": "img/chain/ethereum.svg"
+  },
+  {
+    "id": 65535,
+    "name": "TONTestnet",
+    "icon": "img/chain/ton.svg"
+  }
+]

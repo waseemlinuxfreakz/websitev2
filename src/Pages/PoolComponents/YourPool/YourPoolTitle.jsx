@@ -1,26 +1,29 @@
 import React, { useState } from "react";
 import Yourliquidity from "../PoolTable/Yourliquidity";
+import { useAppSelector } from "../../../hooks/storage";
+import { Link } from "react-router-dom";
 
 function YourPoolTitle() {
   const [isYourLiquidityVisible, setYourLiquidityVisible] = useState(false);
   const handleAddPollClick = () => {
     setYourLiquidityVisible(!isYourLiquidityVisible);
   };
+  const pool = useAppSelector((state) => state.pool);
   return (
     <>
       <div className="yourPoolTitle">
         <div className="poolTitleLeft">
           <h5>Your pool</h5>
-          <p>Total fee earnings: $330,843,482.47</p>
+          <p>Total Rewards: ${pool.pendingRewards}</p>
         </div>
         <div className="poolTitlerRight">
-          <a
-            href="./pool/your-liquidity"
+          <Link
+            to="./your-liquidity"
             className="addLiquidity"
             onClick={handleAddPollClick}
           >
             Add liquidity
-          </a>
+          </Link>
         </div>
       </div>
       {/* {isYourLiquidityVisible && <Yourliquidity />} */}

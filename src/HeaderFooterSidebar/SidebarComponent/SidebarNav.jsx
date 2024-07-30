@@ -38,6 +38,16 @@ function SidebarNav() {
         </li>
         <li>
           <Link
+            to="/pool"
+            className={`navLink ${isActive("/pool") && "active"}`}
+            onClick={handleLinkClick}
+          >
+            <img src={"/img/nav-icon/Pool.svg"} alt="NavIcon" />
+            <span>Pool</span>
+          </Link>
+        </li>
+        <li>
+          <Link
             to="/explorer"
             className={`navLink ${isActive("/explorer") && "active"}`}
             onClick={handleLinkClick}
@@ -54,16 +64,6 @@ function SidebarNav() {
           >
             <img src={"/img/nav-icon/nav-Icons-1.svg"} alt="NavIcon" />
             <span>Swap</span>
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/pool"
-            className={`navLink ${isActive("/pool") && "active"}`}
-            onClick={handleLinkClick}
-          >
-            <img src={"/img/nav-icon/Pool.svg"} alt="NavIcon" />
-            <span>Pool</span>
           </Link>
         </li>
         <li>
