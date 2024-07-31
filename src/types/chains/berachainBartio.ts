@@ -1,7 +1,6 @@
-import { Chain, berachainTestnet as viemBerachainTestnet } from "viem/chains";
+import { Chain } from "viem/chains";
 
 export const berachainBartio: Chain = {
-  ...viemBerachainTestnet,
   name: "Bartio",
   rpcUrls: {
     default: {
@@ -15,4 +14,12 @@ export const berachainBartio: Chain = {
     },
   },
   testnet: true,
+  id: 80084,
+  nativeCurrency: { name: "BERA", symbol: "BERA", decimals: 18 },
+  blockExplorers: {
+    default: {
+      name: "Berachain Testnet Explorer",
+      url: "https://bartio.beratrail.io",
+    },
+  },
 };
