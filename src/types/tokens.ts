@@ -100,6 +100,7 @@ export const TOKEN_DECIMALS = {
   GrabClub: 18,
   TRT: 9,
   $CAVI: 9,
+  BERA: 18,
 };
 
 export type TTokenName = keyof typeof TOKEN_DECIMALS;
@@ -115,4 +116,5 @@ export const TOKEN_SYMBOL_TO_TOKEN = {
   GrabClub: "GrabClub",
   TRT: "TestRED",
   $CAVI: "CAVI",
+  BERA: "BERA",
 };
