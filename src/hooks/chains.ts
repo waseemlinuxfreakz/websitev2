@@ -31,6 +31,22 @@ const chains = [
     requiresApproval: true,
     nativeCurrency: { name: "TBNB", symbol: "TBNB", decimals: 18 },
   },
+  {
+    id: 80084,
+    name: "Bartio",
+    icon: "img/chain/berachain.png",
+    domain: 80084,
+    requiresApproval: true,
+    nativeCurrency: { name: "BERA", symbol: "BERA", decimals: 18 },
+  },
+  {
+    id: 728696,
+    name: "OnlyTestnet",
+    icon: "img/chain/berachain.png",
+    domain: 728696,
+    requiresApproval: true,
+    nativeCurrency: { name: "ETH", symbol: "ETH", decimals: 18 },
+  },
 ] as const;
 
 export type LockAndMintSupportedChainIDs = (typeof chains)[number]["domain"];

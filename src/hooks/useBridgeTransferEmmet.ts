@@ -74,7 +74,9 @@ export default function useBridgeTransferEmmet() {
         } else if (
           fromChainID === Chain.POLYGON ||
           fromChainID === Chain.ETHEREUM ||
-          fromChainID === Chain.BSC
+          fromChainID === Chain.BSC ||
+          fromChainID === Chain.BERACHAIN ||
+          fromChainID === Chain.ONLYLAYER
         ) {
           const handler = await chainFactoryTestnet.inner(fromChainID);
           console.log({
