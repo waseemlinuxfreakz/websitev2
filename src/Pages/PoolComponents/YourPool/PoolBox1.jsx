@@ -37,7 +37,7 @@ function PoolBox1() {
             <h3>{pool.stakedBalance}</h3>
           </div>
           <div className="col-6">
-            <h4>Fees</h4>
+            <h4>Fees (USDC)</h4>
             <h3>{pool.feeGrowthGlobal}</h3>
           </div>
         </div>
