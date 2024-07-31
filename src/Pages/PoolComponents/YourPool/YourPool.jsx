@@ -5,9 +5,11 @@ import PoolBox2 from "./PoolBox2";
 import PoolBox3 from "./PoolBox3";
 import PoolBox4 from "./PoolBox4";
 import usePool from "../../../hooks/usePool";
+import { useAppSelector } from "../../../hooks/storage";
 
 function YourPool() {
   const { getData, getStakedBalance } = usePool();
+  const bridge = useAppSelector((state) => state.bridge);
 
   useEffect(() => {
     (async () => {

@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 
 function PoolBox1() {
   const pool = useAppSelector((state) => state.pool);
+  const bridge = useAppSelector((state) => state.bridge);
+
   return (
     <div className="poolBox">
       <div className="poolboxTop">
@@ -37,8 +39,9 @@ function PoolBox1() {
             <h3>{pool.stakedBalance}</h3>
           </div>
           <div className="col-6">
-            <h4>Fees (USDC)</h4>
-            <h3>{pool.feeGrowthGlobal}</h3>
+            <h4>Rewards (USDC)</h4>
+
+            <h3>{bridge.senderAddress ? pool.pendingRewards : "---"}</h3>
           </div>
         </div>
       </div>

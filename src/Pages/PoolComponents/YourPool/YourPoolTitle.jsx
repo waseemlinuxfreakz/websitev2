@@ -9,6 +9,7 @@ function YourPoolTitle() {
     setYourLiquidityVisible(!isYourLiquidityVisible);
   };
   const pool = useAppSelector((state) => state.pool);
+  const bridge = useAppSelector((state) => state.bridge);
   return (
     <>
       <div className="yourPoolTitle">
