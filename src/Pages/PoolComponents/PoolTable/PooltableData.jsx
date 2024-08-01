@@ -4,22 +4,38 @@ import Updown from "../../../assets/img/table-updown.svg";
 import Yourliquidity from "./Yourliquidity";
 import { useAppSelector } from "../../../hooks/storage";
 import { Link } from "react-router-dom";
+import poolTokens from "../../../store/poolCoins.json";
+import poolChains from "../../../store/poolChains.json";
 
 const PoolTable = () => {
   const [sortBy, setSortBy] = useState(null);
   const [sortOrder, setSortOrder] = useState("asc");
   const [isYourLiquidityVisible, setYourLiquidityVisible] = useState(false);
   const pool = useAppSelector((state) => state.pool);
+  const bridge = useAppSelector((state) => state.bridge);
+
+  const getTokenIcon = (token) => {
+    return poolTokens.find((i) => i.name === token).icon;
+  };
+
+  const getChainIcon = (chain) => {
+    return poolChains.find((i) => i.name === chain).icon;
+  };
 
   const data = [
     {
-      Token:
-        '<span class="poolCoin"><img src="/img/coin/usdc.svg" alt="usdc" /> USDC</span>',
-      Chain:
-        '<span class="poolCoin"><img src="/img/coin/eth.svg" alt="eth" /> Sepolia</span>',
-      APY: `<span style="color: #E0E3E6;">${pool.apy}%</span>`,
-      Volume: "$43,432.00",
-      TotalLiquidity: `<span class="totleLiqui">$${pool.totalSupply}</span>`,
+      token: "USDC",
+      chain: "Sepolia",
+      apy: pool.apy,
+      volume: "$43,432.00",
+      totalLiquidity: pool.totalSupply,
+    },
+    {
+      token: "USDC",
+      chain: "TONTestnet",
+      apy: 0,
+      volume: "$43,432.00",
+      totalLiquidity: 0,
     },
   ];
 
@@ -84,24 +100,42 @@ const PoolTable = () => {
             </tr>
           </thead>
           <tbody>
-            {sortedData.map((item, index) => (
-              <tr key={index}>
-                <td dangerouslySetInnerHTML={{ __html: item.Token }} />
-                <td dangerouslySetInnerHTML={{ __html: item.Chain }} />
-                <td dangerouslySetInnerHTML={{ __html: item.APY }} />
-                <td dangerouslySetInnerHTML={{ __html: item.Volume }} />
-                <td dangerouslySetInnerHTML={{ __html: item.TotalLiquidity }} />
-                <td>
-                  <Link
-                    to="./your-liquidity"
-                    className="addPoll"
-                    onClick={handleAddPollClick}
-                  >
-                    <img src="/img/add.svg" alt="Add" />
-                  </Link>
-                </td>
-              </tr>
-            ))}
+            {sortedData.map(
+              (item, index) =>
+                bridge.fromChain === item.chain &&
+                bridge.fromToken === item.token && (
+                  <tr key={index}>
+                    <td>
+                      <span class="poolCoin">
+                        <img src={getTokenIcon(item.token)} alt={item.token} />{" "}
+                        {item.token}
+                      </span>
+                    </td>
+                    <td>
+                      <span class="poolCoin">
+                        <img src={getChainIcon(item.chain)} alt="eth" />{" "}
+                        {item.chain}
+                      </span>
+                    </td>
+                    <td>
+                      <span style={{ color: "#E0E3E6" }}>{item.apy}%</span>
+                    </td>
+                    <td>$43,432.00</td>
+                    <td>
+                      <span class="totleLiqui">${item.totalLiquidity}</span>
+                    </td>
+                    <td>
+                      <Link
+                        to="./your-liquidity"
+                        className="addPoll"
+                        onClick={handleAddPollClick}
+                      >
+                        <img src="/img/add.svg" alt="Add" />
+                      </Link>
+                    </td>
+                  </tr>
+                ),
+            )}
           </tbody>
         </table>
       </div>

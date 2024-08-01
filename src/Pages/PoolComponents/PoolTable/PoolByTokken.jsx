@@ -1,6 +1,6 @@
 import React from "react";
 import ChainSelectorDropdown from "../../HomeComponents/ChainSelectorDropdown/ChainSelectorDropdown";
-import TokenSelectionDropdown from "../../BridgeComponents/TokenSelectors/TokenSelectionDropdown";
+import TokenSelectionDropdown from "../../PoolComponents/TokenSelectors/TokenSelectionDropdown";
 
 function PoolByToken() {
   return (

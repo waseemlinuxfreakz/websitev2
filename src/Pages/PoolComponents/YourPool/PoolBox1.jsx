@@ -20,7 +20,7 @@ function PoolBox1() {
           </div>
           <div className="">
             <h2>USDC</h2>
-            on Ethereum
+            on Sepolia
           </div>
         </div>
         <div className="poolboxTopRight">

@@ -1,6 +1,6 @@
 import React from "react";
 
-import ChainSelectorDropdown from "../../HomeComponents/ChainSelectorDropdown/ChainSelectorDropdown";
+import ChainSelectorDropdown from "../../PoolComponents/ChainSelectorDropdown/ChainSelectorDropdown";
 
 function PoolByChain() {
   return (
