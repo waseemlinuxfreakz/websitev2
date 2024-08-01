@@ -525,6 +525,26 @@ ul.selectCoinList.hidden {
   background: rgba(148, 151, 158, 0.16);
 }
 
+.WithdrawRewardsActionButton {
+  display: block;
+  width: 100%;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: -0.3px;
+  color: #191b1e;
+  border-radius: 8px;
+  background: #efeb00;
+  padding: 8px 12px;
+  outline: none;
+  box-shadow: none;
+  border: 0;
+}
+
+.WithdrawRewardsActionButton:disabled {
+  color: #e0e3e6;
+  background: rgba(148, 151, 158, 0.16);
+}
+
 .soon {
   font-size: 14px;
   font-style: normal;

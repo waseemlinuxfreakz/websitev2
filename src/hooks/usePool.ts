@@ -78,7 +78,9 @@ export default function usePool() {
         const pendingRewards = await (
           handler as Web3Helper
         ).getLpProviderRewards(poolAddress, bridge.senderAddress);
-        dispatch(setPoolPendingRewards(Number(pendingRewards)));
+        dispatch(
+          setPoolPendingRewards(Number(pendingRewards) / 10 ** decimals),
+        );
         console.log({ pendingRewards });
       }
     } catch (error: { message: string } | any) {
@@ -151,6 +153,34 @@ export default function usePool() {
     await getData();
   };
 
+  const withdrawFees = async () => {
+    const handler = await chainFactoryTestnet.inner(
+      // @ts-ignore
+      ChainToDestinationDomain[ChainNameToTypeChainName[pool.chain]],
+    );
+    try {
+      await chainFactoryTestnet.withdrawFees(
+        // @ts-ignore
+        handler,
+        signer,
+        pool.token,
+        undefined,
+      );
+    } catch (error: { message: string } | any) {
+      // For TON
+      await chainFactoryTestnet.withdrawFees(
+        // @ts-ignore
+        handler,
+        tonSender,
+        pool.token,
+        undefined,
+      );
+      console.error(error);
+      setError(error.message);
+    }
+    await getData();
+  };
+
   const getBalance = async (
     type: "Deposit" | "Withdraw",
     chain = pool.chain,
@@ -205,5 +235,13 @@ export default function usePool() {
     })();
   }, [pool.chain, pool.token, bridge.senderAddress]);
 
-  return { error, getData, stake, withdraw, getBalance, getStakedBalance };
+  return {
+    error,
+    getData,
+    stake,
+    withdraw,
+    getBalance,
+    getStakedBalance,
+    withdrawFees,
+  };
 }
