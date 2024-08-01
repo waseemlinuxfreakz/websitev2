@@ -4,5 +4,11 @@
     "name": "USDC",
     "icon": "img/coin/usdc.svg",
     "price": 0.9998
+  },
+  {
+    "cmc_id": 825,
+    "name": "USDT",
+    "icon": "img/coin/usdt.svg",
+    "price": 0.9998
   }
 ]
