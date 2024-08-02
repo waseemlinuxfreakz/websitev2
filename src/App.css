@@ -249,7 +249,7 @@ dl {
   background: #202226;
   border-radius: 8px;
   border: 1px solid rgba(97, 100, 107, 0.1);
-  min-width: 100%;
+  min-width: calc(100% + 24px);
   transition: 0.3s ease all;
   /* width: 180px; */
   z-index: 99;

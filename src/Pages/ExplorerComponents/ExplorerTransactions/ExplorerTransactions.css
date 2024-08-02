@@ -322,7 +322,7 @@ ul.filterDropList li:not(:first-child) {
   .transactionRight
     .ExplorerTransactionsFilter.fromTypeFilter
     ul.selectCoinList {
-    left: -12px !important;
+    left: -24px !important;
     right: auto !important;
   }
 }
