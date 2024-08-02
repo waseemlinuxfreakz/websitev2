@@ -19,10 +19,5 @@
     "id": 80084,
     "name": "Bartio",
     "icon": "img/chain/berachain.png"
-  },
-  {
-    "id": 728696,
-    "name": "OnlyTestnet",
-    "icon": "img/chain/onlylayer.png"
   }
 ]
