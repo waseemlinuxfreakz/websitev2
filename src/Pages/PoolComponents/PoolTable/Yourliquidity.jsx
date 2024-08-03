@@ -20,7 +20,10 @@ import ReactGA from "react-ga";
 // Components
 import ButtonSpinner from "../../CommonComponents/Spinner/ButtonSpinner";
 // Actions
-import { setBridgeIsApproving } from "../../../store/bridgeSlice";
+import {
+  setBridgeFromChain,
+  setBridgeIsApproving,
+} from "../../../store/bridgeSlice";
 import ConnectWalletModal from "../../../HeaderFooterSidebar/ConnectWalletModal";
 import { CHAIN_NAME_TO_ID, TOKEN_DECIMALS } from "../../../types";
 import usePoolAllowance from "../../../hooks/usePoolAllowance";
@@ -100,6 +103,7 @@ function Yourliquidity() {
   useEffect(() => {
     if (location.state) {
       dispatch(setPoolChain(location.state.chain));
+      dispatch(setBridgeFromChain(location.state.chain));
       dispatch(setPoolToken(location.state.token));
     }
   }, [location.state]);

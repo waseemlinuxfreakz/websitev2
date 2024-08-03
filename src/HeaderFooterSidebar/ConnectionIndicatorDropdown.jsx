@@ -9,6 +9,7 @@ import { setBridgeFromChain, setBridgeAmount } from "../store/bridgeSlice";
 import { setSwapFromChain } from "../store/swapSlice";
 import { isMobile } from "react-device-detect";
 import { CHAIN_NAME_TO_ID, ChainNameToTypeChainName } from "../types";
+import { setPoolChain } from "../store/poolSlice";
 
 const findChain = (chainId) => {
   return chainData.find((c) => chainId && chainId === c.id);
@@ -56,6 +57,7 @@ export default function ConnectionIndicatorDropdown({ parent, direction }) {
     switch (parent) {
       case "bridge":
         dispatch(setBridgeFromChain(name));
+        dispatch(setPoolChain(name));
         setChainArray(chainData);
         break;
       case "swap":
@@ -64,6 +66,7 @@ export default function ConnectionIndicatorDropdown({ parent, direction }) {
         break;
       case "lock-and-mint":
         dispatch(setBridgeFromChain(name));
+        dispatch(setPoolChain(name));
         setChainArray(chainData);
         break;
       case "explorer":

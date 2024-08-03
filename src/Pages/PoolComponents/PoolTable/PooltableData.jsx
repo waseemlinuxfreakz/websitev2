@@ -6,7 +6,6 @@ import { useAppDispatch, useAppSelector } from "../../../hooks/storage";
 import { Link } from "react-router-dom";
 import poolTokens from "../../../store/poolCoins.json";
 import poolChains from "../../../store/poolChains.json";
-import { setPoolChain, setPoolToken } from "../../../store/poolSlice";
 import { useNavigate } from "react-router-dom";
 
 const PoolTable = () => {

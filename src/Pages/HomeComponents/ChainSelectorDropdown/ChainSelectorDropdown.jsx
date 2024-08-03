@@ -81,6 +81,7 @@ export default function ChainSelectorDropdown({ parent, direction }) {
         break;
       case "pool":
         dispatch(setPoolChain(name));
+        dispatch(setBridgeFromChain(name));
         setChainArray(chainData);
         break;
       default:

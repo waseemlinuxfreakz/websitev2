@@ -4,7 +4,7 @@ export default function ConnectionIndicator() {
   return (
     <>
       <div className="EthereumTop">
-        <ConnectionIndicatorDropdown parent="header" direction="from" />
+        <ConnectionIndicatorDropdown parent="lock-and-mint" direction="from" />
       </div>
     </>
   );
