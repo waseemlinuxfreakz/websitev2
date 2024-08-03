@@ -98,11 +98,11 @@ function Yourliquidity() {
   }, [pool.chain, pool.token, activeButton, bridge.senderAddress]);
 
   useEffect(() => {
-    console.log(location.state);
-    dispatch(setPoolChain(location.state.chain));
-    // switchChain(CHAIN_NAME_TO_ID[location.state.chain]);
-    dispatch(setPoolToken(location.state.token));
-  }, [location.state.chain, location.state.token]);
+    if (location.state) {
+      dispatch(setPoolChain(location.state.chain));
+      dispatch(setPoolToken(location.state.token));
+    }
+  }, [location.state]);
 
   useEffect(() => {
     if (bridge.senderAddress) {
