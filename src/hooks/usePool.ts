@@ -231,7 +231,6 @@ export default function usePool() {
     (async () => {
       await getStakedBalance(pool.chain, pool.token);
       await getData(pool.chain, pool.token);
-      console.log({ chain: pool.chain });
     })();
   }, [pool.chain, pool.token, bridge.senderAddress]);
 

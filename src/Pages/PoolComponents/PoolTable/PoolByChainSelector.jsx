@@ -6,12 +6,7 @@ import Fox from "../../../assets/img/fox.svg";
 // Components
 import CoinLinkAddress from "../../HomeComponents/CoinLinkAddress";
 import { useAppSelector, useAppDispatch } from "../../../hooks/storage";
-import {
-  setPoolByChain,
-  setPoolByToken,
-  setPoolChain,
-  setPoolToken,
-} from "../../../store/poolSlice";
+import { setPoolByChain } from "../../../store/poolSlice";
 import poolChains from "../../../store/poolChains.json";
 
 const showAll = {
@@ -46,7 +41,7 @@ export default function PoolBChainSelector({ type }) {
     });
 
     // dispatch(getIsfrom() ? setFromPrice(name) : setToPrice(name));
-  }, [pool.byChain, selectedCoin]);
+  }, [pool.byChain]);
 
   const handleCoinClick = (icon, name) => {
     setSelectedCoin({ icon, name });

@@ -25,6 +25,7 @@ export default function ChainSelectorDropdown({ parent, direction }) {
 
   // Global State
   const bridge = useAppSelector((state) => state.bridge);
+  const pool = useAppSelector((state) => state.pool);
 
   const dispatch = useAppDispatch();
 
@@ -92,7 +93,7 @@ export default function ChainSelectorDropdown({ parent, direction }) {
 
   useEffect(() => {
     const selChain = findChain(
-      CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.fromChain]],
+      CHAIN_NAME_TO_ID[ChainNameToTypeChainName[pool.chain]],
     );
 
     selChain && switchChain({ chainId: selChain.id });
@@ -103,7 +104,7 @@ export default function ChainSelectorDropdown({ parent, direction }) {
       });
       dispatchChain(chainData[1].name);
     }
-    if (bridge.fromChain) {
+    if (pool.chain) {
       if (selChain) {
         setSelectedChain({
           icon: selChain.icon,
@@ -112,7 +113,7 @@ export default function ChainSelectorDropdown({ parent, direction }) {
         dispatchChain(selChain.name);
       }
     }
-  }, [bridge.fromChain]);
+  }, [pool.chain]);
 
   useEffect(() => {
     const selChain = findChain(chainId);

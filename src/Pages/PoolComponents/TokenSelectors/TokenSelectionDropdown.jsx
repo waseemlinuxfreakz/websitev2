@@ -8,7 +8,7 @@ import coins from "./../../../store/coins.json";
 // Components
 import CoinLinkAddress from "../../HomeComponents/CoinLinkAddress";
 import { useAppSelector, useAppDispatch } from "../../../hooks/storage";
-import { setPoolChain, setPoolToken } from "../../../store/poolSlice";
+import { setPoolToken } from "../../../store/poolSlice";
 
 export default function TokenSelectionDropdown({ type }) {
   const pool = useAppSelector((state) => state.pool);

@@ -7,7 +7,11 @@ import Info from "../../../assets/img/InfoIcons.svg";
 import ChainSelectorDropdown from "../ChainSelectorDropdown/ChainSelectorDropdown";
 import TokenSelectorBox from "../TokenSelectors/TokenSelectorBox";
 import usePool from "../../../hooks/usePool";
-import { setPoolBalance } from "../../../store/poolSlice";
+import {
+  setPoolBalance,
+  setPoolChain,
+  setPoolToken,
+} from "../../../store/poolSlice";
 import lockAndMintChains from "../../../hooks/chains";
 
 // Hooks
@@ -18,8 +22,10 @@ import ButtonSpinner from "../../CommonComponents/Spinner/ButtonSpinner";
 // Actions
 import { setBridgeIsApproving } from "../../../store/bridgeSlice";
 import ConnectWalletModal from "../../../HeaderFooterSidebar/ConnectWalletModal";
-import { TOKEN_DECIMALS } from "../../../types";
+import { CHAIN_NAME_TO_ID, TOKEN_DECIMALS } from "../../../types";
 import usePoolAllowance from "../../../hooks/usePoolAllowance";
+import { useLocation } from "react-router-dom";
+import { useSwitchChain } from "wagmi";
 
 function Yourliquidity() {
   const [activeButton, setActiveButton] = useState("Deposit");
@@ -34,6 +40,8 @@ function Yourliquidity() {
   const dispatch = useAppDispatch();
   const pool = useAppSelector((state) => state.pool);
   const bridge = useAppSelector((state) => state.bridge);
+  const location = useLocation();
+  const { switchChain } = useSwitchChain();
   usePoolAllowance();
 
   const handleButtonClick = (buttonType) => {
@@ -88,6 +96,13 @@ function Yourliquidity() {
       dispatch(setPoolBalance(_balance));
     })();
   }, [pool.chain, pool.token, activeButton, bridge.senderAddress]);
+
+  useEffect(() => {
+    console.log(location.state);
+    dispatch(setPoolChain(location.state.chain));
+    // switchChain(CHAIN_NAME_TO_ID[location.state.chain]);
+    dispatch(setPoolToken(location.state.token));
+  }, [location.state.chain, location.state.token]);
 
   useEffect(() => {
     if (bridge.senderAddress) {

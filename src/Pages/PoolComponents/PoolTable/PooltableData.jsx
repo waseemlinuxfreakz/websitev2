@@ -2,17 +2,20 @@ import React, { useState } from "react";
 
 import Updown from "../../../assets/img/table-updown.svg";
 import Yourliquidity from "./Yourliquidity";
-import { useAppSelector } from "../../../hooks/storage";
+import { useAppDispatch, useAppSelector } from "../../../hooks/storage";
 import { Link } from "react-router-dom";
 import poolTokens from "../../../store/poolCoins.json";
 import poolChains from "../../../store/poolChains.json";
+import { setPoolChain, setPoolToken } from "../../../store/poolSlice";
+import { useNavigate } from "react-router-dom";
 
 const PoolTable = () => {
   const [sortBy, setSortBy] = useState(null);
   const [sortOrder, setSortOrder] = useState("asc");
   const [isYourLiquidityVisible, setYourLiquidityVisible] = useState(false);
   const pool = useAppSelector((state) => state.pool);
-  const bridge = useAppSelector((state) => state.bridge);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const getTokenIcon = (token) => {
     return poolTokens.find((i) => i.name === token).icon;
@@ -64,8 +67,11 @@ const PoolTable = () => {
     }
   });
 
-  const handleAddPollClick = () => {
-    setYourLiquidityVisible(!isYourLiquidityVisible);
+  const handleAddPollClick = (item) => {
+    navigate("./your-liquidity", {
+      state: { chain: item.chain, token: item.token },
+    });
+    // setYourLiquidityVisible(!isYourLiquidityVisible);
   };
 
   return (
@@ -132,13 +138,12 @@ const PoolTable = () => {
                       <span class="totleLiqui">${item.totalLiquidity}</span>
                     </td>
                     <td>
-                      <Link
-                        to="./your-liquidity"
+                      <button
                         className="addPoll"
-                        onClick={handleAddPollClick}
+                        onClick={() => handleAddPollClick(item)}
                       >
                         <img src="/img/add.svg" alt="Add" />
-                      </Link>
+                      </button>
                     </td>
                   </tr>
                 ),

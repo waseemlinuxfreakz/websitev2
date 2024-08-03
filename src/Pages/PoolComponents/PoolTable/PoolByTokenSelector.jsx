@@ -7,11 +7,7 @@ import coins from "./../../../store/coins.json";
 // Components
 import CoinLinkAddress from "../../HomeComponents/CoinLinkAddress";
 import { useAppSelector, useAppDispatch } from "../../../hooks/storage";
-import {
-  setPoolByToken,
-  setPoolChain,
-  setPoolToken,
-} from "../../../store/poolSlice";
+import { setPoolByToken } from "../../../store/poolSlice";
 import poolTokens from "../../../store/poolCoins.json";
 
 const showAll = {
@@ -40,13 +36,13 @@ export default function PoolByTokenSelector({ type }) {
 
   useEffect(() => {
     const name = pool.byToken;
-    setSelectedCoin({
-      icon: getIcon(pool.byToken),
-      name,
-    });
+    // setSelectedCoin({
+    //   icon: getIcon(pool.byToken),
+    //   name,
+    // });
 
     // dispatch(getIsfrom() ? setFromPrice(name) : setToPrice(name));
-  }, [pool.byToken, pool.chain, selectedCoin]);
+  }, [pool.byToken]);
 
   const handleCoinClick = (icon, name) => {
     setSelectedCoin({ icon, name });
