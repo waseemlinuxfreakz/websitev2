@@ -27,9 +27,8 @@ function PoolMobileData() {
 
   const filter = (item) => {
     return (
-      pool.byChain === "Show All" ||
-      (pool.byChain === item.chain && pool.byToken === "Show All") ||
-      pool.byToken === item.token
+      (pool.byChain === "Show All" || pool.byChain === item.chain) &&
+      (pool.byToken === "Show All" || pool.byToken === item.token)
     );
   };
 
