@@ -48,6 +48,14 @@ const PoolTable = () => {
     }
   };
 
+  const filter = (item) => {
+    return (
+      pool.byChain === "Show All" ||
+      (pool.byChain === item.chain && pool.byToken === "Show All") ||
+      pool.byToken === item.token
+    );
+  };
+
   const sortedData = [...data].sort((a, b) => {
     if (sortOrder === "asc") {
       return a[sortBy] > b[sortBy] ? 1 : -1;
@@ -102,8 +110,7 @@ const PoolTable = () => {
           <tbody>
             {sortedData.map(
               (item, index) =>
-                bridge.fromChain === item.chain &&
-                bridge.fromToken === item.token && (
+                filter(item) && (
                   <tr key={index}>
                     <td>
                       <span class="poolCoin">

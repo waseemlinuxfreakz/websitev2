@@ -1,13 +1,13 @@
 import React from "react";
 
-import ChainSelectorDropdown from "../../PoolComponents/ChainSelectorDropdown/ChainSelectorDropdown";
+import PoolByChainSelector from "./PoolByChainSelector";
 
 function PoolByChain() {
   return (
     <div className="ExplorerTransactionsFilter buyChainFilter">
       <div className="filterName">By network</div>
       <div className="filterDropdown">
-        <ChainSelectorDropdown />
+        <PoolByChainSelector />
       </div>
     </div>
   );

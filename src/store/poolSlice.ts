@@ -7,6 +7,8 @@ import { TokenType } from "./types";
 interface IPoolState {
   chain: string;
   token: string;
+  byChain: string;
+  byToken: string;
   tokens: TokenType[];
   amount: number | null;
   apy: number;
@@ -28,6 +30,8 @@ const token = coinsData[0].name;
 const initialState = {
   chain,
   token,
+  byChain: "Show All",
+  byToken: "Show All",
   tokens: coinsData.filter((_token) => _token.name !== token),
   amount: null,
   apy: 0,
@@ -55,6 +59,12 @@ export const poolslice = createSlice({
       state.tokens = state.tokens.filter(
         (token) => token.name !== action.payload,
       );
+    },
+    setPoolByChain(state: IPoolState, action: PayloadAction<string>) {
+      state.byChain = action.payload;
+    },
+    setPoolByToken: (state: IPoolState, action: PayloadAction<string>) => {
+      state.byToken = action.payload;
     },
     setPoolAmount: (state: IPoolState, action: PayloadAction<number>) => {
       state.amount = action.payload;
@@ -117,6 +127,8 @@ export const {
   setPoolPendingRewards,
   setPoolFeeGrowthGlobal,
   setPoolFeeDecimals,
+  setPoolByChain,
+  setPoolByToken,
 } = poolslice.actions;
 
 export default poolslice.reducer;
