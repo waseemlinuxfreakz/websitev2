@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import Yourliquidity from "./Yourliquidity";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../../hooks/storage";
 import poolTokens from "../../../store/poolCoins.json";
 import poolChains from "../../../store/poolChains.json";
 
 function PoolMobileData() {
   const [isYourLiquidityVisible, setYourLiquidityVisible] = useState(false);
+  const navigate = useNavigate();
 
-  const handleAddPollClick = () => {
+  const handleAddPollClick = (item) => {
     setYourLiquidityVisible(!isYourLiquidityVisible);
+    navigate("./your-liquidity", {
+      state: { chain: item.chain, token: item.token },
+    });
   };
   const pool = useAppSelector((state) => state.pool);
   const bridge = useAppSelector((state) => state.bridge);
@@ -19,6 +23,14 @@ function PoolMobileData() {
 
   const getChainIcon = (chain) => {
     return poolChains.find((i) => i.name === chain).icon;
+  };
+
+  const filter = (item) => {
+    return (
+      pool.byChain === "Show All" ||
+      (pool.byChain === item.chain && pool.byToken === "Show All") ||
+      pool.byToken === item.token
+    );
   };
 
   const data = [
@@ -43,9 +55,8 @@ function PoolMobileData() {
       <div className="poolMobileData">
         {data.map(
           (item, index) =>
-            bridge.fromChain === item.chain &&
-            bridge.fromToken === item.token && (
-              <div className="poolBox addDepositBox">
+            filter(item) && (
+              <div className="poolBox addDepositBox" key={index}>
                 <div className="poolboxTop">
                   <div className="poolboxTopLeft">
                     <div className="chainToken">
@@ -77,13 +88,12 @@ function PoolMobileData() {
                       <h3>{item.apy}%</h3>
                     </div>
                     <div className="addDeposit">
-                      <Link
-                        to="./your-liquidity"
+                      <button
                         className="addDepositBtn"
-                        onClick={handleAddPollClick}
+                        onClick={() => handleAddPollClick(item)}
                       >
                         + Add deposit
-                      </Link>
+                      </button>
                     </div>
                   </div>
                 </div>
