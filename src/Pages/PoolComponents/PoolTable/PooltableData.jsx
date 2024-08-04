@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import "./PoolTable.css";
 import Updown from "../../../assets/img/table-updown.svg";
 import Yourliquidity from "./Yourliquidity";
 import { useAppDispatch, useAppSelector } from "../../../hooks/storage";
@@ -15,16 +15,7 @@ const PoolTable = () => {
   const pool = useAppSelector((state) => state.pool);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
-  const getTokenIcon = (token) => {
-    return poolTokens.find((i) => i.name === token).icon;
-  };
-
-  const getChainIcon = (chain) => {
-    return poolChains.find((i) => i.name === chain).icon;
-  };
-
-  const data = [
+  const [data, setData] = useState([
     {
       token: "USDC",
       chain: "Sepolia",
@@ -39,7 +30,15 @@ const PoolTable = () => {
       volume: "$43,432.00",
       totalLiquidity: 0,
     },
-  ];
+  ]);
+
+  const getTokenIcon = (token) => {
+    return poolTokens.find((i) => i.name === token).icon;
+  };
+
+  const getChainIcon = (chain) => {
+    return poolChains.find((i) => i.name === chain).icon;
+  };
 
   const handleSort = (key) => {
     if (sortBy === key) {
@@ -57,13 +56,19 @@ const PoolTable = () => {
     );
   };
 
-  const sortedData = [...data].sort((a, b) => {
-    if (sortOrder === "asc") {
-      return a[sortBy] > b[sortBy] ? 1 : -1;
-    } else {
-      return a[sortBy] < b[sortBy] ? 1 : -1;
-    }
-  });
+  // const sortedData = ;
+
+  useEffect(() => {
+    setData(
+      data.sort((a, b) => {
+        if (sortOrder === "asc") {
+          return a[sortBy] > b[sortBy] ? 1 : -1;
+        } else {
+          return a[sortBy] < b[sortBy] ? 1 : -1;
+        }
+      }),
+    );
+  }, [sortBy, sortOrder]);
 
   const handleAddPollClick = (item) => {
     navigate("./your-liquidity", {
@@ -78,19 +83,19 @@ const PoolTable = () => {
         <table className="table">
           <thead>
             <tr>
-              <th onClick={() => handleSort("Token")}>
+              <th className="tableHead" onClick={() => handleSort("Token")}>
                 Token{" "}
                 <span className="upDown">
                   <img src={Updown} alt="Updown" />
                 </span>
               </th>
-              <th onClick={() => handleSort("Chain")}>
+              <th className="tableHead" onClick={() => handleSort("Chain")}>
                 Chain{" "}
                 <span className="upDown">
                   <img src={Updown} alt="Updown" />
                 </span>
               </th>
-              <th onClick={() => handleSort("APY")}>
+              <th className="tableHead" onClick={() => handleSort("APY")}>
                 APY{" "}
                 <span className="upDown">
                   <img src={Updown} alt="Updown" />
@@ -102,7 +107,10 @@ const PoolTable = () => {
                   <img src={Updown} alt="Updown" />
                 </span>
               </th> */}
-              <th onClick={() => handleSort("TotalLiquidity")}>
+              <th
+                className="tableHead"
+                onClick={() => handleSort("TotalLiquidity")}
+              >
                 Total liquidity{" "}
                 <span className="upDown">
                   <img src={Updown} alt="Updown" />
@@ -112,7 +120,7 @@ const PoolTable = () => {
             </tr>
           </thead>
           <tbody>
-            {sortedData.map(
+            {data.map(
               (item, index) =>
                 filter(item) && (
                   <tr key={index}>

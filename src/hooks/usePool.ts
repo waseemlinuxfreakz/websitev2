@@ -53,6 +53,7 @@ export default function usePool() {
         const decimals = await handler.decimals(poolAddress);
 
         const apy = await handler.getLpCurrentAPY(poolAddress);
+        console.log({ apy });
         dispatch(setPoolApy(Number(apy) / 100));
 
         const totalSupply = await handler.getLpTotalSupply(poolAddress);

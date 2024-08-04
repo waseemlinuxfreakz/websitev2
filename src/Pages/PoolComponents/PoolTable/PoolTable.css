@@ -1,0 +1,4 @@
+.tableHead {
+  cursor: pointer;
+  user-select: none;
+}
