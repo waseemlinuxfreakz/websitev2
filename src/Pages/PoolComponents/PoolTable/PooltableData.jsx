@@ -96,12 +96,12 @@ const PoolTable = () => {
                   <img src={Updown} alt="Updown" />
                 </span>
               </th>
-              <th onClick={() => handleSort("Daily")}>
+              {/* <th onClick={() => handleSort("Daily")}>
                 Volume (24h){" "}
                 <span className="upDown">
                   <img src={Updown} alt="Updown" />
                 </span>
-              </th>
+              </th> */}
               <th onClick={() => handleSort("TotalLiquidity")}>
                 Total liquidity{" "}
                 <span className="upDown">
@@ -131,7 +131,7 @@ const PoolTable = () => {
                     <td>
                       <span style={{ color: "#E0E3E6" }}>{item.apy}%</span>
                     </td>
-                    <td>$43,432.00</td>
+                    {/* <td>$43,432.00</td> */}
                     <td>
                       <span class="totleLiqui">${item.totalLiquidity}</span>
                     </td>

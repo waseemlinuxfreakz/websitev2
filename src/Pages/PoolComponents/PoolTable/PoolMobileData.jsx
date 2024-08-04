@@ -78,10 +78,10 @@ function PoolMobileData() {
                 </div>
                 <div className="poolboxBottom">
                   <div className="row">
-                    <div className="col-6">
+                    {/* <div className="col-6">
                       <h4>Total liquidity (USDC)</h4>
                       <h3>${item.totalLiquidity}</h3>
-                    </div>
+                    </div> */}
                     <div className="col-6">
                       <h4>APY (%)</h4>
                       <h3>{item.apy}%</h3>
