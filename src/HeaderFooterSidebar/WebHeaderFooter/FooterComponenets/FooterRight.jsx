@@ -65,7 +65,7 @@ function FooterRight() {
               {/* <li><a href="#" target='_blank'>Widget</a></li> */}
               <li>
                 <a
-                  href="https://github.com/Emmet-Finance/whitepaper-v1.0"
+                  href="https://github.com/Emmet-Finance/whitepaper/blob/main/Emmet_Finance_Whitepaper.pdf"
                   target="_blank"
                 >
                   White Paper
