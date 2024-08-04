@@ -35,12 +35,12 @@ export default function usePool() {
   const [error, setError] = useState("");
 
   const getData = async (chain = pool.chain, token = pool.token) => {
-    dispatch(setPoolApy(0));
-    dispatch(setPoolTotalSupply(0));
-    dispatch(setPoolProtocolFee(0));
-    dispatch(setPoolProtocolFeeAmount(0));
-    dispatch(setPoolTokenFee(0));
-    dispatch(setPoolFeeGrowthGlobal(0));
+    // dispatch(setPoolApy(0));
+    // dispatch(setPoolTotalSupply(0));
+    // dispatch(setPoolProtocolFee(0));
+    // dispatch(setPoolProtocolFeeAmount(0));
+    // dispatch(setPoolTokenFee(0));
+    // dispatch(setPoolFeeGrowthGlobal(0));
     try {
       const handler = await chainFactoryTestnet.inner(
         // @ts-ignore
