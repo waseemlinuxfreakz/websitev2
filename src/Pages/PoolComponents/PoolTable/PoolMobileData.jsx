@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Yourliquidity from "./Yourliquidity";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../../hooks/storage";
 import poolTokens from "../../../store/poolCoins.json";
 import poolChains from "../../../store/poolChains.json";
+import usePool from "../../../hooks/usePool";
 
 function PoolMobileData() {
   const [isYourLiquidityVisible, setYourLiquidityVisible] = useState(false);
@@ -55,48 +56,13 @@ function PoolMobileData() {
         {data.map(
           (item, index) =>
             filter(item) && (
-              <div className="poolBox addDepositBox" key={index}>
-                <div className="poolboxTop">
-                  <div className="poolboxTopLeft">
-                    <div className="chainToken">
-                      <img
-                        src={getTokenIcon(item.token)}
-                        alt="USDT"
-                        className="mainChain"
-                      />
-                      <img
-                        src={getChainIcon(item.chain)}
-                        alt="ETH"
-                        className="onChain"
-                      />
-                    </div>
-                    <div className="">
-                      <h2>{item.token}</h2>
-                      on {item.chain}
-                    </div>
-                  </div>
-                </div>
-                <div className="poolboxBottom">
-                  <div className="row">
-                    {/* <div className="col-6">
-                      <h4>Total liquidity (USDC)</h4>
-                      <h3>${item.totalLiquidity}</h3>
-                    </div> */}
-                    <div className="col-6">
-                      <h4>APY (%)</h4>
-                      <h3>{item.apy}%</h3>
-                    </div>
-                    <div className="addDeposit">
-                      <button
-                        className="addDepositBtn"
-                        onClick={() => handleAddPollClick(item)}
-                      >
-                        + Add deposit
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <TableData
+                getChainIcon={getChainIcon}
+                getTokenIcon={getTokenIcon}
+                handleAddPollClick={handleAddPollClick}
+                item={item}
+                key={index}
+              />
             ),
         )}
       </div>
@@ -109,5 +75,72 @@ function PoolMobileData() {
     </>
   );
 }
+
+const TableData = ({
+  item,
+  getTokenIcon,
+  getChainIcon,
+  handleAddPollClick,
+}) => {
+  const { getData } = usePool();
+  const [data, setData] = useState({
+    decimals: 1,
+    apy: 0,
+    totalSupply: 0,
+    protocolFee: 0,
+    protocolFeeAmount: 0,
+    tokenFee: 0,
+    feeGrowthGlobal: 0,
+    feeDecimals: 0,
+    pendingRewards: 0,
+  });
+
+  useEffect(() => {
+    (async () => {
+      const _data = await getData(item.chain, item.token);
+      setData(_data);
+    })();
+  }, []);
+  return (
+    <div className="poolBox addDepositBox">
+      <div className="poolboxTop">
+        <div className="poolboxTopLeft">
+          <div className="chainToken">
+            <img
+              src={getTokenIcon(item.token)}
+              alt="USDT"
+              className="mainChain"
+            />
+            <img src={getChainIcon(item.chain)} alt="ETH" className="onChain" />
+          </div>
+          <div className="">
+            <h2>{item.token}</h2>
+            on {item.chain}
+          </div>
+        </div>
+      </div>
+      <div className="poolboxBottom">
+        <div className="row">
+          <div className="col-6">
+            <h4>Total liquidity (USDC)</h4>
+            <h3>${data.totalSupply}</h3>
+          </div>
+          <div className="col-6">
+            <h4>APY (%)</h4>
+            <h3>{data.apy}%</h3>
+          </div>
+          <div className="addDeposit">
+            <button
+              className="addDepositBtn"
+              onClick={() => handleAddPollClick(item)}
+            >
+              + Add deposit
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default PoolMobileData;

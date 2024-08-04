@@ -7,6 +7,9 @@ import { Link } from "react-router-dom";
 import poolTokens from "../../../store/poolCoins.json";
 import poolChains from "../../../store/poolChains.json";
 import { useNavigate } from "react-router-dom";
+import usePool from "../../../hooks/usePool";
+import { useAccount } from "wagmi";
+import { useTonAddress } from "@tonconnect/ui-react";
 
 const PoolTable = () => {
   const [sortBy, setSortBy] = useState(null);
@@ -142,35 +145,13 @@ const PoolTable = () => {
             {data.map(
               (item, index) =>
                 filter(item) && (
-                  <tr key={index}>
-                    <td>
-                      <span class="poolCoin">
-                        <img src={getTokenIcon(item.token)} alt={item.token} />{" "}
-                        {item.token}
-                      </span>
-                    </td>
-                    <td>
-                      <span class="poolCoin">
-                        <img src={getChainIcon(item.chain)} alt="eth" />{" "}
-                        {item.chain}
-                      </span>
-                    </td>
-                    <td>
-                      <span style={{ color: "#E0E3E6" }}>{item.apy}%</span>
-                    </td>
-                    {/* <td>$43,432.00</td> */}
-                    <td>
-                      <span class="totleLiqui">${item.totalLiquidity}</span>
-                    </td>
-                    <td>
-                      <button
-                        className="addPoll"
-                        onClick={() => handleAddPollClick(item)}
-                      >
-                        <img src="/img/add.svg" alt="Add" />
-                      </button>
-                    </td>
-                  </tr>
+                  <TableDataRow
+                    item={item}
+                    getChainIcon={getChainIcon}
+                    getTokenIcon={getTokenIcon}
+                    handleAddPollClick={handleAddPollClick}
+                    key={index}
+                  />
                 ),
             )}
           </tbody>
@@ -180,5 +161,59 @@ const PoolTable = () => {
     </>
   );
 };
+
+function TableDataRow({
+  item,
+  getTokenIcon,
+  getChainIcon,
+  handleAddPollClick,
+}) {
+  const { getData } = usePool();
+  const [data, setData] = useState({
+    decimals: 1,
+    apy: 0,
+    totalSupply: 0,
+    protocolFee: 0,
+    protocolFeeAmount: 0,
+    tokenFee: 0,
+    feeGrowthGlobal: 0,
+    feeDecimals: 0,
+    pendingRewards: 0,
+  });
+
+  useEffect(() => {
+    (async () => {
+      const _data = await getData(item.chain, item.token);
+      setData(_data);
+    })();
+  }, []);
+
+  return (
+    <tr>
+      <td>
+        <span class="poolCoin">
+          <img src={getTokenIcon(item.token)} alt={item.token} /> {item.token}
+        </span>
+      </td>
+      <td>
+        <span class="poolCoin">
+          <img src={getChainIcon(item.chain)} alt="eth" /> {item.chain}
+        </span>
+      </td>
+      <td>
+        <span style={{ color: "#E0E3E6" }}>{data.apy}%</span>
+      </td>
+      {/* <td>$43,432.00</td> */}
+      <td>
+        <span class="totleLiqui">${data.totalSupply}</span>
+      </td>
+      <td>
+        <button className="addPoll" onClick={() => handleAddPollClick(item)}>
+          <img src="/img/add.svg" alt="Add" />
+        </button>
+      </td>
+    </tr>
+  );
+}
 
 export default PoolTable;
