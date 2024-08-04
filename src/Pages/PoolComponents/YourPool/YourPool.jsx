@@ -8,15 +8,6 @@ import usePool from "../../../hooks/usePool";
 import { useAppSelector } from "../../../hooks/storage";
 
 function YourPool() {
-  const { getData, getStakedBalance } = usePool();
-  const bridge = useAppSelector((state) => state.bridge);
-
-  useEffect(() => {
-    (async () => {
-      await getData("Sepolia", "USDC");
-      await getStakedBalance("Sepolia", "USDC");
-    })();
-  });
   return (
     <div className="yourPool">
       <YourPoolTitle />
@@ -24,10 +15,10 @@ function YourPool() {
         <div className="col-lg-3">
           <PoolBox1 />
         </div>
-        {/* <div className="col-lg-3">
+        <div className="col-lg-3">
           <PoolBox2 />
         </div>
-        <div className="col-lg-3">
+        {/* <div className="col-lg-3">
           <PoolBox3 />
         </div>
         <div className="col-lg-3">

@@ -70,6 +70,25 @@ const PoolTable = () => {
     );
   }, [sortBy, sortOrder]);
 
+  useEffect(() => {
+    setData([
+      {
+        token: "USDC",
+        chain: "Sepolia",
+        apy: pool.apy,
+        volume: "$43,432.00",
+        totalLiquidity: pool.totalSupply,
+      },
+      {
+        token: "USDC",
+        chain: "TONTestnet",
+        apy: 0,
+        volume: "$43,432.00",
+        totalLiquidity: 0,
+      },
+    ]);
+  }, [pool.apy, pool.totalSupply]);
+
   const handleAddPollClick = (item) => {
     navigate("./your-liquidity", {
       state: { chain: item.chain, token: item.token },

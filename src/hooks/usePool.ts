@@ -34,7 +34,11 @@ export default function usePool() {
 
   const [error, setError] = useState("");
 
-  const getData = async (chain = pool.chain, token = pool.token) => {
+  const getData = async (
+    chain = pool.chain,
+    token = pool.token,
+    senderAddress = bridge.senderAddress,
+  ) => {
     // dispatch(setPoolApy(0));
     // dispatch(setPoolTotalSupply(0));
     // dispatch(setPoolProtocolFee(0));
@@ -50,49 +54,80 @@ export default function usePool() {
       if ("address" in handler) {
         const poolAddress = await handler.address(`elp${token}`);
 
-        const decimals = await handler.decimals(poolAddress);
+        const decimals = await handler.decimals(poolAddress).catch(() => 1);
 
-        const apy = await handler.getLpCurrentAPY(poolAddress);
-        console.log({ apy });
-        dispatch(setPoolApy(Number(apy) / 100));
+        const totalSupply = await handler
+          .getLpTotalSupply(poolAddress)
+          .catch(() => 0);
 
-        const totalSupply = await handler.getLpTotalSupply(poolAddress);
+        const apy = await handler.getLpCurrentAPY(poolAddress).catch(() => 0);
 
-        dispatch(setPoolTotalSupply(Number(totalSupply) / 10 ** decimals));
+        console.log({ totalSupply });
 
-        const protocolFee = await handler.getLpProtocolFee(poolAddress);
-        dispatch(setPoolProtocolFee(Number(protocolFee)));
+        const protocolFee = await handler
+          .getLpProtocolFee(poolAddress)
+          .catch(() => 0);
 
-        const protocolFeeAmount =
-          await handler.getLpProtocolFeeAmount(poolAddress);
-        dispatch(setPoolProtocolFeeAmount(Number(protocolFeeAmount)));
+        const protocolFeeAmount = await handler
+          .getLpProtocolFeeAmount(poolAddress)
+          .catch(() => 0);
 
-        const tokenFee = await handler.getLpTokenFee(poolAddress);
-        dispatch(setPoolTokenFee(Number(tokenFee)));
+        const tokenFee = await handler
+          .getLpTokenFee(poolAddress)
+          .catch(() => 0);
 
-        const feeGrowthGlobal = await (
-          handler as Web3Helper
-        ).getLpFeeGrowthGlobal(poolAddress);
-        dispatch(
-          setPoolFeeGrowthGlobal(Number(feeGrowthGlobal) / 10 ** decimals),
-        );
+        if ("feeGrowthGlobal" in handler) {
+          const feeGrowthGlobal = await (handler as Web3Helper)
+            .getLpFeeGrowthGlobal(poolAddress)
+            .catch(() => 0);
 
-        const feeDecimals = await (handler as Web3Helper).getLpFeeDecimals(
-          poolAddress,
-        );
-        dispatch(setPoolFeeDecimals(Number(feeDecimals)));
+          const feeDecimals = await (handler as Web3Helper)
+            .getLpFeeDecimals(poolAddress)
+            .catch(() => 0);
 
-        const pendingRewards = await (
-          handler as Web3Helper
-        ).getLpProviderRewards(poolAddress, bridge.senderAddress);
-        dispatch(
-          setPoolPendingRewards(Number(pendingRewards) / 10 ** decimals),
-        );
-        console.log({ pendingRewards });
+          const pendingRewards = await (handler as Web3Helper)
+            .getLpProviderRewards(poolAddress, senderAddress)
+            .catch(() => 0);
+
+          console.log({ pendingRewards });
+          return {
+            decimals,
+            apy: Number(apy) / 100,
+            totalSupply: Number(totalSupply) / 10 ** decimals,
+            protocolFee: Number(protocolFee),
+            protocolFeeAmount: Number(protocolFeeAmount),
+            tokenFee: Number(tokenFee),
+            feeGrowthGlobal: Number(feeGrowthGlobal) / 10 ** decimals,
+            feeDecimals: Number(feeDecimals),
+            pendingRewards: Number(pendingRewards) / 10 ** decimals,
+          };
+        }
+        return {
+          decimals,
+          apy: Number(apy) / 100,
+          totalSupply: Number(totalSupply) / 10 ** decimals,
+          protocolFee: Number(protocolFee),
+          protocolFeeAmount: Number(protocolFeeAmount),
+          tokenFee: Number(tokenFee),
+          feeGrowthGlobal: 0,
+          feeDecimals: 0,
+          pendingRewards: 0,
+        };
       }
     } catch (error: { message: string } | any) {
       setError(error.message);
-      console.error(error);
+      console.log(error);
+      return {
+        decimals: 1,
+        apy: 0,
+        totalSupply: 0,
+        protocolFee: 0,
+        protocolFeeAmount: 0,
+        tokenFee: 0,
+        feeGrowthGlobal: 0,
+        feeDecimals: 0,
+        pendingRewards: 0,
+      };
     }
   };
 
@@ -192,6 +227,7 @@ export default function usePool() {
     type: "Deposit" | "Withdraw",
     chain = pool.chain,
     token = pool.token,
+    address = bridge.senderAddress,
   ) => {
     try {
       const handler = await chainFactoryTestnet.inner(
@@ -199,14 +235,12 @@ export default function usePool() {
         ChainToDestinationDomain[ChainNameToTypeChainName[chain]],
       );
 
-      console.log(pool.token, bridge.senderAddress);
+      console.log(pool.token, address);
       if ("address" in handler) {
         if (type === "Deposit") {
           const tokenAddress = await handler.address(token as AddressBookKeys);
           return (
-            Number(
-              await handler.tokenBalance(tokenAddress, bridge.senderAddress),
-            ) /
+            Number(await handler.tokenBalance(tokenAddress, address)) /
             10 ** Number(TOKEN_DECIMALS[pool.token as TTokenName])
           );
         } else {
@@ -214,9 +248,7 @@ export default function usePool() {
             `elp${pool.token}` as AddressBookKeys,
           );
           return (
-            Number(
-              await handler.tokenBalance(tokenAddress, bridge.senderAddress),
-            ) /
+            Number(await handler.tokenBalance(tokenAddress, address)) /
             10 ** Number(TOKEN_DECIMALS[pool.token as TTokenName])
           );
         }
@@ -229,15 +261,27 @@ export default function usePool() {
     }
   };
 
-  const getStakedBalance = async (chain?: string, token?: string) => {
-    const stakedBalance = await getBalance("Withdraw", chain, token);
-    dispatch(setPoolStakedBalance(stakedBalance));
-  };
-
   useEffect(() => {
     (async () => {
-      await getStakedBalance(pool.chain, pool.token);
-      await getData(pool.chain, pool.token);
+      const stakedBalance = await getBalance(
+        "Withdraw",
+        pool.chain,
+        pool.token,
+        bridge.senderAddress,
+      );
+      dispatch(setPoolStakedBalance(stakedBalance));
+      const data = await getData(pool.chain, pool.token, bridge.senderAddress);
+      if (data?.decimals) {
+        console.log({ data });
+
+        dispatch(setPoolApy(data.apy));
+        dispatch(setPoolTotalSupply(data.totalSupply));
+        dispatch(setPoolProtocolFee(data.protocolFee));
+        dispatch(setPoolProtocolFeeAmount(data.protocolFeeAmount));
+        dispatch(setPoolTokenFee(data.tokenFee));
+        dispatch(setPoolFeeGrowthGlobal(data.feeGrowthGlobal));
+        dispatch(setPoolFeeDecimals(data.feeDecimals));
+      }
     })();
   }, [pool.chain, pool.token, bridge.senderAddress]);
 
@@ -247,7 +291,6 @@ export default function usePool() {
     stake,
     withdraw,
     getBalance,
-    getStakedBalance,
     withdrawFees,
   };
 }
