@@ -76,7 +76,7 @@ export default function usePool() {
           .getLpTokenFee(poolAddress)
           .catch(() => 0);
 
-        if ("feeGrowthGlobal" in handler) {
+        if ("getLpProviderRewards" in handler) {
           const feeGrowthGlobal = await (handler as Web3Helper)
             .getLpFeeGrowthGlobal(poolAddress)
             .catch(() => 0);
@@ -281,6 +281,7 @@ export default function usePool() {
         dispatch(setPoolTokenFee(data.tokenFee));
         dispatch(setPoolFeeGrowthGlobal(data.feeGrowthGlobal));
         dispatch(setPoolFeeDecimals(data.feeDecimals));
+        dispatch(setPoolPendingRewards(data.pendingRewards));
       }
     })();
   }, [pool.chain, pool.token, bridge.senderAddress]);
