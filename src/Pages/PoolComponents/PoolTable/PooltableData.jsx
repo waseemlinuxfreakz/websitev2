@@ -78,9 +78,9 @@ const PoolTable = () => {
       {
         token: "USDC",
         chain: "Sepolia",
-        apy: pool.apy,
+        apy: 1,
         volume: "$43,432.00",
-        totalLiquidity: pool.totalSupply,
+        totalLiquidity: 1,
       },
       {
         token: "USDC",
@@ -105,19 +105,19 @@ const PoolTable = () => {
         <table className="table">
           <thead>
             <tr>
-              <th className="tableHead" onClick={() => handleSort("Token")}>
+              <th className="tableHead" onClick={() => handleSort("token")}>
                 Token{" "}
                 <span className="upDown">
                   <img src={Updown} alt="Updown" />
                 </span>
               </th>
-              <th className="tableHead" onClick={() => handleSort("Chain")}>
+              <th className="tableHead" onClick={() => handleSort("chain")}>
                 Chain{" "}
                 <span className="upDown">
                   <img src={Updown} alt="Updown" />
                 </span>
               </th>
-              <th className="tableHead" onClick={() => handleSort("APY")}>
+              <th className="tableHead" onClick={() => handleSort("apy")}>
                 APY{" "}
                 <span className="upDown">
                   <img src={Updown} alt="Updown" />
@@ -186,7 +186,7 @@ function TableDataRow({
       const _data = await getData(item.chain, item.token);
       setData(_data);
     })();
-  }, []);
+  }, [item.chain, item.token]);
 
   return (
     <tr>
