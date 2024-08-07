@@ -152,6 +152,7 @@ function Yourliquidity() {
     pool.amount,
     pool.balance,
     pool.allowance,
+    activeButton,
   ]);
 
   const handleBackButtonClick = () => {
