@@ -99,7 +99,7 @@ export const bridgeSlice = createSlice({
       // If we're bridging the same token
       if (state.fromToken === state.toToken) {
         if (action.payload) {
-          state.receive = (action.payload - state.bridgeFee).toFixed(2);
+          state.receive = action.payload;
         } else {
           state.receive = "";
         }
