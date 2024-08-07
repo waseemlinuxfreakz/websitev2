@@ -88,15 +88,21 @@ function Yourliquidity() {
           }
         }
       } else {
+        setDisabled(true);
+        setShowSpiner(true);
         activeButton === "Deposit" ? await stake() : await withdraw();
+        setShowSpiner(false);
+        setDisabled(false);
       }
     }
   };
 
   useEffect(() => {
     (async () => {
-      const _balance = await getBalance(activeButton);
-      dispatch(setPoolBalance(_balance));
+      setInterval(async () => {
+        const _balance = await getBalance(activeButton);
+        dispatch(setPoolBalance(_balance));
+      }, 6 * 1000);
     })();
   }, [pool.chain, pool.token, activeButton, bridge.senderAddress]);
 

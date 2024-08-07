@@ -10,7 +10,7 @@ interface IPoolState {
   byChain: string;
   byToken: string;
   tokens: TokenType[];
-  amount: number | null;
+  amount: string | number;
   apy: number;
   totalSupply: number;
   protocolFee: number;
@@ -33,7 +33,7 @@ const initialState = {
   byChain: "Show All",
   byToken: "Show All",
   tokens: coinsData.filter((_token) => _token.name !== token),
-  amount: null,
+  amount: "",
   apy: 0,
   totalSupply: 0,
   protocolFee: 0,

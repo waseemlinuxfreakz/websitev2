@@ -107,7 +107,7 @@ export default function useBridgeFee() {
         setProtocolFeeInUSD(_protocolFeeInUSD);
         // setFormattedProtocolFee(_formatedProtocolFee)
         setFee(_fee);
-        dispatch(setBridgeFee(_fee));
+        dispatch(setBridgeFee(_formatedFee));
       })().catch((e) => {
         const err = `useBridgFee Error: ${e.message}`;
         dispatch(setBridgeError(err));
@@ -115,7 +115,7 @@ export default function useBridgeFee() {
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [bridge.amount, bridge.toChain, bridge.fromChain, bridge.allowance]);
+  }, [bridge.toChain, bridge.fromChain, bridge.allowance]);
 
   // console.log('fee', fee, 'nativeCurrency', nativeCurrency, 'formattedFee', formattedFee, 'bridgeAddress', bridgeAddress, 'toChain:', ChainNameToTypeChainName[bridge.toChain])
   return { fee, nativeCurrency, formattedFee, protocolFee, protocolFeeInUSD };

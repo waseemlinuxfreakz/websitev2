@@ -263,13 +263,18 @@ export default function usePool() {
 
   useEffect(() => {
     (async () => {
-      const stakedBalance = await getBalance(
-        "Withdraw",
-        pool.chain,
-        pool.token,
-        bridge.senderAddress,
-      );
-      dispatch(setPoolStakedBalance(stakedBalance));
+      setInterval(async () => {
+        console.log("staked Balance fetched");
+
+        const stakedBalance = await getBalance(
+          "Withdraw",
+          pool.chain,
+          pool.token,
+          bridge.senderAddress,
+        );
+        dispatch(setPoolStakedBalance(stakedBalance));
+      }, 6 * 1000);
+
       const data = await getData(pool.chain, pool.token, bridge.senderAddress);
       if (data?.decimals) {
         console.log({ data });

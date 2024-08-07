@@ -39,6 +39,7 @@ export interface IBridgeState {
   toToken: string;
   toTokens: TokenType[];
   senderAddress: string;
+  isTransferFromLp: boolean;
 }
 
 // FROM
@@ -83,6 +84,7 @@ const initialState = {
   toToken,
   toTokens: filterOneToken(toToken, fromChain, toChain),
   senderAddress: "",
+  isTransferFromLp: false,
 } as IBridgeState;
 
 export const bridgeSlice = createSlice({
@@ -95,32 +97,9 @@ export const bridgeSlice = createSlice({
     setBridgeAmount(state: IBridgeState, action: PayloadAction<number>) {
       state.amount = action.payload;
       // If we're bridging the same token
-      if (state.fromToken == state.toToken) {
+      if (state.fromToken === state.toToken) {
         if (action.payload) {
-          if (isStableCoin(state.fromToken)) {
-            const percentage: number =
-              BridgeFeeStructure.stablecoins.percentage * state.amount;
-            if (percentage > BridgeFeeStructure.stablecoins.minimum) {
-              state.receive = state.amount - percentage;
-              //state.bridgeFee = percentage;
-            } else {
-              state.receive =
-                state.amount - BridgeFeeStructure.stablecoins.minimum;
-              //state.bridgeFee = BridgeFeeStructure.stablecoins.minimum;
-            }
-          } else {
-            // TODO: change later
-            const percentage: number =
-              BridgeFeeStructure.stablecoins.percentage * state.amount;
-            if (percentage > BridgeFeeStructure.stablecoins.minimum) {
-              state.receive = state.amount - percentage;
-              //state.bridgeFee = percentage;
-            } else {
-              state.receive =
-                state.amount - BridgeFeeStructure.stablecoins.minimum;
-              //state.bridgeFee = BridgeFeeStructure.stablecoins.minimum;
-            }
-          }
+          state.receive = (action.payload - state.bridgeFee).toFixed(2);
         } else {
           state.receive = "";
         }
@@ -285,6 +264,12 @@ export const bridgeSlice = createSlice({
     },
     setSenderAddress(state: IBridgeState, action: PayloadAction<string>) {
       state.senderAddress = action.payload;
+    },
+    setBridgeIsTransferFromLp(
+      state: IBridgeState,
+      action: PayloadAction<boolean>,
+    ) {
+      state.isTransferFromLp = action.payload;
     },
     swapBridgeChainsAndTokens(
       state: IBridgeState,

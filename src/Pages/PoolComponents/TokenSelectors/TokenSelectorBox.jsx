@@ -13,7 +13,19 @@ export default function TokenSelectorBox({ type }) {
   const dispatch = useAppDispatch();
 
   function onInputChange(e) {
-    dispatch(setPoolAmount(Number(e.target.value)));
+    if (e.target.value) {
+      let sanitized = String(e.target.value)
+        .replace(/[^0-9.]/g, "") // any non digits
+        .replace(/^0+([1-9]+\.\d*|0\.)/, "$1"); // multiple zeros before . with one
+      if (parseFloat(sanitized) < 1) sanitized = 1;
+      if (parseFloat(sanitized) > 10_000_000) sanitized = 10_000_000;
+
+      if (sanitized != ".") {
+        dispatch(setPoolAmount(sanitized));
+      }
+    } else {
+      dispatch(setPoolAmount(""));
+    }
   }
 
   function isDeposit() {
@@ -31,7 +43,7 @@ export default function TokenSelectorBox({ type }) {
             <h2 className="amount">
               <input
                 onChange={onInputChange}
-                type="number"
+                type="text"
                 placeholder="0.0"
                 value={pool.amount}
                 disabled={type && type === "to" ? true : false}
