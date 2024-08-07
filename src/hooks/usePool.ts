@@ -8,7 +8,6 @@ import {
 } from "../types";
 import { chainFactoryTestnet } from "../store/chainFactory";
 import { useEthersSigner } from "./useEthersSigner";
-import { Web3Helper } from "emmet.js/dist/chains/web3";
 import {
   setPoolApy,
   setPoolBalance,
@@ -40,17 +39,26 @@ export default function usePool() {
     token = pool.token,
     senderAddress = bridge.senderAddress,
   ) => {
-    // dispatch(setPoolApy(0));
-    // dispatch(setPoolTotalSupply(0));
-    // dispatch(setPoolProtocolFee(0));
-    // dispatch(setPoolProtocolFeeAmount(0));
-    // dispatch(setPoolTokenFee(0));
-    // dispatch(setPoolFeeGrowthGlobal(0));
     try {
       const handler = await chainFactoryTestnet.inner(
         // @ts-ignore
         ChainToDestinationDomain[ChainNameToTypeChainName[chain]],
       );
+
+      const validAddress = await handler.validateAddress(senderAddress);
+      if (!validAddress) {
+        return {
+          decimals: 1,
+          apy: 0,
+          totalSupply: 0,
+          protocolFee: 0,
+          protocolFeeAmount: 0,
+          tokenFee: 0,
+          feeGrowthGlobal: 0,
+          feeDecimals: 0,
+          pendingRewards: 0,
+        };
+      }
 
       if ("address" in handler) {
         const poolAddress = await handler.address(`elp${token}`);
@@ -77,32 +85,18 @@ export default function usePool() {
           .getLpTokenFee(poolAddress)
           .catch(() => 0);
 
-        if ("getLpProviderRewards" in handler) {
-          const feeGrowthGlobal = await (handler as Web3Helper)
-            .getLpFeeGrowthGlobal(poolAddress)
-            .catch(() => 0);
+        const feeGrowthGlobal = await handler
+          .getLpFeeGrowthGlobal(poolAddress)
+          .catch(() => 0);
 
-          const feeDecimals = await (handler as Web3Helper)
-            .getLpFeeDecimals(poolAddress)
-            .catch(() => 0);
+        const feeDecimals = await handler
+          .getLpFeeDecimals(poolAddress)
+          .catch(() => 0);
 
-          const pendingRewards = await (handler as Web3Helper)
-            .getLpProviderRewards(poolAddress, senderAddress)
-            .catch(() => 0);
+        const pendingRewards = await handler
+          .getLpProviderRewards(poolAddress, senderAddress)
+          .catch(() => 0);
 
-          console.log({ pendingRewards });
-          return {
-            decimals,
-            apy: Number(apy) / 100,
-            totalSupply: Number(totalSupply) / 10 ** decimals,
-            protocolFee: Number(protocolFee),
-            protocolFeeAmount: Number(protocolFeeAmount),
-            tokenFee: Number(tokenFee),
-            feeGrowthGlobal: Number(feeGrowthGlobal) / 10 ** decimals,
-            feeDecimals: Number(feeDecimals),
-            pendingRewards: Number(pendingRewards) / 10 ** decimals,
-          };
-        }
         return {
           decimals,
           apy: Number(apy) / 100,
@@ -110,9 +104,9 @@ export default function usePool() {
           protocolFee: Number(protocolFee),
           protocolFeeAmount: Number(protocolFeeAmount),
           tokenFee: Number(tokenFee),
-          feeGrowthGlobal: 0,
-          feeDecimals: 0,
-          pendingRewards: 0,
+          feeGrowthGlobal: Number(feeGrowthGlobal) / 10 ** decimals,
+          feeDecimals: Number(feeDecimals),
+          pendingRewards: Number(pendingRewards) / 10 ** decimals,
         };
       }
     } catch (error: { message: string } | any) {
@@ -236,7 +230,6 @@ export default function usePool() {
         ChainToDestinationDomain[ChainNameToTypeChainName[chain]],
       );
 
-      console.log(pool.token, address);
       if ("address" in handler) {
         if (type === "Deposit") {
           const tokenAddress = await handler.address(token as AddressBookKeys);
@@ -264,12 +257,21 @@ export default function usePool() {
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
+
     (async () => {
-      if ((pool.chain, pool.token, bridge.senderAddress)) {
-        dispatch(setPoolBalance(0));
-        dispatch(setPoolStakedBalance(0));
+      dispatch(setPoolBalance(0));
+      dispatch(setPoolStakedBalance(0));
+      dispatch(setPoolApy(0));
+      dispatch(setPoolTotalSupply(0));
+      dispatch(setPoolProtocolFee(0));
+      dispatch(setPoolProtocolFeeAmount(0));
+      dispatch(setPoolTokenFee(0));
+      dispatch(setPoolFeeGrowthGlobal(0));
+      dispatch(setPoolFeeDecimals(0));
+      dispatch(setPoolPendingRewards(0));
+      if (pool.chain && pool.token && bridge.senderAddress) {
+        console.log({ senderAddress: bridge.senderAddress });
         interval = setInterval(async () => {
-          console.log("staked Balance fetched");
           const balance = await getBalance(
             "Deposit",
             pool.chain,
@@ -292,9 +294,10 @@ export default function usePool() {
           pool.token,
           bridge.senderAddress,
         );
-        if (data?.decimals) {
-          console.log({ data });
 
+        console.log({ data, senderAddress: bridge.senderAddress });
+
+        if (data) {
           dispatch(setPoolApy(data.apy));
           dispatch(setPoolTotalSupply(data.totalSupply));
           dispatch(setPoolProtocolFee(data.protocolFee));
@@ -306,6 +309,7 @@ export default function usePool() {
         }
       }
     })();
+
     return () => clearInterval(interval);
   }, [pool.chain, pool.token, bridge.senderAddress]);
 

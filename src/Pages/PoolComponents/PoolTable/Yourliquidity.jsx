@@ -231,20 +231,23 @@ function Yourliquidity() {
                   {pool.stakedBalance} {pool.token}
                 </div>
               </li>
-              <li>
-                <div className="LiquidityleftText">
-                  <button
-                    className="WithdrawRewardsActionButton"
-                    onClick={withdrawFees}
-                    disabled={!pool.pendingRewards}
-                  >
-                    Withdraw Rewards
-                  </button>
-                </div>
-                <div className="LiquidityrightText">
-                  {pool.pendingRewards} {pool.token}
-                </div>
-              </li>
+              {activeButton === "Withdraw" && (
+                <li>
+                  <div className="LiquidityleftText">
+                    <button
+                      className="WithdrawRewardsActionButton"
+                      onClick={withdrawFees}
+                      disabled={!pool.pendingRewards}
+                    >
+                      Withdraw Rewards
+                    </button>
+                  </div>
+                  <div className="LiquidityrightText">
+                    {pool.pendingRewards} {pool.token}
+                  </div>
+                </li>
+              )}
+
               <li>
                 <div className="LiquidityleftText">Share of Pool</div>
                 <div className="LiquidityrightText">
