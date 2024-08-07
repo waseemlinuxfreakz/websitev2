@@ -27,12 +27,25 @@ interface IPoolState {
 const chain = chainList[0].name;
 const token = coinsData[0].name;
 
+export const CHAIN_TO_TOKENS = {
+  TONTestnet: ["USDC", "TON"],
+  Sepolia: ["USDC"],
+  Amoy: ["USDC"],
+  Bartio: ["USDC"],
+  OnlyTestnet: ["USDC"],
+};
+
 const initialState = {
   chain,
   token,
   byChain: "Show All",
   byToken: "Show All",
-  tokens: coinsData.filter((_token) => _token.name !== token),
+  tokens: coinsData.filter(
+    (_token) =>
+      _token.name !== token &&
+      //@ts-ignore
+      CHAIN_TO_TOKENS[chain].includes(_token.name),
+  ),
   amount: "",
   apy: 0,
   totalSupply: 0,
@@ -53,11 +66,20 @@ export const poolslice = createSlice({
   reducers: {
     setPoolChain(state: IPoolState, action: PayloadAction<string>) {
       state.chain = action.payload;
+      state.tokens = coinsData.filter(
+        (token) =>
+          token.name !== state.token &&
+          //@ts-ignore
+          CHAIN_TO_TOKENS[action.payload].includes(token.name),
+      );
     },
     setPoolToken: (state: IPoolState, action: PayloadAction<string>) => {
       state.token = action.payload;
-      state.tokens = state.tokens.filter(
-        (token) => token.name !== action.payload,
+      state.tokens = coinsData.filter(
+        (token) =>
+          token.name !== action.payload &&
+          //@ts-ignore
+          CHAIN_TO_TOKENS[state.chain].includes(token.name),
       );
     },
     setPoolByChain(state: IPoolState, action: PayloadAction<string>) {

@@ -3,6 +3,8 @@ import { useAppDispatch, useAppSelector } from "./storage";
 import {
   ChainNameToTypeChainName,
   ChainToDestinationDomain,
+  SUPPORTED_CHAINS,
+  TChainName,
   TOKEN_DECIMALS,
   TTokenName,
 } from "../types";
@@ -62,6 +64,7 @@ export default function usePool() {
 
       if ("address" in handler) {
         const poolAddress = await handler.address(`elp${token}`);
+        console.log({ poolAddress });
 
         const decimals = await handler.decimals(poolAddress).catch(() => 1);
 
@@ -149,7 +152,7 @@ export default function usePool() {
         tonSender,
         pool.token,
         // @ts-ignore
-        pool.amount * 10 ** TOKEN_DECIMALS[pool.token],
+        BigInt(pool.amount * 10 ** TOKEN_DECIMALS[pool.token]),
         undefined,
       );
       console.error(error);
@@ -227,12 +230,23 @@ export default function usePool() {
     try {
       const handler = await chainFactoryTestnet.inner(
         // @ts-ignore
-        ChainToDestinationDomain[ChainNameToTypeChainName[chain]],
+        ChainToDestinationDomain[ChainNameToTypeChainName[chain as TChainName]],
       );
-
+      const _chain = SUPPORTED_CHAINS[ChainNameToTypeChainName[pool.chain]];
+      if (token === _chain.nativeCurrency.symbol && type === "Deposit") {
+        return (
+          Number(await handler.balance(address)) /
+          10 ** TOKEN_DECIMALS[token as TTokenName]
+        );
+      }
       if ("address" in handler) {
         if (type === "Deposit") {
           const tokenAddress = await handler.address(token as AddressBookKeys);
+
+          console.log({
+            balance: Number(await handler.tokenBalance(tokenAddress, address)),
+          });
+
           return (
             Number(await handler.tokenBalance(tokenAddress, address)) /
             10 ** Number(TOKEN_DECIMALS[pool.token as TTokenName])
@@ -271,6 +285,7 @@ export default function usePool() {
       dispatch(setPoolPendingRewards(0));
       if (pool.chain && pool.token && bridge.senderAddress) {
         console.log({ senderAddress: bridge.senderAddress });
+
         interval = setInterval(async () => {
           const balance = await getBalance(
             "Deposit",
