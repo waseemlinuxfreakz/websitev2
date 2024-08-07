@@ -8,6 +8,7 @@ import ChainSelectorDropdown from "../ChainSelectorDropdown/ChainSelectorDropdow
 import TokenSelectorBox from "../TokenSelectors/TokenSelectorBox";
 import usePool from "../../../hooks/usePool";
 import {
+  setPoolAmount,
   setPoolBalance,
   setPoolChain,
   setPoolToken,
@@ -90,21 +91,16 @@ function Yourliquidity() {
       } else {
         setDisabled(true);
         setShowSpiner(true);
+        activeButton === "Deposit"
+          ? setCaption("Depositing")
+          : setCaption("Withdrawing");
         activeButton === "Deposit" ? await stake() : await withdraw();
         setShowSpiner(false);
         setDisabled(false);
+        dispatch(setPoolAmount(""));
       }
     }
   };
-
-  useEffect(() => {
-    (async () => {
-      setInterval(async () => {
-        const _balance = await getBalance(activeButton);
-        dispatch(setPoolBalance(_balance));
-      }, 6 * 1000);
-    })();
-  }, [pool.chain, pool.token, activeButton, bridge.senderAddress]);
 
   useEffect(() => {
     if (location.state) {
@@ -211,7 +207,10 @@ function Yourliquidity() {
               </div>
             </div>
             <div className="yourliquidityInput">
-              <TokenSelectorBox type={activeButton} />
+              <TokenSelectorBox
+                type={activeButton}
+                activeButton={activeButton}
+              />
             </div>
             <ul className="YourliquidityList">
               {/* <li>

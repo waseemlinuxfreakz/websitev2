@@ -7,7 +7,7 @@ import TokenSelectionDropdown from "./TokenSelectionDropdown";
 import { useAppSelector, useAppDispatch } from "../../../hooks/storage";
 import { setPoolAmount } from "../../../store/poolSlice";
 
-export default function TokenSelectorBox({ type }) {
+export default function TokenSelectorBox({ type, activeButton }) {
   // Global state
   const pool = useAppSelector((state) => state.pool);
   const dispatch = useAppDispatch();
@@ -52,7 +52,7 @@ export default function TokenSelectorBox({ type }) {
           </div>
         </div>
         <div className="payReRight">
-          <WalletBalance name={pool.token} />
+          <WalletBalance name={pool.token} activeButton={activeButton} />
           <TokenSelectionDropdown type={type} />
         </div>
       </div>

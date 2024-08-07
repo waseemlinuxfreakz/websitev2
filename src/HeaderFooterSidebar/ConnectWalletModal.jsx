@@ -67,6 +67,8 @@ export default function ConnectWalletModal({ modalIsOpen, setModalIsOpen }) {
     if (bridge.fromChain === "TON" || bridge.fromChain === "TONTestnet") {
       if (tonAddress) {
         dispatch(setSenderAddress(tonAddress));
+      } else {
+        dispatch(setSenderAddress(""));
       }
     } else if (
       bridge.fromChain === "Solana" ||
@@ -74,11 +76,15 @@ export default function ConnectWalletModal({ modalIsOpen, setModalIsOpen }) {
     ) {
       if (solanaWallet?.publicKey) {
         dispatch(setSenderAddress(solanaWallet.publicKey.toString()));
+      } else {
+        dispatch(setSenderAddress(""));
       }
-    } else if (address) {
-      dispatch(setSenderAddress(address));
     } else {
-      dispatch(setSenderAddress(""));
+      if (address) {
+        dispatch(setSenderAddress(address));
+      } else {
+        dispatch(setSenderAddress(""));
+      }
     }
   }, [address, tonAddress, bridge.fromChain, solanaWallet?.publicKey]);
 

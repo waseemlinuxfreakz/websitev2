@@ -11,6 +11,7 @@ import { useEthersSigner } from "./useEthersSigner";
 import { Web3Helper } from "emmet.js/dist/chains/web3";
 import {
   setPoolApy,
+  setPoolBalance,
   setPoolFeeDecimals,
   setPoolFeeGrowthGlobal,
   setPoolPendingRewards,
@@ -262,33 +263,50 @@ export default function usePool() {
   };
 
   useEffect(() => {
+    let interval: NodeJS.Timeout;
     (async () => {
-      setInterval(async () => {
-        console.log("staked Balance fetched");
+      if ((pool.chain, pool.token, bridge.senderAddress)) {
+        dispatch(setPoolBalance(0));
+        dispatch(setPoolStakedBalance(0));
+        interval = setInterval(async () => {
+          console.log("staked Balance fetched");
+          const balance = await getBalance(
+            "Deposit",
+            pool.chain,
+            pool.token,
+            bridge.senderAddress,
+          );
+          dispatch(setPoolBalance(balance));
 
-        const stakedBalance = await getBalance(
-          "Withdraw",
+          const stakedBalance = await getBalance(
+            "Withdraw",
+            pool.chain,
+            pool.token,
+            bridge.senderAddress,
+          );
+          dispatch(setPoolStakedBalance(stakedBalance));
+        }, 5 * 1000);
+
+        const data = await getData(
           pool.chain,
           pool.token,
           bridge.senderAddress,
         );
-        dispatch(setPoolStakedBalance(stakedBalance));
-      }, 6 * 1000);
+        if (data?.decimals) {
+          console.log({ data });
 
-      const data = await getData(pool.chain, pool.token, bridge.senderAddress);
-      if (data?.decimals) {
-        console.log({ data });
-
-        dispatch(setPoolApy(data.apy));
-        dispatch(setPoolTotalSupply(data.totalSupply));
-        dispatch(setPoolProtocolFee(data.protocolFee));
-        dispatch(setPoolProtocolFeeAmount(data.protocolFeeAmount));
-        dispatch(setPoolTokenFee(data.tokenFee));
-        dispatch(setPoolFeeGrowthGlobal(data.feeGrowthGlobal));
-        dispatch(setPoolFeeDecimals(data.feeDecimals));
-        dispatch(setPoolPendingRewards(data.pendingRewards));
+          dispatch(setPoolApy(data.apy));
+          dispatch(setPoolTotalSupply(data.totalSupply));
+          dispatch(setPoolProtocolFee(data.protocolFee));
+          dispatch(setPoolProtocolFeeAmount(data.protocolFeeAmount));
+          dispatch(setPoolTokenFee(data.tokenFee));
+          dispatch(setPoolFeeGrowthGlobal(data.feeGrowthGlobal));
+          dispatch(setPoolFeeDecimals(data.feeDecimals));
+          dispatch(setPoolPendingRewards(data.pendingRewards));
+        }
       }
     })();
+    return () => clearInterval(interval);
   }, [pool.chain, pool.token, bridge.senderAddress]);
 
   return {
