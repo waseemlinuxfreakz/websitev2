@@ -252,7 +252,10 @@ function Yourliquidity() {
               <li>
                 <div className="LiquidityleftText">Share of Pool</div>
                 <div className="LiquidityrightText">
-                  {((pool.stakedBalance / pool.totalSupply) * 100).toFixed(2)}%
+                  {bridge.senderAddress && pool.stakedBalance
+                    ? ((pool.stakedBalance / pool.totalSupply) * 100).toFixed(2)
+                    : "0.00"}
+                  %
                 </div>
               </li>
               {/* <li>
