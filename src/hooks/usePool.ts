@@ -47,21 +47,6 @@ export default function usePool() {
         ChainToDestinationDomain[ChainNameToTypeChainName[chain]],
       );
 
-      const validAddress = await handler.validateAddress(senderAddress);
-      if (!validAddress) {
-        return {
-          decimals: 1,
-          apy: 0,
-          totalSupply: 0,
-          protocolFee: 0,
-          protocolFeeAmount: 0,
-          tokenFee: 0,
-          feeGrowthGlobal: 0,
-          feeDecimals: 0,
-          pendingRewards: 0,
-        };
-      }
-
       if ("address" in handler) {
         const poolAddress = await handler.address(`elp${token}`);
         console.log({ poolAddress });
@@ -96,6 +81,8 @@ export default function usePool() {
           .getLpFeeDecimals(poolAddress)
           .catch(() => 0);
 
+        const validAddress = await handler.validateAddress(senderAddress);
+
         const pendingRewards = await handler
           .getLpProviderRewards(poolAddress, senderAddress)
           .catch(() => 0);
@@ -109,7 +96,9 @@ export default function usePool() {
           tokenFee: Number(tokenFee),
           feeGrowthGlobal: Number(feeGrowthGlobal) / 10 ** decimals,
           feeDecimals: Number(feeDecimals),
-          pendingRewards: Number(pendingRewards) / 10 ** decimals,
+          pendingRewards: validAddress
+            ? Number(pendingRewards) / 10 ** decimals
+            : 0,
         };
       }
     } catch (error: { message: string } | any) {
