@@ -243,7 +243,7 @@ dl {
   padding: 10px;
   position: absolute;
   z-index: 11;
-  right: 10px;
+  right: -24px;
   top: 100%;
   margin-top: 10px;
   background: #202226;
