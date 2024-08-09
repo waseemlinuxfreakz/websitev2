@@ -63,13 +63,13 @@ function PoolBox1() {
       <div className="poolboxBottom">
         <div className="row">
           <div className="col-6">
-            <h4>Deposit (USDC)</h4>
-            <h3>{stakedBalance}</h3>
+            <h4>Deposit</h4>
+            <h3>{stakedBalance} TON</h3>
           </div>
           <div className="col-6">
-            <h4>Rewards (USDC)</h4>
+            <h4>Rewards</h4>
 
-            <h3>{address ? data.pendingRewards : "---"}</h3>
+            <h3>{address ? `${data.pendingRewards} TON` : "---"}</h3>
           </div>
         </div>
       </div>
