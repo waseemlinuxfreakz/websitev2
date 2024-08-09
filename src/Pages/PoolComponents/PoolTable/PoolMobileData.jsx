@@ -5,6 +5,7 @@ import { useAppSelector } from "../../../hooks/storage";
 import poolTokens from "../../../store/poolCoins.json";
 import poolChains from "../../../store/poolChains.json";
 import usePool from "../../../hooks/usePool";
+import Skeleton from "../../CommonComponents/Skeleton/Skeleton";
 
 function PoolMobileData() {
   const [isYourLiquidityVisible, setYourLiquidityVisible] = useState(false);
@@ -17,7 +18,6 @@ function PoolMobileData() {
     });
   };
   const pool = useAppSelector((state) => state.pool);
-  const bridge = useAppSelector((state) => state.bridge);
   const getTokenIcon = (token) => {
     return poolTokens.find((i) => i.name === token).icon;
   };
@@ -90,6 +90,7 @@ const TableData = ({
   handleAddPollClick,
 }) => {
   const { getData } = usePool();
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState({
     decimals: 1,
     apy: 0,
@@ -105,8 +106,10 @@ const TableData = ({
 
   useEffect(() => {
     (async () => {
+      setLoading(true);
       const _data = await getData(item.chain, item.token);
       setData(_data);
+      setLoading(false);
     })();
   }, []);
   return (
@@ -131,11 +134,19 @@ const TableData = ({
         <div className="row">
           <div className="col-6">
             <h4>Total liquidity (USDC)</h4>
-            <h3>${data.liquidityPoolInUSD}</h3>
+            <h3>
+              {loading ? (
+                <Skeleton height={16} width={80} />
+              ) : (
+                `${data.liquidityPoolInUSD}%`
+              )}
+            </h3>
           </div>
           <div className="col-6">
             <h4>APY (%)</h4>
-            <h3>{data.apy}%</h3>
+            <h3>
+              {loading ? <Skeleton height={16} width={80} /> : `${data.apy}%`}
+            </h3>
           </div>
           <div className="addDeposit">
             <button

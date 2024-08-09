@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import usePool from "../../../hooks/usePool";
 import { useAccount } from "wagmi";
 import { useTonAddress } from "@tonconnect/ui-react";
+import Skeleton from "../../CommonComponents/Skeleton/Skeleton";
 
 const PoolTable = () => {
   const [sortBy, setSortBy] = useState(null);
@@ -19,6 +20,7 @@ const PoolTable = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { getData } = usePool();
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState([
     {
       token: "USDC",
@@ -83,6 +85,7 @@ const PoolTable = () => {
 
   useEffect(() => {
     (async () => {
+      setLoading(true);
       setData(
         await Promise.all(
           data.map(async (i) => {
@@ -95,6 +98,7 @@ const PoolTable = () => {
           }),
         ),
       );
+      setLoading(false);
     })();
   }, []);
 
@@ -157,6 +161,7 @@ const PoolTable = () => {
                     getTokenIcon={getTokenIcon}
                     handleAddPollClick={handleAddPollClick}
                     key={index}
+                    loading={loading}
                   />
                 ),
             )}
@@ -173,27 +178,8 @@ function TableDataRow({
   getTokenIcon,
   getChainIcon,
   handleAddPollClick,
+  loading,
 }) {
-  const { getData } = usePool();
-  // const [data, setData] = useState({
-  //   decimals: 1,
-  //   apy: 0,
-  //   totalSupply: 0,
-  //   protocolFee: 0,
-  //   protocolFeeAmount: 0,
-  //   tokenFee: 0,
-  //   feeGrowthGlobal: 0,
-  //   feeDecimals: 0,
-  //   pendingRewards: 0,
-  // });
-
-  // useEffect(() => {
-  //   (async () => {
-  //     const _data = await getData(item.chain, item.token);
-  //     setData(_data);
-  //   })();
-  // }, [item.chain, item.token]);
-
   return (
     <tr>
       <td>
@@ -207,11 +193,19 @@ function TableDataRow({
         </span>
       </td>
       <td>
-        <span style={{ color: "#E0E3E6" }}>{item.apy}%</span>
+        <span style={{ color: "#E0E3E6" }}>
+          {loading ? <Skeleton height={16} width={60} /> : `${item.apy}%`}
+        </span>
       </td>
       {/* <td>$43,432.00</td> */}
       <td>
-        <span class="totleLiqui">${item.totalLiquidity}</span>
+        <span class="totleLiqui">
+          {loading ? (
+            <Skeleton height={16} width={100} />
+          ) : (
+            `$${item.totalLiquidity}`
+          )}
+        </span>
       </td>
       <td>
         <button className="addPoll" onClick={() => handleAddPollClick(item)}>

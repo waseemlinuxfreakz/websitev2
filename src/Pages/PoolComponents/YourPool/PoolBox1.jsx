@@ -7,7 +7,7 @@ import { useAppSelector } from "../../../hooks/storage";
 import { Link } from "react-router-dom";
 import usePool from "../../../hooks/usePool";
 import { useAccount } from "wagmi";
-
+import Skeleton from "../../CommonComponents/Skeleton/Skeleton";
 function PoolBox1() {
   const { getData, getBalance } = usePool();
   const pool = useAppSelector((state) => state.pool);
@@ -25,9 +25,11 @@ function PoolBox1() {
     pendingRewards: 0,
   });
   const [stakedBalance, setStakedBalance] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     (async () => {
+      setLoading(true);
       const _data = await getData("Sepolia", "USDC", address);
       setData(_data);
       const _stakedBalance = await getBalance(
@@ -37,6 +39,7 @@ function PoolBox1() {
         address,
       );
       setStakedBalance(_stakedBalance);
+      setLoading(false);
     })();
   }, [address]);
 
@@ -58,7 +61,13 @@ function PoolBox1() {
             <img src={Target} alt="Target" />
           </Link>
           <p>
-            <b>APY</b> {data?.apy}%
+            {loading ? (
+              <Skeleton height={16} width={50} />
+            ) : (
+              <>
+                <b>APY</b> {data?.apy}%
+              </>
+            )}
           </p>
         </div>
       </div>
@@ -66,12 +75,27 @@ function PoolBox1() {
         <div className="row">
           <div className="col-6">
             <h4>Deposit</h4>
-            <h3>${stakedBalance}</h3>
+            <h3>
+              {loading ? (
+                <Skeleton height={20} width={80} />
+              ) : (
+                `$${stakedBalance}`
+              )}
+            </h3>
           </div>
           <div className="col-6">
             <h4>Rewards</h4>
-
-            <h3>{address ? `$${data.pendingRewards}` : "---"}</h3>
+            <h3>
+              {address ? (
+                loading ? (
+                  <Skeleton height={20} width={80} />
+                ) : (
+                  `$${data.pendingRewards}`
+                )
+              ) : (
+                "---"
+              )}
+            </h3>
           </div>
         </div>
       </div>

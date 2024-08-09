@@ -13,6 +13,7 @@ import { useEthersSigner } from "./useEthersSigner";
 import {
   setPoolApy,
   setPoolBalance,
+  setPoolDataLoading,
   setPoolFeeDecimals,
   setPoolFeeGrowthGlobal,
   setPoolLiquidityInUSD,
@@ -309,6 +310,7 @@ export default function usePool() {
           dispatch(setPoolStakedBalance(stakedBalance));
         }, 5 * 1000);
 
+        dispatch(setPoolDataLoading(true));
         const data = await getData(
           pool.chain,
           pool.token,
@@ -316,7 +318,6 @@ export default function usePool() {
         );
 
         console.log({ data, senderAddress: bridge.senderAddress });
-
         if (data) {
           dispatch(setPoolApy(data.apy));
           dispatch(setPoolTotalSupply(data.totalSupply));
@@ -328,6 +329,7 @@ export default function usePool() {
           dispatch(setPoolPendingRewards(data.pendingRewards));
           dispatch(setPoolLiquidityInUSD(data.liquidityPoolInUSD));
         }
+        dispatch(setPoolDataLoading(false));
       }
     })();
 
