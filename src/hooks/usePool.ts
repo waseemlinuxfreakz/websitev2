@@ -36,10 +36,35 @@ export default function usePool() {
 
   const pool = useAppSelector((state) => state.pool);
   const bridge = useAppSelector((state) => state.bridge);
+  const [cache, setCache] = useState({});
 
   const [error, setError] = useState("");
 
-  const getData = async (
+  const memoize = (fn: any) => {
+    return async (...args: any) => {
+      let n = args; // just taking one argument here
+      console.log({ n });
+
+      if (n in cache) {
+        console.log("Fetching from cache");
+        //@ts-ignore
+        return cache[n];
+      } else {
+        console.log("Calculating result");
+        let result = await fn(...args);
+        //@ts-ignore
+        cache[n] = result;
+        setCache((prevCache) => {
+          //@ts-ignore
+          prevCache[n] = result;
+          return { ...prevCache };
+        });
+        return result;
+      }
+    };
+  };
+
+  const _getData = async (
     chain = pool.chain,
     token = pool.token,
     senderAddress = bridge.senderAddress,
@@ -133,6 +158,8 @@ export default function usePool() {
       };
     }
   };
+
+  const getData = memoize(_getData);
 
   const stake = async () => {
     const handler = await chainFactoryTestnet.inner(
@@ -335,6 +362,10 @@ export default function usePool() {
 
     return () => clearInterval(interval);
   }, [pool.chain, pool.token, bridge.senderAddress]);
+
+  useEffect(() => {
+    console.log({ cache });
+  }, [cache]);
 
   return {
     error,
