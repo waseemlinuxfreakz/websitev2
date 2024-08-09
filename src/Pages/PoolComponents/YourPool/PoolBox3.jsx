@@ -26,7 +26,7 @@ function PoolBox1() {
 
   useEffect(() => {
     (async () => {
-      const _data = await getData("TONTestnet", "USDC", address);
+      const _data = await getData("TONTestnet", "TON", address);
       setData(_data);
       const _stakedBalance = await getBalance(
         "Withdraw",
