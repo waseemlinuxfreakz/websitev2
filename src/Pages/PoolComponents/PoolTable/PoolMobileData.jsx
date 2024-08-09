@@ -93,6 +93,7 @@ const TableData = ({
     feeGrowthGlobal: 0,
     feeDecimals: 0,
     pendingRewards: 0,
+    liquidityPoolInUSD: 0,
   });
 
   useEffect(() => {
@@ -123,7 +124,7 @@ const TableData = ({
         <div className="row">
           <div className="col-6">
             <h4>Total liquidity (USDC)</h4>
-            <h3>${data.totalSupply}</h3>
+            <h3>${data.liquidityPoolInUSD}</h3>
           </div>
           <div className="col-6">
             <h4>APY (%)</h4>

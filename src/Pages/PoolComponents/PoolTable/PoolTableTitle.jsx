@@ -4,21 +4,21 @@ import usePool from "../../../hooks/usePool";
 
 function PoolTableTitle() {
   const pool = useAppSelector((state) => state.pool);
-  const [tonTotalSupply, setTonTotalSupply] = useState(0);
+  const [tonLiquidityPoolInUSD, setTonLiquidityPoolInUSD] = useState(0);
 
   const { getData } = usePool();
 
   useEffect(() => {
     (async () => {
       const _data = await getData("TONTestnet", "USDC");
-      setTonTotalSupply(_data.totalSupply);
+      setTonLiquidityPoolInUSD(_data.liquidityPoolInUSD);
     })();
   }, []);
 
   return (
     <div className="poolTableTitle explorerTransactionsTitle">
       <h2>Active pool</h2>
-      <p>TVL: ${pool.totalSupply + tonTotalSupply}</p>
+      <p>TVL: ${pool.liquidityPoolInUSD + tonLiquidityPoolInUSD}</p>
     </div>
   );
 }

@@ -15,6 +15,7 @@ import {
   setPoolBalance,
   setPoolFeeDecimals,
   setPoolFeeGrowthGlobal,
+  setPoolLiquidityInUSD,
   setPoolPendingRewards,
   setPoolProtocolFee,
   setPoolProtocolFeeAmount,
@@ -24,6 +25,7 @@ import {
 } from "../store/poolSlice";
 import { AddressBookKeys } from "emmet.js";
 import { useTonConnect } from "./useTonConnect";
+import { removeTrailingZeroes } from "../utils";
 
 export default function usePool() {
   const dispatch = useAppDispatch();
@@ -87,6 +89,16 @@ export default function usePool() {
           .getLpProviderRewards(poolAddress, senderAddress)
           .catch(() => 0);
 
+        const tokenPrice = await chainFactoryTestnet.getTokenPrice(pool.token);
+
+        const tokenPriceDecimals = await chainFactoryTestnet.getPriceDecimals(
+          pool.token,
+        );
+
+        const liquidityPoolInUSD =
+          (Number(totalSupply) * Number(tokenPrice)) /
+          10 ** (decimals + Number(tokenPriceDecimals));
+
         return {
           decimals,
           apy: Number(apy) / 100,
@@ -99,6 +111,7 @@ export default function usePool() {
           pendingRewards: validAddress
             ? Number(pendingRewards) / 10 ** decimals
             : 0,
+          liquidityPoolInUSD,
         };
       }
     } catch (error: { message: string } | any) {
@@ -114,6 +127,7 @@ export default function usePool() {
         feeGrowthGlobal: 0,
         feeDecimals: 0,
         pendingRewards: 0,
+        liquidityPoolInUSD: 0,
       };
     }
   };
@@ -272,6 +286,7 @@ export default function usePool() {
       dispatch(setPoolFeeGrowthGlobal(0));
       dispatch(setPoolFeeDecimals(0));
       dispatch(setPoolPendingRewards(0));
+      dispatch(setPoolLiquidityInUSD(0));
       if (pool.chain && pool.token && bridge.senderAddress) {
         console.log({ senderAddress: bridge.senderAddress });
 
@@ -310,6 +325,7 @@ export default function usePool() {
           dispatch(setPoolFeeGrowthGlobal(data.feeGrowthGlobal));
           dispatch(setPoolFeeDecimals(data.feeDecimals));
           dispatch(setPoolPendingRewards(data.pendingRewards));
+          dispatch(setPoolLiquidityInUSD(data.liquidityPoolInUSD));
         }
       }
     })();

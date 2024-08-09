@@ -18,13 +18,14 @@ const PoolTable = () => {
   const pool = useAppSelector((state) => state.pool);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { getData } = usePool();
   const [data, setData] = useState([
     {
       token: "USDC",
       chain: "Sepolia",
-      apy: pool.apy,
+      apy: 0,
       volume: "$43,432.00",
-      totalLiquidity: pool.totalSupply,
+      totalLiquidity: 0,
     },
     {
       token: "USDC",
@@ -74,23 +75,21 @@ const PoolTable = () => {
   }, [sortBy, sortOrder]);
 
   useEffect(() => {
-    setData([
-      {
-        token: "USDC",
-        chain: "Sepolia",
-        apy: 1,
-        volume: "$43,432.00",
-        totalLiquidity: 1,
-      },
-      {
-        token: "USDC",
-        chain: "TONTestnet",
-        apy: 0,
-        volume: "$43,432.00",
-        totalLiquidity: 0,
-      },
-    ]);
-  }, [pool.apy, pool.totalSupply]);
+    (async () => {
+      setData(
+        await Promise.all(
+          data.map(async (i) => {
+            const _data = await getData(i.chain, i.token);
+            return {
+              ...i,
+              apy: _data.apy,
+              totalLiquidity: _data.liquidityPoolInUSD,
+            };
+          }),
+        ),
+      );
+    })();
+  }, []);
 
   const handleAddPollClick = (item) => {
     navigate("./your-liquidity", {
@@ -169,24 +168,24 @@ function TableDataRow({
   handleAddPollClick,
 }) {
   const { getData } = usePool();
-  const [data, setData] = useState({
-    decimals: 1,
-    apy: 0,
-    totalSupply: 0,
-    protocolFee: 0,
-    protocolFeeAmount: 0,
-    tokenFee: 0,
-    feeGrowthGlobal: 0,
-    feeDecimals: 0,
-    pendingRewards: 0,
-  });
+  // const [data, setData] = useState({
+  //   decimals: 1,
+  //   apy: 0,
+  //   totalSupply: 0,
+  //   protocolFee: 0,
+  //   protocolFeeAmount: 0,
+  //   tokenFee: 0,
+  //   feeGrowthGlobal: 0,
+  //   feeDecimals: 0,
+  //   pendingRewards: 0,
+  // });
 
-  useEffect(() => {
-    (async () => {
-      const _data = await getData(item.chain, item.token);
-      setData(_data);
-    })();
-  }, [item.chain, item.token]);
+  // useEffect(() => {
+  //   (async () => {
+  //     const _data = await getData(item.chain, item.token);
+  //     setData(_data);
+  //   })();
+  // }, [item.chain, item.token]);
 
   return (
     <tr>
@@ -201,11 +200,11 @@ function TableDataRow({
         </span>
       </td>
       <td>
-        <span style={{ color: "#E0E3E6" }}>{data.apy}%</span>
+        <span style={{ color: "#E0E3E6" }}>{item.apy}%</span>
       </td>
       {/* <td>$43,432.00</td> */}
       <td>
-        <span class="totleLiqui">${data.totalSupply}</span>
+        <span class="totleLiqui">${item.totalLiquidity}</span>
       </td>
       <td>
         <button className="addPoll" onClick={() => handleAddPollClick(item)}>

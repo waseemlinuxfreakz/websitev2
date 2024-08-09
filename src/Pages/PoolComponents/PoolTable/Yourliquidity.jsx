@@ -30,6 +30,8 @@ import { CHAIN_NAME_TO_ID, TOKEN_DECIMALS } from "../../../types";
 import usePoolAllowance from "../../../hooks/usePoolAllowance";
 import { useLocation } from "react-router-dom";
 import { useSwitchChain } from "wagmi";
+import { chainFactoryTestnet } from "../../../store/chainFactory";
+import { removeTrailingZeroes } from "../../../utils";
 
 function Yourliquidity() {
   const [activeButton, setActiveButton] = useState("Deposit");
@@ -252,7 +254,9 @@ function Yourliquidity() {
               <li>
                 <div className="LiquidityleftText">Share of Pool</div>
                 <div className="LiquidityrightText">
-                  {bridge.senderAddress && pool.stakedBalance
+                  {bridge.senderAddress &&
+                  pool.stakedBalance &&
+                  pool.totalSupply
                     ? ((pool.stakedBalance / pool.totalSupply) * 100).toFixed(2)
                     : "0.00"}
                   %
@@ -264,7 +268,9 @@ function Yourliquidity() {
               </li> */}
               <li>
                 <div className="LiquidityleftText">Liquidity Pool</div>
-                <div className="LiquidityrightText">${pool.totalSupply}</div>
+                <div className="LiquidityrightText">
+                  ${pool.liquidityPoolInUSD}
+                </div>
               </li>
             </ul>
             <div className="connectBtn">
