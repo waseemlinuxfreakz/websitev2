@@ -34,6 +34,13 @@ const PoolTable = () => {
       volume: "$43,432.00",
       totalLiquidity: 0,
     },
+    {
+      token: "TON",
+      chain: "TONTestnet",
+      apy: 0,
+      volume: "$43,432.00",
+      totalLiquidity: 0,
+    },
   ]);
 
   const getTokenIcon = (token) => {
