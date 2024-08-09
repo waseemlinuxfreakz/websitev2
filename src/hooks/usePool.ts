@@ -89,11 +89,10 @@ export default function usePool() {
           .getLpProviderRewards(poolAddress, senderAddress)
           .catch(() => 0);
 
-        const tokenPrice = await chainFactoryTestnet.getTokenPrice(pool.token);
+        const tokenPrice = await chainFactoryTestnet.getTokenPrice(token);
 
-        const tokenPriceDecimals = await chainFactoryTestnet.getPriceDecimals(
-          pool.token,
-        );
+        const tokenPriceDecimals =
+          await chainFactoryTestnet.getPriceDecimals(token);
 
         const liquidityPoolInUSD =
           (Number(totalSupply) * Number(tokenPrice)) /
