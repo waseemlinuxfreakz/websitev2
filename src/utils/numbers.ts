@@ -118,7 +118,7 @@ export function hexToDecimalString(s: string): string {
   return decimalValue;
 }
 
-export function removeTrailingZeroes(num: number) {
+export function removeTrailingZeroes(num: number | string) {
   // Convert number to string
   let numStr = num.toString();
 

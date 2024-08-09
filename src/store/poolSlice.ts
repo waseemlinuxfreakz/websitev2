@@ -22,7 +22,7 @@ interface IPoolState {
   pendingRewards: number;
   feeGrowthGlobal: number;
   feeDecimals: number;
-  liquidityPoolInUSD: number;
+  liquidityPoolInUSD: number | string;
 }
 
 const chain = chainList[0].name;
@@ -59,7 +59,7 @@ const initialState = {
   pendingRewards: 0,
   feeGrowthGlobal: 0,
   feeDecimals: 0,
-  liquidityPoolInUSD: 0,
+  liquidityPoolInUSD: "0",
 } as IPoolState;
 
 export const poolslice = createSlice({
@@ -132,7 +132,10 @@ export const poolslice = createSlice({
     setPoolFeeDecimals(state: IPoolState, action: PayloadAction<number>) {
       state.feeDecimals = action.payload;
     },
-    setPoolLiquidityInUSD(state: IPoolState, action: PayloadAction<number>) {
+    setPoolLiquidityInUSD(
+      state: IPoolState,
+      action: PayloadAction<string | number>,
+    ) {
       state.liquidityPoolInUSD = action.payload;
     },
   },

@@ -57,37 +57,39 @@ export default function usePool() {
 
         const totalSupply = await handler
           .getLpTotalSupply(poolAddress)
-          .catch(() => 0);
+          .catch(() => BigInt(0));
 
-        const apy = await handler.getLpCurrentAPY(poolAddress).catch(() => 0);
+        const apy = await handler
+          .getLpCurrentAPY(poolAddress)
+          .catch(() => BigInt(0));
 
         console.log({ totalSupply });
 
         const protocolFee = await handler
           .getLpProtocolFee(poolAddress)
-          .catch(() => 0);
+          .catch(() => BigInt(0));
 
         const protocolFeeAmount = await handler
           .getLpProtocolFeeAmount(poolAddress)
-          .catch(() => 0);
+          .catch(() => BigInt(0));
 
         const tokenFee = await handler
           .getLpTokenFee(poolAddress)
-          .catch(() => 0);
+          .catch(() => BigInt(0));
 
         const feeGrowthGlobal = await handler
           .getLpFeeGrowthGlobal(poolAddress)
-          .catch(() => 0);
+          .catch(() => BigInt(0));
 
         const feeDecimals = await handler
           .getLpFeeDecimals(poolAddress)
-          .catch(() => 0);
+          .catch(() => BigInt(0));
 
         const validAddress = await handler.validateAddress(senderAddress);
 
         const pendingRewards = await handler
           .getLpProviderRewards(poolAddress, senderAddress)
-          .catch(() => 0);
+          .catch(() => BigInt(0));
 
         const tokenPrice = await chainFactoryTestnet.getTokenPrice(token);
 
@@ -95,7 +97,7 @@ export default function usePool() {
           await chainFactoryTestnet.getPriceDecimals(token);
 
         const liquidityPoolInUSD =
-          (Number(totalSupply) * Number(tokenPrice)) /
+          Number(totalSupply * tokenPrice) /
           10 ** (decimals + Number(tokenPriceDecimals));
 
         return {
@@ -110,7 +112,7 @@ export default function usePool() {
           pendingRewards: validAddress
             ? Number(pendingRewards) / 10 ** decimals
             : 0,
-          liquidityPoolInUSD,
+          liquidityPoolInUSD: Number(liquidityPoolInUSD).toFixed(2),
         };
       }
     } catch (error: { message: string } | any) {
@@ -285,7 +287,7 @@ export default function usePool() {
       dispatch(setPoolFeeGrowthGlobal(0));
       dispatch(setPoolFeeDecimals(0));
       dispatch(setPoolPendingRewards(0));
-      dispatch(setPoolLiquidityInUSD(0));
+      dispatch(setPoolLiquidityInUSD("0"));
       if (pool.chain && pool.token && bridge.senderAddress) {
         console.log({ senderAddress: bridge.senderAddress });
 
