@@ -133,17 +133,17 @@ const TableData = ({
       <div className="poolboxBottom">
         <div className="row">
           <div className="col-6">
-            <h4>Total liquidity (USDC)</h4>
+            <h4>Total liquidity</h4>
             <h3>
               {loading ? (
                 <Skeleton height={16} width={80} />
               ) : (
-                `${data.liquidityPoolInUSD}%`
+                `$${data.liquidityPoolInUSD}`
               )}
             </h3>
           </div>
           <div className="col-6">
-            <h4>APY (%)</h4>
+            <h4>APY</h4>
             <h3>
               {loading ? <Skeleton height={16} width={80} /> : `${data.apy}%`}
             </h3>

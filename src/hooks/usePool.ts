@@ -281,15 +281,15 @@ export default function usePool() {
 
           return (
             Number(await handler.tokenBalance(tokenAddress, address)) /
-            10 ** Number(TOKEN_DECIMALS[pool.token as TTokenName])
+            10 ** Number(TOKEN_DECIMALS[token as TTokenName])
           );
         } else {
           const tokenAddress = await handler.address(
-            `elp${pool.token}` as AddressBookKeys,
+            `elp${token}` as AddressBookKeys,
           );
           return (
             Number(await handler.tokenBalance(tokenAddress, address)) /
-            10 ** Number(TOKEN_DECIMALS[pool.token as TTokenName])
+            10 ** Number(TOKEN_DECIMALS[token as TTokenName])
           );
         }
       }
