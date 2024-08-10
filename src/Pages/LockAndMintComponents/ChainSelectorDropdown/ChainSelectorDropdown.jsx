@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useConfig, useSwitchChain, useChainId } from "wagmi";
+import { useConfig, useSwitchChain, useChainId, useProof } from "wagmi";
 
 import DownArrow from "../../../assets/img/down-white.svg";
 import chainData from "../../../store/lockAndMintChain.json";
@@ -8,10 +8,18 @@ import { useAppSelector, useAppDispatch } from "../../../hooks/storage";
 import {
   setBridgeFromChain,
   setBridgeAmount,
+  setBridgeIsTransferFromLp,
+  setBridgeReceive,
 } from "../../../store/bridgeSlice";
 import { setSwapFromChain } from "../../../store/swapSlice";
 import { isMobile } from "react-device-detect";
-import { CHAIN_NAME_TO_ID, ChainNameToTypeChainName } from "../../../types";
+import {
+  CHAIN_NAME_TO_ID,
+  ChainNameToTypeChainName,
+  ChainToDestinationDomain,
+} from "../../../types";
+import { chainFactoryTestnet } from "../../../store/chainFactory";
+import usePool from "../../../hooks/usePool";
 
 const findChain = (chainId) => {
   return chainData.find((c) => chainId && chainId === c.id);
@@ -24,6 +32,7 @@ export default function ChainSelectorDropdown({ parent, direction }) {
 
   // Global State
   const bridge = useAppSelector((state) => state.bridge);
+  const { getData } = usePool();
 
   const dispatch = useAppDispatch();
 
@@ -55,6 +64,64 @@ export default function ChainSelectorDropdown({ parent, direction }) {
       }
     }
   }, [selectedChain, bridge.toChain]);
+
+  useEffect(() => {
+    (async () => {
+      if (
+        bridge.fromChain &&
+        bridge.toChain &&
+        bridge.fromToken &&
+        bridge.toToken
+      ) {
+        try {
+          const handler = await chainFactoryTestnet.inner(
+            ChainToDestinationDomain[
+              ChainNameToTypeChainName[bridge.fromChain]
+            ],
+          );
+          const isTransferFromLp = await handler.isTransferFromLp(
+            CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.toChain]],
+            bridge.fromToken,
+            bridge.toToken,
+          );
+          dispatch(setBridgeIsTransferFromLp(isTransferFromLp));
+        } catch (error) {
+          dispatch(setBridgeIsTransferFromLp(false));
+        }
+      }
+    })();
+  }, [bridge.fromChain, bridge.toChain, bridge.fromToken, bridge.toToken]);
+
+  useEffect(() => {
+    (async () => {
+      if (bridge.isTransferFromLp) {
+        try {
+          const data = await getData(
+            bridge.fromChain,
+            bridge.fromToken,
+            bridge.senderAddress,
+          );
+          dispatch(
+            setBridgeReceive(
+              (parseFloat(bridge.amount) -
+                parseFloat(bridge.amount) * data.tokenFee) /
+                data.feeDecimals,
+            ),
+          );
+        } catch (error) {
+          dispatch(setBridgeReceive(bridge.amount));
+        }
+      } else {
+        dispatch(setBridgeReceive(bridge.amount));
+      }
+    })();
+  }, [
+    bridge.isTransferFromLp,
+    bridge.amount,
+    bridge.fromChain,
+    bridge.fromToken,
+    bridge.senderAddress,
+  ]);
 
   const [isListVisible, setListVisible] = useState(false);
 
