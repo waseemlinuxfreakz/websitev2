@@ -64,7 +64,7 @@ export default function usePool() {
     };
   };
 
-  const _getData = async (
+  const getData = async (
     chain = pool.chain,
     token = pool.token,
     senderAddress = bridge.senderAddress,
@@ -159,7 +159,7 @@ export default function usePool() {
     }
   };
 
-  const getData = memoize(_getData);
+  // const getData = memoize(_getData);
 
   const stake = async () => {
     const handler = await chainFactoryTestnet.inner(

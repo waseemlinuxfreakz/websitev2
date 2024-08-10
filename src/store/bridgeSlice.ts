@@ -40,6 +40,7 @@ export interface IBridgeState {
   toTokens: TokenType[];
   senderAddress: string;
   isTransferFromLp: boolean;
+  tokenFee: number;
 }
 
 // FROM
@@ -85,6 +86,7 @@ const initialState = {
   toTokens: filterOneToken(toToken, fromChain, toChain),
   senderAddress: "",
   isTransferFromLp: false,
+  tokenFee: 0,
 } as IBridgeState;
 
 export const bridgeSlice = createSlice({
@@ -265,6 +267,9 @@ export const bridgeSlice = createSlice({
     setSenderAddress(state: IBridgeState, action: PayloadAction<string>) {
       state.senderAddress = action.payload;
     },
+    setBridgeTokenFee(state: IBridgeState, action: PayloadAction<number>) {
+      state.tokenFee = action.payload;
+    },
     setBridgeIsTransferFromLp(
       state: IBridgeState,
       action: PayloadAction<boolean>,
@@ -352,6 +357,7 @@ export const {
   showBridgeProgress,
   setBridgeIsTransferFromLp,
   setBridgeReceive,
+  setBridgeTokenFee,
 } = bridgeSlice.actions;
 
 export default bridgeSlice.reducer;

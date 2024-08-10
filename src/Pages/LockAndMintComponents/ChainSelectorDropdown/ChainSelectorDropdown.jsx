@@ -10,6 +10,7 @@ import {
   setBridgeAmount,
   setBridgeIsTransferFromLp,
   setBridgeReceive,
+  setBridgeTokenFee,
 } from "../../../store/bridgeSlice";
 import { setSwapFromChain } from "../../../store/swapSlice";
 import { isMobile } from "react-device-detect";
@@ -97,31 +98,34 @@ export default function ChainSelectorDropdown({ parent, direction }) {
       if (bridge.isTransferFromLp) {
         try {
           const data = await getData(
-            bridge.fromChain,
+            bridge.toChain,
             bridge.fromToken,
             bridge.senderAddress,
           );
-          dispatch(
-            setBridgeReceive(
-              (parseFloat(bridge.amount) -
-                parseFloat(bridge.amount) * data.tokenFee) /
-                data.feeDecimals,
-            ),
-          );
+
+          console.log({ LpData: data });
+
+          dispatch(setBridgeTokenFee(data.tokenFee / data.feeDecimals));
         } catch (error) {
-          dispatch(setBridgeReceive(bridge.amount));
+          console.log(error);
         }
-      } else {
-        dispatch(setBridgeReceive(bridge.amount));
       }
     })();
   }, [
     bridge.isTransferFromLp,
-    bridge.amount,
     bridge.fromChain,
+    bridge.toChain,
     bridge.fromToken,
     bridge.senderAddress,
   ]);
+
+  useEffect(() => {
+    if (bridge.amount) {
+      dispatch(setBridgeReceive(bridge.amount - bridge.tokenFee));
+    } else {
+      dispatch(setBridgeReceive(""));
+    }
+  }, [bridge.amount, bridge.tokenFee]);
 
   const [isListVisible, setListVisible] = useState(false);
 
