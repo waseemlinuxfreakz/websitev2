@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Yourliquidity from "../PoolTable/Yourliquidity";
 import { useAppSelector } from "../../../hooks/storage";
 import { Link } from "react-router-dom";
 import Skeleton from "../../CommonComponents/Skeleton/Skeleton";
+import usePool from "../../../hooks/usePool";
 
 function YourPoolTitle() {
   const [isYourLiquidityVisible, setYourLiquidityVisible] = useState(false);
@@ -10,18 +11,32 @@ function YourPoolTitle() {
     setYourLiquidityVisible(!isYourLiquidityVisible);
   };
   const pool = useAppSelector((state) => state.pool);
-  const bridge = useAppSelector((state) => state.bridge);
+  const [tonRewards, setTonRewards] = useState(0);
+  const [tontonRewards, setTonTonRewards] = useState(0);
+  const [loading, setLoading] = useState(false);
 
+  const { getData } = usePool();
+
+  useEffect(() => {
+    (async () => {
+      setLoading(true);
+      const _data = await getData("TONTestnet", "USDC");
+      setTonRewards(_data.pendingRewards);
+      const _data2 = await getData("TONTestnet", "TON");
+      setTonTonRewards(_data2.pendingRewards);
+      setLoading(false);
+    })();
+  }, []);
   return (
     <>
       <div className="yourPoolTitle">
         <div className="poolTitleLeft">
           <h5>Your pool</h5>
           <p>
-            {pool.dataLoading ? (
+            {loading ? (
               <Skeleton width={80} height={12} />
             ) : (
-              `Total Rewards: $${pool.pendingRewards}`
+              `Total Rewards: $${pool.pendingRewards + tonRewards + tontonRewards}`
             )}
           </p>
         </div>
