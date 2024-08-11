@@ -24,7 +24,7 @@ const chains = [
     nativeCurrency: { name: "ETH", symbol: "ETH", decimals: 18 },
   },
   {
-    id: 11155111,
+    id: 97,
     name: "BSCTestnet",
     icon: "img/chain/bsc.svg",
     domain: 4,
@@ -45,7 +45,7 @@ const chains = [
     icon: "img/chain/berachain.png",
     domain: 728696,
     requiresApproval: true,
-    nativeCurrency: { name: "ETH", symbol: "ETH", decimals: 18 },
+    nativeCurrency: { name: "ONLY", symbol: "ONLY", decimals: 18 },
   },
 ] as const;
 
