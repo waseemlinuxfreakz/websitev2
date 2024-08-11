@@ -33,10 +33,10 @@ export default function useBridgeApproveERC20() {
         // @ts-ignore
         const decimals: number = TOKEN_DECIMALS[pool.token];
         const formattedAmount = Number(pool.amount) * 10 ** decimals;
-        const handler = await chainFactoryTestnet.inner(
+        const handler: Web3Helper = await chainFactoryTestnet.inner(
           // @ts-ignore
           ChainToDestinationDomain[ChainNameToTypeChainName[pool.chain]],
-        );
+        ) as Web3Helper;
         const token = await (handler as Web3Helper).token(tokenName);
         const tokenAddress = token.address;
         if ("address" in handler && signer) {
@@ -47,7 +47,6 @@ export default function useBridgeApproveERC20() {
           console.log({ poolAddress });
 
           await chainFactoryTestnet.preTransfer(
-            // @ts-ignore
             handler,
             signer,
             tokenAddress,
@@ -74,20 +73,19 @@ export default function useBridgeApproveERC20() {
           ? Number(bridge.decimals.toString())
           : 18;
         const formattedAmount = Number(bridge.amount) * 10 ** decimals;
-        const handler = await chainFactoryTestnet.inner(
+        const handler: Web3Helper = await chainFactoryTestnet.inner(
           // @ts-ignore
           ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]],
-        );
-        const token = await (handler as Web3Helper).token(tokenName);
+        ) as Web3Helper;
+        const token = await (handler).token(tokenName);
         const tokenAddress = token.address;
         const bridgeAddress = await handler.bridge();
 
         console.log({ bridgeAddress });
 
         await chainFactoryTestnet.preTransfer(
-          // @ts-ignore
           handler,
-          signer,
+          signer!,
           tokenAddress,
           bridgeAddress,
           BigInt(Math.ceil(formattedAmount)),

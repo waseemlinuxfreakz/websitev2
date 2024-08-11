@@ -1,8 +1,5 @@
 import { useTonAddress, useTonConnectUI } from "@tonconnect/ui-react";
-import { Address, Cell, Sender, SenderArguments } from "@ton/core";
-import { useAppDispatch, useAppSelector } from "./storage";
-import { setBridgeFromHash } from "../store/bridgeSlice";
-// import { Address } from "@ton/core";
+import { Address, Sender, SenderArguments } from "@ton/core";
 
 export function useTonConnect(): {
   sender: Sender;
@@ -11,7 +8,6 @@ export function useTonConnect(): {
 } {
   const [tonConnectUI] = useTonConnectUI();
   const address = useTonAddress();
-  const dispatch = useAppDispatch();
 
   return {
     sender: {
