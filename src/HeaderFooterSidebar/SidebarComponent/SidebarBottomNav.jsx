@@ -23,7 +23,7 @@ function SidebarBottomNav() {
         </li>
         <li>
           <a
-            href="https://www.npmjs.com/package/emmet.sdk"
+            href="https://github.com/Emmet-Finance/emmet.sdk.v3"
             target="_blank"
             className="navLink"
           >
