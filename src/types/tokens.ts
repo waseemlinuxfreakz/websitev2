@@ -87,6 +87,35 @@ export const CHAIN_TO_TOKENS = {
   OnlyTestnet: ["USDC"],
 };
 
+export const CHAIN_TO_TOKENS_TREE = {
+  // From chain
+  Amoy: {
+    // To chains
+    Bartio: [], // not set
+    OnlyTestnet: [],
+    Sepolia: ["DAI", "TON", "USDC"],
+    TONTestnet: ["TON", "USDC"],
+  },
+  Bartio: {
+    Amoy: [],
+    OnlyTestnet: [],
+    Sepolia: ["USDC"],
+    TONTestnet: [],
+  },
+  OnlyTestnet: {
+    Amoy: [],
+    Bartio: [],
+    Sepolia: [],
+    TONTestnet: [],
+  },
+  TONTestnet: {
+    Amoy: ["TON"],
+    Bartio: ["USDC"],
+    OnlyTestnet: [],
+    Sepolia: ["$CAVI", "GrabClub", "USDC", "TON", "TRT"],
+  },
+}
+
 export const TOKEN_DECIMALS = {
   DAI: 18,
   EMMET: 18,
