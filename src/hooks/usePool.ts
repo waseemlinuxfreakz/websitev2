@@ -89,8 +89,6 @@ export default function usePool() {
           .getLpCurrentAPY(poolAddress)
           .catch(() => BigInt(0));
 
-        console.log({ totalSupply });
-
         const protocolFee = await handler
           .getLpProtocolFee(poolAddress)
           .catch(() => BigInt(0));
@@ -316,26 +314,26 @@ export default function usePool() {
       dispatch(setPoolFeeDecimals(0));
       dispatch(setPoolPendingRewards(0));
       dispatch(setPoolLiquidityInUSD("0"));
-      if (pool.chain && pool.token && bridge.senderAddress) {
-        console.log({ senderAddress: bridge.senderAddress });
+      if (pool.chain && pool.token) {
+        if (bridge.senderAddress) {
+          interval = setInterval(async () => {
+            const balance = await getBalance(
+              "Deposit",
+              pool.chain,
+              pool.token,
+              bridge.senderAddress,
+            );
+            dispatch(setPoolBalance(balance));
 
-        interval = setInterval(async () => {
-          const balance = await getBalance(
-            "Deposit",
-            pool.chain,
-            pool.token,
-            bridge.senderAddress,
-          );
-          dispatch(setPoolBalance(balance));
-
-          const stakedBalance = await getBalance(
-            "Withdraw",
-            pool.chain,
-            pool.token,
-            bridge.senderAddress,
-          );
-          dispatch(setPoolStakedBalance(stakedBalance));
-        }, 5 * 1000);
+            const stakedBalance = await getBalance(
+              "Withdraw",
+              pool.chain,
+              pool.token,
+              bridge.senderAddress,
+            );
+            dispatch(setPoolStakedBalance(stakedBalance));
+          }, 5 * 1000);
+        }
 
         dispatch(setPoolDataLoading(true));
         const data = await getData(
@@ -344,7 +342,7 @@ export default function usePool() {
           bridge.senderAddress,
         );
 
-        console.log({ data, senderAddress: bridge.senderAddress });
+        console.log({ data, chain: pool.chain, token: pool.token });
         if (data) {
           dispatch(setPoolApy(data.apy));
           dispatch(setPoolTotalSupply(data.totalSupply));
@@ -364,8 +362,8 @@ export default function usePool() {
   }, [pool.chain, pool.token, bridge.senderAddress]);
 
   useEffect(() => {
-    console.log({ cache });
-  }, [cache]);
+    console.log({ token: pool.token });
+  }, [pool.token]);
 
   return {
     error,
