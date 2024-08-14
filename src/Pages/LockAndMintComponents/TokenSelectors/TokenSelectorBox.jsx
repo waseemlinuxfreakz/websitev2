@@ -83,7 +83,7 @@ export default function TokenSelectorBox({ type }) {
               {isFromType() ? (
                 <ChainSelectorDropdown
                   parent="lock-and-mint"
-                  direction="from"
+                  direction={type}
                 />
               ) : (
                 <DestinationChainDropdown />

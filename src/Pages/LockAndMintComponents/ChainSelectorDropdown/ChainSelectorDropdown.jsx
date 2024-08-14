@@ -48,23 +48,23 @@ export default function ChainSelectorDropdown({ parent, direction }) {
 
   const [chainArray, setChainArray] = useState(chainData);
 
-  useEffect(() => {
-    if (selectedChain) {
-      if (parent === "header") {
-        setChainArray(
-          chainData.filter((chain) => chain.name !== selectedChain.name),
-        );
-      } else {
-        setChainArray(
-          chainData.filter(
-            (chain) =>
-              chain.name !== selectedChain.name &&
-              chain.name !== bridge.toChain,
-          ),
-        );
-      }
-    }
-  }, [selectedChain, bridge.toChain]);
+  // useEffect(() => {
+  //   if (selectedChain) {
+  //     if (parent === "header") {
+  //       setChainArray(
+  //         chainData.filter((chain) => chain.name !== selectedChain.name),
+  //       );
+  //     } else {
+  //       setChainArray(
+  //         chainData.filter(
+  //           (chain) =>
+  //             chain.name !== selectedChain.name &&
+  //             chain.name !== bridge.toChain,
+  //         ),
+  //       );
+  //     }
+  //   }
+  // }, [selectedChain, bridge.toChain]);
 
   useEffect(() => {
     (async () => {
@@ -163,31 +163,35 @@ export default function ChainSelectorDropdown({ parent, direction }) {
   }, [bridge.toChain]);
 
   useEffect(() => {
-    // if (CHAIN_NAME_TO_ID[bridge.fromChain] !== chainId) {
-    const selChain = findChain(
-      CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.fromChain]],
-    );
+    console.log({ fromChain: bridge.fromChain, toChain: bridge.toChain });
+  }, [bridge.fromChain, bridge.toChain]);
 
-    selChain && switchChain({ chainId: selChain.id });
-    // }
+  // useEffect(() => {
+  //   // if (CHAIN_NAME_TO_ID[bridge.fromChain] !== chainId) {
+  //   const selChain = findChain(
+  //     CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.fromChain]],
+  //   );
 
-    if (!selChain) {
-      setSelectedChain({
-        icon: chainData[1].icon,
-        name: chainData[1].name,
-      });
-      dispatchChain(chainData[1].name);
-    }
-    if (bridge.fromChain) {
-      if (selChain) {
-        setSelectedChain({
-          icon: selChain.icon,
-          name: selChain.name,
-        });
-        dispatchChain(selChain.name);
-      }
-    }
-  }, [bridge.fromChain]);
+  //   selChain && switchChain({ chainId: selChain.id });
+  //   // }
+
+  //   if (!selChain) {
+  //     setSelectedChain({
+  //       icon: chainData[1].icon,
+  //       name: chainData[1].name,
+  //     });
+  //     dispatchChain(chainData[1].name);
+  //   }
+  //   if (bridge.fromChain) {
+  //     if (selChain) {
+  //       setSelectedChain({
+  //         icon: selChain.icon,
+  //         name: selChain.name,
+  //       });
+  //       dispatchChain(selChain.name);
+  //     }
+  //   }
+  // }, [bridge.fromChain]);
 
   useEffect(() => {
     const selChain = findChain(chainId);
@@ -235,34 +239,34 @@ export default function ChainSelectorDropdown({ parent, direction }) {
     };
   }, []);
 
-  const componentStyles =
-    isExplorer() && isMobile
-      ? {
-          bottom: 0,
-          position: "fixed",
-          zIndex: 111,
-          left: 0,
-          right: 0,
-          top: "unset",
-          borderRadius: "16px 16px 0px 0px",
-          borderTop: "1px solid #3C3F43",
-          background: "#1B1D20",
-          maxHeight: "50vh",
-          overflow: "auto",
-        }
-      : {
-          bottom: 83,
-          zIndex: 111,
-          // left: 0,
-          // right: 0,
-          // top: "unset",
-          borderRadius: "8px",
-          borderTop: "1px solid #3C3F43",
-          background: "#1B1D20",
-          maxHeight: "50vh",
-          // overflow: "auto",
-          height: chainArray.length * 44 + 15,
-        };
+  // const componentStyles =
+  //   isExplorer() && isMobile
+  //     ? {
+  //         bottom: 0,
+  //         position: "fixed",
+  //         zIndex: 111,
+  //         left: 0,
+  //         right: 0,
+  //         top: "unset",
+  //         borderRadius: "16px 16px 0px 0px",
+  //         borderTop: "1px solid #3C3F43",
+  //         background: "#1B1D20",
+  //         maxHeight: "50vh",
+  //         overflow: "auto",
+  //       }
+  //     : {
+  //         bottom: 83,
+  //         zIndex: 111,
+  //         // left: 0,
+  //         // right: 0,
+  //         // top: "unset",
+  //         borderRadius: "8px",
+  //         borderTop: "1px solid #3C3F43",
+  //         background: "#1B1D20",
+  //         maxHeight: "50vh",
+  //         // overflow: "auto",
+  //         // height: chainArray.length * 44 + 15,
+  //       };
 
   return (
     <div className="selectCoinLeft" ref={selectCoinRef}>
@@ -283,9 +287,9 @@ export default function ChainSelectorDropdown({ parent, direction }) {
       <ul
         className={`selectCoinList
             ${isListVisible ? "visible" : "hidden"}`}
-        style={componentStyles}
+        // style={componentStyles}
       >
-        {chainArray.map((chain) => (
+        {bridge.fromChains.map((chain) => (
           <li className="coinItem" key={chain.id}>
             <div
               className="coinNameIcon"

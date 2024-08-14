@@ -2,7 +2,12 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "./store";
 import { BridgeTokens, BridgeFeeStructure } from "../types";
 import { TChainType, TokenType } from "./types";
-import { filterTwoChains, filterOneToken } from "../utils/filters";
+import {
+  filterTwoChains,
+  filterOneToken,
+  filterFromChains,
+  filterToChains,
+} from "../utils/filters";
 import { isStableCoin } from "../verifiers";
 
 export interface IBridgeState {
@@ -44,11 +49,11 @@ export interface IBridgeState {
 }
 
 // FROM
-const fromChain = "Amoy";
+const fromChain = "Sepolia";
 const fromToken = "USDC";
 
 // TO
-const toChain = "Sepolia";
+const toChain = "Amoy";
 const toToken = fromToken;
 
 const initialState = {
@@ -61,7 +66,7 @@ const initialState = {
   decimals: 18,
   error: undefined,
   fromChain,
-  fromChains: filterTwoChains(fromChain, toChain),
+  fromChains: filterFromChains(fromChain, toChain),
   fromContractAddress: "",
   fromHash: "",
   fromToken,
@@ -80,7 +85,7 @@ const initialState = {
   timeElapsed: 0,
   toBalance: 0,
   toChain,
-  toChains: filterTwoChains(fromChain, toChain),
+  toChains: filterToChains(fromChain, toChain),
   toHash: "",
   toToken,
   toTokens: filterOneToken(toToken, fromChain, toChain),
@@ -153,8 +158,14 @@ export const bridgeSlice = createSlice({
         state.fromChain,
         state.toChain,
       );
-      state.fromChains = filterTwoChains(state.fromChain, state.toChain);
-      state.toChains = filterTwoChains(state.fromChain, state.toChain);
+      state.fromChains = filterFromChains(state.fromChain, state.toChain);
+      state.toChains = filterToChains(state.fromChain, state.toChain);
+      if (
+        state.toChains.length &&
+        !state.toChains.find((i) => i.name === state.toChain)
+      ) {
+        state.toChain = state.toChains[0].name;
+      }
     },
     setFromContractAddress(state: IBridgeState, action: PayloadAction<string>) {
       state.fromContractAddress = action.payload;
@@ -231,8 +242,8 @@ export const bridgeSlice = createSlice({
     },
     setBridgeToChain(state: IBridgeState, action: PayloadAction<string>) {
       state.toChain = action.payload;
-      state.fromChains = filterTwoChains(state.fromChain, state.toChain);
-      state.toChains = filterTwoChains(state.fromChain, state.toChain);
+      state.fromChains = filterFromChains(state.fromChain, state.toChain);
+      state.toChains = filterToChains(state.fromChain, state.toChain);
       state.fromTokens = filterOneToken(
         state.fromToken,
         state.fromChain,
@@ -253,11 +264,11 @@ export const bridgeSlice = createSlice({
     setBridgeToToken(state: IBridgeState, action: PayloadAction<string>) {
       state.toToken = action.payload;
       // state.fromToken = action.payload;
-      state.fromTokens = filterOneToken(
-        state.fromToken,
-        state.fromChain,
-        state.toChain,
-      );
+      // state.fromTokens = filterOneToken(
+      //   state.fromToken,
+      //   state.fromChain,
+      //   state.toChain,
+      // );
       state.toTokens = filterOneToken(
         state.toToken,
         state.fromChain,
@@ -289,11 +300,11 @@ export const bridgeSlice = createSlice({
       state.toChain = action.payload.toChain;
       state.fromToken = action.payload.fromToken;
       state.toToken = action.payload.toToken;
-      state.fromChains = filterTwoChains(
+      state.fromChains = filterFromChains(
         action.payload.fromChain,
         action.payload.toChain,
       );
-      state.toChains = filterTwoChains(
+      state.toChains = filterToChains(
         action.payload.fromChain,
         action.payload.toChain,
       );

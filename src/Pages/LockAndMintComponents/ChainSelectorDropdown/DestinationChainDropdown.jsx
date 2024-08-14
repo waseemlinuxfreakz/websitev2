@@ -114,7 +114,7 @@ export default function DestinationChainDropdown() {
         <img src={DownArrow} alt="Down Arrow" />
       </div>
       <ul className={`selectCoinList ${isListVisible ? "visible" : "hidden"}`}>
-        {chainArray.map((chain) => (
+        {bridge.toChains.map((chain) => (
           <li className="coinItem" key={chain.id}>
             <div
               className="coinNameIcon"

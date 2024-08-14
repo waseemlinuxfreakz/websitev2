@@ -1,7 +1,7 @@
 // Mock Data
-import chainList from "../store/Chain.json";
+import chainList from "../store/lockAndMintChain.json";
 import coinsData from "../store/coins.json";
-import { BridgeTokens } from "../types/tokens";
+import { BridgeTokens, CHAIN_TO_TOKENS_TREE } from "../types/tokens";
 import { TChainType, TokenType } from "../store/types";
 import { CHAIN_TO_TOKENS } from "../types";
 
@@ -13,7 +13,29 @@ import { CHAIN_TO_TOKENS } from "../types";
  */
 export function filterTwoChains(chain1: string, chain2: string): TChainType[] {
   return chainList.filter(
-    (chain: TChainType) => chain.name != chain1 && chain.name != chain2,
+    (chain: TChainType) => chain.name !== chain1 && chain.name !== chain2,
+  );
+}
+export function filterFromChains(
+  selectedFromChain: string,
+  selectedToChain: string,
+): TChainType[] {
+  return chainList.filter(
+    (chain: TChainType) =>
+      chain.name !== selectedFromChain && chain.name !== selectedToChain,
+  );
+}
+
+export function filterToChains(
+  selectedFromChain: string,
+  selectedToChain: string,
+): TChainType[] {
+  return chainList.filter(
+    (chain: TChainType) =>
+      chain.name !== selectedFromChain &&
+      chain.name !== selectedToChain &&
+      // @ts-ignore
+      CHAIN_TO_TOKENS_TREE[selectedFromChain][chain.name].length,
   );
 }
 

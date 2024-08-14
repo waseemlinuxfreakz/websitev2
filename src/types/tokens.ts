@@ -110,11 +110,17 @@ export const CHAIN_TO_TOKENS_TREE = {
   },
   TONTestnet: {
     Amoy: ["TON"],
-    Bartio: ["USDC"],
+    Bartio: [],
     OnlyTestnet: [],
     Sepolia: ["$CAVI", "GrabClub", "USDC", "TON", "TRT"],
   },
-}
+  Sepolia: {
+    Amoy: ["DAI", "TON", "USDC"],
+    Bartio: ["USDC"],
+    OnlyTestnet: [],
+    TONTestnet: ["$CAVI", "GrabClub", "USDC", "TON", "TRT"],
+  },
+};
 
 export const TOKEN_DECIMALS = {
   DAI: 18,
