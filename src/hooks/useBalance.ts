@@ -74,7 +74,7 @@ export default function useBalance() {
     //TODO: Remove Web3Helper type assertion after SDK supports for TON.
 
     const tokenAddress: string = (
-      await (handler as Web3Helper).token(bridge.fromToken)
+      await (handler as Web3Helper).token(bridge.toToken)
     ).address;
 
     const addr = direction === "from" ? bridge.senderAddress : bridge.receiver;
@@ -141,13 +141,13 @@ export default function useBalance() {
     (async () => {
       let bal = 0;
       if (bridge.fromChain !== bridge.toChain) {
-        if (bridge.fromToken === chain.nativeCurrency.symbol) {
+        if (bridge.toToken === chain.nativeCurrency.symbol) {
           bal = await getCoinBalance("to");
         } else {
           bal = await getTokenBalance("to");
         }
         const fmb =
-          bal / 10 ** Number(TOKEN_DECIMALS[bridge.fromToken as TTokenName]);
+          bal / 10 ** Number(TOKEN_DECIMALS[bridge.toToken as TTokenName]);
         const formattedBalance = Number(fmb);
         // console.log({ toChain: bridge.toChain, formattedBalance });
         setBalanceTo(formattedBalance);
