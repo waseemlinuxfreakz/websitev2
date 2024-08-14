@@ -76,6 +76,10 @@ export const poolslice = createSlice({
           //@ts-ignore
           CHAIN_TO_TOKENS[action.payload].includes(token.name),
       );
+      //@ts-ignore
+      if (!CHAIN_TO_TOKENS[action.payload].includes(state.token)) {
+        state.token = "USDC";
+      }
     },
     setPoolToken: (state: IPoolState, action: PayloadAction<string>) => {
       state.token = action.payload;
