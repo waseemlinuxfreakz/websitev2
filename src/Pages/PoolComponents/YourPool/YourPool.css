@@ -168,7 +168,7 @@ span.poolCoin img {
   background: #111112;
 }
 
-@media (max-width: 1366px) {
+@media (max-width: 1500px) {
   .pollRow.row .col-lg-3 {
     width: 33.3333% !important;
   }
