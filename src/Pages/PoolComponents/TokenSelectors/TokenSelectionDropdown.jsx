@@ -14,6 +14,13 @@ export default function TokenSelectionDropdown({ type }) {
   const pool = useAppSelector((state) => state.pool);
   const dispatch = useAppDispatch();
 
+  function showDropdown() {
+    if (pool.tokens.length) {
+      return true;
+    }
+    return false;
+  }
+
   function getIcon(tokenName) {
     const selTkn = coins.find((t) => t.name === tokenName);
     return selTkn ? `${isLP() ? "../" : ""}${selTkn.icon}` : "";
@@ -80,24 +87,28 @@ export default function TokenSelectionDropdown({ type }) {
           <img src={`/${selectedCoin.icon}`} alt={selectedCoin.name} />
           <span>{selectedCoin.name}</span>
         </div>
-        <img src={DownArrow} alt="Down Arrow" />
+        {showDropdown() && <img src={DownArrow} alt="Down Arrow" />}
       </div>
-      <ul className={`selectCoinList ${isListVisible ? "visible" : "hidden"}`}>
-        {pool.tokens.map((coin) => (
-          <li className="coinItem" key={coin.name}>
-            <div
-              className="coinNameIcon"
-              onClick={() => handleCoinClick(coin.icon, coin.name)}
-            >
-              <img
-                src={`${isLP() ? "../" : "/"}${coin.icon}`}
-                alt={coin.name}
-              />
-              <span>{coin.name}</span>
-            </div>
-          </li>
-        ))}
-      </ul>
+      {showDropdown() && (
+        <ul
+          className={`selectCoinList bridge ${isListVisible ? "visible" : "hidden"}`}
+        >
+          {pool.tokens.map((coin) => (
+            <li className="coinItem" key={coin.name}>
+              <div
+                className="coinNameIcon"
+                onClick={() => handleCoinClick(coin.icon, coin.name)}
+              >
+                <img
+                  src={`${isLP() ? "../" : "/"}${coin.icon}`}
+                  alt={coin.name}
+                />
+                <span>{coin.name}</span>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

@@ -114,7 +114,7 @@ export default function TokenSelectionDropdown({ type }) {
       </div>
       {showDropdown() && (
         <ul
-          className={`selectCoinList ${isListVisible ? "visible" : "hidden"}`}
+          className={`selectCoinList bridge ${isListVisible ? "visible" : "hidden"}`}
         >
           {bridge.fromTokens.map((coin) => (
             <li className="coinItem" key={coin.name}>
@@ -125,12 +125,12 @@ export default function TokenSelectionDropdown({ type }) {
                 <img src={coin.icon} alt={coin.name} />
                 <span>{TOKEN_SYMBOL_TO_TOKEN[coin.name]}</span>
               </div>
-              <div className="coinItemRight">
-                {/* <CoinLinkAddress /> */}
-                {/* <a href="#" className="foxLink">
+              {/* <div className="coinItemRight">
+                <CoinLinkAddress />
+                <a href="#" className="foxLink">
                   <img src={Fox} alt="Metamask" />
-                </a> */}
-              </div>
+                </a>
+              </div> */}
             </li>
           ))}
         </ul>

@@ -255,6 +255,11 @@ dl {
   z-index: 99;
 }
 
+.selectCoinList.bridge {
+  min-width: 100%;
+  right: 0;
+}
+
 ul.selectCoinList.hidden {
   display: none;
 }
