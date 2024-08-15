@@ -149,12 +149,12 @@ export const bridgeSlice = createSlice({
       //     }
       //   });
       // }
-      state.fromTokens = filterOneToken(
+      state.fromTokens = filterTokens(
         state.fromToken,
         state.fromChain,
         state.toChain,
       );
-      state.toTokens = filterOneToken(
+      state.toTokens = filterTokens(
         state.toToken,
         state.fromChain,
         state.toChain,

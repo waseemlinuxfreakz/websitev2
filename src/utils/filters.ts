@@ -91,7 +91,7 @@ export function filterTokens(
     (token: TokenType) =>
       token.name !== selectedToken &&
       //@ts-ignore
-      CHAIN_TO_TOKENS_TREE[fromChain][toChain].includes(token.name),
+      CHAIN_TO_TOKENS_TREE?.[fromChain]?.[toChain]?.includes(token.name),
   );
 }
 
