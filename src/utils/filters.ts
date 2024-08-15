@@ -82,6 +82,19 @@ export function filterOneToken(
   );
 }
 
+export function filterTokens(
+  selectedToken: string,
+  fromChain: string,
+  toChain: string,
+): TokenType[] {
+  return BridgeTokens.filter(
+    (token: TokenType) =>
+      token.name !== selectedToken &&
+      //@ts-ignore
+      CHAIN_TO_TOKENS_TREE[fromChain][toChain].includes(token.name),
+  );
+}
+
 /**
  * Finds a chain object by a chain's name
  * @param name the name of

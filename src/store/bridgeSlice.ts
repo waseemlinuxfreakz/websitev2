@@ -7,6 +7,7 @@ import {
   filterOneToken,
   filterFromChains,
   filterToChains,
+  filterTokens,
 } from "../utils/filters";
 import { isStableCoin } from "../verifiers";
 
@@ -70,7 +71,7 @@ const initialState = {
   fromContractAddress: "",
   fromHash: "",
   fromToken,
-  fromTokens: filterOneToken(fromToken, fromChain, toChain),
+  fromTokens: filterTokens(fromToken, fromChain, toChain),
   isApproving: false,
   isFailure: false,
   isLoading: false,
@@ -88,7 +89,7 @@ const initialState = {
   toChains: filterToChains(fromChain, toChain),
   toHash: "",
   toToken,
-  toTokens: filterOneToken(toToken, fromChain, toChain),
+  toTokens: filterTokens(toToken, fromChain, toChain),
   senderAddress: "",
   isTransferFromLp: false,
   tokenFee: 0,
@@ -179,12 +180,12 @@ export const bridgeSlice = createSlice({
     setBridgeFromToken(state: IBridgeState, action: PayloadAction<string>) {
       state.fromToken = action.payload;
       // state.toToken = action.payload;
-      state.fromTokens = filterOneToken(
+      state.fromTokens = filterTokens(
         state.fromToken,
         state.fromChain,
         state.toChain,
       );
-      state.toTokens = filterOneToken(
+      state.toTokens = filterTokens(
         state.toToken,
         state.fromChain,
         state.toChain,
@@ -244,12 +245,12 @@ export const bridgeSlice = createSlice({
       state.toChain = action.payload;
       state.fromChains = filterFromChains(state.fromChain, state.toChain);
       state.toChains = filterToChains(state.fromChain, state.toChain);
-      state.fromTokens = filterOneToken(
+      state.fromTokens = filterTokens(
         state.fromToken,
         state.fromChain,
         state.toChain,
       );
-      state.toTokens = filterOneToken(
+      state.toTokens = filterTokens(
         state.toToken,
         state.fromChain,
         state.toChain,
@@ -264,12 +265,12 @@ export const bridgeSlice = createSlice({
     setBridgeToToken(state: IBridgeState, action: PayloadAction<string>) {
       state.toToken = action.payload;
       // state.fromToken = action.payload;
-      // state.fromTokens = filterOneToken(
-      //   state.fromToken,
-      //   state.fromChain,
-      //   state.toChain,
-      // );
-      state.toTokens = filterOneToken(
+      state.fromTokens = filterTokens(
+        state.fromToken,
+        state.fromChain,
+        state.toChain,
+      );
+      state.toTokens = filterTokens(
         state.toToken,
         state.fromChain,
         state.toChain,
