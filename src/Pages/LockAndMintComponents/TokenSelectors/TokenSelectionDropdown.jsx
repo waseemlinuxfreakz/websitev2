@@ -25,7 +25,7 @@ export default function TokenSelectionDropdown({ type }) {
   const dispatch = useAppDispatch();
 
   function showDropdown() {
-    if (bridge.alltokens.length > 1) {
+    if (type === "from" ? bridge.fromTokens.length : bridge.toTokens.length) {
       return true;
     }
     return false;

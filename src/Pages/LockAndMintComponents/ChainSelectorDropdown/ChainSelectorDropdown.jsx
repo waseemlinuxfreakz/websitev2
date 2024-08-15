@@ -26,6 +26,10 @@ const findChain = (chainId) => {
   return chainData.find((c) => chainId && chainId === c.id);
 };
 
+const findChainByName = (chainName) => {
+  return chainData.find((c) => chainName && chainName === c.name);
+};
+
 export default function ChainSelectorDropdown({ parent, direction }) {
   const chainId = useChainId();
 
@@ -196,13 +200,24 @@ export default function ChainSelectorDropdown({ parent, direction }) {
   useEffect(() => {
     const selChain = findChain(chainId);
     if (selChain) {
+      // setSelectedChain({
+      //   icon: selChain.icon,
+      //   name: selChain.name,
+      // });
+      dispatchChain(selChain.name);
+    }
+  }, [chainId]);
+
+  useEffect(() => {
+    const selChain = findChainByName(bridge.fromChain);
+    if (selChain) {
       setSelectedChain({
         icon: selChain.icon,
         name: selChain.name,
       });
-      dispatchChain(selChain.name);
+      // dispatchChain(selChain.name);
     }
-  }, [chainId]);
+  }, [bridge.fromChain]);
 
   const handleChainClick = (icon, name, id) => {
     setSelectedChain({ icon, name });

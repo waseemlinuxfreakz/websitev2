@@ -141,13 +141,13 @@ export const bridgeSlice = createSlice({
     },
     setBridgeFromChain(state: IBridgeState, action: PayloadAction<string>) {
       state.fromChain = action.payload;
-      if (state.fromChain == state.toChain) {
-        state.toChains.map((c) => {
-          if (c.name != state.fromChain) {
-            state.toChain = c.name;
-          }
-        });
-      }
+      // if (state.fromChain == state.toChain) {
+      //   state.toChains.map((c) => {
+      //     if (c.name != state.fromChain) {
+      //       state.toChain = c.name;
+      //     }
+      //   });
+      // }
       state.fromTokens = filterOneToken(
         state.fromToken,
         state.fromChain,
@@ -158,14 +158,14 @@ export const bridgeSlice = createSlice({
         state.fromChain,
         state.toChain,
       );
-      state.fromChains = filterFromChains(state.fromChain, state.toChain);
-      state.toChains = filterToChains(state.fromChain, state.toChain);
       if (
         state.toChains.length &&
         !state.toChains.find((i) => i.name === state.toChain)
       ) {
         state.toChain = state.toChains[0].name;
       }
+      state.fromChains = filterFromChains(state.fromChain, state.toChain);
+      state.toChains = filterToChains(state.fromChain, state.toChain);
     },
     setFromContractAddress(state: IBridgeState, action: PayloadAction<string>) {
       state.fromContractAddress = action.payload;

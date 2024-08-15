@@ -15,6 +15,13 @@ export default function DestinationChainDropdown() {
 
   const dispatch = useAppDispatch();
 
+  function showDropdown() {
+    if (bridge.toChains.length) {
+      return true;
+    }
+    return false;
+  }
+
   const [isListVisible, setListVisible] = useState(false);
   const [selectedChain, setSelectedChain] = useState({
     icon: chainData[0].icon,
@@ -23,40 +30,40 @@ export default function DestinationChainDropdown() {
 
   const [chainArray, setChainArray] = useState(chainData);
 
-  useEffect(
-    () => {
-      if (bridge.fromChain === selectedChain.name) {
-        const chain = chainArray[0];
-        setSelectedChain(chain);
-        dispatch(setBridgeToChain(chain.name));
-      }
-    },
-    //  [chainArray]
-    [chainArray],
-  );
+  // useEffect(
+  //   () => {
+  //     if (bridge.fromChain === selectedChain.name) {
+  //       const chain = chainArray[0];
+  //       setSelectedChain(chain);
+  //       dispatch(setBridgeToChain(chain.name));
+  //     }
+  //   },
+  //   //  [chainArray]
+  //   [chainArray],
+  // );
 
-  useEffect(() => {
-    setChainArray(
-      chainData.filter(
-        (chain) =>
-          chain.name !== selectedChain.name && chain.name !== bridge.fromChain,
-      ),
-    );
-  }, [selectedChain, bridge.fromChain]);
+  // useEffect(() => {
+  //   setChainArray(
+  //     chainData.filter(
+  //       (chain) =>
+  //         chain.name !== selectedChain.name && chain.name !== bridge.fromChain,
+  //     ),
+  //   );
+  // }, [selectedChain, bridge.fromChain]);
 
-  useEffect(() => {
-    const chain = chainArray[0];
-    if (chain === selectedChain) {
-      setSelectedChain({
-        icon: chain.icon,
-        name: chain.name,
-      });
-      dispatch(setBridgeToChain(chain.name));
-    }
-  }, [chainArray, selectedChain]);
+  // useEffect(() => {
+  //   const chain = findChain(bridge.toChains[0]);
+  //   if (chain === selectedChain) {
+  //     setSelectedChain({
+  //       icon: chain.icon,
+  //       name: chain.name,
+  //     });
+  //     dispatch(setBridgeToChain(chain.name));
+  //   }
+  // }, [selectedChain]);
 
   function handleChainClick(icon, name, id) {
-    setSelectedChain({ icon, name });
+    // setSelectedChain({ icon, name });
     toggleVisibility();
     dispatch(setBridgeToChain(name));
     ReactGA.event({
@@ -66,18 +73,20 @@ export default function DestinationChainDropdown() {
     });
   }
 
-  // useEffect(() => {
-  //   if (bridge.toChain) {
-  //     setSelectedChain(findChain(bridge.toChain));
-  //   }
-  // }, [bridge.toChain]);
+  useEffect(() => {
+    // if (bridge.toChain) {
+    console.log({ toChain: bridge.toChain, toChains: bridge.toChains });
+
+    setSelectedChain(findChain(bridge.toChain));
+    // }
+  }, [bridge.toChain]);
 
   useEffect(() => {
     const chain = findChain(bridge.toChain);
 
     if (chain && bridge.fromChain) {
       setSelectedChain(chain);
-      // dispatch(setBridgeToChain(bridge.toChain));
+      dispatch(setBridgeToChain(bridge.toChain));
     }
   }, [bridge.toChain]);
 
@@ -111,21 +120,27 @@ export default function DestinationChainDropdown() {
           <img src={selectedChain.icon} alt={selectedChain.name} width="30px" />
           <span>{selectedChain.name}</span>
         </div>
-        <img src={DownArrow} alt="Down Arrow" />
+        {showDropdown() && <img src={DownArrow} alt="Down Arrow" />}
       </div>
-      <ul className={`selectCoinList ${isListVisible ? "visible" : "hidden"}`}>
-        {bridge.toChains.map((chain) => (
-          <li className="coinItem" key={chain.id}>
-            <div
-              className="coinNameIcon"
-              onClick={() => handleChainClick(chain.icon, chain.name, chain.id)}
-            >
-              <img src={chain.icon} alt={chain.name} width="30px" />
-              <span>{chain.name}</span>
-            </div>
-          </li>
-        ))}
-      </ul>
+      {showDropdown() && (
+        <ul
+          className={`selectCoinList ${isListVisible ? "visible" : "hidden"}`}
+        >
+          {bridge.toChains.map((chain) => (
+            <li className="coinItem" key={chain.id}>
+              <div
+                className="coinNameIcon"
+                onClick={() =>
+                  handleChainClick(chain.icon, chain.name, chain.id)
+                }
+              >
+                <img src={chain.icon} alt={chain.name} width="30px" />
+                <span>{chain.name}</span>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
