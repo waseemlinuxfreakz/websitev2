@@ -164,6 +164,8 @@ export const bridgeSlice = createSlice({
       if (state.fromChain === state.toChain) {
         state.toChain = state.toChains[0].name;
       }
+      state.fromChains = filterFromChains(state.fromChain, state.toChain);
+      state.toChains = filterToChains(state.fromChain, state.toChain);
     },
     setFromContractAddress(state: IBridgeState, action: PayloadAction<string>) {
       state.fromContractAddress = action.payload;
@@ -298,14 +300,8 @@ export const bridgeSlice = createSlice({
       state.toChain = action.payload.toChain;
       state.fromToken = action.payload.fromToken;
       state.toToken = action.payload.toToken;
-      state.fromChains = filterFromChains(
-        action.payload.fromChain,
-        action.payload.toChain,
-      );
-      state.toChains = filterToChains(
-        action.payload.fromChain,
-        action.payload.toChain,
-      );
+      state.fromChains = filterFromChains(state.fromChain, state.toChain);
+      state.toChains = filterToChains(state.fromChain, state.toChain);
     },
     resetBridgeProgress(state: IBridgeState) {
       state.isTransferProgressVisible = false;

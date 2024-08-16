@@ -74,14 +74,6 @@ export default function DestinationChainDropdown() {
   }
 
   useEffect(() => {
-    // if (bridge.toChain) {
-    console.log({ toChain: bridge.toChain, toChains: bridge.toChains });
-
-    setSelectedChain(findChain(bridge.toChain));
-    // }
-  }, [bridge.toChain]);
-
-  useEffect(() => {
     const chain = findChain(bridge.toChain);
 
     if (chain && bridge.fromChain) {
