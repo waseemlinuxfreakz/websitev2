@@ -49,7 +49,9 @@ export default function useBridgeTransferEmmet() {
         const fromChainID = ChainToDestinationDomain[chainName];
 
         if (fromChainID === Chain.TON) {
-          const handler: TonHelper = await chainFactoryTestnet.inner(fromChainID) as TonHelper;
+          const handler: TonHelper = (await chainFactoryTestnet.inner(
+            fromChainID,
+          )) as TonHelper;
 
           console.log({
             handler,
@@ -81,7 +83,9 @@ export default function useBridgeTransferEmmet() {
           fromChainID === Chain.BERACHAIN ||
           fromChainID === Chain.ONLYLAYER
         ) {
-          const handler: Web3Helper = await chainFactoryTestnet.inner(fromChainID) as Web3Helper;
+          const handler: Web3Helper = (await chainFactoryTestnet.inner(
+            fromChainID,
+          )) as Web3Helper;
           console.log({
             handler,
             signer,

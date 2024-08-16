@@ -317,21 +317,25 @@ export default function usePool() {
       if (pool.chain && pool.token) {
         if (bridge.senderAddress) {
           interval = setInterval(async () => {
-            const balance = await getBalance(
-              "Deposit",
-              pool.chain,
-              pool.token,
-              bridge.senderAddress,
-            );
-            dispatch(setPoolBalance(balance));
+            try {
+              const balance = await getBalance(
+                "Deposit",
+                pool.chain,
+                pool.token,
+                bridge.senderAddress,
+              );
+              dispatch(setPoolBalance(balance));
 
-            const stakedBalance = await getBalance(
-              "Withdraw",
-              pool.chain,
-              pool.token,
-              bridge.senderAddress,
-            );
-            dispatch(setPoolStakedBalance(stakedBalance));
+              const stakedBalance = await getBalance(
+                "Withdraw",
+                pool.chain,
+                pool.token,
+                bridge.senderAddress,
+              );
+              dispatch(setPoolStakedBalance(stakedBalance));
+            } catch (error) {
+              clearInterval(interval);
+            }
           }, 5 * 1000);
         }
 

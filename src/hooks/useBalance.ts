@@ -103,29 +103,29 @@ export default function useBalance() {
     //     setTxFeeCoinbalance(formattedBalance);
     //   }
     // })();
-    (async () => {
-      let bal = 0;
-      if (bridge.fromToken === chain.nativeCurrency.symbol) {
-        bal = await getCoinBalance("from");
-      } else {
-        bal = await getTokenBalance("from");
-      }
-      const fmb =
-        bal / 10 ** Number(TOKEN_DECIMALS[bridge.fromToken as TTokenName]);
-      const formattedBalance = Number(fmb);
-      // console.log({ fromChain: bridge.fromChain, formattedBalance });
-      setBalance(formattedBalance);
-      dispatch(setBridgeBalance(formattedBalance));
-      dispatch(setBridgeError(""));
-    })().catch((e) => {
-      const formattedError = `useCoinBalanceFrom:Error: ${e}`;
-      console.error(formattedError);
-      dispatch(setBridgeError(formattedError));
-    });
+    if (bridge.fromChain && bridge.fromToken && bridge.senderAddress)
+      (async () => {
+        let bal = 0;
+        if (bridge.fromToken === chain.nativeCurrency.symbol) {
+          bal = await getCoinBalance("from");
+        } else {
+          bal = await getTokenBalance("from");
+        }
+        const fmb =
+          bal / 10 ** Number(TOKEN_DECIMALS[bridge.fromToken as TTokenName]);
+        const formattedBalance = Number(fmb);
+        // console.log({ fromChain: bridge.fromChain, formattedBalance });
+        setBalance(formattedBalance);
+        dispatch(setBridgeBalance(formattedBalance));
+        dispatch(setBridgeError(""));
+      })().catch((e) => {
+        const formattedError = `useCoinBalanceFrom:Error: ${e}`;
+        console.error(formattedError);
+        dispatch(setBridgeError(formattedError));
+      });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     bridge.fromChain,
-    bridge.toChain,
     bridge.fromToken,
     // bridge.toToken,
     bridge.senderAddress,
@@ -135,34 +135,34 @@ export default function useBalance() {
   useEffect(() => {
     // console.log({ toChain: bridge.toChain });
     setBalanceTo(0);
-    // if (bridge.receiver) {
-    const chain = SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.toChain]];
+    if (bridge.receiver && bridge.toChain && bridge.toToken) {
+      const chain = SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.toChain]];
 
-    (async () => {
-      let bal = 0;
-      if (bridge.fromChain !== bridge.toChain) {
-        if (bridge.toToken === chain.nativeCurrency.symbol) {
-          bal = await getCoinBalance("to");
-        } else {
-          bal = await getTokenBalance("to");
+      (async () => {
+        let bal = 0;
+        if (bridge.fromChain !== bridge.toChain) {
+          if (bridge.toToken === chain.nativeCurrency.symbol) {
+            bal = await getCoinBalance("to");
+          } else {
+            bal = await getTokenBalance("to");
+          }
+          const fmb =
+            bal / 10 ** Number(TOKEN_DECIMALS[bridge.toToken as TTokenName]);
+          const formattedBalance = Number(fmb);
+          // console.log({ toChain: bridge.toChain, formattedBalance });
+          setBalanceTo(formattedBalance);
+          dispatch(setBridgeBalance(formattedBalance));
+          dispatch(setBridgeError(""));
         }
-        const fmb =
-          bal / 10 ** Number(TOKEN_DECIMALS[bridge.toToken as TTokenName]);
-        const formattedBalance = Number(fmb);
-        // console.log({ toChain: bridge.toChain, formattedBalance });
-        setBalanceTo(formattedBalance);
-        dispatch(setBridgeBalance(formattedBalance));
-        dispatch(setBridgeError(""));
-      }
-    })().catch((e) => {
-      const formattedError = `useCoinBalanceFrom:Error: ${e}`;
-      console.error(formattedError);
-      dispatch(setBridgeError(formattedError));
-    });
+      })().catch((e) => {
+        const formattedError = `useCoinBalanceFrom:Error: ${e}`;
+        console.error(formattedError);
+        dispatch(setBridgeError(formattedError));
+      });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     bridge.fromChain,
-    bridge.toChain,
     // bridge.fromToken,
     bridge.toToken,
     // bridge.senderAddress,
