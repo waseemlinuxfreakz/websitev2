@@ -26,7 +26,7 @@ import {
 } from "../store/poolSlice";
 import { AddressBookKeys } from "emmet.js";
 import { useTonConnect } from "./useTonConnect";
-import { removeTrailingZeroes } from "../utils";
+import { removeTrailingZeroes, sleep } from "../utils";
 
 export default function usePool() {
   const dispatch = useAppDispatch();
@@ -69,6 +69,7 @@ export default function usePool() {
     token = pool.token,
     senderAddress = bridge.senderAddress,
   ) => {
+    sleep(1000);
     try {
       const handler = await chainFactoryTestnet.inner(
         // @ts-ignore

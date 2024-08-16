@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from "./storage";
 import { useState, useEffect } from "react";
 import { setBridgeError, setBridgeFee } from "../store/bridgeSlice";
 import { chainFactoryTestnet } from "../store/chainFactory";
+import { sleep } from "../utils";
 
 export default function useBridgeFee() {
   const dispatch = useAppDispatch();
@@ -72,7 +73,7 @@ export default function useBridgeFee() {
       );
 
       // console.log(chainId, bridge.fromToken, bridge.toToken);
-
+      sleep(1000);
       const fee = await handler.txFee(
         chainId,
         bridge.fromToken,
@@ -115,7 +116,7 @@ export default function useBridgeFee() {
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [bridge.toChain, bridge.fromChain, bridge.allowance]);
+  }, [bridge.fromChain, bridge.allowance]);
 
   // console.log('fee', fee, 'nativeCurrency', nativeCurrency, 'formattedFee', formattedFee, 'bridgeAddress', bridgeAddress, 'toChain:', ChainNameToTypeChainName[bridge.toChain])
   return { fee, nativeCurrency, formattedFee, protocolFee, protocolFeeInUSD };
