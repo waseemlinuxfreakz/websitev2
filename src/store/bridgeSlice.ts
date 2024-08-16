@@ -142,13 +142,7 @@ export const bridgeSlice = createSlice({
     },
     setBridgeFromChain(state: IBridgeState, action: PayloadAction<string>) {
       state.fromChain = action.payload;
-      // if (state.fromChain == state.toChain) {
-      //   state.toChains.map((c) => {
-      //     if (c.name != state.fromChain) {
-      //       state.toChain = c.name;
-      //     }
-      //   });
-      // }
+
       state.fromTokens = filterTokens(
         state.fromToken,
         state.fromChain,
@@ -164,6 +158,13 @@ export const bridgeSlice = createSlice({
         !state.toChains.find((i) => i.name === state.toChain)
       ) {
         state.toChain = state.toChains[0].name;
+      }
+      if (state.fromChain == state.toChain) {
+        state.toChains.map((c) => {
+          if (c.name !== state.fromChain) {
+            state.toChain = c.name;
+          }
+        });
       }
       state.fromChains = filterFromChains(state.fromChain, state.toChain);
       state.toChains = filterToChains(state.fromChain, state.toChain);

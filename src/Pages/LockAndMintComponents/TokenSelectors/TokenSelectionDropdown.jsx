@@ -47,6 +47,8 @@ export default function TokenSelectionDropdown({ type }) {
   });
 
   useEffect(() => {
+    console.log({ fromToken: bridge.fromToken, toToken: bridge.toToken });
+
     setSelectedCoin({
       icon: getIsfrom() ? getIcon(bridge.fromToken) : getIcon(bridge.toToken),
       name: getIsfrom()
@@ -112,7 +114,7 @@ export default function TokenSelectionDropdown({ type }) {
         </div>
         {showDropdown() && <img src={DownArrow} alt="Down Arrow" />}
       </div>
-      {showDropdown() && (
+      {showDropdown() && type === "from" ? (
         <ul
           className={`selectCoinList bridge ${isListVisible ? "visible" : "hidden"}`}
         >
@@ -131,6 +133,28 @@ export default function TokenSelectionDropdown({ type }) {
                   <img src={Fox} alt="Metamask" />
                 </a>
               </div> */}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <ul
+          className={`selectCoinList bridge ${isListVisible ? "visible" : "hidden"}`}
+        >
+          {bridge.toTokens.map((coin) => (
+            <li className="coinItem" key={coin.name}>
+              <div
+                className="coinNameIcon"
+                onClick={() => handleCoinClick(coin.icon, coin.name)}
+              >
+                <img src={coin.icon} alt={coin.name} />
+                <span>{TOKEN_SYMBOL_TO_TOKEN[coin.name]}</span>
+              </div>
+              {/* <div className="coinItemRight">
+            <CoinLinkAddress />
+            <a href="#" className="foxLink">
+              <img src={Fox} alt="Metamask" />
+            </a>
+          </div> */}
             </li>
           ))}
         </ul>
