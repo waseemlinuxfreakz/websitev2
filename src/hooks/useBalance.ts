@@ -162,7 +162,7 @@ export default function useBalance() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
-    bridge.fromChain,
+    bridge.toChain,
     // bridge.fromToken,
     bridge.toToken,
     // bridge.senderAddress,
