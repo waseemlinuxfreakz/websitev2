@@ -69,7 +69,7 @@ export default function usePool() {
     token = pool.token,
     senderAddress = bridge.senderAddress,
   ) => {
-    sleep(1000);
+    await sleep(1000);
     try {
       const handler = await chainFactoryTestnet.inner(
         // @ts-ignore
@@ -258,6 +258,7 @@ export default function usePool() {
     token = pool.token,
     address = bridge.senderAddress,
   ) => {
+    await sleep(10000);
     try {
       const handler = await chainFactoryTestnet.inner(
         // @ts-ignore
