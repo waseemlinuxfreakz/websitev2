@@ -12,7 +12,7 @@ export default function useExplorerTransactions(page: number) {
       // const response: Response = await fetch(`${txBackend}/pages/page/?page=${page}`);
       // const data = await response.json();
       const data = await chainFactoryTestnet.getTransactions(
-        1000,
+        50,
         (page - 1) * 10,
       );
       data && setTxs(data);
