@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from "./storage";
 import {
   ChainNameToTypeChainName,
@@ -30,7 +31,9 @@ import { removeTrailingZeroes, sleep } from "../utils";
 
 export default function usePool() {
 
-  // const location = useLocation();
+  const location = useLocation();
+
+  const isPoolPath = location.pathname.includes('/pool');
 
   const dispatch = useAppDispatch();
 
@@ -319,7 +322,7 @@ export default function usePool() {
       dispatch(setPoolFeeDecimals(0));
       dispatch(setPoolPendingRewards(0));
       dispatch(setPoolLiquidityInUSD("0"));
-      if (pool.chain && pool.token) {
+      if (pool.chain && pool.token && isPoolPath) {
         if (bridge.senderAddress) {
           interval = setInterval(async () => {
             try {
