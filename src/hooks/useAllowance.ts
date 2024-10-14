@@ -7,7 +7,7 @@ import {
   setBridgeDecimals,
   setBridgeError,
 } from "../store/bridgeSlice";
-import { chainFactoryTestnet } from "../store/chainFactory";
+import { chainFactory } from "../store/chainFactory";
 import { ethers } from "ethers";
 
 export default function useBridgeAllowance() {
@@ -42,14 +42,15 @@ export default function useBridgeAllowance() {
   const updateAllowance = () => {
     (async () => {
       if (isConnected && bridge.fromChain && bridge.fromToken) {
-        const handler = await chainFactoryTestnet.inner(
+        const handler = await chainFactory.inner(
           // @ts-ignore
           ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]],
         );
 
         const token = await handler.token(bridge.fromToken);
+
         if (
-          token.address !== ethers.ZeroAddress &&
+          token.token !== ethers.ZeroAddress &&
           bridge.senderAddress !== ""
         ) {
           setDecimals(token.decimals);
@@ -59,7 +60,7 @@ export default function useBridgeAllowance() {
 
           if ("getApprovedAmount" in handler) {
             const allowance = await handler.getApprovedAmount(
-              token.address,
+              token.token,
               bridge.senderAddress,
               bridgeAddress
             );

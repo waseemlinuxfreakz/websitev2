@@ -7,7 +7,7 @@ import {
   TOKEN_SYMBOL_TO_TOKEN,
   ChainToDestinationDomain,
 } from "../../../types";
-import { chainFactoryTestnet } from "../../../store/chainFactory";
+import { chainFactory } from "../../../store/chainFactory";
 import { Chain } from "emmet.js/dist/factory/types";
 
 function TransactionDetailsRight() {
@@ -19,10 +19,10 @@ function TransactionDetailsRight() {
     (async () => {
       if (explorer.bridgeTransaction.fromChainId) {
         try {
-          const tokenPrice = await chainFactoryTestnet.getTokenPrice(
+          const tokenPrice = await chainFactory.getTokenPrice(
             explorer.bridgeTransaction.fromToken,
           );
-          const tokenPriceDecimals = await chainFactoryTestnet.getPriceDecimals(
+          const tokenPriceDecimals = await chainFactory.getPriceDecimals(
             explorer.bridgeTransaction.fromToken,
           );
 

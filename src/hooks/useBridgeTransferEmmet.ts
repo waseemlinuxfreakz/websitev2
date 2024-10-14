@@ -10,7 +10,7 @@ import {
 } from "../types";
 import { useTonConnect } from "./useTonConnect";
 import { Chain } from "emmet.js/dist/factory/types";
-import { chainFactoryTestnet } from "../store/chainFactory";
+import { chainFactory } from "../store/chainFactory";
 import { useEthersSigner } from "./useEthersSigner";
 import useBridgeFee from "./useBridgeFee";
 import { TonHelper } from "emmet.js/dist/chains/ton";
@@ -49,7 +49,7 @@ export default function useBridgeTransferEmmet() {
         const fromChainID = ChainToDestinationDomain[chainName];
 
         if (fromChainID === Chain.TON) {
-          const handler: TonHelper = (await chainFactoryTestnet.inner(
+          const handler: TonHelper = (await chainFactory.inner(
             fromChainID,
           )) as TonHelper;
 
@@ -63,7 +63,7 @@ export default function useBridgeTransferEmmet() {
             mintRecipient,
           });
 
-          const { hash } = await chainFactoryTestnet.sendInstallment(
+          const { hash } = await chainFactory.sendInstallment(
             handler,
             tonSender,
             BigInt(Math.ceil(formattedAmount)),
@@ -83,7 +83,7 @@ export default function useBridgeTransferEmmet() {
           fromChainID === Chain.BERACHAIN ||
           fromChainID === Chain.ONLYLAYER
         ) {
-          const handler: Web3Helper = (await chainFactoryTestnet.inner(
+          const handler: Web3Helper = (await chainFactory.inner(
             fromChainID,
           )) as Web3Helper;
           console.log({
@@ -99,7 +99,7 @@ export default function useBridgeTransferEmmet() {
             },
           });
 
-          const { hash } = await chainFactoryTestnet.sendInstallment(
+          const { hash } = await chainFactory.sendInstallment(
             handler,
             signer!,
             BigInt(Math.ceil(formattedAmount)),

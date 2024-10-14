@@ -9,7 +9,6 @@ import {
   filterToChains,
   filterTokens,
 } from "../utils/filters";
-import { isStableCoin } from "../verifiers";
 
 export interface IBridgeState {
   allowance: number;
@@ -50,11 +49,11 @@ export interface IBridgeState {
 }
 
 // FROM
-const fromChain = "Sepolia";
-const fromToken = "USDC";
+const fromChain = "Avalanche";
+const fromToken = "EMMET";
 
 // TO
-const toChain = "Amoy";
+const toChain = "Polygon";
 const toToken = fromToken;
 
 const initialState = {

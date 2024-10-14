@@ -30,7 +30,7 @@ import { CHAIN_NAME_TO_ID, TOKEN_DECIMALS } from "../../../types";
 import usePoolAllowance from "../../../hooks/usePoolAllowance";
 import { useLocation } from "react-router-dom";
 import { useSwitchChain } from "wagmi";
-import { chainFactoryTestnet } from "../../../store/chainFactory";
+import { chainFactory } from "../../../store/chainFactory";
 import { removeTrailingZeroes } from "../../../utils";
 
 function Yourliquidity() {

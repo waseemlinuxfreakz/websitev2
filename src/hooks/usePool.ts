@@ -8,7 +8,7 @@ import {
   TOKEN_DECIMALS,
   TTokenName,
 } from "../types";
-import { chainFactoryTestnet } from "../store/chainFactory";
+import { chainFactory } from "../store/chainFactory";
 import { useEthersSigner } from "./useEthersSigner";
 import {
   setPoolApy,
@@ -29,6 +29,9 @@ import { useTonConnect } from "./useTonConnect";
 import { removeTrailingZeroes, sleep } from "../utils";
 
 export default function usePool() {
+
+  // const location = useLocation();
+
   const dispatch = useAppDispatch();
 
   const signer = useEthersSigner();
@@ -69,9 +72,9 @@ export default function usePool() {
     token = pool.token,
     senderAddress = bridge.senderAddress,
   ) => {
-    await sleep(1000);
+    await sleep(10000);
     try {
-      const handler = await chainFactoryTestnet.inner(
+      const handler = await chainFactory.inner(
         // @ts-ignore
         ChainToDestinationDomain[ChainNameToTypeChainName[chain]],
       );
@@ -116,10 +119,10 @@ export default function usePool() {
           .getLpProviderRewards(poolAddress, senderAddress)
           .catch(() => BigInt(0));
 
-        const tokenPrice = await chainFactoryTestnet.getTokenPrice(token);
+        const tokenPrice = await chainFactory.getTokenPrice(token);
 
         const tokenPriceDecimals =
-          await chainFactoryTestnet.getPriceDecimals(token);
+          await chainFactory.getPriceDecimals(token);
 
         const liquidityPoolInUSD =
           Number(totalSupply * tokenPrice) /
@@ -161,12 +164,12 @@ export default function usePool() {
   // const getData = memoize(_getData);
 
   const stake = async () => {
-    const handler = await chainFactoryTestnet.inner(
+    const handler = await chainFactory.inner(
       // @ts-ignore
       ChainToDestinationDomain[ChainNameToTypeChainName[pool.chain]],
     );
     try {
-      await chainFactoryTestnet.stakeLiqiduity(
+      await chainFactory.stakeLiqiduity(
         // @ts-ignore
         handler,
         signer,
@@ -177,7 +180,7 @@ export default function usePool() {
       );
     } catch (error: { message: string } | any) {
       // For TON
-      await chainFactoryTestnet.stakeLiqiduity(
+      await chainFactory.stakeLiqiduity(
         // @ts-ignore
         handler,
         tonSender,
@@ -193,12 +196,12 @@ export default function usePool() {
   };
 
   const withdraw = async () => {
-    const handler = await chainFactoryTestnet.inner(
+    const handler = await chainFactory.inner(
       // @ts-ignore
       ChainToDestinationDomain[ChainNameToTypeChainName[pool.chain]],
     );
     try {
-      await chainFactoryTestnet.withdrawLiqiduity(
+      await chainFactory.withdrawLiqiduity(
         // @ts-ignore
         handler,
         signer,
@@ -209,7 +212,7 @@ export default function usePool() {
       );
     } catch (error: { message: string } | any) {
       // For TON
-      await chainFactoryTestnet.withdrawLiqiduity(
+      await chainFactory.withdrawLiqiduity(
         // @ts-ignore
         handler,
         tonSender,
@@ -225,12 +228,12 @@ export default function usePool() {
   };
 
   const withdrawFees = async () => {
-    const handler = await chainFactoryTestnet.inner(
+    const handler = await chainFactory.inner(
       // @ts-ignore
       ChainToDestinationDomain[ChainNameToTypeChainName[pool.chain]],
     );
     try {
-      await chainFactoryTestnet.withdrawFees(
+      await chainFactory.withdrawFees(
         // @ts-ignore
         handler,
         signer,
@@ -239,7 +242,7 @@ export default function usePool() {
       );
     } catch (error: { message: string } | any) {
       // For TON
-      await chainFactoryTestnet.withdrawFees(
+      await chainFactory.withdrawFees(
         // @ts-ignore
         handler,
         tonSender,
@@ -260,7 +263,7 @@ export default function usePool() {
   ) => {
     await sleep(10000);
     try {
-      const handler = await chainFactoryTestnet.inner(
+      const handler = await chainFactory.inner(
         // @ts-ignore
         ChainToDestinationDomain[ChainNameToTypeChainName[chain as TChainName]],
       );

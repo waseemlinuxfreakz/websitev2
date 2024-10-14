@@ -8,7 +8,7 @@ import {
   TOKEN_SYMBOL_TO_TOKEN,
 } from "../../../types";
 import { removeTrailingZeroes } from "../../../utils";
-import { chainFactoryTestnet } from "../../../store/chainFactory";
+import { chainFactory } from "../../../store/chainFactory";
 import { ChainToDestinationDomain } from "../../../types";
 import { msToTime } from "../../../utils/msToTime";
 
@@ -21,7 +21,7 @@ function BridgeTransactionDetails() {
   useEffect(() => {
     (async () => {
       try {
-        const handler = await chainFactoryTestnet.inner(
+        const handler = await chainFactory.inner(
           ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]],
         );
 

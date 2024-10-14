@@ -19,7 +19,7 @@ import {
   ChainNameToTypeChainName,
   ChainToDestinationDomain,
 } from "../../../types";
-import { chainFactoryTestnet } from "../../../store/chainFactory";
+import { chainFactory } from "../../../store/chainFactory";
 import usePool from "../../../hooks/usePool";
 
 const findChain = (chainId) => {
@@ -79,7 +79,7 @@ export default function ChainSelectorDropdown({ parent, direction }) {
         bridge.toToken
       ) {
         try {
-          const handler = await chainFactoryTestnet.inner(
+          const handler = await chainFactory.inner(
             ChainToDestinationDomain[
               ChainNameToTypeChainName[bridge.fromChain]
             ],

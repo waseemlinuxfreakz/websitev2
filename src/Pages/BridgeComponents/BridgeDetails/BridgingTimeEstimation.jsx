@@ -6,7 +6,7 @@ import {
   ChainNameToTypeChainName,
   CHAIN_NAME_TO_ID,
 } from "../../../types";
-import { chainFactoryTestnet } from "../../../store/chainFactory";
+import { chainFactory } from "../../../store/chainFactory";
 import { msToTime } from "../../../utils/msToTime";
 
 export default function BridgingTimeEstimation() {
@@ -16,7 +16,7 @@ export default function BridgingTimeEstimation() {
   useEffect(() => {
     (async () => {
       try {
-        const handler = await chainFactoryTestnet.inner(
+        const handler = await chainFactory.inner(
           ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]],
         );
 

@@ -30,6 +30,8 @@ const chain = chainList[0].name;
 const token = coinsData[0].name;
 
 export const CHAIN_TO_TOKENS = {
+  Avalanche:["EMMET"],
+  Polygon: ["EMMET"],
   TONTestnet: ["USDC", "TON"],
   Sepolia: ["USDC"],
   Amoy: ["USDC"],
@@ -78,7 +80,7 @@ export const poolslice = createSlice({
       );
       //@ts-ignore
       if (!CHAIN_TO_TOKENS[action.payload].includes(state.token)) {
-        state.token = "USDC";
+        state.token = "EMMET";
       }
     },
     setPoolToken: (state: IPoolState, action: PayloadAction<string>) => {

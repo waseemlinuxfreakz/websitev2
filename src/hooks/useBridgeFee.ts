@@ -7,7 +7,7 @@ import {
 import { useAppDispatch, useAppSelector } from "./storage";
 import { useState, useEffect } from "react";
 import { setBridgeError, setBridgeFee } from "../store/bridgeSlice";
-import { chainFactoryTestnet } from "../store/chainFactory";
+import { chainFactory } from "../store/chainFactory";
 import { sleep } from "../utils";
 
 export default function useBridgeFee() {
@@ -28,7 +28,7 @@ export default function useBridgeFee() {
 
   async function getBridgeProtocolFee() {
     try {
-      const handler = await chainFactoryTestnet.inner(
+      const handler = await chainFactory.inner(
         //@ts-ignore
         ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]],
       );
@@ -46,12 +46,12 @@ export default function useBridgeFee() {
   async function getBridgeProtocolFeeInUSD() {
     // TODO: implement this in sdk
     try {
-      const handler = await chainFactoryTestnet.inner(
+      const handler = await chainFactory.inner(
         //@ts-ignore
         ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]],
       );
       const _protocolFeeInUSD =
-        await chainFactoryTestnet.getProtocolFeeInUSD(handler);
+        await chainFactory.getProtocolFeeInUSD(handler);
 
       return _protocolFeeInUSD;
     } catch (error) {
@@ -63,7 +63,7 @@ export default function useBridgeFee() {
 
   async function getBridgeFee() {
     try {
-      const handler = await chainFactoryTestnet.inner(
+      const handler = await chainFactory.inner(
         //@ts-ignore
         ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]],
       );

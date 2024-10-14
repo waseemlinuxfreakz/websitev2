@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { chainFactoryTestnet } from "../store/chainFactory";
+import { chainFactory } from "../store/chainFactory";
 import { Transaction } from "emmet.js/dist/factory/types";
 
 export default function useExplorerTransactions(page: number) {
@@ -11,7 +11,7 @@ export default function useExplorerTransactions(page: number) {
     try {
       // const response: Response = await fetch(`${txBackend}/pages/page/?page=${page}`);
       // const data = await response.json();
-      const data = await chainFactoryTestnet.getTransactions(
+      const data = await chainFactory.getTransactions(
         50,
         (page - 1) * 10,
       );

@@ -6,7 +6,7 @@ import {
   TOKEN_DECIMALS,
 } from "../types";
 import { setBridgeError } from "../store/bridgeSlice";
-import { chainFactoryTestnet } from "../store/chainFactory";
+import { chainFactory } from "../store/chainFactory";
 import { ethers } from "ethers";
 import { setPoolAllowance } from "../store/poolSlice";
 
@@ -27,18 +27,18 @@ export default function usePoolAllowance() {
   const updateAllowance = () => {
     (async () => {
       if (bridge.senderAddress) {
-        const handler = await chainFactoryTestnet.inner(
+        const handler = await chainFactory.inner(
           // @ts-ignore
           ChainToDestinationDomain[ChainNameToTypeChainName[pool.chain]],
         );
 
         const token = await handler.token(pool.token);
-        if (token.address !== ethers.ZeroAddress && "address" in handler) {
+        if (token.token !== ethers.ZeroAddress && "address" in handler) {
           const poolAddress: string = await handler.address(`elp${pool.token}`);
 
           if ("getApprovedAmount" in handler) {
             const allowance = await handler.getApprovedAmount(
-              token.address,
+              token.token,
               bridge.senderAddress,
               poolAddress,
             );

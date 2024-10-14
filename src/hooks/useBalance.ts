@@ -12,7 +12,7 @@ import {
   setBridgeError,
   setBridgeToBalance,
 } from "../store/bridgeSlice";
-import { chainFactoryTestnet } from "../store/chainFactory";
+import { chainFactory } from "../store/chainFactory";
 import { Web3Helper } from "emmet.js/dist/chains/web3";
 
 type TDirection = "from" | "to";
@@ -28,13 +28,13 @@ export default function useBalance() {
     try {
       const handler =
         direction === "from"
-          ? await chainFactoryTestnet.inner(
+          ? await chainFactory.inner(
               // @ts-ignore
               ChainToDestinationDomain[
                 ChainNameToTypeChainName[bridge.fromChain]
               ],
             )
-          : await chainFactoryTestnet.inner(
+          : await chainFactory.inner(
               // @ts-ignore
               ChainToDestinationDomain[
                 ChainNameToTypeChainName[bridge.toChain]
@@ -61,13 +61,13 @@ export default function useBalance() {
   async function getTokenBalance(direction: TDirection) {
     const handler =
       direction === "from"
-        ? await chainFactoryTestnet.inner(
+        ? await chainFactory.inner(
             // @ts-ignore
             ChainToDestinationDomain[
               ChainNameToTypeChainName[bridge.fromChain]
             ],
           )
-        : await chainFactoryTestnet.inner(
+        : await chainFactory.inner(
             // @ts-ignore
             ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]],
           );
@@ -75,7 +75,7 @@ export default function useBalance() {
 
     const tokenAddress: string = (
       await (handler as Web3Helper).token(bridge.toToken)
-    ).address;
+    ).token;
 
     const addr = direction === "from" ? bridge.senderAddress : bridge.receiver;
 

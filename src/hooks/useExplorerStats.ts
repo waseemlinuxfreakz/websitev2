@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { chainFactoryTestnet } from "../store/chainFactory";
+import { chainFactory } from "../store/chainFactory";
 import { ExplorerMeta } from "emmet.js/dist/factory/types";
 
 export default function useExplorerStats() {
@@ -17,7 +17,7 @@ export default function useExplorerStats() {
 
   async function fetchData() {
     try {
-      const result = await chainFactoryTestnet.getExplorerStats();
+      const result = await chainFactory.getExplorerStats();
       setStats(result);
     } catch (error) {
       console.warn(error);

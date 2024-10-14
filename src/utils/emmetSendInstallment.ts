@@ -1,6 +1,6 @@
 import { Hash } from "viem";
 import { CHAIN_NAME_TO_ID, TChainName, TTokenName, TTxStatus } from "../types";
-import { chainFactoryTestnet } from "../store/chainFactory";
+import { chainFactory } from "../store/chainFactory";
 import { useTonConnect } from "../hooks/useTonConnect";
 import { Chain } from "emmet.js/dist/factory/types";
 import { useAppSelector } from "../hooks/storage";
@@ -34,8 +34,8 @@ export async function EmmetSendInstallment(
     const fromChainID = CHAIN_NAME_TO_ID[chainName];
 
     if (fromChainID === Chain.TON) {
-      const handler = await chainFactoryTestnet.inner(fromChainID);
-      await chainFactoryTestnet.sendInstallment(
+      const handler = await chainFactory.inner(fromChainID);
+      await chainFactory.sendInstallment(
         handler,
         tonSender,
         amount,

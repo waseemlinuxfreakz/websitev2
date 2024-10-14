@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAppSelector } from "./storage";
 import { Transaction } from "emmet.js/dist/factory/types";
-import { chainFactoryTestnet } from "../store/chainFactory";
+import { chainFactory } from "../store/chainFactory";
 
 export default function useCircleTxData() {
   const bridge = useAppSelector((state) => state.bridge);
@@ -36,7 +36,7 @@ export default function useCircleTxData() {
       if (hash) {
         // const result: Response = await fetch(`${txBackend}/hash/?hash=${hash}`);
         // let CircleTXData: Transaction = await result.json();
-        const result = await chainFactoryTestnet.getTransactions(25, 0);
+        const result = await chainFactory.getTransactions(25, 0);
 
         const txn = result.find(
           (tx) => tx.originalHash === hash.replace("0x", ""),

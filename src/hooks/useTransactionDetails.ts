@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { chainFactoryTestnet } from "../store/chainFactory";
+import { chainFactory } from "../store/chainFactory";
 import { useAppSelector, useAppDispatch } from "./storage";
 import {
   setBridgeTransaction,
@@ -14,10 +14,7 @@ import { DetailedTx } from "emmet.js/dist/factory/types";
  */
 const fetchData = async (emmetHash: string): Promise<DetailedTx | {}> => {
   try {
-    // const response: Response = await fetch(
-    //   `${txBackend}/transactions/tx/?tx=${hash}`
-    // );
-    const data = await chainFactoryTestnet.getTransaction(emmetHash);
+    const data = await chainFactory.getTransaction(emmetHash);
     return data;
   } catch (error: any) {
     console.warn(`useGetBridgeTx:fetchData:Error: ${error.message}`);
@@ -37,7 +34,7 @@ export default function useTransactionDetails(emmetHash: string) {
   useEffect(() => {
     if (emmetHash) {
       (async () => {
-        const _data = await fetchData(emmetHash);
+        const _data: DetailedTx = await fetchData(emmetHash) as DetailedTx;
         if ("nonce" in _data) {
           const __data = {
             txHash: _data.txHash,

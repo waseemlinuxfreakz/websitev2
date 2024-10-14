@@ -5,12 +5,6 @@ export const BridgeTokens = [
   //   "icon": "img/coin/eurc.svg",
   //   "price": 2062.25
   // },
-  // {
-  //   cmc_id: 3408,
-  //   name: "USDC",
-  //   icon: "img/coin/usdc.svg",
-  //   price: 0.9998,
-  // },
   {
     cmc_id: 3408,
     name: "USDC",
@@ -29,12 +23,12 @@ export const BridgeTokens = [
   //   icon: "img/coin/eth.svg",
   //   price: 2062.25,
   // },
-  // {
-  //   "cmc_id":0,
-  //   "name": "EMMET",
-  //   "icon": "img/coin/emmet.svg",
-  //   "price": 1
-  // },
+  {
+    "cmc_id":0,
+    "name": "EMMET",
+    "icon": "img/coin/emmet.svg",
+    "price": 1
+  },
   // {
   //   "cmc_id":15489,
   //   "name": "SCRL",
@@ -47,39 +41,43 @@ export const BridgeTokens = [
   //   "icon": "img/coin/op.svg",
   //   "price": 1.73
   // },
-  {
-    cmc_id: 4943,
-    name: "DAI",
-    icon: "img/coin/dai.svg",
-    price: 1,
-  },
+  // {
+  //   cmc_id: 4943,
+  //   name: "DAI",
+  //   icon: "img/coin/dai.svg",
+  //   price: 1,
+  // },
   // {
   //   "cmc_id":825,
   //   "name": "USDT",
   //   "icon": "img/coin/usdt.svg",
   //   "price": 1
   // }
-  {
-    cmc_id: 26960,
-    name: "GrabClub",
-    icon: "img/coin/grabclub.png",
-    price: 1,
-  },
-  {
-    cmc_id: 26960,
-    name: "TRT",
-    icon: "img/coin/testRED.svg",
-    price: 1,
-  },
-  {
-    cmc_id: 26961,
-    name: "$CAVI",
-    icon: "img/coin/cavi.png",
-    price: 1,
-  },
+  // {
+  //   cmc_id: 26960,
+  //   name: "GrabClub",
+  //   icon: "img/coin/grabclub.png",
+  //   price: 1,
+  // },
+  // {
+  //   cmc_id: 26960,
+  //   name: "TRT",
+  //   icon: "img/coin/testRED.svg",
+  //   price: 1,
+  // },
+  // {
+  //   cmc_id: 26961,
+  //   name: "$CAVI",
+  //   icon: "img/coin/cavi.png",
+  //   price: 1,
+  // },
 ];
 
 export const CHAIN_TO_TOKENS = {
+  // Mainnets
+  Avalanche: ["EMMET"],
+  Polygon: ["EMMET"],
+  // Testnets
   TONTestnet: ["USDC", "TON", "TRT", "$CAVI"],
   Amoy: ["USDC", "TON", "DAI", "GrabClub"],
   Sepolia: ["USDC", "TON", "DAI", "GrabClub", "TRT", "$CAVI"],
@@ -88,6 +86,15 @@ export const CHAIN_TO_TOKENS = {
 };
 
 export const CHAIN_TO_TOKENS_TREE = {
+  // Mainnets
+  Avalanche: {
+    Polygon: ["EMMET"],
+  },
+  Polygon: {
+    Avalanche: ["EMMET"],
+  },
+
+  // Testnets:
   // From chain
   Amoy: {
     // To chains
