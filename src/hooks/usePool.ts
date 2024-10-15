@@ -49,14 +49,14 @@ export default function usePool() {
   const memoize = (fn: any) => {
     return async (...args: any) => {
       let n = args; // just taking one argument here
-      console.log({ n });
+      // console.log({ n });
 
       if (n in cache) {
-        console.log("Fetching from cache");
+        // console.log("Fetching from cache");
         //@ts-ignore
         return cache[n];
       } else {
-        console.log("Calculating result");
+        // console.log("Calculating result");
         let result = await fn(...args);
         //@ts-ignore
         cache[n] = result;
@@ -84,7 +84,7 @@ export default function usePool() {
 
       if ("address" in handler) {
         const poolAddress = await handler.address(`elp${token}`);
-        console.log({ poolAddress });
+        // console.log({ poolAddress });
 
         const decimals = await handler.decimals(poolAddress).catch(() => 1);
 
@@ -148,7 +148,7 @@ export default function usePool() {
       }
     } catch (error: { message: string } | any) {
       setError(error.message);
-      console.log(error);
+      console.error(error);
       return {
         decimals: 1,
         apy: 0,

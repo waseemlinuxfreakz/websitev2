@@ -15,6 +15,7 @@ import { DetailedTx } from "emmet.js/dist/factory/types";
 const fetchData = async (emmetHash: string): Promise<DetailedTx | {}> => {
   try {
     const data = await chainFactory.getTransaction(emmetHash);
+    console.log('TX data:', data)
     return data;
   } catch (error: any) {
     console.warn(`useGetBridgeTx:fetchData:Error: ${error.message}`);

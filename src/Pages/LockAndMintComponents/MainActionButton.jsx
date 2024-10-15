@@ -50,6 +50,7 @@ function MainActionButton() {
     const chainRequiresApproval = lockAndMintChains.find(
       (chain) => chain.name === bridge.fromChain,
     )?.requiresApproval;
+
     if (chainRequiresApproval) {
       const needApproval =
         Number(bridge.amount) >
@@ -59,11 +60,13 @@ function MainActionButton() {
   }
 
   useEffect(() => {
-    // console.log("wallet", wallet.account);
-    if (isConnected || wallet?.account || solanaWallet.publicKey) {
+   
+    if (isConnected 
+      || wallet?.account 
+      || solanaWallet.publicKey
+    ) {
       if (!bridge.amount || Number(bridge.amount) <= 0) {
         setDisabled(true);
-        setCaption("Enter Amount");
         setShowSpiner(false);
       }
 

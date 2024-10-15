@@ -9,6 +9,9 @@ import { useState, useEffect } from "react";
 import { setBridgeError, setBridgeFee } from "../store/bridgeSlice";
 import { chainFactory } from "../store/chainFactory";
 import { sleep } from "../utils";
+import { Chain } from "emmet.js/dist/factory/types";
+import { Web3Helper } from "emmet.js/dist/chains/web3";
+import { ChainFactoryBuilder, ChainFactoryConfigs } from "emmet.js";
 
 export default function useBridgeFee() {
   const dispatch = useAppDispatch();
@@ -44,16 +47,18 @@ export default function useBridgeFee() {
   }
 
   async function getBridgeProtocolFeeInUSD() {
-    // TODO: implement this in sdk
     try {
-      const handler = await chainFactory.inner(
-        //@ts-ignore
-        ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]],
-      );
-      const _protocolFeeInUSD =
-        await chainFactory.getProtocolFeeInUSD(handler);
+      
+      const factory = await ChainFactoryBuilder(
+        ChainFactoryConfigs.MainNet()
+    );
 
-      return _protocolFeeInUSD;
+    const polygon: Web3Helper = await factory.inner(Chain.POLYGON);
+      
+      const _protocolFeeInUSD =
+        await polygon.protocolFeeInUSD();
+
+      return parseInt(_protocolFeeInUSD.toString()) / 100;
     } catch (error) {
       console.error(error);
       // TODO: Fix this

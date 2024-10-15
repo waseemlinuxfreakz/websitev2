@@ -12,6 +12,7 @@ import useCircleTxData from "../../../hooks/useCircleTxData";
 import {
   setBridgeIsRunning,
   setBridgeToHash,
+  setBridgeReceive,
 } from "../../../store/bridgeSlice";
 
 function TransactionProgress() {
@@ -46,6 +47,14 @@ function TransactionProgress() {
       dispatch(setBridgeToHash(txData.destinationHash));
     }
   }, [txData.destinationHash]);
+
+  useEffect(() => {
+
+    if(txData.receivedAmount){
+      dispatch(setBridgeReceive((Number(txData.receivedAmount.toString()) / 10 ** 18)))
+    }
+
+  }, [txData.txHash])
 
   return (
     <div

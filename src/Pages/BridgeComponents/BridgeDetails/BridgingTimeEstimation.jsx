@@ -16,19 +16,26 @@ export default function BridgingTimeEstimation() {
   useEffect(() => {
     (async () => {
       try {
-        const handler = await chainFactory.inner(
-          ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]],
-        );
+        if (bridge.fromChain != bridge.toChain) {
 
-        const time = await handler.estimateTime(
-          // eslint-disable-next-line no-undef
-          BigInt(CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.toChain]]),
-          bridge.fromToken,
-          bridge.toToken,
-        );
-        if (time) {
-          setEstimatedTime(Number(time));
+          const handler = await chainFactory.inner(
+            ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]],
+          );
+
+          console.log(bridge.fromChain, bridge.toChain, bridge.fromToken, bridge.toToken)
+
+          const time = await handler.estimateTime(
+            // eslint-disable-next-line no-undef
+            BigInt(CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.toChain]]),
+            bridge.fromToken,
+            bridge.toToken,
+          );
+          if (time) {
+            setEstimatedTime(Number(time));
+          }
+
         }
+
       } catch (error) {
         console.log(error);
       }

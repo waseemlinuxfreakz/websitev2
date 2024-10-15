@@ -38,32 +38,35 @@ function SidebarNav() {
         </li>
         <li>
           <Link
-            to="/pool"
+            to="/#"
             className={`navLink ${isActive("/pool") && "active"}`}
             onClick={handleLinkClick}
           >
             <img src={"/img/nav-icon/Pool.svg"} alt="NavIcon" />
             <span>Pool</span>
+            <span className="soon">Soon</span>
           </Link>
         </li>
         <li>
           <Link
-            to="/explorer"
+            to="/#"
             className={`navLink ${isActive("/explorer") && "active"}`}
             onClick={handleLinkClick}
           >
             <img src={"/img/nav-icon/nav-Icons-3.svg"} alt="NavIcon" />
             <span>Explorer</span>
+            <span className="soon">Soon</span>
           </Link>
         </li>
         <li>
           <Link
-            to="/swap"
+            to="/#"
             className={`navLink ${location.pathname === "/swap" && "active"}`}
             onClick={handleLinkClick}
           >
             <img src={"/img/nav-icon/nav-Icons-1.svg"} alt="NavIcon" />
             <span>Swap</span>
+            <span className="soon">Soon</span>
           </Link>
         </li>
         <li>

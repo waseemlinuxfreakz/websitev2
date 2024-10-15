@@ -14,13 +14,13 @@ export default function BridgeFee() {
       <div className="detialItem">
         <div className="detialItemLeft">Token Fee</div>
         <div className="detialItemRight">
-          {bridge.tokenFee} {bridge.fromToken}
+        {bridge.fromToken} {Number(bridge.tokenFee).toFixed(2)} 
         </div>
       </div>
       <div className="detialItem">
         <div className="detialItemLeft">Destination Gas (Est.)</div>
         <div className="detialItemRight">
-          {formattedFee && formattedFee.toFixed(8)} {nativeCurrency}
+        {nativeCurrency} {formattedFee && formattedFee.toFixed(8)}
         </div>
       </div>
     </>

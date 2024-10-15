@@ -26,7 +26,7 @@ function MainActionButton() {
 
   const [disabled, setDisabled] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [caption, setCaption] = useState("");
+  const [caption, setCaption] = useState("Enter Amount");
   const [showSpinner, setShowSpiner] = useState(false);
   const { approve, isApproveLoading } = useBridgeApproveERC20();
   const { burnUSDC, isTransferProcessed, sendInstallment } =
@@ -40,7 +40,7 @@ function MainActionButton() {
   }
 
   useEffect(() => {
-    // console.log("wallet", wallet.account);
+    console.log("wallet", wallet.account);
     if (isConnected || wallet?.account) {
       if (!bridge.amount || Number(bridge.amount) <= 0) {
         setDisabled(true);

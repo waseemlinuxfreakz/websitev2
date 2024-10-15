@@ -1,5 +1,21 @@
 const chains = [
   {
+    id: 43114,
+    name: "Avalanche",
+    icon: "img/chain/avalanche.svg",
+    domain: 1,
+    requiresApproval: true,
+    nativeCurrency: { name: "AVAX", symbol: "AVAX", decimals: 18 },
+  },
+  {
+    id: 137,
+    name: "Polygon",
+    icon: "img/chain/polygon.svg",
+    domain: 7,
+    requiresApproval: true,
+    nativeCurrency: { name: "MATIC", symbol: "MATIC", decimals: 18 },
+  },
+  {
     id: 80002,
     name: "Amoy",
     icon: "img/chain/polygon.svg",

@@ -77,6 +77,7 @@ export default function useBridgeTransferEmmet() {
           dispatch(showBridgeProgress());
           setIsTransferProcessed(false);
         } else if (
+          fromChainID === Chain.AVALANCHE ||
           fromChainID === Chain.POLYGON ||
           fromChainID === Chain.ETHEREUM ||
           fromChainID === Chain.BSC ||
