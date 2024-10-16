@@ -50,7 +50,7 @@ function TransactionProgress() {
 
   useEffect(() => {
 
-    if(txData.receivedAmount){
+    if (txData.receivedAmount) {
       dispatch(setBridgeReceive((Number(txData.receivedAmount.toString()) / 10 ** 18)))
     }
 
@@ -75,7 +75,7 @@ function TransactionProgress() {
             Successful transaction!
           </p>
         </div>
-        <TransactionCountUp start={txData.started} />
+        <TransactionCountUp start={txData.txHash ? txData.started * 1000n : txData.started} />
       </div>
       {/* The second chain Circle */}
       <div className="toProgress">

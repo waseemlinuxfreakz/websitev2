@@ -10,7 +10,7 @@ export default function useElapsedTime(startTime: string) {
 
   useEffect(() => {
     const calculateElapsedTime = () => {
-      const startDate = new Date(parseInt(startTime)).getTime();
+      const startDate = new Date(parseInt(startTime.toString())).getTime();
       const endDate = new Date().getTime();
       const timeDifference = endDate - startDate;
 

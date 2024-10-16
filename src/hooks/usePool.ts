@@ -281,9 +281,9 @@ export default function usePool() {
         if (type === "Deposit") {
           const tokenAddress = await handler.address(token as AddressBookKeys);
 
-          console.log({
-            balance: Number(await handler.tokenBalance(tokenAddress, address)),
-          });
+          // console.log({
+          //   balance: Number(await handler.tokenBalance(tokenAddress, address)),
+          // });
 
           return (
             Number(await handler.tokenBalance(tokenAddress, address)) /
@@ -354,7 +354,7 @@ export default function usePool() {
           bridge.senderAddress,
         );
 
-        console.log({ data, chain: pool.chain, token: pool.token });
+        // console.log({ data, chain: pool.chain, token: pool.token });
         if (data) {
           dispatch(setPoolApy(data.apy));
           dispatch(setPoolTotalSupply(data.totalSupply));
@@ -374,7 +374,7 @@ export default function usePool() {
   }, [pool.chain, pool.token, bridge.senderAddress]);
 
   useEffect(() => {
-    console.log({ token: pool.token });
+    // console.log({ token: pool.token });
   }, [pool.token]);
 
   return {

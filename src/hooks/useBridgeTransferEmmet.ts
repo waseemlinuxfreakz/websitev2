@@ -7,9 +7,10 @@ import {
   ChainNameToTypeChainName,
   ChainToDestinationDomain,
   TOKEN_DECIMALS,
+  CHAIN_NAME_TO_ID,
 } from "../types";
 import { useTonConnect } from "./useTonConnect";
-import { Chain } from "emmet.js/dist/factory/types";
+import { Chain, CHAIN_NAME_TO_INNER_ID } from "emmet.js/dist/factory/types";
 import { chainFactory } from "../store/chainFactory";
 import { useEthersSigner } from "./useEthersSigner";
 import useBridgeFee from "./useBridgeFee";
@@ -20,7 +21,7 @@ import { Web3Helper } from "emmet.js/dist/chains/web3";
 
 export default function useBridgeTransferEmmet() {
   const { sender: tonSender } = useTonConnect();
-  const { fee } = useBridgeFee();
+  const { fee, nativeCurrency, formattedFee, protocolFee, protocolFeeInUSD } = useBridgeFee();
 
   const dispatch = useAppDispatch();
 
@@ -45,9 +46,13 @@ export default function useBridgeTransferEmmet() {
         ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]];
       const mintRecipient = bridge.receiver;
 
+      const isPolygon: boolean = bridge.fromChain.toLowerCase() === 'polygon' 
+        || bridge.fromChain.toLowerCase() === 'polygonamoy';
+
       try {
         const fromChainID = ChainToDestinationDomain[chainName];
 
+        // S e n d i n g   t o   T O N
         if (fromChainID === Chain.TON) {
           const handler: TonHelper = (await chainFactory.inner(
             fromChainID,
@@ -76,7 +81,7 @@ export default function useBridgeTransferEmmet() {
           dispatch(setBridgeFromHash(hash ? hash : "N/A"));
           dispatch(showBridgeProgress());
           setIsTransferProcessed(false);
-        } else if (
+        } else if ( // S e n d i n g   t o   E V M s
           fromChainID === Chain.AVALANCHE ||
           fromChainID === Chain.POLYGON ||
           fromChainID === Chain.ETHEREUM ||
@@ -87,7 +92,8 @@ export default function useBridgeTransferEmmet() {
           const handler: Web3Helper = (await chainFactory.inner(
             fromChainID,
           )) as Web3Helper;
-          console.log({
+
+          console.log("PARAMS:", {
             handler,
             signer,
             amount: BigInt(Math.ceil(formattedAmount)),
@@ -96,7 +102,9 @@ export default function useBridgeTransferEmmet() {
             toToken: bridge.toToken,
             mintRecipient,
             gas: {
-              value: fee ? BigInt(fee) : parseEther("0.00001"),
+              value: protocolFeeInUSD 
+              ? isPolygon ? parseEther("1.44") : protocolFeeInUSD
+              : 1e10
             },
           });
 
@@ -109,7 +117,9 @@ export default function useBridgeTransferEmmet() {
             bridge.toToken,
             mintRecipient,
             {
-              value: fee,
+              value: protocolFeeInUSD 
+              ? isPolygon ? parseEther("1.44") : protocolFeeInUSD
+              : 1e10
             },
           );
 
