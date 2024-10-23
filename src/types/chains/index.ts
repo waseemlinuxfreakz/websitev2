@@ -155,7 +155,7 @@ export const DomainToChainName: { [key: number]: TChainName } = {
   6: "base",
   7: "polygon",
   65534: "ton",
-  10: "solana", // TODO: change
+  5: "solana", // TODO: change
   4: "bsc",
 };
 
@@ -197,7 +197,7 @@ export const supportedChainnames: TChainName[] = Object.keys(
   SUPPORTED_CHAINS,
 ) as TChainName[];
 
-export const CHAIN_LOGOS: { [key: string]: string } = {
+export const CHAIN_LOGOS: { [key: string|TChainName]: string } = {
   // Mainnets:
   arbitrum: "img/chain/arbitrum.svg",
   avalanche: "img/chain/avalanche.svg",

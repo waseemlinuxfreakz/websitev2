@@ -1,122 +1,140 @@
 import React, { useEffect, useState } from "react";
 import { setReceiver } from "../../store/bridgeSlice";
-import { useAccount } from "wagmi";
-import { isEvmAddress } from "../../verifiers";
 import { useAppSelector, useAppDispatch } from "../../hooks/storage";
 import { isMobile } from "react-device-detect";
-import { Address } from "@ton/core";
-import { useTonAddress } from "@tonconnect/ui-react";
-import { useWallet } from "@solana/wallet-adapter-react";
-
-function isValidTonAddress(str) {
-  try {
-    Address.parse(str);
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
+import { isEvmAddress, isValidTonAddress, isValidSolanaAddress, truncateAddress } from "../../verifiers";
+import useBridgeAccounts from "../../hooks/useBridgeAccounts";
 
 function WalletAddress() {
   const showDigits = isMobile ? 10 : 14;
-  const pattern = /^[0x]{0,2}[0-9a-fA-F]{0,40}$/;
   const dispatch = useAppDispatch();
-  const bridge = useAppSelector((state) => state.bridge);
-  const { address, isConnected } = useAccount();
-  const tonAddress = useTonAddress();
-  const solanaWallet = useWallet();
-  const [invalidAddress, setInvalidAddress] = useState(false);
 
-  function truncate(address) {
-    return address
-      ? `${address.slice(0, showDigits)}...${address.slice(-showDigits)}`
-      : "";
-  }
-  const [destAddress, setDestAddress] = useState(truncate(address));
+  const { 
+    evmAccount, 
+    solanaWallet, 
+    tonAddress, 
+    destAddress, 
+    isEvmActive, 
+    isSolanaActive, 
+    isTonConnected, 
+    toNetwork
+   } = useBridgeAccounts();
+
+  //  L O C A L  S T O R A G E
+  const [invalidAddress, setInvalidAddress] = useState(false);
+  const [showAddress, setShowAddress] = useState(truncateAddress(destAddress, showDigits, showDigits));
   const [isChangeVisible, setIsChangeVisivle] = useState(true);
 
-  useEffect(() => {
-    if (bridge.receiver && pattern.test(bridge.receiver)) {
-      setDestAddress(truncate(bridge.receiver));
-      setIsChangeVisivle(true);
-    } else if (isValidTonAddress(bridge.receiver)) {
-      setDestAddress(truncate(bridge.receiver));
-      setIsChangeVisivle(true);
-    }
-  }, [bridge.receiver]);
+  function setEmptyReceiver() {
+    setShowAddress("");
+    dispatch(setReceiver(""));
+  }
 
-  useEffect(() => {
-    setInvalidAddress(true);
-
-    if (bridge.toChain !== "TON" && bridge.toChain !== "TONTestnet") {
-      setInvalidAddress(pattern.test(destAddress));
-    } else {
-      setInvalidAddress(true);
-      if (isValidTonAddress(bridge.receiver)) {
-        setInvalidAddress(false);
+  useEffect(() => { // SET DESTINATION ADDRESS DISPLAY
+    if (destAddress) {
+      switch (toNetwork) {
+        case "TON":
+          if (isTonConnected) {
+            setShowAddress(truncateAddress(destAddress, showDigits, showDigits));
+            setIsChangeVisivle(true);
+          }
+          else {
+            setShowAddress("");
+            setIsChangeVisivle(false);
+          }
+          break;
+        case "SOLANA":
+          if (isSolanaActive) {
+            setShowAddress(truncateAddress(destAddress, showDigits, showDigits));
+            setIsChangeVisivle(true);
+          } else {
+            setShowAddress("");
+            setIsChangeVisivle(true);
+          }
+          break;
+        case "EVM":
+          if (isEvmActive) {
+            setShowAddress(truncateAddress(destAddress, showDigits, showDigits));
+            setIsChangeVisivle(true);
+          } else {
+            setShowAddress("");
+            setIsChangeVisivle(false);
+          }
+          break;
+        default:
+          setShowAddress("");
+          break;
       }
     }
-  }, [destAddress, bridge.toChain]);
 
-  useEffect(() => {
-    if (address && !bridge.receiver) {
-      dispatch(setReceiver(address));
-    }
-    if (tonAddress && !bridge.receiver) {
-      // setDestAddress(truncate(tonAddress));
-      // dispatch(setReceiver(tonAddress));
-    }
-  }, [address, tonAddress]);
-
-  useEffect(() => {
-    if (bridge.senderAddress) {
-      setIsChangeVisivle(true);
-    }
-  }, [bridge.senderAddress]);
+  }, [destAddress, isEvmActive, isSolanaActive, isTonConnected, toNetwork]);
 
   function onChangeClickHandle(e) {
     e.preventDefault();
     const inputValue = e.target.value;
 
-    if (bridge.toChain === "TON" || bridge.toChain === "TONTestnet") {
-      if (isValidTonAddress(inputValue)) {
-        setDestAddress(truncate(inputValue));
-        dispatch(setReceiver(inputValue));
-      } else {
-        setDestAddress(destAddress);
-        dispatch(setReceiver(""));
-      }
-    } else if (pattern.test(inputValue)) {
-      setDestAddress(inputValue);
-      if (isEvmAddress(inputValue)) {
-        setDestAddress(truncate(inputValue));
-        dispatch(setReceiver(inputValue));
-        setIsChangeVisivle(true);
-      }
-    } else {
-      setDestAddress(destAddress);
-      dispatch(setReceiver(""));
+    console.log("inputValue", inputValue, "isEvmAddress", isEvmAddress(inputValue), toNetwork)
+
+    switch (toNetwork) {
+      case "TON":
+        if (isValidTonAddress(inputValue)) {
+          setInvalidAddress(false);
+          setIsChangeVisivle(true);
+          setShowAddress(truncateAddress(inputValue, showDigits, showDigits));
+          dispatch(setReceiver(inputValue));
+        } else {
+          setInvalidAddress(true);
+          setEmptyReceiver();
+        }
+        break;
+      case "SOLANA":
+        if (isValidSolanaAddress(inputValue)) {
+          setInvalidAddress(false);
+          setIsChangeVisivle(true);
+          setShowAddress(truncateAddress(inputValue, showDigits, showDigits));
+          dispatch(setReceiver(inputValue));
+        } else {
+          setInvalidAddress(true);
+          setEmptyReceiver();
+        }
+        break;
+      case "EVM":
+        if (isEvmAddress(inputValue)) {
+          setInvalidAddress(false);
+          setIsChangeVisivle(true);
+          setShowAddress(truncateAddress(inputValue, showDigits, showDigits));
+          dispatch(setReceiver(inputValue));
+        } else {
+          setInvalidAddress(true);
+          setEmptyReceiver();
+        }
+        break;
+      default:
+        setInvalidAddress(true);
+        setEmptyReceiver();
+        break;
     }
+
   }
 
   function onChangeClick() {
-    setDestAddress("");
-    dispatch(setReceiver(""));
+    setEmptyReceiver();
+    setInvalidAddress(false);
     setIsChangeVisivle(false);
   }
 
   return (
     <>
-      {isConnected || tonAddress || solanaWallet.publicKey ? (
+      {evmAccount && evmAccount.isConnected || tonAddress || solanaWallet.publicKey ? (
         <div className="wallet_Address">
           <div className="inputAddress Disenable">
             <input
               onChange={onChangeClickHandle}
-              value={destAddress}
+              value={showAddress}
               type="text"
               className={`${invalidAddress && "redBorder"}`}
               placeholder="Paste the receiver address"
-              // style={{"textAlign":"center"}}
+            // style={{"textAlign":"center"}}
             />
           </div>
           <button

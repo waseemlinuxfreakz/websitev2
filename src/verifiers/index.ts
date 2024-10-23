@@ -1,4 +1,4 @@
-export * from "./isEvmAddress";
+export * from "./address";
 export * from "./isGreaterOrEqual";
 export * from "./isHexString";
 export * from "./isNumber";

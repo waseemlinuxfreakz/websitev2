@@ -52,8 +52,8 @@ export default function useBridgeAccounts() {
             ? "TON"
             : solanaChains.includes(ChainNameToTypeChainName[bridge.fromChain])
                 ? "SOLANA"
-                : isEvmActive 
-                    ? "EVM" 
+                : isEvmActive
+                    ? "EVM"
                     : "INACTIVE";
 
         setFromNetwork(network);
@@ -90,7 +90,15 @@ export default function useBridgeAccounts() {
                 break;
         }
 
-    }, [bridge.fromChain, evmAccount, solanaWallet, tonAddress, isEvmActive, isSolanaActive, isTonConnected]);
+    }, [
+        bridge.fromChain,
+        evmAccount,
+        solanaWallet,
+        tonAddress,
+        isEvmActive,
+        isSolanaActive,
+        isTonConnected
+    ]);
 
     useEffect(() => { //    T O   C H A I N
 
@@ -136,18 +144,25 @@ export default function useBridgeAccounts() {
                 break;
         }
 
-    }, [bridge.toChain, evmAccount, solanaWallet, tonAddress, isEvmActive, isSolanaActive, isTonConnected]);
+    }, [bridge.toChain,
+        evmAccount,
+        solanaWallet,
+        tonAddress,
+        isEvmActive,
+        isSolanaActive,
+        isTonConnected
+    ]);
 
-    return { 
-        fromAddress, 
-        evmAccount, 
-        solanaWallet, 
-        tonAddress, 
-        destAddress, 
-        isEvmActive, 
-        isSolanaActive, 
-        isTonConnected, 
-        fromNetwork, 
+    return {
+        fromAddress,
+        evmAccount,
+        solanaWallet,
+        tonAddress,
+        destAddress,
+        isEvmActive,
+        isSolanaActive,
+        isTonConnected,
+        fromNetwork,
         toNetwork
     }
 
