@@ -63,6 +63,14 @@ const chains = [
     requiresApproval: true,
     nativeCurrency: { name: "ONLY", symbol: "ONLY", decimals: 18 },
   },
+  {
+    id: 65534,
+    name: "TON",
+    icon: "img/chain/ton.png",
+    domain: 65534,
+    requiresApproval: false,
+    nativeCurrency: { name: "TON", symbol: "TON", decimals: 9 },
+  },
 ] as const;
 
 export type LockAndMintSupportedChainIDs = (typeof chains)[number]["domain"];
