@@ -17,7 +17,12 @@ import { useTonWallet } from "@tonconnect/ui-react";
 function MainActionButton() {
   const dispatch = useAppDispatch();
   const bridge = useAppSelector((state) => state.bridge);
-  const { coinBalance, fromBalance } = useBalance();
+  const { coinBalance, fromBalance, toBalance } = useBalance();
+  console.log(
+    "coinBalance", coinBalance,
+    "fromBalance", fromBalance,
+    "toBalance", toBalance,
+  )
 
   const { isConnected } = useAccount();
   const wallet = useTonWallet();

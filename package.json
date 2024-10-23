@@ -22,7 +22,7 @@
     "axios": "^1.6.8",
     "bootstrap": "^5.3.2",
     "buffer": "^6.0.3",
-    "emmet.js": "git+https://github.com/Emmet-Finance/emmet.sdk.v3#f5132bfb56161a84ed28c680e626416b783f21fb",
+    "emmet.js": "git+https://github.com/Emmet-Finance/emmet.sdk.v3#3d6073e1664b8f6c485e592672cabab9621fe841",
     "emmet.sdk": "^0.1.17",
     "ethers": "^6.12.0",
     "mdb-react-ui-kit": "^7.0.0",

@@ -10,6 +10,7 @@ export default function TokenswitchButton() {
   const dispatch = useAppDispatch();
 
   const handleSwitchButtonClick = () => {
+    console.log("Switch button clicked")
     const fromToken = swap.fromToken;
     const toToken = swap.toToken;
     dispatch(setFromToken(toToken));

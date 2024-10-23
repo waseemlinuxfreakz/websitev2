@@ -40,5 +40,11 @@
     "name": "USDT",
     "icon": "img/coin/usdt.svg",
     "price": 1
+  },
+  {
+    "cmc_id":1,
+    "name":"TON",
+    "icon":"img/coin/ton.svg",
+    "price":5.2
   }
 ]

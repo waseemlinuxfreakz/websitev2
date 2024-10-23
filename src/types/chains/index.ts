@@ -109,7 +109,7 @@ export const ChainNameToTypeChainName: { [key: string]: TChainName } = {
   Ethereum: "ethereum",
   Optimism: "optimism",
   Polygon: "polygon",
-  Ton: "ton",
+  TON: "ton",
   BSC: "bsc",
   // Testnets:
   ArbSepolia: "arbitrumSepolia",

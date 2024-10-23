@@ -46,6 +46,7 @@ export function filterToChains(
  * @returns an array of yet unsellected tokens
  */
 export function filterTwoTokens(name1: string, name2: string): TokenType[] {
+  console.log(coinsData)
   return coinsData.filter(
     (token: TokenType) => token.name != name1 && token.name != name2,
   );

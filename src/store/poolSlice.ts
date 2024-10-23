@@ -32,11 +32,12 @@ const token = coinsData[0].name;
 export const CHAIN_TO_TOKENS = {
   Avalanche:["EMMET"],
   Polygon: ["EMMET"],
-  TONTestnet: ["USDC", "TON"],
-  Sepolia: ["USDC"],
-  Amoy: ["USDC"],
-  Bartio: ["USDC"],
-  OnlyTestnet: ["USDC"],
+  TON: ["TON"],
+  // TONTestnet: ["USDC", "TON"],
+  // Sepolia: ["USDC"],
+  // Amoy: ["USDC"],
+  // Bartio: ["USDC"],
+  // OnlyTestnet: ["USDC"],
 };
 
 const initialState = {

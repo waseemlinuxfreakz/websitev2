@@ -1,12 +1,17 @@
 [
   {
-    "id": 11155111,
-    "name": "Sepolia",
-    "icon": "img/chain/ethereum.svg"
+    "id":43114,
+    "name": "Avalanche",
+    "icon":"img/chain/avalanche.svg"
   },
   {
-    "id": 65535,
-    "name": "TONTestnet",
-    "icon": "img/chain/ton.svg"
+    "id":137,
+    "name": "Polygon",
+    "icon":"img/chain/polygon.svg"
+  },
+  {
+    "id":65534,
+    "name": "TON",
+    "icon":"img/chain/ton.svg"
   }
 ]

@@ -5,17 +5,17 @@ export const BridgeTokens = [
   //   "icon": "img/coin/eurc.svg",
   //   "price": 2062.25
   // },
-  {
-    cmc_id: 3408,
-    name: "USDC",
-    icon: "img/coin/usdc.svg",
-    price: 0.9998,
-  },
+  // {
+  //   cmc_id: 3408,
+  //   name: "USDC",
+  //   icon: "img/coin/usdc.svg",
+  //   price: 0.9998,
+  // },
   {
     cmc_id: 11419,
     name: "TON",
     icon: "img/chain/ton.svg",
-    price: 7.09,
+    price: 5.09,
   },
   // {
   //   cmc_id: 1027,
@@ -77,56 +77,63 @@ export const CHAIN_TO_TOKENS = {
   // Mainnets
   Avalanche: ["EMMET"],
   Polygon: ["EMMET"],
+  TON: ["TON"],
   // Testnets
-  TONTestnet: ["USDC", "TON", "TRT", "$CAVI"],
-  Amoy: ["USDC", "TON", "DAI", "GrabClub"],
-  Sepolia: ["USDC", "TON", "DAI", "GrabClub", "TRT", "$CAVI"],
-  Bartio: ["USDC"],
-  OnlyTestnet: ["USDC"],
+  // TONTestnet: ["USDC", "TON", "TRT", "$CAVI"],
+  // Amoy: ["USDC", "TON", "DAI", "GrabClub"],
+  // Sepolia: ["USDC", "TON", "DAI", "GrabClub", "TRT", "$CAVI"],
+  // Bartio: ["USDC"],
+  // OnlyTestnet: ["USDC"],
 };
 
 export const CHAIN_TO_TOKENS_TREE = {
   // Mainnets
   Avalanche: {
     Polygon: ["EMMET"],
+    TON: ["TON"],
   },
   Polygon: {
     Avalanche: ["EMMET"],
+    TON: ["TON"],
+  },
+  TON: {
+    Avalanche: ["TON"],
+    Polygon: ["TON"]
   },
 
   // Testnets:
   // From chain
-  Amoy: {
-    // To chains
-    Bartio: [], // not set
-    OnlyTestnet: [],
-    Sepolia: ["DAI", "TON", "USDC"],
-    TONTestnet: ["TON", "USDC"],
-  },
-  Bartio: {
-    Amoy: [],
-    OnlyTestnet: [],
-    Sepolia: ["USDC"],
-    TONTestnet: [],
-  },
-  OnlyTestnet: {
-    Amoy: [],
-    Bartio: [],
-    Sepolia: [],
-    TONTestnet: [],
-  },
-  TONTestnet: {
-    Amoy: ["TON"],
-    Bartio: [],
-    OnlyTestnet: [],
-    Sepolia: ["$CAVI", "GrabClub", "USDC", "TON", "TRT"],
-  },
-  Sepolia: {
-    Amoy: ["DAI", "TON", "USDC"],
-    Bartio: ["USDC"],
-    OnlyTestnet: [],
-    TONTestnet: ["$CAVI", "GrabClub", "USDC", "TON", "TRT"],
-  },
+  // Amoy: {
+  //   // To chains
+  //   Bartio: [], // not set
+  //   OnlyTestnet: [],
+  //   Sepolia: ["DAI", "TON", "USDC"],
+  //   TONTestnet: ["TON", "USDC"],
+  // },
+  // Bartio: {
+  //   Amoy: [],
+  //   OnlyTestnet: [],
+  //   Sepolia: ["USDC"],
+  //   TONTestnet: [],
+  // },
+  // OnlyTestnet: {
+  //   Amoy: [],
+  //   Bartio: [],
+  //   Sepolia: [],
+  //   TONTestnet: [],
+  // },
+  // TONTestnet: {
+  //   Amoy: ["TON"],
+  //   Bartio: [],
+  //   OnlyTestnet: [],
+  //   Sepolia: ["$CAVI", "GrabClub", "USDC", "TON", "TRT"],
+  // },
+  // Sepolia: {
+  //   Amoy: ["DAI", "TON", "USDC"],
+  //   Bartio: ["USDC"],
+  //   OnlyTestnet: [],
+  //   TONTestnet: ["$CAVI", "GrabClub", "USDC", "TON", "TRT"],
+  // },
 };
 
 export const TOKEN_DECIMALS = {

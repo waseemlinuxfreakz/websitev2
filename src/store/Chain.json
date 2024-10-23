@@ -30,6 +30,11 @@
     "icon": "img/chain/base.svg"
   },
   {
+    "id": 65534,
+    "name": "TON",
+    "icon": "img/chain/ton.svg"
+  },
+  {
     "id": 65535,
     "name": "TONTestnet",
     "icon": "img/chain/ton.svg"

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSwitchChain } from "wagmi";
 import "./TokenSwitchButton.css";
 import SwitchBtn from "../../../assets/img/Switch-button.svg";
@@ -8,7 +8,6 @@ import {
   swapBridgeChainsAndTokens,
 } from "../../../store/bridgeSlice";
 import { getChainidByName } from "../../../utils/filters";
-import { CHAIN_ID_TO_NAME, CHAIN_NAME_TO_ID } from "../../../types";
 
 export default function TokenswitchButton() {
   const bridge = useAppSelector((state) => state.bridge);
@@ -38,6 +37,7 @@ export default function TokenswitchButton() {
   const { switchChain } = useSwitchChain();
 
   const handleSwitchButtonClick = async () => {
+    
     try {
       // 1. Get the target chain ID
       const id = getChainidByName(bridge.toChain);

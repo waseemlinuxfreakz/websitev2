@@ -213,7 +213,7 @@ const DisconnectTonModal = ({ alertIsOpen, setAlertIsOpen }) => {
             </svg>
           </button>
         </div>
-        <div>Do you want to disconnect Ton Wallet?</div>
+        <div>Do you want to disconnect TON Wallet?</div>
         <button
           className="disconnectTonButton"
           onClick={() => tonConnectUi[0].disconnect() && setAlertIsOpen(false)}

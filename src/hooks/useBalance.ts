@@ -26,6 +26,7 @@ export default function useBalance() {
 
   async function getCoinBalance(direction: TDirection) {
     try {
+      
       const handler =
         direction === "from"
           ? await chainFactory.inner(
@@ -42,10 +43,14 @@ export default function useBalance() {
             );
       const addr =
         direction === "from" ? bridge.senderAddress : bridge.receiver;
+      console.log("getCoinBalance: addr", addr)
 
       // if (addr) {
 
       const bal = await handler?.balance(addr);
+
+      console.log("getCoinBalance:", bal)
+
       // }
 
       if (bal) {
@@ -133,11 +138,15 @@ export default function useBalance() {
   ]);
 
   useEffect(() => {
-    // console.log({ toChain: bridge.toChain });
+    console.log({ 
+      toChain: bridge.toChain,
+      toToken: bridge.toToken,
+      to: bridge.receiver
+    });
     setBalanceTo(0);
     if (bridge.receiver && bridge.toChain && bridge.toToken) {
       const chain = SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.toChain]];
-
+      
       (async () => {
         let bal = 0;
         if (bridge.fromChain !== bridge.toChain) {
@@ -163,7 +172,7 @@ export default function useBalance() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     bridge.toChain,
-    // bridge.fromToken,
+    bridge.amount,
     bridge.toToken,
     // bridge.senderAddress,
     bridge.receiver,
