@@ -14,6 +14,7 @@ import {
   setBridgeToHash,
   setBridgeReceive,
 } from "../../../store/bridgeSlice";
+import { TOKEN_DECIMALS } from "../../../types/tokens";
 
 function TransactionProgress() {
   const Success = "../img/transfer-progress/Success-Serpantine.svg";
@@ -51,7 +52,7 @@ function TransactionProgress() {
   useEffect(() => {
 
     if (txData.receivedAmount) {
-      dispatch(setBridgeReceive((Number(txData.receivedAmount.toString()) / 10 ** 18)))
+      dispatch(setBridgeReceive((Number(txData.receivedAmount.toString()) / 10 ** TOKEN_DECIMALS[bridge.toToken])))
     }
 
   }, [txData.txHash])
