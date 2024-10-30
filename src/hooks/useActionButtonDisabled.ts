@@ -13,7 +13,7 @@ export default function useActionButtonDiabled(parent: TParentType) {
 
   const bridge = useAppSelector((state) => state.bridge);
   const swap = useAppSelector((state) => state.swap);
-  const slice = parent == "bridge" ? bridge : swap;
+  const slice = parent === "bridge" ? bridge : swap;
 
   const [isDisabled, setIsDisabled] = useState(false);
 

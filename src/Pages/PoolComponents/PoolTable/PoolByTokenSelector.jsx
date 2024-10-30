@@ -26,7 +26,7 @@ export default function PoolByTokenSelector({ type }) {
   }
 
   function isLP() {
-    return type && type == "LP" ? true : false;
+    return type && type === "LP" ? true : false;
   }
 
   const [isListVisible, setListVisible] = useState(false);

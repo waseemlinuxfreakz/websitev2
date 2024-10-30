@@ -28,7 +28,7 @@ export default function useExplorerTransactions(page: number) {
   };
 
   useEffect(() => {
-    if (txs.length == 0) {
+    if (txs.length === 0) {
       refresh();
     } else {
       interval = setInterval(async () => {

@@ -32,7 +32,10 @@ const SwapContainerMenu = ({ parent }) => {
 
   const toggleBodyClass = () => {
     document.body.classList.remove("openmenu");
-    document.querySelector(".swapMenuContainer").classList.remove("openmenu");
+    if (modalRef.current) {
+      modalRef.current.classList.remove("openmenu");
+    }
+    // document.querySelector(".swapMenuContainer").classList.remove("openmenu");
   };
 
   useEffect(() => {

@@ -19,7 +19,7 @@ export default function TokenSelectionPayReceive({ type }) {
   }
 
   function getIsfrom() {
-    return type && type == "from" ? true : false;
+    return type && type === "from" ? true : false;
   }
 
   const [isListVisible, setListVisible] = useState(false);

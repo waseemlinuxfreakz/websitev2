@@ -69,7 +69,7 @@ export type TxDetails = {
   burnToken?: string; // the address of the transferred token
   mintRecipient?: string; // Receiver address
   destinationFee?: number;
-  destinationDomain: number; // Number 0-7, Ethereum == 0, Polygon == 7
+  destinationDomain: number; // Number 0-7, Ethereum === 0, Polygon === 7
   // Additional params
   originalDomain: number;
   originFee: number;

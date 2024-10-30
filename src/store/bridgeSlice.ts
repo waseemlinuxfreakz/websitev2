@@ -31,6 +31,7 @@ export interface IBridgeState {
   isReset: boolean;
   isRunning: boolean;
   isSuccess: boolean;
+  isSwapping: boolean;
   isTransferProgressVisible: boolean;
   receive: number | string;
   receiver: string;
@@ -77,6 +78,7 @@ const initialState = {
   isReset: false,
   isRunning: false,
   isSuccess: false,
+  isSwapping: false,
   isTransferProgressVisible: false,
   receive: "",
   receiver: "",
@@ -128,6 +130,9 @@ export const bridgeSlice = createSlice({
       state.isFailure = action.payload ? true : false;
     },
     setBridgeFromChain(state: IBridgeState, action: PayloadAction<string>) {
+
+      state.isSwapping = true;
+
       state.fromChain = action.payload;
 
       state.fromTokens = filterTokens(
@@ -153,6 +158,8 @@ export const bridgeSlice = createSlice({
       }
       state.fromChains = filterFromChains(state.fromChain, state.toChain);
       state.toChains = filterToChains(state.fromChain, state.toChain);
+
+      state.isSwapping = false;
     },
     setFromContractAddress(state: IBridgeState, action: PayloadAction<string>) {
       state.fromContractAddress = action.payload;
@@ -164,6 +171,9 @@ export const bridgeSlice = createSlice({
       state.bridgeFee = action.payload;
     },
     setBridgeFromToken(state: IBridgeState, action: PayloadAction<string>) {
+
+      state.isSwapping = true;
+
       state.fromToken = action.payload;
       // state.toToken = action.payload;
       state.fromTokens = filterTokens(
@@ -176,6 +186,8 @@ export const bridgeSlice = createSlice({
         state.fromChain,
         state.toChain,
       );
+
+      state.isSwapping = false;
     },
     setBridgeIsApproving(state: IBridgeState, action: PayloadAction<boolean>) {
       state.isApproving = action.payload;
@@ -208,7 +220,7 @@ export const bridgeSlice = createSlice({
     },
     setBridgeSlippage(state: IBridgeState, action: PayloadAction<number>) {
       // If we're bridging the same token
-      if (state.fromToken == state.toToken) {
+      if (state.fromToken === state.toToken) {
         state.slippage = 0;
         state.receive = state.amount;
       } else {
@@ -228,6 +240,8 @@ export const bridgeSlice = createSlice({
       state.timeElapsed = action.payload;
     },
     setBridgeToChain(state: IBridgeState, action: PayloadAction<string>) {
+      state.isSwapping = true;
+
       state.toChain = action.payload;
       state.fromChains = filterFromChains(state.fromChain, state.toChain);
       state.toChains = filterToChains(state.fromChain, state.toChain);
@@ -241,6 +255,9 @@ export const bridgeSlice = createSlice({
         state.fromChain,
         state.toChain,
       );
+
+      state.isSwapping = false;
+
     },
     setBridgeToBalance(state: IBridgeState, action: PayloadAction<number>) {
       state.toBalance = action.payload;
@@ -249,6 +266,8 @@ export const bridgeSlice = createSlice({
       state.toHash = action.payload;
     },
     setBridgeToToken(state: IBridgeState, action: PayloadAction<string>) {
+      state.isSwapping = true;
+
       state.toToken = action.payload;
       // state.fromToken = action.payload;
       state.fromTokens = filterTokens(
@@ -261,6 +280,8 @@ export const bridgeSlice = createSlice({
         state.fromChain,
         state.toChain,
       );
+
+      state.isSwapping = false;
     },
     setSenderAddress(state: IBridgeState, action: PayloadAction<string>) {
       state.senderAddress = action.payload;
@@ -283,12 +304,16 @@ export const bridgeSlice = createSlice({
         toToken: string;
       }>,
     ) {
+      state.isSwapping = true;
+
       state.fromChain = action.payload.fromChain;
       state.toChain = action.payload.toChain;
       state.fromToken = action.payload.fromToken;
       state.toToken = action.payload.toToken;
       state.fromChains = filterFromChains(state.fromChain, state.toChain);
       state.toChains = filterToChains(state.fromChain, state.toChain);
+
+      state.isSwapping = false;
     },
     resetBridgeProgress(state: IBridgeState) {
       state.isTransferProgressVisible = false;
@@ -314,7 +339,7 @@ export const bridgeSlice = createSlice({
       state.receive = action.payload;
     },
   },
-  extraReducers(builder: any) {},
+  extraReducers(builder: any) { },
 });
 
 export const {

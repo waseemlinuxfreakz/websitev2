@@ -19,16 +19,16 @@ export default function TokenSelectionDropdown({ type }) {
   const dispatch = useAppDispatch();
 
   function getIcon(tokenName) {
-    const selTkn = swap.tokens.find((t) => t.name == tokenName);
+    const selTkn = swap.tokens.find((t) => t.name === tokenName);
     return selTkn ? `${isLP() ? "../" : ""}${selTkn.icon}` : "";
   }
 
   function getIsfrom() {
-    return type && type == "from" ? true : false;
+    return type && type === "from" ? true : false;
   }
 
   function isLP() {
-    return type && type == "LP" ? true : false;
+    return type && type === "LP" ? true : false;
   }
 
   const [isListVisible, setListVisible] = useState(false);

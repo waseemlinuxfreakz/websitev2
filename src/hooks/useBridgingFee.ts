@@ -62,8 +62,8 @@ export default function useBridgingFee(
       fromChain && // we have the chain name
       // BUT
       !fromFee && // Original fee is 0.00
-      (fromStatus == "pending" || // Transaction has not resolved
-        fromStatus == undefined) // No status received
+      (fromStatus === "pending" || // Transaction has not resolved
+        fromStatus === undefined) // No status received
     ) {
       (async () => {
         const receipt = await getTxData(fromHash, fromChain);
@@ -89,7 +89,7 @@ export default function useBridgingFee(
 
   useEffect(() => {
     if (fromStatus) {
-      if (fromStatus == "success") {
+      if (fromStatus === "success") {
         if (toStatus) {
           setCommonStatus(toStatus);
         }

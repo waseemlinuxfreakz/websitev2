@@ -9,7 +9,7 @@ import { setSwapDeadline, setSwapSlippage } from "../../../store/swapSlice";
 export default function SlippagePopUp({ parent }) {
   const InfoIcon = "/img/transfer-progress/InfoIcon.svg";
 
-  // ========== COMMON ==========
+  // ============ COMMON ============
 
   const dispatch = useAppDispatch();
   const bridge = useAppSelector((state) => state.bridge);
@@ -31,7 +31,7 @@ export default function SlippagePopUp({ parent }) {
   const [selected10, setSelected10] = useState(false);
   const [customSlippage, setCustomSlippage] = useState("");
 
-  // ========== SLIPPAGE ==========
+  // ============ SLIPPAGE ============
 
   function setSelected(_01, _05, _10) {
     setSelected01(_01);
@@ -91,7 +91,7 @@ export default function SlippagePopUp({ parent }) {
     }
   }
 
-  // ========== DEADLINE ==========
+  // ============ DEADLINE ============
 
   const [deadline5min, setDeadline5min] = useState(false);
   const [deadline10min, setDeadline10min] = useState(false);

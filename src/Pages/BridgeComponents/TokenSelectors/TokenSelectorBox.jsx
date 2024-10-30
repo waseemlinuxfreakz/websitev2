@@ -73,7 +73,7 @@ export default function TokenSelectorBox({ type }) {
   }, [amount]);
 
   function isFromType() {
-    return type && type == "from";
+    return type && type === "from";
   }
 
   return (

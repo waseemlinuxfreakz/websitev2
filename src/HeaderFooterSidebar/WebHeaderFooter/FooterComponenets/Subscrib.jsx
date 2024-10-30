@@ -14,7 +14,7 @@ function Subscribe() {
     const rawInput = e.target.value;
     const sanitized = rawInput.replace(/[^a-zA-Z0-9@._-]/g, "");
     setValue(sanitized);
-    if (isValidEmail(sanitized) || sanitized == "") {
+    if (isValidEmail(sanitized) || sanitized === "") {
       setIsValid(true);
     } else {
       setIsValid(false);
