@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Wallet from "../assets/img/Wallet.svg";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { useAccount } from "wagmi";
 import { isMobile } from "react-device-detect";
@@ -12,16 +11,16 @@ import { useAppSelector, useAppDispatch } from "../hooks/storage";
 import { setSenderAddress } from "../store/bridgeSlice";
 import TonIcon from "../assets/img/ton.svg";
 import WalletConnectIcon from "../assets/img/wallet-connect.svg";
-import SolanaIcon from "../assets/img/solana.svg";
+// import SolanaIcon from "../assets/img/solana.svg";
 import {
-  useConnection as useSolanaConnection,
+  // useConnection as useSolanaConnection,
   useWallet as useSolanaWallet,
 } from "@solana/wallet-adapter-react";
-import {
-  WalletDisconnectButton,
-  WalletMultiButton,
-  useWalletModal as useSolanaWalletModal,
-} from "@solana/wallet-adapter-react-ui";
+// import {
+//   WalletDisconnectButton,
+//   WalletMultiButton,
+//   useWalletModal as useSolanaWalletModal,
+// } from "@solana/wallet-adapter-react-ui";
 
 import Modal from "react-modal";
 
@@ -36,7 +35,7 @@ export default function ConnectWalletModal({ modalIsOpen, setModalIsOpen }) {
     close: closeTonModal,
   } = useTonConnectModal();
 
-  const solanaWalletModal = useSolanaWalletModal();
+  // const solanaWalletModal = useSolanaWalletModal();
   const solanaWallet = useSolanaWallet();
 
   const bridge = useAppSelector((state) => state.bridge);
