@@ -1,35 +1,29 @@
 import { useEffect, useState } from "react";
 import { useAppSelector } from "./storage";
 import { Transaction } from "emmet.js/dist/factory/types";
-import { chainFactory } from "../store/chainFactory";
-import { CHAIN_NAME_TO_INNER_ID, TChainName } from "emmet.js/dist/factory/types/constants";
-import { Chain } from "emmet.js/dist/factory/types"
-import { ValueOf } from "viem";
 import { Web3Helper } from "emmet.js/dist/chains/web3";
 import { CrossChainTransaction } from "@emmet-contracts/web3/dist/contracts/consensus/Consensus";
-import { ReceiveParams } from "emmet.js";
+import { ccmHashByOriginalHash, getConsensus, ReceiveParams, getTransaction } from "emmet.js";
 
 export default function useCircleTxData() {
 
   const bridge = useAppSelector((state) => state.bridge);
 
   function convertCCTStructToTx(
-    cctStruct: CrossChainTransaction.CCTStructOutput,
-    helper: Web3Helper
+    cctStruct: CrossChainTransaction.CCTStructOutput & { decoded?: ReceiveParams },
   ): Transaction {
-    const parsed: ReceiveParams = helper.parseCallData(cctStruct.data) as ReceiveParams;
 
     const tx: Transaction = {
       txHash: cctStruct.txHash,
-      sentAmount: parsed.sentAmount,
-      receivedAmount: parsed.receiveAmount,
-      fromToken: parsed.fromToken,
-      toToken: parsed.toToken,
+      sentAmount: cctStruct.decoded?.sentAmount,
+      receivedAmount: cctStruct.decoded?.receiveAmount,
+      fromToken: cctStruct.decoded?.fromToken,
+      toToken: cctStruct.decoded?.toToken,
       originalHash: cctStruct.originalHash,
       destinationHash: cctStruct.destinationHash,
       started: cctStruct.started,
       finished: cctStruct.finished,
-      recipient: parsed.to,
+      recipient: cctStruct.decoded?.to,
     } as Transaction;
 
     return tx;
@@ -39,8 +33,8 @@ export default function useCircleTxData() {
     txHash: "",
     sentAmount: BigInt(0),
     receivedAmount: BigInt(0),
-    fromToken: "EMMET",
-    toToken: "EMMET",
+    fromToken: "",
+    toToken: "",
     destinationHash: "",
     originalHash: "",
     fromChainId: BigInt(0),
@@ -65,18 +59,14 @@ export default function useCircleTxData() {
 
       if (hash) {
 
-        const chainId = CHAIN_NAME_TO_INNER_ID[bridge.fromChain.toLowerCase() as TChainName] as any;
+        const consensus = await getConsensus();
 
-        const fromChainHelper = await chainFactory.inner(chainId)
+        const ccmHash: string = await ccmHashByOriginalHash(consensus, hash, 100n);
 
-        const ccmHash = await fromChainHelper.emmetHashFromtx(hash);
-
-        const polygon: Web3Helper = await chainFactory.inner(Chain.POLYGON);
-
-        const ccmTX: CrossChainTransaction.CCTStructOutput = await polygon.getConsensusTransaction(ccmHash) as CrossChainTransaction.CCTStructOutput;
+        const ccmTX: CrossChainTransaction.CCTStructOutput & { decoded?: ReceiveParams } = await getTransaction(consensus, ccmHash);
 
         if (ccmTX) {
-          setTxData(convertCCTStructToTx(ccmTX, polygon));
+          setTxData(convertCCTStructToTx(ccmTX));
         }
       }
     } catch (error) {
@@ -87,16 +77,16 @@ export default function useCircleTxData() {
   }
 
   useEffect(() => {
-    if (bridge.toHash.length == 0) {
+    if (bridge.toHash.length === 0) {
 
       interval = setInterval(() => {
         fetchData();
       }, 6_000);
-  
+
       return () => clearInterval(interval);
     }
-    
-  }, [bridge.toHash]);
+
+  }, [bridge.fromHash, bridge.toHash]);
 
   return [{ txData, isLoading, isError }, setHash];
 }
