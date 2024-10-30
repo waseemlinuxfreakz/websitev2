@@ -14,6 +14,10 @@ import {
 } from "../store/bridgeSlice";
 import { chainFactory } from "../store/chainFactory";
 import { Web3Helper } from "emmet.js/dist/chains/web3";
+import { Chain } from "viem";
+import { sleep } from "../utils";
+import { TChainName } from "emmet.js";
+import { TonHelper } from "emmet.js/dist/chains/ton";
 
 type TDirection = "from" | "to";
 
@@ -26,146 +30,154 @@ export default function useBalance() {
 
   async function getCoinBalance(direction: TDirection) {
     try {
-      
+
       const handler =
         direction === "from"
           ? await chainFactory.inner(
-              // @ts-ignore
-              ChainToDestinationDomain[
-                ChainNameToTypeChainName[bridge.fromChain]
-              ],
-            )
+            // @ts-ignore
+            ChainToDestinationDomain[
+            ChainNameToTypeChainName[bridge.fromChain]
+            ],
+          )
           : await chainFactory.inner(
-              // @ts-ignore
-              ChainToDestinationDomain[
-                ChainNameToTypeChainName[bridge.toChain]
-              ],
-            );
+            // @ts-ignore
+            ChainToDestinationDomain[
+            ChainNameToTypeChainName[bridge.toChain]
+            ],
+          );
       const addr =
         direction === "from" ? bridge.senderAddress : bridge.receiver;
       console.log("getCoinBalance: addr", addr)
-
-      // if (addr) {
 
       const bal = await handler?.balance(addr);
 
       console.log("getCoinBalance:", bal)
 
-      // }
+      if (bal) {
+        return Number(bal);
+      }
+
+    } catch (error) {
+      console.error("useBalance:getCoinBalance", error);
+      // await sleep(1000);
+      // return await getCoinBalance(direction);
+    }
+
+    return 0;
+  }
+
+  async function getTokenBalance(direction: TDirection) {
+    try {
+
+      const addr = direction === "from" 
+        ? bridge.senderAddress 
+        : bridge.receiver;
+
+      const chainName: string = direction === "from"
+        ? bridge.fromChain
+        : bridge.toChain;
+
+      const tokenName: string = direction === "from"
+        ? bridge.fromToken 
+        : bridge.toToken;
+
+      const handler: Web3Helper | TonHelper = await chainFactory.inner(
+        // @ts-ignore
+        ChainToDestinationDomain[
+          ChainNameToTypeChainName[chainName]
+        ]
+      );
+
+      console.log("getTokenBalance:", "addr", addr, "chainName", chainName, "tokenName", tokenName)
+
+      const tokenAddress: string = (
+        await handler.token(tokenName)
+      ).token;
+
+      const bal = await handler.tokenBalance(tokenAddress, addr);
 
       if (bal) {
         return Number(bal);
       }
-      return 0;
+
     } catch (error) {
       console.error("useBalance:getTokenBalance", error);
-      return 0;
+      // await sleep(1000);
+      // return await getTokenBalance(direction);
     }
-  }
 
-  async function getTokenBalance(direction: TDirection) {
-    const handler =
-      direction === "from"
-        ? await chainFactory.inner(
-            // @ts-ignore
-            ChainToDestinationDomain[
-              ChainNameToTypeChainName[bridge.fromChain]
-            ],
-          )
-        : await chainFactory.inner(
-            // @ts-ignore
-            ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]],
-          );
-    //TODO: Remove Web3Helper type assertion after SDK supports for TON.
-
-    const tokenAddress: string = (
-      await (handler as Web3Helper).token(bridge.toToken)
-    ).token;
-
-    const addr = direction === "from" ? bridge.senderAddress : bridge.receiver;
-
-    const bal = await handler.tokenBalance(tokenAddress, addr);
-
-    // console.log({
-    //   chain: direction === "from" ? bridge.fromChain : bridge.toChain,
-    //   bal: Number(bal) / 1e6,
-    // });
-
-    if (bal) {
-      return Number(bal);
-    }
     return 0;
+
   }
 
-  useEffect(() => {
-    setBalance(0);
-    const chain = SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.fromChain]];
+  /**
+   * Requests for coin | token balance
+   * @param direction "from" | "to"
+   * @param chain a Viem compatible chain class
+   */
+  async function readBalance(direction: TDirection, chainName: TChainName) {
 
-    // (async () => {
-    //   const coinBalance: number = await getCoinBalance("from");
-    //   const formattedBalance = coinBalance / 10 ** decimals;
-    //   if (formattedBalance) {
-    //     setTxFeeCoinbalance(formattedBalance);
-    //   }
-    // })();
-    if (bridge.fromChain && bridge.fromToken && bridge.senderAddress)
+    const chain = SUPPORTED_CHAINS[ChainNameToTypeChainName[chainName]];
+
+    let bal = 0;
+    const tokenName: string = direction === "from" ? bridge.fromToken : bridge.toToken;
+
+    console.log("tokenName", tokenName, "chain.nativeCurrency.symbol", chain.nativeCurrency.symbol)
+
+    if (tokenName === chain.nativeCurrency.symbol) {
+      bal = await getCoinBalance(direction);
+    } else {
+      bal = await getTokenBalance(direction);
+    }
+    const fmb =
+      bal / 10 ** Number(TOKEN_DECIMALS[tokenName as TTokenName]);
+    const formattedBalance = Number(fmb);
+
+    if (direction === "from") {
+      dispatch(setBridgeBalance(formattedBalance));
+      setBalance(formattedBalance);
+    } else {
+      dispatch(setBridgeToBalance(formattedBalance));
+      setBalanceTo(formattedBalance);
+    }
+
+    dispatch(setBridgeError(""));
+
+  }
+
+  useEffect(() => { // ORIGIN BALANCE
+    setBalance(0);
+
+
+    if (bridge.fromChain && bridge.fromToken && bridge.senderAddress && !bridge.isSwapping)
       (async () => {
-        let bal = 0;
-        if (bridge.fromToken === chain.nativeCurrency.symbol) {
-          bal = await getCoinBalance("from");
-        } else {
-          bal = await getTokenBalance("from");
-        }
-        const fmb =
-          bal / 10 ** Number(TOKEN_DECIMALS[bridge.fromToken as TTokenName]);
-        const formattedBalance = Number(fmb);
-        // console.log({ fromChain: bridge.fromChain, formattedBalance });
-        setBalance(formattedBalance);
-        dispatch(setBridgeBalance(formattedBalance));
-        dispatch(setBridgeError(""));
-      })().catch((e) => {
+        await readBalance("from", bridge.fromChain as TChainName);
+      })().catch(async (e) => {
         const formattedError = `useCoinBalanceFrom:Error: ${e}`;
         console.error(formattedError);
+        await sleep(1000);
+        await readBalance("from", bridge.fromChain as TChainName);
         dispatch(setBridgeError(formattedError));
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     bridge.fromChain,
     bridge.fromToken,
-    // bridge.toToken,
+    bridge.amount,
     bridge.senderAddress,
-    // bridge.receiver,
+    bridge.isSwapping
   ]);
 
-  useEffect(() => {
-    console.log({ 
-      toChain: bridge.toChain,
-      toToken: bridge.toToken,
-      to: bridge.receiver
-    });
+  useEffect(() => { // DESTINATION BALANCE
     setBalanceTo(0);
-    if (bridge.receiver && bridge.toChain && bridge.toToken) {
-      const chain = SUPPORTED_CHAINS[ChainNameToTypeChainName[bridge.toChain]];
-      
+    if (bridge.receiver && bridge.toChain && bridge.toToken && !bridge.isSwapping) {
+
       (async () => {
-        let bal = 0;
-        if (bridge.fromChain !== bridge.toChain) {
-          if (bridge.toToken === chain.nativeCurrency.symbol) {
-            bal = await getCoinBalance("to");
-          } else {
-            bal = await getTokenBalance("to");
-          }
-          const fmb =
-            bal / 10 ** Number(TOKEN_DECIMALS[bridge.toToken as TTokenName]);
-          const formattedBalance = Number(fmb);
-          // console.log({ toChain: bridge.toChain, formattedBalance });
-          setBalanceTo(formattedBalance);
-          dispatch(setBridgeBalance(formattedBalance));
-          dispatch(setBridgeError(""));
-        }
-      })().catch((e) => {
-        const formattedError = `useCoinBalanceFrom:Error: ${e}`;
+        await readBalance("to", bridge.toChain as TChainName);
+      })().catch(async (e) => {
+        const formattedError = `useCoinBalanceTo:Error: ${e}`;
         console.error(formattedError);
+        await sleep(1000);
         dispatch(setBridgeError(formattedError));
       });
     }
@@ -174,8 +186,8 @@ export default function useBalance() {
     bridge.toChain,
     bridge.amount,
     bridge.toToken,
-    // bridge.senderAddress,
     bridge.receiver,
+    bridge.isSwapping
   ]);
 
   return {
