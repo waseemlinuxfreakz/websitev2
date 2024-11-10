@@ -8,21 +8,18 @@ import useBridgeAccounts from "../../hooks/useBridgeAccounts";
 function WalletAddress() {
   const showDigits = isMobile ? 10 : 14;
   const dispatch = useAppDispatch();
+  const bridge = useAppSelector((state) => state.bridge);
 
   const { 
     evmAccount, 
     solanaWallet, 
     tonAddress, 
-    destAddress, 
-    isEvmActive, 
-    isSolanaActive, 
-    isTonConnected, 
-    toNetwork
+    toProtocol
    } = useBridgeAccounts();
 
   //  L O C A L  S T O R A G E
   const [invalidAddress, setInvalidAddress] = useState(false);
-  const [showAddress, setShowAddress] = useState(truncateAddress(destAddress, showDigits, showDigits));
+  const [showAddress, setShowAddress] = useState(truncateAddress(bridge.receiver, showDigits, showDigits));
   const [isChangeVisible, setIsChangeVisivle] = useState(true);
 
   function setEmptyReceiver() {
@@ -31,51 +28,20 @@ function WalletAddress() {
   }
 
   useEffect(() => { // SET DESTINATION ADDRESS DISPLAY
-    if (destAddress) {
-      switch (toNetwork) {
-        case "TON":
-          if (isTonConnected) {
-            setShowAddress(truncateAddress(destAddress, showDigits, showDigits));
-            setIsChangeVisivle(true);
-          }
-          else {
-            setShowAddress("");
-            setIsChangeVisivle(false);
-          }
-          break;
-        case "SOLANA":
-          if (isSolanaActive) {
-            setShowAddress(truncateAddress(destAddress, showDigits, showDigits));
-            setIsChangeVisivle(true);
-          } else {
-            setShowAddress("");
-            setIsChangeVisivle(true);
-          }
-          break;
-        case "EVM":
-          if (isEvmActive) {
-            setShowAddress(truncateAddress(destAddress, showDigits, showDigits));
-            setIsChangeVisivle(true);
-          } else {
-            setShowAddress("");
-            setIsChangeVisivle(false);
-          }
-          break;
-        default:
-          setShowAddress("");
-          break;
-      }
+    if (bridge.receiver) {
+      setShowAddress(truncateAddress(bridge.receiver, showDigits, showDigits));
+      setIsChangeVisivle(true);
     }
 
-  }, [destAddress, isEvmActive, isSolanaActive, isTonConnected, toNetwork]);
+  }, [bridge.receiver,toProtocol]);
 
   function onChangeClickHandle(e) {
     e.preventDefault();
     const inputValue = e.target.value;
 
-    console.log("inputValue", inputValue, "isEvmAddress", isEvmAddress(inputValue), toNetwork)
+    console.log("inputValue", inputValue, "isEvmAddress", isEvmAddress(inputValue), toProtocol)
 
-    switch (toNetwork) {
+    switch (toProtocol) {
       case "TON":
         if (isValidTonAddress(inputValue)) {
           setInvalidAddress(false);
