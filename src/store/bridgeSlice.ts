@@ -1,10 +1,7 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "./store";
-import { BridgeTokens, BridgeFeeStructure } from "../types";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { BridgeTokens, TOKEN_TO_TOKEN } from "../types";
 import { TChainType, TokenType } from "./types";
 import {
-  filterTwoChains,
-  filterOneToken,
   filterFromChains,
   filterToChains,
   filterTokens,
@@ -159,6 +156,10 @@ export const bridgeSlice = createSlice({
       state.fromChains = filterFromChains(state.fromChain, state.toChain);
       state.toChains = filterToChains(state.fromChain, state.toChain);
 
+      // Set from Account
+
+      // Set to Account
+
       state.isSwapping = false;
     },
     setFromContractAddress(state: IBridgeState, action: PayloadAction<string>) {
@@ -186,6 +187,8 @@ export const bridgeSlice = createSlice({
         state.fromChain,
         state.toChain,
       );
+
+      state.toToken = TOKEN_TO_TOKEN[state.fromToken as keyof typeof TOKEN_TO_TOKEN][0];
 
       state.isSwapping = false;
     },
@@ -280,6 +283,8 @@ export const bridgeSlice = createSlice({
         state.fromChain,
         state.toChain,
       );
+
+      state.fromToken = TOKEN_TO_TOKEN[state.toToken as keyof typeof TOKEN_TO_TOKEN][0];
 
       state.isSwapping = false;
     },

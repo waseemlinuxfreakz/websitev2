@@ -46,7 +46,7 @@ export default function useBridgeTransferEmmet() {
         ChainToDestinationDomain[ChainNameToTypeChainName[bridge.toChain]];
       const mintRecipient = bridge.receiver;
 
-      const isPolygon: boolean = bridge.fromChain.toLowerCase() === 'polygon' 
+      const isPolygon: boolean = bridge.fromChain.toLowerCase() === 'polygon'
         || bridge.fromChain.toLowerCase() === 'polygonamoy';
 
       try {
@@ -66,6 +66,8 @@ export default function useBridgeTransferEmmet() {
             fromToken: bridge.fromToken,
             toToken: bridge.toToken,
             mintRecipient,
+            formattedFee,
+            fee,
           });
 
           const { hash } = await chainFactory.sendInstallment(
@@ -94,18 +96,22 @@ export default function useBridgeTransferEmmet() {
           )) as Web3Helper;
 
           console.log("PARAMS:", {
-            handler,
-            signer,
+            // handler,
+            // signer,
             amount: BigInt(Math.ceil(formattedAmount)),
             destinationDomain,
             fromToken: bridge.fromToken,
             toToken: bridge.toToken,
             mintRecipient,
             gas: {
-              value: protocolFeeInUSD 
-              ? isPolygon ? parseEther("1.44") : protocolFeeInUSD
-              : 1e10
+              value: isPolygon
+                ? fee ? BigInt(fee + 1e17) : parseEther("1.2")
+                : fee ? BigInt(fee + 1e15) : parseEther("0.1")
             },
+            protocolFeeInUSD,
+            protocolFee,
+            fee,
+            isPolygon
           });
 
           const { hash } = await chainFactory.sendInstallment(
@@ -117,9 +123,10 @@ export default function useBridgeTransferEmmet() {
             bridge.toToken,
             mintRecipient,
             {
-              value: protocolFeeInUSD 
-              ? isPolygon ? parseEther("1.44") : protocolFeeInUSD
-              : 1e10
+              // value: isPolygon
+              // ? fee ? BigInt(fee + 1e17) : parseEther("1.2")
+              // : fee ? BigInt(fee + 1e15) : parseEther("0.1")
+              value: parseEther("1.2")
             },
           );
 

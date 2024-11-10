@@ -47,7 +47,6 @@ export default function TokenSelectionDropdown({ type }) {
   });
 
   useEffect(() => {
-    console.log({ fromToken: bridge.fromToken, toToken: bridge.toToken });
 
     setSelectedCoin({
       icon: getIsfrom() ? getIcon(bridge.fromToken) : getIcon(bridge.toToken),

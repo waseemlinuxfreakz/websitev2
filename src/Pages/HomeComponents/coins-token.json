@@ -22,5 +22,9 @@
   {
     "name": "DAI",
     "icon": "img/coin/dai.svg"
+  },
+  {
+    "name":"GrabClub",
+    "icon":"img/coin/grabclub.png"
   }
 ]

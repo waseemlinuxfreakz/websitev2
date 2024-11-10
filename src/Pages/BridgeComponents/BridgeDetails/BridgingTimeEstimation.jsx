@@ -22,8 +22,6 @@ export default function BridgingTimeEstimation() {
             ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]],
           );
 
-          console.log(bridge.fromChain, bridge.toChain, bridge.fromToken, bridge.toToken)
-
           const time = await handler.estimateTime(
             // eslint-disable-next-line no-undef
             BigInt(CHAIN_NAME_TO_ID[ChainNameToTypeChainName[bridge.toChain]]),

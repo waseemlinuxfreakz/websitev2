@@ -1,7 +1,6 @@
 [
   {
     "cmc_id": 1027,
-    "decimals":18,
     "name": "ETH",
     "icon": "img/coin/eth.svg",
     "price": 2062.25
@@ -15,37 +14,38 @@
   },
   {
     "cmc_id": 15489,
-    "decimals":18,
     "name": "SCRL",
     "icon": "img/coin/scoll.svg",
     "price": 0.000145
   },
   {
     "cmc_id": 3408,
-    "decimals":6,
     "name": "USDC",
     "icon": "img/coin/usdc.svg",
     "price": 0.9998
   },
   {
     "cmc_id": 4943,
-    "decimals":18,
     "name": "DAI",
     "icon": "img/coin/dai.svg",
     "price": 1
   },
   {
     "cmc_id": 825,
-    "decimals":6,
     "name": "USDT",
     "icon": "img/coin/usdt.svg",
     "price": 1
   },
   {
     "cmc_id":1,
-    "decimals":9,
     "name":"TON",
     "icon":"img/coin/ton.svg",
     "price":5.2
+  },
+  {
+    "cmc_id":26960,
+    "name":"GrabClub",
+    "icon":"img/coin/grabclub.png",
+    "price":0.00003932
   }
 ]

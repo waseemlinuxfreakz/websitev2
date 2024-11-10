@@ -102,6 +102,7 @@ function MainActionButton() {
       setDisabled(false);
       setCaption("Connect wallet");
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     isConnected,
@@ -178,7 +179,7 @@ function MainActionButton() {
         onClick={onClickSelectAction}
       >
         {showSpinner && <ButtonSpinner />}
-        {caption}
+        {caption || "Enter amount"}
       </button>
       <ConnectWalletModal
         modalIsOpen={modalIsOpen}

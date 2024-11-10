@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 // Hooks
 import { useAccount } from "wagmi";
-import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { useAppSelector, useAppDispatch } from "../../hooks/storage";
 import useBridgeApproveERC20 from "../../hooks/useBridgeApproveERC20";
 import useBridgeTransferEmmet from "../../hooks/useBridgeTransferEmmet";
 import useBalance from "../../hooks/useBalance";
-import ReactGA, { set } from "react-ga";
+import ReactGA from "react-ga";
 // Components
 import ButtonSpinner from "../CommonComponents/Spinner/ButtonSpinner";
 // Actions
@@ -27,8 +26,6 @@ function MainActionButton() {
   const { isConnected } = useAccount();
   const wallet = useTonWallet();
 
-  const { open } = useWeb3Modal();
-
   const [disabled, setDisabled] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [caption, setCaption] = useState("Enter Amount");
@@ -45,37 +42,32 @@ function MainActionButton() {
   }
 
   useEffect(() => {
-    console.log("wallet", wallet.account);
+
     if (isConnected || wallet?.account) {
       if (!bridge.amount || Number(bridge.amount) <= 0) {
         setDisabled(true);
         setCaption("Enter Amount");
         setShowSpiner(false);
       }
-
       if (isApproveRequired()) {
         setDisabled(false);
         setCaption("Approve");
         setShowSpiner(false);
       }
-
       if (isApproveLoading) {
         setDisabled(true);
         setShowSpiner(true);
       }
-
       if (bridge.amount && !isApproveRequired()) {
         setDisabled(false);
         setCaption("Transfer");
         setShowSpiner(false);
       }
-
       if (fromBalance < bridge.amount) {
         setDisabled(true);
         setShowSpiner(false);
         setCaption("Amount exceeds the token balance");
       }
-
       if (isTransferProcessed) {
         setDisabled(true);
         setShowSpiner(true);
@@ -85,9 +77,12 @@ function MainActionButton() {
       setDisabled(false);
       setCaption("Connect wallet");
     }
+
   }, [
     isConnected,
     bridge.amount,
+    bridge.balance,
+    bridge.senderAddress,
     isApproveLoading,
     isTransferProcessed,
     wallet,
@@ -137,7 +132,7 @@ function MainActionButton() {
         onClick={onClickSelectAction}
       >
         {showSpinner && <ButtonSpinner />}
-        {caption}
+        {caption || "Enter amount"}
       </button>
       <ConnectWalletModal
         modalIsOpen={modalIsOpen}

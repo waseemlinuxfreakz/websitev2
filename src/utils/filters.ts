@@ -1,9 +1,10 @@
 // Mock Data
 import chainList from "../store/lockAndMintChain.json";
 import coinsData from "../store/coins.json";
-import { BridgeTokens, CHAIN_TO_TOKENS_TREE } from "../types/tokens";
+import { BridgeTokens, CHAIN_TO_TOKENS_TREE, TOKEN_TO_TOKEN, TSupportedChain } from "../types/tokens";
 import { TChainType, TokenType } from "../store/types";
 import { CHAIN_TO_TOKENS } from "../types";
+import { TChainName } from "emmet.js";
 
 /**
  * Used by the bridge to disable sending inside the same chain
@@ -27,16 +28,25 @@ export function filterFromChains(
 }
 
 export function filterToChains(
-  selectedFromChain: string,
-  selectedToChain: string,
+  selectedFromChain: TSupportedChain,
+  selectedToChain: TSupportedChain,
 ): TChainType[] {
-  return chainList.filter(
-    (chain: TChainType) =>
-      chain.name !== selectedFromChain &&
-      chain.name !== selectedToChain &&
-      // @ts-ignore
-      CHAIN_TO_TOKENS_TREE[selectedFromChain][chain.name].length,
-  );
+
+  const supportedDestinations = CHAIN_TO_TOKENS_TREE[selectedFromChain];
+
+  let destChains: TChainType[] = []
+
+  for (const chainKey of Object.keys(supportedDestinations)) {
+    const availableTokens: string[] = supportedDestinations[chainKey];
+    if (availableTokens.length > 0 && chainKey !== selectedFromChain) {
+
+      const foundChain: TChainType = chainList.filter((chain: TChainType) => chain.name === chainKey)[0]
+
+      destChains.push(foundChain);
+    }
+  }
+
+  return destChains;
 }
 
 /**
@@ -46,10 +56,10 @@ export function filterToChains(
  * @returns an array of yet unsellected tokens
  */
 export function filterTwoTokens(name1: string, name2: string): TokenType[] {
-  console.log(coinsData)
   return coinsData.filter(
-    (token: TokenType) => token.name != name1 && token.name != name2,
+    (token: TokenType) => token.name !== name1 && token.name !== name2,
   );
+
 }
 
 export function getSupportedTokens(fromChain: string, toChain: string) {
@@ -85,14 +95,13 @@ export function filterOneToken(
 
 export function filterTokens(
   selectedToken: string,
-  fromChain: string,
-  toChain: string,
+  fromChain: TSupportedChain,
+  toChain: TSupportedChain,
 ): TokenType[] {
   return BridgeTokens.filter(
     (token: TokenType) =>
       token.name !== selectedToken &&
-      //@ts-ignore
-      CHAIN_TO_TOKENS_TREE?.[fromChain]?.[toChain]?.includes(token.name),
+      CHAIN_TO_TOKENS_TREE?.[fromChain]?.[toChain]?.includes(token.name)
   );
 }
 

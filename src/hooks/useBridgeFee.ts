@@ -40,7 +40,7 @@ export default function useBridgeFee() {
 
       return _protocolFee;
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       // TODO: Fix this
       return BigInt(0);
     }
@@ -60,7 +60,7 @@ export default function useBridgeFee() {
 
       return parseInt(_protocolFeeInUSD.toString()) / 100;
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       // TODO: Fix this
       return 0;
     }
@@ -87,7 +87,7 @@ export default function useBridgeFee() {
 
       return Number(fee);
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       // TODO: Fix this
       return 0;
     }
