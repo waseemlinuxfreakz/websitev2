@@ -4,6 +4,7 @@ import {
   TOKEN_DECIMALS,
   TTokenName,
   ChainToDestinationDomain,
+  TDirection,
 } from "../types";
 import { useAppDispatch, useAppSelector } from "./storage";
 import { useState, useEffect } from "react";
@@ -14,16 +15,15 @@ import {
 } from "../store/bridgeSlice";
 import { chainFactory } from "../store/chainFactory";
 import { Web3Helper } from "emmet.js/dist/chains/web3";
-import { Chain } from "viem";
 import { sleep } from "../utils";
 import { TChainName } from "emmet.js";
 import { TonHelper } from "emmet.js/dist/chains/ton";
 
-type TDirection = "from" | "to";
-
 export default function useBalance() {
+
   const dispatch = useAppDispatch();
   const bridge = useAppSelector((state) => state.bridge);
+
   const [txFeeCoinBalance, setTxFeeCoinbalance] = useState<number>(0);
   const [balance, setBalance] = useState<number>(0);
   const [balanceTo, setBalanceTo] = useState<number>(0);
@@ -51,26 +51,20 @@ export default function useBalance() {
 
       const bal = await handler?.balance(addr);
 
-      console.log("getCoinBalance:", bal)
-
-      if (bal) {
-        return Number(bal);
-      }
+      return bal ? Number(bal) : 0;
 
     } catch (error) {
-      console.error("useBalance:getCoinBalance", error);
-      // await sleep(1000);
-      // return await getCoinBalance(direction);
+      // console.error("useBalance:getCoinBalance", error);
+      return 0;
     }
 
-    return 0;
   }
 
   async function getTokenBalance(direction: TDirection) {
     try {
 
-      const addr = direction === "from" 
-        ? bridge.senderAddress 
+      const addr = direction === "from"
+        ? bridge.senderAddress
         : bridge.receiver;
 
       const chainName: string = direction === "from"
@@ -78,35 +72,26 @@ export default function useBalance() {
         : bridge.toChain;
 
       const tokenName: string = direction === "from"
-        ? bridge.fromToken 
+        ? bridge.fromToken
         : bridge.toToken;
 
       const handler: Web3Helper | TonHelper = await chainFactory.inner(
         // @ts-ignore
         ChainToDestinationDomain[
-          ChainNameToTypeChainName[chainName]
+        ChainNameToTypeChainName[chainName]
         ]
       );
 
-      console.log("getTokenBalance:", "addr", addr, "chainName", chainName, "tokenName", tokenName)
-
-      const tokenAddress: string = (
-        await handler.token(tokenName)
-      ).token;
+      const tokenAddress: string = await handler.getTokenAddress(tokenName);
 
       const bal = await handler.tokenBalance(tokenAddress, addr);
 
-      if (bal) {
-        return Number(bal);
-      }
+      return Number(bal) || 0;
 
     } catch (error) {
-      console.error("useBalance:getTokenBalance", error);
-      // await sleep(1000);
-      // return await getTokenBalance(direction);
+      // console.error("useBalance:getTokenBalance", error);
+      return 0;
     }
-
-    return 0;
 
   }
 
@@ -118,20 +103,13 @@ export default function useBalance() {
   async function readBalance(direction: TDirection, chainName: TChainName) {
 
     const chain = SUPPORTED_CHAINS[ChainNameToTypeChainName[chainName]];
-
-    let bal = 0;
     const tokenName: string = direction === "from" ? bridge.fromToken : bridge.toToken;
 
-    console.log("tokenName", tokenName, "chain.nativeCurrency.symbol", chain.nativeCurrency.symbol)
+    const bal = tokenName === chain.nativeCurrency.symbol
+      ? await getCoinBalance(direction)
+      : await getTokenBalance(direction);
 
-    if (tokenName === chain.nativeCurrency.symbol) {
-      bal = await getCoinBalance(direction);
-    } else {
-      bal = await getTokenBalance(direction);
-    }
-    const fmb =
-      bal / 10 ** Number(TOKEN_DECIMALS[tokenName as TTokenName]);
-    const formattedBalance = Number(fmb);
+    const formattedBalance = bal / 10 ** TOKEN_DECIMALS[tokenName as TTokenName];
 
     if (direction === "from") {
       dispatch(setBridgeBalance(formattedBalance));
@@ -146,38 +124,35 @@ export default function useBalance() {
   }
 
   useEffect(() => { // ORIGIN BALANCE
-    setBalance(0);
-
-
-    if (bridge.fromChain && bridge.fromToken && bridge.senderAddress && !bridge.isSwapping)
+    // setBalance(0);
+    const { fromChain, fromToken, senderAddress, isSwapping } = bridge;
+    if (fromChain && fromToken && senderAddress && !isSwapping)
       (async () => {
-        await readBalance("from", bridge.fromChain as TChainName);
+        await readBalance("from", fromChain as TChainName);
       })().catch(async (e) => {
         const formattedError = `useCoinBalanceFrom:Error: ${e}`;
-        console.error(formattedError);
-        await sleep(1000);
-        await readBalance("from", bridge.fromChain as TChainName);
+        // console.error(formattedError);
         dispatch(setBridgeError(formattedError));
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     bridge.fromChain,
     bridge.fromToken,
+    bridge.toToken,
     bridge.amount,
     bridge.senderAddress,
     bridge.isSwapping
   ]);
 
   useEffect(() => { // DESTINATION BALANCE
-    setBalanceTo(0);
+    // setBalanceTo(0);
     if (bridge.receiver && bridge.toChain && bridge.toToken && !bridge.isSwapping) {
 
       (async () => {
         await readBalance("to", bridge.toChain as TChainName);
       })().catch(async (e) => {
         const formattedError = `useCoinBalanceTo:Error: ${e}`;
-        console.error(formattedError);
-        await sleep(1000);
+        // console.error(formattedError);
         dispatch(setBridgeError(formattedError));
       });
     }
@@ -185,6 +160,7 @@ export default function useBalance() {
   }, [
     bridge.toChain,
     bridge.amount,
+    bridge.fromToken,
     bridge.toToken,
     bridge.receiver,
     bridge.isSwapping
