@@ -3,7 +3,7 @@ import { useAccount } from "wagmi";
 import { useTonAddress } from "@tonconnect/ui-react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useAppDispatch, useAppSelector } from "./storage";
-import { ChainNameToTypeChainName, TNetwork } from "../types";
+import { ChainNameToTypeChainName, TDirection, TNetwork } from "../types";
 import { TChainName } from "emmet.js";
 import { setReceiver, setSenderAddress } from "../store/bridgeSlice";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
@@ -11,11 +11,23 @@ import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 const tonChains: TChainName | string[] = ['ton', 'tontestnet'];
 const solanaChains: TChainName | string[] = ['solana'];
 
+//  P R O T O C O L   S E L E C T O R
+function whichProtocol(chainName: TChainName): TNetwork {
+
+    const protocol = tonChains.includes(ChainNameToTypeChainName[chainName])
+        ? "TON"
+        : solanaChains.includes(ChainNameToTypeChainName[chainName])
+            ? "SOLANA"
+            : "EVM";
+
+    return protocol;
+}
+
 export default function useBridgeAccounts() {
 
     const dispatch = useAppDispatch();
     const bridge = useAppSelector((state) => state.bridge);
-    let toProtocol: TNetwork = "INACTIVE";
+    let toProtocol: TNetwork = whichProtocol(bridge.toChain as TChainName);
 
     //   I N J E C T E D    A C C O U N T S
     const evmAccount = useAccount();
@@ -29,30 +41,21 @@ export default function useBridgeAccounts() {
         const isSolanaActive: boolean = !!(solanaWallet && solanaWallet.connected && solanaWallet.publicKey);
         const isTonConnected: boolean = tonAddress.length > 0;
 
-        //  P R O T O C O L   S E L E C T O R
-        function whichProtocol(chainName: TChainName): TNetwork {
-
-            const protocol = tonChains.includes(ChainNameToTypeChainName[chainName])
-                ? "TON"
-                : solanaChains.includes(ChainNameToTypeChainName[chainName])
-                    ? "SOLANA"
-                    : isEvmActive
-                        ? "EVM"
-                        : "INACTIVE";
-
-            return protocol;
-        }
 
         //  A C C O U N T S  S E T T E R
         function setAccounts(
             protocol: TNetwork,
+            direction: TDirection,
             setAccount: ActionCreatorWithPayload<string, "bridge/setReceiver" | "bridge/setSenderAddress">
         ) {
-            if (protocol === "TON" && isTonConnected) {
+
+            const isTo: boolean = direction === "to";
+
+            if (protocol === "TON" && (isTo || isTonConnected)) {
                 dispatch(setAccount(tonAddress));
-            } else if (protocol === "SOLANA" && isSolanaActive) {
+            } else if (protocol === "SOLANA" && (isTo || isSolanaActive)) {
                 dispatch(setAccount(solanaWallet.publicKey!?.toString() || ""));
-            } else if (protocol === "EVM" && isEvmActive) {
+            } else if (protocol === "EVM" && (isTo || isEvmActive)) {
                 dispatch(setAccount(evmAccount.address as string))
             } else {
                 dispatch(setAccount(""));
@@ -61,13 +64,13 @@ export default function useBridgeAccounts() {
 
         //  F R O M   N E T W O R K  S E T U P
         const fromProtocol = whichProtocol(bridge.fromChain as TChainName);
-        setAccounts(fromProtocol, setSenderAddress);
+        setAccounts(fromProtocol, "from", setSenderAddress);
 
         //  T O   N E T W O R K  S E T U P
         toProtocol = whichProtocol(bridge.toChain as TChainName);
-        setAccounts(toProtocol, setReceiver);
+        setAccounts(toProtocol, "to", setReceiver);
 
-    }, [bridge.fromChain, bridge.toChain, evmAccount, solanaWallet, tonAddress, dispatch]);
+    }, [bridge.fromChain, bridge.toChain, bridge.receiver, evmAccount, solanaWallet, tonAddress, dispatch]);
 
     return {
         evmAccount,
