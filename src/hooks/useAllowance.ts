@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
 import { useAppSelector, useAppDispatch } from "./storage";
-import { ChainNameToTypeChainName, ChainToDestinationDomain } from "../types";
+import { ChainNameToTypeChainName, ChainToDestinationDomain, TOKEN_DECIMALS } from "../types";
 import {
   setBridgeAllowance,
   setBridgeDecimals,
@@ -47,20 +47,21 @@ export default function useBridgeAllowance() {
           ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]],
         );
 
-        const token = await handler.token(bridge.fromToken);
+        const token = await handler.getTokenAddress(bridge.fromToken);
+        const tokenDecimals = TOKEN_DECIMALS[bridge.fromToken as keyof typeof TOKEN_DECIMALS];
 
         if (
-          token.token !== ethers.ZeroAddress &&
+          token !== ethers.ZeroAddress &&
           bridge.senderAddress !== ""
         ) {
-          setDecimals(token.decimals);
-          dispatch(setBridgeDecimals(Number(token.decimals)));
+          setDecimals(BigInt(tokenDecimals));
+          dispatch(setBridgeDecimals(Number(tokenDecimals)));
 
           const bridgeAddress: string = await handler.bridge();
 
           if ("getApprovedAmount" in handler) {
             const allowance = await handler.getApprovedAmount(
-              token.token,
+              token,
               bridge.senderAddress,
               bridgeAddress
             );
