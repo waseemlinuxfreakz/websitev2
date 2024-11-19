@@ -5,14 +5,20 @@ export const bsc: Chain = {
   name: "BSC",
   rpcUrls: {
     default: {
-      http: ["https://rpc-amoy.polygon.technology"],
+      http: ["https://bscrpc.com"],
     },
     public: {
       http: [
-        "https://rpc-amoy.polygon.technology",
-        "https://polygon-mumbai-pokt.nodies.app",
-        "https://polygon-mumbai.blockpi.network/v1/rpc/public",
-        "https://polygon-testnet.public.blastapi.io",
+        "https://bsc.drpc.org",
+        "https://rpc.ankr.com/bsc",
+        "https://bsc-dataseed.bnbchain.org",
+        "https://bscrpc.com",
+        "https://bsc-rpc.publicnode.com",
+        "https://bsc-dataseed.bnbchain.org",
+        "https://bsc-dataseed1.defibit.io",
+        "https://bsc-dataseed1.ninicoin.io",
+        "https://bsc-dataseed2.defibit.io",
+        "https://bsc-dataseed3.defibit.io"
       ],
     },
   },
