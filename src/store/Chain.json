@@ -10,6 +10,11 @@
     "icon": "img/chain/arbitrum.svg"
   },
   {
+    "id": 56,
+    "name": "BSC",
+    "icon":"img/chain/base.svg"
+  },
+  {
     "id": 137,
     "name": "Polygon",
     "icon": "img/chain/polygon.svg"

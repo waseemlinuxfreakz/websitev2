@@ -5,6 +5,11 @@
     "icon":"img/chain/avalanche.svg"
   },
   {
+    "id": 56,
+    "name": "BSC",
+    "icon":"img/chain/bsc.svg"
+  },
+  {
     "id":137,
     "name":"Polygon",
     "icon":"img/chain/polygon.svg"
