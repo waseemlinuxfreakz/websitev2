@@ -48,6 +48,14 @@ const chains = [
     nativeCurrency: { name: "TBNB", symbol: "TBNB", decimals: 18 },
   },
   {
+    id: 56,
+    name: "BSC",
+    icon: "img/chain/bsc.svg",
+    domain: 56,
+    requiresApproval: true,
+    nativeCurrency: {name: "BNB", symbol: "BNB", decimals: 18 }
+  },
+  {
     id: 80084,
     name: "Bartio",
     icon: "img/chain/berachain.png",
