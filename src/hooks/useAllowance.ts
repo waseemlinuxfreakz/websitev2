@@ -25,7 +25,7 @@ export default function useBridgeAllowance() {
 
     return (
       Number(bridge.amount) >
-      Number(bridge.allowance) / 10 ** Number(bridge.decimals)
+      (Number(bridge.allowance) / 10 ** Number(bridge.decimals))
     );
   }
 
@@ -47,8 +47,10 @@ export default function useBridgeAllowance() {
           ChainToDestinationDomain[ChainNameToTypeChainName[bridge.fromChain]],
         );
 
-        const token = await handler.getTokenAddress(bridge.fromToken);
-        const tokenDecimals = TOKEN_DECIMALS[bridge.fromToken as keyof typeof TOKEN_DECIMALS];
+        const token: string = await handler.getTokenAddress(bridge.fromToken);
+        const tokenDecimals: number = TOKEN_DECIMALS[bridge.fromToken as keyof typeof TOKEN_DECIMALS];
+
+        console.log("fromToken", bridge.fromToken, "tokenAddress:", token, "tokenDecimals", tokenDecimals)
 
         if (
           token !== ethers.ZeroAddress &&

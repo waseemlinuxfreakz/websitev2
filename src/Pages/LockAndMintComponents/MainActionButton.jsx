@@ -16,6 +16,7 @@ import lockAndMintChains from "../../hooks/chains";
 import { Address } from "@ton/core";
 import Modal from "react-modal";
 import { useWallet } from "@solana/wallet-adapter-react";
+// import useBridgeAllowance from "../../hooks/useAllowance"
 
 const pattern = /^[0x]{0,2}[0-9a-fA-F]{0,40}$/;
 
@@ -37,6 +38,8 @@ function MainActionButton() {
   const wallet = useTonWallet();
   const solanaWallet = useWallet();
 
+  // const {allowance, isApprovalRequired} = useBridgeAllowance();
+
   const [disabled, setDisabled] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [caption, setCaption] = useState("");
@@ -48,7 +51,7 @@ function MainActionButton() {
 
   function isApproveRequired() {
     const chainRequiresApproval = lockAndMintChains.find(
-      (chain) => chain.name === bridge.fromChain,
+      (chain) => chain.name.toLowerCase() === bridge.fromChain.toLowerCase(),
     )?.requiresApproval;
 
     if (chainRequiresApproval) {
@@ -67,6 +70,7 @@ function MainActionButton() {
     ) {
       if (!bridge.amount || Number(bridge.amount) <= 0) {
         setDisabled(true);
+        setCaption("Enter Amount");
         setShowSpiner(false);
       }
 

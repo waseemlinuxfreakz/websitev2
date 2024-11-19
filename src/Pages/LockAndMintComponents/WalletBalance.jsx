@@ -8,7 +8,7 @@ export default function WalletBalance({ name, parent, balance }) {
     <div className="walletBalance">
       <img src={Wallet} alt="Wallet" />
 
-      <span>{parent === "lock-and-mint" ? balance : "0.00"}</span>
+      <span>{parent === "lock-and-mint" ? Number(balance).toLocaleString() : "0.00"}</span>
       <span>{TOKEN_SYMBOL_TO_TOKEN[name]}</span>
     </div>
   );

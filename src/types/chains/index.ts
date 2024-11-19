@@ -135,14 +135,14 @@ export const ChainToDestinationDomain: { [key in TChainName]: number } = {
   arbitrumSepolia: 3,
   base: 6,
   baseSepolia: 6,
+  bsc: 56,
   polygon: 7,
   polygonAmoy: 7,
   ton: 65534,
   tonTestnet: 65535,
   solana: 102, // TODO: change
   // CCTP unsupported chains
-  bsc: 4,
-  bscTestnet: 4,
+  bscTestnet: 56,
   berachainBartio: 80084,
   onlylayerTestnet: 728696,
 };
@@ -156,13 +156,13 @@ export const DomainToChainName: { [key: number]: TChainName } = {
   7: "polygon",
   65534: "ton",
   5: "solana", // TODO: change
-  4: "bsc",
+  56: "bsc",
 };
 
 export const DomainToChainNameTestnet: { [key: number]: TChainName } = {
   7: "polygonAmoy",
   65535: "tonTestnet",
-  4: "bscTestnet",
+  56: "bscTestnet",
   80084: "berachainBartio",
   728696: "onlylayerTestnet",
 };

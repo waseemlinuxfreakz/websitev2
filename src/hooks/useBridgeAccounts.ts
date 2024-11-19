@@ -7,6 +7,8 @@ import { ChainNameToTypeChainName, TDirection, TNetwork } from "../types";
 import { TChainName } from "emmet.js";
 import { setReceiver, setSenderAddress } from "../store/bridgeSlice";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import { isValidSolanaAddress, isValidTonAddress } from "../verifiers";
+import { isEvmAddress } from "../utils";
 
 const tonChains: TChainName | string[] = ['ton', 'tontestnet'];
 const solanaChains: TChainName | string[] = ['solana'];
@@ -51,12 +53,31 @@ export default function useBridgeAccounts() {
 
             const isTo: boolean = direction === "to";
 
-            if (protocol === "TON" && (isTo || isTonConnected)) {
-                dispatch(setAccount(tonAddress));
-            } else if (protocol === "SOLANA" && (isTo || isSolanaActive)) {
-                dispatch(setAccount(solanaWallet.publicKey!?.toString() || ""));
-            } else if (protocol === "EVM" && (isTo || isEvmActive)) {
-                dispatch(setAccount(evmAccount.address as string))
+            if (protocol === "TON") {
+                if(isTonConnected){
+                    dispatch(setAccount(tonAddress));
+                } else if(isTo){
+                    if(!isValidTonAddress(bridge.receiver)){
+                        dispatch(setAccount(""));
+                    }
+                }
+            } else if (protocol === "SOLANA") {
+                if(isSolanaActive){
+                    dispatch(setAccount(solanaWallet.publicKey!?.toString() || ""));
+                } else if(isTo){
+                    if(!isValidSolanaAddress(bridge.receiver)){
+                        dispatch(setAccount(""));
+                    }
+                }
+            } else if (protocol === "EVM") {
+                if(isEvmActive){
+                    dispatch(setAccount(evmAccount.address as string));
+                } else if(isTo){
+                    if(!isEvmAddress(bridge.receiver)){
+                        dispatch(setAccount(""));
+                    }
+                }
+                
             } else {
                 dispatch(setAccount(""));
             }

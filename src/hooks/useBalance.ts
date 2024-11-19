@@ -139,7 +139,7 @@ export default function useBalance() {
     bridge.fromChain,
     bridge.fromToken,
     bridge.toToken,
-    bridge.amount,
+    // bridge.amount,
     bridge.senderAddress,
     bridge.isSwapping
   ]);
@@ -159,7 +159,7 @@ export default function useBalance() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     bridge.toChain,
-    bridge.amount,
+    // bridge.amount,
     bridge.fromToken,
     bridge.toToken,
     bridge.receiver,
