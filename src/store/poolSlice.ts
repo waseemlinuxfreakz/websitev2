@@ -31,6 +31,7 @@ const token = coinsData[0].name;
 
 export const CHAIN_TO_TOKENS = {
   Avalanche:["USDC", "EMMET"],
+  BSC:["NTM"],
   Polygon: ["GrabClub", "EMMET"],
   TON: ["TON", "GrabClub"],
   // TONTestnet: ["USDC", "TON"],

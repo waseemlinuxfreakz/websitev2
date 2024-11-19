@@ -17,6 +17,12 @@ export const BridgeTokens = [
     icon: "img/chain/ton.svg",
     price: 5.09,
   },
+  {
+    cmc_id: 19198,
+    name: "NTM",
+    icon: "img/coin/NTM.png",
+    price: 0.001
+  },
   // {
   //   cmc_id: 1027,
   //   name: "ETH",
@@ -76,8 +82,9 @@ export const BridgeTokens = [
 export const CHAIN_TO_TOKENS: {[key:string]: string[]} = {
   // Mainnets
   Avalanche: ["USDC", "EMMET"],
+  BSC: ["NTM"],
   Polygon: ["USDC", "EMMET", "GrabClub", "TON"],
-  TON: ["TON", "GrabClub"],
+  TON: ["TON", "NTM", "GrabClub"],
   // Testnets
 };
 
@@ -89,16 +96,24 @@ export const CHAIN_TO_TOKENS_TREE: {[key:TSupportedChain]:{
   // Mainnets
   Avalanche: {
     Avalanche: [],
+    BSC:[],
     Polygon: ["USDC", "EMMET"],
     TON: [],
   },
+  BSC: {
+    Avalanche: [],
+    Polygon:[],
+    TON:["NTM"]
+  },
   Polygon: {
     Avalanche: ["USDC", "EMMET"],
+    BSC:[],
     Polygon: [],
     TON: ["TON", "GrabClub"],
   },
   TON: {
     Avalanche: [],
+    BSC:["NTM"],
     Polygon: ["TON", "GrabClub"],
     TON: [],
   },
@@ -107,38 +122,41 @@ export const CHAIN_TO_TOKENS_TREE: {[key:TSupportedChain]:{
 export const TOKEN_TO_TOKEN = {
   GrabClub: ["GrabClub"],
   EMMET: ["EMMET"],
+  NTM:["NTM"],
   TON: ["TON"],
   USDC: ["USDC"]
 }
 
 export const TOKEN_DECIMALS = {
+  BERA: 18,
+  $CAVI: 9,
   DAI: 18,
+  GrabClub: 18,
   EMMET: 18,
-  EURC: 6,
   ETH: 18,
-  USDC: 6,
-  TON: 9,
+  EURC: 6,
   MATIC: 18,
+  NTM: 18,
+  TON: 9,
+  TRT: 9,
+  USDC: 6,
   USDT: 18,
   WBTC: 18,
-  GrabClub: 18,
-  TRT: 9,
-  $CAVI: 9,
-  BERA: 18,
 };
 
 export type TTokenName = keyof typeof TOKEN_DECIMALS;
 
 export const TOKEN_SYMBOL_TO_TOKEN = {
-  USDC: "USDC",
+  BERA: "BERA",
+  $CAVI: "CAVI",
   DAI: "DAI",
-  TON: "TON",
+  GrabClub: "GrabClub",
   EMMET: "EMMET",
   ETH: "ETH",
   MATIC: "MATIC",
-  USDT: "USDT",
-  GrabClub: "GrabClub",
+  NTM: "NTM",
+  TON: "TON",
   TRT: "TestRED",
-  $CAVI: "CAVI",
-  BERA: "BERA",
+  USDC: "USDC",
+  USDT: "USDT",
 };
